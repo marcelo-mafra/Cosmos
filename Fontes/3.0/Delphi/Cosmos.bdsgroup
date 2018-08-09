@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<PersonalityInfo>
+		<Option>
+			<Option Name="Personality">Default.Personality</Option>
+			<Option Name="ProjectType"></Option>
+			<Option Name="Version">1.0</Option>
+			<Option Name="GUID">{C3D7066B-C636-43CA-BECD-CDEB77D755C0}</Option>
+		</Option>
+	</PersonalityInfo>
+	<Default.Personality>  <Projects>
+      <Projects Name="focser.exe">Aplicativos\Gerenciador de Focos\Servidor\focser.bdsproj</Projects>
+      <Projects Name="gfocos.exe">Aplicativos\Gerenciador de Focos\Cliente\gfocos.bdsproj</Projects>
+      <Projects Name="Cosmos Design">UML\Cosmos Design.bdsproj</Projects>
+      <Projects Name="regcosmos.bpl">Bibliotecas\Cosmos Register\regcosmos.bdsproj</Projects>
+      <Projects Name="selfoco.bpl">Bibliotecas\Selecionar Foco\selfoco.bdsproj</Projects>
+      <Projects Name="Targets">focser.exe gfocos.exe "Cosmos Design" regcosmos.bpl selfoco.bpl</Projects>
+    </Projects>
+    <Dependencies/>
+  </Default.Personality>
+	<StarTeamAssociation></StarTeamAssociation>
+	<StarTeamNonRelativeFiles></StarTeamNonRelativeFiles>
+</BorlandProject>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <PersonalityInfo>
+    <Option>
+      <Option Name="Personality">Default.Personality</Option>
+      <Option Name="ProjectType"></Option>
+      <Option Name="Version">1.0</Option>
+      <Option Name="GUID">{F4EA7B76-85A0-45D1-823A-4A8E0B6568C0}</Option>
+    </Option>
+  </PersonalityInfo>
+  <Default.Personality>
+    
+    
+    <Projects>
+      <Projects Name="frames.bpl">Bibliotecas\Frames\frames.bdsproj</Projects>
+      <Projects Name="fmelicoes.bpl">Bibliotecas\Frame Licoes EI\fmelicoes.bdsproj</Projects>
+      <Projects Name="fmepcontas.bpl">Bibliotecas\Frame Plano de Contas\fmepcontas.bdsproj</Projects>
+      <Projects Name="fmefocos.bpl">Bibliotecas\Frames GFocos\fmefocos.bdsproj</Projects>
+      <Projects Name="Targets">frames.bpl fmelicoes.bpl fmepcontas.bpl fmefocos.bpl</Projects>
+    </Projects>
+    <Dependencies/>
+  </Default.Personality>
+</BorlandProject>

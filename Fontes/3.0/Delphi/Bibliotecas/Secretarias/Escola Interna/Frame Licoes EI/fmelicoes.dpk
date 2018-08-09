@@ -1,0 +1,50 @@
+package fmelicoes;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS OFF}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE RELEASE}
+{$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'Frame livros e lições da Escola Interna'}
+{$RUNONLY}
+{$IMPLICITBUILD ON}
+
+requires
+  rtl,
+  vcl,
+  vclactnband,
+  vclx,
+  dbrtl,
+  dsnap,
+  vcldb,
+  interfaces,
+  cmlib,
+  frames,
+  Cosmos;
+
+contains
+  cosmos.secretarias.view.FormNovaLicaoEI in 'cosmos.secretarias.view.FormNovaLicaoEI.pas' {FrmNovaLicaoEI},
+  cosmos.secretarias.view.FormNovoLivroEI in 'cosmos.secretarias.view.FormNovoLivroEI.pas' {FrmNovoLivrosEI},
+  cosmos.frames.FrameLivrosLicoesEI in '..\..\..\..\Arquivos Comuns\Frames\Secretarias\cosmos.frames.FrameLivrosLicoesEI.pas' {FmeEIBooks: TFrame};
+
+end.

@@ -1,0 +1,180 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{BAF59C31-D78D-4763-92A2-9DEF2C3A3904}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="Bibliotecas\Commom\cmlib.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Bibliotecas\Escritor de Logs\logwrt.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Bibliotecas\Interfaces\interfaces.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Bibliotecas\Shell\shellib.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Bibliotecas\Criptografia\cripter.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Bibliotecas\EventLog\events.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Bibliotecas\Help\helplib.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Bibliotecas\Persistência de dados\cmpersist.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Bibliotecas\RegistryLib\Reglib.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Bibliotecas\Segurança\secmod.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Bibliotecas\SQLCommands\sqlcmd.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Bibliotecas\VerInfo\vinfo.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Bibliotecas\XmlIni\xmlcon.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="cmlib">
+			<MSBuild Projects="Bibliotecas\Commom\cmlib.dproj"/>
+		</Target>
+		<Target Name="cmlib:Clean">
+			<MSBuild Projects="Bibliotecas\Commom\cmlib.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="cmlib:Make">
+			<MSBuild Projects="Bibliotecas\Commom\cmlib.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="logwrt">
+			<MSBuild Projects="Bibliotecas\Escritor de Logs\logwrt.dproj"/>
+		</Target>
+		<Target Name="logwrt:Clean">
+			<MSBuild Projects="Bibliotecas\Escritor de Logs\logwrt.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="logwrt:Make">
+			<MSBuild Projects="Bibliotecas\Escritor de Logs\logwrt.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="interfaces">
+			<MSBuild Projects="Bibliotecas\Interfaces\interfaces.dproj"/>
+		</Target>
+		<Target Name="interfaces:Clean">
+			<MSBuild Projects="Bibliotecas\Interfaces\interfaces.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="interfaces:Make">
+			<MSBuild Projects="Bibliotecas\Interfaces\interfaces.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="shellib">
+			<MSBuild Projects="Bibliotecas\Shell\shellib.dproj"/>
+		</Target>
+		<Target Name="shellib:Clean">
+			<MSBuild Projects="Bibliotecas\Shell\shellib.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="shellib:Make">
+			<MSBuild Projects="Bibliotecas\Shell\shellib.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="cripter">
+			<MSBuild Projects="Bibliotecas\Criptografia\cripter.dproj"/>
+		</Target>
+		<Target Name="cripter:Clean">
+			<MSBuild Projects="Bibliotecas\Criptografia\cripter.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="cripter:Make">
+			<MSBuild Projects="Bibliotecas\Criptografia\cripter.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="events">
+			<MSBuild Projects="Bibliotecas\EventLog\events.dproj"/>
+		</Target>
+		<Target Name="events:Clean">
+			<MSBuild Projects="Bibliotecas\EventLog\events.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="events:Make">
+			<MSBuild Projects="Bibliotecas\EventLog\events.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="helplib">
+			<MSBuild Projects="Bibliotecas\Help\helplib.dproj"/>
+		</Target>
+		<Target Name="helplib:Clean">
+			<MSBuild Projects="Bibliotecas\Help\helplib.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="helplib:Make">
+			<MSBuild Projects="Bibliotecas\Help\helplib.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="cmpersist">
+			<MSBuild Projects="Bibliotecas\Persistência de dados\cmpersist.dproj"/>
+		</Target>
+		<Target Name="cmpersist:Clean">
+			<MSBuild Projects="Bibliotecas\Persistência de dados\cmpersist.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="cmpersist:Make">
+			<MSBuild Projects="Bibliotecas\Persistência de dados\cmpersist.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="Reglib">
+			<MSBuild Projects="Bibliotecas\RegistryLib\Reglib.dproj"/>
+		</Target>
+		<Target Name="Reglib:Clean">
+			<MSBuild Projects="Bibliotecas\RegistryLib\Reglib.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="Reglib:Make">
+			<MSBuild Projects="Bibliotecas\RegistryLib\Reglib.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="secmod">
+			<MSBuild Projects="Bibliotecas\Segurança\secmod.dproj"/>
+		</Target>
+		<Target Name="secmod:Clean">
+			<MSBuild Projects="Bibliotecas\Segurança\secmod.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="secmod:Make">
+			<MSBuild Projects="Bibliotecas\Segurança\secmod.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="sqlcmd">
+			<MSBuild Projects="Bibliotecas\SQLCommands\sqlcmd.dproj"/>
+		</Target>
+		<Target Name="sqlcmd:Clean">
+			<MSBuild Projects="Bibliotecas\SQLCommands\sqlcmd.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="sqlcmd:Make">
+			<MSBuild Projects="Bibliotecas\SQLCommands\sqlcmd.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="vinfo">
+			<MSBuild Projects="Bibliotecas\VerInfo\vinfo.dproj"/>
+		</Target>
+		<Target Name="vinfo:Clean">
+			<MSBuild Projects="Bibliotecas\VerInfo\vinfo.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="vinfo:Make">
+			<MSBuild Projects="Bibliotecas\VerInfo\vinfo.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="xmlcon">
+			<MSBuild Projects="Bibliotecas\XmlIni\xmlcon.dproj"/>
+		</Target>
+		<Target Name="xmlcon:Clean">
+			<MSBuild Projects="Bibliotecas\XmlIni\xmlcon.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="xmlcon:Make">
+			<MSBuild Projects="Bibliotecas\XmlIni\xmlcon.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="cmlib;logwrt;interfaces;shellib;cripter;events;helplib;cmpersist;Reglib;secmod;sqlcmd;vinfo;xmlcon"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="cmlib:Clean;logwrt:Clean;interfaces:Clean;shellib:Clean;cripter:Clean;events:Clean;helplib:Clean;cmpersist:Clean;Reglib:Clean;secmod:Clean;sqlcmd:Clean;vinfo:Clean;xmlcon:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="cmlib:Make;logwrt:Make;interfaces:Make;shellib:Make;cripter:Make;events:Make;helplib:Make;cmpersist:Make;Reglib:Make;secmod:Make;sqlcmd:Make;vinfo:Make;xmlcon:Make"/>
+		</Target>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
+	</Project>

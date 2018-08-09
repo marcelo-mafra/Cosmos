@@ -1,0 +1,77 @@
+:Base gsec.hlp
+1 Gestor de Secretarias
+2 Introdução=introducao>Main
+2 Conhecendo o Cosmos=cosmos_view>Main
+2 Acessando o sistema=acessandoosistema>Main
+2 Instalaçao e licenciamento
+3 Instalação=marcelo>Main
+3 Requisitos de sistema=requisitosdesistema>Main
+3 Suporte=suporte>Main
+3 Copyright=copyright>Popup
+3 Modelo de licenciamento=topic3>Popup
+2 Cadastrados
+3 Introdução=introdução2>Main
+3 Exportar dados=exportar_dados>Main
+3 Localizar=localizar>Main
+3 Configurações=configuracoes>Main
+3 Conexão ativa=conexão_ativa>Main
+3 Gerenciador de janelas=gerenciador_janelas>Main
+3 Abertura de foco=abertura_foco>Main
+3 Configurando o DCOM do Windows=configurando_dcom>Main
+2 Lectorium Rosicrucianum
+3 Lectorium Rosicrucianum=lectorium>Main
+3 Dados do aluno=dados_aluno>Main
+3 Cadastrando funçoes=funcoes_aluno>Main
+3 Cadastrando aptidoes=aptidoes_aluno>Main
+2 Trabalho da Mocidade
+3 Trabalho da Mocidade=tm>Main
+3 Cadastrando um novo jovem do TM=novo_jovem>Main
+3 Registrando um batismo=registrando_batismo>Main
+2 Trabalho de Membros
+3 Trabalho de Membros=tmb>Main
+3 Cadastrando um novo membro=novo_membro>Main
+2 Trabalho Publico
+3 Pesquisadores=pesquisadores>Main
+3 Cadastrando pesquisadores=novo_pesquisador>Main
+3 Registrando entrega de cartas=entrega_cartas>Main
+3 Turmas de cursistas
+4 Turmas de cursistas=cursistas>Main
+4 Editando cursistas=editando_cursistas>Main
+2 Escola Interna
+3 Introdução=introdução>Main
+3 Livros e lições da Escola Interna=livrosei>Main
+3 Círculos e membros=circulos>Main
+3 Criando um novo circulo=novo_circulo>Main
+3 Dados dos circulos=dados_circulo>Main
+3 Membros dos circulos=membros_circulo>Main
+3 Desativando um circulo=desativando_circulo>Main
+2 Atividades
+3 Agenda de atividades=agenda>Main
+3 Controle de Frequencia=controle_frequencia>Main
+2 Alocuçoes
+3 Alocuções=alocucoes>Main
+3 Cadastrando alocuçoes=nova_alocucao>Main
+3 Assuntos de alocuçoes=assuntos_alocucao>Main
+3 Localizando alocuçoes=localizando_alocucoes>Main
+2 Tabelas acessórias
+3 Tabelas acessórias=tabelas_acessorias>Main
+2 Central de Relatorios
+3 Central de Relatorios=reports_center>Main
+3 Salvando relatorios=salvandorelatorios>Main
+3 Opçoes para PDF=opcoes_pdf>Main
+2 Cadastrando meios de contatos=meios_contatos>Main
+2 Cadastrando endereços=enderecos>Main
+2 Informaçoes medicas=informacoes_medicas>Main
+2 Dispensas de contribuiçoes=dispensas_contribuicoes>Main
+2 Cadastrando familiares=familiares>Main
+2 Tarefas
+3 Tarefas=tarefas>Main
+1 Ferramentas acessorias
+2 Tools Manager=tools_manager>Main
+2 Logs do Sistema Cosmos=logsdosistemacosmos>Main
+2 DBBackup=dbbackup>Main
+2 Sincronizaçao de dados=sincronizaçaodedados>Main
+2 Calculadora=calculadora>Main
+1 Perguntas freqüentes
+2 Primeira pergunta=primeirapergunta>Main
+

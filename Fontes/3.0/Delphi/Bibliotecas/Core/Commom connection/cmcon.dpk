@@ -1,0 +1,71 @@
+package cmcon;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS OFF}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE RELEASE}
+{$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'Cosmos módulo base de conexão'}
+{$RUNONLY}
+{$IMPLICITBUILD ON}
+
+requires
+  interfaces,
+  cmlib,
+  shellib,
+  cmdialogs,
+  logwrt,
+  svcutils,
+  IndyIPClient,
+  IndyIPCommon,
+  IndySystem,
+  IndyProtocols,
+  IndyCore,
+  rtl,
+  xmlrtl,
+  DbxCommonDriver,
+  dbrtl,
+  DbxClientDriver,
+  dsnap,
+  dbexpress,
+  DataSnapProviderClient,
+  DataSnapCommon,
+  DataSnapIndy10ServerTransport;
+
+contains
+  cosmos.common.view.LoginForm in 'cosmos.common.view.LoginForm.pas' {FrmLogin},
+  cosmos.common.view.ChangePassword in 'cosmos.common.view.ChangePassword.pas' {FrmChangePassword},
+  cosmos.common.view.dlgconnecting in 'cosmos.common.view.dlgconnecting.pas' {FrmConnecting},
+  cosmos.common.view.dlgnoserver in 'cosmos.common.view.dlgnoserver.pas' {FrmDlgNoServer},
+  cosmos.common.services.providerspool in 'cosmos.common.services.providerspool.pas',
+  cosmos.classes.datasetspool in '..\..\..\Arquivos Comuns\Classes\cosmos.classes.datasetspool.pas',
+  cosmos.common.services.clientconnections in '..\..\..\Arquivos Comuns\Classes\cosmos.common.services.clientconnections.pas' {DMBase: TDataModule},
+  cosmos.classes.connectionsobj in '..\..\..\Arquivos Comuns\Classes\cosmos.classes.connectionsobj.pas',
+  cosmos.classes.dsconnectionspool in '..\..\..\Arquivos Comuns\Classes\cosmos.classes.dsconnectionspool.pas',
+  cosmos.common.services.connectionstest in 'cosmos.common.services.connectionstest.pas';
+
+end.
+
+
+
+

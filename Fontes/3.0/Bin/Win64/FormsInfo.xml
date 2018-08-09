@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- Salva informações sobre formulários do sistema Cosmos.-->
+<FormsInfo>
+    <Forms>
+        <Form FormClassName="CODCAD" Height="100" Width="100" Position="100" Resolution="1024x768" Docked="False"/>
+        <Form FormClassName="NOMCAD" Height="100" Width="100" Position="100" Resolution="1024x768" Docked="False"/>
+    </Forms>    
+</FormsInfo>

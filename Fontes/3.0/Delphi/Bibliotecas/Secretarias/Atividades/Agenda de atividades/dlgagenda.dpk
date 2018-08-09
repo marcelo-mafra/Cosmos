@@ -1,0 +1,61 @@
+package dlgagenda;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS OFF}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE RELEASE}
+{$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'Cosmos agenda de atividades'}
+{$RUNONLY}
+{$IMPLICITBUILD ON}
+
+requires
+  rtl,
+  vcl,
+  vclx,
+  dbrtl,
+  dsnap,
+  vcldb,
+  interfaces,
+  frames,
+  cmdialogs,
+  cmlib,
+  secmod,
+  corelib,
+  Cosmos,
+  dtimecntl;
+
+contains
+  cosmos.secretarias.view.FormEditarAtividadeLEC in 'cosmos.secretarias.view.FormEditarAtividadeLEC.pas' {FrmEditarAtividadesLEC},
+  cosmos.secretarias.view.FormEditarParticipantes in 'cosmos.secretarias.view.FormEditarParticipantes.pas' {FrmEditarParticipantes},
+  cosmos.secretarias.view.FormEditarEscalas in 'cosmos.secretarias.view.FormEditarEscalas.pas' {FrmEditarEscalas},
+  cosmos.secretarias.view.FormEditarTiposAtividades in 'cosmos.secretarias.view.FormEditarTiposAtividades.pas' {FrmEditarTiposAtividades},
+  cosmos.secretarias.view.FormEditarAtividadeTP in 'cosmos.secretarias.view.FormEditarAtividadeTP.pas' {FrmEditarAtividadesTP},
+  cosmos.secretarias.view.FormEditarParticipantesTiposAti in 'cosmos.secretarias.view.FormEditarParticipantesTiposAti.pas' {FrmEditarParticipantesTiposAti},
+  cosmos.business.atividades.agenda.controler in 'cosmos.business.atividades.agenda.controler.pas',
+  cosmos.secretarias.view.FormEditarAtividadeEI in 'cosmos.secretarias.view.FormEditarAtividadeEI.pas' {FrmEditarAtividadesEI},
+  cosmos.secretarias.view.FormEditarAtividadeTM in 'cosmos.secretarias.view.FormEditarAtividadeTM.pas' {FrmEditarAtividadesTM},
+  cosmos.secretarias.view.FormEditarAtividadeTMB in 'cosmos.secretarias.view.FormEditarAtividadeTMB.pas' {FrmEditarAtividadesTMB},
+  cosmos.secretarias.view.FormEditarAtividadeSIM in 'cosmos.secretarias.view.FormEditarAtividadeSIM.pas' {FrmEditarAtividadesSIM};
+
+end.

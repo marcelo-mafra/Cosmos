@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<TfrxReport Version="5.1.5" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.AllowEdit="False" PreviewOptions.Buttons="12287" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="41908,8541508912" ReportOptions.Description.Text="" ReportOptions.LastChange="41922,9142392361" ScriptLanguage="PascalScript" ScriptText.Text="begin&#13;&#10;&#13;&#10;end.">
+  <Datasets>
+    <item DataSet="DMSecReports.frxEnderecoAluno" DataSetName="EnderecoAluno"/>
+    <item DataSet="DMSecReports.frxDBListaAlunos" DataSetName="frxDBListaAlunos"/>
+    <item DataSet="DMSecReports.frxMeiosContatosAluno" DataSetName="MeiosContatosAlunos"/>
+  </Datasets>
+  <Variables>
+    <item Name=" Cosmos"/>
+    <item Name="ActiveFocus"/>
+  </Variables>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000"/>
+  <TfrxReportPage Name="Page1" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxPageHeader Name="PageHeader1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Calibri" Font.Style="0" Height="64,25201" Left="0" ParentFont="False" Top="18,89765" Width="718,1107">
+      <TfrxMemoView Name="Memo8" Left="0" Top="0" Width="718,1107" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-16" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="TRABALHO PÚBLICO"/>
+      <TfrxMemoView Name="Memo9" Left="0" Top="26,45671" Width="718,1107" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-16" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="LISTA DE ENDEREÇOS DOS PESQUISADORES"/>
+      <TfrxLineView Name="Line2" Left="0" Top="59,03154" Width="718,1107" Height="0" Color="0" Frame.Typ="4"/>
+    </TfrxPageHeader>
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Height="30,23624" Left="0" ParentFont="False" Top="143,62214" Width="718,1107" ColumnWidth="0" ColumnGap="0" DataSet="DMSecReports.frxDBListaAlunos" DataSetName="frxDBListaAlunos" RowCount="0">
+      <TfrxMemoView Name="Memo1" Left="0" Top="4,55905999999999" Width="68,03154" Height="18,89765" DataField="MATCAD" DataSet="DMSecReports.frxDBListaAlunos" DataSetName="frxDBListaAlunos" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="[frxDBListaAlunos.&#34;MATCAD&#34;]"/>
+      <TfrxMemoView Name="Memo2" Left="70,81107" Top="4,55905999999999" Width="646,29963" Height="18,89765" DataField="NOMCAD" DataSet="DMSecReports.frxDBListaAlunos" DataSetName="frxDBListaAlunos" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="[frxDBListaAlunos.&#34;NOMCAD&#34;]"/>
+    </TfrxMasterData>
+    <TfrxDetailData Name="DetailData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="45,35436" Left="0" Top="196,53556" Width="718,1107" ColumnWidth="0" ColumnGap="0" DataSet="DMSecReports.frxEnderecoAluno" DataSetName="EnderecoAluno" RowCount="0">
+      <TfrxPictureView Name="Picture1" Left="18,89765" Top="3,77952999999999" Width="20" Height="13" AutoSize="True" Picture.PropData="04446174610A4E03000007544269746D617042030000424D42030000000000003600000028000000140000000D00000001001800000000000C03000000000000000000000000000000000000999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF999999999999999999FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF999999999999999999FFFFFF999999FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF999999FFFFFF999999999999FFFFFFFFFFFF999999FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF999999FFFFFFFFFFFF999999999999FFFFFFFFFFFFFFFFFF999999FFFFFF999999999999999999999999999999999999999999999999FFFFFF999999FFFFFFFFFFFFFFFFFF999999999999FFFFFFFFFFFFFFFFFF999999999999FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF999999999999FFFFFFFFFFFFFFFFFF999999999999FFFFFF999999999999FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF999999999999FFFFFF999999999999999999FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF999999999999999999FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF999999999999FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF999999999999FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999" HightQuality="False" Transparent="False" TransparentColor="16777215"/>
+      <TfrxMemoView Name="Memo3" Left="3,77953" Top="22,67718" Width="49,13389" Height="18,89765" DataField="TIPEND" DataSet="DMSecReports.frxEnderecoAluno" DataSetName="EnderecoAluno" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="[EnderecoAluno.&#34;TIPEND&#34;]"/>
+      <TfrxMemoView Name="Memo4" Left="70,81107" Top="1,67717999999999" Width="638,74057" Height="41,57483" DataSet="DMSecReports.frxEnderecoAluno" DataSetName="EnderecoAluno" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" ParentFont="False" WordBreak="True" Text="[EnderecoAluno.&#34;NOMLOG&#34;],  [EnderecoAluno.&#34;NUMEND&#34;]   [EnderecoAluno.&#34;COMEND&#34;]  [EnderecoAluno.&#34;NOMBAI&#34;]  [EnderecoAluno.&#34;NOMCID&#34;] - [EnderecoAluno.&#34;SIGEST&#34;]    [EnderecoAluno.&#34;CEPLOG&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+    </TfrxDetailData>
+    <TfrxDetailData Name="DetailData2" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="23,23624" Left="0" Top="264,5671" Width="718,1107" ColumnWidth="0" ColumnGap="0" DataSet="DMSecReports.frxMeiosContatosAluno" DataSetName="MeiosContatosAlunos" RowCount="0">
+      <TfrxMemoView Name="Memo6" Left="70,81107" Top="2,33859000000001" Width="396,85065" Height="18,89765" DataField="DESCON" DataSet="DMSecReports.frxMeiosContatosAluno" DataSetName="MeiosContatosAlunos" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[MeiosContatosAlunos.&#34;DESCON&#34;]"/>
+      <TfrxMemoView Name="Memo7" Left="478,77984" Top="2,33859000000001" Width="423,30736" Height="18,89765" DataField="DESTIPCON" DataSet="DMSecReports.frxMeiosContatosAluno" DataSetName="MeiosContatosAlunos" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[MeiosContatosAlunos.&#34;DESTIPCON&#34;]"/>
+    </TfrxDetailData>
+    <TfrxPageFooter Name="PageFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="26,45671" Left="0" Top="347,71676" Width="718,1107">
+      <TfrxMemoView Name="Memo10" Left="0" Top="4" Width="461,10266" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="2" ParentFont="False" Text="[ActiveFocus]"/>
+      <TfrxMemoView Name="Memo11" Left="468,66172" Top="4" Width="136,06308" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="2" HAlign="haCenter" ParentFont="False" Text="[Now]"/>
+      <TfrxMemoView Name="Memo12" Left="612,28386" Top="4" Width="105,82684" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="2" HAlign="haRight" ParentFont="False" Text="[Page#]/[TotalPages#]"/>
+      <TfrxLineView Name="Line1" Left="1,33859" Top="0" Width="718,1107" Height="0" Color="0" Frame.Typ="4"/>
+    </TfrxPageFooter>
+  </TfrxReportPage>
+</TfrxReport>

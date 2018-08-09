@@ -1,0 +1,120 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{2CA487BF-1AD1-4673-AD10-653668EBA2B1}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="GrantManager\grantmngr.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="DBBackup\dbbackup.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Atualizador de Logradouros\logimp.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Cosmos Register\register.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\..\Bibliotecas\Cosmos Register\regcosmos.dproj">
+				<Dependencies>..\..\Bibliotecas\Commom\cmlib.dproj</Dependencies>
+			</Projects>
+			<Projects Include="..\..\Bibliotecas\Commom\cmlib.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Borland Socket Server\ScktSrvr.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Configurador\dbconf.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="grantmngr">
+			<MSBuild Projects="GrantManager\grantmngr.dproj"/>
+		</Target>
+		<Target Name="grantmngr:Clean">
+			<MSBuild Targets="Clean" Projects="GrantManager\grantmngr.dproj"/>
+		</Target>
+		<Target Name="grantmngr:Make">
+			<MSBuild Targets="Make" Projects="GrantManager\grantmngr.dproj"/>
+		</Target>
+		<Target Name="dbbackup">
+			<MSBuild Projects="DBBackup\dbbackup.dproj"/>
+		</Target>
+		<Target Name="dbbackup:Clean">
+			<MSBuild Targets="Clean" Projects="DBBackup\dbbackup.dproj"/>
+		</Target>
+		<Target Name="dbbackup:Make">
+			<MSBuild Targets="Make" Projects="DBBackup\dbbackup.dproj"/>
+		</Target>
+		<Target Name="logimp">
+			<MSBuild Projects="Atualizador de Logradouros\logimp.dproj"/>
+		</Target>
+		<Target Name="logimp:Clean">
+			<MSBuild Targets="Clean" Projects="Atualizador de Logradouros\logimp.dproj"/>
+		</Target>
+		<Target Name="logimp:Make">
+			<MSBuild Targets="Make" Projects="Atualizador de Logradouros\logimp.dproj"/>
+		</Target>
+		<Target Name="register">
+			<MSBuild Projects="Cosmos Register\register.dproj"/>
+		</Target>
+		<Target Name="register:Clean">
+			<MSBuild Targets="Clean" Projects="Cosmos Register\register.dproj"/>
+		</Target>
+		<Target Name="register:Make">
+			<MSBuild Targets="Make" Projects="Cosmos Register\register.dproj"/>
+		</Target>
+		<Target DependsOnTargets="cmlib" Name="regcosmos">
+			<MSBuild Projects="..\..\Bibliotecas\Cosmos Register\regcosmos.dproj"/>
+		</Target>
+		<Target DependsOnTargets="cmlib:Clean" Name="regcosmos:Clean">
+			<MSBuild Targets="Clean" Projects="..\..\Bibliotecas\Cosmos Register\regcosmos.dproj"/>
+		</Target>
+		<Target DependsOnTargets="cmlib:Make" Name="regcosmos:Make">
+			<MSBuild Targets="Make" Projects="..\..\Bibliotecas\Cosmos Register\regcosmos.dproj"/>
+		</Target>
+		<Target Name="cmlib">
+			<MSBuild Projects="..\..\Bibliotecas\Commom\cmlib.dproj"/>
+		</Target>
+		<Target Name="cmlib:Clean">
+			<MSBuild Targets="Clean" Projects="..\..\Bibliotecas\Commom\cmlib.dproj"/>
+		</Target>
+		<Target Name="cmlib:Make">
+			<MSBuild Targets="Make" Projects="..\..\Bibliotecas\Commom\cmlib.dproj"/>
+		</Target>
+		<Target Name="ScktSrvr">
+			<MSBuild Projects="Borland Socket Server\ScktSrvr.dproj"/>
+		</Target>
+		<Target Name="ScktSrvr:Clean">
+			<MSBuild Targets="Clean" Projects="Borland Socket Server\ScktSrvr.dproj"/>
+		</Target>
+		<Target Name="ScktSrvr:Make">
+			<MSBuild Targets="Make" Projects="Borland Socket Server\ScktSrvr.dproj"/>
+		</Target>
+		<Target Name="dbconf">
+			<MSBuild Projects="Configurador\dbconf.dproj"/>
+		</Target>
+		<Target Name="dbconf:Clean">
+			<MSBuild Targets="Clean" Projects="Configurador\dbconf.dproj"/>
+		</Target>
+		<Target Name="dbconf:Make">
+			<MSBuild Targets="Make" Projects="Configurador\dbconf.dproj"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="grantmngr;dbbackup;logimp;register;regcosmos;cmlib;ScktSrvr;dbconf"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="grantmngr:Clean;dbbackup:Clean;logimp:Clean;register:Clean;regcosmos:Clean;cmlib:Clean;ScktSrvr:Clean;dbconf:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="grantmngr:Make;dbbackup:Make;logimp:Make;register:Make;regcosmos:Make;cmlib:Make;ScktSrvr:Make;dbconf:Make"/>
+		</Target>
+		<Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+	</Project>

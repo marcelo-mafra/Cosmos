@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="2z34q7a8l_v">
+    <property name="$name" value="FormEditOrgao" />
+    <property name="$defaultDiagram" value="True" />
+    <property name="$metaclass" value="Package Diagram" />
+    <reference referencedUin="delphi:e_class:src:gfocos:FormEditOrgao.TFrmEditOrgao">
+      <property name="$shortcutReference" value="true" />
+    </reference>
+  </view>
+</nodeSet>

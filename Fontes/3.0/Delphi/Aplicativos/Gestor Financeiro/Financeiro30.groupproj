@@ -1,0 +1,1770 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{993AF2CC-3FB1-49CC-8297-C5876C479DCE}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="..\Ferramentas\Starter\cmstarter.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="ServidorHTTPS\finserapp.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Windows Service\finsvc.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Server Libraries\SQLCommands\sqlcmd.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Server Libraries\Server Data Objects\serverdataobj.dproj">
+            <Dependencies>..\..\Bibliotecas\Server Libraries\SQLCommands\sqlcmd.dproj</Dependencies>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Segurança\secmod.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Core\Commom\cmlib.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Core\Biblioteca cliente\corelib.dproj">
+            <Dependencies>..\..\Bibliotecas\Sistema\Shell\shellib.dproj</Dependencies>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Sistema\Escritor de Logs\logwrt.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Core\Interfaces\interfaces.dproj">
+            <Dependencies>..\..\Bibliotecas\Core\Commom\cmlib.dproj</Dependencies>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Ferramentas\Windows Manager\wmanager.dproj">
+            <Dependencies>..\..\Bibliotecas\Forms\DockedForm\dockedform.dproj</Dependencies>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Core\Dialog de Mensagens\dlgmessage.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Core\Commom Dialogs\cmdialogs.dproj">
+            <Dependencies>..\..\Bibliotecas\Core\Interfaces\interfaces.dproj</Dependencies>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Core\Commom connection\cmcon.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Cliente\Connection\fincon.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Core\Common Client GUI\cmgui.dproj">
+            <Dependencies>..\..\Bibliotecas\Core\Interfaces\interfaces.dproj</Dependencies>
+        </Projects>
+        <Projects Include="Cliente\gfin.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Core\Persistência de dados\cmpersist.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Forms\Cosmos Default Wizard\defwiz.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Forms\DockedForm\dockedform.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Core\Frames\frames.dproj">
+            <Dependencies>..\..\Bibliotecas\Core\Commom Dialogs\cmdialogs.dproj;..\..\Bibliotecas\Core\Dialog de Mensagens\dlgmessage.dproj</Dependencies>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Sistema\Help\helplib.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Sistema\EventLog\events.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Sistema\Shell\shellib.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Ferramentas\Modulos\cmmodules.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Tabelas Acessorias\tabace.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Forms\Config Form\confwin.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Core\Common Pages\cmpages.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Servidores Datasnap\pgservers.dproj">
+            <Dependencies>..\..\Bibliotecas\Core\Common Pages\cmpages.dproj</Dependencies>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Configuração de logs\pglogs.dproj">
+            <Dependencies>..\..\Bibliotecas\Core\Common Pages\cmpages.dproj</Dependencies>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Ferramenta de Email\pgemail.dproj">
+            <Dependencies>..\..\Bibliotecas\Core\Common Pages\cmpages.dproj</Dependencies>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Interface do Usuário\pgui.dproj">
+            <Dependencies>..\..\Bibliotecas\Core\Common Pages\cmpages.dproj</Dependencies>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Página do Updater\pgupdater.dproj">
+            <Dependencies>..\..\Bibliotecas\Core\Common Pages\cmpages.dproj</Dependencies>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Menu lateral\pgmenu.dproj">
+            <Dependencies>..\..\Bibliotecas\Core\Common Pages\cmpages.dproj</Dependencies>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Impressão recibos\pgrecibos.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Forms\Splash Form\splash.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Forms\InfoConnection\coninfo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Forms\Abertura\opfocus.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Forms\Commom Searchs\searcher.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Data\Data Locate\locdata.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Forms\Ficha Cadastrado\ficha.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Forms\Exporter Default Dialog\dlgexporter.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Data\Exporter\exporter.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Ferramentas\Central de relatórios\repcen.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Ferramentas\Central de Pesquisas\cenpes.dproj">
+            <Dependencies>..\..\Bibliotecas\Forms\DockedForm\dockedform.dproj</Dependencies>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Ferramentas\Atualizador automático\updater.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Secretarias\Pesquisar cadastrados2\pescad.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Financeiro\Caixas\caixas.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Financeiro\Centros de Custos\ccustos.dproj">
+            <Dependencies>..\..\Bibliotecas\Forms\DockedForm\dockedform.dproj</Dependencies>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Financeiro\Recebimentos\recebimentos.dproj">
+            <Dependencies>..\..\Bibliotecas\Forms\DockedForm\dockedform.dproj</Dependencies>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Financeiro\Dispensas\dispensas.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Financeiro\Análise de contribuições\anacon.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Financeiro\Contas bancárias\conban.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Financeiro\Pagamentos\pagamentos.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Financeiro\Frame Plano de Contas\fmepcontas.dproj">
+            <Dependencies>..\..\Bibliotecas\Core\Frames\frames.dproj</Dependencies>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Financeiro\Plano de Contas\pcontas.dproj">
+            <Dependencies>..\..\Bibliotecas\Financeiro\Frame Plano de Contas\fmepcontas.dproj</Dependencies>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Financeiro\Pesquisar contas\pesctas.dproj">
+            <Dependencies>..\..\Bibliotecas\Financeiro\Frame Plano de Contas\fmepcontas.dproj</Dependencies>
+        </Projects>
+        <Projects Include="..\..\Bibliotecas\Financeiro\Transações\transacoes.dproj">
+            <Dependencies>..\..\Bibliotecas\Forms\DockedForm\dockedform.dproj</Dependencies>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="cmstarter">
+        <MSBuild Projects="..\Ferramentas\Starter\cmstarter.dproj"/>
+    </Target>
+    <Target Name="cmstarter:Clean">
+        <MSBuild Projects="..\Ferramentas\Starter\cmstarter.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="cmstarter:Make">
+        <MSBuild Projects="..\Ferramentas\Starter\cmstarter.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="finserapp">
+        <MSBuild Projects="ServidorHTTPS\finserapp.dproj"/>
+    </Target>
+    <Target Name="finserapp:Clean">
+        <MSBuild Projects="ServidorHTTPS\finserapp.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="finserapp:Make">
+        <MSBuild Projects="ServidorHTTPS\finserapp.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="finsvc">
+        <MSBuild Projects="Windows Service\finsvc.dproj"/>
+    </Target>
+    <Target Name="finsvc:Clean">
+        <MSBuild Projects="Windows Service\finsvc.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="finsvc:Make">
+        <MSBuild Projects="Windows Service\finsvc.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="sqlcmd">
+        <MSBuild Projects="..\..\Bibliotecas\Server Libraries\SQLCommands\sqlcmd.dproj"/>
+    </Target>
+    <Target Name="sqlcmd:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Server Libraries\SQLCommands\sqlcmd.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="sqlcmd:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Server Libraries\SQLCommands\sqlcmd.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="serverdataobj" DependsOnTargets="sqlcmd">
+        <MSBuild Projects="..\..\Bibliotecas\Server Libraries\Server Data Objects\serverdataobj.dproj"/>
+    </Target>
+    <Target Name="serverdataobj:Clean" DependsOnTargets="sqlcmd:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Server Libraries\Server Data Objects\serverdataobj.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="serverdataobj:Make" DependsOnTargets="sqlcmd:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Server Libraries\Server Data Objects\serverdataobj.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="secmod">
+        <MSBuild Projects="..\..\Bibliotecas\Segurança\secmod.dproj"/>
+    </Target>
+    <Target Name="secmod:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Segurança\secmod.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="secmod:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Segurança\secmod.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="cmlib">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Commom\cmlib.dproj"/>
+    </Target>
+    <Target Name="cmlib:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Commom\cmlib.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="cmlib:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Commom\cmlib.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="corelib" DependsOnTargets="shellib">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Biblioteca cliente\corelib.dproj"/>
+    </Target>
+    <Target Name="corelib:Clean" DependsOnTargets="shellib:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Biblioteca cliente\corelib.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="corelib:Make" DependsOnTargets="shellib:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Biblioteca cliente\corelib.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="logwrt">
+        <MSBuild Projects="..\..\Bibliotecas\Sistema\Escritor de Logs\logwrt.dproj"/>
+    </Target>
+    <Target Name="logwrt:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Sistema\Escritor de Logs\logwrt.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="logwrt:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Sistema\Escritor de Logs\logwrt.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="interfaces" DependsOnTargets="cmlib">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Interfaces\interfaces.dproj"/>
+    </Target>
+    <Target Name="interfaces:Clean" DependsOnTargets="cmlib:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Interfaces\interfaces.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="interfaces:Make" DependsOnTargets="cmlib:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Interfaces\interfaces.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="wmanager" DependsOnTargets="dockedform">
+        <MSBuild Projects="..\..\Bibliotecas\Ferramentas\Windows Manager\wmanager.dproj"/>
+    </Target>
+    <Target Name="wmanager:Clean" DependsOnTargets="dockedform:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Ferramentas\Windows Manager\wmanager.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="wmanager:Make" DependsOnTargets="dockedform:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Ferramentas\Windows Manager\wmanager.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="dlgmessage">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Dialog de Mensagens\dlgmessage.dproj"/>
+    </Target>
+    <Target Name="dlgmessage:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Dialog de Mensagens\dlgmessage.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dlgmessage:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Dialog de Mensagens\dlgmessage.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="cmdialogs" DependsOnTargets="interfaces">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Commom Dialogs\cmdialogs.dproj"/>
+    </Target>
+    <Target Name="cmdialogs:Clean" DependsOnTargets="interfaces:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Commom Dialogs\cmdialogs.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="cmdialogs:Make" DependsOnTargets="interfaces:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Commom Dialogs\cmdialogs.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="cmcon">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Commom connection\cmcon.dproj"/>
+    </Target>
+    <Target Name="cmcon:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Commom connection\cmcon.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="cmcon:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Commom connection\cmcon.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="fincon">
+        <MSBuild Projects="Cliente\Connection\fincon.dproj"/>
+    </Target>
+    <Target Name="fincon:Clean">
+        <MSBuild Projects="Cliente\Connection\fincon.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="fincon:Make">
+        <MSBuild Projects="Cliente\Connection\fincon.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="cmgui" DependsOnTargets="interfaces">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Common Client GUI\cmgui.dproj"/>
+    </Target>
+    <Target Name="cmgui:Clean" DependsOnTargets="interfaces:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Common Client GUI\cmgui.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="cmgui:Make" DependsOnTargets="interfaces:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Common Client GUI\cmgui.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="gfin">
+        <MSBuild Projects="Cliente\gfin.dproj"/>
+    </Target>
+    <Target Name="gfin:Clean">
+        <MSBuild Projects="Cliente\gfin.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="gfin:Make">
+        <MSBuild Projects="Cliente\gfin.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="cmpersist">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Persistência de dados\cmpersist.dproj"/>
+    </Target>
+    <Target Name="cmpersist:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Persistência de dados\cmpersist.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="cmpersist:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Persistência de dados\cmpersist.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="defwiz">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Cosmos Default Wizard\defwiz.dproj"/>
+    </Target>
+    <Target Name="defwiz:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Cosmos Default Wizard\defwiz.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="defwiz:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Cosmos Default Wizard\defwiz.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="dockedform">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\DockedForm\dockedform.dproj"/>
+    </Target>
+    <Target Name="dockedform:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\DockedForm\dockedform.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dockedform:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\DockedForm\dockedform.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="frames" DependsOnTargets="cmdialogs;dlgmessage">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Frames\frames.dproj"/>
+    </Target>
+    <Target Name="frames:Clean" DependsOnTargets="cmdialogs:Clean;dlgmessage:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Frames\frames.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="frames:Make" DependsOnTargets="cmdialogs:Make;dlgmessage:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Frames\frames.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="helplib">
+        <MSBuild Projects="..\..\Bibliotecas\Sistema\Help\helplib.dproj"/>
+    </Target>
+    <Target Name="helplib:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Sistema\Help\helplib.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="helplib:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Sistema\Help\helplib.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="events">
+        <MSBuild Projects="..\..\Bibliotecas\Sistema\EventLog\events.dproj"/>
+    </Target>
+    <Target Name="events:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Sistema\EventLog\events.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="events:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Sistema\EventLog\events.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="shellib">
+        <MSBuild Projects="..\..\Bibliotecas\Sistema\Shell\shellib.dproj"/>
+    </Target>
+    <Target Name="shellib:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Sistema\Shell\shellib.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="shellib:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Sistema\Shell\shellib.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="cmmodules">
+        <MSBuild Projects="..\..\Bibliotecas\Ferramentas\Modulos\cmmodules.dproj"/>
+    </Target>
+    <Target Name="cmmodules:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Ferramentas\Modulos\cmmodules.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="cmmodules:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Ferramentas\Modulos\cmmodules.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="tabace">
+        <MSBuild Projects="..\..\Bibliotecas\Tabelas Acessorias\tabace.dproj"/>
+    </Target>
+    <Target Name="tabace:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Tabelas Acessorias\tabace.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="tabace:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Tabelas Acessorias\tabace.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="confwin">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Config Form\confwin.dproj"/>
+    </Target>
+    <Target Name="confwin:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Config Form\confwin.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="confwin:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Config Form\confwin.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="cmpages">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Common Pages\cmpages.dproj"/>
+    </Target>
+    <Target Name="cmpages:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Common Pages\cmpages.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="cmpages:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Core\Common Pages\cmpages.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="pgservers" DependsOnTargets="cmpages">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Servidores Datasnap\pgservers.dproj"/>
+    </Target>
+    <Target Name="pgservers:Clean" DependsOnTargets="cmpages:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Servidores Datasnap\pgservers.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pgservers:Make" DependsOnTargets="cmpages:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Servidores Datasnap\pgservers.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="pglogs" DependsOnTargets="cmpages">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Configuração de logs\pglogs.dproj"/>
+    </Target>
+    <Target Name="pglogs:Clean" DependsOnTargets="cmpages:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Configuração de logs\pglogs.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pglogs:Make" DependsOnTargets="cmpages:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Configuração de logs\pglogs.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="pgemail" DependsOnTargets="cmpages">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Ferramenta de Email\pgemail.dproj"/>
+    </Target>
+    <Target Name="pgemail:Clean" DependsOnTargets="cmpages:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Ferramenta de Email\pgemail.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pgemail:Make" DependsOnTargets="cmpages:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Ferramenta de Email\pgemail.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="pgui" DependsOnTargets="cmpages">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Interface do Usuário\pgui.dproj"/>
+    </Target>
+    <Target Name="pgui:Clean" DependsOnTargets="cmpages:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Interface do Usuário\pgui.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pgui:Make" DependsOnTargets="cmpages:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Interface do Usuário\pgui.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="pgupdater" DependsOnTargets="cmpages">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Página do Updater\pgupdater.dproj"/>
+    </Target>
+    <Target Name="pgupdater:Clean" DependsOnTargets="cmpages:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Página do Updater\pgupdater.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pgupdater:Make" DependsOnTargets="cmpages:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Página do Updater\pgupdater.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="pgmenu" DependsOnTargets="cmpages">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Menu lateral\pgmenu.dproj"/>
+    </Target>
+    <Target Name="pgmenu:Clean" DependsOnTargets="cmpages:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Menu lateral\pgmenu.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pgmenu:Make" DependsOnTargets="cmpages:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Menu lateral\pgmenu.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="pgrecibos">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Impressão recibos\pgrecibos.dproj"/>
+    </Target>
+    <Target Name="pgrecibos:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Impressão recibos\pgrecibos.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pgrecibos:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Impressão recibos\pgrecibos.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="splash">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Splash Form\splash.dproj"/>
+    </Target>
+    <Target Name="splash:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Splash Form\splash.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="splash:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Splash Form\splash.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="coninfo">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\InfoConnection\coninfo.dproj"/>
+    </Target>
+    <Target Name="coninfo:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\InfoConnection\coninfo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="coninfo:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\InfoConnection\coninfo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="opfocus">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Abertura\opfocus.dproj"/>
+    </Target>
+    <Target Name="opfocus:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Abertura\opfocus.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="opfocus:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Abertura\opfocus.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="searcher">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Commom Searchs\searcher.dproj"/>
+    </Target>
+    <Target Name="searcher:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Commom Searchs\searcher.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="searcher:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Commom Searchs\searcher.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="locdata">
+        <MSBuild Projects="..\..\Bibliotecas\Data\Data Locate\locdata.dproj"/>
+    </Target>
+    <Target Name="locdata:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Data\Data Locate\locdata.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="locdata:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Data\Data Locate\locdata.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ficha">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Ficha Cadastrado\ficha.dproj"/>
+    </Target>
+    <Target Name="ficha:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Ficha Cadastrado\ficha.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ficha:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Ficha Cadastrado\ficha.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="dlgexporter">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Exporter Default Dialog\dlgexporter.dproj"/>
+    </Target>
+    <Target Name="dlgexporter:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Exporter Default Dialog\dlgexporter.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dlgexporter:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Forms\Exporter Default Dialog\dlgexporter.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="exporter">
+        <MSBuild Projects="..\..\Bibliotecas\Data\Exporter\exporter.dproj"/>
+    </Target>
+    <Target Name="exporter:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Data\Exporter\exporter.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="exporter:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Data\Exporter\exporter.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="repcen">
+        <MSBuild Projects="..\..\Bibliotecas\Ferramentas\Central de relatórios\repcen.dproj"/>
+    </Target>
+    <Target Name="repcen:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Ferramentas\Central de relatórios\repcen.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="repcen:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Ferramentas\Central de relatórios\repcen.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="cenpes" DependsOnTargets="dockedform">
+        <MSBuild Projects="..\..\Bibliotecas\Ferramentas\Central de Pesquisas\cenpes.dproj"/>
+    </Target>
+    <Target Name="cenpes:Clean" DependsOnTargets="dockedform:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Ferramentas\Central de Pesquisas\cenpes.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="cenpes:Make" DependsOnTargets="dockedform:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Ferramentas\Central de Pesquisas\cenpes.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="updater">
+        <MSBuild Projects="..\..\Bibliotecas\Ferramentas\Atualizador automático\updater.dproj"/>
+    </Target>
+    <Target Name="updater:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Ferramentas\Atualizador automático\updater.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="updater:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Ferramentas\Atualizador automático\updater.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="pescad">
+        <MSBuild Projects="..\..\Bibliotecas\Secretarias\Pesquisar cadastrados2\pescad.dproj"/>
+    </Target>
+    <Target Name="pescad:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Secretarias\Pesquisar cadastrados2\pescad.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pescad:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Secretarias\Pesquisar cadastrados2\pescad.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="caixas">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Caixas\caixas.dproj"/>
+    </Target>
+    <Target Name="caixas:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Caixas\caixas.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="caixas:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Caixas\caixas.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ccustos" DependsOnTargets="dockedform">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Centros de Custos\ccustos.dproj"/>
+    </Target>
+    <Target Name="ccustos:Clean" DependsOnTargets="dockedform:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Centros de Custos\ccustos.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ccustos:Make" DependsOnTargets="dockedform:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Centros de Custos\ccustos.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="recebimentos" DependsOnTargets="dockedform">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Recebimentos\recebimentos.dproj"/>
+    </Target>
+    <Target Name="recebimentos:Clean" DependsOnTargets="dockedform:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Recebimentos\recebimentos.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="recebimentos:Make" DependsOnTargets="dockedform:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Recebimentos\recebimentos.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="dispensas">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Dispensas\dispensas.dproj"/>
+    </Target>
+    <Target Name="dispensas:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Dispensas\dispensas.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dispensas:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Dispensas\dispensas.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="anacon">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Análise de contribuições\anacon.dproj"/>
+    </Target>
+    <Target Name="anacon:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Análise de contribuições\anacon.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="anacon:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Análise de contribuições\anacon.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="conban">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Contas bancárias\conban.dproj"/>
+    </Target>
+    <Target Name="conban:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Contas bancárias\conban.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="conban:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Contas bancárias\conban.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="pagamentos">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Pagamentos\pagamentos.dproj"/>
+    </Target>
+    <Target Name="pagamentos:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Pagamentos\pagamentos.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pagamentos:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Pagamentos\pagamentos.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="fmepcontas" DependsOnTargets="frames">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Frame Plano de Contas\fmepcontas.dproj"/>
+    </Target>
+    <Target Name="fmepcontas:Clean" DependsOnTargets="frames:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Frame Plano de Contas\fmepcontas.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="fmepcontas:Make" DependsOnTargets="frames:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Frame Plano de Contas\fmepcontas.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="pcontas" DependsOnTargets="fmepcontas">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Plano de Contas\pcontas.dproj"/>
+    </Target>
+    <Target Name="pcontas:Clean" DependsOnTargets="fmepcontas:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Plano de Contas\pcontas.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pcontas:Make" DependsOnTargets="fmepcontas:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Plano de Contas\pcontas.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="pesctas" DependsOnTargets="fmepcontas">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Pesquisar contas\pesctas.dproj"/>
+    </Target>
+    <Target Name="pesctas:Clean" DependsOnTargets="fmepcontas:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Pesquisar contas\pesctas.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pesctas:Make" DependsOnTargets="fmepcontas:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Pesquisar contas\pesctas.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="transacoes" DependsOnTargets="dockedform">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Transações\transacoes.dproj"/>
+    </Target>
+    <Target Name="transacoes:Clean" DependsOnTargets="dockedform:Clean">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Transações\transacoes.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="transacoes:Make" DependsOnTargets="dockedform:Make">
+        <MSBuild Projects="..\..\Bibliotecas\Financeiro\Transações\transacoes.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="cmstarter;finserapp;finsvc;sqlcmd;serverdataobj;secmod;cmlib;corelib;logwrt;interfaces;wmanager;dlgmessage;cmdialogs;cmcon;fincon;cmgui;gfin;cmpersist;defwiz;dockedform;frames;helplib;events;shellib;cmmodules;tabace;confwin;cmpages;pgservers;pglogs;pgemail;pgui;pgupdater;pgmenu;pgrecibos;splash;coninfo;opfocus;searcher;locdata;ficha;dlgexporter;exporter;repcen;cenpes;updater;pescad;caixas;ccustos;recebimentos;dispensas;anacon;conban;pagamentos;fmepcontas;pcontas;pesctas;transacoes"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="cmstarter:Clean;finserapp:Clean;finsvc:Clean;sqlcmd:Clean;serverdataobj:Clean;secmod:Clean;cmlib:Clean;corelib:Clean;logwrt:Clean;interfaces:Clean;wmanager:Clean;dlgmessage:Clean;cmdialogs:Clean;cmcon:Clean;fincon:Clean;cmgui:Clean;gfin:Clean;cmpersist:Clean;defwiz:Clean;dockedform:Clean;frames:Clean;helplib:Clean;events:Clean;shellib:Clean;cmmodules:Clean;tabace:Clean;confwin:Clean;cmpages:Clean;pgservers:Clean;pglogs:Clean;pgemail:Clean;pgui:Clean;pgupdater:Clean;pgmenu:Clean;pgrecibos:Clean;splash:Clean;coninfo:Clean;opfocus:Clean;searcher:Clean;locdata:Clean;ficha:Clean;dlgexporter:Clean;exporter:Clean;repcen:Clean;cenpes:Clean;updater:Clean;pescad:Clean;caixas:Clean;ccustos:Clean;recebimentos:Clean;dispensas:Clean;anacon:Clean;conban:Clean;pagamentos:Clean;fmepcontas:Clean;pcontas:Clean;pesctas:Clean;transacoes:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="cmstarter:Make;finserapp:Make;finsvc:Make;sqlcmd:Make;serverdataobj:Make;secmod:Make;cmlib:Make;corelib:Make;logwrt:Make;interfaces:Make;wmanager:Make;dlgmessage:Make;cmdialogs:Make;cmcon:Make;fincon:Make;cmgui:Make;gfin:Make;cmpersist:Make;defwiz:Make;dockedform:Make;frames:Make;helplib:Make;events:Make;shellib:Make;cmmodules:Make;tabace:Make;confwin:Make;cmpages:Make;pgservers:Make;pglogs:Make;pgemail:Make;pgui:Make;pgupdater:Make;pgmenu:Make;pgrecibos:Make;splash:Make;coninfo:Make;opfocus:Make;searcher:Make;locdata:Make;ficha:Make;dlgexporter:Make;exporter:Make;repcen:Make;cenpes:Make;updater:Make;pescad:Make;caixas:Make;ccustos:Make;recebimentos:Make;dispensas:Make;anacon:Make;conban:Make;pagamentos:Make;fmepcontas:Make;pcontas:Make;pesctas:Make;transacoes:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+    <ItemGroup Condition="'$(BuildGroup)'=='CosmosCore'">
+        <BuildGroupProject Include="..\..\Bibliotecas\Tabelas Acessorias\tabace.dproj">
+            <ProjectGuid>{2F84C9D7-D64B-4CC4-B2C0-E70B06976AC2}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Página do Updater\pgupdater.dproj">
+            <ProjectGuid>{CFB80F58-40FC-4DA7-813E-6FBC91CDD486}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Segurança\secmod.dproj">
+            <ProjectGuid>{91E1BE7F-97B3-45B5-B996-A5927A6BFC37}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32;Win64</Platforms>
+            <Enabled>True</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\DockedForm\dockedform.dproj">
+            <ProjectGuid>{C298BC81-E5CD-4B35-BF14-B22EA7E42724}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Impressão recibos\pgrecibos.dproj">
+            <ProjectGuid>{24548149-482E-44D2-9B7A-5E87ABD99E15}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="Windows Service\finsvc.dproj">
+            <ProjectGuid>{72D12134-0233-43F0-A6AB-06050C50883F}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Interface do Usuário\pgui.dproj">
+            <ProjectGuid>{A897C57F-EB7A-46E8-95E0-02C6F455C9B3}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\Shell\shellib.dproj">
+            <ProjectGuid>{05CBE2EC-3678-4FE7-AECF-9B4C4B683813}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Menu lateral\pgmenu.dproj">
+            <ProjectGuid>{2A523CCE-EF7B-434E-8634-8E50E754C15B}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Splash Form\splash.dproj">
+            <ProjectGuid>{C932A03F-BA12-4AF2-ADA9-56F0B769925D}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Exporter Default Dialog\dlgexporter.dproj">
+            <ProjectGuid>{A0415D85-2B5C-4BE7-A746-B0BCC818EFA7}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Commom connection\cmcon.dproj">
+            <ProjectGuid>{D8A924A0-07F8-41CE-92A3-C8813CB1E259}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Persistência de dados\cmpersist.dproj">
+            <ProjectGuid>{96D01F7A-8EA8-4343-A8C2-BBB9B8EBD655}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Frames\frames.dproj">
+            <ProjectGuid>{E35B802D-98DE-4BCC-92B9-A95FED148A06}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Análise de contribuições\anacon.dproj">
+            <ProjectGuid>{A48F62BA-B263-4D96-A121-91D362C5837B}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Frame Plano de Contas\fmepcontas.dproj">
+            <ProjectGuid>{69BD63F0-96A9-4C76-8977-E9E4F316BD0F}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="ServidorHTTPS\finserapp.dproj">
+            <ProjectGuid>{3AF279EF-7902-4502-AE67-C932E6235914}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Dispensas\dispensas.dproj">
+            <ProjectGuid>{D0AA3484-973D-4204-86BB-8E5BF0CC3D25}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Dialog de Mensagens\dlgmessage.dproj">
+            <ProjectGuid>{93CE368B-B43E-4C14-9497-DA8EACD884A6}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\InfoConnection\coninfo.dproj">
+            <ProjectGuid>{5A59305E-1FC4-429C-A97E-F193BEBBFF4C}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Data\Data Locate\locdata.dproj">
+            <ProjectGuid>{2C6183A1-942E-4346-B2DC-52603013B9B7}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\Help\helplib.dproj">
+            <ProjectGuid>{8C8793FE-6608-4E07-87CA-830518534DCD}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Transações\transacoes.dproj">
+            <ProjectGuid>{D05E22AB-F371-44F8-83D5-CAC96F4A36C8}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\EventLog\events.dproj">
+            <ProjectGuid>{84C65035-5EED-4563-B1DF-14B18BD3ABAE}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Contas bancárias\conban.dproj">
+            <ProjectGuid>{75903FFE-08AE-4FA7-89A3-B52946E0FAB8}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="Cliente\Connection\fincon.dproj">
+            <ProjectGuid>{E2601375-7480-42FF-B07A-792D81A3EBD0}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Ficha Cadastrado\ficha.dproj">
+            <ProjectGuid>{1547B11F-6F98-4940-8EC6-3A5551543F91}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Commom Searchs\searcher.dproj">
+            <ProjectGuid>{8A812578-4253-4B83-8380-88CD04C0B726}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Windows Manager\wmanager.dproj">
+            <ProjectGuid>{0F9CFE71-A52A-487A-8CC1-2B1F75DAA359}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Commom\cmlib.dproj">
+            <ProjectGuid>{02E7228C-3F03-4AAF-A210-4FE35BF7152C}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Common Pages\cmpages.dproj">
+            <ProjectGuid>{3AF84E1D-B8B3-4961-98B7-3950EB97D421}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="Cliente\gfin.dproj">
+            <ProjectGuid>{5717B410-519B-4CFE-9042-C1058CDBF399}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Ferramenta de Email\pgemail.dproj">
+            <ProjectGuid>{F9CA017B-C540-4813-AED7-888B7BC3C1EB}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Recebimentos\recebimentos.dproj">
+            <ProjectGuid>{A99B50E3-31DB-41E2-84D7-E8F685DED621}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Modulos\cmmodules.dproj">
+            <ProjectGuid>{809128F1-6569-4AC0-A7CA-B1C695366B56}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\confwin.dproj">
+            <ProjectGuid>{A0B0A136-8E3E-402D-913C-253ED99E2EE4}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Central de relatórios\repcen.dproj">
+            <ProjectGuid>{AEA2EC1D-0F0C-4941-BE5F-4C3C9493EB9A}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Pesquisar contas\pesctas.dproj">
+            <ProjectGuid>{61407A0C-CF52-400F-8579-2C42C84F5FEA}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Atualizador automático\updater.dproj">
+            <ProjectGuid>{BA92392E-2B74-4368-A3AE-600772798487}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Caixas\caixas.dproj">
+            <ProjectGuid>{1F034D16-31F8-4E57-97B3-E9747FD28FD1}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Servidores Datasnap\pgservers.dproj">
+            <ProjectGuid>{03B18A0F-AE90-4A60-830F-9DD2CE954915}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Commom Dialogs\cmdialogs.dproj">
+            <ProjectGuid>{BF57D30A-AC5E-40C8-89C6-7B6364F67636}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\Ferramentas\Starter\cmstarter.dproj">
+            <ProjectGuid>{5D116DB5-5B39-468D-94B4-129B01D75A30}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Configuração de logs\pglogs.dproj">
+            <ProjectGuid>{0E085399-990B-4BF3-8A49-3D792B350339}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Interfaces\interfaces.dproj">
+            <ProjectGuid>{78B2F8C3-2895-4C6A-9628-FC95EA8ABDAC}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Server Libraries\SQLCommands\sqlcmd.dproj">
+            <ProjectGuid>{17291A5A-756B-4CFE-AC63-893735A96858}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Data\Exporter\exporter.dproj">
+            <ProjectGuid>{E1D9D6CE-A73E-4BC4-9565-FE9DBF7FB46D}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Centros de Custos\ccustos.dproj">
+            <ProjectGuid>{30A451D1-17DF-486B-96AA-A3C01A4D5348}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Secretarias\Pesquisar cadastrados2\pescad.dproj">
+            <ProjectGuid>{FF931330-34B5-4E6C-952C-1EB41449BE46}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Common Client GUI\cmgui.dproj">
+            <ProjectGuid>{5C943FEE-D127-4A70-9FF7-5AFF12582E42}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Central de Pesquisas\cenpes.dproj">
+            <ProjectGuid>{45E9211E-242A-4E16-BFB7-62F497EE0E62}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Plano de Contas\pcontas.dproj">
+            <ProjectGuid>{902582F1-4DBB-4D81-A23A-709ECA8866FC}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Abertura\opfocus.dproj">
+            <ProjectGuid>{A6549493-687F-401D-8309-1EEF677F5EB1}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Server Libraries\Server Data Objects\serverdataobj.dproj">
+            <ProjectGuid>{5660631D-AE4E-4DD3-8BF0-1D69E63480C6}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\Escritor de Logs\logwrt.dproj">
+            <ProjectGuid>{3B60618E-BE12-4FD4-8D71-DB89E55D399E}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Pagamentos\pagamentos.dproj">
+            <ProjectGuid>{41074BAD-F1FC-49B7-AE7D-4E395D3B80E5}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Cosmos Default Wizard\defwiz.dproj">
+            <ProjectGuid>{21FA52DC-D185-4065-ACF1-9ADA19C89B3B}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Biblioteca cliente\corelib.dproj">
+            <ProjectGuid>{9BD8E49E-8A60-4798-9EDC-E58DBB20CF45}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+    </ItemGroup>
+    <ItemGroup Condition="'$(BuildGroup)'=='Win64'">
+        <BuildGroupProject Include="..\..\Bibliotecas\Tabelas Acessorias\tabace.dproj">
+            <ProjectGuid>{2F84C9D7-D64B-4CC4-B2C0-E70B06976AC2}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win64</Platforms>
+            <Enabled>True</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Página do Updater\pgupdater.dproj">
+            <ProjectGuid>{CFB80F58-40FC-4DA7-813E-6FBC91CDD486}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Segurança\secmod.dproj">
+            <ProjectGuid>{91E1BE7F-97B3-45B5-B996-A5927A6BFC37}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win64</Platforms>
+            <Enabled>True</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\DockedForm\dockedform.dproj">
+            <ProjectGuid>{C298BC81-E5CD-4B35-BF14-B22EA7E42724}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Impressão recibos\pgrecibos.dproj">
+            <ProjectGuid>{24548149-482E-44D2-9B7A-5E87ABD99E15}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="Windows Service\finsvc.dproj">
+            <ProjectGuid>{72D12134-0233-43F0-A6AB-06050C50883F}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Interface do Usuário\pgui.dproj">
+            <ProjectGuid>{A897C57F-EB7A-46E8-95E0-02C6F455C9B3}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\Shell\shellib.dproj">
+            <ProjectGuid>{05CBE2EC-3678-4FE7-AECF-9B4C4B683813}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Menu lateral\pgmenu.dproj">
+            <ProjectGuid>{2A523CCE-EF7B-434E-8634-8E50E754C15B}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Splash Form\splash.dproj">
+            <ProjectGuid>{C932A03F-BA12-4AF2-ADA9-56F0B769925D}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Exporter Default Dialog\dlgexporter.dproj">
+            <ProjectGuid>{A0415D85-2B5C-4BE7-A746-B0BCC818EFA7}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Commom connection\cmcon.dproj">
+            <ProjectGuid>{D8A924A0-07F8-41CE-92A3-C8813CB1E259}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Persistência de dados\cmpersist.dproj">
+            <ProjectGuid>{96D01F7A-8EA8-4343-A8C2-BBB9B8EBD655}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Frames\frames.dproj">
+            <ProjectGuid>{E35B802D-98DE-4BCC-92B9-A95FED148A06}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Análise de contribuições\anacon.dproj">
+            <ProjectGuid>{A48F62BA-B263-4D96-A121-91D362C5837B}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Frame Plano de Contas\fmepcontas.dproj">
+            <ProjectGuid>{69BD63F0-96A9-4C76-8977-E9E4F316BD0F}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="ServidorHTTPS\finserapp.dproj">
+            <ProjectGuid>{3AF279EF-7902-4502-AE67-C932E6235914}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Dispensas\dispensas.dproj">
+            <ProjectGuid>{D0AA3484-973D-4204-86BB-8E5BF0CC3D25}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Dialog de Mensagens\dlgmessage.dproj">
+            <ProjectGuid>{93CE368B-B43E-4C14-9497-DA8EACD884A6}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\InfoConnection\coninfo.dproj">
+            <ProjectGuid>{5A59305E-1FC4-429C-A97E-F193BEBBFF4C}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Data\Data Locate\locdata.dproj">
+            <ProjectGuid>{2C6183A1-942E-4346-B2DC-52603013B9B7}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\Help\helplib.dproj">
+            <ProjectGuid>{8C8793FE-6608-4E07-87CA-830518534DCD}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Transações\transacoes.dproj">
+            <ProjectGuid>{D05E22AB-F371-44F8-83D5-CAC96F4A36C8}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\EventLog\events.dproj">
+            <ProjectGuid>{84C65035-5EED-4563-B1DF-14B18BD3ABAE}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Contas bancárias\conban.dproj">
+            <ProjectGuid>{75903FFE-08AE-4FA7-89A3-B52946E0FAB8}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="Cliente\Connection\fincon.dproj">
+            <ProjectGuid>{E2601375-7480-42FF-B07A-792D81A3EBD0}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Ficha Cadastrado\ficha.dproj">
+            <ProjectGuid>{1547B11F-6F98-4940-8EC6-3A5551543F91}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Commom Searchs\searcher.dproj">
+            <ProjectGuid>{8A812578-4253-4B83-8380-88CD04C0B726}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Windows Manager\wmanager.dproj">
+            <ProjectGuid>{0F9CFE71-A52A-487A-8CC1-2B1F75DAA359}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Commom\cmlib.dproj">
+            <ProjectGuid>{02E7228C-3F03-4AAF-A210-4FE35BF7152C}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Common Pages\cmpages.dproj">
+            <ProjectGuid>{3AF84E1D-B8B3-4961-98B7-3950EB97D421}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="Cliente\gfin.dproj">
+            <ProjectGuid>{5717B410-519B-4CFE-9042-C1058CDBF399}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Ferramenta de Email\pgemail.dproj">
+            <ProjectGuid>{F9CA017B-C540-4813-AED7-888B7BC3C1EB}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Recebimentos\recebimentos.dproj">
+            <ProjectGuid>{A99B50E3-31DB-41E2-84D7-E8F685DED621}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Modulos\cmmodules.dproj">
+            <ProjectGuid>{809128F1-6569-4AC0-A7CA-B1C695366B56}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\confwin.dproj">
+            <ProjectGuid>{A0B0A136-8E3E-402D-913C-253ED99E2EE4}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Central de relatórios\repcen.dproj">
+            <ProjectGuid>{AEA2EC1D-0F0C-4941-BE5F-4C3C9493EB9A}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Pesquisar contas\pesctas.dproj">
+            <ProjectGuid>{61407A0C-CF52-400F-8579-2C42C84F5FEA}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Atualizador automático\updater.dproj">
+            <ProjectGuid>{BA92392E-2B74-4368-A3AE-600772798487}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Caixas\caixas.dproj">
+            <ProjectGuid>{1F034D16-31F8-4E57-97B3-E9747FD28FD1}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Servidores Datasnap\pgservers.dproj">
+            <ProjectGuid>{03B18A0F-AE90-4A60-830F-9DD2CE954915}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Commom Dialogs\cmdialogs.dproj">
+            <ProjectGuid>{BF57D30A-AC5E-40C8-89C6-7B6364F67636}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\Ferramentas\Starter\cmstarter.dproj">
+            <ProjectGuid>{5D116DB5-5B39-468D-94B4-129B01D75A30}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Configuração de logs\pglogs.dproj">
+            <ProjectGuid>{0E085399-990B-4BF3-8A49-3D792B350339}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Interfaces\interfaces.dproj">
+            <ProjectGuid>{78B2F8C3-2895-4C6A-9628-FC95EA8ABDAC}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Server Libraries\SQLCommands\sqlcmd.dproj">
+            <ProjectGuid>{17291A5A-756B-4CFE-AC63-893735A96858}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Data\Exporter\exporter.dproj">
+            <ProjectGuid>{E1D9D6CE-A73E-4BC4-9565-FE9DBF7FB46D}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Centros de Custos\ccustos.dproj">
+            <ProjectGuid>{30A451D1-17DF-486B-96AA-A3C01A4D5348}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Secretarias\Pesquisar cadastrados2\pescad.dproj">
+            <ProjectGuid>{FF931330-34B5-4E6C-952C-1EB41449BE46}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Common Client GUI\cmgui.dproj">
+            <ProjectGuid>{5C943FEE-D127-4A70-9FF7-5AFF12582E42}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Central de Pesquisas\cenpes.dproj">
+            <ProjectGuid>{45E9211E-242A-4E16-BFB7-62F497EE0E62}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Plano de Contas\pcontas.dproj">
+            <ProjectGuid>{902582F1-4DBB-4D81-A23A-709ECA8866FC}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Abertura\opfocus.dproj">
+            <ProjectGuid>{A6549493-687F-401D-8309-1EEF677F5EB1}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Server Libraries\Server Data Objects\serverdataobj.dproj">
+            <ProjectGuid>{5660631D-AE4E-4DD3-8BF0-1D69E63480C6}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\Escritor de Logs\logwrt.dproj">
+            <ProjectGuid>{3B60618E-BE12-4FD4-8D71-DB89E55D399E}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Pagamentos\pagamentos.dproj">
+            <ProjectGuid>{41074BAD-F1FC-49B7-AE7D-4E395D3B80E5}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Cosmos Default Wizard\defwiz.dproj">
+            <ProjectGuid>{21FA52DC-D185-4065-ACF1-9ADA19C89B3B}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Biblioteca cliente\corelib.dproj">
+            <ProjectGuid>{9BD8E49E-8A60-4798-9EDC-E58DBB20CF45}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+    </ItemGroup>
+    <ItemGroup Condition="'$(BuildGroup)'=='Win32'">
+        <BuildGroupProject Include="..\..\Bibliotecas\Tabelas Acessorias\tabace.dproj">
+            <ProjectGuid>{2F84C9D7-D64B-4CC4-B2C0-E70B06976AC2}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>True</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Página do Updater\pgupdater.dproj">
+            <ProjectGuid>{CFB80F58-40FC-4DA7-813E-6FBC91CDD486}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Segurança\secmod.dproj">
+            <ProjectGuid>{91E1BE7F-97B3-45B5-B996-A5927A6BFC37}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>True</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\DockedForm\dockedform.dproj">
+            <ProjectGuid>{C298BC81-E5CD-4B35-BF14-B22EA7E42724}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Impressão recibos\pgrecibos.dproj">
+            <ProjectGuid>{24548149-482E-44D2-9B7A-5E87ABD99E15}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="Windows Service\finsvc.dproj">
+            <ProjectGuid>{72D12134-0233-43F0-A6AB-06050C50883F}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Interface do Usuário\pgui.dproj">
+            <ProjectGuid>{A897C57F-EB7A-46E8-95E0-02C6F455C9B3}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\Shell\shellib.dproj">
+            <ProjectGuid>{05CBE2EC-3678-4FE7-AECF-9B4C4B683813}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Menu lateral\pgmenu.dproj">
+            <ProjectGuid>{2A523CCE-EF7B-434E-8634-8E50E754C15B}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Splash Form\splash.dproj">
+            <ProjectGuid>{C932A03F-BA12-4AF2-ADA9-56F0B769925D}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Exporter Default Dialog\dlgexporter.dproj">
+            <ProjectGuid>{A0415D85-2B5C-4BE7-A746-B0BCC818EFA7}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Commom connection\cmcon.dproj">
+            <ProjectGuid>{D8A924A0-07F8-41CE-92A3-C8813CB1E259}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Persistência de dados\cmpersist.dproj">
+            <ProjectGuid>{96D01F7A-8EA8-4343-A8C2-BBB9B8EBD655}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Frames\frames.dproj">
+            <ProjectGuid>{E35B802D-98DE-4BCC-92B9-A95FED148A06}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Análise de contribuições\anacon.dproj">
+            <ProjectGuid>{A48F62BA-B263-4D96-A121-91D362C5837B}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Frame Plano de Contas\fmepcontas.dproj">
+            <ProjectGuid>{69BD63F0-96A9-4C76-8977-E9E4F316BD0F}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="ServidorHTTPS\finserapp.dproj">
+            <ProjectGuid>{3AF279EF-7902-4502-AE67-C932E6235914}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Dispensas\dispensas.dproj">
+            <ProjectGuid>{D0AA3484-973D-4204-86BB-8E5BF0CC3D25}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Dialog de Mensagens\dlgmessage.dproj">
+            <ProjectGuid>{93CE368B-B43E-4C14-9497-DA8EACD884A6}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\InfoConnection\coninfo.dproj">
+            <ProjectGuid>{5A59305E-1FC4-429C-A97E-F193BEBBFF4C}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Data\Data Locate\locdata.dproj">
+            <ProjectGuid>{2C6183A1-942E-4346-B2DC-52603013B9B7}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\Help\helplib.dproj">
+            <ProjectGuid>{8C8793FE-6608-4E07-87CA-830518534DCD}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Transações\transacoes.dproj">
+            <ProjectGuid>{D05E22AB-F371-44F8-83D5-CAC96F4A36C8}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\EventLog\events.dproj">
+            <ProjectGuid>{84C65035-5EED-4563-B1DF-14B18BD3ABAE}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Contas bancárias\conban.dproj">
+            <ProjectGuid>{75903FFE-08AE-4FA7-89A3-B52946E0FAB8}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="Cliente\Connection\fincon.dproj">
+            <ProjectGuid>{E2601375-7480-42FF-B07A-792D81A3EBD0}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Ficha Cadastrado\ficha.dproj">
+            <ProjectGuid>{1547B11F-6F98-4940-8EC6-3A5551543F91}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Commom Searchs\searcher.dproj">
+            <ProjectGuid>{8A812578-4253-4B83-8380-88CD04C0B726}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Windows Manager\wmanager.dproj">
+            <ProjectGuid>{0F9CFE71-A52A-487A-8CC1-2B1F75DAA359}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Commom\cmlib.dproj">
+            <ProjectGuid>{02E7228C-3F03-4AAF-A210-4FE35BF7152C}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Common Pages\cmpages.dproj">
+            <ProjectGuid>{3AF84E1D-B8B3-4961-98B7-3950EB97D421}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="Cliente\gfin.dproj">
+            <ProjectGuid>{5717B410-519B-4CFE-9042-C1058CDBF399}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Ferramenta de Email\pgemail.dproj">
+            <ProjectGuid>{F9CA017B-C540-4813-AED7-888B7BC3C1EB}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Recebimentos\recebimentos.dproj">
+            <ProjectGuid>{A99B50E3-31DB-41E2-84D7-E8F685DED621}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Modulos\cmmodules.dproj">
+            <ProjectGuid>{809128F1-6569-4AC0-A7CA-B1C695366B56}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\confwin.dproj">
+            <ProjectGuid>{A0B0A136-8E3E-402D-913C-253ED99E2EE4}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Central de relatórios\repcen.dproj">
+            <ProjectGuid>{AEA2EC1D-0F0C-4941-BE5F-4C3C9493EB9A}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Pesquisar contas\pesctas.dproj">
+            <ProjectGuid>{61407A0C-CF52-400F-8579-2C42C84F5FEA}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Atualizador automático\updater.dproj">
+            <ProjectGuid>{BA92392E-2B74-4368-A3AE-600772798487}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Caixas\caixas.dproj">
+            <ProjectGuid>{1F034D16-31F8-4E57-97B3-E9747FD28FD1}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Servidores Datasnap\pgservers.dproj">
+            <ProjectGuid>{03B18A0F-AE90-4A60-830F-9DD2CE954915}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Commom Dialogs\cmdialogs.dproj">
+            <ProjectGuid>{BF57D30A-AC5E-40C8-89C6-7B6364F67636}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\Ferramentas\Starter\cmstarter.dproj">
+            <ProjectGuid>{5D116DB5-5B39-468D-94B4-129B01D75A30}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Configuração de logs\pglogs.dproj">
+            <ProjectGuid>{0E085399-990B-4BF3-8A49-3D792B350339}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Interfaces\interfaces.dproj">
+            <ProjectGuid>{78B2F8C3-2895-4C6A-9628-FC95EA8ABDAC}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Server Libraries\SQLCommands\sqlcmd.dproj">
+            <ProjectGuid>{17291A5A-756B-4CFE-AC63-893735A96858}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Data\Exporter\exporter.dproj">
+            <ProjectGuid>{E1D9D6CE-A73E-4BC4-9565-FE9DBF7FB46D}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Centros de Custos\ccustos.dproj">
+            <ProjectGuid>{30A451D1-17DF-486B-96AA-A3C01A4D5348}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Secretarias\Pesquisar cadastrados2\pescad.dproj">
+            <ProjectGuid>{FF931330-34B5-4E6C-952C-1EB41449BE46}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Common Client GUI\cmgui.dproj">
+            <ProjectGuid>{5C943FEE-D127-4A70-9FF7-5AFF12582E42}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Central de Pesquisas\cenpes.dproj">
+            <ProjectGuid>{45E9211E-242A-4E16-BFB7-62F497EE0E62}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Plano de Contas\pcontas.dproj">
+            <ProjectGuid>{902582F1-4DBB-4D81-A23A-709ECA8866FC}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Abertura\opfocus.dproj">
+            <ProjectGuid>{A6549493-687F-401D-8309-1EEF677F5EB1}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Server Libraries\Server Data Objects\serverdataobj.dproj">
+            <ProjectGuid>{5660631D-AE4E-4DD3-8BF0-1D69E63480C6}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\Escritor de Logs\logwrt.dproj">
+            <ProjectGuid>{3B60618E-BE12-4FD4-8D71-DB89E55D399E}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Financeiro\Pagamentos\pagamentos.dproj">
+            <ProjectGuid>{41074BAD-F1FC-49B7-AE7D-4E395D3B80E5}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Cosmos Default Wizard\defwiz.dproj">
+            <ProjectGuid>{21FA52DC-D185-4065-ACF1-9ADA19C89B3B}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Biblioteca cliente\corelib.dproj">
+            <ProjectGuid>{9BD8E49E-8A60-4798-9EDC-E58DBB20CF45}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+    </ItemGroup>
+</Project>

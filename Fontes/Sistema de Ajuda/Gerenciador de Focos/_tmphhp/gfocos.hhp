@@ -1,0 +1,31 @@
+[OPTIONS]
+TITLE=YourProjectName
+Full-text search=Yes
+Display compile notes=YES
+Display compile progress=YES
+Compatibility=1.1
+Auto Index=Yes
+Default Window=Main
+Compiled file=gfocos.chm
+Error Log file=gfocos.log
+Contents file=gfocos.hhc
+Index File=gfocos.hhk
+Default Topic=
+
+[FILES]
+
+
+
+[WINDOWS]
+Main=,"gfocos.hhc","gfocos.hhk","","",,,,,0x061520,200, 0x00304E,[9,9,566,600],0x307e,,,,,,,,0
+Popup="Popup","gfocos.hhc","gfocos.hhk","","", ,,,,0x061520,200, 0x00304E,[50,50,450,450],0x307e,,,,,,,,0
+
+
+[MAP]
+#include gfocos.h
+
+
+
+[TEXT POPUPS]
+CSHelp.txt
+

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<TfrxReport Version="5.1.5" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.AllowEdit="False" PreviewOptions.Buttons="12287" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="41919,7927341898" ReportOptions.Description.Text="" ReportOptions.LastChange="42099,5602322569" ScriptLanguage="PascalScript" ScriptText.Text="&#13;&#10;begin&#13;&#10;&#13;&#10;end.">
+  <Datasets>
+    <item DataSet="DMSecReports.frxDBContarAlunosEE" DataSetName="frxDBContarAlunosEE"/>
+    <item DataSet="DMSecReports.frxDBContarAlunosEI" DataSetName="frxDBContarAlunosEI"/>
+  </Datasets>
+  <Variables>
+    <item Name=" Cosmos"/>
+    <item Name="ActiveFocus"/>
+    <item Name="AppName"/>
+    <item Name="TOTAL"/>
+  </Variables>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000"/>
+  <TfrxReportPage Name="Page1" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxReportTitle Name="ReportTitle1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="90,70872" Left="0" Top="18,89765" Width="718,1107">
+      <TfrxMemoView Name="Memo2" Left="0" Top="7,55906" Width="718,1107" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-19" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="Totais de Alunos"/>
+      <TfrxMemoView Name="Memo3" Left="7,55906" Top="55,47248" Width="706,77211" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="[ActiveFocus]"/>
+      <TfrxLineView Name="Line2" Left="7,55906" Top="86,92919" Width="706,77211" Height="0" Color="0" Frame.Typ="4"/>
+    </TfrxReportTitle>
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="30,23624" Left="0" Top="170,07885" Width="718,1107" ColumnWidth="0" ColumnGap="0" DataSet="DMSecReports.frxDBContarAlunosEE" DataSetName="frxDBContarAlunosEE" RowCount="0">
+      <TfrxMemoView Name="Memo4" Left="7,55906" Top="3,77953" Width="415,7483" Height="18,89765" DataField="NOMDIS" DataSet="DMSecReports.frxDBContarAlunosEE" DataSetName="frxDBContarAlunosEE" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="[frxDBContarAlunosEE.&#34;NOMDIS&#34;]"/>
+      <TfrxMemoView Name="Memo5" Left="559,37044" Top="3,77953" Width="117,16543" Height="18,89765" DataField="NUMCAD" DataSet="DMSecReports.frxDBContarAlunosEE" DataSetName="frxDBContarAlunosEE" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="[frxDBContarAlunosEE.&#34;NUMCAD&#34;]"/>
+    </TfrxMasterData>
+    <TfrxPageFooter Name="PageFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="37,7953" Left="0" Top="510,23655" Width="718,1107">
+      <TfrxMemoView Name="Memo1" Left="551,81138" Top="10" Width="162,51979" Height="18,89765" HAlign="haRight" Text="[Now]"/>
+      <TfrxMemoView Name="Memo8" Left="7,55906" Top="10" Width="529,1342" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="2" ParentFont="False" Text="[AppName]"/>
+      <TfrxLineView Name="Line4" Left="7,55906" Top="3,77953" Width="706,77211" Height="0" Color="0" Frame.Typ="4"/>
+    </TfrxPageFooter>
+    <TfrxMasterData Name="MasterData2" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="22,67718" Left="0" Top="294,80334" Width="718,1107" ColumnWidth="0" ColumnGap="0" DataSet="DMSecReports.frxDBContarAlunosEI" DataSetName="frxDBContarAlunosEI" RowCount="0">
+      <TfrxMemoView Name="Memo6" Left="7,55906" Top="1" Width="415,7483" Height="18,89765" DataField="NOMDIS" DataSet="DMSecReports.frxDBContarAlunosEI" DataSetName="frxDBContarAlunosEI" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="[frxDBContarAlunosEI.&#34;NOMDIS&#34;]"/>
+      <TfrxMemoView Name="Memo7" Left="559,37044" Top="1" Width="117,16543" Height="18,89765" DataField="NUMCAD" DataSet="DMSecReports.frxDBContarAlunosEI" DataSetName="frxDBContarAlunosEI" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="[frxDBContarAlunosEI.&#34;NUMCAD&#34;]"/>
+    </TfrxMasterData>
+    <TfrxFooter Name="Footer1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="49,13389" Left="0" Top="222,99227" Width="718,1107">
+      <TfrxMemoView Name="Memo10" Left="559,37044" Top="7" Width="94,48825" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="[SUM(&#60;frxDBContarAlunosEE.&#34;NUMCAD&#34;&#62;,MasterData1)]"/>
+      <TfrxLineView Name="Line1" Left="7,55906" Top="45,35436" Width="706,77211" Height="0" Color="0" Frame.Typ="4"/>
+      <TfrxMemoView Name="Memo9" Left="393,07112" Top="7" Width="151,1812" Height="18,89765" Text="Total da Escola Externa:"/>
+    </TfrxFooter>
+    <TfrxFooter Name="Footer2" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="109,60637" Left="0" Top="340,1577" Width="718,1107">
+      <TfrxMemoView Name="Memo11" Left="559,37044" Top="7" Width="94,48825" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="[SUM(&#60;frxDBContarAlunosEI.&#34;NUMCAD&#34;&#62;,MasterData2)]"/>
+      <TfrxLineView Name="Line3" Left="7,55906" Top="45,35436" Width="706,77211" Height="0" Color="0" Frame.Typ="4"/>
+      <TfrxMemoView Name="Memo12" Left="393,07112" Top="7" Width="151,1812" Height="18,89765" Text="Total da Escola Interna:"/>
+      <TfrxMemoView Name="Memo13" Left="559,37044" Top="71,81107" Width="102,04731" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-16" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="[TOTAL]"/>
+      <TfrxMemoView Name="Memo14" Left="393,07112" Top="71,81107" Width="151,1812" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-16" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="Total Geral:"/>
+    </TfrxFooter>
+  </TfrxReportPage>
+</TfrxReport>

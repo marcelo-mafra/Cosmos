@@ -1,0 +1,25 @@
+{DONE -oMarcelo -cPesquisas : Implementar listagem de aunos por discipulados.}
+{DONE -oMarcelo -cPesquisas : Implementar listagem de aunos por letra inicial do nome.}
+{DONE -oMarcelo -cCadastros : Implementar cadastro de funções do aluno.}
+{DONE -oMarcelo -cCadastros : Implementar cadastro de dispensas do cadastrado.}
+{DONE -oMarcelo -cCadastros : Implementar cadastro de funções do cadastrado.}
+{DONE -oMarcelo -cCadastros : Implementar cadastro de aptidões do cadastrado.}
+{DONE -oMarcelo -cCadastros : Implementar cadastro de informações médicas do cadastrado.}
+{DONE -oMarcelo -cHistórico discipular : Implementar registro de batismo do aluno.}
+{DONE -oMarcelo -cHistórico discipular : Implementar registro de casamento do aluno.}
+{DONE -oMarcelo -cHistórico discipular : Implementar envio de carta de freqüência ao aluno.}
+{DONE -oMarcelo -cHistórico discipular : Implementar retrogradação do aluno}
+{DONE -oMarcelo -cPesquisas :  Implementar pesquisa de localização de titular no cadastro do aluno.}
+{DONE -oMarcelo -cCadastros :  Implementar alteração de dados cadastrais do aluno.}
+{DONE -oMarcelo -cHistórico discipular : Implementar religamento de aluno desligado.}
+{DONE -oMarcelo -cHistórico discipular : Implementar desligamento de aluno ativo.}
+{DONE -oMarcelo -cHistórico discipular :  Implementar transferêcia do aluno para outro núcleo.}
+{DONE -oMarcelo -cHistórico discipular : Implementar visualização de histórico discipularo do aluno. (Semelhante ao mesmo recurso para pesquisadores).}
+{DONE -oMarcelo -cCadastros : Implementar cadastro de meios de contatos do aluno.}
+{DONE -oMarcelo -cCadastros : Implementar cadastro de endereços do aluno.}
+{DONE -oMarcelo -cCadastros : Implementar cadastro de foto 3x4 (JPEG) do aluno.}
+{TODO -oMarcelo -cRelatórios :  Implementar impressão da carteirinha do aluno.}
+{TODO -oMarcelo -cRelatórios : Implementar impressão da ficha do aluno.}
+{DONE -oMarcelo -cPesquisas : Implementar visualização de alunos ligados e desligados.}
+{DONE -oMarcelo -cCadastros : Implementar cadastro de novo aluno. (recurso desaparecerá após migração final).}
+{DONE -oMarcelo -cCadastros : Implementar cadastro de familiares.}

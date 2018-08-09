@@ -1,0 +1,824 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Este arquivo contém as pesquisas utilizadas pelas aplicações do sistema cosmos. Cada pesquisa possui um conjunto de parâmetros,
+ que por sua vez possui atributos. Seguem as convenções usadas neste arquivo e informações importantes para o entendimento dos atributos:
+
+    ParamName: Nome do parâmetro.
+    ParamType: Tipo do atributo, sendo:
+        0: número inteiro.
+        1: string.
+        2: data.
+        3: boolean.
+        4: lista de strings (com caracteres delimitadores);
+        5: lista de strings com valores correspondentes (código-valor).
+        6: hora.
+        7: operadores SQL. (representa um operador de comparação da linguagem SQL (maior que, menor que etc).
+        
+    PickList: lista de strings a ser selecionado em um combobox. Cada string da lista deve estar separado por um ponto e vírgula. Quando a string contiver espaços,
+        deve ser usado o caracter delimitador "|", logo antes e depos da string. Exemplo: |string 1|;|essa é a string 2|;|string 3|
+-->
+
+<Searchs UpdatedAt="02/04/2014 13:53:00" Total="80">
+    <Search>
+        <SearchInfo>
+            <Info SearchId="1" SearchName="Focos e regiões administrativas" CosmosModule="cmFocos,cmSecretarias,cmConferencias,cmFinanceiro" Category="Focos e RA's" SearchDescription="Lista os focos e regiões administrativas cadastrados, com suas respectivas informações." ExecutedBy="DEI,PRESIDIUM,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="2" SearchName="Endereços dos alunos" CosmosModule="cmSecretarias,cmConferencias" Category="Alunado" SearchDescription="Lista os endereços dos alunos." ExecutedBy="DEI,PRESIDIUM,DNLR,DNTM,DNTP,DRLR,DRTM,DRTP,SRLR,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Informe o foco da pesquisa." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="" HelpHint="Informa se a pesquisa emitirá os dados de endereços dos alunos ativos ou inativos." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>            
+            <Param ParamName="CAMTRA-LEC" ParamType="1" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Campo" MaxLength="0" DefaultValue="LEC" HelpHint="Informa o campo de trabalho ao qual os alunos estão ligados." SendToServer="True" PickList="LEC" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>                       
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="3" SearchName="Dados do aluno" CosmosModule="cmSecretarias" Category="Alunado" SearchDescription="Busca os dados de indentificação de um alunos a partir da sua matrícula." ExecutedBy="DEI,PRESIDIUM,DNLR,DRLR,SRLR" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="MATCAD-LEC" ParamType="1" IsVisible="True" CanEdit="True" EditType="1" ParamMask='AAA-000000' Description="Aluno" MaxLength="10" DefaultValue="" HelpHint="Matrícula do aluno do qual se emitirá a ficha cadastral." SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="4" SearchName="Inscrições de conferência" CosmosModule="cmConferencias" Category="Conferências" SearchDescription="Lista as pessoas inscritas em uma conferência." ExecutedBy="DEI,PRESIDIUM,DNLR,DRLR,SRLR" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODCON" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask="" Description="CODCON" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMCON" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Conferência" MaxLength="0" DefaultValue="" HelpHint="Informe a conferência." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Escolha como ordenar os dados." SendToServer="True" PickList="Nome;Matrícula;Foco;Discipulado" ValueList="NOMCAD;MATCADINT;SIGFOC;SIGDIS" Quoted="0" CaseMode="0" ConvertTo="1" Order="1"/>
+        </Params>
+    </Search>    
+    <Search>
+        <SearchInfo>
+            <Info SearchId="5" SearchName="Datas de instalações dos alunos" CosmosModule="cmSecretarias" Category="Histórico discipular" SearchDescription="Lista as datas das instalações de cada aluno nos diversos discipulados da Escola Externa e Interna. Somente são listados alunos do foco corrente." ExecutedBy="DEI,PRESIDIUM,DNLR,DRLR,SRLR,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC-CURRENT" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="Foco Atual" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>        
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="6" SearchName="Ocupação dos alojamentos" CosmosModule="cmConferencias" Category="Conferências" SearchDescription="Mostra a ocupação dos alojamentos em uma conferência." ExecutedBy="DEI,PRESIDIUM,DNLR,DRLR,SRLR" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODCON" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask="" Description="CODCON" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMCON" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Conferência" MaxLength="0" DefaultValue="" HelpHint="Informe a conferência." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+        </Params>
+    </Search>    
+    <Search>
+        <SearchInfo>
+            <Info SearchId="8" SearchName="Cadastrados por discipulados" CosmosModule="cmSecretarias" Category="Alunado" SearchDescription="Lista os alunos de um determinado discipulado que estão vinculados a um determinado foco." ExecutedBy="DEI,PRESIDIUM,DNLR,DRLR,SRLR,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask='' Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Escolha o foco ao qual os alunos estão ligados." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="SIGDIS" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Discipulado" MaxLength="0" DefaultValue="" HelpHint="Escolha o discipulado dos alunos." SendToServer="True" PickList="1ºaspecto;2ºaspecto;3ºaspecto;4ºaspecto;Graal;5ºaspecto;6ºaspecto" ValueList="1AS;2AS;3AS;4AS;GRA;5AS;6AS" Quoted="1" CaseMode="0" ConvertTo="1" Order="1"/>
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="Sim" HelpHint="Informe se a pesquisa emitirá os dados dos alunos ativos ou inativos." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>            
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Escolha como ordenar os dados." SendToServer="True" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="3"/>
+        </Params>
+    </Search> 
+    <Search>
+        <SearchInfo>
+            <Info SearchId="9" SearchName="Emails dos alunos - por discipulado" CosmosModule="cmSecretarias" Category="Meios de contatos" SearchDescription="Lista os emails de cadastrados ligados a um discipulado e um determinado foco." ExecutedBy="DEI,PRESIDIUM,DNLR,DNTM,DNTP,DRLR,DRTM,DRTP,SRLR,SRTM,SRTP,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask='' Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Escolha o foco ao qual os alunos estão ligados." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="SIGDIS" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Discipulado" MaxLength="0" DefaultValue="" HelpHint="Escolha o discipulado dos alunos." SendToServer="True" PickList="1ºaspecto;2ºaspecto;3ºaspecto;4ºaspecto;Graal;5ºaspecto;6ºaspecto" ValueList="1AS;2AS;3AS;4AS;GRA;5AS;6AS" Quoted="1" CaseMode="0" ConvertTo="1" Order="1"/>
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="Sim" HelpHint="Informe se a pesquisa emitirá os dados dos alunos ativos ou inativos." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>            
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Escolha como ordenar os dados." SendToServer="True" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="3"/>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="10" SearchName="Alunos da Escola Externa" CosmosModule="cmSecretarias" Category="Alunado" SearchDescription="Lista os alunos da Escola Externa do foco corrente." ExecutedBy="DEI,PRESIDIUM,DRLR,DNLR,SRLR" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask='' Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Escolha o foco ao qual os alunos estão ligados." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="Sim" HelpHint="Informe se a pesquisa emitirá os dados dos alunos ativos ou inativos." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>            
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Escolha como ordenar os dados." SendToServer="True" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="2"/>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="11" SearchName="Emails dos jovens do TM" CosmosModule="cmSecretarias" Category="Trabalho da Mocidade" SearchDescription="Lista os emails de jovens do TM ligados a um determinado foco." ExecutedBy="DEI,PRESIDIUM,DNTM,DRTM,SRTM" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask='' Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Escolha o foco ao qual os alunos estão ligados." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="SIGDIS" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Grupo" MaxLength="0" DefaultValue="" HelpHint="Escolha o discipulado dos jovens." SendToServer="True" PickList="Pré-A;Grupo-A;Grupo-B;Grupo-C;Grupo-D" ValueList="P-A;G-A;G-B;G-C;G-D" Quoted="1" CaseMode="0" ConvertTo="1" Order="1"/>
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="Sim" HelpHint="Informe se a pesquisa emitirá os dados dos alunos ativos ou inativos." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>            
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Escolha como ordenar os dados." SendToServer="True" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="3"/>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="12" SearchName="Lista de dirigentes" CosmosModule="cmSecretarias" Category="Focos e RA's" SearchDescription="Lista os dirigentes que atuaram em um determinado ano." ExecutedBy="DEI,PRESIDIUM,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="YEAR" ParamType="0" IsVisible="True" CanEdit="True" EditType="0" ParamMask="0000" Description="Mandato" MaxLength="0" DefaultValue="CURRENT-YEAR" HelpHint="Informe o ano dos mandatos dos dirigentes." SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>           
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="13" SearchName="Membros dos círculos" CosmosModule="cmSecretarias" Category="Escola Interna" SearchDescription="Lista os membros dos círculos da Escola Interna de um foco." ExecutedBy="DEI,PRESIDIUM,DREI" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Selecione o foco ao qual os círuclos estão ligados." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="14" SearchName="Tempo de Discipulado" CosmosModule="cmSecretarias" Category="Alunado" SearchDescription="Calcula o tempo de permanência dos alunos em seus atuais discipulados." ExecutedBy="DEI,PRESIDIUM,DNLR,DRLR,SRLR" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Selecione o foco ao qual os alunos estão ligados." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="SIGDIS" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Discipulado" MaxLength="0" DefaultValue="" HelpHint="Escolha o discipulado dos alunos." SendToServer="True" PickList="1ºaspecto;2ºaspecto;3ºaspecto;4ºaspecto;Graal;5ºaspecto;6ºaspecto" ValueList="1AS;2AS;3AS;4AS;GRA;5AS;6AS" Quoted="1" CaseMode="0" ConvertTo="1" Order="1"/>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="15" SearchName="Profissões" CosmosModule="cmSecretarias,cmConferencias" Category="Cadastrados" SearchDescription="Lista as profissões dos alunos de um determinado foco." ExecutedBy="DEI,PRESIDIUM,DNLR,DNTM,DNTP,DRLR,DRTM,DRTP,SRLR,SRTM,SRTP" Enabled="False"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Selecione o foco ao qual os alunos estão ligados." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="INDATI" ParamType="3" IsVisible="False" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="Sim" HelpHint="Informe se a pesquisa listará alunos ativos ou inativos." SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>            
+            <Param ParamName="CAMTRA" ParamType="1" IsVisible="True" CanEdit="False" EditType="2" ParamMask="" Description="Campo" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="LEC;TM;TP" ValueList="" Quoted="1" CaseMode="0" ConvertTo="1" Order="2"/>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="16" SearchName="Funções dos alunos" CosmosModule="cmSecretarias,cmConferencias" Category="Cadastrados" SearchDescription="Lista as funções que cada aluno exerce em seu foco." ExecutedBy="DEI,PRESIDIUM,DNLR,DNTM,DNTP,DRLR,DRTM,DRTP,SRLR,SRTM,SRTP" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Selecione o foco ao qual os alunos estão ligados." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="Sim" HelpHint="Informa se a pesquisa retornará cadastrados ativos ou inativos." SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>                    
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="17" SearchName="Ficha do jovem" CosmosModule="cmSecretarias" Category="Trabalho da Mocidade" SearchDescription="" ExecutedBy="DEI,PRESIDIUM,DNTM,DRTM,SRTM" Enabled="False"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="MATCAD-TM" ParamType="1" IsVisible="True" CanEdit="True" EditType="1" ParamMask="AAA-TM0000" Description="Matrícula TM" MaxLength="10" DefaultValue="" HelpHint="Informe a matrícula do jovem do Trabalho da Mocidade" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="18" SearchName="Lista de jovens" CosmosModule="cmSecretarias" Category="Trabalho da Mocidade" SearchDescription="Lista os jovens de um foco." ExecutedBy="DEI,PRESIDIUM,DNTM,SRTM,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Selecione o foco ao qual os jovens estão ligados." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="" HelpHint="Informe se a pesquisa emitirá os dados de endereços dos alunos ativos ou inativos." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>            
+            <Param ParamName="CAMTRA-TM" ParamType="1" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Campo" MaxLength="0" DefaultValue="TM" HelpHint="Campo de trabalho selecionado é o TM." SendToServer="True" PickList="TM" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>                       
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Escolha como ordenar os dados." SendToServer="True" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="3"/>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="19" SearchName="Alunos da Escola Interna" CosmosModule="cmSecretarias" Category="Alunado" SearchDescription="Lista os alunos da Escola Interna que estão ligados a um foco." ExecutedBy="DEI,PRESIDIUM,DNLR,DRLR,SRLR" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Selecione o foco ao qual os alunos estão ligados." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="" HelpHint="Informe se a pesquisa emitirá os dados de alunos ativos ou inativos." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/> 
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Escolha como ordenar os dados." SendToServer="True" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="2"/>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="20" SearchName="Lista de cadastrados por campo" CosmosModule="cmSecretarias,cmConferencias" Category="Cadastrados" SearchDescription="Lista os cadastrados vinculados a um determinado campo de trabalho." ExecutedBy="DEI,PRESIDIUM,DNLR,DNTM,DNTP,DRLR,DRTM,DRTP,SRLR,SRTM,SRTP,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Selecione o foco ao qual os jovens estão ligados." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="" HelpHint="Informe se a pesquisa deve listar jovens ativos ou inativos." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/> 
+            <Param ParamName="CAMTRA" ParamType="1" IsVisible="True" CanEdit="False" EditType="2" ParamMask="" Description="Campo" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="LEC;TM;TP" ValueList="" Quoted="1" CaseMode="0" ConvertTo="1" Order="2"/>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="21" SearchName="Freqüência geral" CosmosModule="cmSecretarias" Category="Atividades" SearchDescription="Calcula a frequência dos alunos de um núcleo ao longo de um ano de trabalho." ExecutedBy="DEI,PRESIDIUM,DNLR,DRLR,SRLR,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Selecione o foco ao qual os alunos estão ligados." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="ANO" ParamType="0" IsVisible="True" CanEdit="True" EditType="0" ParamMask='0000' Description="Ano" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="Selecione o ano ao qual os dados de freqüência se referem." SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Selecione o tipo de ordenação dos dados." SendToServer="True" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="2"/>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="22" SearchName="Freqüência geral por discipulado" CosmosModule="cmSecretarias" Category="Atividades" SearchDescription="Calcula a frequência dos alunos de um núcleo e discipulado ao longo de um ano de trabalho." ExecutedBy="DEI,PRESIDIUM,DNLR,DRLR,SRLR,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Selecione o foco ao qual os alunos estão ligados." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="ANO" ParamType="0" IsVisible="True" CanEdit="True" EditType="0" ParamMask='0000' Description="Ano" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="Selecione o ano ao qual os dados de freqüência se referem." SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="SIGDIS" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Discipulado" MaxLength="0" DefaultValue="" HelpHint="Selecione o discipulado dos alunos." SendToServer="True" PickList="1ºaspecto;2ºaspecto;3ºaspecto;4ºaspecto;Graal;5ºaspecto;6ºaspecto" ValueList="1AS;2AS;3AS;4AS;GRA;5AS;6AS" Quoted="1" CaseMode="0" ConvertTo="1" Order="2"/>
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Selecione o tipo de ordenação dos dados." SendToServer="True" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="3"/>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="23" SearchName="Freqüência geral (sintético)" CosmosModule="cmSecretarias" Category="Atividades" SearchDescription="Calcula a frequência dos alunos de um núcleo ao longo de um ano de trabalho." ExecutedBy="DEI,PRESIDIUM,DNLR,DRLR,SRLR,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Selecione o foco ao qual os alunos estão ligados." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="ANO" ParamType="0" IsVisible="True" CanEdit="True" EditType="0" ParamMask='0000' Description="Ano" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="Selecione o ano ao qual os dados de freqüência se referem." SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Selecione o tipo de ordenação dos dados." SendToServer="True" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="2"/>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="24" SearchName="Freqüência geral por discipulado (sintético)" CosmosModule="cmSecretarias" Category="Atividades" SearchDescription="Calcula a frequência dos alunos de um núcleo e discipulado ao longo de um ano de trabalho." ExecutedBy="DEI,PRESIDIUM,DNLR,DRLR,SRLR,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Selecione o foco ao qual os alunos estão ligados." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="ANO" ParamType="0" IsVisible="True" CanEdit="True" EditType="0" ParamMask='0000' Description="Ano" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="Selecione o ano ao qual os dados de freqüência se referem." SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="SIGDIS" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Discipulado" MaxLength="0" DefaultValue="" HelpHint="Selecione o discipulado dos alunos." SendToServer="True" PickList="1ºaspecto;2ºaspecto;3ºaspecto;4ºaspecto;Graal;5ºaspecto;6ºaspecto" ValueList="1AS;2AS;3AS;4AS;GRA;5AS;6AS" Quoted="1" CaseMode="0" ConvertTo="1" Order="2"/>
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Selecione o tipo de ordenação dos dados." SendToServer="True" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="3"/>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="25" SearchName="Sumário de atividades" CosmosModule="cmSecretarias" Category="Secretaria e Tesouraria Nacional" SearchDescription="Sumariza todas as atividades promovidas por um campo de trabalho em um determinado período." ExecutedBy="DEI,PRESIDIUM,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="MES" ParamType="5" IsVisible="True" CanEdit="True" EditType="2" ParamMask="" Description="Mês" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="Janeiro;Fevereiro;Março;Abril;Maio;Junho;Julho;Agosto;Setembro;Outubro;Novembro;Dezembro" ValueList="1;2;3;4;5;6;7;8;9;10;11;12" Quoted="0" CaseMode="0" ConvertTo="0" Order="0"/>
+            <Param ParamName="ANO" ParamType="0" IsVisible="True" CanEdit="True" EditType="0" ParamMask='0000' Description="Ano" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="Selecione o ano ao qual os dados de freqüência se referem." SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="CAMTRA" ParamType="4" IsVisible="True" CanEdit="False" EditType="2" ParamMask="" Description="Campo" MaxLength="0" DefaultValue="LEC" HelpHint="Selecione o campo de trabalho." SendToServer="True" PickList="LEC;TM;TP" ValueList="" Quoted="1" CaseMode="0" ConvertTo="" Order="2"/>             
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="27" SearchName="Instalações por período e discipulado" CosmosModule="cmSecretarias" Category="Histórico discipular" SearchDescription="Lista todos os instalados em um discipulado ao longo de um período." ExecutedBy="DEI,PRESIDIUM,DNLR,DRLR,SRLR,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="SIGDIS" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Discipulado" MaxLength="0" DefaultValue="" HelpHint="Selecione o discipulado dos instalados" SendToServer="True" PickList="1ºaspecto;2ºaspecto;3ºaspecto;4ºaspecto;Graal;5ºaspecto;6ºaspecto" ValueList="1AS;2AS;3AS;4AS;GRA;5AS;6AS" Quoted="1" CaseMode="0" ConvertTo="1" Order="1"/>
+            <Param ParamName="DATINI" ParamType="2" IsVisible="True" CanEdit="True" EditType="0" ParamMask="99/99/9999" Description="Início" MaxLength="0" DefaultValue="" HelpHint="Data de início do período da pesquisa." SendToServer="True" PickList="" ValueList="" Quoted="1" CaseMode="0" ConvertTo="" Order="2"/>
+            <Param ParamName="DATTER" ParamType="2" IsVisible="True" CanEdit="True" EditType="0" ParamMask="99/99/9999" Description="Término" MaxLength="0" DefaultValue="CURRENT-DATE" HelpHint="Data término do período da pesquisa." SendToServer="True" PickList="" ValueList="" Quoted="1" CaseMode="0" ConvertTo="" Order="3"/>            
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Escolha como ordenar os dados." SendToServer="True" PickList="Nome;Matrícula" ValueList="cad.NOMCAD;cad.MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="4"/>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="28" SearchName="Lista de pesquisadores" CosmosModule="cmSecretarias,cmConferencias" Category="Trabalho Público" SearchDescription="Lista os pesquisadores vinculados a um foco." ExecutedBy="DEI,PRESIDIUM,DNLR,DNTM,DNTP,DRLR,DRTM,DRTP,SRLR,SRTM,SRTP,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>            
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Escolha como ordenar os dados." SendToServer="True" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCAD" Quoted="0" CaseMode="0" ConvertTo="1" Order="2"/>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="29" SearchName="Ficha do pesquisador" CosmosModule="cmSecretarias" Category="Trabalho Público" SearchDescription="" ExecutedBy="DEI,PRESIDIUM,DNTP,DRTP,SRTP" Enabled="False"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="MATCAD-TP" ParamType="1" IsVisible="True" CanEdit="True" EditType="1" ParamMask="AAA-TP0000" Description="Matrícula TP" MaxLength="10" DefaultValue="" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="31" SearchName="Telefones dos jovens" CosmosModule="cmSecretarias" Category="Trabalho da Mocidade" SearchDescription="Lista os telefones dos jovens do Trabalho da Mocidade ligados a um foco." ExecutedBy="DEI,PRESIDIUM,DNLR,DRLR,SRLR,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/> 
+            <Param ParamName="CAMTRA-TM" ParamType="1" IsVisible="True" CanEdit="False" EditType="2" ParamMask="" Description="Campo" MaxLength="0" DefaultValue="TM" HelpHint="" SendToServer="True" PickList="TM" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>           
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="32" SearchName="Telefones dos pesquisadores" CosmosModule="cmSecretarias" Category="Trabalho Público" SearchDescription="Lista os telefones dos pesquisadores ligados a um foco." ExecutedBy="DEI,PRESIDIUM,DNLR,DRLR,SRLR,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/> 
+            <Param ParamName="CAMTRA-TP" ParamType="1" IsVisible="True" CanEdit="False" EditType="2" ParamMask="" Description="Campo" MaxLength="0" DefaultValue="TP" HelpHint="" SendToServer="True" PickList="TP" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>           
+        </Params>
+    </Search>    
+    <Search>
+        <SearchInfo>
+            <Info SearchId="34" SearchName="Ocorrências do mês" CosmosModule="cmSecretarias" Category="A definir" SearchDescription="" ExecutedBy="DEI,PRESIDIUM,DNLR,DRLR,SRLR" Enabled="False"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="CAMTRA" ParamType="1" IsVisible="True" CanEdit="False" EditType="2" ParamMask="" Description="Campo" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="LEC;TM;TP" ValueList="" Quoted="1" CaseMode="0" ConvertTo="1" Order="3"/>
+            <Param ParamName="MES" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask="" Description="Mês" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="Janeiro;Fevereiro;Março;Abril;Maio;Junho;Julho;Agosto;Setembro;Outubro;Novembro;Dezembro" ValueList="1;2;3;4;5;6;7;8;9;10;11;12" Quoted="0" CaseMode="0" ConvertTo="0" Order="0"/>
+            <Param ParamName="ANO" ParamType="0" IsVisible="True" CanEdit="True" EditType="0" ParamMask='0000' Description="Ano" MaxLength="4" DefaultValue="" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="40" SearchName="Familiares dos cadastrados" CosmosModule="cmSecretarias" Category="Cadastrados" SearchDescription="Lista os familiares de alunos, jovens ou pesquisadores." ExecutedBy="DEI,PRESIDIUM,DNLR,DNTM,DNTP,DRLR,DRTM,DRTP,SRLR,SRTM,SRTP,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Selecione o foco dos cadastrados." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="CAMTRA" ParamType="1" IsVisible="True" CanEdit="False" EditType="2" ParamMask="" Description="Campo" MaxLength="0" DefaultValue="" HelpHint="Selecione o campo de trabalho dos cadastrados." SendToServer="True" PickList="LEC;TM;TP" ValueList="" Quoted="1" CaseMode="0" ConvertTo="1" Order="1"/>
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="" HelpHint="Selecione a situação dos cadastrados" SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/> 
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Selecione a opção de ordenação." SendToServer="True" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="3"/>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="41" SearchName="Lista de usuários" CosmosModule="cmUsuarios" Category="A definir" SearchDescription="" ExecutedBy="DEI" Enabled="False"/>
+        </SearchInfo>
+        <Params>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="42" SearchName="Freqüência por Período" CosmosModule="cmSecretarias" Category="A definir" SearchDescription="" ExecutedBy="DEI" Enabled="False"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="MES_INICIAL" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask="" Description="Mês Inicial" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="Janeiro;Fevereiro;Março;Abril;Maio;Junho;Julho;Agosto;Setembro;Outubro;Novembro;Dezembro" ValueList="1;2;3;4;5;6;7;8;9;10;11;12" Quoted="0" CaseMode="0" ConvertTo="0" Order="1"/>
+            <Param ParamName="MES_FINAL" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask="" Description="Mês Final" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="Janeiro;Fevereiro;Março;Abril;Maio;Junho;Julho;Agosto;Setembro;Outubro;Novembro;Dezembro" ValueList="1;2;3;4;5;6;7;8;9;10;11;12" Quoted="0" CaseMode="0" ConvertTo="0" Order="2"/>
+            <Param ParamName="ANO_INICIAL" ParamType="0" IsVisible="True" CanEdit="True" EditType="0" ParamMask='0000' Description="Ano Inicial" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>
+            <Param ParamName="ANO_FINAL" ParamType="0" IsVisible="True" CanEdit="True" EditType="0" ParamMask='0000' Description="Ano Final" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="4"/>            
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="5"/>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="43" SearchName="Endereços de alunos de círculos da Escola Interna" CosmosModule="cmSecretarias" Category="Escola Interna" SearchDescription="Lista os endereços dos alunos de um círculo da Escola Interna." ExecutedBy="DEI" Enabled="False"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODGRU" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMGRU" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Círculo" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="SIGDIS" ParamType="1" IsVisible="True" CanEdit="False" EditType="0" ParamMask="" Description="Discipulado" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="0" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>
+        </Params>
+    </Search> 
+    <Search>
+        <SearchInfo>
+            <Info SearchId="47" SearchName="Lista de Tarefas" CosmosModule="cmConferencias" Category="Conferências" SearchDescription="Lista os membros do staff em uma conferência com as suas respectivas tarefas." ExecutedBy="DEI,PRESIDIUM,DNLR,DNTM,DNTP,DRLR,DRTM,DRTP,SRLR,SRTM,SRTP" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODCON" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask="" Description="CODCON" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMCON" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Conferência" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="0" ParamMask="" Description="Promotor" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>                        
+            <Param ParamName="DATINI" ParamType="2" IsVisible="True" CanEdit="False" EditType="0" ParamMask="" Description="Início" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>
+            <Param ParamName="DATTER" ParamType="2" IsVisible="True" CanEdit="False" EditType="0" ParamMask="" Description="Término" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="4"/>            
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="48" SearchName="Lista de Inscritos" CosmosModule="cmConferencias" Category="Conferências" SearchDescription="Lista todos os inscritos em uma dada conferência." ExecutedBy="DEI,PRESIDIUM,DNLR,DNTM,DNTP,DRLR,DRTM,DRTP,SRLR,SRTM,SRTP" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODCON" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask="" Description="CODCON" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMCON" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Conferência" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="0" ParamMask="" Description="Promotor" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>                        
+            <Param ParamName="DATINI" ParamType="2" IsVisible="True" CanEdit="False" EditType="0" ParamMask="" Description="Início" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>
+            <Param ParamName="DATTER" ParamType="2" IsVisible="True" CanEdit="False" EditType="0" ParamMask="" Description="Término" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="4"/>            
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="49" SearchName="Inscritos desalojados" CosmosModule="cmConferencias" Category="Alojamentos" SearchDescription="Lista os inscritos em uma conferência que não se encontram alojados." ExecutedBy="DEI,PRESIDIUM,DNLR,DNTM,DNTP,DRLR,DRTM,DRTP,SRLR,SRTM,SRTP" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODCON" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask="" Description="CODCON" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMCON" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Conferência" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="0" ParamMask="" Description="Promotor" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>                        
+            <Param ParamName="DATINI" ParamType="2" IsVisible="True" CanEdit="False" EditType="0" ParamMask="" Description="Início" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>
+            <Param ParamName="DATTER" ParamType="2" IsVisible="True" CanEdit="False" EditType="0" ParamMask="" Description="Término" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="4"/>            
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="50" SearchName="Inscritos por discipulado" CosmosModule="cmConferencias" Category="Conferências" SearchDescription="Lista os inscritos em uma conferência que estão em um determinado discipulado." ExecutedBy="DEI,PRESIDIUM,DNLR,DNTM,DNTP,DRLR,DRTM,DRTP,SRLR,SRTM,SRTP" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODCON" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask="" Description="CODCON" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMCON" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Conferência" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="0" ParamMask="" Description="Promotor" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>                        
+            <Param ParamName="DATINI" ParamType="2" IsVisible="True" CanEdit="False" EditType="0" ParamMask="" Description="Início" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>
+            <Param ParamName="DATTER" ParamType="2" IsVisible="True" CanEdit="False" EditType="0" ParamMask="" Description="Término" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="4"/>
+            <Param ParamName="SIGDIS" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Discipulado" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="1ºaspecto;2ºaspecto;3ºaspecto;4ºaspecto;Graal;5ºaspecto;6ºaspecto" ValueList="1AS;2AS;3AS;4AS;GRA;5AS;6AS" Quoted="1" CaseMode="0" ConvertTo="1" Order="1"/>            
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="51" SearchName="Freqüência por Período (discipulados)" CosmosModule="cmSecretarias" Category="A definir" SearchDescription="" ExecutedBy="DEI" Enabled="False"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="MES_INICIAL" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask="" Description="Mês Inicial" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="Janeiro;Fevereiro;Março;Abril;Maio;Junho;Julho;Agosto;Setembro;Outubro;Novembro;Dezembro" ValueList="1;2;3;4;5;6;7;8;9;10;11;12" Quoted="0" CaseMode="0" ConvertTo="0" Order="1"/>
+            <Param ParamName="MES_FINAL" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask="" Description="Mês Final" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="Janeiro;Fevereiro;Março;Abril;Maio;Junho;Julho;Agosto;Setembro;Outubro;Novembro;Dezembro" ValueList="1;2;3;4;5;6;7;8;9;10;11;12" Quoted="0" CaseMode="0" ConvertTo="0" Order="2"/>
+            <Param ParamName="ANO_INICIAL" ParamType="0" IsVisible="True" CanEdit="True" EditType="0" ParamMask='0000' Description="Ano Inicial" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>
+            <Param ParamName="ANO_FINAL" ParamType="0" IsVisible="True" CanEdit="True" EditType="0" ParamMask='0000' Description="Ano Final" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="4"/>            
+            <Param ParamName="SIGDIS" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Discipulado" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="1ºaspecto;2ºaspecto;3ºaspecto;4ºaspecto;Graal;5ºaspecto;6ºaspecto" ValueList="1AS;2AS;3AS;4AS;GRA;5AS;6AS" Quoted="1" CaseMode="0" ConvertTo="1" Order="5"/>
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="6"/>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="52" SearchName="Freqüência por Tipo de Atividade" CosmosModule="cmSecretarias" Category="Atividades" SearchDescription="" ExecutedBy="DEI,PRESIDIUM,DNLR,DNTM,DNTP,DRLR,DRTM,DRTP,SRLR,SRTM,SRTP,STN" Enabled="False"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="CODTIPATI" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="DESTIPATI" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Tipo da Atividade" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="MES_INICIAL" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask="" Description="Mês Inicial" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="Janeiro;Fevereiro;Março;Abril;Maio;Junho;Julho;Agosto;Setembro;Outubro;Novembro;Dezembro" ValueList="1;2;3;4;5;6;7;8;9;10;11;12" Quoted="0" CaseMode="0" ConvertTo="0" Order="2"/>
+            <Param ParamName="MES_FINAL" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask="" Description="Mês Final" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="Janeiro;Fevereiro;Março;Abril;Maio;Junho;Julho;Agosto;Setembro;Outubro;Novembro;Dezembro" ValueList="1;2;3;4;5;6;7;8;9;10;11;12" Quoted="0" CaseMode="0" ConvertTo="0" Order="3"/>
+            <Param ParamName="ANO_INICIAL" ParamType="0" IsVisible="True" CanEdit="True" EditType="0" ParamMask='0000' Description="Ano Inicial" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="4"/>
+            <Param ParamName="ANO_FINAL" ParamType="0" IsVisible="True" CanEdit="True" EditType="0" ParamMask='0000' Description="Ano Final" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="5"/>                      
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="6"/>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="53" SearchName="Freqüência do Círculo" CosmosModule="cmSecretarias" Category="Escola Interna" SearchDescription="Calcula a freqüência de um círculo da Escola Interna." ExecutedBy="DEI,PRESIDIUM" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODGRU" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMGRU" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Círculo" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="SIGDIS" ParamType="1" IsVisible="True" CanEdit="False" EditType="0" ParamMask="" Description="Discipulado" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="0" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>
+            <Param ParamName="MES_INICIAL" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask="" Description="Mês Inicial" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="Janeiro;Fevereiro;Março;Abril;Maio;Junho;Julho;Agosto;Setembro;Outubro;Novembro;Dezembro" ValueList="1;2;3;4;5;6;7;8;9;10;11;12" Quoted="0" CaseMode="0" ConvertTo="0" Order="1"/>
+            <Param ParamName="MES_FINAL" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask="" Description="Mês Final" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="Janeiro;Fevereiro;Março;Abril;Maio;Junho;Julho;Agosto;Setembro;Outubro;Novembro;Dezembro" ValueList="1;2;3;4;5;6;7;8;9;10;11;12" Quoted="0" CaseMode="0" ConvertTo="0" Order="2"/>
+            <Param ParamName="ANO_INICIAL" ParamType="0" IsVisible="True" CanEdit="True" EditType="0" ParamMask='0000' Description="Ano Inicial" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>
+            <Param ParamName="ANO_FINAL" ParamType="0" IsVisible="True" CanEdit="True" EditType="0" ParamMask='0000' Description="Ano Final" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="4"/>            
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="54" SearchName="Listagem geral de cadastrados" CosmosModule="cmSecretarias" Category="Secretaria e Tesouraria Nacional" SearchDescription="Lista todos os cadastrados ligados a um determinado campo de trabalho." ExecutedBy="DEI,PRESIDIUM,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CAMDIS" ParamType="1" IsVisible="True" CanEdit="False" EditType="2" ParamMask="" Description="Campo de trabalho." MaxLength="0" DefaultValue="LEC" HelpHint="" SendToServer="True" PickList="LEC;TM;TP" ValueList="LEC;TM;TP" Quoted="1" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="Sim" HelpHint="" SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>         
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="55" SearchName="Totalização de alunos por regiões administrativas" CosmosModule="cmSecretarias,cmFocos" Category="Secretaria e Tesouraria Nacional" SearchDescription="Lista os totais de alunos de cada foco das subregiões selecionadas. Oferece uma visão dos totais por foco e por subregião." ExecutedBy="DEI,PRESIDIUM,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODREG" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMREG" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Região administrativa objeto da pesquisa." MaxLength="0" DefaultValue="" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>       
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="56" SearchName="Totalização de jovens do TM por regiões administrativas" CosmosModule="cmSecretarias,cmFocos" Category="Secretaria e Tesouraria Nacional" SearchDescription="Lista os totais de alunos de cada foco das subregiões selecionadas. Oferece uma visão dos totais por foco e por subregião." ExecutedBy="DEI,PRESIDIUM,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODREG" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMREG" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Região administrativa objeto da pesquisa." MaxLength="0" DefaultValue="" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>       
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="57" SearchName="Inscritos alojados" CosmosModule="cmConferencias" Category="Alojamentos" SearchDescription="Lista os inscritos em uma conferência que se encontram alojados." ExecutedBy="DEI,PRESIDIUM,DNLR,DNTM,DNTP,DRLR,DRTM,DRTP,SRLR,SRTM,SRTP" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODCON" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask="" Description="CODCON" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMCON" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Conferência" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="0" ParamMask="" Description="Promotor" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>                        
+            <Param ParamName="DATINI" ParamType="2" IsVisible="True" CanEdit="False" EditType="0" ParamMask="" Description="Início" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>
+            <Param ParamName="DATTER" ParamType="2" IsVisible="True" CanEdit="False" EditType="0" ParamMask="" Description="Término" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="4"/>            
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="58" SearchName="Alunos do grupo de jovens alunos" CosmosModule="cmSecretarias,cmConferencias" Category="Alunado" SearchDescription="Lista os alunos que fazem parte do grupo de jovens alunos de um foco." ExecutedBy="DEI,PRESIDIUM,DNLR,DRLR,SRLR,DNTM,SRTM,SRTM,DNTP,SRTP,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Selecione o foco ao qual os jovens alunos estão ligados." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="59" SearchName="Endereços dos jovens do TM" CosmosModule="cmSecretarias,cmConferencias" Category="Trabalho da Mocidade" SearchDescription="Lista os endereços dos jovens do Trabalho da Mocidade." ExecutedBy="DEI,PRESIDIUM,DNTM,DRTM,SRTM" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Selecione o foco ao qual as pessoas estão ligadas." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="" HelpHint="Informa se a pesquisa buscará os endereços dos jovens ativos ou inativos." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>            
+            <Param ParamName="CAMTRA-TM" ParamType="1" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Campo" MaxLength="0" DefaultValue="TM" HelpHint="" SendToServer="True" PickList="TM" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>                       
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="60" SearchName="Endereços dos pesquisadores" CosmosModule="cmSecretarias,cmConferencias" Category="Trabalho Público" SearchDescription="Lista os endereços dos pesquisadores do Trabalho Público." ExecutedBy="DEI,PRESIDIUM,DNTP,DRTP,SRTP" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Selecione o foco ao qual as pessoas estão ligadas." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="" HelpHint="Informa se a pesquisa buscará os dados de endereços dos pesquisadores ativos ou inativos." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>            
+            <Param ParamName="CAMTRA-TP" ParamType="1" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Campo" MaxLength="0" DefaultValue="TP" HelpHint="" SendToServer="True" PickList="TP" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>                       
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="61" SearchName="Email de cadastrados" CosmosModule="cmSecretarias,cmConferencias" Category="Meios de contatos" SearchDescription="Lista os endereços eletrônicos (email) de alunos, jovens do TM ou pesquisadores do Trabalho Público." ExecutedBy="DEI,PRESIDIUM,DNLR,DNTM,DNTP,DRLR,DRTM,DRTP,SRLR,SRTM,SRTP" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Selecione o foco ao qual as pessoas estão ligadas." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="" HelpHint="Informa se a pesquisa buscará os emails dos alunos, jovens do TM ou pesquisadores ativos ou inativos." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>            
+            <Param ParamName="CAMTRA" ParamType="1" IsVisible="True" CanEdit="False" EditType="2" ParamMask="" Description="Campo" MaxLength="0" DefaultValue="" HelpHint="Selecione o campo de trabalho." SendToServer="True" PickList="LEC;TM;TP" ValueList="" Quoted="1" CaseMode="0" ConvertTo="1" Order="2"/>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="62" SearchName="Telefones de cadastrados" CosmosModule="cmSecretarias,cmConferencias" Category="Meios de contatos" SearchDescription="Lista os telefones de alunos, jovens do TM ou pesquisadores do Trabalho Público." ExecutedBy="DEI,PRESIDIUM,DNLR,DNTM,DNTP,DRLR,DRTM,DRTP,SRLR,SRTM,SRTP" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Selecione o foco ao qual as pessoas estão ligadas." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="" HelpHint="Informa se a pesquisa buscará os telefones dos alunos, jovens do TM ou pesquisadores ativos ou inativos." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>            
+            <Param ParamName="CAMTRA" ParamType="1" IsVisible="True" CanEdit="False" EditType="2" ParamMask="" Description="Campo" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="LEC;TM;TP" ValueList="" Quoted="1" CaseMode="0" ConvertTo="1" Order="2"/>
+        </Params>
+    </Search> 
+    <Search>
+        <SearchInfo>
+            <Info SearchId="63" SearchName="Resumo estatístico" CosmosModule="cmSecretarias" Category="Secretaria e Tesouraria Nacional" SearchDescription="Gera informações consolidadas sobre quantidade de alunos e outras informações da campo de trabalho brasileiro." ExecutedBy="DEI,PRESIDIUM,DNLR,DNTM,DNTP,DRLR,DRTM,DRTP,SRLR,SRTM,SRTP,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="64" SearchName="Datas de instalações" CosmosModule="cmSecretarias" Category="Secretaria e Tesouraria Nacional" SearchDescription="Lista as datas de instalações de todos os alunos de determinado foco." ExecutedBy="DEI,PRESIDIUM,DNLR,DRLR,SRLR,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="" HelpHint="Informa se a pesquisa emitirá os dados de endereços dos alunos ativos ou inativos." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>            
+        </Params>
+    </Search> 
+    <Search>
+        <SearchInfo>
+            <Info SearchId="65" SearchName="Datas de instalações (discipulado)" CosmosModule="cmSecretarias" Category="Secretaria e Tesouraria Nacional" SearchDescription="Lista as datas de instalações de todos os alunos de determinado foco e discipulado." ExecutedBy="DEI,PRESIDIUM,DNLR,DRLR,SRLR,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="" HelpHint="Informa se a pesquisa emitirá os dados de endereços dos alunos ativos ou inativos." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>            
+            <Param ParamName="SIGDIS" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Discipulado" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="1ºaspecto;2ºaspecto;3ºaspecto;4ºaspecto;Graal;5ºaspecto;6ºaspecto" ValueList="1AS;2AS;3AS;4AS;GRA;5AS;6AS" Quoted="1" CaseMode="0" ConvertTo="1" Order="2"/>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="66" SearchName="Alunos por discipulado" CosmosModule="cmSecretarias" Category="Secretaria e Tesouraria Nacional" SearchDescription="Lista todos os alunos ligados a um determinado discipulado." ExecutedBy="DEI,PRESIDIUM,DNLR,DRLR,SRLR,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="SIGDIS" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Discipulado" MaxLength="0" DefaultValue="" HelpHint="Informe o discipulado dos alunos." SendToServer="True" PickList="1ºaspecto;2ºaspecto;3ºaspecto;4ºaspecto;Graal;5ºaspecto;6ºaspecto" ValueList="1AS;2AS;3AS;4AS;GRA;5AS;6AS" Quoted="1" CaseMode="0" ConvertTo="1" Order="0"/>
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="Sim" HelpHint="Pesquisar alunos ativos ou inativos." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>                 
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Defina a forma de ordenação dos dados." SendToServer="True" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="2"/>            
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="67" SearchName="Jovens do TM por grupos" CosmosModule="cmSecretarias" Category="Secretaria e Tesouraria Nacional" SearchDescription="Lista todos os jovens do TM ligados a um determinado grupo." ExecutedBy="DEI,PRESIDIUM,DNTM,DRTM,SRTM,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="SIGDIS" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Grupo" MaxLength="0" DefaultValue="" HelpHint="Informe o grupo dos jovens." SendToServer="True" PickList="Pré-A;Grupo-A;Grupo-B;Grupo-C;Grupo-D" ValueList="P-A;G-A;G-B;G-C;G-D" Quoted="1" CaseMode="0" ConvertTo="1" Order="0"/>
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="Sim" HelpHint="Pesquisar jovens ativos ou inativos." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>                 
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Defina a forma de ordenação dos dados." SendToServer="True" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="2"/>            
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="68" SearchName="Origem dos pesquisadores" CosmosModule="cmSecretarias" Category="Trabalho Público" SearchDescription="Lista todos os pesquisadores com a informação sobre como os mesmos encontraram a Escola Espiritual." ExecutedBy="DEI,PRESIDIUM,DNTP,DRTP,SRTP,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CONESC" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Origem" MaxLength="0" DefaultValue="" HelpHint="Informe a origem do pesquisador." SendToServer="True" PickList="|Por meio de um aluno|;|Por meio de um pesquisador|;|Cartaz do Trabalho Público|;|Mala direta do Trabalho Público|;|Anúncio em jornal, revista ou similar|;|Site do Lectorium|;|Facebook|;|Twitter|;|Skype|;Outros" ValueList="0;1;2;3;4;5;6;7;8;9" Quoted="0" CaseMode="0" ConvertTo="0" Order="0"/>
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="Sim" HelpHint="Pesquisar jovens ativos ou inativos." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>                 
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Defina a forma de ordenação dos dados." SendToServer="True" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="2"/>            
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="69" SearchName="Origem dos pesquisadores por núcleo" CosmosModule="cmSecretarias" Category="Trabalho Público" SearchDescription="Lista todos os pesquisadores com a informação sobre como os mesmos encontraram a Escola Espiritual. Oferece uma visão segmentada por núcleo." ExecutedBy="DEI,PRESIDIUM,DNTP,DRTP,SRTP,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CONESC" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Origem" MaxLength="0" DefaultValue="" HelpHint="Informe a origem do pesquisador." SendToServer="True" PickList="|Por meio de um aluno|;|Por meio de um pesquisador|;|Cartaz do Trabalho Público|;|Mala direta do Trabalho Público|;|Anúncio em jornal, revista ou similar|;|Site do Lectorium|;|Facebook|;|Twitter|;|Skype|;Outros" ValueList="0;1;2;3;4;5;6;7;8;9" Quoted="0" CaseMode="0" ConvertTo="0" Order="0"/>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="Sim" HelpHint="Pesquisar jovens ativos ou inativos." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>                 
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Defina a forma de ordenação dos dados." SendToServer="True" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="3"/>            
+        </Params>
+    </Search> 
+    <Search>
+        <SearchInfo>
+            <Info SearchId="70" SearchName="Resumo estatístico pesquisadores" CosmosModule="cmSecretarias" Category="Trabalho Público" SearchDescription="Calcula dados estatísticos dos pesquisadores do Trabalho Público." ExecutedBy="DEI,PRESIDIUM,DNTP,DRTP,SRTP,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="71" SearchName="Resumo estatístico pesquisadores (subregiões)" CosmosModule="cmSecretarias" Category="Trabalho Público" SearchDescription="Calcula dados estatísticos dos pesquisadores do Trabalho Público por subregiões." ExecutedBy="DEI,PRESIDIUM,DNTP,DRTP,SRTP,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODREG" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMREG" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Região administrativa objeto da pesquisa." MaxLength="0" DefaultValue="" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>               
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="72" SearchName="Alunos extra-núcleo" CosmosModule="cmSecretarias" Category="Alunado" SearchDescription="Lista os alunos extra-núcleo cadastrados no sistema." ExecutedBy="DEI,PRESIDIUM,DNLR,DRLR,SRLR,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="Sim" HelpHint="Informe se a pesquisa listará os dados dos alunos ativos ou inativos." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Escolha como ordenar os dados." SendToServer="True" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCAD" Quoted="0" CaseMode="0" ConvertTo="1" Order="1"/>
+        </Params>
+    </Search> 
+    <Search>
+        <SearchInfo>
+            <Info SearchId="73" SearchName="Alunos extra-núcleo do núcleo" CosmosModule="cmSecretarias" Category="Alunado" SearchDescription="Lista os alunos extra-núcleo de um determinado núcleo." ExecutedBy="DEI,PRESIDIUM,DNLR,DRLR,SRLR,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask='' Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Escolha o foco ao qual os alunos estão ligados." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>           
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="Sim" HelpHint="Informe se a pesquisa listará os dados dos alunos ativos ou inativos." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>            
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Escolha como ordenar os dados." SendToServer="True" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCAD" Quoted="0" CaseMode="0" ConvertTo="1" Order="2"/>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="74" SearchName="Mapão" CosmosModule="cmSecretarias" Category="Secretaria e Tesouraria Nacional" SearchDescription="Sumariza os dados dos alunos, jovens do TM e pesquisadores do campo de trabalho brasileiro." ExecutedBy="DEI,PRESIDIUM,DNLR,DRLR,SRLR,STN" Enabled="False"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="MES" ParamType="5" IsVisible="True" CanEdit="True" EditType="2" ParamMask="" Description="Mês" MaxLength="0" DefaultValue="" HelpHint="Mês de referência dos dados." SendToServer="True" PickList="Janeiro;Fevereiro;Março;Abril;Maio;Junho;Julho;Agosto;Setembro;Outubro;Novembro;Dezembro" ValueList="1;2;3;4;5;6;7;8;9;10;11;12" Quoted="0" CaseMode="0" ConvertTo="0" Order="0"/>
+            <Param ParamName="ANO" ParamType="0" IsVisible="True" CanEdit="True" EditType="0" ParamMask='0000' Description="Ano" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="Ano de referência dos dados." SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+        </Params>
+    </Search>
+    <Search>    
+        <SearchInfo>
+            <Info SearchId="75" SearchName="Datas de instalações dos alunos (discipulados)" CosmosModule="cmSecretarias" Category="Histórico discipular" SearchDescription="Lista as datas das instalações de cada aluno nos diversos discipulados da Escola Externa e Interna. Somente são listados alunos do foco corrente e no discipulado escolhido." ExecutedBy="DEI,PRESIDIUM,DNLR,DRLR,SRLR,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask='' Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Escolha o foco ao qual os alunos estão ligados." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>           
+            <Param ParamName="SIGDIS" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Discipulado" MaxLength="0" DefaultValue="" HelpHint="Informe o grupo dos jovens." SendToServer="True" PickList="1ºaspecto;2ºaspecto;3ºaspecto;4ºaspecto;Graal;5ºaspecto;6ºaspecto" ValueList="1AS;2AS;3AS;4AS;GRA;5AS;6AS" Quoted="1" CaseMode="0" ConvertTo="1" Order="1"/>
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="Sim" HelpHint="Pesquisar jovens ativos ou inativos." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>                 
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Defina a forma de ordenação dos dados." SendToServer="True" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="3"/>                        
+        </Params>
+    </Search>
+    <Search>    
+        <SearchInfo>
+            <Info SearchId="76" SearchName="Histórico de um aluno" CosmosModule="cmSecretarias" Category="Histórico discipular" SearchDescription="Lista as informações do histórico discipular de um aluno." ExecutedBy="DEI,PRESIDIUM,DNLR,DRLR,SRLR,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="MATCAD-LEC" ParamType="1" IsVisible="True" CanEdit="True" EditType="1" ParamMask='AAA-000000' Description="Aluno" MaxLength="10" DefaultValue="" HelpHint="Informe a matrícula do aluno.." SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+        </Params>
+    </Search>
+    <Search>    
+        <SearchInfo>
+            <Info SearchId="77" SearchName="Lista nacional de simpatizantes" CosmosModule="cmSecretarias" Category="Simpatizantes" SearchDescription="Lista os simpatizantes do campo de trabalho brasileiro." ExecutedBy="DEI,PRESIDIUM,DNTP,DRTP,SRTP,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="Sim" HelpHint="Pesquisar simpatizantes ativos ou inativos." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>                 
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Defina a forma de ordenação dos dados." SendToServer="True" PickList="Nome;Foco" ValueList="NOMCAD;SIGFOC,NOMCAD" Quoted="0" CaseMode="0" ConvertTo="1" Order="1"/>                                                
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="78" SearchName="Email de simpatizantes" CosmosModule="cmSecretarias,cmConferencias" Category="Simpatizantes" SearchDescription="Lista os endereços eletrônicos (email) de simpatizantes ligados a um foco." ExecutedBy="DEI,PRESIDIUM,DNTP,DRTP,SRTP" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="" HelpHint="Informa se a pesquisa emitirá os dados de endereços dos simpatizantes ativos ou inativos." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>            
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="79" SearchName="Endereços dos simpatizantes" CosmosModule="cmSecretarias,cmConferencias" Category="Simpatizantes" SearchDescription="Lista os endereços dos simpatizantes ligados a um foco." ExecutedBy="DEI,PRESIDIUM,DNTP,DRTP,SRTP" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="" SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="" HelpHint="Informa se a pesquisa emitirá os dados de endereços dos simpatizantes ativos ou inativos." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>            
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="80" SearchName="Simpatizantes por origem" CosmosModule="cmSecretarias" Category="Simpatizantes" SearchDescription="Lista os simpatizantes de acordo com uma origem." ExecutedBy="DEI,PRESIDIUM,DNTP,STN" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="ORISIM" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask="" Description="Origem" MaxLength="0" DefaultValue="" HelpHint="Seleciona a origem dos simpatizantes." SendToServer="True" PickList="|Por meio de um aluno|;|Por meio de um pesquisador|;|Cartaz do Trabalho Público|;|Mala direta do Trabalho Público|;|Anúncio em jornal, revista ou similar|;|Site da Escola|;|Facebook de um amigo|;|Facebook da Escola|;|Outros|" ValueList="1;2;3;4;5;6;7;8;9" Quoted="0" CaseMode="0" ConvertTo="0" Order="0"/>            
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="" HelpHint="Informa se a pesquisa contemplará os simpatizantes ativos ou inativos." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>            
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Defina a forma de ordenação dos dados." SendToServer="True" PickList="Nome;Foco" ValueList="NOMCAD;SIGFOC,NOMCAD" Quoted="0" CaseMode="0" ConvertTo="1" Order="2"/>                                                            
+        </Params>
+    </Search> 
+    <Search>
+        <SearchInfo>
+            <Info SearchId="81" SearchName="Pendências do contribuinte" CosmosModule="cmFinanceiro" Category="Contribuições" SearchDescription="Listas as contribuições feita por uma pessoa e suas eventuais pendências" ExecutedBy="DEI,PRESIDIUM,STN,TESOURARIA" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODCAD" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMCAD" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Contribuinte" MaxLength="0" DefaultValue="" HelpHint="Informe um contribuinte." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="ANOREF" ParamType="0" IsVisible="True" CanEdit="True" EditType="0" ParamMask='' Description="Ano" MaxLength="0" DefaultValue="CURRENT-YEAR" HelpHint="Informa o ano de referência a ser considerado na pesquisa." SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>            
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask='' Description="Favorecido" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Escolha o foco favorecido pelas contribuições." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>            
+            <Param ParamName="INDMEN" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Mensalidades" MaxLength="0" DefaultValue="Sim" HelpHint="Considerar contribuições de mensalidades." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>                        
+            <Param ParamName="INDTAX" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Taxas Conf." MaxLength="0" DefaultValue="Sim" HelpHint="Considerar contribuições de taxas de conferências." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="4"/>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="82" SearchName="Emails dos alunos" CosmosModule="cmSecretarias" Category="Meios de contatos" SearchDescription="Lista os emails de alunos igados ao foco corrente." ExecutedBy="DEI,PRESIDIUM,STN,TESOURARIA,DNLR,DNTM,DNTP,DRLR,DRTM,DRTP,DREI,SRLR,SRTM,SRTP" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask='' Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Escolha o foco ao qual os alunos estão ligados." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="INDATI" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="Sim" HelpHint="Informe se o relatório emitirá os dados dos alunos ativos ou inativos." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>            
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Escolha como ordenar os dados." SendToServer="True" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="2"/>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="83" SearchName="Pagamentos do contribuinte" CosmosModule="cmFinanceiro" Category="Contribuições" SearchDescription="Lista os pagamentos feitos por uma pessoa ao longo de um ano." ExecutedBy="DEI,PRESIDIUM,STN,TESOURARIA" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="MATCAD" ParamType="1" IsVisible="True" CanEdit="True" EditType="0" ParamMask="AAA-000000" Description="Matrícula" MaxLength="0" DefaultValue="" HelpHint="Informe a matrícula completa do contribuinte" SendToServer="True" PickList="" ValueList="" Quoted="1" CaseMode="0" ConvertTo="0" Order="0"/>            
+            <Param ParamName="ANOCON" ParamType="0" IsVisible="True" CanEdit="True" EditType="0" ParamMask='' Description="Ano" MaxLength="0" DefaultValue="CURRENT-YEAR" HelpHint="Informa o ano de contrubuição a ser considerado na pesquisa." SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>            
+        </Params>
+    </Search> 
+    <Search>
+        <SearchInfo>
+            <Info SearchId="84" SearchName="Declarações de contribuição" CosmosModule="cmFinanceiro" Category="Contribuições" SearchDescription="Lista os valores declarados de contribuição para cada aluno do foco selecionado." ExecutedBy="DEI,PRESIDIUM,STN,TESOURARIA" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Contribuinte" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Informe o foco desejado." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+        </Params>
+    </Search> 
+    <Search>
+        <SearchInfo>
+            <Info SearchId="85" SearchName="Sumário de caixas" CosmosModule="cmFinanceiro" Category="Caixas" SearchDescription="Lista informações sumárias dos caixas do foco selecionado ao longo de um período." ExecutedBy="DEI,PRESIDIUM,STN,TESOURARIA" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Informe o foco desejado." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="OPERATOR1" ParamType="7" IsVisible="False" CanEdit="False" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="MAIOR-IGUAL" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>            
+            <Param ParamName="MES_INICIAL" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask="" Description="Mês Inicial" MaxLength="0" DefaultValue="CURRENT-MONTHNAME" HelpHint="Mês inicial da pesquisa." SendToServer="True" PickList="Janeiro;Fevereiro;Março;Abril;Maio;Junho;Julho;Agosto;Setembro;Outubro;Novembro;Dezembro" ValueList="1;2;3;4;5;6;7;8;9;10;11;12" Quoted="0" CaseMode="0" ConvertTo="0" Order="2"/>
+            <Param ParamName="OPERATOR2" ParamType="7" IsVisible="False" CanEdit="False" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="MAIOR-IGUAL" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>
+            <Param ParamName="ANO_INICIAL" ParamType="0" IsVisible="True" CanEdit="True" EditType="0" ParamMask='0000' Description="Ano Inicial" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="Ano inicial da pesquisa" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="4"/>
+            <Param ParamName="OPERATOR3" ParamType="7" IsVisible="False" CanEdit="False" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="MENOR-IGUAL" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="5"/>
+            <Param ParamName="MES_FINAL" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask="" Description="Mês Final" MaxLength="0" DefaultValue="CURRENT-MONTHNAME" HelpHint="Mês final da pesquisa" SendToServer="True" PickList="Janeiro;Fevereiro;Março;Abril;Maio;Junho;Julho;Agosto;Setembro;Outubro;Novembro;Dezembro" ValueList="1;2;3;4;5;6;7;8;9;10;11;12" Quoted="0" CaseMode="0" ConvertTo="0" Order="6"/>
+            <Param ParamName="OPERATOR4" ParamType="7" IsVisible="False" CanEdit="False" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="MENOR-IGUAL" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="7"/>
+            <Param ParamName="ANO_FINAL" ParamType="0" IsVisible="True" CanEdit="True" EditType="0" ParamMask='0000' Description="Ano Final" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="Ano final da pesquisa" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="8"/>                                
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="86" SearchName="Levantamento de frequências" CosmosModule="cmSecretarias" Category="Atividades" SearchDescription="Lista a situação do levantamento de freqüência das atividades ao longo de um ano." ExecutedBy="DEI,PRESIDIUM,STN,DNLR,DRLR,SRLR,DNTP,DRTP,SRTP,DNTM,DRTM,SRTM" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="ANO" ParamType="0" IsVisible="True" CanEdit="True" EditType="0" ParamMask='0000' Description="Ano" MaxLength="0" DefaultValue="CURRENT-YEAR" HelpHint="Informa o ano em que as atividades ocorreram." SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Foco corrente." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="CAMTRA" ParamType="1" IsVisible="True" CanEdit="False" EditType="2" ParamMask="" Description="Campo" MaxLength="0" DefaultValue="LEC" HelpHint="Campo de trabalho promotor das atividades." SendToServer="True" PickList="LEC;TMO;TPU;SIM" ValueList="" Quoted="1" CaseMode="0" ConvertTo="1" Order="2"/>
+        </Params>
+    </Search>
+    <Search>
+        <SearchInfo>
+            <Info SearchId="87" SearchName="Folha de presença" CosmosModule="cmSecretarias" Category="Atividades" SearchDescription="Lista os alunos, pesquisadores ou jovens que devem participar de uma atividade." ExecutedBy="DEI,PRESIDIUM,STN,DNLR,DRLR,SRLR,DNTP,DRTP,SRTP,DNTM,DRTM,SRTM" Enabled="True"/>
+        </SearchInfo>
+        <Params>
+            <Param ParamName="CODATI" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="DESTIPATI" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask='' Description="Atividade" MaxLength="0" DefaultValue="" HelpHint="Selecione a atividade para a qual será emitida a folha de presença." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/> 
+            <Param ParamName="DATATI" ParamType="2" IsVisible="1" CanEdit="0" EditType="0" ParamMask='00/00/0000' Description="Data" MaxLength="0" DefaultValue="" HelpHint="Data da atividade." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="HORATI" ParamType="6" IsVisible="1" CanEdit="0" EditType="0" ParamMask='00:00' Description="Hora" MaxLength="0" DefaultValue="" HelpHint="Hora da atividade." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>
+            <Param ParamName="CAMPRO" ParamType="1" IsVisible="1" CanEdit="0" EditType="0" ParamMask='' Description="Promotor" MaxLength="0" DefaultValue="" HelpHint="Campo promotor da atividade." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>
+            <Param ParamName="SIGFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="0" ParamMask='' Description="Foco" MaxLength="0" DefaultValue="" HelpHint="Foco promotor da atividade" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="4"/>
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ordem" MaxLength="0" DefaultValue="" HelpHint="Selecione o tipo de ordenação de dados desejado." SendToServer="1" PickList="Nome;Matrícula" ValueList="N;M" Quoted="0" CaseMode="0" ConvertTo="1" Order="1"/>
+        </Params>
+    </Search>    
+</Searchs>

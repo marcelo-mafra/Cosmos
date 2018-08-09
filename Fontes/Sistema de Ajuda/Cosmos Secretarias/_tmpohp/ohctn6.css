@@ -1,0 +1,127 @@
+
+/* OmniHelp CSS styles for ctrl elements for NetScape Navigator 6+, OHver 0.2 */
+
+/* top panel and nav ctrl panel (center left) */
+
+body.ctrl { background: #999 ; margin: 0 }
+
+
+/* top panel only */
+
+p.topbody { font: bold 12pt/12pt sans-serif }
+
+table.topnav { vertical-align: middle; border-style: none }
+
+td.topnav { font: bold 10pt/10pt  sans-serif;
+margin: 0 ; text-align: center }
+
+td.topnav :link, td.topnav :active, td.topnav :visited {color: blue; text-decoration: none}
+
+
+/* nav ctrl panel only */
+
+table.nav { vertical-align: middle; border-style: none;
+padding: 2px; white-space: nowrap }
+
+th.nav { font: 9pt/11pt sans-serif;
+margin: 0 2pt ; background: silver }
+
+th.navx { font: 9pt/11pt sans-serif;
+margin: 0 2pt ; background: white }
+
+td.navx { font: 10pt/12pt sans-serif;
+margin: 0 2pt ; background: silver; white-space: normal }
+
+td.navxsmall { font: 9pt/14pt sans-serif;
+margin: 0 ; background: silver }
+
+td.navxxsmall { font: 8pt/12pt sans-serif;
+margin: 0 ; background: silver }
+
+td.navxbtn { font: 9pt/9pt sans-serif;
+margin: 0 ; text-align: center ; background: silver }
+
+.tocbtn { font: 9pt/9pt sans-serif;
+margin: 0 ; text-align: center ; background: silver }
+
+
+/* nav panel (bottom left) */
+
+body.nav { background: silver }
+
+.body { font: bold 12pt/14pt sans-serif }
+
+img.tcv { vertical-align: middle ; height: 16 ; border: none }
+
+.tocv { font: 10pt/10pt sans-serif; width: 800 ; 
+margin: 0 0 0 0 ;  background: silver }
+
+.tocvx { font: 10pt/10pt sans-serif; width: 800 ;
+margin: 0 0 0 0 ;  background: silver }
+
+/* if span below fails, change .tocvx background above to white */
+
+span.tcvx { background: white }
+
+.toc1 { font: 10pt/12pt sans-serif;
+margin: 0 0 0 0 ; background: silver }
+
+.toc1x { font: bold 10pt/12pt sans-serif;
+margin: 2pt 0 2pt 0 ; background: white }
+
+.toc2 { font: 10pt/12pt sans-serif;
+margin: 0 0 0 6pt ;  background: silver }
+
+.toc2x { font: bold 10pt/12pt sans-serif;
+margin: 2pt 0 2pt 6pt ;  background: white }
+
+.toc3 { font: 10pt/12pt sans-serif;
+margin: 0 0 0 12pt ;  background: silver }
+
+.toc3x { font: bold 10pt/12pt sans-serif;
+margin: 2pt 0 2pt 12pt ;  background: white }
+
+.toc4 { font: 10pt/12pt sans-serif;
+margin: 0 0 0 18pt ;  background: silver }
+
+.toc4x { font: bold 10pt/12pt sans-serif;
+margin: 2pt 0 2pt 18pt ;  background: white }
+
+.toc5 { font: 10pt/12pt sans-serif;
+margin: 0 0 0 24pt ;  background: silver }
+
+.toc5x { font: bold 10pt/12pt sans-serif;
+margin: 2pt 0 2pt 24pt ;  background: white }
+
+.toc6 { font: 10pt/12pt sans-serif;
+margin: 0 0 0 30pt ;  background: silver }
+
+.toc6x { font: bold 10pt/12pt sans-serif;
+margin: 2pt 0 2pt 30pt ;  background: white }
+
+.toc7 { font: 10pt/12pt sans-serif;
+margin: 0 0 0 36pt ;  background: silver }
+
+.toc7x { font: bold 10pt/12pt sans-serif;
+margin: 2pt 0 2pt 36pt ;  background: white }
+
+.toc8 { font: 10pt/12pt sans-serif;
+margin: 0 0 0 42pt ;  background: silver }
+
+.toc8x { font: bold 10pt/12pt sans-serif;
+margin: 2pt 0 2pt 42pt ;  background: white }
+
+.toc9 { font: 10pt/12pt sans-serif;
+margin: 0 0 0 48pt ;  background: silver }
+
+.toc9x { font: bold 10pt/12pt sans-serif;
+margin: 2pt 0 2pt 48pt ;  background: white }
+
+
+.fts { font: 10pt/12pt sans-serif;
+margin: 0 0 0 0 ; background: silver }
+
+
+span.currix { background: white }
+
+/* end of ohctn6.css */

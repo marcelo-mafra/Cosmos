@@ -1,0 +1,47 @@
+package cmusers;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS OFF}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE RELEASE}
+{$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'Cosmos users'}
+{$RUNONLY}
+{$IMPLICITBUILD ON}
+
+requires
+  rtl,
+  dockedform,
+  interfaces,
+  cmlib,
+  frames,
+  shellib,
+  Cosmos,
+  usucon;
+
+contains
+  cosmos.usuarios.view.FormUsuarios in 'cosmos.usuarios.view.FormUsuarios.pas' {FrmUsuarios},
+  cosmos.usuarios.view.FormUserRoles in 'cosmos.usuarios.view.FormUserRoles.pas' {FrmUsersRoles},
+  cosmos.usuarios.view.FormAddFoco in 'cosmos.usuarios.view.FormAddFoco.pas' {FrmAddFoco};
+
+end.

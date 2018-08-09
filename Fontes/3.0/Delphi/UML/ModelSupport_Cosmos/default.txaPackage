@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <node uin="h0u0is2ni_n">
+    <property name="$doc" value="Este ator participará de todos os casos de uso. Não existirão funcionalidades dos sistemas que não poderão ser acessadas por este ator. Por outro lado, existem alguns casos de uso que serão associados apenas a este ator e a nenhum outro." />
+    <property name="$metaclass" value="Actor20" />
+    <property name="$name" value="DEI" />
+  </node>
+  <node uin="00ungudop_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note1" />
+    <property name="$note_text" value="Direção Espiritual Internacional" />
+    <link uin="xzt1d9s0h_l">
+      <property name="$metaclass" value="Note Link" />
+      <property name="$name" value="Note Link1" />
+      <participant referencedUin="design:node:::h0u0is2ni_n" role="Client" />
+      <participant referencedUin="design:node:::00ungudop_n" role="Supplier" />
+    </link>
+  </node>
+  <node uin="e9uwsmo7r_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note1" />
+    <property name="$note_text" value="Direção Espiritual Internacional" />
+    <link uin="a9uzz8bbg_l">
+      <property name="$metaclass" value="Note Link" />
+      <property name="$name" value="Note Link1" />
+      <participant referencedUin="design:node:::e8ukuj45p_n" role="Client" />
+      <participant referencedUin="design:node:::e9uwsmo7r_n" role="Supplier" />
+    </link>
+  </node>
+  <node uin="e8ukuj45p_n">
+    <property name="$doc" value="Este ator participará de todos os casos de uso, excetuando-se aqueles que são exclusivos do ator &quot;DEI&quot;." />
+    <property name="$metaclass" value="Actor20" />
+    <property name="$name" value="Presidium" />
+  </node>
+  <node uin="siqgxj3xf_n">
+    <property name="$metaclass" value="Actor20" />
+    <property name="$name" value="DNLR" />
+  </node>
+  <node uin="pithmfj1k_n">
+    <property name="$metaclass" value="Actor20" />
+    <property name="$name" value="DNTP" />
+  </node>
+  <node uin="ccqpk76rs_n">
+    <property name="$metaclass" value="Actor20" />
+    <property name="$name" value="DNTMB" />
+  </node>
+  <node uin="3cqx7h22p_n">
+    <property name="$metaclass" value="Actor20" />
+    <property name="$name" value="DNTM" />
+  </node>
+  <node uin="0aq7uwq9p_n">
+    <property name="$metaclass" value="Actor20" />
+    <property name="$name" value="SNLR" />
+  </node>
+  <node uin="t2uyese1h_n">
+    <property name="$metaclass" value="Actor20" />
+    <property name="$name" value="DITM" />
+  </node>
+  <node uin="1ithpmram_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note2" />
+    <property name="$note_text" value="Direção Espiritual Internacional" />
+    <link uin="rctii0vsm2jtxvk_l">
+      <property name="$metaclass" value="Note Link" />
+      <property name="$name" value="Note Link1" />
+      <participant referencedUin="design:node:::h0u0is2ni_n" role="Client" />
+      <participant referencedUin="design:node:::1ithpmram_n" role="Supplier" />
+    </link>
+  </node>
+  <node uin="gkt2iioap_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note2" />
+    <property name="$note_text" value="Presidium" />
+    <link uin="fbt631ohqam6a2t_l">
+      <property name="$metaclass" value="Note Link" />
+      <property name="$name" value="Note Link1" />
+      <participant referencedUin="design:node:::e8ukuj45p_n" role="Client" />
+      <participant referencedUin="design:node:::gkt2iioap_n" role="Supplier" />
+    </link>
+  </node>
+  <node uin="2it9fik2o_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note2" />
+    <property name="$note_text" value="Direção Internacional do Trabalho da Mocidade" />
+    <link uin="k0tzzpgotjhx7un_l">
+      <property name="$metaclass" value="Note Link" />
+      <property name="$name" value="Note Link1" />
+      <participant referencedUin="design:node:::t2uyese1h_n" role="Client" />
+      <participant referencedUin="design:node:::2it9fik2o_n" role="Supplier" />
+    </link>
+  </node>
+  <node uin="0gtpv090m_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note2" />
+    <property name="$note_text" value="Direção Nacional do Lectorium Rosicrucianum" />
+    <link uin="e9ts8p87o_l">
+      <property name="$metaclass" value="Note Link" />
+      <property name="$name" value="Note Link1" />
+      <participant referencedUin="design:node:::siqgxj3xf_n" role="Client" />
+      <participant referencedUin="design:node:::0gtpv090m_n" role="Supplier" />
+    </link>
+  </node>
+  <node uin="odt8vi8tr_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note2" />
+    <property name="$note_text" value="Direção Nacional do Trabalho Público" />
+    <link uin="08twfos3m_l">
+      <property name="$metaclass" value="Note Link" />
+      <property name="$name" value="Note Link1" />
+      <participant referencedUin="design:node:::pithmfj1k_n" role="Client" />
+      <participant referencedUin="design:node:::odt8vi8tr_n" role="Supplier" />
+    </link>
+  </node>
+  <node uin="5ftatswj1tbnt7h_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note2" />
+    <property name="$note_text" value="Direção Nacional do Trabalho de Membros" />
+    <link uin="i7tuib0uh_l">
+      <property name="$metaclass" value="Note Link" />
+      <property name="$name" value="Note Link1" />
+      <participant referencedUin="design:node:::ccqpk76rs_n" role="Client" />
+      <participant referencedUin="design:node:::5ftatswj1tbnt7h_n" role="Supplier" />
+    </link>
+  </node>
+  <node uin="eaq5qq7b4u6w4em_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note2" />
+    <property name="$note_text" value="Direção Nacional do Trabalho da Mocidade" />
+    <link uin="e6t9hq8jh_l">
+      <property name="$metaclass" value="Note Link" />
+      <property name="$name" value="Note Link1" />
+      <participant referencedUin="design:node:::3cqx7h22p_n" role="Client" />
+      <participant referencedUin="design:node:::eaq5qq7b4u6w4em_n" role="Supplier" />
+    </link>
+  </node>
+  <node uin="y9qswm779orghrh_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note2" />
+    <property name="$note_text" value="Secretaria Nacional do Lectorium Rosicrucianum" />
+    <link uin="k5tbvsp9p_l">
+      <property name="$metaclass" value="Note Link" />
+      <property name="$name" value="Note Link1" />
+      <participant referencedUin="design:node:::0aq7uwq9p_n" role="Client" />
+      <participant referencedUin="design:node:::y9qswm779orghrh_n" role="Supplier" />
+    </link>
+  </node>
+  <node uin="tdtc6lmy7vu0vrn_n">
+    <property name="$metaclass" value="Actor20" />
+    <property name="$name" value="CNI" />
+  </node>
+  <node uin="6ctmlsloa3wx71r_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note2" />
+    <property name="$note_text" value="Coordenação Nacional de Informática" />
+    <link uin="b8t6qzsdhafeenj_l">
+      <property name="$metaclass" value="Note Link" />
+      <property name="$name" value="Note Link1" />
+      <participant referencedUin="design:node:::tdtc6lmy7vu0vrn_n" role="Client" />
+      <participant referencedUin="design:node:::6ctmlsloa3wx71r_n" role="Supplier" />
+    </link>
+  </node>
+</nodeSet>

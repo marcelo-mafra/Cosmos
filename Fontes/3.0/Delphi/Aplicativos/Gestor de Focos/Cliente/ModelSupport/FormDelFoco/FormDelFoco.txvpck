@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="4zae8176eyp454k_v">
+    <property name="$name" value="FormDelFoco" />
+    <property name="$defaultDiagram" value="True" />
+    <property name="$metaclass" value="Package Diagram" />
+    <reference referencedUin="delphi:e_class:src:gfocos:FormDelFoco.TFrmDelFocus">
+      <property name="$shortcutReference" value="true" />
+    </reference>
+  </view>
+</nodeSet>

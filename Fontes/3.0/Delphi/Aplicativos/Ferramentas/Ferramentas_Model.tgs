@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<ProjectSupport>
+  <SupportedProjects>
+    <ProjectName>grantmngr</ProjectName>
+    <ProjectName>register</ProjectName>
+    <ProjectName>fbconf</ProjectName>
+    <ProjectName>dbbackup</ProjectName>
+  </SupportedProjects>
+</ProjectSupport>

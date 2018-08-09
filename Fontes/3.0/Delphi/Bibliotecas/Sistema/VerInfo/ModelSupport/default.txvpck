@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="tyn4hccwr_v">
+    <property name="$defaultDiagram" value="true" />
+    <property name="$metaclass" value="Package Diagram" />
+    <property name="$name" value="default" />
+    <reference referencedUin="design:view:::6yn3j014r_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="10,10,81,126" />
+      <reference referencedUin="delphi:e_class:src:vinfo:vinfo.@unitclass" />
+    </reference>
+    <reference referencedUin="design:view:::rwn0zt44l_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="110,1,114,218" />
+      <reference referencedUin="delphi:e_class:src:vinfo:VerInfo.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:vinfo:VerInfo.EVerInfoError" />
+      <reference referencedUin="delphi:e_class:src:vinfo:VerInfo.ENoVerInfoError" />
+      <reference referencedUin="delphi:e_class:src:vinfo:VerInfo.eNoFixeVerInfo" />
+      <reference referencedUin="delphi:e_class:src:vinfo:VerInfo.TVerInfoType" />
+      <reference referencedUin="delphi:e_class:src:vinfo:VerInfo.TVerInfoRes" />
+    </reference>
+  </view>
+</nodeSet>

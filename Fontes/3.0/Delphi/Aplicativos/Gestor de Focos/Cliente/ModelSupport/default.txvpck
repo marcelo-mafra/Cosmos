@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="i1bu0y0aebl5gie_v">
+    <property name="$name" value="default" />
+    <property name="$defaultDiagram" value="True" />
+    <property name="$metaclass" value="Package Diagram" />
+    <reference referencedUin="design:view:::zscwna7cr_v">
+      <property name="$shortcutReference" value="true" />
+    </reference>
+    <reference referencedUin="design:view:::mmbvun3rrbibele_v">
+      <property name="$shortcutReference" value="true" />
+    </reference>
+    <reference referencedUin="design:view:::cmbuzq6rruz8lvj_v">
+      <property name="$shortcutReference" value="true" />
+    </reference>
+    <reference referencedUin="design:view:::z040kxs7ev8qzbq_v">
+      <property name="$shortcutReference" value="true" />
+      <reference referencedUin="delphi:e_class:src:gfocos:CoreClasses.TCampoTrabalho" />
+      <reference referencedUin="delphi:e_class:src:gfocos:CoreClasses.TRa" />
+    </reference>
+    <reference referencedUin="design:view:::dkdo1chrh_v">
+      <property name="$shortcutReference" value="true" />
+      <reference referencedUin="delphi:e_class:src:gfocos:Cripter.TCripter" />
+      <reference referencedUin="delphi:e_class:src:gfocos:Cripter.TCriptMode" />
+    </reference>
+  </view>
+</nodeSet>

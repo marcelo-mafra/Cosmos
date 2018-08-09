@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Este arquivo contém as configurações individuais de usuários.
+
+***Convenções importantes com relação a nomes de chaves. ***
+
+- Em nomes de chaves que fazem referências a módulos do Cosmos, os caracteres "cm" iniciais (de "Cosmos Module") devem SEMPRE estar em minúsculos. Exemplos:
+
+  cmConferencias: correto.
+  CmConferencias: ERRADO.
+-->
+
+<CosmosConfigurations><!-- Configurações por usuário relacionadas a recursos visuais das aplicações Cosmos.-->
+	<CosmosVisual>
+		<cmConferencias>
+			<Visual Style="New XP Style" CustomHint="0" MainStatus="2" ShowTips="false" ShowWindowsManager="false" TabsStyle="4" FullScreen="false"/>
+			<Messages OpenMyMessageTool="False" NotifyOnNewMessages="False" NotifyOnStartUp="True"/>
+			<LateralMenu AllowReorder="False" BoldCaptions="True" VerticalCategories="False" DefaultPlusSignal="True" CategoryBorder="false" NoIcons="True"/>            
+		</cmConferencias>
+		<cmFinanceiro>
+			<Visual Style="New XP Style" CustomHint="0" MainStatus="2" ShowTips="false" ShowWindowsManager="false" TabsStyle="4" FullScreen="false"/>
+			<Messages OpenMyMessageTool="False" NotifyOnNewMessages="False" NotifyOnStartUp="True"/>
+			<LateralMenu AllowReorder="False" BoldCaptions="True" VerticalCategories="False" DefaultPlusSignal="True" CategoryBorder="false" NoIcons="True"/>         
+		</cmFinanceiro>
+		<cmFocos>
+			<Visual Style="New XP Style" CustomHint="0" MainStatus="2" ShowTips="false" ShowWindowsManager="False" TabsStyle="4" FullScreen="false"/>
+			<Messages OpenMyMessageTool="False" NotifyOnNewMessages="False" NotifyOnStartUp="True"/>
+			<LateralMenu AllowReorder="False" BoldCaptions="True" VerticalCategories="False" DefaultPlusSignal="True" CategoryBorder="false" NoIcons="True"/>             
+		</cmFocos>
+		<cmSecretarias>
+			<Visual Style="New XP Style" CustomHint="0" MainStatus="2" ShowTips="false" ShowWindowsManager="false" TabsStyle="4" FullScreen="false"/>
+			<Messages OpenMyMessageTool="false" NotifyOnNewMessages="true" NotifyOnStartUp="true"/>
+			<LateralMenu AllowReorder="False" BoldCaptions="True" VerticalCategories="False" DefaultPlusSignal="True" CategoryBorder="false" NoIcons="True"/>             
+		</cmSecretarias>
+		<cmUsuarios>
+			<Visual Style="New XP Style" CustomHint="0" MainStatus="2" ShowTips="false" ShowWindowsManager="false" TabsStyle="4" FullScreen="false"/>
+			<Messages OpenMyMessageTool="False" NotifyOnNewMessages="False" NotifyOnStartUp="True"/>
+			<LateralMenu AllowReorder="False" BoldCaptions="True" VerticalCategories="False" DefaultPlusSignal="True" CategoryBorder="false" NoIcons="True"/>             
+		</cmUsuarios>
+	</CosmosVisual>   
+    <!-- Configurações por usuário relacionadas à conexão com os servidores remotos.  Algumas convenções adotadas:
+            CommunicationProtocol: tipo da conexão. Valores aceitos: 0 (TCP); 1 (HTTP) ; 2 (HTTPS) 
+            CosmosApp: aplicação do Cosmos que usa a conexão.-->    
+	<CosmosServers LoadBalanced="true" ShowLogin="true">
+		<ServersInfo>
+			<Server ConnectionID="{4B6EA049-2A04-4302-AE63-1D52C45FD92F}" ConnectionName="PRODUÇÃO HTTPS" CommunicationProtocol="2" NotifyMode="0" Host="lectorium-bh.dyndns.info" Port="44443" CommunicationTimeout="9000" ConnectTimeout="12000" BufferKBSize="32" ProxyHost="" ProxyPort="" ProxyUsername="" ProxyPassword="" CosmosApp="cmSecretarias" Enabled="true"/>
+            <Server ConnectionID="{BDAA3CBC-844E-47BC-9A15-4BC10D3FD5C5}" ConnectionName="PRODUÇÃO HTTPS" CommunicationProtocol="0" NotifyMode="0" Host="lectorium-bh.dyndns.info" Port="44444" CommunicationTimeout="9000" ConnectTimeout="12000" BufferKBSize="32" ProxyHost="" ProxyPort="" ProxyUsername="" ProxyPassword="" CosmosApp="cmUsuarios" Enabled="true"/>
+			<Server ConnectionID="{16EEA055-46FD-4088-9D48-514820769277}" ConnectionName="PRODUÇÃO HTTPS" CommunicationProtocol="0" NotifyMode="0" Host="lectorium-bh.dyndns.info" Port="44442" CommunicationTimeout="9000" ConnectTimeout="12000" BufferKBSize="32" ProxyHost="" ProxyPort="" ProxyUsername="" ProxyPassword="" CosmosApp="cmConferencias" Enabled="true"/>
+			<Server ConnectionID="{DBDF0D6B-99A8-4BDA-AB95-A2E7E1ED5413}" ConnectionName="PRODUÇÃO HTTPS" CommunicationProtocol="0" NotifyMode="0" Host="lectorium-bh.dyndns.info" Port="44445" CommunicationTimeout="9000" ConnectTimeout="12000" BufferKBSize="32" ProxyHost="" ProxyPort="" ProxyUsername="" ProxyPassword="" CosmosApp="cmFinanceiro" Enabled="true"/>
+			<Server ConnectionID="{DBDF0D6B-99A8-4BDA-AB95-A2E7E1ED5413}" ConnectionName="PRODUÇÃO HTTPS" CommunicationProtocol="0" NotifyMode="0" Host="lectorium-bh.dyndns.info" Port="1204" CommunicationTimeout="9000" ConnectTimeout="12000" BufferKBSize="32" ProxyHost="" ProxyPort="" ProxyUsername="" ProxyPassword="" CosmosApp="cmFocos" Enabled="true"/>            
+		</ServersInfo>
+	</CosmosServers>
+	<ConnectionsPool>
+		<PoolInfo>
+			<PoolItem CosmosApp="cmSecretarias" PoolSize="5" CleanupMinutes="1" PoolTimeout="2000" ConnectionType="0"/>
+            <PoolItem CosmosApp="cmConferencias" PoolSize="5" CleanupMinutes="1" PoolTimeout="2000" ConnectionType="0"/>
+            <PoolItem CosmosApp="cmUsuarios" PoolSize="5" CleanupMinutes="1" PoolTimeout="2000" ConnectionType="0"/>
+            <PoolItem CosmosApp="cmFinanceiro" PoolSize="5" CleanupMinutes="1" PoolTimeout="2000" ConnectionType="0"/>
+		</PoolInfo>
+	</ConnectionsPool>    
+	<ModulesOptions>
+		<cmFinanceiro>
+			<CaixaOptions ShowSummary="True"/>
+		</cmFinanceiro>
+		<cmSecretarias>
+			<MatriculaOptions GenerationOption="0"/>
+		</cmSecretarias>        
+	</ModulesOptions>    
+</CosmosConfigurations>
+

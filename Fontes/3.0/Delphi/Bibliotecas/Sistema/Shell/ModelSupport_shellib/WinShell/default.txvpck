@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="f3jt0tj3qwfmeak_v">
+    <property name="$defaultDiagram" value="true" />
+    <property name="$metaclass" value="Package Diagram" />
+    <property name="$name" value="default" />
+    <reference referencedUin="delphi:e_class:src:shellib:WinShell.EShellOleError">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="180,480,113,81" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:shellib:WinShell.@unitclass">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="20,20,292,291" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.cOsWinME" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.cOsWinNT" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.cOsWin2000" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.cOsXP" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.SInvalidDest" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.SFCantMove" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.SHFMT_ID_DEFAULT" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.SHFMT_OPT_QUICKFORMAT" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.SHFormatDrive(Windows.HWND,System.UInt16,System.UInt16,System.UInt16)" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.SpecialFolders" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.cOsUnknown" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.cOsWin95" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.cOsWin98SE" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.cOsWin98" />
+      <reference referencedUin="delphi:l_ast:src:shellib:WinShell.SpecialFolders">
+        <property name="sourceAnchor" value="79,311" />
+        <property name="targetAnchor" value="79,340" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="delphi:e_class:src:shellib:WinShell.TSpecialFolderInfo">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="20,340,119,109" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TSpecialFolderInfo.ID" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TSpecialFolderInfo.Name" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:shellib:WinShell.TShellLinkInfo">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="10,470,152,199" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TShellLinkInfo.HotKey" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TShellLinkInfo.PathName" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TShellLinkInfo.Arguments" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TShellLinkInfo.Description" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TShellLinkInfo.WorkingDirectory" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TShellLinkInfo.IconLocation" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TShellLinkInfo.IconIndex" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TShellLinkInfo.ShowCmd" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:shellib:WinShell.EFCantMove">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="180,340,134,81" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:shellib:WinShell.TWinShell">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="360,20,212,830" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.CreateShellLink(System.String,System.String,System.Int32)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.GetSpecialFolderPath(System.Int32,System.Boolean)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.GetShellLinkInfo(System.WideString,ref@WinShell.TShellLinkInfo)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.SetShellLinkInfo(System.WideString,WinShell.TShellLinkInfo)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.GetLongFileName(System.String)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.GetShortName(System.String)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.HasSoundCard()" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.GetFileVersion()" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.DiskInDrive(System.Char)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.GetIPAddress()" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.GetComputerName()" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.AddToStartDocumentsMenu(System.String)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.DeleteFileWithUndo(System.String)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.IsFileInUse(System.String)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.GetExeType(System.String)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.GetScreenColor()" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.GetCPUSpeed()" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.GetInfoSys(Classes.TStrings)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.GetWinUserLogin()" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.GetNetworkDriveMappings(Classes.TStrings)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.GetNetStationInfo(System.Int32)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.GetCDROMDrives(Classes.TStrings)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.GetDialUpConnection(Classes.TStrings)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.DragForm(Forms.TForm)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.SetResolution(System.UInt32,System.UInt32)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.BrowseForComputer(System.UInt32,System.String)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.BrowseForFolders(System.UInt32,System.String)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.CreateProgramGroup(System.String,System.Int32)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.GetFileSize(System.String)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.GetFileDateTime(System.String)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.HasAttr(System.String,System.UInt16)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.ExecuteFile(System.String,System.String,System.String,System.Int32)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.GetPortAddress(System.Int32)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.GetCurrentUserName()" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.HideTaskBarIcon(Windows.HWND)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.GetWinDir()" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.GetSysDir()" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.GetTempDir()" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.GetOperatingSystem()" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.IsWinNT32()" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.IsWin2000()" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.IsWinME()" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.IsWIn95()" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.IsWinXP()" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.UserIsAdministrator()" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.SendEmail(System.UInt32,System.String,System.String,System.String)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.EmailIsValid(System.String)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.ShellAbout()" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.SetClockStatus(System.Boolean)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.ChangeShellClock(System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt16)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.FormatDrive(Windows.HWND,System.UInt16,System.UInt16,System.UInt16)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.OpenFile(System.String)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.OpenProgram(System.String,System.String)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.ExecAndWait(System.String,System.String,System.UInt16)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.ExecCmdLineAndWait(System.String,System.UInt16)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.OpenCmdLine(System.String,System.UInt16)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.GetScreenColors()" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.GetLongIP(System.String)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.GetShortIP(System.String)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.ExecuteControlPanel(System.String)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TWinShell.FileVersionInfo(SysUtils.TFileName)" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:shellib:WinShell.EInvalidDest">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="180,600,134,81" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:shellib:WinShell.TShellScreen">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="20,700,160,95" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TShellScreen.GetScreenColors()" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TShellScreen.SetResolution(System.UInt32,System.UInt32)" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:shellib:WinShell.TShellFolders">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="610,1,178,155" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TShellFolders.GetWinDir()" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TShellFolders.GetSysDir()" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TShellFolders.GetTempDir()" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TShellFolders.GetSpecialFolderPath(System.Int32,System.Boolean)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TShellFolders.GetPreviousDir(System.String)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TShellFolders.GetPreviousDir(SysUtils.TFileName,System.Boolean)" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:shellib:WinShell.TFileVersionInfo">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="610,175,153,379" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TFileVersionInfo.PrivateBuildStr" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TFileVersionInfo.FileFunction" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TFileVersionInfo.DebugBuild" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TFileVersionInfo.PreRelease" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TFileVersionInfo.SpecialBuild" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TFileVersionInfo.PrivateBuild" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TFileVersionInfo.Patched" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TFileVersionInfo.InfoInferred" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TFileVersionInfo.FileType" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TFileVersionInfo.CompanyName" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TFileVersionInfo.FileDescription" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TFileVersionInfo.FileVersion" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TFileVersionInfo.InternalName" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TFileVersionInfo.LegalCopyRight" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TFileVersionInfo.LegalTradeMarks" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TFileVersionInfo.OriginalFileName" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TFileVersionInfo.ProductName" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TFileVersionInfo.ProductVersion" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TFileVersionInfo.Comments" />
+      <reference referencedUin="delphi:e_field:src:shellib:WinShell.TFileVersionInfo.SpecialBuildStr" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:shellib:WinShell.TShellDialogs">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="610,573,171,245" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TShellDialogs.BrowseForComputer(System.UInt32,System.String)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TShellDialogs.BrowseForFolders(System.UInt32,System.String)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TShellDialogs.BrowseForFiles(System.UInt32,System.String)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TShellDialogs.BrowseForPrinter(System.UInt32,System.String)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TShellDialogs.BrowseDialog(System.String,System.Int32)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TShellDialogs.ShellAbout()" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TShellDialogs.RunDialog()" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TShellDialogs.BrowseForRecycleBin(System.UInt32)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TShellDialogs.OpenTaskManager()" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TShellDialogs.ShutDownDialog()" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TShellDialogs.AdvSelectFolder(System.String,System.WideString,ref@System.String,System.Boolean,System.Boolean,System.Boolean)" />
+      <reference referencedUin="delphi:e_method:src:shellib:WinShell.TShellDialogs.MinimizeAllWindows()" />
+    </reference>
+  </view>
+</nodeSet>

@@ -1,0 +1,22 @@
+Installation instructions for TRaveJPEGImage
+--------------------------------------------
+
+1: Extract the files in this archive in your Rave main directory
+(normally C:\Program Files\Borland\BDS\3.0\RaveReports).  Make sure to expand 
+with directories so that the source will be placed in it's own directory.
+
+2: Copy the NDCsJPEG.PAS file into the appropriate directory for the version
+of Delphi or C++Builder that you are using (for Delphi 2005 it would normally
+be C:\Program Files\Borland\BDS\3.0\RaveReports\lib).
+
+3: Start Rave, go to the preferences dialog (Edit|Preferences), select the
+Packages tab and add the C:\Program Files\Borland\BDS\3.0\RaveReports\ND_JPEG.BPL 
+package file to the list of installed package and click OK.
+
+That's it.  The only other remaining items that you need to make sure to do is
+include the unit NDCsJPEG in the uses clause of your Delphi or C++Builder
+application (normally in the same unit containing your TRaveProject component)
+and call the RaveRegister procedure inside the NDCsJPEG unit (normally a call
+to "NDCsJPEG.RaveRegister;" in the TRaveProject.OnCreate event).  Failure to
+follow these two steps will result in runtime errors when loading a report
+project (.RAV file) containing TRaveJPEGImage components.

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="8ejlml5mcjeg6jj_v">
+    <property name="$defaultDiagram" value="true" />
+    <property name="$metaclass" value="Package Diagram" />
+    <property name="$name" value="default" />
+    <reference referencedUin="design:view:::xcjmbbk4dfeoiyt_v">
+      <property name="$shortcutReference" value="true" />
+      <reference referencedUin="delphi:e_class:src:cmpersist:cosmos.persistense.common.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:cmpersist:cosmos.persistense.common.TCustomPersistence" />
+      <reference referencedUin="delphi:e_class:src:cmpersist:cosmos.persistense.common.TFilePersistence" />
+      <reference referencedUin="delphi:e_class:src:cmpersist:cosmos.persistense.common.THierarquicalPersistence" />
+    </reference>
+    <reference referencedUin="design:view:::qfi7fzzghcu0knh_v">
+      <property name="$shortcutReference" value="true" />
+      <reference referencedUin="delphi:e_class:src:cmpersist:cosmos.persistense.registry.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:cmpersist:cosmos.persistense.registry.TRegistryPersistense" />
+    </reference>
+  </view>
+</nodeSet>

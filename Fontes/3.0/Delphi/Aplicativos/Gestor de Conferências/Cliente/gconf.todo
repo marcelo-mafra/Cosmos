@@ -1,0 +1,12 @@
+{DONE -oMarcelo -cRelatórios : Chamar o relatório de listagem de inscritos a partir da tela de inscrições.}
+{TODO -oMarcelo -cAlojamentos : Chamar os relatório de habitués e mapa do alojamento disponível a partir de botões e menus da tela de alojamentos.}
+{TODO -oMarcelo -cAlojamentos : Implementar relatório de listagem de habitués de alojamentos.}
+{TODO -oMarcelo -cAlojamentos : Implementar relatório de leitos de alojamentos (mapa do alojamento disponível)}
+{DONE 2 -oMarcelo -cAlojamentos : Implementar o cadastro de leitos dos quartos dos alojamentos.}
+{DONE 1 -oMarcelo -cAlojamentos : Implementar o cadastro de quartos dos alojamentos.}
+{DONE 3 -oMarcelo -cInscrições : Impressão de lista de inscritos (lista alfabética exposta que mostra onde o inscrito está alojado).}
+{TODO 2 -oMarcelo -cInscrições : Impressão de crachás.}
+{DONE 1 -oMarcelo -cInscrições : Implementar a configuração de detalhamento de inscrição diferenciada por centro de conferência.}
+{TODO 2 -oMarcelo -cInscrições : Importar lista de inscritos a partir de conferência já realizada.}
+{TODO 1 -oMarcelo -cInscrições : Importar lista de inscritos a partir de arquivo Excel.}
+{TODO 1 -oMarcelo -cRelatórios : Implementar relatório de "Programação da Conferência" e chamá-lo a partir da janela principal da conferência.}

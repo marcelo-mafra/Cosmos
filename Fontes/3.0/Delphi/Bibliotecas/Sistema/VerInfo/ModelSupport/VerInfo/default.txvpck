@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="rwn0zt44l_v">
+    <property name="$defaultDiagram" value="true" />
+    <property name="$metaclass" value="Package Diagram" />
+    <property name="$name" value="default" />
+    <reference referencedUin="delphi:e_class:src:vinfo:VerInfo.@unitclass">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="10,10,403,171" />
+      <reference referencedUin="delphi:e_method:src:vinfo:VerInfo.VersionString(System.Int32,System.Int32)" />
+      <reference referencedUin="delphi:e_field:src:vinfo:VerInfo.FormatStr" />
+      <reference referencedUin="delphi:e_field:src:vinfo:VerInfo.VerTranslation" />
+      <reference referencedUin="delphi:e_field:src:vinfo:VerInfo.SFInfo" />
+      <reference referencedUin="delphi:e_field:src:vinfo:VerInfo.VerTraducaoArray" />
+      <reference referencedUin="delphi:e_field:src:vinfo:VerInfo.VerNameArray" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:vinfo:VerInfo.EVerInfoError">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="460,0,113,81" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:vinfo:VerInfo.ENoVerInfoError">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="460,100,113,81" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:vinfo:VerInfo.eNoFixeVerInfo">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="460,200,113,81" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:vinfo:VerInfo.TVerInfoType">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="300,240,118,203" />
+      <reference referencedUin="delphi:e_field:src:vinfo:VerInfo.TVerInfoType.viCompanyName" />
+      <reference referencedUin="delphi:e_field:src:vinfo:VerInfo.TVerInfoType.viComments" />
+      <reference referencedUin="delphi:e_field:src:vinfo:VerInfo.TVerInfoType.viProductVersion" />
+      <reference referencedUin="delphi:e_field:src:vinfo:VerInfo.TVerInfoType.viProductName" />
+      <reference referencedUin="delphi:e_field:src:vinfo:VerInfo.TVerInfoType.viOriginalFilename" />
+      <reference referencedUin="delphi:e_field:src:vinfo:VerInfo.TVerInfoType.viLegalTrademarks" />
+      <reference referencedUin="delphi:e_field:src:vinfo:VerInfo.TVerInfoType.viLegalCopyright" />
+      <reference referencedUin="delphi:e_field:src:vinfo:VerInfo.TVerInfoType.viInternalName" />
+      <reference referencedUin="delphi:e_field:src:vinfo:VerInfo.TVerInfoType.viFileVersion" />
+      <reference referencedUin="delphi:e_field:src:vinfo:VerInfo.TVerInfoType.viFileDescription" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:vinfo:VerInfo.TVerInfoRes">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="85,200,178,277" />
+      <property name="hideAttribute" value="True" />
+      <reference referencedUin="delphi:e_method:src:vinfo:VerInfo.TVerInfoRes.Create(System.String)" />
+      <reference referencedUin="delphi:e_method:src:vinfo:VerInfo.TVerInfoRes.GetFileOS()" />
+      <reference referencedUin="delphi:e_method:src:vinfo:VerInfo.TVerInfoRes.GetProductVersion()" />
+      <reference referencedUin="delphi:e_method:src:vinfo:VerInfo.TVerInfoRes.GetFileVersion()" />
+      <reference referencedUin="delphi:e_method:src:vinfo:VerInfo.TVerInfoRes.FillFileMaskInfo()" />
+      <reference referencedUin="delphi:e_method:src:vinfo:VerInfo.TVerInfoRes.FillFileVersionInfo()" />
+      <reference referencedUin="delphi:e_method:src:vinfo:VerInfo.TVerInfoRes.FillFixedFileInfoBuf()" />
+      <reference referencedUin="delphi:e_field:src:vinfo:VerInfo.TVerInfoRes.FFileName" />
+      <reference referencedUin="delphi:e_field:src:vinfo:VerInfo.TVerInfoRes.FFileFlags" />
+      <reference referencedUin="delphi:e_field:src:vinfo:VerInfo.TVerInfoRes.FixedFileInfoBuf" />
+      <reference referencedUin="delphi:e_field:src:vinfo:VerInfo.TVerInfoRes.TransTable" />
+      <reference referencedUin="delphi:e_field:src:vinfo:VerInfo.TVerInfoRes.RezBuffer" />
+      <reference referencedUin="delphi:e_field:src:vinfo:VerInfo.TVerInfoRes.Size" />
+      <reference referencedUin="delphi:e_field:src:vinfo:VerInfo.TVerInfoRes.Handle" />
+      <reference referencedUin="delphi:e_property:src:vinfo:VerInfo.TVerInfoRes.FileOS[]" />
+      <reference referencedUin="delphi:e_property:src:vinfo:VerInfo.TVerInfoRes.FileFlags[]" />
+      <reference referencedUin="delphi:e_property:src:vinfo:VerInfo.TVerInfoRes.ProductVersion[]" />
+      <reference referencedUin="delphi:e_property:src:vinfo:VerInfo.TVerInfoRes.FileVersion[]" />
+      <reference referencedUin="delphi:e_method:src:vinfo:VerInfo.TVerInfoRes.GetUserDefKeyString(System.String)" />
+      <reference referencedUin="delphi:e_method:src:vinfo:VerInfo.TVerInfoRes.GetPreDefKeyString(VerInfo.TVerInfoType)" />
+      <reference referencedUin="delphi:e_method:src:vinfo:VerInfo.TVerInfoRes.Destroy()" />
+    </reference>
+  </view>
+</nodeSet>

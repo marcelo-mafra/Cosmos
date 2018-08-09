@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="xcjmbbk4dfeoiyt_v">
+    <property name="$defaultDiagram" value="true" />
+    <property name="$metaclass" value="Package Diagram" />
+    <property name="$name" value="default" />
+    <reference referencedUin="delphi:e_class:src:cmpersist:cosmos.persistense.common.@unitclass">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="10,10,104,77" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:cmpersist:cosmos.persistense.common.TCustomPersistence">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="260,180,160,350" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TCustomPersistence.ValueExists(System.String)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TCustomPersistence.DeleteKey(System.String)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TCustomPersistence.Create()" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TCustomPersistence.Destroy()" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TCustomPersistence.ReadInteger(System.String)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TCustomPersistence.ReadFloat(System.String)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TCustomPersistence.ReadDateTime(System.String)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TCustomPersistence.ReadBoolean(System.String)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TCustomPersistence.ReadCurrency(System.String)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TCustomPersistence.WriteString(System.String,System.String)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TCustomPersistence.ReadString(System.String)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TCustomPersistence.WriteInteger(System.String,System.Int32)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TCustomPersistence.WriteFloat(System.String,System.Double)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TCustomPersistence.WriteDateTime(System.String,System.TDateTime)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TCustomPersistence.WriteBoolean(System.String,System.Boolean)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TCustomPersistence.WriteCurrency(System.String,System.Currency)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TCustomPersistence.GetKeyNames(Classes.TStringList)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TCustomPersistence.GetValueNames(Classes.TStrings)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TCustomPersistence.KeyExists(System.String)" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:cmpersist:cosmos.persistense.common.TFilePersistence">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="500,180,171,352" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TFilePersistence.WriteFloat(System.String,System.String,System.Double)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TFilePersistence.WriteDateTime(System.String,System.String,System.TDateTime)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TFilePersistence.WriteBoolean(System.String,System.String,System.Boolean)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TFilePersistence.WriteCurrency(System.String,System.String,System.Currency)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TFilePersistence.GetValueNames(System.String,Classes.TStrings)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TFilePersistence.ValueExists(System.String,System.String)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TFilePersistence.DeleteKey(System.String,System.String)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TFilePersistence.Create(System.String)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TFilePersistence.Destroy()" />
+      <reference referencedUin="delphi:e_property:src:cmpersist:cosmos.persistense.common.TFilePersistence.FileName[]">
+        <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TFilePersistence.FileName[].get_FileName" />
+      </reference>
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TFilePersistence.GetFileName()" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TFilePersistence.ReadString(System.String,System.String,System.String)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TFilePersistence.ReadInteger(System.String,System.String,System.Int32)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TFilePersistence.ReadFloat(System.String,System.String,System.Double)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TFilePersistence.ReadDateTime(System.String,System.String,System.TDateTime)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TFilePersistence.ReadBoolean(System.String,System.String,System.Boolean)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TFilePersistence.ReadCurrency(System.String,System.String,System.Currency)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TFilePersistence.WriteString(System.String,System.String,System.String)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.TFilePersistence.WriteInteger(System.String,System.String,System.Int32)" />
+      <reference referencedUin="delphi:l_gnt:src:cmpersist:cosmos.persistense.common.TFilePersistence:cosmos.persistense.common.TCustomPersistence">
+        <property name="sourceAnchor" value="500,355" />
+        <property name="targetAnchor" value="420,355" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="delphi:e_class:src:cmpersist:cosmos.persistense.common.THierarquicalPersistence">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="20,180,155,155" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.THierarquicalPersistence.CreateKey(System.String)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.THierarquicalPersistence.Create()" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.THierarquicalPersistence.Destroy()" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.THierarquicalPersistence.Open(Windows.HKEY)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.THierarquicalPersistence.OpenKey(System.String,System.Boolean)" />
+      <reference referencedUin="delphi:e_method:src:cmpersist:cosmos.persistense.common.THierarquicalPersistence.CloseKey()" />
+      <reference referencedUin="delphi:l_gnt:src:cmpersist:cosmos.persistense.common.THierarquicalPersistence:cosmos.persistense.common.TCustomPersistence">
+        <property name="sourceAnchor" value="175,257" />
+        <property name="targetAnchor" value="260,257" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+  </view>
+</nodeSet>

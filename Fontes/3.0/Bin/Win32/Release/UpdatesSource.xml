@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Este arquivo contém as informações sobre atualizações disponíveis para os aplicativos Cosmos. Estas informações ficam disponíveis apenas no lado servidor.
+-->
+
+<UpdatesSource CurrentUpdate="{B4D730BC-A434-4AF1-ABCD-41162763F117}">
+    <CmUpdate>
+        <UpdateInfo UpdateId="{A4D730BC-A434-4AF1-ABCD-41162763F117}" PublishedDate="18/11/2012 13:55:00" UpdateName="Correção de falhas em relatórios." UpdateDescription="Esta atualização corrige bugs durante a geração do relatório de endereços dos alunos." SourceFile="D:\setup_personal.zip" UpdateFile="setup_personal.zip" Enabled="True"/>
+    </CmUpdate>
+    <CmUpdate>
+        <UpdateInfo UpdateId="{B4D730BC-A434-4AF1-ABCD-41162763F117}" PublishedDate="18/11/2012 13:55:00" UpdateName="Correção de vulnerabilidades no esquema de segurança" UpdateDescription="Esta atualização corrige bugs durante a geração do relatório de endereços dos alunos." SourceFile="http://www.wisecleaner.com/soft/WRCFree.exe" UpdateFile="WRCFree.exe" Enabled="True"/>
+    </CmUpdate>
+    <CmUpdate>
+        <UpdateInfo UpdateId="{C4D730BC-A434-4AF1-ABCD-41162763F117}" PublishedDate="18/11/2012 13:55:00" UpdateName="Correção de..." UpdateDescription="Esta atualização corrige bugs durante a geração do relatório de endereços dos alunos." SourceFile="https://www.dropbox.com/s/hcfpjxp6mxwju5c/VPN%20COSMOS.zip?dl=0" UpdateFile="file.exe" Enabled="True"/>
+    </CmUpdate>    
+</UpdatesSource>

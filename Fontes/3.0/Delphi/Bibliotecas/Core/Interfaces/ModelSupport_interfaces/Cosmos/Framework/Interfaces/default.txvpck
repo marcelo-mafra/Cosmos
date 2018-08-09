@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet version="1.0">
+  <view uin="m080ioqoglq_v">
+    <property name="$defaultDiagram" value="true" />
+    <property name="$metaclass" value="Package Diagram" />
+    <property name="$name" value="default" />
+    <reference referencedUin="uml:package:interfaces:src:Cosmos.Framework.Interfaces.Dialogs">
+      <property name="$shortcutReference" value="true" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.TSexoCadastrado" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.TDefaultSearch" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.TStatusCadastrado" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.TVisaoPlanoContas" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.TPageInfo" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.IRegisterInfo" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosWizard" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosLogin" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosInfo" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosLocateData" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosTips" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosSplash" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosTest" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosFicha" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosDialogWinManager" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosConfiguration" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosConfigurationPage" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosUser" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosConnectionInfo" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosOpenFocus" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosHistorico" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosEnderecos" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosMeiosContatos" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosFamiliares" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosLocateCadastrados" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosLocateLogradouros" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosLocateLessosEI" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosSearchCadastrados" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosSearch" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosSimpleSearch" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosDesligamentos" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosTransferencias" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosRetrogradacao" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosReligamento" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosBatismos" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosCasamentos" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosInfoMedicas" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosFuncoesCadastrado" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosCartaFrequencia" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.IAptidoesCadastrado" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.IAtaPosse" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.IDialogDetalhesHistorico" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.IInstalacaoTMB" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.IPesquisaCadastrados" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.IPesquisaConferencias" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosToolsManager" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ICosmosDispensas" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ISearchTiposAtividades" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ISearchAlocucoes" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ISearchDiscipulados" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.IControleFrequencia" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ISearchAtividades" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ISearchCirculosEI" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ISearchTurmasTP" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ISearchLocais" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Dialogs.ISearchPlanoContas" />
+    </reference>
+    <reference referencedUin="uml:package:interfaces:src:Cosmos.Framework.Interfaces.DataAcess">
+      <property name="$shortcutReference" value="true" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.DataAcess.ICosmosExporter" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.DataAcess.ICosmosSearcher" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.DataAcess.ICosmosRemoteConnection" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.DataAcess.TConnectionProtocol" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.DataAcess.@unitclass" />
+    </reference>
+    <reference referencedUin="design:view:::68h6f0ayl_v">
+      <property name="$shortcutReference" value="true" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Root.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Root.TCosmosModules" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Root.TCamposTrabalho" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Root.TInterfaceStyle" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Root.TFocus" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Root.ICosmosInterfaces" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Root.ICosmosLogs" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Root.ICosmosUpdater" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Root.IApplicationComponent" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Root.IProgressBar" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Root.IStatusBar" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Root.IApplicationComponents" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Root.ICosmosApplication" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Root.ICosmosDockedForm" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Root.ICosmosWindowsManager" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Root.ICosmosHelp" />
+      <reference referencedUin="delphi:e_class:src:interfaces:Cosmos.Framework.Interfaces.Root.IReportCenter" />
+    </reference>
+  </view>
+</nodeSet>

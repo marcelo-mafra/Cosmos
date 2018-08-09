@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<TfrxReport Version="5.1.5" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.AllowEdit="False" PreviewOptions.Buttons="12287" PreviewOptions.ThumbnailVisible="True" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="41856,7333218518" ReportOptions.Description.Text="" ReportOptions.LastChange="41921,4117300579" ScriptLanguage="PascalScript" ScriptText.Text="&#13;&#10;begin&#13;&#10;&#13;&#10;end.">
+  <Datasets>
+    <item DataSet="DMSecReports.frxDBMalaDireta" DataSetName="frxDBMalaDireta"/>
+  </Datasets>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000"/>
+  <TfrxReportPage Name="Page1" PaperWidth="210" PaperHeight="297" PaperSize="121" LeftMargin="4" RightMargin="4" TopMargin="12,7" BottomMargin="12,7" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="96" Left="0" Top="18,89765" Width="763,46506" Columns="2" ColumnWidth="384" ColumnGap="0" DataSet="DMSecReports.frxDBMalaDireta" DataSetName="frxDBMalaDireta" RowCount="0">
+      <TfrxMemoView Name="Memo1" Left="3,77953" Top="3,55906" Width="370,39394" Height="34,01577" DataField="LINE1" DataSet="DMSecReports.frxDBMalaDireta" DataSetName="frxDBMalaDireta" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="[frxDBMalaDireta.&#34;LINE1&#34;]"/>
+      <TfrxMemoView Name="Memo3" Left="3,77953" Top="41,57483" Width="370,39394" Height="49,13389" DataSet="DMSecReports.frxDBMalaDireta" DataSetName="frxDBMalaDireta" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[frxDBMalaDireta.&#34;LINE2&#34;]  [frxDBMalaDireta.&#34;LINE3&#34;]  [frxDBMalaDireta.&#34;LINE4&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+    </TfrxMasterData>
+  </TfrxReportPage>
+</TfrxReport>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<PersonalityInfo>
+		<Option>
+			<Option Name="Personality">Default.Personality</Option>
+			<Option Name="ProjectType"></Option>
+			<Option Name="Version">1.0</Option>
+			<Option Name="GUID">{FB692F0A-932F-44AB-9EC1-3AD2AA17C1AE}</Option>
+		</Option>
+	</PersonalityInfo>
+	<Default.Personality>  <Projects>
+      <Projects Name="cripter.dll">Criptografia\cripter.bdsproj</Projects>
+      <Projects Name="fbservices.dll">FBServices\fbservices.bdsproj</Projects>
+      <Projects Name="fbudflib.dll">FbUDFLib\fbudflib.bdsproj</Projects>
+      <Projects Name="Reglib.dll">RegistryLib\Reglib.bdsproj</Projects>
+      <Projects Name="wshell32.dll">WinShell\wshell32.bdsproj</Projects>
+      <Projects Name="vinfo.dll">VerInfo\vinfo.bdsproj</Projects>
+      <Projects Name="dbexporter.dll">dbexporter\dbexporter.bdsproj</Projects>
+      <Projects Name="Targets">cripter.dll fbservices.dll fbudflib.dll Reglib.dll wshell32.dll vinfo.dll dbexporter.dll</Projects>
+    </Projects>
+    <Dependencies/>
+  </Default.Personality>
+</BorlandProject>

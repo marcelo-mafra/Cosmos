@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <PersonalityInfo>
+    <Option>
+      <Option Name="Personality">Default.Personality</Option>
+      <Option Name="ProjectType"></Option>
+      <Option Name="Version">1.0</Option>
+      <Option Name="GUID">{72018763-70CC-473A-82A7-BB91D41EADD8}</Option>
+    </Option>
+  </PersonalityInfo>
+  <Default.Personality>
+    
+    
+    
+    
+    
+    
+    <Projects>
+      <Projects Name="cmlib.bpl">Bibliotecas\Commom\cmlib.bdsproj</Projects>
+      <Projects Name="logwrt.bpl">Bibliotecas\Escritor de Logs\logwrt.bdsproj</Projects>
+      <Projects Name="interfaces.bpl">Bibliotecas\Interfaces\interfaces.bdsproj</Projects>
+      <Projects Name="shellib.bpl">Bibliotecas\Shell\shellib.bdsproj</Projects>
+      <Projects Name="cripter.dll">Bibliotecas\Criptografia\cripter.bdsproj</Projects>
+      <Projects Name="events.dll">Bibliotecas\EventLog\events.bdsproj</Projects>
+      <Projects Name="helplib.dll">Bibliotecas\Help\helplib.bdsproj</Projects>
+      <Projects Name="cmpersist.bpl">Bibliotecas\Persistência de dados\cmpersist.bdsproj</Projects>
+      <Projects Name="Reglib.dll">Bibliotecas\RegistryLib\Reglib.bdsproj</Projects>
+      <Projects Name="secmod.bpl">Bibliotecas\Segurança\secmod.bdsproj</Projects>
+      <Projects Name="sqlcmd.bpl">Bibliotecas\SQLCommands\sqlcmd.bdsproj</Projects>
+      <Projects Name="vinfo.dll">Bibliotecas\VerInfo\vinfo.bdsproj</Projects>
+      <Projects Name="xmlcon.dll">Bibliotecas\XmlIni\xmlcon.bdsproj</Projects>
+      <Projects Name="Targets">cmlib.bpl logwrt.bpl interfaces.bpl shellib.bpl cripter.dll events.dll helplib.dll cmpersist.bpl Reglib.dll secmod.bpl sqlcmd.bpl vinfo.dll xmlcon.dll</Projects>
+    </Projects>
+    <Dependencies/>
+  </Default.Personality>
+</BorlandProject>

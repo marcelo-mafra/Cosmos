@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<TfrxReport Version="5.1.5" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.AllowEdit="False" PreviewOptions.Buttons="12287" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="41920,452829213" ReportOptions.Description.Text="" ReportOptions.LastChange="41920,5263660764" ScriptLanguage="PascalScript" ScriptText.Text="&#13;&#10;begin&#13;&#10;&#13;&#10;end.">
+  <Datasets>
+    <item DataSet="DMSecReports.frxDBTempoDiscipulado" DataSetName="frxDBTempoDiscipulado"/>
+  </Datasets>
+  <Variables>
+    <item Name=" Cosmos"/>
+    <item Name="SelectedFocus"/>
+    <item Name="AppName"/>
+    <item Name="SIGDIS"/>
+  </Variables>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000"/>
+  <TfrxReportPage Name="Page1" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="34,7953" Left="0" Top="226,7718" Width="718,1107" ColumnWidth="0" ColumnGap="0" DataSet="DMSecReports.frxDBTempoDiscipulado" DataSetName="frxDBTempoDiscipulado" RowCount="0">
+      <TfrxMemoView Name="Memo6" Left="0" Top="0" Width="79,37013" Height="18,89765" DataField="MATCAD" DataSet="DMSecReports.frxDBTempoDiscipulado" DataSetName="frxDBTempoDiscipulado" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[frxDBTempoDiscipulado.&#34;MATCAD&#34;]"/>
+      <TfrxMemoView Name="Memo7" Left="83,14966" Top="0" Width="385,51206" Height="18,89765" DataField="NOMCAD" DataSet="DMSecReports.frxDBTempoDiscipulado" DataSetName="frxDBTempoDiscipulado" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[frxDBTempoDiscipulado.&#34;NOMCAD&#34;]"/>
+      <TfrxMemoView Name="Memo12" Left="483,77984" Top="0" Width="94,48825" Height="18,89765" DataField="DATHIS" DataSet="DMSecReports.frxDBTempoDiscipulado" DataSetName="frxDBTempoDiscipulado" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[frxDBTempoDiscipulado.&#34;DATHIS&#34;]"/>
+      <TfrxLineView Name="Line3" Left="0" Top="30,45671" Width="718,1107" Height="0" Color="0" Frame.Typ="4"/>
+      <TfrxMemoView Name="Memo8" Left="585,82715" Top="0" Width="136,06308" Height="18,89765" DataSet="DMSecReports.frxDBTempoDiscipulado" DataSetName="frxDBTempoDiscipulado" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[frxDBTempoDiscipulado.&#34;ANOS&#34;] ano(s) e [frxDBTempoDiscipulado.&#34;MESES&#34;] mes(es)"/>
+    </TfrxMasterData>
+    <TfrxPageFooter Name="PageFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="18,89765" Left="0" Top="321,26005" Width="718,1107">
+      <TfrxMemoView Name="Memo1" Left="642,5201" Top="0" Width="75,5906" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" HAlign="haRight" ParentFont="False" Text="[Page#]/[TotalPages#]"/>
+      <TfrxMemoView Name="Memo33" Left="4,01577" Top="0,77953" Width="529,1342" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="2" ParentFont="False" Text="[AppName]"/>
+      <TfrxMemoView Name="Memo34" Left="555,59091" Top="0" Width="75,5906" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="[Date]"/>
+    </TfrxPageFooter>
+    <TfrxPageHeader Name="PageHeader1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="86,92919" Left="0" Top="18,89765" Width="718,1107" Child="Child1">
+      <TfrxMemoView Name="Memo32" Left="-0,22047" Top="29,01577" Width="714,33117" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Discipulado: [SIGDIS]"/>
+      <TfrxLineView Name="Line2" Left="0" Top="84,92919" Width="718,1107" Height="0" Color="0" Frame.Typ="4"/>
+      <TfrxMemoView Name="Memo9" Left="0" Top="60,47248" Width="714,33117" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Foco: [SelectedFocus]"/>
+    </TfrxPageHeader>
+    <TfrxChild Name="Child1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="37,7953" Left="0" Top="128,50402" Width="718,1107">
+      <TfrxLineView Name="Line1" Left="0" Top="20,35436" Width="718,1107" Height="0" Color="0" Frame.Typ="4"/>
+      <TfrxMemoView Name="Memo5" Left="483,77984" Top="0" Width="94,48825" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Instalação"/>
+      <TfrxMemoView Name="Memo35" Left="597,16574" Top="0" Width="120,94496" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="Tempo"/>
+      <TfrxMemoView Name="Memo3" Left="0" Top="0" Width="79,37013" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="Matrícula"/>
+      <TfrxMemoView Name="Memo4" Left="83,14966" Top="0" Width="385,51206" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="Nome"/>
+    </TfrxChild>
+    <TfrxMemoView Name="Memo2" Left="0" Top="15,67718" Width="718,1107" Height="22,67718" Font.Charset="1" Font.Color="0" Font.Height="-15" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="Tempo de Discipulado"/>
+  </TfrxReportPage>
+</TfrxReport>

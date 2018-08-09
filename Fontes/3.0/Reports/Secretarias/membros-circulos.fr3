@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<TfrxReport Version="5.1.5" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.AllowEdit="False" PreviewOptions.Buttons="12287" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="41920,8220955556" ReportOptions.Description.Text="" ReportOptions.LastChange="41920,8409599884" ScriptLanguage="PascalScript" ScriptText.Text="&#13;&#10;begin&#13;&#10;&#13;&#10;end.">
+  <Datasets>
+    <item DataSet="DMSecReports.frxDBCirculos" DataSetName="frxDBCirculos"/>
+    <item DataSet="DMSecReports.frxDBMembrosCirculo" DataSetName="MembrosCirculo"/>
+  </Datasets>
+  <Variables>
+    <item Name=" Cosmos"/>
+    <item Name="AppName"/>
+    <item Name="SelectedFocus"/>
+  </Variables>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000"/>
+  <TfrxReportPage Name="Page1" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxReportTitle Name="ReportTitle1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="90,70872" Left="0" Top="18,89765" Width="718,1107">
+      <TfrxMemoView Name="Memo2" Left="0" Top="11,33859" Width="718,1107" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-19" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="Membros dos Círculos da Escola Interna"/>
+      <TfrxMemoView Name="Memo8" Left="0" Top="58,47248" Width="714,33117" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="[SelectedFocus]"/>
+    </TfrxReportTitle>
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="30,23624" Left="0" Top="170,07885" Width="718,1107" ColumnWidth="0" ColumnGap="0" DataSet="DMSecReports.frxDBCirculos" DataSetName="frxDBCirculos" RowCount="0">
+      <TfrxPictureView Name="Picture1" Left="11,33859" Top="7,55905999999999" Width="16" Height="17" AutoSize="True" Picture.PropData="04446174610A7203000007544269746D617066030000424D66030000000000003600000028000000100000001100000001001800000000003003000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFCCCC99CC9933CC9933CC9933CC9933CC9933CC9933CC9933006666006666006666003333006666003333FFFFFFFFFFFFCCCC99FFFFCCCC9933FFFFCCFFFFCCCC9933FFCC66999966339999FEFCFCFEFCFC00666666CCCC003333FFFFFFFFFFFFCCCC99FFFFCCFFCC66FFFFCCFFFFCCCCCC99CCCC99999966339999FEFCFCFEFCFC33999966CCCC003333FFFFFFFFFFFFFFFFFFCCCC99FFFFCCFFFFFFFFFFFFFFFFFF99999933999966CCCCFEFCFCFEFCFC99CCCCFEFCFC006666FFFFFFFFFFFFFFFFFFFFFFFF99CC990033990099FF00336699CC9900666633999966CCCC66CCCCFEFCFC339999006666FFFFFFFFFFFFFFFFFF99CC990033990099CC33CCFF0066FF00339999CC99006666000000666699000000339999FFFFFFFFFFFFFFFFFFFFFFFF99CC9900339933CCFF33FFFF33CCFF00336699CC99333333333366666699333366000000FFFFFFFFFFFFFFFFFFFFFFFF99CC990033990099FF33CCFF0099FF00339999CC990000009999CC666699666699000000FFFFFFFFFFFFFFFFFFFFFFFF99CC999999CC00339900339900339966996699CC993333336666999999CC666699000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF99CC9966666666996699CC9999CC99669966669966333333000000000000999999FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF99CC996666993333666699CC000033666699FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF99CCFF3333663366996699CC003399000033FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF99CCFF0000336699CC6699CC6699CC000033FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF99CCFF0000330066CC6699CC336699000033FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF9999CC000033000033000033666699FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" HightQuality="False" Transparent="False" TransparentColor="16777215"/>
+      <TfrxMemoView Name="Memo3" Left="45,35436" Top="7,55905999999999" Width="355,27582" Height="18,89765" DataField="NOMGRU" DataSet="DMSecReports.frxDBCirculos" DataSetName="frxDBCirculos" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="[frxDBCirculos.&#34;NOMGRU&#34;]"/>
+      <TfrxMemoView Name="Memo4" Left="423,30736" Top="7,55905999999999" Width="355,27582" Height="18,89765" DataField="SIGDIS" DataSet="DMSecReports.frxDBCirculos" DataSetName="frxDBCirculos" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="[frxDBCirculos.&#34;SIGDIS&#34;]"/>
+      <TfrxShapeView Name="Shape1" Left="0" Top="0" Width="718,1107" Height="30,23624"/>
+    </TfrxMasterData>
+    <TfrxPageFooter Name="PageFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="34,01577" Left="0" Top="306,14193" Width="718,1107">
+      <TfrxMemoView Name="Memo1" Left="642,5201" Top="11,33859" Width="75,5906" Height="18,89765" HAlign="haRight" Text="[Page#]"/>
+      <TfrxMemoView Name="Memo7" Left="0" Top="11,33859" Width="616,06339" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="2" ParentFont="False" Text="[AppName]"/>
+      <TfrxLineView Name="Line1" Left="0" Top="0" Width="718,11045591" Height="0" Color="0" Frame.Typ="4"/>
+    </TfrxPageFooter>
+    <TfrxDetailData Name="DetailData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="22,67718" Left="0" Top="222,99227" Width="718,1107" ColumnWidth="0" ColumnGap="0" DataSet="DMSecReports.frxDBMembrosCirculo" DataSetName="MembrosCirculo" RowCount="0">
+      <TfrxMemoView Name="Memo5" Left="56,69295" Top="2" Width="94,48825" Height="18,89765" DataField="MATCAD" DataSet="DMSecReports.frxDBMembrosCirculo" DataSetName="MembrosCirculo" Text="[MembrosCirculo.&#34;MATCAD&#34;]"/>
+      <TfrxMemoView Name="Memo6" Left="158,74026" Top="1,77952999999999" Width="555,59091" Height="18,89765" DataField="NOMCAD" DataSet="DMSecReports.frxDBMembrosCirculo" DataSetName="MembrosCirculo" Highlight.ApplyFill="False" Highlight.Font.Charset="1" Highlight.Font.Color="0" Highlight.Font.Height="-13" Highlight.Font.Name="Arial" Highlight.Font.Style="5" Highlight.Condition="&#60;MembrosCirculo.&#34;INDCON&#34;&#62; = 'S'" Highlight.FillType="ftGlass" Highlight.Fill.Color="8421504" Highlight.Fill.Blend="0,5" Highlight.Frame.Typ="8" Text="[MembrosCirculo.&#34;NOMCAD&#34;]"/>
+    </TfrxDetailData>
+  </TfrxReportPage>
+</TfrxReport>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="aya0xai3edh27kg_v">
+    <property name="$name" value="DlgEditEnderecoFoco" />
+    <property name="$defaultDiagram" value="True" />
+    <property name="$metaclass" value="Package Diagram" />
+    <reference referencedUin="delphi:e_class:src:gfocos:DlgEditEnderecoFoco.TFrmEditEnderecoFoco">
+      <property name="$shortcutReference" value="true" />
+    </reference>
+  </view>
+</nodeSet>

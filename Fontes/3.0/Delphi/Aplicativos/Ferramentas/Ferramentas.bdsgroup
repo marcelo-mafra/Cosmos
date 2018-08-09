@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<PersonalityInfo>
+		<Option>
+			<Option Name="Personality">Default.Personality</Option>
+			<Option Name="ProjectType"></Option>
+			<Option Name="Version">1.0</Option>
+			<Option Name="GUID">{ED2A6807-F0FD-4349-9094-6B2A47F7C8BA}</Option>
+		</Option>
+	</PersonalityInfo>
+	<Default.Personality>  <Projects>
+      <Projects Name="grantmngr.exe">GrantManager\grantmngr.bdsproj</Projects>
+      <Projects Name="dbbackup.exe">DBBackup\dbbackup.bdsproj</Projects>
+      <Projects Name="logimp.exe">Atualizador de Logradouros\logimp.bdsproj</Projects>
+      <Projects Name="register.exe">Cosmos Register\register.bdsproj</Projects>
+      <Projects Name="regcosmos.bpl">..\..\Bibliotecas\Cosmos Register\regcosmos.bdsproj</Projects>
+      <Projects Name="cmlib.bpl">..\..\Bibliotecas\Commom\cmlib.bdsproj</Projects>
+      <Projects Name="ScktSrvr.exe">Borland Socket Server\ScktSrvr.bdsproj</Projects>
+      <Projects Name="dbconf.exe">Configurador\dbconf.bdsproj</Projects>
+      <Projects Name="Targets">grantmngr.exe dbbackup.exe logimp.exe register.exe regcosmos.bpl cmlib.bpl ScktSrvr.exe dbconf.exe</Projects>
+    </Projects>
+    <Dependencies>
+      <Dependency GUID="{F9F7BE31-7343-4A84-90E1-2C9AACD542A6}">
+        <Dependency GUID="{02E7228C-3F03-4AAF-A210-4FE35BF7152C}"/>
+      </Dependency>
+    </Dependencies>
+  </Default.Personality>
+</BorlandProject>

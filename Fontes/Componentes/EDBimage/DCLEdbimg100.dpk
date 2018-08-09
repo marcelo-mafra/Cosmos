@@ -1,0 +1,44 @@
+package DCLEdbimg100;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION OFF}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES ON}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST ON}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE DEBUG}
+{$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'EDBImage 1.6 - by SER'}
+{$DESIGNONLY}
+{$IMPLICITBUILD OFF}
+
+requires
+  vclimg,
+  {designide} //comentado para compilação Win64.
+  dbrtl,
+  vcldb,
+  rtl;
+
+contains
+  uSerREG in 'uSerREG.pas',
+  EDBImage in 'EDBImage.pas',
+  uEDBR in 'uEDBR.pas';
+
+end.

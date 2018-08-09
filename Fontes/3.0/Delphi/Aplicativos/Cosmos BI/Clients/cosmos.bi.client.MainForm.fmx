@@ -1,0 +1,61 @@
+object FrmMain: TFrmMain
+  Left = 0
+  Top = 0
+  Caption = 'Cosmos BI'
+  ClientHeight = 480
+  ClientWidth = 640
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object Button1: TButton
+    Action = ActConnect
+    Enabled = True
+    Position.X = 400.000000000000000000
+    Position.Y = 24.000000000000000000
+    TabOrder = 1
+    Visible = True
+  end
+  object CbxFocosId: TComboBox
+    Position.X = 8.000000000000000000
+    Position.Y = 16.000000000000000000
+    Size.Width = 65.000000000000000000
+    Size.Height = 32.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+  end
+  object CbxFocos: TComboBox
+    Position.X = 8.000000000000000000
+    Position.Y = 16.000000000000000000
+    Size.Width = 377.000000000000000000
+    Size.Height = 32.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    OnChange = CbxFocosChange
+  end
+  object LsvPupils: TListView
+    ItemAppearanceClassName = 'TListItemAppearance'
+    ItemEditAppearanceClassName = 'TListItemShowCheckAppearance'
+    HeaderAppearanceClassName = 'TListHeaderObjects'
+    FooterAppearanceClassName = 'TListHeaderObjects'
+    Position.X = 8.000000000000000000
+    Position.Y = 64.000000000000000000
+    Size.Width = 377.000000000000000000
+    Size.Height = 401.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 6
+  end
+  object ActionList1: TActionList
+    Left = 24
+    Top = 104
+    object ActConnect: TAction
+      Text = 'Conectar'
+      OnExecute = ActConnectExecute
+    end
+    object ActDisconnect: TAction
+      Text = 'Desconectar'
+      OnExecute = ActDisconnectExecute
+    end
+  end
+end

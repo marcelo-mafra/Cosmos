@@ -1,0 +1,106 @@
+
+/* OmniHelp CSS styles for ctrl elements for Netscape 4.x, OHver 0.2 */
+
+/* top panel and nav ctrl panel (center left) */
+
+body.ctrl { background: #999 ; margin: 0 }
+
+
+/* top panel only */
+
+p.topbody { font: bold 12pt/12pt sans-serif }
+
+td.topnav { font: bold 10pt/10pt sans-serif;
+margin: 0 ; text-align: center }
+
+
+/* nav ctrl panel only */
+
+.tocld { font: bold 10pt/10pt sans-serif }
+
+th.nav { font: 9pt/11pt sans-serif;
+margin: 0 2pt ; background: silver }
+
+th.navx { font: 9pt/11pt sans-serif;
+margin: 0 2pt ; background: white }
+
+td.navx { font: 10pt/12pt sans-serif;
+margin: 0 2pt ; background: silver }
+
+td.navxsmall { font: 9pt/14pt sans-serif;
+margin: 0 ; background: silver }
+
+td.navxxsmall { font: 8pt/12pt sans-serif;
+margin: 0 ; background: silver }
+
+
+/* nav panel (bottom left) */
+
+body.nav { background: silver }
+
+.body { font: bold 12pt/14pt sans-serif }
+
+.toc1 { font: 10pt/12pt sans-serif;
+margin: 0 0 0 12pt ; text-indent: -12pt ; background: silver }
+
+.toc1x { font: 10pt/12pt sans-serif;
+margin: 0 0 0 12pt ; text-indent: -12pt ; background: white }
+
+.toc2 { font: 10pt/12pt sans-serif;
+margin: 0 0 0 18pt ; text-indent: -12pt ; background: silver }
+
+.toc2x { font: 10pt/12pt sans-serif;
+margin: 0 0 0 18pt ; text-indent: -12pt ; background: white }
+
+.toc3 { font: 10pt/12pt sans-serif;
+margin: 0 0 0 24pt ; text-indent: -12pt ; background: silver }
+
+.toc3x { font: 10pt/12pt sans-serif;
+margin: 0 0 0 24pt ; text-indent: -12pt ; background: white }
+
+.toc4 { font: 10pt/12pt sans-serif;
+margin: 0 0 0 30pt ; text-indent: -12pt ; background: silver }
+
+.toc4x { font: 10pt/12pt sans-serif;
+margin: 0 0 0 30pt ; text-indent: -12pt ; background: white }
+
+.toc5 { font: 10pt/12pt sans-serif;
+margin: 0 0 0 36pt ; text-indent: -12pt ; background: silver }
+
+.toc5x { font: 10pt/12pt sans-serif;
+margin: 0 0 0 36pt ; text-indent: -12pt ; background: white }
+
+.toc6 { font: 10pt/12pt sans-serif;
+margin: 0 0 0 42pt ; text-indent: -12pt ; background: silver }
+
+.toc6x { font: 10pt/12pt sans-serif;
+margin: 0 0 0 42pt ; text-indent: -12pt ; background: white }
+
+.toc7 { font: 10pt/12pt sans-serif;
+margin: 0 0 0 48pt ; text-indent: -12pt ; background: silver }
+
+.toc7x { font: 10pt/12pt sans-serif;
+margin: 0 0 0 48pt ; text-indent: -12pt ; background: white }
+
+.toc8 { font: 10pt/12pt sans-serif;
+margin: 0 0 0 54pt ; text-indent: -12pt ; background: silver }
+
+.toc8x { font: 10pt/12pt sans-serif;
+margin: 0 0 0 54pt ; text-indent: -12pt ; background: white }
+
+.toc9 { font: 10pt/12pt sans-serif;
+margin: 0 0 0 60pt ; text-indent: -12pt ; background: silver }
+
+.toc9x { font: 10pt/12pt sans-serif;
+margin: 0 0 0 60pt ; text-indent: -12pt ; background: white }
+
+
+.fts { font: 10pt/12pt sans-serif;
+margin: 0 0 0 12pt ; text-indent: -12pt ; background: silver }
+
+span.currix { background: white }
+
+p.tocpt { font: 12px/12px sans-serif; 
+margin: 0 0 0 0 ; background: white }
+
+/* end of ohctn4.css */

@@ -1,0 +1,143 @@
+{DONE 1 -oMarcelo -cConexão : Fechamento de conexão deve desconectar todos os objetos do pool e, em seguida, fechar todas as janelas abertas.}
+{DONE -oMarcelo -cFocos : Mesclar todas as funcionalidades do Cosmos Gestor de Focos no Gestor de Secretarias.}
+{DONE 1 -oMarcelo -cSegurança : Impedir que um cliente de um módulo consiga se conectar em um server de outro módulo do Cosmos.}
+{TODO -o3.0.0.1490 : Inserir o método de bufferização de dados em um contexto de thred separado do principal.}
+{DONE 1 -o3.0.0.1460 -cInstalações : A busca por alunos, pesquisadores etc na janela de pesquisa de instalandos de uma turma deve ser completamente case insensitive.}
+{DONE 1 -o3.0.0.1460 -cConectividade : Inserir recurso de teste de conectividade com servidores do Cosmos.}
+{DONE 1 -o3.0.0.1460 -cConexão : Criação de mecanismo de verificação da estabilidade da rede durante uma conexão. Desta forma, o sistema poderá notificar o usuário - a qualquer momento e de forma automática - caso ele não tenha aberto a conexão VPN ou sua Internet tenha "caído".}
+{DONE -o3.0.0.1460 -cLogs :Alterar o pool de conexões com o banco de dados para capturar virtualmente todos os erros e registrar logs do mesmo. Alguns eventos de erros acontecidos "internamente" no banco de dados não eram capturados anteriormente.}
+{DONE 1 -o3.0.0.1460 -cRelatórios : Permitir que a Ficha do Aluno seja impressa por faixas de alunos em vez de apenas de aluno a aluno.}
+{DONE -oCampinas -cCadastros : Exibir mensagem de erro quando o usuário tentar alterar uma matrícula e já houver outra com o valor escolhido.}
+{DONE 1 -oMarcelo : Retirar comando SQL do dataset em TIPATI.BPL.}
+{TODO 2 -oMarcelo -cRelatórios : Criar pesquisa MAPÃO na Central de Pesquisas.}
+{DONE -oMarcelo -cFerramentas : Desenvolver ferramenta d pesquisas "Central de Pesquisas".}
+{DONE 1 -oMarcelo -cInterface : Implementar mecanismo de trabalho em "Full Screen".}
+{DONE -oCampinas -cFerramentas : Criar mecanismos personalizados de exportação de dados de alunos, membros, jovens do TM , pesquisadores e simpatizantes. Deve-se exportar muitos mais informações além das que são exibidas na visão corrente.}
+{DONE -oMarcelo -cRelatórios : Implementar consistência dos parâmetros dos relatórios, impedindo a exibição de mensagens de erro de sistema.}
+{DONE 1 -oMarcelo -cFramework : Impedir que as exceções geradas no SGBD ou na aplicação servidora cheguem até a camada de apresentação. As exceções sempre devem ser tratadas pela aplicação servidora e exibidas adequadamente na amada de apresentalção.}
+{DONE 1 -oMarcelo -cConferências : Impedir que usuário com perfis de um determinado campo de trabalho consigam cadastrar ou alterar uma conferência promovida por outro campo de rabalho.}
+{TODO 2 -oMarcelo -cEscola Interna : Na janela de edição dos dados de um círculo da Escola Interna, o sistema está criptografando a senha do contato usando um padrão de criptografia e outro diferente para descriptografar.}
+{DONE 1 -oMarcelo -cAgenda de Atividades : O clique no título da grade de controle de frequência não está ordenando os dados.}
+
+{DONE 1 -oMarcelo -cSegurança : Alterar o mecanismo de login para que ele retorne o status do usuário: registrado na tabela de usuários e no SGBD; usuário do SGBD; Inativo - registrado apenas na tabela de usuários; SYSDBA; status desconhecido. Para cada um destes status o sistema deve responder de forma diferente.}
+{DONE 1 -oMarcelo -cRelatórios : Flexibilizar o relatório de membros de um círculo para imprimir ou os membros de todos os círculos ou de um círculo em especial.}
+{DONE 1 -oMarcelo -cFramework : Criar o mecanismo de páginas de configuração do Cosmos. As páginas devem ser form's que implementarão uma interface que permitirá a sua manipulação.}
+{DONE 1 -oMarcelo -cFramework : Descarregar os pacotes das páginas de configuração quando a janela de configuração é fechada. Hoje, os pacotes são carregados, mas não descarregados.}
+{TODO 3 -oMarcelo -cFramework : Definir e implementar um interface para salvar tamanho e posição de janelas e propriedades de controles.}
+{DONE 1 -oMarcelo -cInterface : Traduzir os textos da janela de personalização do menu e das barras de ferramentas}
+{DONE 2 -oCampinas -cRelatórios : Inserir informações médicas na ficha do jovem do TM.}
+{DONE 1 -oCampinas -cRelatórios : Permitir, no relatório de freqüência, que sejam filtrados alunos a partir de um percentual de freqüência informado.}
+{TODO 2 -oCampinas -cCadastros : Guardar, no cadastro do aluno, informações sobre o plano de saúde do aluno.}
+{DONE 1 -oMarcelo -cRelatórios : Impedir que as datas de eventos discipulares (desligamento, cartas de freqüência, transferências etc) sejam futuras (maiores do que a data corrente).}
+
+
+{DONE 1 -oMarcelo -cFramework : Alterar o mecanismo de buferização de dados para salvar na pasta de dados da aplicação, devaixo do MyDocuments. A buferizaçào em subdiretório de ProgramFiles, atualmente implementada, somente pode ser feita por usuários administradores do sistema.}
+{DONE 1 -oMarcelo -cFramework : Exportar para XML a lista de dados dos módulos do sistema que estão instalados (executáveis e bibliotecas). Este arquivo auxiliará o proceso de suporte remoto.}
+{DONE 1 -oMarcelo -cRelatórios : Desenvolver relatório de endereços e meios de contatos de membros de um círculo da Escola Interna.}
+{DONE -oMarcelo -cRelatórios : Criar lista de freqüência em atividades com duas colunas.}
+{DONE 1 -oMarcelo -cCadastros : Permitir que um usuário administrador insira, manualmente, eventos no histórico discipular}
+{DONE 3 -oMarcelo -cFerramentas : Desenvolver ferramenta de extração de dados para todos os aplicativos Cosmos.}
+
+{DONE -oMarcelo -cFramework : Ajustar a interface ICosmosApplication para expor acesso a alguns elementos da interface de usuário da janela principal das aplicações Cosmos.}
+{DONE 1 -oMarcelo -cSegurança : Criar recurso de troca de senha de acesso. O Recurso deve ser acessado pelo usuário que já possui acesso ao sistema Cosmos.}
+{TODO 2 -oMarcelo -cCadastros : Desenvolver recurso de bloqueio de alterações do histórico discipular do cadastrado.}
+
+{TODO 1   -o3.0.0.1460 -cAgenda de Atividades : Desenvolver sistema de status do levantamento da freqüência de uma atividade da agenda de atividades (3 status: não-levantada, em levantamento e levantamento encerrado).}
+{DONE 2 -oMarcelo -cFramework : Desenvolver mecanismo de configuração do nível de sensibilidade do sistema de geração de logs.}
+{DONE 1 -oMarcelo -cFramework : Desenvolver sistema de envio de emails para cadastrados de dentro dos aplicativos Cosmos.}
+
+{DONE 2 -oMarcelo -cSegurança : Permitir que o usuário possa trocar a sua senha usando o Gestor de Usuários.}
+{DONE 1 -oMarcelo -cFramework : Desenvolver suporte à barra de progresso nas aplicações Cosmos.}
+{TODO 2  -oMarcelo -cAutoUpdate-update : Desenvolver recurso de auto-atualização dos aplicativos Cosmos.}
+{DONE 1 -oMarcelo -cRelatórios : Desenvolver suporte a relatórios externos na Central de Relatórios.}
+{DONE 1 -oMarcelo -cFramework : Desenvolver mecanismo extensível de páginas de opções da janela de configurações do Cosmos.}
+{TODO 1  -o3.0.0.1460 -cAgenda de Atividades : Na agenda de atividades, indicar com um ícone o status do levantamento da freqüência das atividades.}
+{DONE 1 -oMarcelo -cRelatórios : Criar relatório de mala-direta (emissão de etiquetas).}
+{DONE 1 -oMarcelo -cSegurança : Implementar novo mecanismo de configuração de perfis de usuários.}
+{DONE 5 -oMarcelo -cCadastros : Desenvolver recursos da janela Turmas de Cursistas}
+
+{DONE 5 -oMarcelo -cInterface : Padronizar bitmaps dos botões de todas as caixas de diálogo.}
+{DONE 5 -oMarcelo -cCadastros : Criar janela de discipulados participantes de cada tipo de atividade.}
+{DONE 4 -oMarcelo -cCadastros : Para efeito de facilitação do cadastro de discipulados participantes de uma atividade, criar recurso de "participantes típicos" de um determinaod tipo de atividade.}
+{DONE 5 -oMarcelo -cSincronização : Impedir que qualquer aplicativo Cosmos se conecte ao banco de dados se o banco estiver em processo de sincronização.}
+{DONE 5 -oMarcelo -cRelatórios : Salvar em arquivo os valores que o usuário inseriu nos parâmetros do relatório de emissão de carteirinhas.}
+{DONE 5 -oMarcelo -cDados : Substituir os componentes de exportação atuais para o TMxExport. Redesenhar a janela de exportação.}
+{DONE 5 -oMarcelo -cDados : Mecanismo de exportação para o MSWord está apresentando erros.}
+{DONE 5 -oMarcelo -cInterface : Rever teclas de atalhos de todos os menus, botões e controles, em todas as janelas.}
+{DONE 5 -oMarcelo -cCadastros : Retirar da janela "histórico" as janelas de criação de protocolos de instalação e instalação na E.I.}
+
+{DONE 4 -oMarcelo -cCadastros : Alterar o mecanismo de segurança para usar os componentes TUsers.}
+{DONE 5 -oMarcelo -cSegurança : Conferir mecanismo de segurança de todos os actions da janela principal e das janelas secundárias.}
+{DONE 4 -oMarcelo -cCadastros : Importar dados dos ceps do webservice da ECT para o banco de dados do Cosmos.}
+{DONE 5 -oMarcelo -cInterface : Alterar nome da interface "ITempPesquisa" para "IPesquisaCadastrados".}
+
+{DONE 1 -oMarcelo -cPesquisas : Retirar todas as strings representando código SQL do código fonte da aplicação cliente. Elas devem ser substituídas por um tipo enumerado que, passado para a aplicação servidora, retornará um pacote de dados Olevariant. Usar o mesmo mecanismo de pesquisa de chave estrangeira.}
+{DONE 5 -oMarcelo -cInterface :  Durante o processo de conexão com o servidor, exibir animação representando estabelecimento de conexão.}
+{DONE 4  -oMarcelo -cRelatórios : Criar relatório de folha de presença por conferência. (Todas as atividades de uma dada conferência)}
+{DONE 5 -oMarcelo -cCadastros : Acrescentar edição da tabela "Funções" na janela "Tabelas Acessórias".}
+{DONE 5 -oMarcelo -cRelatórios : Alterar relatório de freqüência por disicpulado. Inserir após a última coluna os totais (em percentual) de serviços e conferências que o aluno assistiu.}
+{DONE 5 -oMarcelo -cRelatórios : Criar recurso de emissão de carteirinhas dos alunos por faixa de matrículas}
+{DONE 5 -oMarcelo -cCadastros : O cadastro de funções dos alunos não deve recuperar os dados da tabela "cargos"}
+{DONE 5  -oMarcelo -cRelatórios : Criar relatório de folha mensal de presença nas atividades. (Todas as atividades de um determinado mês)}
+{DONE 1 -oMarcelo -cSegurança : Usuários que já possuem acesso à secretaria de algum foco poderão acessar livremente as secretarias dos outros focos em modo read-only.}
+{DONE 5 -oMarcelo -cCadastros : Escrever código de geração automática de novo número de turma de instalação.}
+{DONE 5 -oMarcelo -cCadastros : Criar mecanismo de instalação de alunos por turmas. (Escola Externa e Escola Interna).}
+
+{DONE 5 -oMarcelo -cLogs : Trocar mecanismo de geração de logs da aplicação servidora. (Deve usar a classe TWinServiceLog).}
+{DONE 1 -oMarcelo -cFramework : Alterar implementação da Interface ICosmosLog. A classe da janela principal deve delegar a implementação da interface para a classe TWinServiceLog}
+{DONE 4 -oMarcelo -cCadastros : Criar mecanismo de acesso ao WebService da ECT para checar se um cep existe.}
+
+{DONE 5 -oMarcelo -cCadastros : Impedir que o aluno seja cadastrado como titular de si mesmo.}
+{DONE 4 -oMarcelo -cInstalações :  Criar mecanismo de cadastro de turmas de instalação em discipulados da escola externa.}
+{DONE 5 -oMarcelo -cPesquisas : Na janela de pesquisa de cadastrados, deve-se guardar a última opção de pesquisa (por matrícula ou nome). Esta opção será exibida da próxima vez que a janela for acionada.}
+
+{DONE 5 -oMarcelo -cAgenda de Atividades : Na agenda de atividades, sinalizar com um ícone as atividades que fazem parte de uma conferência.}
+{DONE 5 -oMarcelo -cConferências : Criar mecanismo de cadastro de conferências e montagem da programação da conferência}
+{DONE 5  -oMarcelo -cPesquisas : Criar nova janela de pesquisa de focos (com o treeview usado no Gestor de Focos). O usuário poderá escolher entre a visão tabular (grade) ou hierárquica (treeview).}
+{DONE 5 -oMarcelo -cCadastros : Criar caixa de diálogo de seleção de lições da Escola Interna.}
+
+{DONE 5 -oMarcelo -cCadastros : Impedir que duplo clique na linha de título das grades abra uma janela de edição do conteúdo da grade.}
+{DONE 5 -oMarcelo -cRelatórios : Relatório de escalas das atividades deve oferecer possibilidade de filtragem das atividades por campo de trabalho}
+{DONE 5 -oMarcelo -cRelatórios : Colocar recurso de ordenação da folha de presença por nome ou matrícula.}
+{DONE 5 -oMarcelo -cRelatórios : Consistir entrada de parâmetros em todos os relatórios.}
+{DONE 5 -oMarcelo -cCadastros : Criar cadastro de aptidões (tabelas acessórias)}
+
+
+
+{DONE 1 -oMarcelo -cFramework : Desenvolver interface para acesso ao mecanismo de geração de logs por outros módulos}
+{DONE 5 -oMarcelo -cFreqüências : Implementar recurso de cadastro de freqüências de alunos/membros visitantes.}
+
+{DONE 3 -oMarcelo -cRelatórios : Criar relatório "Profissões dos alunos".}
+
+{DONE 5 -oMarcelo -cAjuda : Desenvolver recurso "O que é isto?" do sistema de ajuda.}
+{DONE 5 -oMarcelo -cAjuda : Inserir todas as chamadas ao sistema de ajuda em todas as janelas.}
+{TODO 4 -oMarcelo -cRelatórios : Criar relatório de contagem de atividades promovidas pelo foco em um determinado perído. A contagem deve ser agrupada por tipos de atividades.}
+
+{TODO 4 -oMarcelo -cRelatórios : Criar relatório de levantamento de freqüência nas atividades da Escola Interna.}
+{DONE 5 -oMarcelo -cRelatórios : Criar relatório de levantamento de freqüência nas atividades da Escola Externa. (serviços e conferências)}
+{DONE 4 -oMarcelo -cInterface : Colocar botões de barra de ferramenta na janela "Freqüências".}
+{DONE 5 -oMarcelo -cDatabase : Implementar recurso para cadastro de justificativas de faltas em atividades}
+{DONE 5 -oMarcelo -cDatabase : Implementar recurso para ordenação correta por matrícula do cadastrado.}
+{DONE 4 -oMarcelo -cDatabase : Implementar recurso "Atualizar todos os datasets".}
+{DONE 3 -oMarcelo -cInterface : Implementar recurso de salvamento do estado da janela principal ao encerrar o programa.}
+{DONE 4 -oMarcelo -cEscola Interna : Criar folha de presença de membros dos círculos da Escola Interna.}
+{DONE 4 -oMarcelo -cEscola Interna : Criar relatório de membros dos círculos da Escola Interna.}
+{DONE 5 -oMarcelo -cCadastros : Implementar cadastro de países.}
+{DONE 5 -oMarcelo -cCadastros : Implementar cadastro de estados.}
+{DONE 5 -oMarcelo -cCadastros : Implementar cadastro de cidades.}
+{DONE 5 -oMarcelo -cCadastros : Implementar cadastro de bairros.}
+{DONE 5 -oMarcelo -cEscola Interna : Implementar alteração dos membros de um grupo da Escola Interna}
+
+{DONE 5 -oMarcelo -cCadastros : Implementar cadastro de focos para os quais uma atividade é destinada.}
+{DONE 5 -oMarcelo -cCadastros : Implementar cadastro de novos logradouros.}
+{DONE 3 -oMarcelo -cInterface : Implementar recurso de salvamento e recuperação da altura e largura da janela principal ao encerrar o programa}
+{DONE 3 -oMarcelo -cInterface : Disponibilizar recurso de configuração dos menus e barras de ferramentas.}
+{DONE 3 -oMarcelo -cInterface : Desenvolver interface para customização da aparência do menu rápido.}
+{DONE 3 -oMarcelo -cInterface : Desenvolver interface avançada estilo Windows Vista}
+{DONE 5 -oMarcelo -cLogs : Desenvolver mecanismo de geração de logs}
+{DONE 5 -oMarcelo -cAjuda : Implementar mecanismo de configuração da exibição das dicas (tips) que podem ser exibidas na inicialização.}
+{DONE 5 -oMarcelo -cRegistro : Exibir status de registro do aplicativo na barra de título. Se o aplicativo não estiver registrado, exibir tela de registro na inicialização.}
+{DONE 3 -oMarcelo -cInterface : Salvar a configuração de estilos de menus (avançado ou padrão winXP) para que a opção seja reconhecida durante a inicialização do aplicativo.}
+{DONE 3 -oMarcelo -cInterface : Implementar configuração de estilos de menus (avançado ou padrão winXP).}
+{DONE 1 -oMarcelo -cInterface : Durante o processo de conexão com o servidor, exibir mensagens dos processos que estão sendo executados.}
+

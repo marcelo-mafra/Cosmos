@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<PersonalityInfo>
+		<Option>
+			<Option Name="Personality">Default.Personality</Option>
+			<Option Name="ProjectType"></Option>
+			<Option Name="Version">1.0</Option>
+			<Option Name="GUID">{ACADB1FB-69B5-44C1-BBF4-DCCBB596DD25}</Option>
+		</Option>
+	</PersonalityInfo>
+	<Default.Personality>  <Projects>
+      <Projects Name="Cosmos.bpl">Componentes\MainPack\Cosmos.bdsproj</Projects>
+      <Projects Name="eventslogs.bpl">Componentes\MainPack\eventslogs.bdsproj</Projects>
+      <Projects Name="busrules.bpl">Componentes\MainPack\busrules.bdsproj</Projects>
+      <Projects Name="conmngr.bpl">Componentes\MainPack\conmngr.bdsproj</Projects>
+      <Projects Name="dbxsqlscript.bpl">Componentes\SQLScript\dbxsqlscript.bdsproj</Projects>
+      <Projects Name="Targets">Cosmos.bpl eventslogs.bpl busrules.bpl conmngr.bpl dbxsqlscript.bpl</Projects>
+    </Projects>
+    <Dependencies/>
+  </Default.Personality>
+</BorlandProject>

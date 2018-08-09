@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<PersonalityInfo>
+		<Option>
+			<Option Name="Personality">Default.Personality</Option>
+			<Option Name="ProjectType"></Option>
+			<Option Name="Version">1.0</Option>
+			<Option Name="GUID">{ED2A6807-F0FD-4349-9094-6B2A47F7C8BA}</Option>
+		</Option>
+	</PersonalityInfo>
+	<Default.Personality>  
+    
+    <Projects>
+      <Projects Name="grantmngr.exe">Aplicativos\Ferramentas\GrantManager\grantmngr.bdsproj</Projects>
+      <Projects Name="dbbackup.exe">Aplicativos\Ferramentas\DBBackup\dbbackup.bdsproj</Projects>
+      <Projects Name="logimp.exe">Aplicativos\Ferramentas\Atualizador de Logradouros\logimp.bdsproj</Projects>
+      <Projects Name="register.exe">Aplicativos\Ferramentas\Cosmos Register\register.bdsproj</Projects>
+      <Projects Name="ScktSrvr.exe">Aplicativos\Ferramentas\Borland Socket Server\ScktSrvr.bdsproj</Projects>
+      <Projects Name="dbconf.exe">Aplicativos\Ferramentas\Configurador\dbconf.bdsproj</Projects>
+      <Projects Name="Targets">grantmngr.exe dbbackup.exe logimp.exe register.exe ScktSrvr.exe dbconf.exe</Projects>
+    </Projects>
+    <Dependencies/>
+  </Default.Personality>
+</BorlandProject>

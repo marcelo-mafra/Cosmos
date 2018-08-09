@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="z040kxs7ev8qzbq_v">
+    <property name="$name" value="CoreClasses" />
+    <property name="$defaultDiagram" value="True" />
+    <property name="$metaclass" value="Package Diagram" />
+    <reference referencedUin="delphi:e_class:src:gfocos:CoreClasses.TCustomFocus">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="133,1,89,139" />
+      <reference referencedUin="delphi:e_field:src:gfocos:CoreClasses.TCustomFocus.FSigla" />
+      <reference referencedUin="delphi:e_field:src:gfocos:CoreClasses.TCustomFocus.FNome" />
+      <reference referencedUin="delphi:e_method:src:gfocos:CoreClasses.TCustomFocus.Create" />
+      <reference referencedUin="delphi:e_method:src:gfocos:CoreClasses.TCustomFocus.Destroy" />
+      <reference referencedUin="delphi:e_property:src:gfocos:CoreClasses.TCustomFocus.Nome" />
+      <reference referencedUin="delphi:e_property:src:gfocos:CoreClasses.TCustomFocus.Sigla" />
+      <reference referencedUin="delphi:e_field:src:gfocos:CoreClasses.TCustomFocus.FCampos" />
+      <reference referencedUin="delphi:e_property:src:gfocos:CoreClasses.TCustomFocus.Campos" />
+      <reference referencedUin="delphi:e_property:src:gfocos:CoreClasses.TCustomFocus.Ra" />
+      <reference referencedUin="delphi:l_ast:src:gfocos:CoreClasses.TCustomFocus.Ra" />
+      <reference referencedUin="delphi:e_field:src:gfocos:CoreClasses.TCustomFocus.FRa" />
+      <reference referencedUin="delphi:l_ast:src:gfocos:CoreClasses.TCustomFocus.FRa" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:gfocos:CoreClasses.TCosmosSection">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="237,1,213,217" />
+      <reference referencedUin="delphi:e_field:src:gfocos:CoreClasses.TCosmosSection.FConnectionTime" />
+      <reference referencedUin="delphi:e_field:src:gfocos:CoreClasses.TCosmosSection.FConnectionStatus" />
+      <reference referencedUin="delphi:e_field:src:gfocos:CoreClasses.TCosmosSection.FUser" />
+      <reference referencedUin="delphi:e_field:src:gfocos:CoreClasses.TCosmosSection.FConnectionID" />
+      <reference referencedUin="delphi:e_method:src:gfocos:CoreClasses.TCosmosSection.Create" />
+      <reference referencedUin="delphi:e_method:src:gfocos:CoreClasses.TCosmosSection.Destroy" />
+      <reference referencedUin="delphi:e_method:src:gfocos:CoreClasses.TCosmosSection.CloseSection" />
+      <reference referencedUin="delphi:e_method:src:gfocos:CoreClasses.TCosmosSection.LockSection" />
+      <reference referencedUin="delphi:e_property:src:gfocos:CoreClasses.TCosmosSection.ConnectionStatus" />
+      <reference referencedUin="delphi:e_property:src:gfocos:CoreClasses.TCosmosSection.User" />
+      <reference referencedUin="delphi:e_property:src:gfocos:CoreClasses.TCosmosSection.ConnectionTime" />
+      <reference referencedUin="delphi:e_property:src:gfocos:CoreClasses.TCosmosSection.ConnectionID" />
+      <reference referencedUin="delphi:l_ast:src:gfocos:CoreClasses.TCosmosSection.User">
+        <property name="sourceAnchor" value="237,202" />
+        <property name="targetAnchor" value="229,202" />
+        <property name="bendpoints" value="" />
+      </reference>
+      <reference referencedUin="delphi:l_ast:src:gfocos:CoreClasses.TCosmosSection.ConnectionStatus">
+        <property name="sourceAnchor" value="450,75" />
+        <property name="targetAnchor" value="480,75" />
+        <property name="bendpoints" value="" />
+      </reference>
+      <reference referencedUin="delphi:l_ast:src:gfocos:CoreClasses.TCosmosSection.FConnectionStatus">
+        <property name="sourceAnchor" value="450,50" />
+        <property name="targetAnchor" value="480,50" />
+        <property name="bendpoints" value="" />
+      </reference>
+      <reference referencedUin="delphi:l_ast:src:gfocos:CoreClasses.TCosmosSection.FUser">
+        <property name="sourceAnchor" value="237,186" />
+        <property name="targetAnchor" value="229,186" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="delphi:e_class:src:gfocos:CoreClasses.TCosmosUser">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="92,155,137,269" />
+      <reference referencedUin="delphi:e_field:src:gfocos:CoreClasses.TCosmosUser.FLogin" />
+      <reference referencedUin="delphi:e_field:src:gfocos:CoreClasses.TCosmosUser.FFoco" />
+      <reference referencedUin="delphi:e_field:src:gfocos:CoreClasses.TCosmosUser.FUserName" />
+      <reference referencedUin="delphi:e_field:src:gfocos:CoreClasses.TCosmosUser.FGroup" />
+      <reference referencedUin="delphi:e_field:src:gfocos:CoreClasses.TCosmosUser.FMatricula" />
+      <reference referencedUin="delphi:e_field:src:gfocos:CoreClasses.TCosmosUser.FDiscipulado" />
+      <reference referencedUin="delphi:e_field:src:gfocos:CoreClasses.TCosmosUser.FAdministrator" />
+      <reference referencedUin="delphi:e_method:src:gfocos:CoreClasses.TCosmosUser.Create" />
+      <reference referencedUin="delphi:e_method:src:gfocos:CoreClasses.TCosmosUser.Destroy" />
+      <reference referencedUin="delphi:e_property:src:gfocos:CoreClasses.TCosmosUser.Discipulado" />
+      <reference referencedUin="delphi:e_property:src:gfocos:CoreClasses.TCosmosUser.Foco" />
+      <reference referencedUin="delphi:e_property:src:gfocos:CoreClasses.TCosmosUser.Group" />
+      <reference referencedUin="delphi:e_property:src:gfocos:CoreClasses.TCosmosUser.Login" />
+      <reference referencedUin="delphi:e_property:src:gfocos:CoreClasses.TCosmosUser.Matricula" />
+      <reference referencedUin="delphi:e_property:src:gfocos:CoreClasses.TCosmosUser.UserName" />
+      <reference referencedUin="delphi:e_property:src:gfocos:CoreClasses.TCosmosUser.Administrator" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:gfocos:CoreClasses.TConnectionStatus">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="480,1,106,99" />
+      <reference referencedUin="delphi:e_field:src:gfocos:CoreClasses.TConnectionStatus.csServerLocked" />
+      <reference referencedUin="delphi:e_field:src:gfocos:CoreClasses.TConnectionStatus.csUserLocked" />
+      <reference referencedUin="delphi:e_field:src:gfocos:CoreClasses.TConnectionStatus.csDisconnected" />
+      <reference referencedUin="delphi:e_field:src:gfocos:CoreClasses.TConnectionStatus.csConnected" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:gfocos:CoreClasses.TCampoTrabalho">
+      <property name="$shortcutReference" value="true" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:gfocos:CoreClasses.TRa">
+      <property name="$shortcutReference" value="true" />
+      <reference referencedUin="delphi:e_field:src:gfocos:CoreClasses.TRa.FRa" />
+      <reference referencedUin="delphi:e_method:src:gfocos:CoreClasses.TRa.Create" />
+      <reference referencedUin="delphi:e_method:src:gfocos:CoreClasses.TRa.Destroy" />
+      <reference referencedUin="delphi:e_property:src:gfocos:CoreClasses.TRa.Parent" />
+      <reference referencedUin="delphi:l_ast:src:gfocos:CoreClasses.TRa.Parent" />
+      <reference referencedUin="delphi:l_ast:src:gfocos:CoreClasses.TRa.FRa" />
+    </reference>
+  </view>
+</nodeSet>

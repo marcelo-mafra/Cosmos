@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="fdgzfjw4f_v">
+    <property name="$defaultDiagram" value="true" />
+    <property name="$metaclass" value="Package Diagram" />
+    <property name="$name" value="default" />
+    <reference referencedUin="delphi:e_class:src:cripter:LbClass.@unitclass">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="10,10,299,94" />
+      <reference referencedUin="delphi:e_field:src:cripter:LbClass.RDLKeySizeMap" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:cripter:LbClass.TLBBaseComponent">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="40,420,129,130" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLBBaseComponent.GetVersion()" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLBBaseComponent.SetVersion(System.String)" />
+      <reference referencedUin="delphi:e_property:src:cripter:LbClass.TLBBaseComponent.Version[]" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:cripter:LbClass.TLbCipherMode">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="380,20,102,83" />
+      <reference referencedUin="delphi:e_field:src:cripter:LbClass.TLbCipherMode.cmECB" />
+      <reference referencedUin="delphi:e_field:src:cripter:LbClass.TLbCipherMode.cmCBC" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:cripter:LbClass.TLbCipher">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="20,120,178,230" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbCipher.Destroy()" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbCipher.DecryptBuffer(const,System.UInt32,ref@const)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbCipher.EncryptBuffer(const,System.UInt32,ref@const)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbCipher.DecryptFile(System.String,System.String)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbCipher.DecryptStream(Classes.TStream,Classes.TStream)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbCipher.DecryptString(System.String)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbCipher.EncryptFile(System.String,System.String)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbCipher.EncryptStream(Classes.TStream,Classes.TStream)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbCipher.EncryptString(System.String)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbCipher.OutBufSizeNeeded(System.UInt32)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbCipher.Create(Classes.TComponent)" />
+      <reference referencedUin="delphi:l_gnt:src:cripter:LbClass.TLbCipher:LbClass.TLBBaseComponent">
+        <property name="sourceAnchor" value="104,350" />
+        <property name="targetAnchor" value="104,420" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="delphi:e_class:src:cripter:LbClass.TLbSymmetricCipher">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="300,160,183,159" />
+      <reference referencedUin="delphi:e_property:src:cripter:LbClass.TLbSymmetricCipher.CipherMode[]" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbSymmetricCipher.GenerateRandomKey()" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbSymmetricCipher.GenerateKey(System.String)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbSymmetricCipher.Destroy()" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbSymmetricCipher.Create(Classes.TComponent)" />
+      <reference referencedUin="delphi:e_field:src:cripter:LbClass.TLbSymmetricCipher.FCipherMode" />
+      <reference referencedUin="delphi:l_gnt:src:cripter:LbClass.TLbSymmetricCipher:LbClass.TLbCipher">
+        <property name="sourceAnchor" value="300,239" />
+        <property name="targetAnchor" value="198,239" />
+        <property name="bendpoints" value="" />
+      </reference>
+      <reference referencedUin="delphi:l_ast:src:cripter:LbClass.TLbSymmetricCipher.FCipherMode">
+        <property name="sourceAnchor" value="431,160" />
+        <property name="targetAnchor" value="431,103" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="delphi:e_class:src:cripter:LbClass.TLbBlowfish">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="220,400,178,294" />
+      <reference referencedUin="delphi:e_field:src:cripter:LbClass.TLbBlowfish.FKey" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbBlowfish.Create(Classes.TComponent)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbBlowfish.Destroy()" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbBlowfish.DecryptFile(System.String,System.String)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbBlowfish.DecryptStream(Classes.TStream,Classes.TStream)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbBlowfish.DecryptString(System.String)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbBlowfish.EncryptFile(System.String,System.String)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbBlowfish.EncryptStream(Classes.TStream,Classes.TStream)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbBlowfish.EncryptString(System.String)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbBlowfish.GenerateKey(System.String)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbBlowfish.GenerateRandomKey()" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbBlowfish.GetKey(ref@LbCipher.TKey128)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbBlowfish.SetKey(LbCipher.TKey128)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbBlowfish.OutBufSizeNeeded(System.UInt32)" />
+      <reference referencedUin="delphi:e_property:src:cripter:LbClass.TLbBlowfish.CipherMode[]" />
+      <reference referencedUin="delphi:l_gnt:src:cripter:LbClass.TLbBlowfish:LbClass.TLbSymmetricCipher">
+        <property name="sourceAnchor" value="349,400" />
+        <property name="targetAnchor" value="349,319" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="delphi:e_class:src:cripter:LbClass.TLbDES">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="440,460,178,294" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbDES.GetKey(ref@LbCipher.TKey64)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbDES.SetKey(LbCipher.TKey64)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbDES.OutBufSizeNeeded(System.UInt32)" />
+      <reference referencedUin="delphi:e_property:src:cripter:LbClass.TLbDES.CipherMode[]" />
+      <reference referencedUin="delphi:e_field:src:cripter:LbClass.TLbDES.FKey" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbDES.Create(Classes.TComponent)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbDES.Destroy()" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbDES.DecryptFile(System.String,System.String)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbDES.DecryptStream(Classes.TStream,Classes.TStream)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbDES.DecryptString(System.String)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbDES.EncryptFile(System.String,System.String)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbDES.EncryptStream(Classes.TStream,Classes.TStream)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbDES.EncryptString(System.String)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbDES.GenerateKey(System.String)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbDES.GenerateRandomKey()" />
+      <reference referencedUin="delphi:l_gnt:src:cripter:LbClass.TLbDES:LbClass.TLbSymmetricCipher">
+        <property name="sourceAnchor" value="461,460" />
+        <property name="targetAnchor" value="461,319" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="delphi:e_class:src:cripter:LbClass.TLb3DES">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="580,20,178,294" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLb3DES.GenerateRandomKey()" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLb3DES.OutBufSizeNeeded(System.UInt32)" />
+      <reference referencedUin="delphi:e_property:src:cripter:LbClass.TLb3DES.CipherMode[]" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLb3DES.GenerateKey(System.String)" />
+      <reference referencedUin="delphi:e_field:src:cripter:LbClass.TLb3DES.FKey" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLb3DES.Create(Classes.TComponent)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLb3DES.Destroy()" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLb3DES.DecryptFile(System.String,System.String)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLb3DES.DecryptStream(Classes.TStream,Classes.TStream)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLb3DES.DecryptString(System.String)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLb3DES.EncryptFile(System.String,System.String)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLb3DES.EncryptStream(Classes.TStream,Classes.TStream)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLb3DES.EncryptString(System.String)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLb3DES.GetKey(ref@LbCipher.TKey128)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLb3DES.SetKey(LbCipher.TKey128)" />
+      <reference referencedUin="delphi:l_gnt:src:cripter:LbClass.TLb3DES:LbClass.TLbSymmetricCipher">
+        <property name="sourceAnchor" value="580,237" />
+        <property name="targetAnchor" value="483,237" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="delphi:e_class:src:cripter:LbClass.TLbKeySizeRDL">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="700,760,105,98" />
+      <reference referencedUin="delphi:e_field:src:cripter:LbClass.TLbKeySizeRDL.ks128" />
+      <reference referencedUin="delphi:e_field:src:cripter:LbClass.TLbKeySizeRDL.ks192" />
+      <reference referencedUin="delphi:e_field:src:cripter:LbClass.TLbKeySizeRDL.ks256" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:cripter:LbClass.TLbRijndael">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="660,360,178,354" />
+      <reference referencedUin="delphi:e_field:src:cripter:LbClass.TLbRijndael.FKey" />
+      <reference referencedUin="delphi:e_field:src:cripter:LbClass.TLbRijndael.FKeySize" />
+      <reference referencedUin="delphi:e_field:src:cripter:LbClass.TLbRijndael.FKeySizeBytes" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRijndael.SetKeySize(LbClass.TLbKeySizeRDL)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRijndael.Create(Classes.TComponent)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRijndael.Destroy()" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRijndael.DecryptFile(System.String,System.String)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRijndael.DecryptStream(Classes.TStream,Classes.TStream)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRijndael.DecryptString(System.String)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRijndael.EncryptFile(System.String,System.String)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRijndael.EncryptStream(Classes.TStream,Classes.TStream)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRijndael.EncryptString(System.String)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRijndael.GenerateKey(System.String)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRijndael.GenerateRandomKey()" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRijndael.GetKey(ref@const)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRijndael.SetKey(const)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRijndael.OutBufSizeNeeded(System.UInt32)" />
+      <reference referencedUin="delphi:e_property:src:cripter:LbClass.TLbRijndael.CipherMode[]" />
+      <reference referencedUin="delphi:e_property:src:cripter:LbClass.TLbRijndael.KeySize[]" />
+      <reference referencedUin="delphi:l_gnt:src:cripter:LbClass.TLbRijndael:LbClass.TLbSymmetricCipher">
+        <property name="sourceAnchor" value="660,462" />
+        <property name="targetAnchor" value="483,315" />
+        <property name="bendpoints" value="" />
+      </reference>
+      <reference referencedUin="delphi:l_ast:src:cripter:LbClass.TLbRijndael.FKeySize">
+        <property name="sourceAnchor" value="752,714" />
+        <property name="targetAnchor" value="752,760" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="delphi:e_class:src:cripter:LbClass.TLbHash">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="40,620,160,172" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbHash.Create(Classes.TComponent)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbHash.HashString(System.String)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbHash.Destroy()" />
+      <reference referencedUin="delphi:e_field:src:cripter:LbClass.TLbHash.FBuf" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbHash.HashBuffer(const,System.UInt32)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbHash.HashFile(System.String)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbHash.HashStream(Classes.TStream)" />
+      <reference referencedUin="delphi:l_gnt:src:cripter:LbClass.TLbHash:LbClass.TLBBaseComponent">
+        <property name="sourceAnchor" value="104,620" />
+        <property name="targetAnchor" value="104,550" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="delphi:e_class:src:cripter:LbClass.TLbMD5">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="280,740,127,187" />
+      <reference referencedUin="delphi:e_field:src:cripter:LbClass.TLbMD5.FDigest" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbMD5.Create(Classes.TComponent)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbMD5.Destroy()" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbMD5.GetDigest(ref@LbCipher.TMD5Digest)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbMD5.HashBuffer(const,System.UInt32)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbMD5.HashString(System.String)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbMD5.HashFile(System.String)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbMD5.HashStream(Classes.TStream)" />
+      <reference referencedUin="delphi:l_gnt:src:cripter:LbClass.TLbMD5:LbClass.TLbHash">
+        <property name="sourceAnchor" value="280,766" />
+        <property name="targetAnchor" value="200,766" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="delphi:e_class:src:cripter:LbClass.TLbSHA1">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="40,880,134,187" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbSHA1.HashBuffer(const,System.UInt32)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbSHA1.HashFile(System.String)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbSHA1.HashStream(Classes.TStream)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbSHA1.HashString(System.String)" />
+      <reference referencedUin="delphi:e_field:src:cripter:LbClass.TLbSHA1.FDigest" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbSHA1.Create(Classes.TComponent)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbSHA1.Destroy()" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbSHA1.GetDigest(ref@LbCipher.TSHA1Digest)" />
+      <reference referencedUin="delphi:l_gnt:src:cripter:LbClass.TLbSHA1:LbClass.TLbHash">
+        <property name="sourceAnchor" value="107,880" />
+        <property name="targetAnchor" value="107,792" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="delphi:e_class:src:cripter:LbClass.TLbSCStream">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="1200,640,150,175" />
+      <reference referencedUin="delphi:e_field:src:cripter:LbClass.TLbSCStream.FContext" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbSCStream.Write(const,System.Int32)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbSCStream.Create(const,System.Int32)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbSCStream.Reinitialize(const,System.Int32)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbSCStream.ChangeKey(const,System.Int32)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbSCStream.Read(ref@const,System.Int32)" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:cripter:LbClass.TLbSCFileStream">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="1000,0,140,175" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbSCFileStream.ChangeKey(const,System.Int32)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbSCFileStream.Read(ref@const,System.Int32)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbSCFileStream.Write(const,System.Int32)" />
+      <reference referencedUin="delphi:e_field:src:cripter:LbClass.TLbSCFileStream.FContext" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbSCFileStream.Create(System.String,System.UInt16,const,System.Int32)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbSCFileStream.Reinitialize(const,System.Int32)" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:cripter:LbClass.TLbRNG32Stream">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="980,200,157,175" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRNG32Stream.Create(System.Int32)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRNG32Stream.Reinitialize(System.Int32)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRNG32Stream.Write(const,System.Int32)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRNG32Stream.ChangeKey(System.Int32)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRNG32Stream.Read(ref@const,System.Int32)" />
+      <reference referencedUin="delphi:e_field:src:cripter:LbClass.TLbRNG32Stream.FContext" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:cripter:LbClass.TLbRNG32FileStream">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="980,400,157,175" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRNG32FileStream.Create(System.String,System.UInt16,System.Int32)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRNG32FileStream.Reinitialize(System.Int32)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRNG32FileStream.Read(ref@const,System.Int32)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRNG32FileStream.ChangeKey(System.Int32)" />
+      <reference referencedUin="delphi:e_field:src:cripter:LbClass.TLbRNG32FileStream.FContext" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRNG32FileStream.Write(const,System.Int32)" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:cripter:LbClass.TLbRNG64Stream">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="980,620,157,175" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRNG64Stream.Reinitialize(System.Int32,System.Int32)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRNG64Stream.ChangeKey(System.Int32,System.Int32)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRNG64Stream.Read(ref@const,System.Int32)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRNG64Stream.Write(const,System.Int32)" />
+      <reference referencedUin="delphi:e_field:src:cripter:LbClass.TLbRNG64Stream.FContext" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRNG64Stream.Create(System.Int32,System.Int32)" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:cripter:LbClass.TLbRNG64FileStream">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="1200,400,157,175" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRNG64FileStream.Create(System.String,System.UInt16,System.Int32,System.Int32)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRNG64FileStream.Reinitialize(System.Int32,System.Int32)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRNG64FileStream.ChangeKey(System.Int32,System.Int32)" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRNG64FileStream.Read(ref@const,System.Int32)" />
+      <reference referencedUin="delphi:e_field:src:cripter:LbClass.TLbRNG64FileStream.FContext" />
+      <reference referencedUin="delphi:e_method:src:cripter:LbClass.TLbRNG64FileStream.Write(const,System.Int32)" />
+    </reference>
+  </view>
+</nodeSet>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<BackupDevices>
+    <Devices>       
+        <Device DeviceID="" DeviceName="DEVICE1" ServerName="CODGRU" DatabasePath="" BackupFile="" IgnoreCheckSums="False" IgnoreTransLimbo="False" OnlyMetadata="False" GarbageCollection="False" NoTransportable="False" OldFormat="False" Convert="False" VerboseOutput="True" IsVisible="False"/>
+        <Device DeviceID="" DeviceName="DEVICE2" ServerName="CODGRU" DatabasePath="" BackupFile="" IgnoreCheckSums="False" IgnoreTransLimbo="False" OnlyMetadata="False" GarbageCollection="False" NoTransportable="False" OldFormat="False" Convert="False" VerboseOutput="True" IsVisible="False"/>        
+    </Devices>        
+</BackupDevices>

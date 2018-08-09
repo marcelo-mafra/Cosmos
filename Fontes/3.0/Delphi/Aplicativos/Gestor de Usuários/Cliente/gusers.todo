@@ -1,0 +1,5 @@
+{TODO 1 -oMarcelo -cUsuários : Dresenvolver o mecanismo de exportação de dados da janela "Usuários".}
+{TODO 2 -oMarcelo -cSistema de Ajuda : Desenvolver o sistema de ajuda do Gestor de Usuários.}
+{TODO 1 -oMarcelo -cUsuários : Alterar a forma como usuários podem acessar núcleos: acesso completo e modo somente-leitura.}
+{DONE 1 -oMarcelo -cSegurança : Implementar o recurso de troca de senha de usuários.}
+{DONE 1 -oMarcelo -cAcesso : Permitir que todos os usuários acessem o Gestor de Usuários. Se o usuário é um administrador do Cosmos, ele pode fazer tudo, inclusive alterar a senha de outros. Do contrário, ele poderá apenas alterar a sua senha.}

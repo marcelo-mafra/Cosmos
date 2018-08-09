@@ -1,0 +1,36 @@
+[OPTIONS]
+Language=0x409 English (United States)
+Default Font=Arial,8,0
+TITLE=Cosmos Sincronizador
+Full-text search=Yes
+Display compile notes=YES
+Display compile progress=YES
+Compatibility=1.1
+Auto Index=Yes
+Default Window=Main
+Compiled file=Sincronizador.chm
+Error Log file=Sincronizador.log
+Contents file=Sincronizador.hhc
+Index File=Sincronizador.hhk
+Default Topic=topic1.htm
+
+[FILES]
+topic1.htm
+Topic2.htm
+Topic3.htm
+
+
+
+[WINDOWS]
+Main=,"Sincronizador.hhc","Sincronizador.hhk","topic1.htm","topic1.htm",,,,,0x061520,200, 0x00304E,[50,50,450,450],0x307e,,,,,,,,0
+Popup="Popup","Sincronizador.hhc","Sincronizador.hhk","topic1.htm","topic1.htm", ,,,,0x061520,200, 0x00304E,[50,50,450,450],0x307e,,,,,,,,0
+
+
+[MAP]
+#include Sincronizador.h
+
+
+
+[TEXT POPUPS]
+CSHelp.txt
+

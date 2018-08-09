@@ -1,0 +1,417 @@
+/* OmniHelp CSS for Design Report for NetScape 4, OHver 0.2 */
+
+.alert2 { font: 10pt/12pt "Arial", "sans-serif";
+margin: 0 0 4pt 36pt; text-indent: -18pt }
+
+.body { font: 10pt/13pt "Arial", "sans-serif";
+margin: 6pt 0 0 0 }
+
+.bodyhang { font: 10pt/12pt "Arial", "sans-serif" }
+
+.body2 { font: 10pt/12pt "Arial", "sans-serif";
+margin: 6pt 0 0 18pt }
+
+.body3 { font: 10pt/12pt "Arial", "sans-serif";
+margin: 6pt 0 0 36pt }
+
+.bul2 { font: 10pt/12pt "Arial", "sans-serif";
+margin: 4pt 0 0 36pt; text-indent: -7pt }
+
+.bul2sub { font: 10pt/12pt "Arial", "sans-serif";
+margin: 4pt 0 0 36pt; text-indent: -9pt }
+
+.bul3 { font: 10pt/12pt "Arial", "sans-serif";
+margin: 4pt 0 0 54pt; text-indent: -7pt }
+
+.bul3sub { font: 10pt/12pt "Arial", "sans-serif";
+margin: 4pt 0 0 54pt; text-indent: -9pt }
+
+.bul3subsub { font: 10pt/12pt "Arial", "sans-serif";
+margin: 4pt 0 0 54pt; text-indent: -9pt }
+
+.bulleted { font: 10pt/12pt "Arial", "sans-serif";
+margin: 0 0 0 18pt; text-indent: -7pt }
+
+.bullnone { font: 10pt/12pt "Arial", "sans-serif";
+margin: 2pt 0 0 18pt }
+
+.bullnone2 { font: 10pt/12pt "Arial", "sans-serif";
+margin: 2pt 0 0 36pt }
+
+.bullnone3 { font: 10pt/12pt "Arial", "sans-serif";
+margin: 2pt 0 0 54pt }
+
+.categorym { font: italic 10pt/12pt "Arial", "sans-serif";
+margin: 0 0 0 0 }
+
+.cellbody { font: 9pt/11pt "Arial", "sans-serif";
+margin: 1pt 0 4pt 0 }
+
+.cellbodyn { font: 9pt/11pt "Arial", "sans-serif" }
+
+.cellcode { font: 9pt/11pt "Courier New", "monospace";
+margin: 1pt 0 1pt 0 }
+
+.cellfooting { font: 9pt/9pt "Arial", "sans-serif";
+margin: 0 0 0 0 }
+
+.cellhead { font: bold 11pt/11pt "Arial Narrow";
+text-align : left ; margin: 1pt 0 4pt 0 }
+
+.cellheadbig { font: bold 12pt/11pt "Arial";
+text-align : left ; margin: 2pt 0 0 0 }
+
+.cellheadm { font: bold 11pt/11pt "Arial Narrow";
+text-align : left }
+
+.cellheadtop { font: bold 11pt/11pt "Arial Narrow" }
+
+.cellheadu { font: bold 11pt/11pt "Arial Narrow";
+text-align : left; text-decoration: underline ; 
+margin: 0 0 2pt 0 }
+
+.ncellfirst { font: 9pt/11pt "Arial", "sans-serif";
+margin: 0 0 0 0 }
+
+.ncellnext { font: 9pt/11pt "Arial", "sans-serif";
+margin: 0 0 0 0 }
+
+.codefirst { font: 9pt/11pt "Courier New", "monospace";
+margin: 3pt 0 0 18pt }
+
+.codelast { font: 9pt/11pt "Courier New", "monospace";
+margin: 0 0 6pt 18pt }
+
+.codelone { font: 9pt/11pt "Courier New", "monospace";
+margin: 3pt 0 6pt 18pt }
+
+.codenext { font: 9pt/11pt "Courier New", "monospace";
+margin: 0 0 0 18pt }
+
+.code2first { font: 9pt/11pt "Courier New", "monospace";
+margin: 3pt 0 0 36pt }
+
+.code2last { font: 9pt/11pt "Courier New", "monospace";
+margin: 0 0 6pt 36pt }
+
+.code2lone { font: 9pt/11pt "Courier New", "monospace";
+margin: 3pt 0 6pt 36pt }
+
+.code2next { font: 9pt/11pt "Courier New", "monospace";
+margin: 0 0 0 36pt }
+
+.code3first { font: 9pt/11pt "Courier New", "monospace";
+margin: 3pt 0 0 54pt }
+
+.code3last { font: 9pt/11pt "Courier New", "monospace";
+margin: 0 0 6pt 54pt }
+
+.code3lone { font: 9pt/11pt "Courier New", "monospace";
+margin: 3pt 0 6pt 54pt }
+
+.code3next { font: 9pt/11pt "Courier New", "monospace";
+margin: 0 0 0 54pt }
+
+.code4last { font: 9pt/11pt "Courier New", "monospace";
+margin: 0 0 6pt 72pt }
+
+.cwfirst { font: 9pt/11pt "Courier New", "monospace" }
+
+.cwlast { font: 9pt/11pt "Courier New", "monospace" }
+
+.cwlone { font: 9pt/11pt "Courier New", "monospace" }
+
+.cwnext { font: 9pt/11pt "Courier New", "monospace" }
+
+.dcellbody { font: 10pt/12pt "Arial", "sans-serif";
+margin: 0 2pt 0 0 }
+
+.desc1 { font: 10pt/12pt "Arial", "sans-serif";
+margin: 4pt 0 0 90pt; text-indent: -90pt }
+
+.desc1a { font: 10pt/12pt "Arial", "sans-serif";
+margin: 4pt 0 0 72pt; text-indent: -72pt }
+
+.desc2 { font: 10pt/12pt "Arial", "sans-serif";
+margin: 4pt 0 0 108pt; text-indent: -90pt }
+
+.desc2a { font: 10pt/12pt "Arial", "sans-serif";
+margin: 4pt 0 0 72pt; text-indent: -54pt }
+
+.desc3 { font: 10pt/12pt "Arial", "sans-serif";
+margin: 4pt 0 0 108pt; text-indent: -72pt }
+
+.fig { font: bold 10pt/12pt "Arial", "sans-serif";
+margin: 6pt 0 0 0 }
+
+.fig2 { font: bold 10pt/12pt "Arial", "sans-serif";
+margin: 6pt 0 0 18pt }
+
+.figlof { font: 10pt/12pt "Arial", "sans-serif";
+margin: 3pt 0 0 0 }
+
+.fig2lof { font: 10pt/12pt "Arial", "sans-serif";
+margin: 3pt 0 0 0 }
+
+.xafiglof { font: 10pt/12pt "Arial", "sans-serif";
+margin: 3pt 0 0 0 }
+
+.xafig2lof { font: 10pt/12pt "Arial", "sans-serif";
+margin: 3pt 0 0 0 }
+
+.footer { font: 12pt/14pt "Arial", "sans-serif" }
+
+.footnote { font: 10pt/12pt "Arial", "sans-serif";
+margin: 0 18pt 0 30pt; text-indent: -12pt }
+
+.grouptitlesiom { font: bold 14pt "Arial", "sans-serif";
+margin: 0 0 0 0 }
+
+.grouptitlesix { font: bold 14pt "Arial", "sans-serif";
+margin: 0 0 0 0  }
+
+.h1 { font: bold 12pt/14pt "Arial", "sans-serif";
+margin: 12pt 0 0 0 }
+
+.h2 { font: bold 10pt/12pt "Arial", "sans-serif";
+margin: 12pt 0 0 0 }
+
+.h1toc { font: 10pt/12pt "Arial", "sans-serif";
+margin: 3pt 0 0 36pt; text-indent: -18pt }
+
+.h2toc { font: 10pt/12pt "Arial", "sans-serif";
+margin: 0 0 0 54pt; text-indent: -18pt }
+
+.h3 { font: bold 12pt/14pt "Arial", "sans-serif";
+margin: 12pt 0 0 0 }
+
+.h4 { font: bold 10pt/12pt "Arial", "sans-serif";
+margin: 10pt 0 0 0 }
+
+.header { font: small-caps 9pt/11pt "Arial", "sans-serif" }
+
+.hrunin { font: bold 10pt/12pt "Arial", "sans-serif";
+margin: 5pt 0 0 0 }
+
+.indexix { font: 10pt/12pt "Arial", "sans-serif" }
+
+.level1iom { font: 10pt/12pt "Arial", "sans-serif";
+margin: 2pt 0 0 18pt; text-indent: -18pt }
+
+.level2iom { font: 10pt/12pt "Arial", "sans-serif";
+margin: 0 0 0 36pt; text-indent: -18pt }
+
+.level3iom { font: 10pt/12pt "Arial", "sans-serif";
+margin: 0 0 0 54pt; text-indent: -18pt }
+
+.level1ix { font: 10pt/12pt "Arial", "sans-serif";
+margin: 3pt 0 0 18pt; text-indent: -18pt }
+
+.level2ix { font: 10pt/12pt "Arial", "sans-serif";
+margin: 0 0 0 36pt; text-indent: -18pt }
+
+.level3ix { font: 10pt/12pt "Arial", "sans-serif";
+margin: 0 0 0 54pt; text-indent: -18pt }
+
+.n1first { font: 10pt/12pt "Arial", "sans-serif";
+margin: 4pt 0 0 18pt; text-indent: -12pt }
+
+.n1next { font: 10pt/12pt "Arial", "sans-serif";
+margin: 4pt 0 0 18pt; text-indent: -12pt }
+
+.n2first { font: 10pt/12pt "Arial", "sans-serif";
+margin: 4pt 0 0 36pt; text-indent: -12pt }
+
+.n2next { font: 10pt/12pt "Arial", "sans-serif";
+margin: 4pt 0 0 36pt; text-indent: -12pt }
+
+.n2sub { font: 10pt/12pt "Arial", "sans-serif";
+margin: 2pt 0 0 45pt; text-indent: -21pt }
+
+.n3sub { font: 10pt/12pt "Arial", "sans-serif";
+margin: 2pt 0 0 81pt; text-indent: -36pt }
+
+.note { font: 10pt/12pt "Arial", "sans-serif";
+margin: 6pt 0 0 36pt; text-indent: -29pt }
+
+.note2 { font: 10pt/12pt "Arial", "sans-serif";
+margin: 6pt 0 0 54pt; text-indent: -29pt }
+
+.zoverview { font: bold 12pt/14pt "Arial", "sans-serif";
+margin: 10pt 0 0 0 }
+
+.pophead { font: italic 10pt/13pt "Arial", "sans-serif";
+margin: 6pt 0 0 0; color:purple }
+
+.rowhead { font: bold 12pt/11pt "Arial Narrow", "sans-serif" }
+
+.sectintro { font: 10pt/13pt "Arial", "sans-serif";
+margin: 6pt 0 0 0 }
+
+.seealso { font: 10pt/13pt "Arial", "sans-serif";
+margin: 6pt 0 0 0 }
+
+.sideword { font: bold italic 10pt/13pt "Arial", "sans-serif"; 
+margin: 12pt 0 -12pt 0; color:green }
+
+.summaryentries { font: 10pt/12pt "Arial", "sans-serif";
+margin: 0 0 1pt 18pt }
+
+.tablefootnote { font: 8pt/10pt "Arial", "sans-serif";
+margin: 0 18pt 0 30pt; text-indent: -12pt }
+
+.tabletitle { font: bold 11pt/10pt "Arial", "sans-serif"; 
+margin: 12pt 0 4pt 0 }
+
+.tabletitle2 { font: bold 11pt/10pt "Arial", "sans-serif";
+margin: 6pt 0 2pt 18pt}
+
+.tabletitlelot { font: 10pt/12pt "Arial", "sans-serif";
+margin: 3pt 0 0 0 }
+
+.xatabletitlelot { font: 10pt/12pt "Arial", "sans-serif";
+margin: 3pt 0 0 0 }
+
+.xa2tabletitlelot { font: 10pt/12pt "Arial", "sans-serif";
+margin: 3pt 0 0 0 }
+
+.trail { font: 9pt/11pt "Arial", "sans-serif";
+margin: 0 0 0 0 }
+
+.xatabletitle { font: bold 11pt/10pt "Arial", "sans-serif"; 
+margin: 6pt 0 4pt 0 }
+
+.xa2tabletitle { font: bold 11pt/10pt "Arial", "sans-serif"; 
+margin: 6pt 0 2pt 18pt }
+
+.xah1 { font: bold 12pt/14pt "Arial", "sans-serif";
+margin: 12pt 0 2pt 0 }
+
+.xah2 { font: bold 10pt/12pt "Arial", "sans-serif";
+margin: 12pt 0 2pt 0 }
+
+.xah1toc { font: 10pt/12pt "Arial", "sans-serif";
+margin: 3pt 0 0 36pt; text-indent: -18pt }
+
+.xah2toc { font: 10pt/12pt "Arial", "sans-serif";
+margin: 0 0 0 54pt; text-indent: -18pt }
+
+.xah3 { font: bold 12pt/14pt "Arial", "sans-serif";
+margin: 12pt 0 2pt 0 }
+
+.xah4 { font: bold 10pt/12pt "Arial", "sans-serif";
+margin: 10pt 0 1pt 0 }
+
+.xfig { font: bold 10pt/12pt "Arial", "sans-serif";
+margin: 6pt 0 0 0 }
+
+.xfig2 { font: bold 10pt/12pt "Arial", "sans-serif";
+margin: 6pt 0 0 12pt }
+
+.xnh1 { font: bold 12pt/14pt "Arial", "sans-serif";
+margin: 12pt 0 2pt 0 }
+
+.xnh2 { font: bold 10pt/12pt "Arial", "sans-serif";
+margin: 12pt 0 2pt 0 }
+
+.xnh1toc { font: 10pt/12pt "Arial", "sans-serif";
+margin: 3pt 0 0 36pt; text-indent: -18pt }
+
+.xnh2toc { font: 10pt/12pt "Arial", "sans-serif";
+margin: 0 0 0 54pt; text-indent: -18pt }
+
+.xnh3snoplit { font: bold 10pt/12pt "Arial", "sans-serif";
+margin: 6pt 0 0 0 }
+
+.xnh3 { font: bold 12pt/14pt "Arial", "sans-serif";
+margin: 12pt 0 2pt 0 }
+
+.xnh4 { font: bold 10pt/12pt "Arial", "sans-serif";
+margin: 10pt 0 1pt 0 }
+
+.z1figanchor { font: 2pt/0 "Arial", "sans-serif";
+margin: 0 0 13pt 0 }
+
+.z2figanchor { font: 2pt/0 "Arial", "sans-serif";
+margin: 0 0 13pt 18pt }
+
+.zappxtitle { font: bold 16pt/18pt "Arial", "sans-serif";
+margin: 12pt 0 2pt 0 }
+
+.zchaptitle { font: bold 16pt/18pt "Arial", "sans-serif";
+margin: 12pt 0 2pt 0 }
+
+.znonumtitle { font: bold 16pt/18pt "Arial", "sans-serif";
+margin: 12pt 0 2pt 0 }
+
+.zappxtitletoc { font: bold 12pt/14pt "Arial", "sans-serif";
+margin: 12pt 0 0 0 }
+
+.zchaptitletoc { font: bold 12pt/14pt "Arial", "sans-serif";
+margin: 12pt 0 0 0 }
+
+.znonumtitletoc { font: bold 12pt/14pt "Arial", "sans-serif";
+margin: 12pt 0 0 0 }
+
+.zixletter { font: bold 18pt "Arial", "sans-serif";
+margin: 0 0 0 0 }
+
+.zixtitle { font: bold 18pt/20pt "Arial", "sans-serif";
+margin: 12pt 0 2pt 0 }
+
+.ztoctitle { font: bold 18pt/20pt "Arial", "sans-serif";
+margin: 12pt 0 2pt 0 }
+
+span.bodycell { font: italic 9pt/11pt "Arial", "sans-serif" }
+
+span.bodychar { font: 10pt/12pt "Arial", "sans-serif" }
+
+span.boldred { font: bold 10pt/12pt "Arial", "sans-serif";
+color:red}
+
+span.code { font: 10pt/12pt "Courier New", "monospace" }
+
+span.codebold { font: bold 10pt/12pt "Courier New", "monospace" }
+
+span.codeital { font: italic 10pt/12pt "Courier New", "monospace" }
+
+span.cellbodychar { font: 9pt/10pt "Arial", "sans-serif" }
+
+span.cellcodebold { font: bold 9pt/10pt "Courier New", "monospace" }
+
+span.cellcodechar { font: 9pt/10pt "Courier New", "monospace" }
+
+span.cellcodeital { font: italic 9pt/10pt "Courier New", "monospace" }
+
+span.formatname { font: italic 10pt/12pt "Arial", "sans-serif" }
+
+span.markername { font: bold 10pt/12pt "Arial", "sans-serif" }
+
+span.popup { font: bold 10pt/12pt "Arial", "sans-serif";
+color:green}
+
+span.screen { font: bold 10pt/12pt "Arial", "sans-serif" }
+
+span.symbol { font: 9pt/10pt "Symbol" }
+
+span.zixcode { font-family: "Courier New", "monospace" }
+
+span.zhhpop { font: bold italic 10pt/12pt "Arial", "sans-serif";
+color:green}
+
+.omnihead { font: bold 11pt/12pt "Arial", "sans-serif";
+margin: 6pt 0 0 0; text-align: left }
+
+.navcell { font: bold 9pt/11pt "Arial", "sans-serif";
+text-align: center }
+
+.booktitle { font: bold 16pt/18pt "Arial", "sans-serif";
+margin: 0 0 0 0; text-align: left }
+
+.booktitle2 { font: bold 12pt/14pt "Arial", "sans-serif";
+text-align: left }
+
+.booktitle3 { font: bold 10pt/12pt "Arial", "sans-serif";
+margin: 0 0 1pt 0; text-align: left }
+
+

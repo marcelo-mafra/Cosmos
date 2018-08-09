@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<ProjectSupport>
+  <SupportedProjects>
+    <ProjectName>cripter</ProjectName>
+    <ProjectName>vinfo</ProjectName>
+    <ProjectName>dbexporter</ProjectName>
+  </SupportedProjects>
+</ProjectSupport>

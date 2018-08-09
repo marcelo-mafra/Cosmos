@@ -1,0 +1,56 @@
+package cmdialogs;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS OFF}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE RELEASE}
+{$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'Cosmos common dialogs'}
+{$RUNONLY}
+{$IMPLICITBUILD ON}
+
+requires
+  rtl,
+  vcl,
+  interfaces,
+  shellib,
+  cmlib,
+  secmod,
+  cmpersist;
+
+contains
+  cosmos.framework.forms.datadialogs in '..\..\..\Arquivos Comuns\Classes\Framework\Forms Handers\cosmos.framework.forms.datadialogs.pas',
+  cosmos.framework.forms.wizards in '..\..\..\Arquivos Comuns\Classes\Framework\Forms Handers\cosmos.framework.forms.wizards.pas',
+  cosmos.framework.forms.conferencias in '..\..\..\Arquivos Comuns\Classes\Framework\Forms Handers\cosmos.framework.forms.conferencias.pas',
+  cosmos.framework.forms.acessorias in '..\..\..\Arquivos Comuns\Classes\Framework\Forms Handers\cosmos.framework.forms.acessorias.pas',
+  cosmos.framework.forms.logradouros in '..\..\..\Arquivos Comuns\Classes\Framework\Forms Handers\cosmos.framework.forms.logradouros.pas',
+  cosmos.framework.forms.financeiro in '..\..\..\Arquivos Comuns\Classes\Framework\Forms Handers\cosmos.framework.forms.financeiro.pas',
+  cosmos.framework.forms.focos in '..\..\..\Arquivos Comuns\Classes\Framework\Forms Handers\cosmos.framework.forms.focos.pas',
+  TaskBarForm in '..\..\..\Object Repository\TaskBarForm.pas' {FrmTaskBar},
+  FormCosmosHelpDialog in '..\..\..\Arquivos Comuns\Dialogs\FormCosmosHelpDialog.pas' {FrmCosmosHelpDialog},
+  FormDefaultSearchs in '..\..\..\Arquivos Comuns\Dialogs\FormDefaultSearchs.pas' {FrmDefaultSearchs},
+  FormCosmosDialog in '..\..\..\Arquivos Comuns\Dialogs\FormCosmosDialog.pas' {FrmCosmosDialog},
+  Cosmos.Common.View.FormCalendar in '..\..\..\Arquivos Comuns\Dialogs\Cosmos.Common.View.FormCalendar.pas' {FrmCalendar},
+  Cosmos.Common.View.FormInputString in '..\..\..\Arquivos Comuns\Dialogs\Cosmos.Common.View.FormInputString.pas' {FrmInputString};
+
+end.

@@ -1,0 +1,49 @@
+package corelib;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS OFF}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE RELEASE}
+{$ENDIF IMPLICITBUILDING}
+{$RUNONLY}
+{$IMPLICITBUILD OFF}
+
+requires
+  rtl,
+  vcl,
+  xmlrtl,
+  dsnap,
+  dbrtl,
+  shellib;
+
+contains
+  cosmos.business.conferencias in '..\..\..\Arquivos Comuns\Classes\Business\cosmos.business.conferencias.pas',
+  cosmos.business.focos in '..\..\..\Arquivos Comuns\Classes\Business\cosmos.business.focos.pas',
+  cosmos.tools.tasks.classes in '..\..\..\Arquivos Comuns\Tools\Tasks\cosmos.tools.tasks.classes.pas',
+  cosmos.tools.tasks.parser in '..\..\..\Arquivos Comuns\Tools\Tasks\cosmos.tools.tasks.parser.pas',
+  cosmos.tools.tasks.stream in '..\..\..\Arquivos Comuns\Tools\Tasks\cosmos.tools.tasks.stream.pas',
+  cosmos.business.financeiro in '..\..\..\Arquivos Comuns\Classes\Business\cosmos.business.financeiro.pas',
+  cosmos.tools.printer in '..\..\..\Arquivos Comuns\Tools\cosmos.tools.printer.pas',
+  cosmos.business.secretariats in '..\..\..\Arquivos Comuns\Classes\Business\cosmos.business.secretariats.pas';
+
+end.

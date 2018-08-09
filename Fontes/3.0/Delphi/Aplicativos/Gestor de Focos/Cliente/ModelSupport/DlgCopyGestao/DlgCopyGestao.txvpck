@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="nv3u2f8sk_v">
+    <property name="$name" value="DlgCopyGestao" />
+    <property name="$defaultDiagram" value="True" />
+    <property name="$metaclass" value="Package Diagram" />
+    <reference referencedUin="delphi:e_class:src:gfocos:DlgCopyGestao.TFrmDlgCopyGestao">
+      <property name="$shortcutReference" value="true" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:gfocos:DlgCopyGestao.TDirigente">
+      <property name="$shortcutReference" value="true" />
+    </reference>
+  </view>
+</nodeSet>

@@ -1,0 +1,50 @@
+package Cosmos;
+
+{$R *.res}
+{$R 'GraphicHeader.dcr'}
+{$R 'GroupHeader.dcr'}
+{$R 'Wizard.dcr'}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION OFF}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES ON}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE DEBUG}
+{$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'Pacote central de componentes do projeto Cosmos'}
+{$LIBSUFFIX '180'}
+{$IMPLICITBUILD OFF}
+
+requires
+  rtl,
+  vcl,
+  dbrtl,
+  vcldb;
+
+contains
+  BevelTypes in 'BevelTypes.pas',
+  GraphicHeader in 'GraphicHeader.pas',
+  GroupHeader in 'GroupHeader.pas',
+  ValueComboBox in 'ValueComboBox.pas',
+  ValueRadioGroup in 'ValueRadioGroup.pas',
+  DBValueComboBox in 'DBValueComboBox.pas',
+  Wizard in 'Wizard.pas';
+
+end.

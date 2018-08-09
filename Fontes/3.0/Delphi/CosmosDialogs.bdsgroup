@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <PersonalityInfo>
+    <Option>
+      <Option Name="Personality">Default.Personality</Option>
+      <Option Name="ProjectType"></Option>
+      <Option Name="Version">1.0</Option>
+      <Option Name="GUID">{25F1D54C-26E9-4355-9FDC-DD0E66E2F8B6}</Option>
+    </Option>
+  </PersonalityInfo>
+  <Default.Personality>
+    
+    
+    
+    
+    
+    
+    <Projects>
+      <Projects Name="cmcon.bpl">Bibliotecas\Commom connection\cmcon.bdsproj</Projects>
+      <Projects Name="cmdialogs.bpl">Bibliotecas\Commom Dialogs\cmdialogs.bdsproj</Projects>
+      <Projects Name="defwiz.bpl">Bibliotecas\Cosmos Default Wizard\defwiz.bdsproj</Projects>
+      <Projects Name="dockedform.bpl">Bibliotecas\DockedForm\dockedform.bdsproj</Projects>
+      <Projects Name="coninfo.bpl">Bibliotecas\InfoConnection\coninfo.bdsproj</Projects>
+      <Projects Name="logint.bpl">Bibliotecas\Login\logint.bdsproj</Projects>
+      <Projects Name="calc.dll">Bibliotecas\Calculadora\calc.bdsproj</Projects>
+      <Projects Name="cmmodules.bpl">Bibliotecas\Modulos\cmmodules.bdsproj</Projects>
+      <Projects Name="reconcile.bpl">Bibliotecas\Reconcile Dialog\reconcile.bdsproj</Projects>
+      <Projects Name="scrman.bpl">Bibliotecas\Screen Manager\scrman.bdsproj</Projects>
+      <Projects Name="splash.bpl">Bibliotecas\Splash Form\splash.bdsproj</Projects>
+      <Projects Name="tips.bpl">Bibliotecas\Tips Form\tips.bdsproj</Projects>
+      <Projects Name="repcen.bpl">Bibliotecas\Central de relatórios\repcen.bdsproj</Projects>
+      <Projects Name="confwin.bpl">Bibliotecas\Config Form\confwin.bdsproj</Projects>
+      <Projects Name="Targets">cmcon.bpl cmdialogs.bpl defwiz.bpl dockedform.bpl coninfo.bpl logint.bpl calc.dll cmmodules.bpl reconcile.bpl scrman.bpl splash.bpl tips.bpl repcen.bpl confwin.bpl</Projects>
+    </Projects>
+    <Dependencies/>
+  </Default.Personality>
+</BorlandProject>

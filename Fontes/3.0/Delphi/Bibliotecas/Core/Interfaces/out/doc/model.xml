@@ -1,0 +1,1560 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Model name="interfaces" id="interfaces" language="delphi">
+  <Diagram name="default" id="ID=11" metaclass="Namespace Diagram" file="default.txvpck.html">
+    <Property name="defaultDiagram">true</Property>
+    <DiagramReference id="ID=410" element="ID=8" metaclass="Namespace">
+      <DiagramReference id="ID=414" isShortcut="true" element="ID=17" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=415" isShortcut="true" element="ID=22" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=416" isShortcut="true" element="ID=16" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=417" isShortcut="true" element="ID=23" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=418" isShortcut="true" element="ID=18" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=419" isShortcut="true" element="ID=129" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=420" isShortcut="true" element="ID=20" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=421" isShortcut="true" element="ID=21" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=422" isShortcut="true" element="ID=140" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=423" isShortcut="true" element="ID=19" metaclass="Interface">
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=424" isShortcut="true" element="ID=24" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=425" isShortcut="true" element="ID=25" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=426" isShortcut="true" element="ID=139" metaclass="Module" />
+      <DiagramReference id="ID=427" isShortcut="true" element="ID=130" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=428" isShortcut="true" element="ID=137" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=429" isShortcut="true" element="ID=141" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=430" isShortcut="true" element="ID=126" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=431" isShortcut="true" element="ID=138" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=432" isShortcut="true" element="ID=125" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=433" isShortcut="true" element="ID=131" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=434" isShortcut="true" element="ID=132" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=435" isShortcut="true" element="ID=135" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=436" isShortcut="true" element="ID=127" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=437" isShortcut="true" element="ID=128" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=438" isShortcut="true" element="ID=133" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=439" isShortcut="true" element="ID=134" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=440" isShortcut="true" element="ID=136" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+    </DiagramReference>
+    <DiagramReference id="ID=411" element="ID=9" metaclass="Namespace">
+      <DiagramReference id="ID=441" isShortcut="true" element="ID=42" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=442" isShortcut="true" element="ID=15" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Version">1.0</Property>
+        <Property name="Author">Marcelo Mafra</Property>
+        <Property name="Persistent">False</Property>
+        <Property name="Stereotype">interface</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=443" isShortcut="true" element="ID=14" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=444" isShortcut="true" element="ID=13" metaclass="Interface">
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=445" isShortcut="true" element="ID=41" metaclass="Enum" />
+      <DiagramReference id="ID=446" isShortcut="true" element="ID=39" metaclass="Enum" />
+      <DiagramReference id="ID=447" isShortcut="true" element="ID=43" metaclass="Module" />
+      <DiagramReference id="ID=448" isShortcut="true" element="ID=40" metaclass="Class">
+        <Property name="Sealed">False</Property>
+        <Property name="Persistent">False</Property>
+        <Property name="Abstract">False</Property>
+      </DiagramReference>
+    </DiagramReference>
+    <DiagramReference id="ID=412" element="ID=10" metaclass="Namespace">
+      <DiagramReference id="ID=462" isShortcut="true" element="ID=201" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=463" isShortcut="true" element="ID=200" metaclass="Module" />
+      <DiagramReference id="ID=464" isShortcut="true" element="ID=199" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=465" isShortcut="true" element="ID=198" metaclass="Interface">
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+    </DiagramReference>
+    <DiagramReference id="ID=413" />
+  </Diagram>
+  <Package name="DialogsInterfaces" id="ID=8">
+    <Diagram name="DialogsInterfaces" id="ID=142" metaclass="Namespace Diagram" file="default.txvpck.html">
+      <Property name="defaultDiagram">true</Property>
+      <DiagramReference id="ID=233" element="ID=17" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=234" element="ID=22" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=235" element="ID=16" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=236" element="ID=23" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=237" element="ID=18" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=238" element="ID=129" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=239" element="ID=20" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=240" element="ID=21" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=241" element="ID=140" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=242" element="ID=19" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=243" element="ID=24" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=244" element="ID=25" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=245" element="ID=139" metaclass="Module" />
+      <DiagramReference id="ID=246" element="ID=125" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=247" element="ID=126" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=248" element="ID=127" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=249" element="ID=128" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=250" element="ID=130" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=251" element="ID=131" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=252" element="ID=132" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=253" element="ID=133" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=254" element="ID=134" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=255" element="ID=135" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=256" element="ID=136" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=257" element="ID=137" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=258" element="ID=138" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=259" element="ID=141" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+    </Diagram>
+    <Classifier name="ICosmosConnectionInfo" id="ID=17" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Method id="ID=147" name="ShowConnectionInfo" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=147" type="" isPrimitive="true" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=148" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ICosmosConnectionInfo</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+    </Classifier>
+    <Classifier name="ICosmosUser" id="ID=22" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Method id="ID=175" name="ShowUserInfo" visibility="public">
+        <Parameter elementName="UserLogin" id="ID3=175_29929" type="string" isPrimitive="true" />
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=175" type="" isPrimitive="true" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=176" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ICosmosUser</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+    </Classifier>
+    <Classifier name="ICosmosConfiguration" id="ID=16" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Method id="ID=123" name="AddPage" visibility="public">
+        <Parameter elementName="Control" id="ID3=123_29930" type="TWinControl" isPrimitive="true" />
+        <Parameter elementName="Caption" id="ID3=123_29931" type="string" isPrimitive="true" />
+        <Parameter elementName="index" id="ID3=123_29932" type="integer" systemType="Int32" isPrimitive="false" />
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=123" type="" isPrimitive="true" />
+      </Method>
+      <Method id="ID=124" name="SelectForm" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">TForm</Property>
+        <ReturnType id="ID=124" type="TForm" isPrimitive="true" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=143" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ICosmosConfiguration</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+    </Classifier>
+    <Classifier name="ICosmosWindowsManager" id="ID=23" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Method id="ID=179" name="SelectForm" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">TForm</Property>
+        <ReturnType id="ID=179" type="TForm" isPrimitive="true" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=180" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ICosmosWindowsManager</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+    </Classifier>
+    <Classifier name="ICosmosFicha" id="ID=18" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Method id="ID=151" name="ShowFicha" visibility="public">
+        <Parameter elementName="codcad" id="ID3=151_29933" type="integer" systemType="Int32" isPrimitive="false" />
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=151" type="" isPrimitive="true" />
+      </Method>
+      <Method id="ID=152" name="SearchFicha" visibility="public">
+        <Parameter elementName="LoginName" id="ID3=152_29934" type="string" isPrimitive="true" />
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=152" type="" isPrimitive="true" />
+      </Method>
+      <Method id="ID=153" name="ShowFicha" visibility="public">
+        <Parameter elementName="Data" id="ID3=153_29935" type="Olevariant" isPrimitive="true" />
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=153" type="" isPrimitive="true" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=154" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ICosmosFicha</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+    </Classifier>
+    <Classifier name="ICosmosTest" id="ID=129" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Method id="ID=268" name="SelectFocus" visibility="public">
+        <Parameter elementName="UserName" id="ID3=268_29936" type="string" isPrimitive="true" />
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Integer</Property>
+        <ReturnType id="ID=268" type="integer" systemType="Int32" isPrimitive="false" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=269" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ICosmosTest</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+    </Classifier>
+    <Classifier name="ICosmosSplash" id="ID=20" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Method id="ID=165" name="ShowAppAbout" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=165" type="" isPrimitive="true" />
+      </Method>
+      <Method id="ID=166" name="ShowAppSplash" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=166" type="" isPrimitive="true" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=167" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ICosmosSplash</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+    </Classifier>
+    <Classifier name="ICosmosTips" id="ID=21" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Method id="ID=171" name="ShowTips" visibility="public">
+        <Parameter elementName="FileName" id="ID3=171_29921" type="string" isPrimitive="true" />
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Boolean</Property>
+        <ReturnType id="ID=171" type="boolean" systemType="Boolean" isPrimitive="false" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=172" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ICosmosTips</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+    </Classifier>
+    <Classifier name="ICosmosInfo" id="ID=140" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Method id="ID=274" name="ShowAbout" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=274" type="" isPrimitive="true" />
+      </Method>
+      <Method id="ID=275" name="ShowSplash" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=275" type="" isPrimitive="true" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=276" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ICosmosInfo</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+    </Classifier>
+    <Classifier name="ICosmosLogin" id="ID=19" type="Interface" visibility="public">
+      <Property name="Persistent">False</Property>
+      <Uses />
+      <Method id="ID=159" name="Login" visibility="public">
+        <Parameter elementName="UserName" id="ID3=159_29922" type="string" isPrimitive="true" />
+        <Parameter elementName="Password" id="ID3=159_29923" type="string" isPrimitive="true" />
+        <Parameter elementName="RoleName" id="ID3=159_29924" type="string" isPrimitive="true" />
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Boolean</Property>
+        <ReturnType id="ID=159" type="boolean" systemType="Boolean" isPrimitive="false" />
+      </Method>
+      <Method id="ID=160" name="LoginDefaultRole" visibility="public">
+        <Parameter elementName="UserName" id="ID3=160_29924" type="string" isPrimitive="true" />
+        <Parameter elementName="Password" id="ID3=160_29923" type="string" isPrimitive="true" />
+        <Parameter elementName="RoleName" id="ID3=160_29922" type="string" isPrimitive="true" />
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Boolean</Property>
+        <ReturnType id="ID=160" type="boolean" systemType="Boolean" isPrimitive="false" />
+      </Method>
+      <Method id="ID=161" name="LoginDefaultUser" visibility="public">
+        <Parameter elementName="Password" id="ID3=161_29923" type="string" isPrimitive="true" />
+        <Parameter elementName="UserName" id="ID3=161_29922" type="string" isPrimitive="true" />
+        <Parameter elementName="RoleName" id="ID3=161_29924" type="string" isPrimitive="true" />
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Boolean</Property>
+        <ReturnType id="ID=161" type="boolean" systemType="Boolean" isPrimitive="false" />
+      </Method>
+    </Classifier>
+    <Classifier name="ICosmosWizard" id="ID=24" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Field fieldType="Field" elementName="WizardName" id="ID=184" type="string" isPrimitive="true" isProperty="true" visibility="public">
+        <Property name="Type">String</Property>
+        <Property name="Has setter">False</Property>
+        <Property name="Has getter">True</Property>
+      </Field>
+      <Method id="ID=183" name="GetWizardName" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">String</Property>
+        <ReturnType id="ID=183" type="string" isPrimitive="true" />
+      </Method>
+      <Method id="ID=185" name="Execute" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Boolean</Property>
+        <ReturnType id="ID=185" type="boolean" systemType="Boolean" isPrimitive="false" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=186" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ICosmosWizard</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+    </Classifier>
+    <Classifier name="IRegisterInfo" id="ID=25" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Method id="ID=192" name="IsRegistered" visibility="public">
+        <Parameter elementName="Module" id="ID3=192_29922" typeref="ID=39" type="TCosmosModules" isPrimitive="false" />
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Boolean</Property>
+        <ReturnType id="ID=192" type="boolean" systemType="Boolean" isPrimitive="false" />
+      </Method>
+      <Method id="ID=193" name="ShowRegisterForm" visibility="public">
+        <Parameter elementName="Module" id="ID3=193_29924" typeref="ID=39" type="TCosmosModules" isPrimitive="false" />
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=193" type="" isPrimitive="true" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=194" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">IRegisterInfo</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+    </Classifier>
+    <Classifier name="globals DialogsInterfaces" id="ID=139" type="Module" visibility="public">
+      <Uses />
+    </Classifier>
+    <Classifier name="ICosmosEnderecos" id="ID=125" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Method id="ID=287" name="GetEnderecosFoco" visibility="public">
+        <Parameter elementName="codfoc" id="ID3=287_29924" type="integer" systemType="Int32" isPrimitive="false" />
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=287" type="" isPrimitive="true" />
+      </Method>
+      <Method id="ID=288" name="GetEnderecosCadastrado" visibility="public">
+        <Parameter elementName="codcad" id="ID3=288_29924" type="integer" systemType="Int32" isPrimitive="false" />
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=288" type="" isPrimitive="true" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=289" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ICosmosEnderecos</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+    </Classifier>
+    <Classifier name="ICosmosSearchCadastrados" id="ID=126" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Method id="ID=292" name="SearchPupils" visibility="public">
+        <Parameter elementName="ActiveFocus" id="ID3=292_29924" type="boolean" systemType="Boolean" isPrimitive="false" />
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Olevariant</Property>
+        <ReturnType id="ID=292" type="Olevariant" isPrimitive="true" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=293" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ICosmosSearchCadastrados</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+    </Classifier>
+    <Classifier name="ICosmosHistorico" id="ID=127" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Method id="ID=295" name="LoadHistorico" visibility="public">
+        <Parameter elementName="codcad" id="ID3=295_29924" type="integer" systemType="Int32" isPrimitive="false" />
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=295" type="" isPrimitive="true" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=296" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ICosmosHistorico</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+    </Classifier>
+    <Classifier name="ICosmosDesligamentos" id="ID=128" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Method id="ID=298" name="DesligarPesquisador" visibility="public">
+        <Parameter elementName="codcad" id="ID3=298_29924" type="integer" systemType="Int32" isPrimitive="false" />
+        <Parameter elementName="nomcad" id="ID3=298_29923" type="string" isPrimitive="true" />
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Boolean</Property>
+        <ReturnType id="ID=298" type="boolean" systemType="Boolean" isPrimitive="false" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=299" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ICosmosDesligamentos</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+    </Classifier>
+    <Classifier name="ICosmosOpenFocus" id="ID=130" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Method id="ID=301" name="OpenFocus" visibility="public">
+        <Parameter elementName="UserName" id="ID3=301_29923" type="string" isPrimitive="true" />
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">TFocus</Property>
+        <ReturnType id="ID=301" typeref="ID=40" type="TFocus" isPrimitive="false" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=302" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ICosmosOpenFocus</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+    </Classifier>
+    <Classifier name="ICosmosMeiosContatos" id="ID=131" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Method id="ID=304" name="ShowMeiosContatosFocos" visibility="public">
+        <Parameter elementName="codfoc" id="ID3=304_29923" type="integer" systemType="Int32" isPrimitive="false" />
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=304" type="" isPrimitive="true" />
+      </Method>
+      <Method id="ID=305" name="ShowMeiosContatosPesquisador" visibility="public">
+        <Parameter elementName="codcad" id="ID3=305_29924" type="integer" systemType="Int32" isPrimitive="false" />
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=305" type="" isPrimitive="true" />
+      </Method>
+      <Method id="ID=306" name="ShowMeiosContatosAluno" visibility="public">
+        <Parameter elementName="codcad" id="ID3=306_29924" type="integer" systemType="Int32" isPrimitive="false" />
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=306" type="" isPrimitive="true" />
+      </Method>
+      <Method id="ID=307" name="ShowMeiosContatosCadastrado" visibility="public">
+        <Parameter elementName="codcad" id="ID3=307_29924" type="integer" systemType="Int32" isPrimitive="false" />
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=307" type="" isPrimitive="true" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=308" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ICosmosMeiosContatos</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+    </Classifier>
+    <Classifier name="ICosmosLocateCadastrados" id="ID=132" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Field fieldType="Field" elementName="Dataset" id="ID=315" type="TDataset" isPrimitive="true" isProperty="true" visibility="public">
+        <Property name="Type">TDataset</Property>
+        <Property name="Has setter">False</Property>
+        <Property name="Has getter">True</Property>
+      </Field>
+      <Method id="ID=313" name="GetJovensTM" visibility="public">
+        <Parameter elementName="ActiveFocus" id="ID3=313_29924" type="boolean" systemType="Boolean" isPrimitive="false" />
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Boolean</Property>
+        <ReturnType id="ID=313" type="boolean" systemType="Boolean" isPrimitive="false" />
+      </Method>
+      <Method id="ID=314" name="GetPesquisadores" visibility="public">
+        <Parameter elementName="ActiveFocus" id="ID3=314_29924" type="boolean" systemType="Boolean" isPrimitive="false" />
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Boolean</Property>
+        <ReturnType id="ID=314" type="boolean" systemType="Boolean" isPrimitive="false" />
+      </Method>
+      <Method id="ID=316" name="GetDataset" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">TDataset</Property>
+        <ReturnType id="ID=316" type="TDataset" isPrimitive="true" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=317" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ICosmosLocateCadastrados</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+    </Classifier>
+    <Classifier name="ITempPesquisa" id="ID=133" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Field fieldType="Field" elementName="Dataset" id="ID=324" type="TDataset" isPrimitive="true" isProperty="true" visibility="public">
+        <Property name="Type">TDataset</Property>
+        <Property name="Has setter">False</Property>
+        <Property name="Has getter">True</Property>
+      </Field>
+      <Method id="ID=323" name="Execute" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Boolean</Property>
+        <ReturnType id="ID=323" type="boolean" systemType="Boolean" isPrimitive="false" />
+      </Method>
+      <Method id="ID=325" name="GetDataset" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">TDataset</Property>
+        <ReturnType id="ID=325" type="TDataset" isPrimitive="true" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=326" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ITempPesquisa</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+    </Classifier>
+    <Classifier name="ICosmosToolsManager" id="ID=134" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Method id="ID=204" name="Execute" visibility="public">
+        <Parameter elementName="FileName" id="ID3=204_29924" type="string" isPrimitive="true" />
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=204" type="" isPrimitive="true" />
+      </Method>
+      <Method id="ID=205" name="OpenManager" visibility="public">
+        <Parameter elementName="FileName" id="ID3=205_29924" type="string" isPrimitive="true" />
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=205" type="" isPrimitive="true" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=206" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ICosmosToolsManager</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+    </Classifier>
+    <Classifier name="ICosmosSimpleSearch" id="ID=135" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Field fieldType="Field" elementName="Dataset" id="ID=339" type="TDataset" isPrimitive="true" isProperty="true" visibility="public">
+        <Property name="Type">TDataset</Property>
+        <Property name="Has setter">False</Property>
+        <Property name="Has getter">True</Property>
+      </Field>
+      <Method id="ID=333" name="SearchProfissoes" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Boolean</Property>
+        <ReturnType id="ID=333" type="boolean" systemType="Boolean" isPrimitive="false" />
+      </Method>
+      <Method id="ID=334" name="SearchMeiosContatos" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Boolean</Property>
+        <ReturnType id="ID=334" type="boolean" systemType="Boolean" isPrimitive="false" />
+      </Method>
+      <Method id="ID=335" name="SearchLicoesEI" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Boolean</Property>
+        <ReturnType id="ID=335" type="boolean" systemType="Boolean" isPrimitive="false" />
+      </Method>
+      <Method id="ID=336" name="SearchDiscipuladosLectorium" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Boolean</Property>
+        <ReturnType id="ID=336" type="boolean" systemType="Boolean" isPrimitive="false" />
+      </Method>
+      <Method id="ID=337" name="SearchDiscipuladosEI" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Boolean</Property>
+        <ReturnType id="ID=337" type="boolean" systemType="Boolean" isPrimitive="false" />
+      </Method>
+      <Method id="ID=338" name="SearchDiscipuladosEE" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Boolean</Property>
+        <ReturnType id="ID=338" type="boolean" systemType="Boolean" isPrimitive="false" />
+      </Method>
+      <Method id="ID=340" name="GetDataset" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">TDataset</Property>
+        <ReturnType id="ID=340" type="TDataset" isPrimitive="true" />
+      </Method>
+      <Method id="ID=341" name="SearchFocos" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Boolean</Property>
+        <ReturnType id="ID=341" type="boolean" systemType="Boolean" isPrimitive="false" />
+      </Method>
+      <Method id="ID=342" name="SearchTiposEventosTP" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Boolean</Property>
+        <ReturnType id="ID=342" type="boolean" systemType="Boolean" isPrimitive="false" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=343" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ICosmosSimpleSearch</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+    </Classifier>
+    <Classifier name="ICosmosTransferencias" id="ID=136" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Method id="ID=355" name="TransfereCadastrado" visibility="public">
+        <Parameter elementName="codcad" id="ID3=355_29924" type="integer" systemType="Int32" isPrimitive="false" />
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=355" type="" isPrimitive="true" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=356" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ICosmosTransferencias</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+    </Classifier>
+    <Classifier name="ICosmosLocateLessosEI" id="ID=137" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Method id="ID=360" name="GetLessonEI" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Boolean</Property>
+        <ReturnType id="ID=360" type="boolean" systemType="Boolean" isPrimitive="false" />
+      </Method>
+      <Method id="ID=361" name="GetSelectedText" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">String</Property>
+        <ReturnType id="ID=361" type="string" isPrimitive="true" />
+      </Method>
+      <Method id="ID=362" name="GetSelectedID" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Integer</Property>
+        <ReturnType id="ID=362" type="integer" systemType="Int32" isPrimitive="false" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=363" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ICosmosLocateLessosEI</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+      <Field fieldType="Field" elementName="SelectedText" id="ID=358" type="string" isPrimitive="true" isProperty="true" visibility="public">
+        <Property name="Type">String</Property>
+        <Property name="Has setter">False</Property>
+        <Property name="Has getter">True</Property>
+      </Field>
+      <Field fieldType="Field" elementName="SelectedID" id="ID=359" type="integer" systemType="Int32" isPrimitive="false" isProperty="true" visibility="public">
+        <Property name="Type">Integer</Property>
+        <Property name="Has setter">False</Property>
+        <Property name="Has getter">True</Property>
+      </Field>
+    </Classifier>
+    <Classifier name="ICosmosSearch" id="ID=138" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Field fieldType="Field" elementName="ActiveFocus" id="ID=375" type="boolean" systemType="Boolean" isPrimitive="false" isProperty="true" visibility="public">
+        <Property name="Type">Boolean</Property>
+        <Property name="Has setter">True</Property>
+        <Property name="Has getter">True</Property>
+      </Field>
+      <Field fieldType="Field" elementName="Dataset" id="ID=376" type="TDataset" isPrimitive="true" isProperty="true" visibility="public">
+        <Property name="Type">TDataset</Property>
+        <Property name="Has setter">False</Property>
+        <Property name="Has getter">True</Property>
+      </Field>
+      <Method id="ID=371" name="GetDataset" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">TDataset</Property>
+        <ReturnType id="ID=371" type="TDataset" isPrimitive="true" />
+      </Method>
+      <Method id="ID=372" name="SearchJovensAlunos" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Boolean</Property>
+        <ReturnType id="ID=372" type="boolean" systemType="Boolean" isPrimitive="false" />
+      </Method>
+      <Method id="ID=373" name="SearchDirigentesEI" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Boolean</Property>
+        <ReturnType id="ID=373" type="boolean" systemType="Boolean" isPrimitive="false" />
+      </Method>
+      <Method id="ID=374" name="SearchMentoresEI" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Boolean</Property>
+        <ReturnType id="ID=374" type="boolean" systemType="Boolean" isPrimitive="false" />
+      </Method>
+      <Method id="ID=377" name="GetActiveFocus" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Boolean</Property>
+        <ReturnType id="ID=377" type="boolean" systemType="Boolean" isPrimitive="false" />
+      </Method>
+      <Method id="ID=378" name="SetActiveFocus" visibility="public">
+        <Parameter elementName="value" id="ID3=378_29924" type="boolean" systemType="Boolean" isPrimitive="false" />
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=378" type="" isPrimitive="true" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=379" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ICosmosSearch</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+    </Classifier>
+    <Classifier name="ICosmosLocateLogradouros" id="ID=141" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Field fieldType="Field" elementName="Dataset" id="ID=392" type="TDataset" isPrimitive="true" isProperty="true" visibility="public">
+        <Property name="Type">TDataset</Property>
+        <Property name="Has setter">False</Property>
+        <Property name="Has getter">True</Property>
+      </Field>
+      <Method id="ID=391" name="LocateLogradouro" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Boolean</Property>
+        <ReturnType id="ID=391" type="boolean" systemType="Boolean" isPrimitive="false" />
+      </Method>
+      <Method id="ID=393" name="GetDataset" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">TDataset</Property>
+        <ReturnType id="ID=393" type="TDataset" isPrimitive="true" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=394" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ICosmosLocateLogradouros</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+    </Classifier>
+  </Package>
+  <Package name="RootInterfaces" id="ID=9">
+    <Diagram name="RootInterfaces" id="ID=44" metaclass="Namespace Diagram" file="default.txvpck.html">
+      <Property name="defaultDiagram">true</Property>
+      <DiagramReference id="ID=466" element="ID=42" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+        <DiagramReference id="ID=480" element="ID=455" metaclass="Generalization Link">
+          <Property name="Client">ICosmosHelp</Property>
+          <Property name="Supplier">ICosmosInterfaces</Property>
+        </DiagramReference>
+      </DiagramReference>
+      <DiagramReference id="ID=467" element="ID=15" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Version">1.0</Property>
+        <Property name="Author">Marcelo Mafra</Property>
+        <Property name="Persistent">False</Property>
+        <Property name="Stereotype">interface</Property>
+        <DiagramReference id="ID=492" element="ID=108" metaclass="Generalization Link">
+          <Property name="Client">ICosmosDockedForm</Property>
+          <Property name="Supplier">ICosmosInterfaces</Property>
+        </DiagramReference>
+      </DiagramReference>
+      <DiagramReference id="ID=468" element="ID=14" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+        <DiagramReference id="ID=512" element="ID=67" metaclass="Association Link">
+          <Property name="Directed">False</Property>
+          <Property name="Type">association</Property>
+          <Property name="Client">CosmosModule</Property>
+          <Property name="Supplier">TCosmosModules</Property>
+        </DiagramReference>
+        <DiagramReference id="ID=513" element="ID=68" metaclass="Association Link">
+          <Property name="Directed">False</Property>
+          <Property name="Type">association</Property>
+          <Property name="Client">CampoAtivo</Property>
+          <Property name="Supplier">TCamposTrabalho</Property>
+        </DiagramReference>
+        <DiagramReference id="ID=514" element="ID=69" metaclass="Generalization Link">
+          <Property name="Client">ICosmosApplication</Property>
+          <Property name="Supplier">ICosmosInterfaces</Property>
+        </DiagramReference>
+        <DiagramReference id="ID=515" element="ID=70" metaclass="Association Link">
+          <Property name="Directed">False</Property>
+          <Property name="Type">association</Property>
+          <Property name="Client">ActiveFocus</Property>
+          <Property name="Supplier">TFocus</Property>
+        </DiagramReference>
+      </DiagramReference>
+      <DiagramReference id="ID=469" element="ID=13" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=470" element="ID=41" metaclass="Enum" />
+      <DiagramReference id="ID=471" element="ID=39" metaclass="Enum" />
+      <DiagramReference id="ID=472" element="ID=43" metaclass="Module" />
+      <DiagramReference id="ID=473" element="ID=40" metaclass="Class">
+        <Property name="Sealed">False</Property>
+        <Property name="Persistent">False</Property>
+        <Property name="Abstract">False</Property>
+      </DiagramReference>
+    </Diagram>
+    <Classifier name="ICosmosInterfaces" id="ID=13" type="Interface" visibility="public">
+      <Property name="Persistent">False</Property>
+      <Uses />
+    </Classifier>
+    <Classifier name="ICosmosHelp" id="ID=42" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Method id="ID=450" name="SetHelpFile" visibility="public">
+        <Parameter elementName="Value" id="ID3=450_29954" type="string" isPrimitive="true" />
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=450" type="" isPrimitive="true" />
+      </Method>
+      <Method id="ID=451" name="GetHelpFile" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">String</Property>
+        <ReturnType id="ID=451" type="string" isPrimitive="true" />
+      </Method>
+      <Method id="ID=452" name="ShowHelpSearch" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Integer</Property>
+        <ReturnType id="ID=452" type="integer" systemType="Int32" isPrimitive="false" />
+      </Method>
+      <Method id="ID=453" name="ShowHelpIndex" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Integer</Property>
+        <ReturnType id="ID=453" type="integer" systemType="Int32" isPrimitive="false" />
+      </Method>
+      <Method id="ID=454" name="ShowHelpContents" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Integer</Property>
+        <ReturnType id="ID=454" type="integer" systemType="Int32" isPrimitive="false" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=455" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ICosmosHelp</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+      <Field fieldType="Field" elementName="HelpFile" id="ID=449" type="string" isPrimitive="true" isProperty="true" visibility="public">
+        <Property name="Type">String</Property>
+        <Property name="Has setter">True</Property>
+        <Property name="Has getter">True</Property>
+      </Field>
+    </Classifier>
+    <Classifier name="ICosmosDockedForm" id="ID=15" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Version">1.0</Property>
+      <Property name="Author">Marcelo Mafra</Property>
+      <Property name="Persistent">False</Property>
+      <Property name="Stereotype">interface</Property>
+      <Field fieldType="Field" elementName="HelpFile" id="ID=106" type="string" isPrimitive="true" isProperty="true" visibility="public">
+        <Property name="Type">String</Property>
+        <Property name="Has setter">False</Property>
+        <Property name="Has getter">True</Property>
+      </Field>
+      <Method id="ID=101" name="GetFormIDName" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">String</Property>
+        <ReturnType id="ID=101" type="string" isPrimitive="true" />
+      </Method>
+      <Method id="ID=102" name="GetHelpFile" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">String</Property>
+        <ReturnType id="ID=102" type="string" isPrimitive="true" />
+      </Method>
+      <Method id="ID=103" name="GetHelpID" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Integer</Property>
+        <ReturnType id="ID=103" type="integer" systemType="Int32" isPrimitive="false" />
+      </Method>
+      <Method id="ID=104" name="Locate" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=104" type="" isPrimitive="true" />
+      </Method>
+      <Method id="ID=105" name="GetTitle" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">String</Property>
+        <ReturnType id="ID=105" type="string" isPrimitive="true" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=108" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ICosmosDockedForm</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+      <Field fieldType="Field" elementName="Title" id="ID=98" type="string" isPrimitive="true" isProperty="true" visibility="public">
+        <Property name="Type">String</Property>
+        <Property name="Has setter">False</Property>
+        <Property name="Has getter">True</Property>
+      </Field>
+      <Field fieldType="Field" elementName="HelpID" id="ID=99" type="integer" systemType="Int32" isPrimitive="false" isProperty="true" visibility="public">
+        <Property name="Type">Integer</Property>
+        <Property name="Has setter">False</Property>
+        <Property name="Has getter">True</Property>
+      </Field>
+      <Field fieldType="Field" elementName="FormIDName" id="ID=100" type="string" isPrimitive="true" isProperty="true" visibility="public">
+        <Property name="Type">String</Property>
+        <Property name="Has setter">False</Property>
+        <Property name="Has getter">True</Property>
+      </Field>
+    </Classifier>
+    <Classifier name="TCosmosModules" id="ID=39" type="Enum" visibility="public">
+      <Uses>
+        <Use element="ID=405" type="field_type" />
+        <Use element="ID=406" type="field_type" />
+        <Use element="ID=407" type="field_type" />
+        <Use element="ID=408" type="field_type" />
+        <Use element="ID=409" type="field_type" />
+        <Use element="ID=46" type="field_type" />
+        <Use element="ID=55" type="method_return_type" />
+        <Use element="ID3=192_29922" type="parameter_type" />
+        <Use element="ID3=193_29924" type="parameter_type" />
+      </Uses>
+      <Field fieldType="Field" elementName="cmUsuarios" id="ID=405" typeref="ID=39" isPrimitive="false" type="Enumeration Value" visibility="public" />
+      <Field fieldType="Field" elementName="cmConferencias" id="ID=406" typeref="ID=39" isPrimitive="false" type="Enumeration Value" visibility="public" />
+      <Field fieldType="Field" elementName="cmFocos" id="ID=407" typeref="ID=39" isPrimitive="false" type="Enumeration Value" visibility="public" />
+      <Field fieldType="Field" elementName="cmSecretarias" id="ID=408" typeref="ID=39" isPrimitive="false" type="Enumeration Value" visibility="public" />
+      <Field fieldType="Field" elementName="cmFinanceiro" id="ID=409" typeref="ID=39" isPrimitive="false" type="Enumeration Value" visibility="public" />
+    </Classifier>
+    <Classifier name="TCamposTrabalho" id="ID=41" type="Enum" visibility="public">
+      <Uses>
+        <Use element="ID=399" type="field_type" />
+        <Use element="ID=400" type="field_type" />
+        <Use element="ID=401" type="field_type" />
+        <Use element="ID=402" type="field_type" />
+        <Use element="ID=403" type="field_type" />
+        <Use element="ID=404" type="field_type" />
+        <Use element="ID=47" type="field_type" />
+        <Use element="ID=63" type="method_return_type" />
+      </Uses>
+      <Field fieldType="Field" elementName="ctTM" id="ID=399" typeref="ID=41" isPrimitive="false" type="Enumeration Value" visibility="public" />
+      <Field fieldType="Field" elementName="ctTMB" id="ID=400" typeref="ID=41" isPrimitive="false" type="Enumeration Value" visibility="public" />
+      <Field fieldType="Field" elementName="ctTP" id="ID=401" typeref="ID=41" isPrimitive="false" type="Enumeration Value" visibility="public" />
+      <Field fieldType="Field" elementName="ctEI" id="ID=402" typeref="ID=41" isPrimitive="false" type="Enumeration Value" visibility="public" />
+      <Field fieldType="Field" elementName="ctNone" id="ID=403" typeref="ID=41" isPrimitive="false" type="Enumeration Value" visibility="public" />
+      <Field fieldType="Field" elementName="ctLectorium" id="ID=404" typeref="ID=41" isPrimitive="false" type="Enumeration Value" visibility="public" />
+    </Classifier>
+    <Classifier name="TFocus" id="ID=40" type="Class" visibility="public">
+      <Property name="Sealed">False</Property>
+      <Property name="Persistent">False</Property>
+      <Property name="Abstract">False</Property>
+      <Uses>
+        <Use element="ID=61" type="field_type" />
+        <Use element="ID=62" type="method_return_type" />
+        <Use element="ID=301" type="method_return_type" />
+      </Uses>
+      <Field fieldType="Field" elementName="FocusName" id="ID=456" type="string" isPrimitive="true" isProperty="true" visibility="public">
+        <Property name="Type">String</Property>
+        <Property name="Has setter">True</Property>
+        <Property name="Has getter">True</Property>
+        <Property name="Class">False</Property>
+      </Field>
+      <Field fieldType="Field" elementName="FocusID" id="ID=457" type="integer" systemType="Int32" isPrimitive="false" isProperty="true" visibility="public">
+        <Property name="Type">Integer</Property>
+        <Property name="Has setter">True</Property>
+        <Property name="Has getter">True</Property>
+        <Property name="Class">False</Property>
+      </Field>
+      <Field fieldType="Field" elementName="FFocusID" id="ID=460" type="integer" systemType="Int32" isPrimitive="false" visibility="internal">
+        <Property name="Type">Integer</Property>
+        <Property name="Class">False</Property>
+        <Property name="Const">False</Property>
+      </Field>
+      <Field fieldType="Field" elementName="FFocusName" id="ID=461" type="string" isPrimitive="true" visibility="internal">
+        <Property name="Type">String</Property>
+        <Property name="Class">False</Property>
+        <Property name="Const">False</Property>
+      </Field>
+      <Method id="ID=458" name="destroy" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Virtual">False</Property>
+        <Property name="Abstract">False</Property>
+        <Property name="Override">True</Property>
+        <Property name="Final">False</Property>
+        <Property name="Class">False</Property>
+        <ReturnType id="ID=458" type="" isPrimitive="true" />
+      </Method>
+      <Method id="ID=459" name="Create" isConstructor="true" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Virtual">False</Property>
+        <Property name="Abstract">False</Property>
+        <Property name="Override">False</Property>
+        <Property name="Final">False</Property>
+        <Property name="Class">False</Property>
+      </Method>
+    </Classifier>
+    <Classifier name="ICosmosApplication" id="ID=14" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Field fieldType="Field" elementName="CosmosModule" id="ID=46" typeref="ID=39" type="TCosmosModules" isPrimitive="false" isProperty="true" visibility="public">
+        <Property name="Type">TCosmosModules</Property>
+        <Property name="Has setter">False</Property>
+        <Property name="Has getter">True</Property>
+      </Field>
+      <Field fieldType="Field" elementName="CampoAtivo" id="ID=47" typeref="ID=41" type="TCamposTrabalho" isPrimitive="false" isProperty="true" visibility="public">
+        <Property name="Type">TCamposTrabalho</Property>
+        <Property name="Has setter">False</Property>
+        <Property name="Has getter">True</Property>
+      </Field>
+      <Field fieldType="Field" elementName="Title" id="ID=50" type="string" isPrimitive="true" isProperty="true" visibility="public">
+        <Property name="Type">String</Property>
+        <Property name="Has setter">False</Property>
+        <Property name="Has getter">True</Property>
+      </Field>
+      <Field fieldType="Field" elementName="MainForm" id="ID=51" type="TForm" isPrimitive="true" isProperty="true" visibility="public">
+        <Property name="Type">TForm</Property>
+        <Property name="Has setter">False</Property>
+        <Property name="Has getter">True</Property>
+      </Field>
+      <Field fieldType="Field" elementName="ActiveDockedForm" id="ID=60" type="TCustomForm" isPrimitive="true" isProperty="true" visibility="public">
+        <Property name="Type">TCustomForm</Property>
+        <Property name="Has setter">True</Property>
+        <Property name="Has getter">True</Property>
+      </Field>
+      <Field fieldType="Field" elementName="ActiveFocus" id="ID=61" typeref="ID=40" type="TFocus" isPrimitive="false" isProperty="true" visibility="public">
+        <Property name="Type">TFocus</Property>
+        <Property name="Has setter">False</Property>
+        <Property name="Has getter">True</Property>
+      </Field>
+      <Method id="ID=45" name="SetActiveDockedForm" visibility="public">
+        <Parameter elementName="Value" id="ID3=45_29908" type="TCustomForm" isPrimitive="true" />
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=45" type="" isPrimitive="true" />
+      </Method>
+      <Method id="ID=48" name="GetMainForm" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">TForm</Property>
+        <ReturnType id="ID=48" type="TForm" isPrimitive="true" />
+      </Method>
+      <Method id="ID=49" name="GetTitle" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">String</Property>
+        <ReturnType id="ID=49" type="string" isPrimitive="true" />
+      </Method>
+      <Method id="ID=52" name="GetActiveDockedForm" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">TCustomForm</Property>
+        <ReturnType id="ID=52" type="TCustomForm" isPrimitive="true" />
+      </Method>
+      <Method id="ID=53" name="CloseApplication" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=53" type="" isPrimitive="true" />
+      </Method>
+      <Method id="ID=54" name="CloseRegisteredWindow" visibility="public">
+        <Parameter elementName="WindowCaption" id="ID3=54_29921" type="string" isPrimitive="true" />
+        <Parameter elementName="ClassName" id="ID3=54_29922" type="string" isPrimitive="true" />
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=54" type="" isPrimitive="true" />
+      </Method>
+      <Method id="ID=55" name="GetCosmosModule" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">TCosmosModules</Property>
+        <ReturnType id="ID=55" typeref="ID=39" type="TCosmosModules" isPrimitive="false" />
+      </Method>
+      <Method id="ID=56" name="OpenRegisteredWindow" visibility="public">
+        <Parameter elementName="ModuleName" id="ID3=56_29923" type="string" isPrimitive="true" />
+        <Parameter elementName="ClassName" id="ID3=56_29924" type="string" isPrimitive="true" />
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">TCustomForm</Property>
+        <ReturnType id="ID=56" type="TCustomForm" isPrimitive="true" />
+      </Method>
+      <Method id="ID=57" name="AddCategory" visibility="public">
+        <Parameter elementName="Caption" id="ID3=57_29925" type="string" isPrimitive="true" />
+        <Parameter elementName="Actions" id="ID3=57_29926" type="TActionList" isPrimitive="true" />
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=57" type="" isPrimitive="true" />
+      </Method>
+      <Method id="ID=58" name="DropCategory" visibility="public">
+        <Parameter elementName="Caption" id="ID3=58_29927" type="string" isPrimitive="true" />
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=58" type="" isPrimitive="true" />
+      </Method>
+      <Method id="ID=59" name="ExecuteAction" visibility="public">
+        <Parameter elementName="Action" id="ID3=59_29928" type="TBasicAction" isPrimitive="true" />
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Boolean</Property>
+        <ReturnType id="ID=59" type="boolean" systemType="Boolean" isPrimitive="false" />
+      </Method>
+      <Method id="ID=62" name="GetActiveFocus" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">TFocus</Property>
+        <ReturnType id="ID=62" typeref="ID=40" type="TFocus" isPrimitive="false" />
+      </Method>
+      <Method id="ID=63" name="GetCampoAtivo" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">TCamposTrabalho</Property>
+        <ReturnType id="ID=63" typeref="ID=41" type="TCamposTrabalho" isPrimitive="false" />
+      </Method>
+      <Link targetName="CosmosModule" id="ID=67" metaclass="Association Link" idref="ID=39">
+        <Property name="Directed">False</Property>
+        <Property name="Type">association</Property>
+        <Property name="Client">CosmosModule</Property>
+        <Property name="Supplier">TCosmosModules</Property>
+      </Link>
+      <Link targetName="CampoAtivo" id="ID=68" metaclass="Association Link" idref="ID=41">
+        <Property name="Directed">False</Property>
+        <Property name="Type">association</Property>
+        <Property name="Client">CampoAtivo</Property>
+        <Property name="Supplier">TCamposTrabalho</Property>
+      </Link>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=69" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ICosmosApplication</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Link targetName="ActiveFocus" id="ID=70" metaclass="Association Link" idref="ID=40">
+        <Property name="Directed">False</Property>
+        <Property name="Type">association</Property>
+        <Property name="Client">ActiveFocus</Property>
+        <Property name="Supplier">TFocus</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+    </Classifier>
+    <Classifier name="globals RootInterfaces" id="ID=43" type="Module" visibility="public">
+      <Uses />
+    </Classifier>
+  </Package>
+  <Package name="DataAcessInterfaces" id="ID=10">
+    <Diagram name="DataAcessInterfaces" id="ID=202" metaclass="Namespace Diagram" file="default.txvpck.html">
+      <Property name="defaultDiagram">true</Property>
+      <DiagramReference id="ID=537" element="ID=201" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+        <DiagramReference id="ID=547" element="ID=229" metaclass="Generalization Link">
+          <Property name="Client">ICosmosExporter</Property>
+          <Property name="Supplier">ICosmosInterfaces</Property>
+        </DiagramReference>
+      </DiagramReference>
+      <DiagramReference id="ID=538" element="ID=200" metaclass="Module" />
+      <DiagramReference id="ID=539" element="ID=199" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+        <DiagramReference id="ID=559" element="ID=218" metaclass="Generalization Link">
+          <Property name="Client">ICosmosRemoteConnection</Property>
+          <Property name="Supplier">ICosmosInterfaces</Property>
+        </DiagramReference>
+      </DiagramReference>
+      <DiagramReference id="ID=540" element="ID=198" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+        <Property name="Persistent">False</Property>
+        <DiagramReference id="ID=562" element="ID=232" metaclass="Generalization Link">
+          <Property name="Client">ICosmosSearcher</Property>
+          <Property name="Supplier">ICosmosInterfaces</Property>
+        </DiagramReference>
+      </DiagramReference>
+      <DiagramReference id="ID=541" isShortcut="true" element="ID=13" metaclass="Interface">
+        <Property name="Circle view">False</Property>
+        <Property name="Persistent">False</Property>
+      </DiagramReference>
+    </Diagram>
+    <Classifier name="ICosmosExporter" id="ID=201" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Method id="ID=224" name="ToMSWord" visibility="public">
+        <Parameter elementName="Data" id="ID3=224_29924" type="Olevariant" isPrimitive="true" />
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=224" type="" isPrimitive="true" />
+      </Method>
+      <Method id="ID=225" name="ToMSExcel" visibility="public">
+        <Parameter elementName="Data" id="ID3=225_29924" type="Olevariant" isPrimitive="true" />
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=225" type="" isPrimitive="true" />
+      </Method>
+      <Method id="ID=226" name="ToHTML" visibility="public">
+        <Parameter elementName="Data" id="ID3=226_29924" type="Olevariant" isPrimitive="true" />
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=226" type="" isPrimitive="true" />
+      </Method>
+      <Method id="ID=227" name="Exportar" visibility="public">
+        <Parameter elementName="Data" id="ID3=227_29924" type="Olevariant" isPrimitive="true" />
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=227" type="" isPrimitive="true" />
+      </Method>
+      <Method id="ID=228" name="ToXML" visibility="public">
+        <Parameter elementName="Data" id="ID3=228_29924" type="Olevariant" isPrimitive="true" />
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=228" type="" isPrimitive="true" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=229" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ICosmosExporter</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+    </Classifier>
+    <Classifier name="globals DataAcessInterfaces" id="ID=200" type="Module" visibility="public">
+      <Uses />
+    </Classifier>
+    <Classifier name="ICosmosRemoteConnection" id="ID=199" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Field fieldType="Field" elementName="ConnectionBroker" id="ID=208" type="TConnectionBroker" isPrimitive="true" isProperty="true" visibility="public">
+        <Property name="Type">TConnectionBroker</Property>
+        <Property name="Has setter">False</Property>
+        <Property name="Has getter">True</Property>
+      </Field>
+      <Field fieldType="Field" elementName="Connected" id="ID=209" type="boolean" systemType="Boolean" isPrimitive="false" isProperty="true" visibility="public">
+        <Property name="Type">Boolean</Property>
+        <Property name="Has setter">True</Property>
+        <Property name="Has getter">True</Property>
+      </Field>
+      <Field fieldType="Field" elementName="ActiveDataset" id="ID=210" type="TDataset" isPrimitive="true" isProperty="true" visibility="public">
+        <Property name="Type">TDataset</Property>
+        <Property name="Has setter">True</Property>
+        <Property name="Has getter">True</Property>
+      </Field>
+      <Method id="ID=207" name="ExecuteDQL" visibility="public">
+        <Parameter elementName="DQL" id="ID3=207_29923" type="string" isPrimitive="true" />
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Olevariant</Property>
+        <ReturnType id="ID=207" type="Olevariant" isPrimitive="true" />
+      </Method>
+      <Method id="ID=211" name="SetActiveDataset" visibility="public">
+        <Parameter elementName="value" id="ID3=211_29923" type="TDataset" isPrimitive="true" />
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=211" type="" isPrimitive="true" />
+      </Method>
+      <Method id="ID=212" name="GetActiveDataset" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">TDataset</Property>
+        <ReturnType id="ID=212" type="TDataset" isPrimitive="true" />
+      </Method>
+      <Method id="ID=213" name="GetConnectionBroker" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">TConnectionBroker</Property>
+        <ReturnType id="ID=213" type="TConnectionBroker" isPrimitive="true" />
+      </Method>
+      <Method id="ID=214" name="SetConnected" visibility="public">
+        <Parameter elementName="Value" id="ID3=214_29922" type="boolean" systemType="Boolean" isPrimitive="false" />
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=214" type="" isPrimitive="true" />
+      </Method>
+      <Method id="ID=215" name="GetConnected" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Boolean</Property>
+        <ReturnType id="ID=215" type="boolean" systemType="Boolean" isPrimitive="false" />
+      </Method>
+      <Method id="ID=216" name="DefaultLocate" visibility="public">
+        <Property name="Reintroduce">False</Property>
+        <ReturnType id="ID=216" type="" isPrimitive="true" />
+      </Method>
+      <Method id="ID=217" name="OpenBufferedData" visibility="public">
+        <Parameter elementName="BufferID" id="ID3=217_29922" type="string" isPrimitive="true" />
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Olevariant</Property>
+        <ReturnType id="ID=217" type="Olevariant" isPrimitive="true" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=218" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ICosmosRemoteConnection</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+    </Classifier>
+    <Classifier name="ICosmosSearcher" id="ID=198" type="Interface" visibility="public">
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <Method id="ID=230" name="ExecuteDQL" visibility="public">
+        <Parameter elementName="DQL" id="ID3=230_29922" type="string" isPrimitive="true" />
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Olevariant</Property>
+        <ReturnType id="ID=230" type="Olevariant" isPrimitive="true" />
+      </Method>
+      <Method id="ID=231" name="ExecuteSearch" visibility="public">
+        <Parameter elementName="SearchID" id="ID3=231_29922" type="integer" systemType="Int32" isPrimitive="false" />
+        <Parameter elementName="Target" id="ID3=231_29922" type="TDataset" isPrimitive="true" />
+        <Property name="Reintroduce">False</Property>
+        <Property name="Returns">Boolean</Property>
+        <ReturnType id="ID=231" type="boolean" systemType="Boolean" isPrimitive="false" />
+      </Method>
+      <Link targetName="RootInterfaces.ICosmosInterfaces" id="ID=232" metaclass="Generalization Link" idref="ID=13">
+        <Property name="Client">ICosmosSearcher</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </Link>
+      <Extends idref="ID=13" refFN="RootInterfaces.ICosmosInterfaces" />
+      <Uses />
+    </Classifier>
+  </Package>
+  <Diagram name="CL_SAMPLE" id="ID=12" metaclass="Class Diagram" file="CL_SAMPLE.txvcls.html">
+    <DiagramReference id="ID=26" isShortcut="true" element="ID=13" metaclass="Interface">
+      <Property name="Circle view">False</Property>
+      <Property name="Persistent">False</Property>
+    </DiagramReference>
+    <DiagramReference id="ID=27" isShortcut="true" element="ID=14" metaclass="Interface">
+      <Property name="Circle view">False</Property>
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <DiagramReference id="ID=90" element="ID=69" metaclass="Generalization Link">
+        <Property name="Client">ICosmosApplication</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </DiagramReference>
+    </DiagramReference>
+    <DiagramReference id="ID=28" isShortcut="true" element="ID=15" metaclass="Interface">
+      <Property name="Circle view">False</Property>
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Version">1.0</Property>
+      <Property name="Author">Marcelo Mafra</Property>
+      <Property name="Persistent">False</Property>
+      <Property name="Stereotype">interface</Property>
+      <DiagramReference id="ID=118" element="ID=108" metaclass="Generalization Link">
+        <Property name="Client">ICosmosDockedForm</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </DiagramReference>
+    </DiagramReference>
+    <DiagramReference id="ID=29" isShortcut="true" element="ID=16" metaclass="Interface">
+      <Property name="Circle view">False</Property>
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <DiagramReference id="ID=146" element="ID=143" metaclass="Generalization Link">
+        <Property name="Client">ICosmosConfiguration</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </DiagramReference>
+    </DiagramReference>
+    <DiagramReference id="ID=30" isShortcut="true" element="ID=17" metaclass="Interface">
+      <Property name="Circle view">False</Property>
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <DiagramReference id="ID=150" element="ID=148" metaclass="Generalization Link">
+        <Property name="Client">ICosmosConnectionInfo</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </DiagramReference>
+    </DiagramReference>
+    <DiagramReference id="ID=31" isShortcut="true" element="ID=18" metaclass="Interface">
+      <Property name="Circle view">False</Property>
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <DiagramReference id="ID=158" element="ID=154" metaclass="Generalization Link">
+        <Property name="Client">ICosmosFicha</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </DiagramReference>
+    </DiagramReference>
+    <DiagramReference id="ID=32" isShortcut="true" element="ID=19" metaclass="Interface">
+      <Property name="Circle view">False</Property>
+      <Property name="Persistent">False</Property>
+    </DiagramReference>
+    <DiagramReference id="ID=33" isShortcut="true" element="ID=20" metaclass="Interface">
+      <Property name="Circle view">False</Property>
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <DiagramReference id="ID=170" element="ID=167" metaclass="Generalization Link">
+        <Property name="Client">ICosmosSplash</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </DiagramReference>
+    </DiagramReference>
+    <DiagramReference id="ID=34" isShortcut="true" element="ID=21" metaclass="Interface">
+      <Property name="Circle view">False</Property>
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <DiagramReference id="ID=174" element="ID=172" metaclass="Generalization Link">
+        <Property name="Client">ICosmosTips</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </DiagramReference>
+    </DiagramReference>
+    <DiagramReference id="ID=35" isShortcut="true" element="ID=22" metaclass="Interface">
+      <Property name="Circle view">False</Property>
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <DiagramReference id="ID=178" element="ID=176" metaclass="Generalization Link">
+        <Property name="Client">ICosmosUser</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </DiagramReference>
+    </DiagramReference>
+    <DiagramReference id="ID=36" isShortcut="true" element="ID=23" metaclass="Interface">
+      <Property name="Circle view">False</Property>
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <DiagramReference id="ID=182" element="ID=180" metaclass="Generalization Link">
+        <Property name="Client">ICosmosWindowsManager</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </DiagramReference>
+    </DiagramReference>
+    <DiagramReference id="ID=37" isShortcut="true" element="ID=24" metaclass="Interface">
+      <Property name="Circle view">False</Property>
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <DiagramReference id="ID=190" element="ID=186" metaclass="Generalization Link">
+        <Property name="Client">ICosmosWizard</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </DiagramReference>
+    </DiagramReference>
+    <DiagramReference id="ID=38" isShortcut="true" element="ID=25" metaclass="Interface">
+      <Property name="Circle view">False</Property>
+      <Property name="Extends">RootInterfaces.ICosmosInterfaces</Property>
+      <Property name="Persistent">False</Property>
+      <DiagramReference id="ID=197" element="ID=194" metaclass="Generalization Link">
+        <Property name="Client">IRegisterInfo</Property>
+        <Property name="Supplier">ICosmosInterfaces</Property>
+      </DiagramReference>
+    </DiagramReference>
+  </Diagram>
+</Model>

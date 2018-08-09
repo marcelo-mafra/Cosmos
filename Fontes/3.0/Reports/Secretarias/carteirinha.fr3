@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<TfrxReport Version="5.1.5" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="4095" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="41678,8952264583" ReportOptions.Description.Text="" ReportOptions.LastChange="41988,398741875" ScriptLanguage="PascalScript" ScriptText.Text="begin&#13;&#10;&#13;&#10;end.">
+  <Datasets>
+    <item DataSetName="Carteirinhas"/>
+  </Datasets>
+  <Variables>
+    <item Name=" Cosmos"/>
+    <item Name="Validade"/>
+    <item Name="Dirigente1"/>
+    <item Name="Dirigente2"/>
+    <item Name="Dirigente3"/>
+    <item Name="TelDir1"/>
+    <item Name="TelDir2"/>
+    <item Name="TelDir3"/>
+    <item Name="ActiveFocus"/>
+    <item Name="Local"/>
+  </Variables>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000"/>
+  <TfrxReportPage Name="Page1" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="5" RightMargin="5" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="260,78740157" Left="0" Top="18,89765" Width="755,906" ColumnWidth="0" ColumnGap="0" DataSetName="Carteirinhas" RowCount="0">
+      <TfrxMemoView Name="Memo1" Left="389,07112" Top="85,48825" Width="283,46475" Height="34,01577" DataField="NOMCAD" DataSetName="Carteirinhas" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="[Carteirinhas.&#34;NOMCAD&#34;]"/>
+      <TfrxPictureView Name="Picture1" Left="678,87446" Top="3,77953" Width="75,59055118" Height="113,3859" DataField="FOTCAD" DataSetName="Carteirinhas" HightQuality="False" Transparent="False" TransparentColor="16777215"/>
+      <TfrxMemoView Name="Memo2" Left="389,07112" Top="3,77953" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="LECTORIUM ROSICRUCIANUM"/>
+      <TfrxMemoView Name="Memo6" Left="389,07112" Top="149,29932" Width="370,39394" Height="45,35436" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Declaro, de livre e espontânea vontade, que todo e qualquer ato religioso (extrema-unção etc) fica somente a cargo do Lectorium Rosicrucianum, ao qual pertenço."/>
+      <TfrxMemoView Name="Memo7" Left="389,07112" Top="243,34663" Width="370,39394" Height="11,33859" DataField="NOMCAD" DataSetName="Carteirinhas" Font.Charset="1" Font.Color="0" Font.Height="-8" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="[Carteirinhas.&#34;NOMCAD&#34;]"/>
+      <TfrxMemoView Name="Memo3" Left="389,07112" Top="22,23624" Width="249,44898" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Escola Internacional da Rosacruz Áurea"/>
+      <TfrxMemoView Name="Memo4" Left="389,07112" Top="37,7953" Width="249,44898" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Departamento Brasileiro"/>
+      <TfrxLineView Name="Line1" Left="389,07112" Top="239,33086" Width="370,39394" Height="0" Color="0" Frame.Style="fsDot" Frame.Typ="4"/>
+      <TfrxLineView Name="Line2" Left="1,77953" Top="259,00804" Width="755,906" Height="0" Color="0" Frame.Style="fsDot" Frame.Typ="4"/>
+      <TfrxMemoView Name="Memo8" Left="7,55906" Top="73,92919" Width="362,83488" Height="22,67718" DataField="NOMFAM" DataSetName="Carteirinhas" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="[Carteirinhas.&#34;NOMFAM&#34;]"/>
+      <TfrxMemoView Name="Memo9" Left="7,55906" Top="7,55906" Width="362,83488" Height="30,23624" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="EM CASO DE ACIDENTE, MORTE OU ENFERMIDADE SÚBITA E GRAVE"/>
+      <TfrxMemoView Name="Memo10" Left="7,55906" Top="44,13389" Width="362,83488" Height="15,11812" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Peço o favor de comunicar, imediatamente, ao meu familiar"/>
+      <TfrxMemoView Name="Memo11" Left="7,55906" Top="96,94496" Width="49,13389" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="Telefone:"/>
+      <TfrxMemoView Name="Memo12" Left="60,25201" Top="96,94496" Width="124,72449" Height="18,89765" DataField="TELFAM" DataSetName="Carteirinhas" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[Carteirinhas.&#34;TELFAM&#34;]"/>
+      <TfrxMemoView Name="Memo13" Left="185,19697" Top="96,94496" Width="154,96073" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" ParentFont="False" Text=", e também no meu endereço"/>
+      <TfrxMemoView Name="Memo14" Left="7,55906" Top="120,96073" Width="362,83488" Height="64,25201" DataSetName="Carteirinhas" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[Carteirinhas.&#34;NOMLOG&#34;], [Carteirinhas.&#34;NUMEND&#34;]  [Carteirinhas.&#34;COMEND&#34;]  [Carteirinhas.&#34;NOMBAI&#34;]  [Carteirinhas.&#34;NOMCID&#34;]  [Carteirinhas.&#34;NOMEST&#34;]&#13;&#10;&#13;&#10;Telefone:[Carteirinhas.&#34;DESCON&#34;]"/>
+      <TfrxMemoView Name="Memo17" Left="7,55906" Top="191,21274" Width="362,83488" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="e ao LECTORIUM ROSICRUCIANUM nas pessoas de:"/>
+      <TfrxMemoView Name="Memo18" Left="654,85869" Top="124,72449" Width="49,13389" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="Validade:"/>
+      <TfrxMemoView Name="Memo19" Left="389,07112" Top="124,72449" Width="71,81107" Height="18,89765" DataField="MATCAD" DataSetName="Carteirinhas" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[Carteirinhas.&#34;MATCAD&#34;]"/>
+      <TfrxMemoView Name="Memo20" Left="472,44125" Top="124,72449" Width="177,63791" Height="18,89765" DataSetName="Carteirinhas" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[Carteirinhas.&#34;DOCIDE&#34;]   [Carteirinhas.&#34;ORGEXP&#34;]"/>
+      <TfrxLineView Name="Line3" Left="-1" Top="90,70872" Width="0" Height="37,7953" Color="0" Frame.Style="fsDot" Frame.Typ="1"/>
+      <TfrxLineView Name="Line4" Left="755,906" Top="83,14966" Width="0" Height="37,7953" Color="0" Frame.Style="fsDot" Frame.Typ="1"/>
+      <TfrxMemoView Name="Memo22" Left="7,55906" Top="214,21274" Width="260,78757" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[IIF(&#60;Carteirinhas.&#34;NOMCAD&#34;&#62; &#60;&#62; &#60;Dirigente1&#62;, &#60;Dirigente1&#62;, &#60;Dirigente3&#62;)]"/>
+      <TfrxLineView Name="Line7" Left="377,953" Top="0" Width="0" Height="257,00804" Color="0" Frame.Color="8421504" Frame.Style="fsDot" Frame.Typ="1"/>
+      <TfrxMemoView Name="Memo15" Left="706,77211" Top="122,72449" Width="105,82684" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="[Validade]"/>
+      <TfrxMemoView Name="Memo16" Left="389,07112" Top="56,69295" Width="283,46475" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="[ActiveFocus]"/>
+      <TfrxMemoView Name="Memo5" Left="389,07112" Top="202,09462" Width="362,83488" Height="18,89765" DisplayFormat.FormatStr="dd mmmm &#34;de&#34; yyyy" DisplayFormat.Kind="fkDateTime" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[Local],  [Now]"/>
+      <TfrxMemoView Name="Memo23" Left="279,68522" Top="214,21274" Width="90,70872" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[IIF(&#60;Carteirinhas.&#34;NOMCAD&#34;&#62; &#60;&#62; &#60;Dirigente1&#62;, &#60;TelDir1&#62;, &#60;TelDir3&#62;)]"/>
+      <TfrxMemoView Name="Memo21" Left="7,55906" Top="238,11039" Width="260,78757" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[IIF(&#60;Carteirinhas.&#34;NOMCAD&#34;&#62; &#60;&#62; &#60;Dirigente2&#62;, &#60;Dirigente2&#62;, &#60;Dirigente3&#62;)]"/>
+      <TfrxMemoView Name="Memo24" Left="279,68522" Top="238,11039" Width="90,70872" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[IIF(&#60;Carteirinhas.&#34;NOMCAD&#34;&#62; &#60;&#62; &#60;Dirigente2&#62;, &#60;TelDir2&#62;, &#60;TelDir3&#62;)]"/>
+    </TfrxMasterData>
+  </TfrxReportPage>
+</TfrxReport>

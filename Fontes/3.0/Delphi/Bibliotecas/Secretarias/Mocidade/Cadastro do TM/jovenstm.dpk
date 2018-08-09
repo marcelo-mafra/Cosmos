@@ -1,0 +1,54 @@
+package jovenstm;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS OFF}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE RELEASE}
+{$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'Jovens do Trabalho da Mocidade'}
+{$RUNONLY}
+{$IMPLICITBUILD ON}
+
+requires
+  rtl,
+  dockedform,
+  frames,
+  interfaces,
+  cmlib,
+  vcl,
+  vclactnband,
+  vclx,
+  dbrtl,
+  dsnap,
+  vcldb,
+  dtimecntl,
+  vclimg,
+  Cosmos,
+  DCLEdbimg100,
+  svcutils;
+
+contains
+  cosmos.secretarias.view.mocidade in 'cosmos.secretarias.view.mocidade.pas' {FrmJovensTM},
+  cosmos.secretarias.view.cadastromocidade in 'cosmos.secretarias.view.cadastromocidade.pas' {FrmCadastroJovensTM};
+
+end.

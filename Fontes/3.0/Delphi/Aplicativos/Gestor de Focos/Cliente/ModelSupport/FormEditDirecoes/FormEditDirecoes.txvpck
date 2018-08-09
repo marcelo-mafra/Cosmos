@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="324tdck9t_v">
+    <property name="$name" value="FormEditDirecoes" />
+    <property name="$defaultDiagram" value="True" />
+    <property name="$metaclass" value="Package Diagram" />
+    <reference referencedUin="delphi:e_class:src:gfocos:FormEditDirecoes.TFrmEditDirecoes">
+      <property name="$shortcutReference" value="true" />
+    </reference>
+  </view>
+</nodeSet>

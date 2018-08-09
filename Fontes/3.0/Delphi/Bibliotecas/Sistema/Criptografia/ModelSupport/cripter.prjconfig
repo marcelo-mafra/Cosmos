@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<TgConfig Version="3" SubLevelDisabled="False">
+  <Option Name="namespaceFolder.cripter" Type="System.String" Value="" IsBrowsable="False" />
+  <Option Name="namespaceFolder.LbClass" Type="System.String" Value="" IsBrowsable="False" />
+</TgConfig>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="dkdo1chrh_v">
+    <property name="$name" value="Cripter" />
+    <property name="$defaultDiagram" value="True" />
+    <property name="$metaclass" value="Package Diagram" />
+    <reference referencedUin="delphi:e_class:src:gfocos:Cripter.TCripter">
+      <property name="$shortcutReference" value="true" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:gfocos:Cripter.TCriptMode">
+      <property name="$shortcutReference" value="true" />
+    </reference>
+  </view>
+</nodeSet>

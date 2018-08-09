@@ -1,0 +1,96 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{EC066AAC-C7D4-4F32-93B3-37A8E5ED07E0}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="Componentes\MainPack\Cosmos.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Componentes\MainPack\eventslogs.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Componentes\MainPack\busrules.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Componentes\MainPack\conmngr.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Componentes\SQLScript\dbxsqlscript.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Componentes\DateTimeControls\dtimecntl.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="Cosmos">
+			<MSBuild Projects="Componentes\MainPack\Cosmos.dproj"/>
+		</Target>
+		<Target Name="Cosmos:Clean">
+			<MSBuild Targets="Clean" Projects="Componentes\MainPack\Cosmos.dproj"/>
+		</Target>
+		<Target Name="Cosmos:Make">
+			<MSBuild Targets="Make" Projects="Componentes\MainPack\Cosmos.dproj"/>
+		</Target>
+		<Target Name="eventslogs">
+			<MSBuild Projects="Componentes\MainPack\eventslogs.dproj"/>
+		</Target>
+		<Target Name="eventslogs:Clean">
+			<MSBuild Targets="Clean" Projects="Componentes\MainPack\eventslogs.dproj"/>
+		</Target>
+		<Target Name="eventslogs:Make">
+			<MSBuild Targets="Make" Projects="Componentes\MainPack\eventslogs.dproj"/>
+		</Target>
+		<Target Name="busrules">
+			<MSBuild Projects="Componentes\MainPack\busrules.dproj"/>
+		</Target>
+		<Target Name="busrules:Clean">
+			<MSBuild Targets="Clean" Projects="Componentes\MainPack\busrules.dproj"/>
+		</Target>
+		<Target Name="busrules:Make">
+			<MSBuild Targets="Make" Projects="Componentes\MainPack\busrules.dproj"/>
+		</Target>
+		<Target Name="conmngr">
+			<MSBuild Projects="Componentes\MainPack\conmngr.dproj"/>
+		</Target>
+		<Target Name="conmngr:Clean">
+			<MSBuild Targets="Clean" Projects="Componentes\MainPack\conmngr.dproj"/>
+		</Target>
+		<Target Name="conmngr:Make">
+			<MSBuild Targets="Make" Projects="Componentes\MainPack\conmngr.dproj"/>
+		</Target>
+		<Target Name="dbxsqlscript">
+			<MSBuild Projects="Componentes\SQLScript\dbxsqlscript.dproj"/>
+		</Target>
+		<Target Name="dbxsqlscript:Clean">
+			<MSBuild Targets="Clean" Projects="Componentes\SQLScript\dbxsqlscript.dproj"/>
+		</Target>
+		<Target Name="dbxsqlscript:Make">
+			<MSBuild Targets="Make" Projects="Componentes\SQLScript\dbxsqlscript.dproj"/>
+		</Target>
+		<Target Name="dtimecntl">
+			<MSBuild Projects="Componentes\DateTimeControls\dtimecntl.dproj"/>
+		</Target>
+		<Target Name="dtimecntl:Clean">
+			<MSBuild Targets="Clean" Projects="Componentes\DateTimeControls\dtimecntl.dproj"/>
+		</Target>
+		<Target Name="dtimecntl:Make">
+			<MSBuild Targets="Make" Projects="Componentes\DateTimeControls\dtimecntl.dproj"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="Cosmos;eventslogs;busrules;conmngr;dbxsqlscript;dtimecntl"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="Cosmos:Clean;eventslogs:Clean;busrules:Clean;conmngr:Clean;dbxsqlscript:Clean;dtimecntl:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="Cosmos:Make;eventslogs:Make;busrules:Make;conmngr:Make;dbxsqlscript:Make;dtimecntl:Make"/>
+		</Target>
+		<Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+	</Project>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Este arquivo contém as infromações relevantes para a geração de todos os relatórios do sistema cosmos. Cada relatório possui um conjunto de parâmetros,
+ que por sua vez possui atributos. Seguem as convenções usadas neste arquivo e informações importantes para o entendimento dos atributos:
+ 
+    ParamName: Nome do parâmetro.
+    ParamType: Tipo do atributo, sendo:
+        0: número inteiro.
+        1: string.
+        2: lista de strings (com caracteres delimitadores);
+        3: lista de strings com valores correspondentes (código-valor).
+        4: Conjunto de valores.
+    PickList: lista de strings a ser selecionado em um combobox. Cada string da lista deve estar separado por um ponto e vírgula. Quando a string contiver espaços,
+        deve ser usado o caracter delimitador "|", logo antes e depos da string. Exemplo: |string 1|;|essa é a string 2|;|string 3| 
+-->
+
+<Labels>
+    <Label>
+        <LabelInfo>
+            <Info LabelId="1" LabelName="Pimaco 6280" Description="Etiquetas para folhas A4. 30 etiquetas por folha" Category="Pimaco" ReportFile="file.fr3" Enabled="True"/>
+        </LabelInfo>
+        <PageInfo>
+            <Param ParamName="PaperSize" ParamType="1" IsVisible="True" Description="Folha" HelpHint="Tamanho da folha" Value="A4" ConvertTo="" Order="0"/>
+            <Param ParamName="Height" ParamType="0" IsVisible="True" Description="Altura" HelpHint="Altura da folha." Value="29,7" ConvertTo="" Order="1"/>
+            <Param ParamName="Width" ParamType="0" IsVisible="True" Description="Largura" HelpHint="Largura da folha." Value="4" ConvertTo="" Order="2"/>           
+            <Param ParamName="MarginLeft" ParamType="0" IsVisible="True" Description="Margem esquerda" HelpHint="Margem esquerda da folha." Value="3" ConvertTo="" Order="3"/>
+            <Param ParamName="MarginRight" ParamType="0" IsVisible="True" Description="Margem direita" HelpHint="Margem direita da folha." Value="4" ConvertTo="" Order="4"/>
+            <Param ParamName="MarginTop" ParamType="0" IsVisible="True" Description="Margem superior" HelpHint="Margem superior da folha." Value="3" ConvertTo="" Order="5"/>
+            <Param ParamName="MarginBotton" ParamType="0" IsVisible="True" Description="Magem inferior" HelpHint="Margem inferior da folha." Value="4" ConvertTo="" Order="6"/>
+            <Param ParamName="Columns" ParamType="0" IsVisible="True" Description="Colunas" HelpHint="Informe o número de colunas." Value="2" ConvertTo="" Order="7"/> 
+            <Param ParamName="ColumnsGap" ParamType="0" IsVisible="True" Description="Espaçamento" HelpHint="Espaçamento entre as colunas." Value="0,5" ConvertTo="" Order="8"/>
+            <Param ParamName="LabelHeight" ParamType="0" IsVisible="True" Description="Altura etiqueta" HelpHint="Altura da etiqueta." Value="3" ConvertTo="" Order="9"/>
+            <Param ParamName="LabelWidth" ParamType="0" IsVisible="True" Description="Largura etiqueta" HelpHint="Largura da etiqueta." Value="4" ConvertTo="" Order="10"/>           
+            <Param ParamName="NumLabels" ParamType="0" IsVisible="True" Description="Quantidade" HelpHint="Quantidade de etiquetas por folha." Value="30" ConvertTo="" Order="11"/>
+        </PageInfo>
+        <LinesInfo>
+            <Line LineName="Line1Values" Description="Linha 1" MaxLength="0" DefaultValue="1" HelpHint="Informe a aparência e posição da linha 1 da etiqueta." Value="FontName=Arial;FontSize=8;FontBold=True;FontItalic=False;PosLeft=10;PosTop=20" Order="1"/>
+            <Line LineName="Line2Values" Description="Linha 2" MaxLength="0" DefaultValue="1" HelpHint="Informe a aparência e posição da linha 2 da etiqueta." Value="FontName=Arial;FontSize=8;FontBold=False;FontItalic=False;PosLeft=10;PosTop=60" Order="2"/>
+            <Line LineName="Line3Values" Description="Linha 3" MaxLength="0" DefaultValue="1" HelpHint="Informe a aparência e posição da linha 2 da etiqueta." Value="FontName=Arial;FontSize=8;FontBold=False;FontItalic=False;PosLeft=10;PosTop=80" Order="3"/>
+            <Line LineName="Line4Values" Description="Linha 4" MaxLength="0" DefaultValue="1" HelpHint="Informe a aparência e posição da linha 4 da etiqueta." Value="FontName=Arial;FontSize=8;FontBold=False;FontItalic=False;PosLeft=10;PosTop=100" Order="4"/>
+        </LinesInfo>        
+    </Label>
+    <Label>
+        <LabelInfo>
+            <Info LabelId="2" LabelName="Pimaco 6478" Description="Etiquetas para folhas A4. 20 etiquetas por folha" Category="Pimaco" ReportFile="file.fr3" Enabled="True"/>
+        </LabelInfo>
+        <PageInfo>
+            <Param ParamName="PaperSize" ParamType="1" IsVisible="True" Description="Folha" HelpHint="Tamanho da folha" Value="A4" ConvertTo="" Order="0"/>
+            <Param ParamName="Height" ParamType="0" IsVisible="True" Description="Altura" HelpHint="Altura da folha." Value="29,7" ConvertTo="" Order="1"/>
+            <Param ParamName="Width" ParamType="0" IsVisible="True" Description="Largura" HelpHint="Largura da folha." Value="4" ConvertTo="" Order="2"/>           
+            <Param ParamName="MarginLeft" ParamType="0" IsVisible="True" Description="Margem esquerda" HelpHint="Margem esquerda da folha." Value="3" ConvertTo="" Order="3"/>
+            <Param ParamName="MarginRight" ParamType="0" IsVisible="True" Description="Margem direita" HelpHint="Margem direita da folha." Value="4" ConvertTo="" Order="4"/>
+            <Param ParamName="MarginTop" ParamType="0" IsVisible="True" Description="Margem superior" HelpHint="Margem superior da folha." Value="3" ConvertTo="" Order="5"/>
+            <Param ParamName="MarginBotton" ParamType="0" IsVisible="True" Description="Magem inferior" HelpHint="Margem inferior da folha." Value="4" ConvertTo="" Order="6"/>
+            <Param ParamName="Columns" ParamType="0" IsVisible="True" Description="Colunas" HelpHint="Informe o número de colunas." Value="2" ConvertTo="" Order="7"/> 
+            <Param ParamName="ColumnsGap" ParamType="0" IsVisible="True" Description="Espaçamento" HelpHint="Espaçamento entre as colunas." Value="0,5" ConvertTo="" Order="8"/>
+            <Param ParamName="LabelHeight" ParamType="0" IsVisible="True" Description="Altura etiqueta" HelpHint="Altura da etiqueta." Value="3" ConvertTo="" Order="9"/>
+            <Param ParamName="LabelWidth" ParamType="0" IsVisible="True" Description="Largura etiqueta" HelpHint="Largura da etiqueta." Value="4" ConvertTo="" Order="10"/>           
+            <Param ParamName="NumLabels" ParamType="0" IsVisible="True" Description="Quantidade" HelpHint="Quantidade de etiquetas por folha." Value="30" ConvertTo="" Order="11"/>
+        </PageInfo>
+        <LinesInfo>
+            <Line LineName="Line1Values" Description="Linha 1" MaxLength="0" DefaultValue="1" HelpHint="Informe a aparência e posição da linha 1 da etiqueta." Value="FontName=Arial;FontSize=8;FontBold=True;FontItalic=False;PosLeft=10;PosTop=20" Order="1"/>
+            <Line LineName="Line2Values" Description="Linha 2" MaxLength="0" DefaultValue="1" HelpHint="Informe a aparência e posição da linha 2 da etiqueta." Value="FontName=Arial;FontSize=8;FontBold=False;FontItalic=False;PosLeft=10;PosTop=60" Order="2"/>
+            <Line LineName="Line3Values" Description="Linha 3" MaxLength="0" DefaultValue="1" HelpHint="Informe a aparência e posição da linha 2 da etiqueta." Value="FontName=Arial;FontSize=8;FontBold=False;FontItalic=False;PosLeft=10;PosTop=80" Order="3"/>
+            <Line LineName="Line4Values" Description="Linha 4" MaxLength="0" DefaultValue="1" HelpHint="Informe a aparência e posição da linha 4 da etiqueta." Value="FontName=Arial;FontSize=8;FontBold=False;FontItalic=False;PosLeft=10;PosTop=100" Order="4"/>
+        </LinesInfo>        
+    </Label>    
+</Labels>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<PersonalityInfo>
+		<Option>
+			<Option Name="Personality">Default.Personality</Option>
+			<Option Name="ProjectType"></Option>
+			<Option Name="Version">1.0</Option>
+			<Option Name="GUID">{7B6268C1-9B3A-47E7-8E2B-70CF41F65639}</Option>
+		</Option>
+	</PersonalityInfo>
+	<Default.Personality>  <Projects>
+      <Projects Name="ActnManXPStyleEx100.bpl">ActnManXPStyleEx100.bdsproj</Projects>
+      <Projects Name="ExtendingActionManagerDemo.exe">Demo\ExtendingActionManagerDemo.bdsproj</Projects>
+      <Projects Name="ExtendingIDE100.bpl">ExtendingIDE100.bdsproj</Projects>
+      <Projects Name="Targets">ActnManXPStyleEx100.bpl ExtendingActionManagerDemo.exe ExtendingIDE100.bpl</Projects>
+    </Projects>
+    <Dependencies>
+      <Dependency GUID="{331958B1-3581-483B-A645-3FFF6F20DAA4}">
+        <Dependency GUID="{1A788885-FEC5-475A-87A2-C783E19C4651}"/>
+      </Dependency>
+    </Dependencies>
+  </Default.Personality>
+	<StarTeamAssociation></StarTeamAssociation>
+	<StarTeamNonRelativeFiles></StarTeamNonRelativeFiles>
+</BorlandProject>

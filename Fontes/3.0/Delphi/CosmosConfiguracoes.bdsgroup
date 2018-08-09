@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <PersonalityInfo>
+    <Option>
+      <Option Name="Personality">Default.Personality</Option>
+      <Option Name="ProjectType"></Option>
+      <Option Name="Version">1.0</Option>
+      <Option Name="GUID">{DA43F749-6C11-4E8B-B0B1-9941DC0619C6}</Option>
+    </Option>
+  </PersonalityInfo>
+  <Default.Personality>
+    
+    
+    <Projects>
+      <Projects Name="confwin.bpl">Bibliotecas\Config Form\confwin.bdsproj</Projects>
+      <Projects Name="cmpages.bpl">Bibliotecas\Common Pages\cmpages.bdsproj</Projects>
+      <Projects Name="pglogs.bpl">Bibliotecas\Páginas de Configuração\Configuração de logs\pglogs.bdsproj</Projects>
+      <Projects Name="pgemail.bpl">Bibliotecas\Páginas de Configuração\Ferramenta de Email\pgemail.bdsproj</Projects>
+      <Projects Name="pgui.bpl">Bibliotecas\Páginas de Configuração\Interface do Usuário\pgui.bdsproj</Projects>
+      <Projects Name="pgupdater.bpl">Bibliotecas\Páginas de Configuração\Página do Updater\pgupdater.bdsproj</Projects>
+      <Projects Name="pgservers.bpl">Bibliotecas\Páginas de Configuração\Servidores Datasnap\pgservers.bdsproj</Projects>
+      <Projects Name="Targets">confwin.bpl cmpages.bpl pglogs.bpl pgemail.bpl pgui.bpl pgupdater.bpl pgservers.bpl</Projects>
+    </Projects>
+    <Dependencies/>
+  </Default.Personality>
+</BorlandProject>

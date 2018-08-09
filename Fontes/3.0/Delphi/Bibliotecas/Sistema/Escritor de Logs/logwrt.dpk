@@ -1,0 +1,45 @@
+package logwrt;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS OFF}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE RELEASE}
+{$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'Cosmos sistema de geração de logs'}
+{$RUNONLY}
+{$IMPLICITBUILD OFF}
+
+requires
+  rtl,
+  vcl,
+  cmlib,
+  eventslogs;
+
+contains
+  cosmos.classes.logs.winservice in '..\..\..\Arquivos Comuns\Classes\Logs\cosmos.classes.logs.winservice.pas',
+  cosmos.classes.logs in '..\..\..\Arquivos Comuns\Classes\Logs\cosmos.classes.logs.pas',
+  cosmos.classes.logs.textfile in '..\..\..\Arquivos Comuns\Classes\Logs\cosmos.classes.logs.textfile.pas',
+  cosmos.classes.logs.controller in '..\..\..\Arquivos Comuns\Classes\Logs\cosmos.classes.logs.controller.pas',
+  Vcl.FastStreams in '..\..\..\Arquivos Comuns\Classes\Logs\Vcl.FastStreams.pas';
+
+end.

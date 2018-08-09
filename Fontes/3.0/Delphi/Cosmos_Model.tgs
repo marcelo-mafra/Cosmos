@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<ProjectSupport>
+  <SupportedProjects>
+    <ProjectName>gfocos</ProjectName>
+    <ProjectName>loginf</ProjectName>
+    <ProjectName>helplib</ProjectName>
+    <ProjectName>focser</ProjectName>
+  </SupportedProjects>
+</ProjectSupport>

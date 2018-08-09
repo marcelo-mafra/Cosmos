@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="u0g8fyvqg_v">
+    <property name="$defaultDiagram" value="true" />
+    <property name="$metaclass" value="Package Diagram" />
+    <property name="$name" value="default" />
+    <reference referencedUin="design:view:::acguyz7vo_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="10,10,183,713" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosConnectionInfo" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosUser" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosConfiguration" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosWindowsManager" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosFicha" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosTest" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosSplash" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosTips" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosInfo" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosLogin" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosWizard" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.IRegisterInfo" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosOpenFocus" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosLocateLessosEI" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosLocateLogradouros" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosSearchCadastrados" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosSearch" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosEnderecos" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosMeiosContatos" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosLocateCadastrados" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosSimpleSearch" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosHistorico" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosDesligamentos" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ITempPesquisa" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosToolsManager" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosTransferencias" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosDialogWinManager" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosFamiliares" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.TSexoCadastrado" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosBatismos" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosCasamentos" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosCartaFrequencia" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosRetrogradacao" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosReligamento" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosInfoMedicas" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosFuncoesCadastrado" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.IAptidoesCadastrado" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.ICosmosDispensas" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DialogsInterfaces.IAtaPosse" />
+    </reference>
+    <reference referencedUin="design:view:::xcg1xousq_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="210,1,171,310" />
+      <reference referencedUin="delphi:e_class:src:interfaces:RootInterfaces.ICosmosHelp" />
+      <reference referencedUin="delphi:e_class:src:interfaces:RootInterfaces.ICosmosDockedForm" />
+      <reference referencedUin="delphi:e_class:src:interfaces:RootInterfaces.ICosmosApplication" />
+      <reference referencedUin="delphi:e_class:src:interfaces:RootInterfaces.ICosmosInterfaces" />
+      <reference referencedUin="delphi:e_class:src:interfaces:RootInterfaces.TCamposTrabalho" />
+      <reference referencedUin="delphi:e_class:src:interfaces:RootInterfaces.TCosmosModules" />
+      <reference referencedUin="delphi:e_class:src:interfaces:RootInterfaces.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:interfaces:RootInterfaces.TFocus" />
+      <reference referencedUin="delphi:e_class:src:interfaces:RootInterfaces.TInterfaceStyle" />
+      <reference referencedUin="delphi:e_class:src:interfaces:RootInterfaces.ICosmosWindowsManager" />
+      <reference referencedUin="delphi:e_class:src:interfaces:RootInterfaces.IReportCenter" />
+      <reference referencedUin="delphi:e_class:src:interfaces:RootInterfaces.ICosmosLogs" />
+    </reference>
+    <reference referencedUin="design:view:::0agmluppq_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="212,330,178,173" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DataAcessInterfaces.ICosmosExporter" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DataAcessInterfaces.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DataAcessInterfaces.ICosmosRemoteConnection" />
+      <reference referencedUin="delphi:e_class:src:interfaces:DataAcessInterfaces.ICosmosSearcher" />
+    </reference>
+    <reference referencedUin="design:view:::82i30x4sar3znhq_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="212,522,85,44" />
+    </reference>
+    <reference referencedUin="design:view:::e4hn0bh8n_v">
+      <property name="$shortcutReference" value="true" />
+      <reference referencedUin="design:view:::l6hsjc1ln_v" />
+    </reference>
+  </view>
+</nodeSet>

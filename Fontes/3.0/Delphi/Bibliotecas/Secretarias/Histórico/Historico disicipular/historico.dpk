@@ -1,0 +1,52 @@
+package historico;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS OFF}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE RELEASE}
+{$ENDIF IMPLICITBUILDING}
+{$RUNONLY}
+{$IMPLICITBUILD ON}
+
+requires
+  rtl,
+  interfaces,
+  dockedform,
+  frames,
+  cmlib,
+  dtimecntl,
+  vcl,
+  dbrtl,
+  dsnap,
+  vcldb,
+  cmdialogs,
+  corelib,
+  Cosmos;
+
+contains
+  cosmos.secretarias.view.historico in 'cosmos.secretarias.view.historico.pas' {FrmHistorico},
+  cosmos.secretarias.view.eventohistorico in 'cosmos.secretarias.view.eventohistorico.pas' {FrmEventoDiscipular},
+  cosmos.secretarias.view.anularevento in 'cosmos.secretarias.view.anularevento.pas' {FrmAnularEvento},
+  cosmos.secretarias.view.novoevento in 'cosmos.secretarias.view.novoevento.pas' {FrmInsEventoDiscipular};
+
+end.

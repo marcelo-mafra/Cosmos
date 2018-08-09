@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="5w3e70saf_v">
+    <property name="$name" value="FormDlgCopyMembro" />
+    <property name="$defaultDiagram" value="True" />
+    <property name="$metaclass" value="Package Diagram" />
+    <reference referencedUin="delphi:e_class:src:gfocos:FormDlgCopyMembro.TFrmDlgConfCopy">
+      <property name="$shortcutReference" value="true" />
+    </reference>
+  </view>
+</nodeSet>

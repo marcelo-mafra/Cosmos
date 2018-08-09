@@ -1,0 +1,60 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{97737571-732E-49AE-8B4D-631C9AF78BD3}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="ActnManXPStyleEx100.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Demo\ExtendingActionManagerDemo.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="ExtendingIDE100.dproj">
+				<Dependencies>ActnManXPStyleEx100.dproj</Dependencies>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="ActnManXPStyleEx100">
+			<MSBuild Projects="ActnManXPStyleEx100.dproj"/>
+		</Target>
+		<Target Name="ActnManXPStyleEx100:Clean">
+			<MSBuild Targets="Clean" Projects="ActnManXPStyleEx100.dproj"/>
+		</Target>
+		<Target Name="ActnManXPStyleEx100:Make">
+			<MSBuild Targets="Make" Projects="ActnManXPStyleEx100.dproj"/>
+		</Target>
+		<Target Name="ExtendingActionManagerDemo">
+			<MSBuild Projects="Demo\ExtendingActionManagerDemo.dproj"/>
+		</Target>
+		<Target Name="ExtendingActionManagerDemo:Clean">
+			<MSBuild Targets="Clean" Projects="Demo\ExtendingActionManagerDemo.dproj"/>
+		</Target>
+		<Target Name="ExtendingActionManagerDemo:Make">
+			<MSBuild Targets="Make" Projects="Demo\ExtendingActionManagerDemo.dproj"/>
+		</Target>
+		<Target DependsOnTargets="ActnManXPStyleEx100" Name="ExtendingIDE100">
+			<MSBuild Projects="ExtendingIDE100.dproj"/>
+		</Target>
+		<Target DependsOnTargets="ActnManXPStyleEx100:Clean" Name="ExtendingIDE100:Clean">
+			<MSBuild Targets="Clean" Projects="ExtendingIDE100.dproj"/>
+		</Target>
+		<Target DependsOnTargets="ActnManXPStyleEx100:Make" Name="ExtendingIDE100:Make">
+			<MSBuild Targets="Make" Projects="ExtendingIDE100.dproj"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="ActnManXPStyleEx100;ExtendingActionManagerDemo;ExtendingIDE100"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="ActnManXPStyleEx100:Clean;ExtendingActionManagerDemo:Clean;ExtendingIDE100:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="ActnManXPStyleEx100:Make;ExtendingActionManagerDemo:Make;ExtendingIDE100:Make"/>
+		</Target>
+		<Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+	</Project>

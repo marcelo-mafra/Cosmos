@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="cihedr0pe_v">
+    <property name="$defaultDiagram" value="true" />
+    <property name="$metaclass" value="Package Diagram" />
+    <property name="$name" value="default" />
+    <reference referencedUin="delphi:e_class:src:secmod:SecurityModel.@unitclass">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="10,10,137,77" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:secmod:SecurityModel.TCosmosSecurity">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="140,140,62,63" />
+    </reference>
+  </view>
+</nodeSet>

@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{12ED1CAF-E41E-4DB0-AA8C-DDEE1D1A2830}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Mormot Server\cosmosbisrv.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Project14Client.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Clients\cosmosbi.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="cosmosbisrv">
+        <MSBuild Projects="Mormot Server\cosmosbisrv.dproj"/>
+    </Target>
+    <Target Name="cosmosbisrv:Clean">
+        <MSBuild Projects="Mormot Server\cosmosbisrv.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="cosmosbisrv:Make">
+        <MSBuild Projects="Mormot Server\cosmosbisrv.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Project14Client">
+        <MSBuild Projects="Project14Client.dproj"/>
+    </Target>
+    <Target Name="Project14Client:Clean">
+        <MSBuild Projects="Project14Client.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Project14Client:Make">
+        <MSBuild Projects="Project14Client.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="cosmosbi">
+        <MSBuild Projects="Clients\cosmosbi.dproj"/>
+    </Target>
+    <Target Name="cosmosbi:Clean">
+        <MSBuild Projects="Clients\cosmosbi.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="cosmosbi:Make">
+        <MSBuild Projects="Clients\cosmosbi.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="cosmosbisrv;Project14Client;cosmosbi"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="cosmosbisrv:Clean;Project14Client:Clean;cosmosbi:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="cosmosbisrv:Make;Project14Client:Make;cosmosbi:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

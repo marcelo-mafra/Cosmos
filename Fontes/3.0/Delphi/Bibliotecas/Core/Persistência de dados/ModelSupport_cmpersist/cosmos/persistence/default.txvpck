@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="lym379lk0oqrbvh_v">
+    <property name="$defaultDiagram" value="true" />
+    <property name="$metaclass" value="Package Diagram" />
+    <property name="$name" value="default" />
+    <reference referencedUin="design:view:::kzm6msu2al0renn_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="10,10,124,143" />
+      <reference referencedUin="delphi:e_class:src:cmpersist:cosmos.persistence.ini.TInifilePersistence" />
+      <reference referencedUin="delphi:e_class:src:cmpersist:cosmos.persistence.ini.@unitclass" />
+    </reference>
+    <reference referencedUin="design:view:::7wmmz3j4b83zkzh_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="153,1,121,143" />
+      <reference referencedUin="delphi:e_class:src:cmpersist:cosmos.persistence.xml.TXMLPersistence" />
+      <reference referencedUin="delphi:e_class:src:cmpersist:cosmos.persistence.xml.@unitclass" />
+    </reference>
+  </view>
+</nodeSet>

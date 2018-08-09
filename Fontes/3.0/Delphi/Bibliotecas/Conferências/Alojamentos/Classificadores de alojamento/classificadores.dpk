@@ -1,0 +1,44 @@
+package classificadores;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE DEBUG}
+{$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'Classificadores de alojamentos e cadastrados'}
+{$RUNONLY}
+{$IMPLICITBUILD ON}
+
+requires
+  rtl,
+  secmod,
+  vclactnband,
+  frames,
+  cmlib,
+  dockedform;
+
+contains
+  cosmos.conferencias.view.FormClassificadores in 'cosmos.conferencias.view.FormClassificadores.pas' {FrmClassificadores},
+  cosmos.conferencias.view.FormEditarClassificadores in 'cosmos.conferencias.view.FormEditarClassificadores.pas' {FrmEditarClassificadores};
+
+end.

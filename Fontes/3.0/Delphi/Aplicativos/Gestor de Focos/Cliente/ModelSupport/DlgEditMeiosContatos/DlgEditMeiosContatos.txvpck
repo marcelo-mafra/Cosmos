@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="10bwsho4ewf7n9t_v">
+    <property name="$name" value="DlgEditMeiosContatos" />
+    <property name="$defaultDiagram" value="True" />
+    <property name="$metaclass" value="Package Diagram" />
+    <reference referencedUin="delphi:e_class:src:gfocos:DlgEditMeiosContatos.TFrmDlgMeiosContatos">
+      <property name="$shortcutReference" value="true" />
+    </reference>
+  </view>
+</nodeSet>

@@ -1,0 +1,46 @@
+package dlgexporter;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS OFF}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE RELEASE}
+{$ENDIF IMPLICITBUILDING}
+{$RUNONLY}
+{$IMPLICITBUILD ON}
+
+requires
+  rtl,
+  cmlib,
+  interfaces,
+  shellib,
+  Cosmos;
+
+contains
+  cosmos.common.view.dlgexporter in 'Dialogs\cosmos.common.view.dlgexporter.pas' {FrmExportar},
+  cosmos.secretarias.view.expagenda in 'Dialogs\cosmos.secretarias.view.expagenda.pas' {FrmExportarAgenda},
+  cosmos.classes.controler.exporter in 'cosmos.classes.controler.exporter.pas',
+  cosmos.secretarias.view.expcadastrados in 'Dialogs\cosmos.secretarias.view.expcadastrados.pas' {FrmExportarCadastrados},
+  cosmos.conferencias.view.expinscritos in 'Dialogs\cosmos.conferencias.view.expinscritos.pas' {FrmExportarInscritos};
+
+end.
+

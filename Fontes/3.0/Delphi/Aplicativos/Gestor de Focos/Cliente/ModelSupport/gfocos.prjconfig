@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<TgConfig Version="3" SubLevelDisabled="False">
+  <Option Name="namespaceFolder.DlgNoServer" Type="System.String" Value="DlgNoServer" IsBrowsable="False" />
+  <Option Name="namespaceFolder.DMReportsData" Type="System.String" Value="DMReportsData" IsBrowsable="False" />
+  <Option Name="namespaceFolder.DlgAddServer" Type="System.String" Value="DlgAddServer" IsBrowsable="False" />
+  <Option Name="namespaceFolder.Connecting" Type="System.String" Value="Connecting" IsBrowsable="False" />
+  <Option Name="namespaceFolder.FormReportCenter" Type="System.String" Value="FormReportCenter" IsBrowsable="False" />
+  <Option Name="namespaceFolder.FormSelAlunos" Type="System.String" Value="FormSelAlunos" IsBrowsable="False" />
+  <Option Name="namespaceFolder.SearchEngine" Type="System.String" Value="SearchEngine" IsBrowsable="False" />
+  <Option Name="namespaceFolder.DataModuleClient" Type="System.String" Value="DataModuleClient" IsBrowsable="False" />
+  <Option Name="namespaceFolder.DMClient" Type="System.String" Value="DMClient" IsBrowsable="False" />
+  <Option Name="namespaceFolder.FrameDadosCadastro" Type="System.String" Value="FrameDadosCadastro" IsBrowsable="False" />
+  <Option Name="namespaceFolder.RecError" Type="System.String" Value="RecError" IsBrowsable="False" />
+  <Option Name="namespaceFolder.FormWzNovoFoco" Type="System.String" Value="FormWzNovoFoco" IsBrowsable="False" />
+</TgConfig>

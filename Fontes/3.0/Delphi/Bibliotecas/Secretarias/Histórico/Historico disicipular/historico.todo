@@ -1,0 +1,9 @@
+{TODO -oMarcelo -cRelatórios :  Implementar impressão do histórico discipular do aluno.}
+{DONE -oMarcelo -cHistórico : Na janela de histórico, ao clicar-se no nome do cadastrado deverá ser aberta a ficha do cadastrado.}
+{DONE -oMarcelo -cHistórico : Ao se registrar o óbito de um cadastrado, deve-se desativá-lo e registrar o seu desligamento no histórico discipular.}
+{TODO -oMarcelo -cHistórico : Implementar "anulação de evento" do histórico (exclui um evento do histórico). Se o evento anulado for do tipo "instalação" ou "retrogradação", o discipulado do cadastrado deve ser alterado manualmente. Recurso de uso exclusivo da DEI/PRESIDIUM.}
+{TODO -oMarcelo -cHistórico : Implementar janela "Detalhes do Histórico".}
+{TODO -oMarcelo -cHistórico :
+Filtragem do histórico:  1. filtragem por campos de trabalho (exibe somente eventos dos campos selecionados); 2 - Filtragem por tipos de eventos (instalações, desligamentos etc).}
+{TODO -oMarcelo -cHistórico : Implementar "visualizações do histórico". Modo "resumido" lista apenas instalações e desligamentos. Modo "completo" lista todos os eventos. Modo "Escola Interna" lista somente eventos da Escola Interna.}
+{DONE -oMarcelo -cPesquisa : Implementar recurso "Painel de Pesquisa" para localizar os dados do histórico discipular do cadastrado a partir da sua matrícula ou nome.}
