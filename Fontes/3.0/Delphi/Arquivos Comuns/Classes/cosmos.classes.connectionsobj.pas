@@ -7,6 +7,8 @@ uses
  Data.DBXCommon;
 
 type
+ {TConnectionsPool encapsula e abstrai um pool de conexões com a app servidora remota. Essa classe pode ser usada
+ para conexões entre os front-ends e os back-ends.}	
  TConnectionsPool = class
    strict private
     function PingSever(AConnection: TSQLConnection): boolean;
@@ -39,6 +41,7 @@ end;
 
 constructor TConnectionsPool.Create;
 begin
+//Usa um objeto TDictionary para implementar o pool de TSQLConnection.
  FConnectionsPool := TDictionary<Int64, TSQLConnection>.Create;
  FillPool(5);
  FCurrentConnection := NewConnection;
@@ -96,7 +99,7 @@ end;
 
 procedure TConnectionsPool.LoadParams(AConnection: TSQLConnection);
 begin
-
+//To do.
 end;
 
 function TConnectionsPool.NewCommand: TDBXCommand;
@@ -151,6 +154,7 @@ function TConnectionsPool.PingSever(AConnection: TSQLConnection): boolean;
 var
  ACommand: TDBXCommand;
 begin
+ {Executa o método remoto "PingServer" para testar a conexão entre o Front-end e o back-end.}
   try
    if AConnection.Connected then
     AConnection.Close;

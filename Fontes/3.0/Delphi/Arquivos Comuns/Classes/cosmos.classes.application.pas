@@ -188,6 +188,7 @@ type
     procedure ReadDatasetFieldsInfo(Dataset: TDataset);
   end;
 
+  //Classe utilitária usada para converter dados de diversos tipos. Somente possui métodos de classe.
  TDataConverter = class(TObject)
    class function ToBolean(const value: string): boolean; inline;
    class function ToBoleanString(const value: boolean; Quoted: boolean = False): string; inline;
@@ -307,13 +308,13 @@ begin
   end;
 
   case self.CosmosModule of
-    cmFocos: AXML.Append('<CosmosModule>cmFocos</CosmosModule>');
-    cmSecretarias: AXML.Append('<CosmosModule>cmSecretarias</CosmosModule>');
-    cmFinanceiro: AXML.Append('<CosmosModule>cmFinanceiro</CosmosModule>');
-    cmConferencias: AXML.Append('<CosmosModule>cmConferencias</CosmosModule>');
-    cmUsuarios: AXML.Append('<CosmosModule>cmUsuarios</CosmosModule>');
-    cmSincMestre: AXML.Append('<CosmosModule>cmSincMestre</CosmosModule>');
-    cmSincEscravo: AXML.Append('<CosmosModule>cmSincEscravo</CosmosModule>');
+    cmFocos: AXML.Append('<CosmosModule>cmFocos</CosmosModule>'); //do not localize!
+    cmSecretarias: AXML.Append('<CosmosModule>cmSecretarias</CosmosModule>'); //do not localize!
+    cmFinanceiro: AXML.Append('<CosmosModule>cmFinanceiro</CosmosModule>'); //do not localize!
+    cmConferencias: AXML.Append('<CosmosModule>cmConferencias</CosmosModule>'); //do not localize!
+    cmUsuarios: AXML.Append('<CosmosModule>cmUsuarios</CosmosModule>'); //do not localize!
+    cmSincMestre: AXML.Append('<CosmosModule>cmSincMestre</CosmosModule>'); //do not localize!
+    cmSincEscravo: AXML.Append('<CosmosModule>cmSincEscravo</CosmosModule>'); //do not localize!
   end;
 
   AXML.Append(Format('<MessageText>%s</MessageText>', [self.MessageText])); //do not localize!
@@ -383,13 +384,13 @@ begin
   end;
 
   case self.CosmosModule of
-    cmFocos: AXML.Append('<CosmosModule>cmFocos</CosmosModule>');
-    cmSecretarias: AXML.Append('<CosmosModule>cmSecretarias</CosmosModule>');
-    cmFinanceiro: AXML.Append('<CosmosModule>cmFinanceiro</CosmosModule>');
-    cmConferencias: AXML.Append('<CosmosModule>cmConferencias</CosmosModule>');
-    cmUsuarios: AXML.Append('<CosmosModule>cmUsuarios</CosmosModule>');
-    cmSincMestre: AXML.Append('<CosmosModule>cmSincMestre</CosmosModule>');
-    cmSincEscravo: AXML.Append('<CosmosModule>cmSincEscravo</CosmosModule>');
+    cmFocos: AXML.Append('<CosmosModule>cmFocos</CosmosModule>'); //do not localize!
+    cmSecretarias: AXML.Append('<CosmosModule>cmSecretarias</CosmosModule>'); //do not localize!
+    cmFinanceiro: AXML.Append('<CosmosModule>cmFinanceiro</CosmosModule>'); //do not localize!
+    cmConferencias: AXML.Append('<CosmosModule>cmConferencias</CosmosModule>'); //do not localize!
+    cmUsuarios: AXML.Append('<CosmosModule>cmUsuarios</CosmosModule>'); //do not localize!
+    cmSincMestre: AXML.Append('<CosmosModule>cmSincMestre</CosmosModule>'); //do not localize!
+    cmSincEscravo: AXML.Append('<CosmosModule>cmSincEscravo</CosmosModule>'); //do not localize!
   end;
 
   AXML.Append(Format('<MessageText>%s</MessageText>', [self.MessageText])); //do not localize!
@@ -423,7 +424,6 @@ constructor TServerReturn.Create;
 begin
  {Cria um array de variant que representa o retorno de um método remoto.}
  inherited Create;
-// FServerData := unassigned;
  FServerReturn := varArrayCreate([0,7], varVariant);
 end;
 
@@ -813,6 +813,7 @@ end;
 
 function TCosmosData.Read(const Index: integer): variant;
 begin
+{Retorna uma informação da estrutura em memória a partir de uma posição informada no parâmetro desse método.}
  if Index <= varArrayHighBound(AData, 1) then
   begin
    Result := varArrayCreate([0,1], varVariant);
@@ -891,7 +892,7 @@ end;
 
 class function TDataConverter.ToBolean(const value: string): boolean;
 begin
-//Converte uma string para um boolean
+//Converte uma string para um boolean. "S" é interpretado como True e qualquer outro valor é False.
  Result := UpperCase(value) = 'S';
 end;
 
@@ -937,7 +938,6 @@ end;
 class function TDataConverter.ToDateTime(const value: Extended): TDateTime;
 begin
  Result := Value;
-// EdtDataTransferencia.MaxDate := DateOf(ADate);
 end;
 
 class function TDataConverter.ToDateTime(const value: variant): TDateTime;
@@ -948,7 +948,7 @@ end;
 class function TDataConverter.ToFormatedDateTime(
   const value: TDateTime): string;
 begin
- Result := FormatDateTime('dd/mm/yyyy hh:nn:ss', value);
+ Result := FormatDateTime('dd/mm/yyyy hh:nn:ss', value); //do not localize!
 end;
 
 class function TDataConverter.ToFormatedCurrency(const Value: Extended): string;
@@ -965,18 +965,18 @@ end;
 class function TDataConverter.ToFormatedDateTime(
   const value: TSQLTimeStamp): string;
 begin
- Result := SQLTimeStampToStr('dd/mm/yyyy hh:nn:ss', Value);
+ Result := SQLTimeStampToStr('dd/mm/yyyy hh:nn:ss', Value);//do not localize!
 end;
 
 class function TDataConverter.ToFormatedSQLDate(const value: TDate): string;
 begin
- Result := FormatDateTime('yyyy/mm/dd', Value);
+ Result := FormatDateTime('yyyy/mm/dd', Value);//do not localize!
 end;
 
 class function TDataConverter.ToFormatedSQLDateTime(
   const value: TDateTime; Quoted: boolean): string;
 begin
- Result := FormatDateTime('yyyy/mm/dd hh:nn:ss', Value);
+ Result := FormatDateTime('yyyy/mm/dd hh:nn:ss', Value);//do not localize!
  if Quoted then
   Result := Result.QuotedString;
 end;
@@ -1356,7 +1356,7 @@ end;
 
 function TCosmosApplication.GetModuleVersion: string;
 begin
-
+//To do.
 end;
 
 function TCosmosApplication.HasUserFiles: boolean;
@@ -1368,28 +1368,28 @@ procedure TCosmosApplication.ReadLogInformation(Module: TCosmosModules;
   var Info: TStringList);
 begin
  //Lista as informações de configuração do objeto de escrita de logs.
- Info.Append('CategoryMessageFile=events.dll');
- Info.Append('DisplayEventFile=events.dll');
- Info.Append('DisplayNameFile=events.dll');
- Info.Append('DisplayEventID=452');
- Info.Append('EventFile=cosmos.evt');
- Info.Append('PrimaryModule=Cosmos');
- Info.Append('LogName=Cosmos');
- Info.Append('CategoryCount=6');
- Info.Append('DisplayNameID=150');
- Info.Append('TypesSupported=2');
+ Info.Append('CategoryMessageFile=events.dll'); //do not localize!
+ Info.Append('DisplayEventFile=events.dll'); //do not localize!
+ Info.Append('DisplayNameFile=events.dll'); //do not localize!
+ Info.Append('DisplayEventID=452'); //do not localize!
+ Info.Append('EventFile=cosmos.evt'); //do not localize!
+ Info.Append('PrimaryModule=Cosmos'); //do not localize!
+ Info.Append('LogName=Cosmos'); //do not localize!
+ Info.Append('CategoryCount=6'); //do not localize!
+ Info.Append('DisplayNameID=150'); //do not localize!
+ Info.Append('TypesSupported=2'); //do not localize!
 
  case Module of
-   cmFocos: Info.Append('Source=Cosmos Gestor de Focos');
-   cmFocosServer: Info.Append('Source=Cosmos Gestor de Focos Server');
-   cmSecretarias: Info.Append('Source=Cosmos Gestor de Secretarias');
-   cmSecretariasServer: Info.Append('Source=Cosmos Gestor de Secretarias Server');
-   cmFinanceiro: Info.Append('Source=Cosmos Gestor Financeiro');
-   cmFinanceiroServer: Info.Append('Source=Cosmos Gestor Financeiro Server');
-   cmConferencias: Info.Append('Source=Cosmos Gestor de Conferências');
-   cmConferenciasServer: Info.Append('Source=Cosmos Gestor de Conferências Server');
-   cmUsuarios: Info.Append('Source=Cosmos Gestor de Usuários');
-   cmUsuariosServer: Info.Append('Source=Cosmos Gestor de Usuários Server');
+   cmFocos: Info.Append('Source=Cosmos Gestor de Focos'); //do not localize!
+   cmFocosServer: Info.Append('Source=Cosmos Gestor de Focos Server'); //do not localize!
+   cmSecretarias: Info.Append('Source=Cosmos Gestor de Secretarias'); //do not localize!
+   cmSecretariasServer: Info.Append('Source=Cosmos Gestor de Secretarias Server'); //do not localize!
+   cmFinanceiro: Info.Append('Source=Cosmos Gestor Financeiro'); //do not localize!
+   cmFinanceiroServer: Info.Append('Source=Cosmos Gestor Financeiro Server'); //do not localize!
+   cmConferencias: Info.Append('Source=Cosmos Gestor de Conferências'); //do not localize!
+   cmConferenciasServer: Info.Append('Source=Cosmos Gestor de Conferências Server'); //do not localize!
+   cmUsuarios: Info.Append('Source=Cosmos Gestor de Usuários'); //do not localize!
+   cmUsuariosServer: Info.Append('Source=Cosmos Gestor de Usuários Server'); //do not localize!
  end;
 end;
 

@@ -7,6 +7,7 @@ uses
  cosmos.framework.datanavigators.common, Vcl.ComCtrls;
 
 type
+//Implementa um navegador de dados especializado em trabalhar com objetos do tipo TCustomTreeview.	
  TTreeviewDataNavigator = class(TCustomDataNavigator)
 
   private
@@ -45,7 +46,7 @@ type
 
 implementation
 
-{ TDatasetDataNavigator }
+{ TTreeviewDataNavigator }
 
 constructor TTreeviewDataNavigator.Create(const Source: TCustomTreeView);
 begin

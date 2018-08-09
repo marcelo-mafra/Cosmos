@@ -7,6 +7,7 @@ uses
  cosmos.framework.datanavigators.common, Vcl.ComCtrls;
 
 type
+ //Implementa um navegador de dados especializado em trabalhar com objetos do tipo TCustomListview.
  TListviewDataNavigator = class(TCustomDataNavigator)
 
   private
@@ -84,6 +85,7 @@ var
 AItem: TListItem;
 vPartialKey: boolean;
 begin
+//Localiza e seleciona um valor da lista a partir de um conjunto de argumentos passados. Se localizado o método seleiconao valor no TCustomListView.
  if Assigned(FSource) then
   begin
    vPartialKey := Argumments.FindValue('PartialKey');
@@ -163,8 +165,6 @@ begin
 
   self.FLastPosition := False
 end;
-
-
 
 procedure TListviewDataNavigator.UpdateData;
 begin

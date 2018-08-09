@@ -366,7 +366,7 @@ begin
        end;
      end;
    end
-   else //Certificado não encontrado...
+   else //Certificado não encontrado... Somente para HTTPS ele é obrigatório.
     if Protocols = [cpHTTPS] then
      raise ECertificateNotFound.Create(TCosmosErrorMsg.CertificateNotFound);
 

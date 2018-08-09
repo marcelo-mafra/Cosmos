@@ -8,6 +8,8 @@ uses
  cosmos.system.winshell, System.IniFiles, cosmos.system.types;
 
 type
+  {Implementa um objeto que disponibiliza informações sobre a aplicação Cosmos em execução, tais
+    como paths e nomes de arquivos de configuração e do sistema de ajuda, por exemplo.}
   TCosmosAppInfo = class(TInterfacedPersistent, ICosmosApplicationPaths)
 
     private

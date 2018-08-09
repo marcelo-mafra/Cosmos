@@ -1,5 +1,8 @@
 unit cosmos.classes.cripterint;
 
+{Unidade de interface para uso da biblioteca CRIPTER.DLL. Essa biblioteca é responsável por prover diversos mecanismos
+de criptografia e hash.}
+
 interface
 
  function SimpleEncrypt(Text: PChar; var code: integer): PChar; stdcall;

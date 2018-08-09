@@ -7,6 +7,7 @@ uses
  cosmos.framework.datanavigators.common, Data.DB;
 
 type
+//Implementa um navegador de dados especializado em trabalhar com objetos do tipo TDataset.	
  TDatasetDataNavigator = class(TCustomDataNavigator)
 
   private

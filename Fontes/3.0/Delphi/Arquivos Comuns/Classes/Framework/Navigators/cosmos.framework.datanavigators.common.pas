@@ -12,7 +12,8 @@ type
 
 {Esta é uma classe completamente abstrata, que serve para asbtrair um objeto
  que manipula a navegação em um tipo de dado genérico. As classes descendentes
- implementam as especificidades relativas à navegação em diferentes tipos de dados.}
+ implementam as especificidades relativas à navegação em diferentes objetos de dados 
+e controles de apresentação dos mesmos.}
  TCustomDataNavigator = class(TInterfacedObject)
 
   protected
