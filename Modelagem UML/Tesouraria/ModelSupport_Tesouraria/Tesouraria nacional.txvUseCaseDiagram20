@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="d7iyfm54i_v">
+    <property name="$metaclass" value="UseCaseDiagram20" />
+    <property name="$name" value="Tesouraria nacional" />
+    <reference referencedUin="design:node:::n9ij8914s_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="120,160,124,88" />
+    </reference>
+  </view>
+</nodeSet>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="etgptkfgjuoderh_v">
+    <property name="$metaclass" value="ActivityDiagram20" />
+    <property name="$name" value="AT03 - Instalação professo" />
+    <reference referencedUin="design:node:::lik9x0m0pt6jzve_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="20,20,194,114" />
+      <property name="bounds_setted_by_user" value="True" />
+    </reference>
+    <reference referencedUin="design:node:::dslcck9rs_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="background_color" value="0, 0, 0" />
+      <property name="bounds" value="280,80,20,20" />
+    </reference>
+  </view>
+</nodeSet>

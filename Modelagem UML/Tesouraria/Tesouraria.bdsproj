@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<PersonalityInfo>
+		<Option>
+			<Option Name="Personality">Design.Personality</Option>
+			<Option Name="ProjectType">Application</Option>
+			<Option Name="Version">1.0</Option>
+			<Option Name="GUID">{563A79EF-4F01-4CA9-B36E-EFA47F7659F6}</Option>
+		</Option>
+	</PersonalityInfo>
+	<Design.Personality>
+		<Options>
+			<OptionsSet Name="">
+				<Together>
+					<Together Name="UMLVersion">2.0</Together>
+				</Together>
+			</OptionsSet>
+		</Options>  <FileList>
+      <File FileName="ModelSupport_Tesouraria\default.txaPackage" ContainerId="TogetherDiagram" ModuleName="default"/>
+      <File FileName="ModelSupport_Tesouraria\default.txvClassDiagram20" ContainerId="TogetherDiagram" ModuleName="default"/>
+      <File FileName="ModelSupport_Tesouraria\Tesouraria regional.txvUseCaseDiagram20" ContainerId="TogetherDiagram" ModuleName="Tesouraria regional"/>
+      <File FileName="ModelSupport_Tesouraria\Tesouraria nacional.txvUseCaseDiagram20" ContainerId="TogetherDiagram" ModuleName="Tesouraria nacional"/>
+      <File FileName="ModelSupport_Tesouraria\Gerente de Tesouraria.txvUseCaseDiagram20" ContainerId="TogetherDiagram" ModuleName="Gerente de Tesouraria"/>
+    </FileList>
+  </Design.Personality>
+	<ModelSupport>True</ModelSupport>
+</BorlandProject>

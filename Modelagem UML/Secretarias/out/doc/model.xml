@@ -1,0 +1,797 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Model name="Secretarias" id="Secretarias" language="design">
+  <DesignElement name="Registrar evento no histórico discipular" id="ID=79" metaclass="Use Case">
+    <Property name="Classifier behavior">Registrar evento no histórico discipular.Behavior1</Property>
+    <Property name="Postcondition language">OCL</Property>
+    <Property name="Precondition language">OCL</Property>
+    <DesignElement name="Behavior1" id="ID=726" metaclass="Behavior" />
+    <Link targetName="Behaviored classifier link1" id="ID=727" metaclass="Behaviored classifier link" idref="ID=726">
+      <Property name="Supplier">Registrar evento no histórico discipular.Behavior1</Property>
+      <Property name="Client">Registrar evento no histórico discipular</Property>
+    </Link>
+  </DesignElement>
+  <DesignElement name="Desligar aluno do EE" id="ID=67" metaclass="Use Case">
+    <Property name="Classifier behavior">Desligar aluno do EE.Behavior1</Property>
+    <Property name="Postcondition language">OCL</Property>
+    <Property name="Precondition language">OCL</Property>
+    <DesignElement name="Behavior1" id="ID=696" metaclass="Behavior" />
+    <Link targetName="Behaviored classifier link1" id="ID=697" metaclass="Behaviored classifier link" idref="ID=696">
+      <Property name="Supplier">Desligar aluno do EE.Behavior1</Property>
+      <Property name="Client">Desligar aluno do EE</Property>
+    </Link>
+    <Link targetName="Includes1" id="ID=672" metaclass="Includes" idref="ID=79">
+      <Property name="Supplier">Registrar evento no histórico discipular</Property>
+      <Property name="Client">Desligar aluno do EE</Property>
+    </Link>
+  </DesignElement>
+  <DesignElement name="Secretaria do Lectorium Rosicrucianum histórico discipular" id="ID=70" metaclass="Subject" />
+  <DesignElement name="Retrogradar aluno da EE" id="ID=71" metaclass="Use Case">
+    <Property name="Description">Não será permitido retrogradação para o trabalho da mocidade.</Property>
+    <Property name="Classifier behavior">Retrogradar aluno da EE.Behavior1</Property>
+    <Property name="Postcondition language">OCL</Property>
+    <Property name="Precondition language">OCL</Property>
+    <DesignElement name="Behavior1" id="ID=702" metaclass="Behavior" />
+    <Link targetName="Behaviored classifier link1" id="ID=703" metaclass="Behaviored classifier link" idref="ID=702">
+      <Property name="Supplier">Retrogradar aluno da EE.Behavior1</Property>
+      <Property name="Client">Retrogradar aluno da EE</Property>
+    </Link>
+    <Link targetName="Includes1" id="ID=676" metaclass="Includes" idref="ID=79">
+      <Property name="Supplier">Registrar evento no histórico discipular</Property>
+      <Property name="Client">Retrogradar aluno da EE</Property>
+    </Link>
+  </DesignElement>
+  <DesignElement name="Transferir aluno para outro foco EE + EI" id="ID=74" metaclass="Use Case">
+    <Property name="Classifier behavior">Transferir aluno para outro foco EE + EI.Behavior1</Property>
+    <Property name="Postcondition language">OCL</Property>
+    <Property name="Precondition language">OCL</Property>
+    <DesignElement name="Behavior1" id="ID=708" metaclass="Behavior" />
+    <Link targetName="Behaviored classifier link1" id="ID=709" metaclass="Behaviored classifier link" idref="ID=708">
+      <Property name="Supplier">Transferir aluno para outro foco EE + EI.Behavior1</Property>
+      <Property name="Client">Transferir aluno para outro foco EE + EI</Property>
+    </Link>
+    <Link targetName="Includes1" id="ID=675" metaclass="Includes" idref="ID=79">
+      <Property name="Supplier">Registrar evento no histórico discipular</Property>
+      <Property name="Client">Transferir aluno para outro foco EE + EI</Property>
+    </Link>
+  </DesignElement>
+  <DesignElement name="Instalar aluno em discipulado da EE" id="ID=76" metaclass="Use Case">
+    <Property name="Classifier behavior">Instalar aluno em discipulado da EE.Behavior1</Property>
+    <Property name="Postcondition language">OCL</Property>
+    <Property name="Precondition language">OCL</Property>
+    <DesignElement name="Behavior1" id="ID=714" metaclass="Behavior" />
+    <Link targetName="Behaviored classifier link1" id="ID=715" metaclass="Behaviored classifier link" idref="ID=714">
+      <Property name="Supplier">Instalar aluno em discipulado da EE.Behavior1</Property>
+      <Property name="Client">Instalar aluno em discipulado da EE</Property>
+    </Link>
+    <Link targetName="Includes1" id="ID=674" metaclass="Includes" idref="ID=79">
+      <Property name="Supplier">Registrar evento no histórico discipular</Property>
+      <Property name="Client">Instalar aluno em discipulado da EE</Property>
+    </Link>
+  </DesignElement>
+  <DesignElement name="Emitir cartas de freqüências" id="ID=77" metaclass="Use Case">
+    <Property name="Classifier behavior">Emitir cartas de freqüências.Behavior1</Property>
+    <Property name="Postcondition language">OCL</Property>
+    <Property name="Precondition language">OCL</Property>
+    <DesignElement name="Behavior1" id="ID=720" metaclass="Behavior" />
+    <Link targetName="Behaviored classifier link1" id="ID=721" metaclass="Behaviored classifier link" idref="ID=720">
+      <Property name="Supplier">Emitir cartas de freqüências.Behavior1</Property>
+      <Property name="Client">Emitir cartas de freqüências</Property>
+    </Link>
+    <Link targetName="Includes1" id="ID=673" metaclass="Includes" idref="ID=79">
+      <Property name="Supplier">Registrar evento no histórico discipular</Property>
+      <Property name="Client">Emitir cartas de freqüências</Property>
+    </Link>
+  </DesignElement>
+  <DesignElement name="Registrar óbito do aluno" id="ID=82" metaclass="Use Case">
+    <Property name="Classifier behavior">Registrar óbito do aluno.Behavior1</Property>
+    <Property name="Postcondition language">OCL</Property>
+    <Property name="Precondition language">OCL</Property>
+    <DesignElement name="Behavior1" id="ID=730" metaclass="Behavior" />
+    <Link targetName="Behaviored classifier link1" id="ID=731" metaclass="Behaviored classifier link" idref="ID=730">
+      <Property name="Supplier">Registrar óbito do aluno.Behavior1</Property>
+      <Property name="Client">Registrar óbito do aluno</Property>
+    </Link>
+  </DesignElement>
+  <DesignElement name="Imprimir ficha do aluno" id="ID=85" metaclass="Use Case">
+    <Property name="Classifier behavior">Imprimir ficha do aluno.Behavior1</Property>
+    <Property name="Postcondition language">OCL</Property>
+    <Property name="Precondition language">OCL</Property>
+    <DesignElement name="Behavior1" id="ID=765" metaclass="Behavior" />
+    <Link targetName="Behaviored classifier link1" id="ID=766" metaclass="Behaviored classifier link" idref="ID=765">
+      <Property name="Supplier">Imprimir ficha do aluno.Behavior1</Property>
+      <Property name="Client">Imprimir ficha do aluno</Property>
+    </Link>
+  </DesignElement>
+  <DesignElement name="Consultar ficha do aluno" id="ID=84" metaclass="Use Case">
+    <Property name="Classifier behavior">Consultar ficha do aluno.Behavior1</Property>
+    <Property name="Postcondition language">OCL</Property>
+    <Property name="Precondition language">OCL</Property>
+    <DesignElement name="Behavior1" id="ID=759" metaclass="Behavior" />
+    <Link targetName="Behaviored classifier link1" id="ID=760" metaclass="Behaviored classifier link" idref="ID=759">
+      <Property name="Supplier">Consultar ficha do aluno.Behavior1</Property>
+      <Property name="Client">Consultar ficha do aluno</Property>
+    </Link>
+    <Link targetName="Extends1" id="ID=670" metaclass="Extends" idref="ID=85">
+      <Property name="Supplier">Imprimir ficha do aluno</Property>
+      <Property name="Client">Consultar ficha do aluno</Property>
+    </Link>
+  </DesignElement>
+  <DesignElement name="Instalar membro na EE" id="ID=472" metaclass="Use Case">
+    <Property name="Classifier behavior">Instalar membro na EE.Behavior1</Property>
+    <Property name="Postcondition language">OCL</Property>
+    <Property name="Precondition language">OCL</Property>
+    <DesignElement name="Behavior1" id="ID=769" metaclass="Behavior" />
+    <Link targetName="Behaviored classifier link1" id="ID=770" metaclass="Behaviored classifier link" idref="ID=769">
+      <Property name="Supplier">Instalar membro na EE.Behavior1</Property>
+      <Property name="Client">Instalar membro na EE</Property>
+    </Link>
+    <Link targetName="Includes1" id="ID=677" metaclass="Includes" idref="ID=79">
+      <Property name="Supplier">Registrar evento no histórico discipular</Property>
+      <Property name="Client">Instalar membro na EE</Property>
+    </Link>
+  </DesignElement>
+  <DesignElement name="Instalar jovem do TM na EE" id="ID=473" metaclass="Use Case">
+    <Property name="Classifier behavior">Instalar jovem do TM na EE.Behavior1</Property>
+    <Property name="Postcondition language">OCL</Property>
+    <Property name="Precondition language">OCL</Property>
+    <DesignElement name="Behavior1" id="ID=775" metaclass="Behavior" />
+    <Link targetName="Behaviored classifier link1" id="ID=776" metaclass="Behaviored classifier link" idref="ID=775">
+      <Property name="Supplier">Instalar jovem do TM na EE.Behavior1</Property>
+      <Property name="Client">Instalar jovem do TM na EE</Property>
+    </Link>
+    <Link targetName="Includes1" id="ID=678" metaclass="Includes" idref="ID=79">
+      <Property name="Supplier">Registrar evento no histórico discipular</Property>
+      <Property name="Client">Instalar jovem do TM na EE</Property>
+    </Link>
+  </DesignElement>
+  <DesignElement name="Instalar pesquisador na EE" id="ID=474" metaclass="Use Case">
+    <Property name="Classifier behavior">Instalar pesquisador na EE.Behavior1</Property>
+    <Property name="Postcondition language">OCL</Property>
+    <Property name="Precondition language">OCL</Property>
+    <DesignElement name="Behavior1" id="ID=781" metaclass="Behavior" />
+    <Link targetName="Behaviored classifier link1" id="ID=782" metaclass="Behaviored classifier link" idref="ID=781">
+      <Property name="Supplier">Instalar pesquisador na EE.Behavior1</Property>
+      <Property name="Client">Instalar pesquisador na EE</Property>
+    </Link>
+    <Link targetName="Includes1" id="ID=679" metaclass="Includes" idref="ID=79">
+      <Property name="Supplier">Registrar evento no histórico discipular</Property>
+      <Property name="Client">Instalar pesquisador na EE</Property>
+    </Link>
+  </DesignElement>
+  <DesignElement name="Cadastrar notas no hitórico discipular" id="ID=555" metaclass="Use Case">
+    <Property name="Classifier behavior">Cadastrar notas no hitórico discipular.Behavior1</Property>
+    <Property name="Postcondition language">OCL</Property>
+    <Property name="Precondition language">OCL</Property>
+    <DesignElement name="Behavior1" id="ID=793" metaclass="Behavior" />
+    <Link targetName="Behaviored classifier link1" id="ID=794" metaclass="Behaviored classifier link" idref="ID=793">
+      <Property name="Supplier">Cadastrar notas no hitórico discipular.Behavior1</Property>
+      <Property name="Client">Cadastrar notas no hitórico discipular</Property>
+    </Link>
+  </DesignElement>
+  <DesignElement name="SRLR" id="ID=83" metaclass="Actor">
+    <Link targetName="Association1" id="ID=736" metaclass="Association" idref="ID=82">
+      <Property name="Directed">False</Property>
+      <Property name="Type">association</Property>
+      <Property name="Supplier Union">False</Property>
+      <Property name="Supplier Derived">False</Property>
+      <Property name="Supplier Navigable">unspecified navigability</Property>
+      <Property name="Client Union">False</Property>
+      <Property name="Client Derived">False</Property>
+      <Property name="Client Navigable">unspecified navigability</Property>
+      <Property name="Supplier">Registrar óbito do aluno</Property>
+      <Property name="Client">SRLR</Property>
+      <Property name="Supplier Unique">False</Property>
+      <Property name="Supplier Ordered">False</Property>
+      <Property name="Supplier Visibility">&lt;undefined&gt;</Property>
+      <Property name="Client Unique">False</Property>
+      <Property name="Client Ordered">False</Property>
+      <Property name="Client Visibility">&lt;undefined&gt;</Property>
+    </Link>
+    <Link targetName="Association2" id="ID=737" metaclass="Association" idref="ID=67">
+      <Property name="Directed">False</Property>
+      <Property name="Type">association</Property>
+      <Property name="Supplier Union">False</Property>
+      <Property name="Supplier Derived">False</Property>
+      <Property name="Supplier Navigable">unspecified navigability</Property>
+      <Property name="Client Union">False</Property>
+      <Property name="Client Derived">False</Property>
+      <Property name="Client Navigable">unspecified navigability</Property>
+      <Property name="Supplier">Desligar aluno do EE</Property>
+      <Property name="Client">SRLR</Property>
+      <Property name="Supplier Unique">False</Property>
+      <Property name="Supplier Ordered">False</Property>
+      <Property name="Supplier Visibility">&lt;undefined&gt;</Property>
+      <Property name="Client Unique">False</Property>
+      <Property name="Client Ordered">False</Property>
+      <Property name="Client Visibility">&lt;undefined&gt;</Property>
+    </Link>
+    <Link targetName="Association3" id="ID=738" metaclass="Association" idref="ID=77">
+      <Property name="Directed">False</Property>
+      <Property name="Type">association</Property>
+      <Property name="Supplier Union">False</Property>
+      <Property name="Supplier Derived">False</Property>
+      <Property name="Supplier Navigable">unspecified navigability</Property>
+      <Property name="Client Union">False</Property>
+      <Property name="Client Derived">False</Property>
+      <Property name="Client Navigable">unspecified navigability</Property>
+      <Property name="Supplier">Emitir cartas de freqüências</Property>
+      <Property name="Client">SRLR</Property>
+      <Property name="Supplier Unique">False</Property>
+      <Property name="Supplier Ordered">False</Property>
+      <Property name="Supplier Visibility">&lt;undefined&gt;</Property>
+      <Property name="Client Unique">False</Property>
+      <Property name="Client Ordered">False</Property>
+      <Property name="Client Visibility">&lt;undefined&gt;</Property>
+    </Link>
+    <Link targetName="Association4" id="ID=739" metaclass="Association" idref="ID=76">
+      <Property name="Directed">False</Property>
+      <Property name="Type">association</Property>
+      <Property name="Supplier Union">False</Property>
+      <Property name="Supplier Derived">False</Property>
+      <Property name="Supplier Navigable">unspecified navigability</Property>
+      <Property name="Client Union">False</Property>
+      <Property name="Client Derived">False</Property>
+      <Property name="Client Navigable">unspecified navigability</Property>
+      <Property name="Supplier">Instalar aluno em discipulado da EE</Property>
+      <Property name="Client">SRLR</Property>
+      <Property name="Supplier Unique">False</Property>
+      <Property name="Supplier Ordered">False</Property>
+      <Property name="Supplier Visibility">&lt;undefined&gt;</Property>
+      <Property name="Client Unique">False</Property>
+      <Property name="Client Ordered">False</Property>
+      <Property name="Client Visibility">&lt;undefined&gt;</Property>
+    </Link>
+    <Link targetName="Association5" id="ID=740" metaclass="Association" idref="ID=84">
+      <Property name="Directed">False</Property>
+      <Property name="Type">association</Property>
+      <Property name="Supplier Union">False</Property>
+      <Property name="Supplier Derived">False</Property>
+      <Property name="Supplier Navigable">unspecified navigability</Property>
+      <Property name="Client Union">False</Property>
+      <Property name="Client Derived">False</Property>
+      <Property name="Client Navigable">unspecified navigability</Property>
+      <Property name="Supplier">Consultar ficha do aluno</Property>
+      <Property name="Client">SRLR</Property>
+      <Property name="Supplier Unique">False</Property>
+      <Property name="Supplier Ordered">False</Property>
+      <Property name="Supplier Visibility">&lt;undefined&gt;</Property>
+      <Property name="Client Unique">False</Property>
+      <Property name="Client Ordered">False</Property>
+      <Property name="Client Visibility">&lt;undefined&gt;</Property>
+    </Link>
+    <Link targetName="Association6" id="ID=741" metaclass="Association" idref="ID=74">
+      <Property name="Directed">False</Property>
+      <Property name="Type">association</Property>
+      <Property name="Supplier Union">False</Property>
+      <Property name="Supplier Derived">False</Property>
+      <Property name="Supplier Navigable">unspecified navigability</Property>
+      <Property name="Client Union">False</Property>
+      <Property name="Client Derived">False</Property>
+      <Property name="Client Navigable">unspecified navigability</Property>
+      <Property name="Supplier">Transferir aluno para outro foco EE + EI</Property>
+      <Property name="Client">SRLR</Property>
+      <Property name="Supplier Unique">False</Property>
+      <Property name="Supplier Ordered">False</Property>
+      <Property name="Supplier Visibility">&lt;undefined&gt;</Property>
+      <Property name="Client Unique">False</Property>
+      <Property name="Client Ordered">False</Property>
+      <Property name="Client Visibility">&lt;undefined&gt;</Property>
+    </Link>
+    <Link targetName="Association7" id="ID=742" metaclass="Association" idref="ID=71">
+      <Property name="Directed">False</Property>
+      <Property name="Type">association</Property>
+      <Property name="Supplier Union">False</Property>
+      <Property name="Supplier Derived">False</Property>
+      <Property name="Supplier Navigable">unspecified navigability</Property>
+      <Property name="Client Union">False</Property>
+      <Property name="Client Derived">False</Property>
+      <Property name="Client Navigable">unspecified navigability</Property>
+      <Property name="Supplier">Retrogradar aluno da EE</Property>
+      <Property name="Client">SRLR</Property>
+      <Property name="Supplier Unique">False</Property>
+      <Property name="Supplier Ordered">False</Property>
+      <Property name="Supplier Visibility">&lt;undefined&gt;</Property>
+      <Property name="Client Unique">False</Property>
+      <Property name="Client Ordered">False</Property>
+      <Property name="Client Visibility">&lt;undefined&gt;</Property>
+    </Link>
+    <Link targetName="Association9" id="ID=744" metaclass="Association" idref="ID=472">
+      <Property name="Directed">False</Property>
+      <Property name="Type">association</Property>
+      <Property name="Supplier Union">False</Property>
+      <Property name="Supplier Derived">False</Property>
+      <Property name="Supplier Navigable">unspecified navigability</Property>
+      <Property name="Client Union">False</Property>
+      <Property name="Client Derived">False</Property>
+      <Property name="Client Navigable">unspecified navigability</Property>
+      <Property name="Supplier">Instalar membro na EE</Property>
+      <Property name="Client">SRLR</Property>
+      <Property name="Supplier Unique">False</Property>
+      <Property name="Supplier Ordered">False</Property>
+      <Property name="Supplier Visibility">&lt;undefined&gt;</Property>
+      <Property name="Client Unique">False</Property>
+      <Property name="Client Ordered">False</Property>
+      <Property name="Client Visibility">&lt;undefined&gt;</Property>
+    </Link>
+    <Link targetName="Association10" id="ID=745" metaclass="Association" idref="ID=473">
+      <Property name="Directed">False</Property>
+      <Property name="Type">association</Property>
+      <Property name="Supplier Union">False</Property>
+      <Property name="Supplier Derived">False</Property>
+      <Property name="Supplier Navigable">unspecified navigability</Property>
+      <Property name="Client Union">False</Property>
+      <Property name="Client Derived">False</Property>
+      <Property name="Client Navigable">unspecified navigability</Property>
+      <Property name="Supplier">Instalar jovem do TM na EE</Property>
+      <Property name="Client">SRLR</Property>
+      <Property name="Supplier Unique">False</Property>
+      <Property name="Supplier Ordered">False</Property>
+      <Property name="Supplier Visibility">&lt;undefined&gt;</Property>
+      <Property name="Client Unique">False</Property>
+      <Property name="Client Ordered">False</Property>
+      <Property name="Client Visibility">&lt;undefined&gt;</Property>
+    </Link>
+    <Link targetName="Association11" id="ID=746" metaclass="Association" idref="ID=474">
+      <Property name="Directed">False</Property>
+      <Property name="Type">association</Property>
+      <Property name="Supplier Union">False</Property>
+      <Property name="Supplier Derived">False</Property>
+      <Property name="Supplier Navigable">unspecified navigability</Property>
+      <Property name="Client Union">False</Property>
+      <Property name="Client Derived">False</Property>
+      <Property name="Client Navigable">unspecified navigability</Property>
+      <Property name="Supplier">Instalar pesquisador na EE</Property>
+      <Property name="Client">SRLR</Property>
+      <Property name="Supplier Unique">False</Property>
+      <Property name="Supplier Ordered">False</Property>
+      <Property name="Supplier Visibility">&lt;undefined&gt;</Property>
+      <Property name="Client Unique">False</Property>
+      <Property name="Client Ordered">False</Property>
+      <Property name="Client Visibility">&lt;undefined&gt;</Property>
+    </Link>
+    <Link targetName="Association12" id="ID=747" metaclass="Association" idref="ID=555">
+      <Property name="Directed">False</Property>
+      <Property name="Type">association</Property>
+      <Property name="Supplier Union">False</Property>
+      <Property name="Supplier Derived">False</Property>
+      <Property name="Supplier Navigable">unspecified navigability</Property>
+      <Property name="Client Union">False</Property>
+      <Property name="Client Derived">False</Property>
+      <Property name="Client Navigable">unspecified navigability</Property>
+      <Property name="Supplier">Cadastrar notas no hitórico discipular</Property>
+      <Property name="Client">SRLR</Property>
+      <Property name="Supplier Unique">False</Property>
+      <Property name="Supplier Ordered">False</Property>
+      <Property name="Supplier Visibility">&lt;undefined&gt;</Property>
+      <Property name="Client Unique">False</Property>
+      <Property name="Client Ordered">False</Property>
+      <Property name="Client Visibility">&lt;undefined&gt;</Property>
+    </Link>
+  </DesignElement>
+  <DesignElement name="Consultar histórico discipular" id="ID=542" metaclass="Use Case">
+    <Property name="Classifier behavior">Consultar histórico discipular.Behavior1</Property>
+    <Property name="Postcondition language">OCL</Property>
+    <Property name="Precondition language">OCL</Property>
+    <DesignElement name="Behavior1" id="ID=787" metaclass="Behavior" />
+    <Link targetName="Behaviored classifier link1" id="ID=788" metaclass="Behaviored classifier link" idref="ID=787">
+      <Property name="Supplier">Consultar histórico discipular.Behavior1</Property>
+      <Property name="Client">Consultar histórico discipular</Property>
+    </Link>
+    <Link targetName="Association1" id="ID=789" metaclass="Association" idref="ID=83">
+      <Property name="Directed">False</Property>
+      <Property name="Type">association</Property>
+      <Property name="Supplier Union">False</Property>
+      <Property name="Supplier Derived">False</Property>
+      <Property name="Supplier Navigable">unspecified navigability</Property>
+      <Property name="Client Union">False</Property>
+      <Property name="Client Derived">False</Property>
+      <Property name="Client Navigable">unspecified navigability</Property>
+      <Property name="Supplier">SRLR</Property>
+      <Property name="Client">Consultar histórico discipular</Property>
+      <Property name="Supplier Unique">False</Property>
+      <Property name="Supplier Ordered">False</Property>
+      <Property name="Supplier Visibility">&lt;undefined&gt;</Property>
+      <Property name="Client Unique">False</Property>
+      <Property name="Client Ordered">False</Property>
+      <Property name="Client Visibility">&lt;undefined&gt;</Property>
+    </Link>
+  </DesignElement>
+  <Diagram name="UC02 - SRLR (histórico discipular)" id="ID=590" metaclass="Use Case Diagram" file="UC02_-_SRLR_(histórico_discipular).txvUseCaseDiagram20.html">
+    <DiagramReference id="ID=680" element="ID=67" metaclass="Use Case">
+      <Property name="Classifier behavior">Desligar aluno do EE.Behavior1</Property>
+      <Property name="Postcondition language">OCL</Property>
+      <Property name="Precondition language">OCL</Property>
+      <DiagramReference id="ID=698" element="ID=696" metaclass="Behavior" />
+      <DiagramReference id="ID=699" element="ID=697" metaclass="Behaviored classifier link">
+        <Property name="Supplier">Desligar aluno do EE.Behavior1</Property>
+        <Property name="Client">Desligar aluno do EE</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=700" element="ID=672" metaclass="Includes">
+        <Property name="Supplier">Registrar evento no histórico discipular</Property>
+        <Property name="Client">Desligar aluno do EE</Property>
+      </DiagramReference>
+    </DiagramReference>
+    <DiagramReference id="ID=681" element="ID=70" metaclass="Subject" />
+    <DiagramReference id="ID=682" element="ID=71" metaclass="Use Case">
+      <Property name="Description">Não será permitido retrogradação para o trabalho da mocidade.</Property>
+      <Property name="Classifier behavior">Retrogradar aluno da EE.Behavior1</Property>
+      <Property name="Postcondition language">OCL</Property>
+      <Property name="Precondition language">OCL</Property>
+      <DiagramReference id="ID=704" element="ID=702" metaclass="Behavior" />
+      <DiagramReference id="ID=705" element="ID=703" metaclass="Behaviored classifier link">
+        <Property name="Supplier">Retrogradar aluno da EE.Behavior1</Property>
+        <Property name="Client">Retrogradar aluno da EE</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=706" element="ID=676" metaclass="Includes">
+        <Property name="Supplier">Registrar evento no histórico discipular</Property>
+        <Property name="Client">Retrogradar aluno da EE</Property>
+      </DiagramReference>
+    </DiagramReference>
+    <DiagramReference id="ID=683" element="ID=74" metaclass="Use Case">
+      <Property name="Classifier behavior">Transferir aluno para outro foco EE + EI.Behavior1</Property>
+      <Property name="Postcondition language">OCL</Property>
+      <Property name="Precondition language">OCL</Property>
+      <DiagramReference id="ID=710" element="ID=708" metaclass="Behavior" />
+      <DiagramReference id="ID=711" element="ID=709" metaclass="Behaviored classifier link">
+        <Property name="Supplier">Transferir aluno para outro foco EE + EI.Behavior1</Property>
+        <Property name="Client">Transferir aluno para outro foco EE + EI</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=712" element="ID=675" metaclass="Includes">
+        <Property name="Supplier">Registrar evento no histórico discipular</Property>
+        <Property name="Client">Transferir aluno para outro foco EE + EI</Property>
+      </DiagramReference>
+    </DiagramReference>
+    <DiagramReference id="ID=684" element="ID=76" metaclass="Use Case">
+      <Property name="Classifier behavior">Instalar aluno em discipulado da EE.Behavior1</Property>
+      <Property name="Postcondition language">OCL</Property>
+      <Property name="Precondition language">OCL</Property>
+      <DiagramReference id="ID=716" element="ID=714" metaclass="Behavior" />
+      <DiagramReference id="ID=717" element="ID=715" metaclass="Behaviored classifier link">
+        <Property name="Supplier">Instalar aluno em discipulado da EE.Behavior1</Property>
+        <Property name="Client">Instalar aluno em discipulado da EE</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=718" element="ID=674" metaclass="Includes">
+        <Property name="Supplier">Registrar evento no histórico discipular</Property>
+        <Property name="Client">Instalar aluno em discipulado da EE</Property>
+      </DiagramReference>
+    </DiagramReference>
+    <DiagramReference id="ID=685" element="ID=77" metaclass="Use Case">
+      <Property name="Classifier behavior">Emitir cartas de freqüências.Behavior1</Property>
+      <Property name="Postcondition language">OCL</Property>
+      <Property name="Precondition language">OCL</Property>
+      <DiagramReference id="ID=722" element="ID=720" metaclass="Behavior" />
+      <DiagramReference id="ID=723" element="ID=721" metaclass="Behaviored classifier link">
+        <Property name="Supplier">Emitir cartas de freqüências.Behavior1</Property>
+        <Property name="Client">Emitir cartas de freqüências</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=724" element="ID=673" metaclass="Includes">
+        <Property name="Supplier">Registrar evento no histórico discipular</Property>
+        <Property name="Client">Emitir cartas de freqüências</Property>
+      </DiagramReference>
+    </DiagramReference>
+    <DiagramReference id="ID=686" element="ID=79" metaclass="Use Case">
+      <Property name="Classifier behavior">Registrar evento no histórico discipular.Behavior1</Property>
+      <Property name="Postcondition language">OCL</Property>
+      <Property name="Precondition language">OCL</Property>
+      <DiagramReference id="ID=728" element="ID=726" metaclass="Behavior" />
+      <DiagramReference id="ID=729" element="ID=727" metaclass="Behaviored classifier link">
+        <Property name="Supplier">Registrar evento no histórico discipular.Behavior1</Property>
+        <Property name="Client">Registrar evento no histórico discipular</Property>
+      </DiagramReference>
+    </DiagramReference>
+    <DiagramReference id="ID=687" element="ID=82" metaclass="Use Case">
+      <Property name="Classifier behavior">Registrar óbito do aluno.Behavior1</Property>
+      <Property name="Postcondition language">OCL</Property>
+      <Property name="Precondition language">OCL</Property>
+      <DiagramReference id="ID=732" element="ID=730" metaclass="Behavior" />
+      <DiagramReference id="ID=733" element="ID=731" metaclass="Behaviored classifier link">
+        <Property name="Supplier">Registrar óbito do aluno.Behavior1</Property>
+        <Property name="Client">Registrar óbito do aluno</Property>
+      </DiagramReference>
+    </DiagramReference>
+    <DiagramReference id="ID=688" element="ID=83" metaclass="Actor">
+      <DiagramReference id="ID=748" element="ID=736" metaclass="Association">
+        <Property name="Directed">False</Property>
+        <Property name="Type">association</Property>
+        <Property name="Supplier Union">False</Property>
+        <Property name="Supplier Derived">False</Property>
+        <Property name="Supplier Navigable">unspecified navigability</Property>
+        <Property name="Client Union">False</Property>
+        <Property name="Client Derived">False</Property>
+        <Property name="Client Navigable">unspecified navigability</Property>
+        <Property name="Supplier">Registrar óbito do aluno</Property>
+        <Property name="Client">SRLR</Property>
+        <Property name="Supplier Unique">False</Property>
+        <Property name="Supplier Ordered">False</Property>
+        <Property name="Supplier Visibility">&lt;undefined&gt;</Property>
+        <Property name="Client Unique">False</Property>
+        <Property name="Client Ordered">False</Property>
+        <Property name="Client Visibility">&lt;undefined&gt;</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=749" element="ID=737" metaclass="Association">
+        <Property name="Directed">False</Property>
+        <Property name="Type">association</Property>
+        <Property name="Supplier Union">False</Property>
+        <Property name="Supplier Derived">False</Property>
+        <Property name="Supplier Navigable">unspecified navigability</Property>
+        <Property name="Client Union">False</Property>
+        <Property name="Client Derived">False</Property>
+        <Property name="Client Navigable">unspecified navigability</Property>
+        <Property name="Supplier">Desligar aluno do EE</Property>
+        <Property name="Client">SRLR</Property>
+        <Property name="Supplier Unique">False</Property>
+        <Property name="Supplier Ordered">False</Property>
+        <Property name="Supplier Visibility">&lt;undefined&gt;</Property>
+        <Property name="Client Unique">False</Property>
+        <Property name="Client Ordered">False</Property>
+        <Property name="Client Visibility">&lt;undefined&gt;</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=750" element="ID=738" metaclass="Association">
+        <Property name="Directed">False</Property>
+        <Property name="Type">association</Property>
+        <Property name="Supplier Union">False</Property>
+        <Property name="Supplier Derived">False</Property>
+        <Property name="Supplier Navigable">unspecified navigability</Property>
+        <Property name="Client Union">False</Property>
+        <Property name="Client Derived">False</Property>
+        <Property name="Client Navigable">unspecified navigability</Property>
+        <Property name="Supplier">Emitir cartas de freqüências</Property>
+        <Property name="Client">SRLR</Property>
+        <Property name="Supplier Unique">False</Property>
+        <Property name="Supplier Ordered">False</Property>
+        <Property name="Supplier Visibility">&lt;undefined&gt;</Property>
+        <Property name="Client Unique">False</Property>
+        <Property name="Client Ordered">False</Property>
+        <Property name="Client Visibility">&lt;undefined&gt;</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=751" element="ID=739" metaclass="Association">
+        <Property name="Directed">False</Property>
+        <Property name="Type">association</Property>
+        <Property name="Supplier Union">False</Property>
+        <Property name="Supplier Derived">False</Property>
+        <Property name="Supplier Navigable">unspecified navigability</Property>
+        <Property name="Client Union">False</Property>
+        <Property name="Client Derived">False</Property>
+        <Property name="Client Navigable">unspecified navigability</Property>
+        <Property name="Supplier">Instalar aluno em discipulado da EE</Property>
+        <Property name="Client">SRLR</Property>
+        <Property name="Supplier Unique">False</Property>
+        <Property name="Supplier Ordered">False</Property>
+        <Property name="Supplier Visibility">&lt;undefined&gt;</Property>
+        <Property name="Client Unique">False</Property>
+        <Property name="Client Ordered">False</Property>
+        <Property name="Client Visibility">&lt;undefined&gt;</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=752" element="ID=740" metaclass="Association">
+        <Property name="Directed">False</Property>
+        <Property name="Type">association</Property>
+        <Property name="Supplier Union">False</Property>
+        <Property name="Supplier Derived">False</Property>
+        <Property name="Supplier Navigable">unspecified navigability</Property>
+        <Property name="Client Union">False</Property>
+        <Property name="Client Derived">False</Property>
+        <Property name="Client Navigable">unspecified navigability</Property>
+        <Property name="Supplier">Consultar ficha do aluno</Property>
+        <Property name="Client">SRLR</Property>
+        <Property name="Supplier Unique">False</Property>
+        <Property name="Supplier Ordered">False</Property>
+        <Property name="Supplier Visibility">&lt;undefined&gt;</Property>
+        <Property name="Client Unique">False</Property>
+        <Property name="Client Ordered">False</Property>
+        <Property name="Client Visibility">&lt;undefined&gt;</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=753" element="ID=741" metaclass="Association">
+        <Property name="Directed">False</Property>
+        <Property name="Type">association</Property>
+        <Property name="Supplier Union">False</Property>
+        <Property name="Supplier Derived">False</Property>
+        <Property name="Supplier Navigable">unspecified navigability</Property>
+        <Property name="Client Union">False</Property>
+        <Property name="Client Derived">False</Property>
+        <Property name="Client Navigable">unspecified navigability</Property>
+        <Property name="Supplier">Transferir aluno para outro foco EE + EI</Property>
+        <Property name="Client">SRLR</Property>
+        <Property name="Supplier Unique">False</Property>
+        <Property name="Supplier Ordered">False</Property>
+        <Property name="Supplier Visibility">&lt;undefined&gt;</Property>
+        <Property name="Client Unique">False</Property>
+        <Property name="Client Ordered">False</Property>
+        <Property name="Client Visibility">&lt;undefined&gt;</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=754" element="ID=742" metaclass="Association">
+        <Property name="Directed">False</Property>
+        <Property name="Type">association</Property>
+        <Property name="Supplier Union">False</Property>
+        <Property name="Supplier Derived">False</Property>
+        <Property name="Supplier Navigable">unspecified navigability</Property>
+        <Property name="Client Union">False</Property>
+        <Property name="Client Derived">False</Property>
+        <Property name="Client Navigable">unspecified navigability</Property>
+        <Property name="Supplier">Retrogradar aluno da EE</Property>
+        <Property name="Client">SRLR</Property>
+        <Property name="Supplier Unique">False</Property>
+        <Property name="Supplier Ordered">False</Property>
+        <Property name="Supplier Visibility">&lt;undefined&gt;</Property>
+        <Property name="Client Unique">False</Property>
+        <Property name="Client Ordered">False</Property>
+        <Property name="Client Visibility">&lt;undefined&gt;</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=755" element="ID=744" metaclass="Association">
+        <Property name="Directed">False</Property>
+        <Property name="Type">association</Property>
+        <Property name="Supplier Union">False</Property>
+        <Property name="Supplier Derived">False</Property>
+        <Property name="Supplier Navigable">unspecified navigability</Property>
+        <Property name="Client Union">False</Property>
+        <Property name="Client Derived">False</Property>
+        <Property name="Client Navigable">unspecified navigability</Property>
+        <Property name="Supplier">Instalar membro na EE</Property>
+        <Property name="Client">SRLR</Property>
+        <Property name="Supplier Unique">False</Property>
+        <Property name="Supplier Ordered">False</Property>
+        <Property name="Supplier Visibility">&lt;undefined&gt;</Property>
+        <Property name="Client Unique">False</Property>
+        <Property name="Client Ordered">False</Property>
+        <Property name="Client Visibility">&lt;undefined&gt;</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=756" element="ID=745" metaclass="Association">
+        <Property name="Directed">False</Property>
+        <Property name="Type">association</Property>
+        <Property name="Supplier Union">False</Property>
+        <Property name="Supplier Derived">False</Property>
+        <Property name="Supplier Navigable">unspecified navigability</Property>
+        <Property name="Client Union">False</Property>
+        <Property name="Client Derived">False</Property>
+        <Property name="Client Navigable">unspecified navigability</Property>
+        <Property name="Supplier">Instalar jovem do TM na EE</Property>
+        <Property name="Client">SRLR</Property>
+        <Property name="Supplier Unique">False</Property>
+        <Property name="Supplier Ordered">False</Property>
+        <Property name="Supplier Visibility">&lt;undefined&gt;</Property>
+        <Property name="Client Unique">False</Property>
+        <Property name="Client Ordered">False</Property>
+        <Property name="Client Visibility">&lt;undefined&gt;</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=757" element="ID=746" metaclass="Association">
+        <Property name="Directed">False</Property>
+        <Property name="Type">association</Property>
+        <Property name="Supplier Union">False</Property>
+        <Property name="Supplier Derived">False</Property>
+        <Property name="Supplier Navigable">unspecified navigability</Property>
+        <Property name="Client Union">False</Property>
+        <Property name="Client Derived">False</Property>
+        <Property name="Client Navigable">unspecified navigability</Property>
+        <Property name="Supplier">Instalar pesquisador na EE</Property>
+        <Property name="Client">SRLR</Property>
+        <Property name="Supplier Unique">False</Property>
+        <Property name="Supplier Ordered">False</Property>
+        <Property name="Supplier Visibility">&lt;undefined&gt;</Property>
+        <Property name="Client Unique">False</Property>
+        <Property name="Client Ordered">False</Property>
+        <Property name="Client Visibility">&lt;undefined&gt;</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=758" element="ID=747" metaclass="Association">
+        <Property name="Directed">False</Property>
+        <Property name="Type">association</Property>
+        <Property name="Supplier Union">False</Property>
+        <Property name="Supplier Derived">False</Property>
+        <Property name="Supplier Navigable">unspecified navigability</Property>
+        <Property name="Client Union">False</Property>
+        <Property name="Client Derived">False</Property>
+        <Property name="Client Navigable">unspecified navigability</Property>
+        <Property name="Supplier">Cadastrar notas no hitórico discipular</Property>
+        <Property name="Client">SRLR</Property>
+        <Property name="Supplier Unique">False</Property>
+        <Property name="Supplier Ordered">False</Property>
+        <Property name="Supplier Visibility">&lt;undefined&gt;</Property>
+        <Property name="Client Unique">False</Property>
+        <Property name="Client Ordered">False</Property>
+        <Property name="Client Visibility">&lt;undefined&gt;</Property>
+      </DiagramReference>
+    </DiagramReference>
+    <DiagramReference id="ID=689" element="ID=84" metaclass="Use Case">
+      <Property name="Classifier behavior">Consultar ficha do aluno.Behavior1</Property>
+      <Property name="Postcondition language">OCL</Property>
+      <Property name="Precondition language">OCL</Property>
+      <DiagramReference id="ID=761" element="ID=759" metaclass="Behavior" />
+      <DiagramReference id="ID=762" element="ID=760" metaclass="Behaviored classifier link">
+        <Property name="Supplier">Consultar ficha do aluno.Behavior1</Property>
+        <Property name="Client">Consultar ficha do aluno</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=763" element="ID=670" metaclass="Extends">
+        <Property name="Supplier">Imprimir ficha do aluno</Property>
+        <Property name="Client">Consultar ficha do aluno</Property>
+      </DiagramReference>
+    </DiagramReference>
+    <DiagramReference id="ID=690" element="ID=85" metaclass="Use Case">
+      <Property name="Classifier behavior">Imprimir ficha do aluno.Behavior1</Property>
+      <Property name="Postcondition language">OCL</Property>
+      <Property name="Precondition language">OCL</Property>
+      <DiagramReference id="ID=767" element="ID=765" metaclass="Behavior" />
+      <DiagramReference id="ID=768" element="ID=766" metaclass="Behaviored classifier link">
+        <Property name="Supplier">Imprimir ficha do aluno.Behavior1</Property>
+        <Property name="Client">Imprimir ficha do aluno</Property>
+      </DiagramReference>
+    </DiagramReference>
+    <DiagramReference id="ID=691" element="ID=472" metaclass="Use Case">
+      <Property name="Classifier behavior">Instalar membro na EE.Behavior1</Property>
+      <Property name="Postcondition language">OCL</Property>
+      <Property name="Precondition language">OCL</Property>
+      <DiagramReference id="ID=771" element="ID=769" metaclass="Behavior" />
+      <DiagramReference id="ID=772" element="ID=770" metaclass="Behaviored classifier link">
+        <Property name="Supplier">Instalar membro na EE.Behavior1</Property>
+        <Property name="Client">Instalar membro na EE</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=773" element="ID=677" metaclass="Includes">
+        <Property name="Supplier">Registrar evento no histórico discipular</Property>
+        <Property name="Client">Instalar membro na EE</Property>
+      </DiagramReference>
+    </DiagramReference>
+    <DiagramReference id="ID=692" element="ID=473" metaclass="Use Case">
+      <Property name="Classifier behavior">Instalar jovem do TM na EE.Behavior1</Property>
+      <Property name="Postcondition language">OCL</Property>
+      <Property name="Precondition language">OCL</Property>
+      <DiagramReference id="ID=777" element="ID=775" metaclass="Behavior" />
+      <DiagramReference id="ID=778" element="ID=776" metaclass="Behaviored classifier link">
+        <Property name="Supplier">Instalar jovem do TM na EE.Behavior1</Property>
+        <Property name="Client">Instalar jovem do TM na EE</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=779" element="ID=678" metaclass="Includes">
+        <Property name="Supplier">Registrar evento no histórico discipular</Property>
+        <Property name="Client">Instalar jovem do TM na EE</Property>
+      </DiagramReference>
+    </DiagramReference>
+    <DiagramReference id="ID=693" element="ID=474" metaclass="Use Case">
+      <Property name="Classifier behavior">Instalar pesquisador na EE.Behavior1</Property>
+      <Property name="Postcondition language">OCL</Property>
+      <Property name="Precondition language">OCL</Property>
+      <DiagramReference id="ID=783" element="ID=781" metaclass="Behavior" />
+      <DiagramReference id="ID=784" element="ID=782" metaclass="Behaviored classifier link">
+        <Property name="Supplier">Instalar pesquisador na EE.Behavior1</Property>
+        <Property name="Client">Instalar pesquisador na EE</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=785" element="ID=679" metaclass="Includes">
+        <Property name="Supplier">Registrar evento no histórico discipular</Property>
+        <Property name="Client">Instalar pesquisador na EE</Property>
+      </DiagramReference>
+    </DiagramReference>
+    <DiagramReference id="ID=694" element="ID=542" metaclass="Use Case">
+      <Property name="Classifier behavior">Consultar histórico discipular.Behavior1</Property>
+      <Property name="Postcondition language">OCL</Property>
+      <Property name="Precondition language">OCL</Property>
+      <DiagramReference id="ID=790" element="ID=787" metaclass="Behavior" />
+      <DiagramReference id="ID=791" element="ID=788" metaclass="Behaviored classifier link">
+        <Property name="Supplier">Consultar histórico discipular.Behavior1</Property>
+        <Property name="Client">Consultar histórico discipular</Property>
+      </DiagramReference>
+      <DiagramReference id="ID=792" element="ID=789" metaclass="Association">
+        <Property name="Directed">False</Property>
+        <Property name="Type">association</Property>
+        <Property name="Supplier Union">False</Property>
+        <Property name="Supplier Derived">False</Property>
+        <Property name="Supplier Navigable">unspecified navigability</Property>
+        <Property name="Client Union">False</Property>
+        <Property name="Client Derived">False</Property>
+        <Property name="Client Navigable">unspecified navigability</Property>
+        <Property name="Supplier">SRLR</Property>
+        <Property name="Client">Consultar histórico discipular</Property>
+        <Property name="Supplier Unique">False</Property>
+        <Property name="Supplier Ordered">False</Property>
+        <Property name="Supplier Visibility">&lt;undefined&gt;</Property>
+        <Property name="Client Unique">False</Property>
+        <Property name="Client Ordered">False</Property>
+        <Property name="Client Visibility">&lt;undefined&gt;</Property>
+      </DiagramReference>
+    </DiagramReference>
+    <DiagramReference id="ID=695" element="ID=555" metaclass="Use Case">
+      <Property name="Classifier behavior">Cadastrar notas no hitórico discipular.Behavior1</Property>
+      <Property name="Postcondition language">OCL</Property>
+      <Property name="Precondition language">OCL</Property>
+      <DiagramReference id="ID=795" element="ID=793" metaclass="Behavior" />
+      <DiagramReference id="ID=796" element="ID=794" metaclass="Behaviored classifier link">
+        <Property name="Supplier">Cadastrar notas no hitórico discipular.Behavior1</Property>
+        <Property name="Client">Cadastrar notas no hitórico discipular</Property>
+      </DiagramReference>
+    </DiagramReference>
+  </Diagram>
+</Model>

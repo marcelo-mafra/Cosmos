@@ -1,0 +1,72 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{0E702C2A-E52B-4C20-80EF-2E9810804E36}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Focos\Gestor de Focos.tgproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Secretarias\Secretarias.tgproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Tesouraria\Tesouraria.tgproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Ferramentas\Gestor de Usuarios\Gestor de Usuarios.tgproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Gestor de Focos">
+        <MSBuild Projects="Focos\Gestor de Focos.tgproj"/>
+    </Target>
+    <Target Name="Gestor de Focos:Clean">
+        <MSBuild Projects="Focos\Gestor de Focos.tgproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Gestor de Focos:Make">
+        <MSBuild Projects="Focos\Gestor de Focos.tgproj" Targets="Make"/>
+    </Target>
+    <Target Name="Secretarias">
+        <MSBuild Projects="Secretarias\Secretarias.tgproj"/>
+    </Target>
+    <Target Name="Secretarias:Clean">
+        <MSBuild Projects="Secretarias\Secretarias.tgproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Secretarias:Make">
+        <MSBuild Projects="Secretarias\Secretarias.tgproj" Targets="Make"/>
+    </Target>
+    <Target Name="Tesouraria">
+        <MSBuild Projects="Tesouraria\Tesouraria.tgproj"/>
+    </Target>
+    <Target Name="Tesouraria:Clean">
+        <MSBuild Projects="Tesouraria\Tesouraria.tgproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Tesouraria:Make">
+        <MSBuild Projects="Tesouraria\Tesouraria.tgproj" Targets="Make"/>
+    </Target>
+    <Target Name="Gestor de Usuarios">
+        <MSBuild Projects="Ferramentas\Gestor de Usuarios\Gestor de Usuarios.tgproj"/>
+    </Target>
+    <Target Name="Gestor de Usuarios:Clean">
+        <MSBuild Projects="Ferramentas\Gestor de Usuarios\Gestor de Usuarios.tgproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Gestor de Usuarios:Make">
+        <MSBuild Projects="Ferramentas\Gestor de Usuarios\Gestor de Usuarios.tgproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Gestor de Focos;Secretarias;Tesouraria;Gestor de Usuarios"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Gestor de Focos:Clean;Secretarias:Clean;Tesouraria:Clean;Gestor de Usuarios:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Gestor de Focos:Make;Secretarias:Make;Tesouraria:Make;Gestor de Usuarios:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

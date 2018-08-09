@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="uzkx20mvm_v">
+    <property name="$metaclass" value="ClassDiagram20" />
+    <property name="$name" value="Class Diagram" />
+    <reference referencedUin="design:node:::50l1oywsq_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="160,100,87,122" />
+      <reference referencedUin="design:node:::5ho7mtwxm59yi9j_n:50l1oywsq_n">
+        <property name="bounds" value="35,-26,0,0" />
+      </reference>
+      <reference referencedUin="design:node:::2no4jhofomqw9xq_n:50l1oywsq_n">
+        <property name="bounds" value="55,47,0,0" />
+      </reference>
+    </reference>
+  </view>
+</nodeSet>

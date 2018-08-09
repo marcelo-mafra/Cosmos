@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<PersonalityInfo>
+		<Option>
+			<Option Name="Personality">Default.Personality</Option>
+			<Option Name="ProjectType"></Option>
+			<Option Name="Version">1.0</Option>
+			<Option Name="GUID">{482DFA97-B811-4778-9BD6-B9A62E56346F}</Option>
+		</Option>
+	</PersonalityInfo>
+	<Default.Personality>  <Projects>
+      <Projects Name="Gestor de Focos">Focos\Gestor de Focos.bdsproj</Projects>
+      <Projects Name="Secretarias">Secretarias\Secretarias.bdsproj</Projects>
+      <Projects Name="Tesouraria">Tesouraria\Tesouraria.bdsproj</Projects>
+      <Projects Name="Gestor de Usuarios">Ferramentas\Gestor de Usuarios\Gestor de Usuarios.bdsproj</Projects>
+      <Projects Name="Targets">"Gestor de Focos" Secretarias Tesouraria "Gestor de Usuarios"</Projects>
+    </Projects>
+    <Dependencies/>
+  </Default.Personality>
+	<StarTeamAssociation></StarTeamAssociation>
+	<StarTeamNonRelativeFiles></StarTeamNonRelativeFiles>
+</BorlandProject>

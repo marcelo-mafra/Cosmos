@@ -1,0 +1,29 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{BC445022-D4A4-4178-9ADC-EC245B20FC8B}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <None Include="ModelSupport_Tesouraria\default.txaPackage"/>
+        <None Include="ModelSupport_Tesouraria\default.txvClassDiagram20"/>
+        <None Include="ModelSupport_Tesouraria\Tesouraria regional.txvUseCaseDiagram20"/>
+        <None Include="ModelSupport_Tesouraria\Tesouraria nacional.txvUseCaseDiagram20"/>
+        <None Include="ModelSupport_Tesouraria\Gerente de Tesouraria.txvUseCaseDiagram20"/>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Design.Personality.12</Borland.Personality>
+        <Borland.ProjectType>Application</Borland.ProjectType>
+        <BorlandProject>
+            <Design.Personality>
+                <Options>
+                    <OptionsSet>
+                        <Together>
+                            <Together Name="UMLVersion">2.0</Together>
+                        </Together>
+                    </OptionsSet>
+                </Options>
+            </Design.Personality>
+            <ModelSupport>True</ModelSupport>
+        </BorlandProject>
+        <ProjectFileVersion>12</ProjectFileVersion>
+    </ProjectExtensions>
+</Project>

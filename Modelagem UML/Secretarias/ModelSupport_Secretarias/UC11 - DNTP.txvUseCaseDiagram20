@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="0fm8ynaaq_v">
+    <property name="$metaclass" value="UseCaseDiagram20" />
+    <property name="$name" value="UC11 - DNTP" />
+    <reference referencedUin="design:node:::qbmp2pdas_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="320,280,46,88" />
+      <reference referencedUin="design:link:::uam5gq57o_l:qbmp2pdas_n">
+        <property name="sourceAnchor" value="343,280" />
+        <property name="targetAnchor" value="343,132" />
+        <property name="bendpoints" value="" />
+      </reference>
+      <reference referencedUin="design:link:::jamp4aqxg_l:qbmp2pdas_n">
+        <property name="sourceAnchor" value="320,306" />
+        <property name="targetAnchor" value="182,206" />
+        <property name="bendpoints" value="" />
+      </reference>
+      <reference referencedUin="design:link:::eamx4vegs_l:qbmp2pdas_n">
+        <property name="sourceAnchor" value="320,341" />
+        <property name="targetAnchor" value="181,442" />
+        <property name="bendpoints" value="" />
+      </reference>
+      <reference referencedUin="design:link:::ofm04k20ebx4gol_l:qbmp2pdas_n">
+        <property name="sourceAnchor" value="366,341" />
+        <property name="targetAnchor" value="455,406" />
+        <property name="bendpoints" value="" />
+      </reference>
+      <reference referencedUin="design:link:::9ukd7fdap_l:qbmp2pdas_n">
+        <property name="sourceAnchor" value="366,310" />
+        <property name="targetAnchor" value="500,310" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="design:node:::8amwuh8ml_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="60,140,160,73" />
+      <property name="bounds_setted_by_user" value="True" />
+      <reference referencedUin="design:node:::4am9h78qm_n:8amwuh8ml_n" />
+      <reference referencedUin="design:link:::w0metovvk_l:8amwuh8ml_n" />
+      <reference referencedUin="design:link:::r0m0viu3t_l:8amwuh8ml_n">
+        <property name="sourceAnchor" value="150,212" />
+        <property name="targetAnchor" value="150,440" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="design:node:::00mbq01zm_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="280,80,120,53" />
+      <property name="bounds_setted_by_user" value="True" />
+      <reference referencedUin="design:node:::60moruies_n:00mbq01zm_n" />
+      <reference referencedUin="design:link:::20m8hvdle_l:00mbq01zm_n" />
+    </reference>
+    <reference referencedUin="design:node:::79m5oy1yq_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="80,440,140,92" />
+      <property name="bounds_setted_by_user" value="True" />
+      <reference referencedUin="design:node:::29ml96d2h_n:79m5oy1yq_n" />
+      <reference referencedUin="design:link:::y8mffxn8m_l:79m5oy1yq_n" />
+    </reference>
+    <reference referencedUin="label:extend:design:link:::r0m0viu3t_l:8amwuh8ml_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="153,318,70,16" />
+    </reference>
+    <reference referencedUin="design:node:::fbm2sybwj_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="420,160,200,40" />
+      <property name="bounds_setted_by_user" value="True" />
+      <reference referencedUin="design:link:::bamrkjz9p_l:fbm2sybwj_n">
+        <property name="sourceAnchor" value="366,304" />
+        <property name="targetAnchor" value="495,200" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="design:node:::m0mfm4qff_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="420,400,160,80" />
+      <property name="bounds_setted_by_user" value="True" />
+      <reference referencedUin="design:node:::x0mhh8gyi_n:m0mfm4qff_n" />
+      <reference referencedUin="design:link:::5bmnasjqq_l:m0mfm4qff_n" />
+    </reference>
+    <reference referencedUin="design:node:::4vk1z4jag_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="500,280,160,73" />
+      <property name="bounds_setted_by_user" value="True" />
+      <reference referencedUin="design:node:::8vk22n0yn_n:4vk1z4jag_n" />
+      <reference referencedUin="design:link:::bvko04vwm_l:4vk1z4jag_n" />
+    </reference>
+  </view>
+</nodeSet>

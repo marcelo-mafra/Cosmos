@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <node uin="v9lznp9sd8xzuyg_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note1" />
+    <property name="$note_text" value="Ainda será definido com maior precisão em que consiste esta intervenção nas secretarias dos focos." />
+  </node>
+  <node uin="m1lyssbsd0anf8g_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note2" />
+    <property name="$note_text" value="Os principais pagamentos são as mensalidades e as taxas de conferências." />
+  </node>
+  <node uin="3blv72lsduyld6i_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note3" />
+    <property name="$note_text" value="As tesourarias locais poderão receber mensalidades e taxas de conferências devidas a qualquer foco." />
+  </node>
+  <node uin="3glslausduor5or_n">
+    <property name="$metaclass" value="Constraint" />
+    <property name="$name" value="precondition" />
+    <node uin="5glslausdrkkfrq_n">
+      <property name="$metaclass" value="ValueSpecification" />
+      <property name="$name" value="Value Specification1" />
+      <property name="@body" value="Somente alunos da EI" />
+    </node>
+  </node>
+  <node uin="pglqvg0tdjnac4f_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note4" />
+    <property name="$note_text" value="O que é isto?" />
+  </node>
+  <node uin="xiliy5otdldifom_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note5" />
+    <property name="$note_text" value="Serão consideradas apenas as atividades de presença obrigatória e facultadas ao aluno da EE." />
+  </node>
+  <node uin="llla1ubudrc9omt_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note6" />
+    <property name="$note_text" value="Os grupos de participantes serão definidos das seguintes formas: &#xD;&#xA;1. Grupo da E.I.&#xD;&#xA;2. Conjunto de discipulados" />
+  </node>
+  <node uin="5ml8f3ludcpbzmr_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note7" />
+    <property name="$note_text" value="Instalação nos discipulados probatório e professo." />
+  </node>
+  <node uin="3ol29l3vdysvvvg_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note8" />
+    <property name="$note_text" value="O contato de grupo da EI somente poderá ler e escrever dados referentes ao  grupo a que pertence. Cada contato terá uma senha específica que o identifica." />
+  </node>
+  <node uin="a9maz3i0exr0g1r_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note9" />
+    <property name="$note_text" value="ghgh" />
+  </node>
+  <node uin="49m047l0ek69anm_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note10" />
+    <property name="$note_text" value="Agenda do círculo.&#xD;&#xA;Endereços e meios de contatos dos membros do círculo." />
+  </node>
+  <node uin="g2m4xo31exjvujn_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note11" />
+    <property name="$note_text" value="Para Membros ou para Lectorium.&#xD;&#xA;Somente jovens do Grupo &quot;D&quot;." />
+  </node>
+  <node uin="31m4xo31ejwiajh_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note12" />
+    <property name="$note_text" value="De alunos Probatório em diante." />
+  </node>
+  <node uin="tolxu0o1ejupicm_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note13" />
+    <property name="$note_text" value="Curso de cartas.&#xD;&#xA;Pesquisador agendado para instalação.&#xD;&#xA;Pesquisador no período de 3 meses.&#xD;&#xA;Atuantes do TP.&#xD;&#xA;Relatório de presença.&#xD;&#xA;Lista de telefones de pesquisadores.&#xD;&#xA;Lista de telefones de obreiros.&#xD;&#xA;Agenda de atividades." />
+  </node>
+  <node uin="zcmwzcr1ef4pdle_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note14" />
+    <property name="$note_text" value="Cadastro para 5 cartas.&#xD;&#xA;Ficha de dados cadastrais.&#xD;&#xA;Convite para 12 cartas." />
+  </node>
+  <node uin="7jmay8l3ec42s7j_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note15" />
+    <property name="$note_text" value="Poderá quebrar regras do TP." />
+  </node>
+  <node uin="kmm0f6i4e3r6k3i_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note16" />
+    <property name="$note_text" value="Para secretarias de seus respectivos campos." />
+  </node>
+  <node uin="ommzj9l4eccjqer_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note17" />
+    <property name="$note_text" value="Probatório em diante para SRLR" />
+  </node>
+  <node uin="smmzj9l4e9zezrj_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note18" />
+    <property name="$note_text" value="40 dias após a carta de frequência." />
+  </node>
+  <node uin="vomrmx95eitv1di_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note19" />
+    <property name="$note_text" value="Mentores e dirigentes de E.I. devem ser alunos do mesmo foco que dono do grupo. Excecao feita" />
+  </node>
+  <node uin="5pmpw3f5e1sklyi_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note20" />
+    <property name="$note_text" value="Curso de 12 temas" />
+  </node>
+  <node uin="9qmlffr5e3l2h8k_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note21" />
+    <property name="$note_text" value="A DEI pode cadastrar estes obreiros para atuarem nos grupos, mesmo que eles nao estejam ligados ao mesmo foco que o grupo." />
+  </node>
+  <node uin="mqmjplx5eogpt9h_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note22" />
+    <property name="$note_text" value="Qualquer evento do histórico discipular do aluno, jovem, membro ou pesquisador poderá ser anulado." />
+  </node>
+  <node uin="8um97ju6eodn6dr_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note23" />
+    <property name="$note_text" value="Tabela CID." />
+  </node>
+  <node uin="wwm108i7ew8vd7i_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note24" />
+    <property name="$note_text" value="Mei poderá retrogradar aluno da EI?" />
+  </node>
+  <node uin="rxmyngr7e06uedg_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note25" />
+    <property name="$note_text" value="Consultar a ata do dia 02/05/2005 sobre as atribuições da SNLR" />
+  </node>
+  <node uin="xxmxsju7e26c13s_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note26" />
+    <property name="$note_text" value="Após o registro do óbito, os dados do falecido não poderão ser editados. Este lock só poderá ser revogado, temporariamente, por um usuário dos grupos DEI ou PRESIDIUM." />
+  </node>
+  <node uin="1ymxsju7ej0a6vt_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note27" />
+    <property name="$note_text" value="Alunos do 5º em diante não têm seu levantamento de freqüência feito. Seus nomes não aparecem na lista de presença e documentos sobre freqüência dos alunos" />
+  </node>
+  <node uin="aymv2q08e7o1qyo_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note28" />
+    <property name="$note_text" value="Estes avisos seguem os processos das secretarias referentes a controle de freqüência. Consultar." />
+  </node>
+  <node uin="gymv2q08ed0lvqh_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note29" />
+    <property name="$note_text" value="Se o transferido é cabeça da família, o sistema deve sugerir a transferência também de seus dependentes." />
+  </node>
+  <node uin="kymu7t38egaoqgp_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note30" />
+    <property name="$note_text" value="O usuário de senha forte poderá escolher para qual discipulado o aluno será instalado. Para outros usuários o sistema imporá a instalação no discipulo seguinte ao atual" />
+  </node>
+  <node uin="q1nkjnx8elhv97r_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note31" />
+    <property name="$note_text" value="Apenas dos obreiros do TMB." />
+  </node>
+  <node uin="a2nhyw69ei5pkon_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note32" />
+    <property name="$note_text" value="Feita a entrevista, o candidato permanece 6 meses no TMB. Neste momento, ele é chamado de &quot;membro candidato&quot;." />
+  </node>
+  <node uin="83nec6f9ebd36is_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note33" />
+    <property name="$note_text" value="Havendo infreqüência ou impedimentos, o membro candidato torna-se membro efetivo." />
+  </node>
+  <node uin="b3ndh9i9ebafc3m_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note34" />
+    <property name="$note_text" value="Lançar no sistema as datas das etapas posteriores. O sistema pergunta a data da entrega de cada modelo." />
+  </node>
+  <node uin="f3ndh9i9ete0dhg_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note35" />
+    <property name="$note_text" value="Emite o modelo 6 apenas para a conferência de endereço e coleta de nome do familiar." />
+  </node>
+  <node uin="d7n19cl0ercobgl_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note36" />
+    <property name="$note_text" value="Verificar condições para religar desligado" />
+  </node>
+  <node uin="n8nwwr0ae2pl5nm_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note37" />
+    <property name="$note_text" value="Filtrar mentores e dirigentes da EI&#xD;&#xA;" />
+  </node>
+  <node uin="r8nv1v3aek6cc4t_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note38" />
+    <property name="$note_text" value="Direitos de atuar somente na  EE" />
+  </node>
+  <node uin="29nu6y6aexh07qt_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note39" />
+    <property name="$note_text" value="Somente alunos podem receber funções." />
+  </node>
+  <node uin="j9nsf4cae16bfkl_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note40" />
+    <property name="$note_text" value="Somente do foco do dirigente regional." />
+  </node>
+  <node uin="p9nqp0iaewyj11h_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note41" />
+    <property name="$note_text" value="" />
+  </node>
+  <node uin="r9nqp0iae0ue7ro_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note42" />
+    <property name="$note_text" value="Os dados dos franqueados para a atividade escolhida virao com presencao ja marcada para os habitues e ausencia para todos os restantes." />
+  </node>
+  <node uin="t9npuclaea4rnxs_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note43" />
+    <property name="$note_text" value="TM pode incluir presença de alunos do LR.&#xD;&#xA;TP pode incluir presença de alunos do LR, TM, TMB.&#xD;&#xA;TMB pode incluir presença de alunos do TP." />
+  </node>
+  <node uin="v9npuclaervzfwg_n">
+    <property name="$metaclass" value="Note" />
+    <property name="$name" value="Note44" />
+    <property name="$note_text" value="" />
+  </node>
+  <node uin="z9nn4jrae0awows_n">
+    <property name="$metaclass" value="Constraint" />
+    <property name="$name" value="text" />
+    <node uin="10nn4jraehncokf_n">
+      <property name="$metaclass" value="ValueSpecification" />
+      <property name="$name" value="Value Specification1" />
+      <property name="@body" value="Há colisão de atividades" />
+      <property name="@language" value="ocl" />
+    </node>
+  </node>
+</nodeSet>

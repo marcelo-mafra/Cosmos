@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="b0ivb29r1qjse0f_v">
+    <property name="$metaclass" value="SequenceDiagram20" />
+    <property name="$name" value="Instalações" />
+    <reference referencedUin="design:node:::m8isqahr1o4gjvr_n">
+      <property name="$shortcutReference" value="" />
+      <reference referencedUin="design:node:::6viakrzp6hf7q1s_n:m8isqahr1o4gjvr_n">
+        <property name="bounds" value="33,10,110,300" />
+        <property name="bounds_setted_by_user" value="True" />
+      </reference>
+    </reference>
+  </view>
+  <link uin="08isqahr16eshts_l">
+    <property name="$metaclass" value="SequenceDiagram20_LinkToInteraction" />
+    <property name="$name" value="1" />
+    <participant referencedUin="design:view:::b0ivb29r1qjse0f_v" role="Client" />
+    <participant referencedUin="design:node:::m8isqahr1o4gjvr_n" role="Supplier" />
+  </link>
+</nodeSet>

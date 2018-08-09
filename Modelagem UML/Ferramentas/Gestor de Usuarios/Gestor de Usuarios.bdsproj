@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <PersonalityInfo>
+    <Option>
+      <Option Name="Personality">Design.Personality</Option>
+      <Option Name="ProjectType">Application</Option>
+      <Option Name="Version">1.0</Option>
+      <Option Name="GUID">{AC568FB0-C66E-4CE7-A070-980BFB2A6967}</Option>
+    </Option>
+  </PersonalityInfo>
+  <Design.Personality>
+    <Options>
+      <OptionsSet Name="">
+        <Together>
+          <Together Name="UMLVersion">2.0</Together>
+        </Together>
+      </OptionsSet>
+    </Options>
+    
+    
+    <FileList>
+      <File FileName="ModelSupport_Gestor de Usuarios\default.txaPackage" ContainerId="TogetherDiagram" ModuleName="default"/>
+      <File FileName="ModelSupport_Gestor de Usuarios\default.txvClassDiagram20" ContainerId="TogetherDiagram" ModuleName="default"/>
+      <File FileName="ModelSupport_Gestor de Usuarios\UC01 - Cadastrar usuários do Servidor SQL.txvUseCaseDiagram20" ContainerId="TogetherDiagram" ModuleName="UC01 - Cadastrar usuários do Servidor SQL"/>
+      <File FileName="ModelSupport_Gestor de Usuarios\COM01 - Arquitetura geral.txvComponentDiagram20" ContainerId="TogetherDiagram" ModuleName="COM01 - Arquitetura geral"/>
+    </FileList>
+  </Design.Personality>
+  <ModelSupport>True</ModelSupport>
+</BorlandProject>

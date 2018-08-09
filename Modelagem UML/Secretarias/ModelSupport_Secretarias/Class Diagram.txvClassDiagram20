@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="1pjegcemq_v">
+    <property name="$metaclass" value="ClassDiagram20" />
+    <property name="$name" value="Class Diagram" />
+    <reference referencedUin="design:node:::ltj05bfmq_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="140,160,87,105" />
+      <reference referencedUin="design:node:::d7lvbe1jt_n:ltj05bfmq_n">
+        <property name="bounds" value="15,-6,0,0" />
+      </reference>
+    </reference>
+  </view>
+</nodeSet>

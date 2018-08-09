@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="1cl20g0sdtu06gm_v">
+    <property name="$defaultDiagram" value="true" />
+    <property name="$metaclass" value="Package Diagram" />
+    <property name="$name" value="default" />
+    <reference referencedUin="delphi:e_class:src:Project1:Project1.@unitclass">
+      <property name="$shortcutReference" value="true" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Project1:Project1.IReglib">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="217,155,73,62" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Project1:Project1.ICosmosLogin">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="118,155,92,62" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Project1:Project1.Tfbserv">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="40,360,65,76" />
+      <reference referencedUin="delphi:l_impl:src:Project1:Project1.Tfbserv:Project1.IFBServ" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Project1:Project1.TReg">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="140,360,65,76" />
+      <reference referencedUin="delphi:l_impl:src:Project1:Project1.TReg:Project1.IReg" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Project1:Project1.IFBServ">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="40,260,73,62" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Project1:Project1.IReg">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="140,260,73,62" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Project1:Project1.TRDMSecretarias">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="240,360,112,76" />
+      <reference referencedUin="delphi:l_impl:src:Project1:Project1.TRDMSecretarias:Project1.ISecretarias" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Project1:Project1.ISecretarias">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="237,255,79,62" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Project1:Project1.TMarcelo">
+      <property name="$shortcutReference" value="true" />
+      <reference referencedUin="delphi:e_method:src:Project1:Project1.TMarcelo.Create()" />
+    </reference>
+    <reference referencedUin="design:view:::nin23elcelvi00f_v">
+      <property name="$shortcutReference" value="true" />
+      <reference referencedUin="delphi:e_class:src:Project1:Project1.CorePack.TPessoa" />
+      <reference referencedUin="design:view:::bmnv007de67dteh_v" />
+      <reference referencedUin="delphi:e_class:src:Project1:Project1.CorePack.@unitclass" />
+    </reference>
+    <reference referencedUin="design:view:::80o6hbfieiod1ki_v">
+      <property name="$shortcutReference" value="true" />
+    </reference>
+  </view>
+</nodeSet>

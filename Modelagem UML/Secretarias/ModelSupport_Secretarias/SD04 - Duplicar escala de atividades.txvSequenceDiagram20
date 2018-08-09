@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="ynnt006jf0ovhnm_v">
+    <property name="$metaclass" value="SequenceDiagram20" />
+    <property name="$name" value="SD04 - Duplicar escala de atividades" />
+    <reference referencedUin="design:node:::xnn7mwcjffiymql_n">
+      <property name="$shortcutReference" value="" />
+      <reference referencedUin="design:node:::4rn8b3hzshiay8r_n:xnn7mwcjffiymql_n">
+        <reference referencedUin="design:node:::edo3623uq_n:4rn8b3hzshiay8r_n:xnn7mwcjffiymql_n">
+          <reference referencedUin="design:node:::sdopijmun_n:edo3623uq_n:4rn8b3hzshiay8r_n:xnn7mwcjffiymql_n">
+            <reference referencedUin="sd20_message|1|reply|75(design:node:::sdopijmun_n:edo3623uq_n:4rn8b3hzshiay8r_n:xnn7mwcjffiymql_n)" />
+            <reference referencedUin="sd20_message|1|call|75(design:node:::sdopijmun_n:edo3623uq_n:4rn8b3hzshiay8r_n:xnn7mwcjffiymql_n)" />
+          </reference>
+        </reference>
+        <reference referencedUin="design:node:::0so3uaa2o_n:4rn8b3hzshiay8r_n:xnn7mwcjffiymql_n">
+          <reference referencedUin="design:node:::whptasde3edxras_n:0so3uaa2o_n:4rn8b3hzshiay8r_n:xnn7mwcjffiymql_n">
+            <reference referencedUin="sd20_message|1|call|81(design:node:::whptasde3edxras_n:0so3uaa2o_n:4rn8b3hzshiay8r_n:xnn7mwcjffiymql_n)" />
+          </reference>
+        </reference>
+        <reference referencedUin="design:node:::iboxbm0n1umb1ff_n:4rn8b3hzshiay8r_n:xnn7mwcjffiymql_n">
+          <reference referencedUin="design:node:::7bowgpcn1wpcueg_n:iboxbm0n1umb1ff_n:4rn8b3hzshiay8r_n:xnn7mwcjffiymql_n">
+            <reference referencedUin="sd20_message|1|call|87(design:node:::7bowgpcn1wpcueg_n:iboxbm0n1umb1ff_n:4rn8b3hzshiay8r_n:xnn7mwcjffiymql_n)" />
+          </reference>
+        </reference>
+        <reference referencedUin="design:link:::6eot94pff_l:4rn8b3hzshiay8r_n:xnn7mwcjffiymql_n" />
+      </reference>
+      <reference referencedUin="design:node:::qqnfh6r3r_n:xnn7mwcjffiymql_n">
+        <reference referencedUin="design:node:::odomogfbp_n:qqnfh6r3r_n:xnn7mwcjffiymql_n" />
+        <reference referencedUin="design:node:::noo7jm8xg_n:qqnfh6r3r_n:xnn7mwcjffiymql_n">
+          <reference referencedUin="design:node:::fsosyuudp_n:noo7jm8xg_n:qqnfh6r3r_n:xnn7mwcjffiymql_n">
+            <reference referencedUin="design:node:::shptasde3khlx4n_n:fsosyuudp_n:noo7jm8xg_n:qqnfh6r3r_n:xnn7mwcjffiymql_n" />
+            <reference referencedUin="sd20_message|1|call|69(design:node:::fsosyuudp_n:noo7jm8xg_n:qqnfh6r3r_n:xnn7mwcjffiymql_n)" />
+          </reference>
+        </reference>
+        <reference referencedUin="design:node:::3bowgpcn1j1bzgk_n:qqnfh6r3r_n:xnn7mwcjffiymql_n" />
+      </reference>
+      <reference referencedUin="design:node:::5eoloue8p_n:xnn7mwcjffiymql_n">
+        <reference referencedUin="sd20_message|1|call|45(design:node:::5eoloue8p_n:xnn7mwcjffiymql_n)" />
+      </reference>
+      <reference referencedUin="design:node:::osoap7j0t_n:xnn7mwcjffiymql_n">
+        <reference referencedUin="sd20_message|1|call|45(design:node:::osoap7j0t_n:xnn7mwcjffiymql_n)" />
+      </reference>
+      <reference referencedUin="design:node:::ebowgpcn1ea9mrf_n:xnn7mwcjffiymql_n">
+        <reference referencedUin="sd20_message|1|call|51(design:node:::ebowgpcn1ea9mrf_n:xnn7mwcjffiymql_n)" />
+      </reference>
+    </reference>
+  </view>
+  <link uin="rln7mwcjfspbe4f_l">
+    <property name="$metaclass" value="SequenceDiagram20_LinkToInteraction" />
+    <property name="$name" value="1" />
+    <participant referencedUin="design:view:::ynnt006jf0ovhnm_v" role="Client" />
+    <participant referencedUin="design:node:::xnn7mwcjffiymql_n" role="Supplier" />
+  </link>
+</nodeSet>

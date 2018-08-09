@@ -1,0 +1,28 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{B8E02FEA-A29F-4183-8F9F-FDEF8F1C0545}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <None Include="ModelSupport_Gestor de Usuarios\default.txaPackage"/>
+        <None Include="ModelSupport_Gestor de Usuarios\default.txvClassDiagram20"/>
+        <None Include="ModelSupport_Gestor de Usuarios\UC01 - Cadastrar usuários do Servidor SQL.txvUseCaseDiagram20"/>
+        <None Include="ModelSupport_Gestor de Usuarios\COM01 - Arquitetura geral.txvComponentDiagram20"/>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Design.Personality.12</Borland.Personality>
+        <Borland.ProjectType>Application</Borland.ProjectType>
+        <BorlandProject>
+            <Design.Personality>
+                <Options>
+                    <OptionsSet>
+                        <Together>
+                            <Together Name="UMLVersion">2.0</Together>
+                        </Together>
+                    </OptionsSet>
+                </Options>
+            </Design.Personality>
+            <ModelSupport>True</ModelSupport>
+        </BorlandProject>
+        <ProjectFileVersion>12</ProjectFileVersion>
+    </ProjectExtensions>
+</Project>

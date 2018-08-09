@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <view uin="31m47blvk947syh_v">
+    <property name="$metaclass" value="UseCaseDiagram20" />
+    <property name="$name" value="UC27 - DITM" />
+    <reference referencedUin="design:node:::64m088jgm6v2h9r_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="180,140,46,88" />
+      <reference referencedUin="design:link:::y4mnc9mer9m5mws_l:64m088jgm6v2h9r_n">
+        <property name="sourceAnchor" value="226,176" />
+        <property name="targetAnchor" value="279,176" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="design:node:::06mghxgrn6nlkop_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="280,140,137,73" />
+      <property name="bounds_setted_by_user" value="True" />
+      <reference referencedUin="design:node:::46mghxgrnhi10et_n:06mghxgrn6nlkop_n" />
+      <reference referencedUin="design:link:::86mghxgrnquardn_l:06mghxgrn6nlkop_n" />
+    </reference>
+    <reference referencedUin="design:node:::uams2x5bt0pfuus_n">
+      <property name="$shortcutReference" value="true" />
+      <property name="background_color" value="200, 200, 200" />
+      <property name="bounds" value="10,10,243,40" />
+      <property name="bounds_setted_by_user" value="True" />
+    </reference>
+  </view>
+</nodeSet>

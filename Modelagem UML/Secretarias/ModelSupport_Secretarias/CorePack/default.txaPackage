@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet>
+  <node uin="50l1oywsq_n">
+    <property name="$metaclass" value="Class20" />
+    <property name="$name" value="TPessoa" />
+    <node uin="5ho7mtwxm59yi9j_n">
+      <property name="$metaclass" value="Operation20" />
+      <property name="$name" value="Create" />
+      <property name="stereotype" value="constructor" />
+    </node>
+    <node uin="2no4jhofomqw9xq_n">
+      <property name="$metaclass" value="Property20" />
+      <property name="$name" value="Nome" />
+      <property name="mod__type" value="string" />
+    </node>
+  </node>
+</nodeSet>

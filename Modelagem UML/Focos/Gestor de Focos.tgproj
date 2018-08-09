@@ -1,0 +1,26 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{DBA4613E-5E2D-4B40-8128-9203441EC18C}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <None Include="ModelSupport_Gestor de Focos\default.txaPackage"/>
+        <None Include="ModelSupport_Gestor de Focos\default.txvClassDiagram20"/>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Design.Personality.12</Borland.Personality>
+        <Borland.ProjectType>Application</Borland.ProjectType>
+        <BorlandProject>
+            <Design.Personality>
+                <Options>
+                    <OptionsSet>
+                        <Together>
+                            <Together Name="UMLVersion">2.0</Together>
+                        </Together>
+                    </OptionsSet>
+                </Options>
+            </Design.Personality>
+            <ModelSupport>True</ModelSupport>
+        </BorlandProject>
+        <ProjectFileVersion>12</ProjectFileVersion>
+    </ProjectExtensions>
+</Project>
