@@ -1,0 +1,54 @@
+package cmgui;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS OFF}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE RELEASE}
+{$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'Cosmos janela cliente padrão'}
+{$RUNONLY}
+{$IMPLICITBUILD ON}
+
+requires
+  cmlib,
+  interfaces,
+  secmod,
+  dlgmessage,
+  dockedform,
+  cmpersist,
+  cmdialogs,
+  shellib,
+  wmanager,
+  frames,
+  corelib,
+  rtl,
+  logwrt,
+  vcltouch;
+
+contains
+  cosmos.common.view.mainform in 'cosmos.common.view.mainform.pas' {FrmMainClientGUI},
+  cosmos.common.view.frmmodernmenu in 'cosmos.common.view.frmmodernmenu.pas' {FrmModernMenu},
+  cosmos.common.view.frmwinmanager in 'cosmos.common.view.frmwinmanager.pas' {FrmWindowsManager};
+
+end.
+

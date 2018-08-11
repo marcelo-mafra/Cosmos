@@ -1,0 +1,57 @@
+package cmlib;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS OFF}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE RELEASE}
+{$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'Cosmos biblioteca comum'}
+{$RUNONLY}
+{$IMPLICITBUILD OFF}
+
+requires
+  rtl,
+  vcl,
+  xmlrtl,
+  dbrtl,
+  shellib,
+  IndySystem,
+  IndyCore;
+
+contains
+  cosmos.system.messages in '..\..\..\Arquivos Comuns\System\cosmos.system.messages.pas',
+  cosmos.classes.ServerInterface in '..\..\..\Arquivos Comuns\Classes\cosmos.classes.ServerInterface.pas',
+  cosmos.classes.application in '..\..\..\Arquivos Comuns\Classes\cosmos.classes.application.pas',
+  cosmos.classes.arrayutils in '..\..\..\Arquivos Comuns\Classes\cosmos.classes.arrayutils.pas',
+  cosmos.core.client.connection in '..\..\..\Arquivos Comuns\Classes\Core\cosmos.core.client.connection.pas',
+  cosmos.core.classes.xmldata in '..\..\..\Arquivos Comuns\Classes\Core\cosmos.core.classes.xmldata.pas',
+  cosmos.core.classes.FieldsInfo in '..\..\..\Arquivos Comuns\Classes\Core\cosmos.core.classes.FieldsInfo.pas',
+  cosmos.core.classes.searchsinfo in '..\..\..\Arquivos Comuns\Classes\Core\cosmos.core.classes.searchsinfo.pas',
+  cosmos.system.types in '..\..\..\Arquivos Comuns\System\cosmos.system.types.pas',
+  cosmos.system.exceptions in '..\..\..\Arquivos Comuns\System\cosmos.system.exceptions.pas',
+  cosmos.reports.types in '..\..\..\Arquivos Comuns\Reports\cosmos.reports.types.pas',
+  cosmos.system.formsconst in '..\..\..\Arquivos Comuns\System\cosmos.system.formsconst.pas',
+  cosmos.system.files in '..\..\..\Arquivos Comuns\System\cosmos.system.files.pas',
+  cosmos.data.dataobjects in '..\..\..\Arquivos Comuns\Data\cosmos.data.dataobjects.pas';
+
+end.

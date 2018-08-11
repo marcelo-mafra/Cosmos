@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{BE24A6BC-0E21-42EB-96B7-BC60497E891C}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="UML\Cosmos Design.tgproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Cosmos Design">
+        <MSBuild Projects="UML\Cosmos Design.tgproj"/>
+    </Target>
+    <Target Name="Cosmos Design:Clean">
+        <MSBuild Projects="UML\Cosmos Design.tgproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Cosmos Design:Make">
+        <MSBuild Projects="UML\Cosmos Design.tgproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Cosmos Design"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Cosmos Design:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Cosmos Design:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
