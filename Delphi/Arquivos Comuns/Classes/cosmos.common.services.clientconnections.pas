@@ -18,7 +18,8 @@ uses
   cosmos.common.services.providerspool, Data.DBXDataSnap, IPPeerClient, Data.FMTBcd,
   Cosmos.Framework.Interfaces.ConnectionNotifiers, IdException, IdExceptionCore,
   cosmos.framework.clients.common.appinfo, DbxCompressionFilter, cosmos.system.files,
-  cosmos.classes.dsconnectionspool, Data.DbxHTTPLayer,  cosmos.common.services.connectionstest;
+  cosmos.classes.dsconnectionspool, Data.DbxHTTPLayer,  cosmos.common.services.connectionstest,
+  cosmos.system.dataconverter;
 
 type
   //Informações existentes em um certificado digital.
@@ -312,8 +313,6 @@ end;
 procedure TDMBase.DBXConnectionValidatePeerCertificate(Owner: TObject;
   Certificate: TX509Certificate; const ADepth: Integer; var Ok: Boolean);
 var
- aDate: TDateTime;
- sDate: string;
  CACertificate: boolean;
 begin
  {Valida o certificado digital recebido do servidor.}
@@ -2755,7 +2754,7 @@ begin
          ctPooledOnStart: FConnectionsPool.PoolGrowth := pgCreateFull;
        end;
        //Configura as demais propriedades do pool.
-       FConnectionsPool.CommandText := 'TDMCosmosApplicationServer.PingServer';   //do not localize!
+       FConnectionsPool.CommandText := 'TDMCosmosApplicationServer.PingServer'; //do not localize!
        FConnectionsPool.ValidatePeerCertificate := DBXConnection.ValidatePeerCertificate;
        FConnectionsPool.BeforeConnect := DBXConnection.BeforeConnect;
        FConnectionsPool.AfterConnect := DBXConnection.AfterConnect;

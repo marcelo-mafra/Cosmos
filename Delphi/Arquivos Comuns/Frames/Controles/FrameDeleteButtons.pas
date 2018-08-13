@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, 
   Dialogs, DBActns, ActnList, ImgList, StdCtrls, Buttons,
-  DB, System.Actions;
+  DB, System.Actions, System.ImageList;
 
 type
   TFmeDBDelButtons = class(TFrame)

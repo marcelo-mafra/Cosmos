@@ -141,12 +141,13 @@
         <DCCReference Include="corelib.dcp"/>
         <DCCReference Include="cmlib.dcp"/>
         <DCCReference Include="DbxCommonDriver.dcp"/>
-        <DCCReference Include="..\..\Arquivos Comuns\Classes\cosmos.classes.cripter.pas"/>
+        <DCCReference Include="cosmos.classes.cripter.pas"/>
         <DCCReference Include="..\..\Arquivos Comuns\Classes\Security\cosmos.classes.security.pas"/>
         <DCCReference Include="OpenSSL\libeay32.pas"/>
         <DCCReference Include="OpenSSL\OpenSSLUtils.pas"/>
         <DCCReference Include="..\..\Arquivos Comuns\Classes\Security\cosmos.common.security.x509certificate.pas"/>
-        <DCCReference Include="..\..\Arquivos Comuns\Classes\cosmos.classes.cripterint.pas"/>
+        <DCCReference Include="cosmos.classes.cripterint.pas"/>
+        <DCCReference Include="..\..\Arquivos Comuns\Classes\cosmos.classes.cosmoscript.pas"/>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -238,6 +239,12 @@
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="..\..\..\Bin\Win32\secmod.bpl" Configuration="Debug" Class="ProjectOutput"/>
+                <DeployFile LocalName="..\..\..\Bin\Win64\Release\secmod.bpl" Configuration="Release" Class="ProjectOutput">
+                    <Platform Name="Win64">
+                        <RemoteName>secmod.bpl</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployClass Name="AdditionalDebugSymbols">
                     <Platform Name="OSX32">
                         <Operation>1</Operation>

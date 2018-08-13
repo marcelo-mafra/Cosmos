@@ -9,7 +9,8 @@ uses
   Cosmos.Framework.Interfaces.Dialogs, cosmos.Framework.Interfaces.DataAcess,
   PlatformDefaultStyleActnCtrls, cosmos.classes.ServerInterface, cosmos.business.focos,
   Vcl.ToolWin, System.Actions, cosmos.system.messages, cosmos.system.types,
-  Cosmos.Framework.Interfaces.Applications, Data.DBXCommon, Cosmos.Classes.Security;
+  Cosmos.Framework.Interfaces.Applications, Data.DBXCommon, Cosmos.Classes.Security,
+  cosmos.system.dataconverter, System.ImageList;
 
 
 type

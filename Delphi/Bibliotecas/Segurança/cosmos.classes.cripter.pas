@@ -1,6 +1,8 @@
 unit cosmos.classes.cripter;
 
 interface
+{Implementa um classe "interna" que disponibiliza inúmeros métodos de criptografia
+ e hash. Essa classe não deve ser usada diretamente por nenhum módulo.}
 
 uses cosmos.classes.cripterint;
 

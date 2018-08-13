@@ -12,7 +12,7 @@ uses
   cosmos.Framework.forms.wizards, cosmos.classes.security, System.Actions,
   Datasnap.DSConnect, cosmos.system.files, Cosmos.Framework.Interfaces.DataAcess,
   Cosmos.Framework.Interfaces.Applications, cosmos.system.formsconst,
-  System.ImageList;
+  System.ImageList, cosmos.system.dataconverter, cosmos.data.dataobjects;
 
 type
   TFrmCirculosEI = class(TFrmCosmosDocked)
@@ -358,8 +358,7 @@ var
 begin
   CdsDiscipulados := IRemoteCon.OpenBufferedData(TCosmosFiles.BufDiscipulados);
 
-  sFilter := 'indescint = %s and indati = %s';
-  sFilter := sFilter.Format(sFilter, [TDataConverter.ToBoleanString(True, True),
+  sFilter := sFilter.Format(TFilterData.INDESCINT_INDATI, [TDataConverter.ToBoleanString(True, True),
      TDataConverter.ToBoleanString(True, True)]);
 
   CdsDiscipulados.Filter := sFilter;

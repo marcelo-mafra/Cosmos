@@ -10,7 +10,7 @@ uses
   cosmos.system.messages, Cosmos.Framework.Interfaces.Root, Datasnap.DSConnect,
   Cosmos.Framework.Interfaces.DataAcess, Cosmos.Framework.Interfaces.Dialogs,
   cosmos.classes.application, cosmos.classes.security, System.Actions,
-  Vcl.ActnList, Vcl.ImgList;
+  Vcl.ActnList, Vcl.ImgList, cosmos.system.dataconverter, System.ImageList;
 
 type
   TFrmEditarAtividadesLEC = class(TForm)

@@ -8,10 +8,9 @@ interface
 
 uses
   Winapi.Windows, System.SysUtils, System.Classes, cosmos.servers.sqlcommands,
-  Data.DB, Datasnap.DBClient, Data.SqlExpr,
-  cosmos.system.types, cosmos.system.messages, cosmos.classes.application,
-  cosmos.system.exceptions, cosmos.classes.dataobjects, System.WideStrings,
-  Data.DBXCommon, Data.DBXFirebird;
+  Data.DB, Datasnap.DBClient, Data.SqlExpr, cosmos.system.types, cosmos.system.messages,
+  cosmos.classes.application, cosmos.system.exceptions, cosmos.classes.dataobjects,
+  cosmos.classes.cosmoscript, System.WideStrings, Data.DBXCommon, Data.DBXFirebird;
 
 type
   TCosmosUser = class
@@ -108,7 +107,7 @@ begin
    begin
     Data := UserData;
     logusu := Fields.FieldByName('logusu').AsString;
-    password := TDataTransformation.Criptografar(Fields.FieldByName('passwrd').AsString);
+    password := TCripterFactory.Criptografar(Fields.FieldByName('passwrd').AsString);
     rolename := Fields.FieldByName('rolename').AsString;
     codcad := Fields.FieldByName('codcad').AsInteger;
     indati := Fields.FieldByName('indati').AsString;
@@ -142,7 +141,7 @@ begin
    //Agora, insere na tabela de usuários do Cosmos as informações sobre o novo
    //usuário e os focos que pode acessar.
    CloseDataset(ASQLDataset);
-   ACommand.ExecuteDQL(Format(TDQLCommand.Generators, [TSequencesNames.GEN_USUARIOS, 1]), ASQLDataset);
+   ACommand.ExecuteDQL(Format(TDQLCommands.Generators, [TSequencesNames.GEN_USUARIOS, 1]), ASQLDataset);
    NewUserID := ASQLDataset.Fields.Fields[0].AsInteger + ActiveRange;
    CloseDataset(ASQLDataset);
 
@@ -222,7 +221,7 @@ begin
   else
    begin
     CloseDataset(ADataset);
-    ADML := Format(TSecurityCommand.ChangePassword, [QuotedStr(TDataTransformation.Criptografar(NewPassword)), QuotedStr(LowerCase(UserName))]);
+    ADML := Format(TSecurityCommand.ChangePassword, [TCripterFactory.Criptografar(NewPassword).QuotedString, QuotedStr(UserName.ToLower)]);
 
     Result := ACommand.ExecuteCommand(ADML);
     if Result = 0 then //O comando não alterou nenhum registro!

@@ -544,8 +544,8 @@ begin
 end;
 
 function TCleanupThread.DoTestConnection(const ConnectionPoolId: integer): boolean;
-var
- aCommand: TDBXCommand;
+{var
+ aCommand: TDBXCommand;}
 begin
  Result := True;
 

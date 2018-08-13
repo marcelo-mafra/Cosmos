@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, cosmos.framework.view.FrmDocked, Xml.xmldom,
   Xml.XMLIntf, Xml.Win.msxmldom, Xml.XMLDoc, Vcl.Menus, Vcl.ActnPopup,
   Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnMan, Data.DB, Datasnap.DBClient,
-  System.Classes, System.Actions, Vcl.ActnList, Vcl.Forms,
+  System.Classes, System.Actions, Vcl.ActnList, Vcl.Forms, cosmos.system.dataconverter,
   cosmos.frames.gridsearch, Vcl.Grids, Vcl.ValEdit, Vcl.ExtCtrls, Vcl.Graphics,
   Vcl.StdCtrls, Vcl.Controls, Vcl.ComCtrls, Vcl.ToolWin, Vcl.ActnCtrls,
   Vcl.ImgList, System.SysUtils, System.Variants, Vcl.Dialogs,
@@ -17,7 +17,7 @@ uses
   cosmos.framework.forms.conferencias, cosmos.framework.forms.focos,
   cosmos.business.focos, cosmos.classes.security, Data.DBXCommon,
   cosmos.framework.datanavigators.datasets, cosmos.system.formsconst,
-  cosmos.framework.interfaces.root;
+  cosmos.framework.interfaces.root, System.ImageList;
 
 type
 

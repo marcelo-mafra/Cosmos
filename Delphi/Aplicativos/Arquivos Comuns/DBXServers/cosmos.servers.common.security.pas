@@ -107,6 +107,7 @@ class function TCosmosSecurity.ChangePassword(const UserName, NewPassword: strin
 var
  ADML: string;
 begin
+//Muda a senha de um usuário.
  try
   ADML := ADML.Format(TSecurityCommand.ChangePassword, [NewPassword.QuotedString, QuotedStr('N'), UserName.QuotedString]);
   Result := DMServerDataAcess.DoExecuteCommand(ADML) > 0;
@@ -176,6 +177,7 @@ class procedure TCosmosSecurity.GetUserRoles(const UserName: string;
 var
  ADataset: TSQLDataset;
 begin
+{Obtém os grupos de perfis aos quais um usuário está vinculado.}
  ADataset := DMServerDataAcess.CreateDataset;
 
  try

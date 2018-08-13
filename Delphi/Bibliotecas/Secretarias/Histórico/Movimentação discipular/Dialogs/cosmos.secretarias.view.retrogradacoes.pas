@@ -84,10 +84,10 @@ begin
 
   if AReader.Next then
    begin
-    EdtNome.Text := AReader.Value['nomcad'].GetAnsiString;
-    EdtDiscipulado.Text :=  AReader.Value['sigdis'].GetAnsiString;
+    EdtNome.Text := AReader.Value['nomcad'].ToString;
+    EdtDiscipulado.Text :=  AReader.Value['sigdis'].ToString;
     EdtFoco.Text := ICosmosApp.ActiveFocus.FocusName;
-    sCampoTrabalho := AReader.Value['camdis'].GetAnsiString
+    sCampoTrabalho := AReader.Value['camdis'].ToString
    end;
 
   LoadPreviousGrades(AReader.Value['coddis'].GetInt32);

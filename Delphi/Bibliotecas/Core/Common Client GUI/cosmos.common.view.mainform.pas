@@ -21,7 +21,7 @@ uses
   {Vcl.RibbonLunaStyleActnCtrls,} Vcl.StdStyleActnCtrls, //Vcl.RibbonObsidianStyleActnCtrls,
   {Vcl.RibbonSilverStyleActnCtrls,}  cosmos.framework.view.FrmDocked, Vcl.AppEvnts,
   Vcl.DbGrids, System.Actions, cosmos.system.winshell, cosmos.core.client.connection,
-  Vcl.Touch.GestureMgr, Data.DBXCommon, cosmos.classes.cripter,
+  Vcl.Touch.GestureMgr, Data.DBXCommon, cosmos.classes.cosmoscript,
   Cosmos.Framework.Interfaces.ConnectionNotifiers, Cosmos.Framework.Interfaces.ChangeFocusNotifiers,
   IdStack, System.ImageList;
 
@@ -1467,48 +1467,21 @@ begin
 end;
 
 function TFrmMainClientGUI.EncriptString(const InString: string): string;
-var
- aCripter: TCripter;
 begin
 //Criptografa uma string no padrão Blowfish128.
- aCripter := TCripter.Create;
-
- try
-  Result := aCripter.Encrypt(cmBlowfish128, TCosmosCriptography.CipherKey, InString);
-
- finally
-  aCripter.Free;
- end;
+ Result := TCripterFactory.Criptografar(InString);
 end;
 
 function TFrmMainClientGUI.DecryptString(const InString: string): string;
-var
- aCripter: TCripter;
 begin
 //Descriptografa uma string no padrão Blowfish128.
- aCripter := TCripter.Create;
-
- try
-  Result := aCripter.Decrypt(cmBlowfish128, TCosmosCriptography.CipherKey, InString);
-
- finally
-  aCripter.Free;
- end;
+  Result := TCripterFactory.Descriptografar(InString);
 end;
 
 function TFrmMainClientGUI.HashString(const InString: string): string;
-var
- aCripter: TCripter;
 begin
  //Cria um hash de uma string usando o padrão SHA512.
- aCripter := TCripter.Create;
-
- try
-  Result := aCripter.HashValue(hmSHA512, InString);
-
- finally
-  aCripter.Free;
- end;
+  Result := TCripterFactory.HashValue(InString);
 end;
 
 procedure TFrmMainClientGUI.DoAplicateCustomHintObject(

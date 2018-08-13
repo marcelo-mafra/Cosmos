@@ -58,7 +58,7 @@ end;
 procedure TDMCon.ReadMyConfigurations;
 var
  AXMLDoc: TXMLDocument;
- ANode, AChildNode: IXMLNode;
+ ANode: IXMLNode;
 begin
  {Lê algumas opções de configuração por usuário específicas do Gestor de Secretarias.}
 

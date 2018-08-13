@@ -9,7 +9,7 @@ uses
   Cosmos.Framework.Interfaces.Dialogs, StdCtrls, Mask, DBCtrls, cosmos.frames.fkSearch,
   cosmos.classes.ServerInterface, ValueComboBox, DBValueComboBox, cosmos.frames.gridsearch,
   cosmos.frames.usuariocad, cosmos.system.types, cosmos.system.messages, FrameDeleteButtons,
-  cosmos.classes.security, Datasnap.DSConnect;
+  cosmos.classes.security, Datasnap.DSConnect, cosmos.system.dataconverter;
 
 type
   TFrmCadastroEndereco = class(TForm, ICosmosEnderecos)

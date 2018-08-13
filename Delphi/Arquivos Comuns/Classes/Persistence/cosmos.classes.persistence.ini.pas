@@ -4,7 +4,7 @@ interface
 
 uses
  Winapi.Windows, System.Classes, cosmos.classes.persistence, System.IniFiles,
- System.SysUtils, cosmos.classes.cripter;
+ System.SysUtils, cosmos.classes.cosmoscript;
 
 type
 
@@ -13,7 +13,6 @@ type
 
   private
    FIniFile: TCustomIniFile;
-   FCodeKey: string;
 
    function GetFileName: string;
 
@@ -62,8 +61,6 @@ begin
   FIniFile := TIniFile.Create(FileName)
  else
   FIniFile := TMemIniFile.Create(FileName);
-
- FCodeKey := '7958165';
 end;
 
 procedure TIniFilePersistence.DeleteKey(const Section, Key: string);
@@ -131,20 +128,12 @@ function TIniFilePersistence.ReadCyphereValue(const Section, Key,
   Default: string): string;
 var
  sValue: string;
- aCripter: TCripter;
 begin
- aCripter := TCripter.Create;
-
- try
-  sValue := FIniFile.ReadString(Section, Key, Default);
-  if sValue.Trim <> '' then
-   Result := aCripter.Decrypt(cmBlowfish128, PChar(FCodeKey), PChar(sValue))
-  else
-   Result := sValue;
-
- finally
-  aCripter.Free;
- end;
+ sValue := FIniFile.ReadString(Section, Key, Default);
+ if sValue.Trim <> '' then
+  Result := TCripterFactory.Descriptografar(sValue)
+ else
+  Result := sValue;
 end;
 
 function TIniFilePersistence.ReadInteger(const Section, Key: string; Default: integer): integer;
@@ -203,20 +192,12 @@ end;
 procedure TIniFilePersistence.WriteHash(const Section, Key, Value: string);
 var
  sValue: string;
- aCripter: TCripter;
 begin
   inherited;
   if Value <> '' then
    begin
-    aCripter := TCripter.Create;
-
-    try
-     sValue := aCripter.HashValue(hmSHA512, Value);
-     FIniFile.WriteString(Section, Key, sValue);
-
-    finally
-     aCripter.Free;
-    end;
+    sValue := TCripterFactory.HashValue(Value);
+    FIniFile.WriteString(Section, Key, sValue);
    end;
 end;
 

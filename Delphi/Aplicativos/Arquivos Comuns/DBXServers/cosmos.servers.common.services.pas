@@ -5,8 +5,7 @@ interface
 uses
   System.SysUtils, System.Classes, cosmos.system.types, cosmos.system.messages,
   cosmos.classes.application, Datasnap.DSSession, cosmos.system.files,
-  cosmos.classes.cripter, cosmos.classes.persistence.ini, cosmos.classes.logs,
-  cosmos.classes.logs.controller;
+  cosmos.classes.persistence.ini, cosmos.classes.logs, cosmos.classes.logs.controller;
 
 type
 
@@ -30,9 +29,6 @@ type
 
   public
     function CreateContextInfoObject: TStringList;
-    function HashValue(const Text: string): string;
-    function Criptografar(const Text: string): string;
-    function Descriptografar(const Text: string): string;
     function FindSession(const SessionId: string): TDSSession;
     procedure RegisterLog(const Info, ContextInfo: string; Event: TLogEvent = leOnInformation);
 
@@ -65,41 +61,9 @@ begin
  Result.QuoteChar := '"';
 end;
 
-function TDMCosmosServerServices.Criptografar(const Text: string): string;
-var
- aCripter: TCripter;
-begin
-//Criptografa uma string que é retornada pela função. A rotina de criptografia
-//está no módulo cripter.dll
- aCripter := TCripter.Create;
-
- try
-  Result := aCripter.Encrypt(cmBlowfish128, TCosmosCriptography.CipherKey, Text);
-
- finally
-  aCripter.Free;
- end;
-end;
-
 procedure TDMCosmosServerServices.DataModuleDestroy(Sender: TObject);
 begin
  if Assigned(LogInfo) then FreeAndNil(FLogInfo);
-end;
-
-function TDMCosmosServerServices.Descriptografar(const Text: string): string;
-var
- aCripter: TCripter;
-begin
-//Descriptografa uma string que é retornada pela função. A rotina de
-//descriptografia está no módulo cripter.dll
- aCripter := TCripter.Create;
-
- try
-  Result := aCripter.Decrypt(cmBlowfish128, TCosmosCriptography.CipherKey, Text);
-
- finally
-  aCripter.Free;
- end;
 end;
 
 function TDMCosmosServerServices.FindSession(
@@ -147,21 +111,6 @@ begin
    cmFinanceiroServer: Result :=  TCosmosAppName.CosmosFinanceiroShort.ToUpper;
    cmConferenciasServer: Result :=  TCosmosAppName.CosmosConferenciasShort.ToUpper;
    cmUsuariosServer: Result :=  TCosmosAppName.CosmosUsuariosShort.ToUpper;
- end;
-end;
-
-function TDMCosmosServerServices.HashValue(const Text: string): string;
-var
- aCripter: TCripter;
-begin
- {Faz um hash SHA512 indecifrável com um texto.}
- aCripter := TCripter.Create;
-
- try
-  Result := aCripter.HashValue(hmSHA512, Text);
-
- finally
-  aCripter.Free;
  end;
 end;
 

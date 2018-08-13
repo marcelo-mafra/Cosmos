@@ -1,6 +1,0 @@
-{TODO -oMarcelo -cAjuda : Implementar mecanismo de configuração da exibição das dicas (tips) que podem ser exibidas na inicialização.}
-{DONE -oMarcelo -cRegistro : Exibir status de registro do aplicativo na barra de título. Se o aplicativo não estiver registrado, exibir tela de registro na inicialização.}
-{DONE -oMarcelo -cInterface : Salvar a configuração de estilos de menus (avançado ou padrão winXP) para que a opção seja reconhecida durante a inicialização do aplicativo.}
-{DONE -oMarcelo -cInterface : Implementar configuração de estilos de menus (avançado ou padrão winXP).}
-{TODO -oMarcelo -cLogin : Durante o processo de conexão com o servidor, exibir mensagens dos processos que estão sendo executados.}
-{TODO -oMarcelo -cWindowsManager :Alterar WindowsManager para descarregar pacotes após as janelas encaixadas terem sido fechadas.}

@@ -12,22 +12,16 @@ const
 sSelFocos = 'select codfoc, nomfoc, sigfoc, tipfoc from viw_focos where indati = %s order by nomfoc';
 sSQLFocosRa = 'select codfoc, nomfoc, tipfoc, sigfoc, indati from focos where ' +
  'codreg = %d and focpai is null %s order by indcab desc, nomfoc';
-sSQLFocosRa2 = 'select codfoc, nomfoc, tipfoc, sigfoc, indati from focos where ' +
- 'codreg = %d order by indcab desc, nomfoc';
-sSQLFocosTitulares = 'select codfoc, nomfoc, tipfoc, sigfoc, indati from focos ' +
- 'where indcab = %s and indati = %s order by nomfoc';
-sSQLFocosDependentes = 'select codfoc, nomfoc, tipfoc, sigfoc, indati from focos ' +
- 'where focpai = %d order by nomfoc';
+
 sSQLFocosTitularAtivos = 'select codfoc, nomfoc, tipfoc, sigfoc, indati from ' +
  'focos where focpai = %d and indati = %s order by nomfoc';
 sSQLFocosByType = 'select codfoc, nomfoc, tipfoc, sigfoc, indati from ' +
  'focos where tipfoc = %s and indati = %s order by nomfoc';
 
-
 //FKs
 sSQLfkFocosRegiao = 'select codreg, nomreg from regioes order by nomreg';
 sSQLfkFocosTitulares = 'select codfoc as "focpai", nomfoc as "nompai", sigfoc as "sigpai" from focos order by nomfoc';
-sSQLfkTiposContatos = 'select codtipcon, destipcon from tipos_contatos order by destipcon';
+
 sSQLfkLogradouros = 'select * from viw_logradouros order by nomlog';
 sSQLfkPaises = 'select codpai, nompai from paises order by nompai';
 sSQLfkEstados = 'select codest, nomest, sigest from estados where codpai = %d order by nomest';
@@ -35,37 +29,15 @@ sSQLfkCidades = 'select codcid, nomcid, codest from cidades where codest = %d or
 sSQLfkBairros = 'select codbai, nombai, nomcid, sigest, nompai from viw_bairros order by nombai';
 sSQLfkOrgaosGestores = 'select codorg, nomorg, sigorg from orgaos_gestores order by nomorg';
 sSQLfkOrgaosSuperiores = 'select codorg as "codpai", nomorg as "orgsup", sigorg from orgaos_gestores order by nomorg';
-sSQLCargos = 'select * from cargos order by descar';
-sSQLFuncoes = 'select codfun, desfun from funcoes order by desfun';
-sSQLfkAreasAptidoes = 'select codare, desare from areas_aptidoes order by desare';
-sSQLfkEnfermidades = 'select codenf, nomenf from enfermidades order by nomenf';
-sSQLfkProfissoes = 'select codpro, despro from profissoes order by despro';
-sSQLfkLicoesEI = 'select codlic, nomlic from licoes_ei order by ordlic';
-sSQLfkTiposEventos = 'select codtipeve, destipeve from tipos_eventos where camtra = %s';
-sSQLfkTiposAtuacao = 'select codtipatu, destipatu from tipos_atuacao order by destipatu';
-sSQLCartasTP = 'select codtipeve, destipeve, tipeve, camtra from tipos_eventos ' +
- 'where camtra = %s and tipeve = %s and indescint = %s order by destipeve';
 
 //SQL´s diversos
 sSQLCommandCentralPesquisa = 'select command  from pesquisas where codpes = %d';
 sSQLDescriptografar = 'select * from descriptografar(%s)';
 sSQLViw_aluno = 'select * from viw_alunos_discipulados where matcad = %s';
 
-
-
 sDiscipuladosEI = 'select coddis, nomdis from discipulados where indescint = ' +
   '''' + 'S' + '''' + ' order by seqdis' ;
-sDiscipulados = 'select coddis, nomdis, sigdis from discipulados where indescint = %s ' +
-  'and camdis = %s and indati = %s order by seqdis' ;
-sDiscipuladosCampos = 'select coddis, nomdis, sigdis from discipulados ' +
-  'where camdis = %s order by seqdis' ;
-sSelLivrosEI = 'select codliv as "cod", nomliv as "desc" from livros_ei where ' +
-  'coddis = %d order by ordliv';
-sLicoesLivroEI = 'select codlic as "cod", nomlic as "desc" from licoes_ei ' +
-  'where codliv = %d order by ordlic';
 
-sRegioes = 'select * from regioes where codpai is null order by nomreg';
-sRegioesPai = 'select * from regioes where codpai = %d order by nomreg';
 sListFocos = 'select codfoc, nomfoc, tipfoc, sigfoc, indati from focos %s order by nomfoc';
 sSQLFilteredFocos = 'select codfoc, nomfoc, tipfoc, sigfoc from focos %s order by nomfoc';
 
@@ -73,11 +45,8 @@ sSelCount = 'select count(%s) from %s where %s = %d';
 sSQLFindLogradouro = 'select * from viw_logradouros where ceplog = %s';
 sSQLFocosStatus = 'select codfoc, nomfoc, tipfoc, sigfoc, indati from focos where indati = %s order by nomfoc';
 
-
-
 sSQLListGestoesOrgao = 'select * from viw_gestoes where codorg = %d order by datini desc';
 sSQLListDirecoesGestao = 'select * from viw_direcoes where codges = %d order by nomcad';
-sSQLMaxTurmas_TP = 'select max(codtur) from turmas_tp where codfoc = %d';
 
 //Cadastrados
 sSQLCadastradoIndex = 'select codcad, matcad, nomcad, apecad, coddis, sigdis, codfoc, sigfoc, matcadint from viw_cadastrados where ' +
@@ -88,7 +57,6 @@ sSQLCadastradosNome = 'select codcad, matcad, nomcad, apecad, coddis, sigdis, co
  'camdis = %s and upper(nomcad collate PT_BR) like upper(%s)';
 sSQLCadastradosApelido = 'select codcad, matcad, nomcad, apecad, coddis, sigdis, codfoc, sigfoc, matcadint from viw_cadastrados where ' +
  'camdis = %s and upper(apecad collate PT_BR) like upper(%s)';
-
 
 //Alunado
 sSQLJovensAlunos = 'select codcad, matcad, nomcad, apecad, coddis, sigdis, codfoc, sigfoc, matcadint from viw_cadastrados where ' +
@@ -168,11 +136,6 @@ sSQLMembrosTurmaInstalacao = 'select mem.codmem, mem.codturins, mem.codcad, ' +
  'membros_turmas_instalacoes mem inner join cadastrados cad on (cad.codcad = mem.codcad) ' +
  'inner join discipulados dis on (dis.coddis = cad.coddis) where mem.codturins = %d ' +
  'order by cad.nomcad';
-sSQLCountAtividadesTurmaTP = 'select count(codati) from atividades where codtur = %d';
-sSQLDiscipuladoTM = 'select * from DISCIPULADO_TM(%s)';
-sSQLFocosTipos = 'select codfoc, nomfoc, sigfoc from focos where indati = %s ' +
- 'and %s = %s order by nomfoc';
-sSQLFocoAtivos = 'select codfoc, nomfoc, sigfoc, tipfoc, indati from focos where indati = %s order by nomfoc';
 
 sSQLTiposEventos = 'select eve.codtipeve, eve.destipeve, eve.tipeve, eve.camtra, ' +
  'eve.coddis, dis.sigdis from tipos_eventos eve ' +
@@ -180,34 +143,13 @@ sSQLTiposEventos = 'select eve.codtipeve, eve.destipeve, eve.tipeve, eve.camtra,
  'where eve.tipeve = %s';
 sSQLCarteirinhasCadastrados = 'select codcad, matcad, nomcad, docide, orgexp, fotcad from ' +
  'cadastrados where indati = %s and upper (matcad collate PT_BR) in (%s) order by nomcad';
-sSQLConferenciasFocoAno = 'select conf.codcon, conf.nomcon, conf.camcon, conf.stacon ' +
- 'from conferencias conf where conf.codfoc = %d and extract(year from conf.datini) = %d ' +
- 'order by conf.datini';
-sSQLFocosConferencia = 'select distinct(foc.codfoc), foc.nomfoc, foc.tipfoc from focos foc inner ' +
- 'join conferencias con on(con.codfoc = foc.codfoc) and extract(year from con.datini) = %d order by foc.nomfoc';
-sSQLBairros = 'select codbai, nombai, nomcid, nomest, sigest, nompai from viw_bairros ' +
- 'where nombai collate PT_BR starting with %s order by nombai';
-sSQLCidades = 'select cid.codcid, cid.nomcid, est.sigest, pai.nompai from cidades cid ' +
- ' inner join estados est on (cid.codest = est.codest)  inner join paises pai on (pai.codpai = est.codpai) ' +
- ' and upper(cid.nomcid) collate PT_BR starting with %s order by cid.nomcid';
-sSQLEstados = 'select est.codest, est.nomest, est.sigest, pai.nompai from estados est ' +
- ' inner join paises pai on (pai.codpai = est.codpai) where nomest ' +
- 'collate PT_BR starting with %s order by pai.nompai, est.nomest';
-sSQLPaises = 'select * from paises where nompai collate PT_BR starting with %s order by nompai';
-sSQLAlocucoes = 'select alo.codalo, alo.titalo, alo.fraalo, alo.nomaut ' +
- 'from alocucoes alo where upper(%s) like upper(%s) and indlec = %s and indtmo = %s and ' +
- 'indtmb = %s and indtpu = %s';
-sSQLCadastradoMatricula = 'select codcad, nomcad, matcad, sigdis, sigfoc from ' +
- 'VIW_ALUNOS_DISCIPULADOS where matcad = %s';
-sSQLCadastradoNome = 'select codcad, nomcad, matcad, sigdis, sigfoc from ' +
- 'VIW_ALUNOS_DISCIPULADOS where nomcad like %s';
+
+
 
 
 sSQLFichaUsuario = 'select * from viw_usuarios where upper(logusu) = %s';
 
 //Cadastrados
-sSQLDiscipuladoCadastrado = 'select cad.codcad, dis.coddis, dis.nomdis from cadastrados cad ' +
- 'inner join discipulados dis on (cad.coddis = dis.coddis) and cad.codcad = %d';
 sSQLCadastradosDiscipulado = 'select codcad, matcad, nomcad, apecad, sigdis, ' +
  'sigfoc, indati from viw_cadastrados where sigdis = %s and indati = %s and ' +
  'order by nomcad';
@@ -223,19 +165,7 @@ sSQLListaCadastradosNomeFoco = 'select codcad, matcad, nomcad, apecad, datnas, s
 sSQLDiscEventoHistorico = 'select dis.coddis, dis.nomdis from discipulados dis inner join tipos_eventos ' +
   'tip on (tip.coddis = dis.coddis) and tip.codtipeve = %d';
 
-//Alocuções
-sSQLAlocucoesDataCadastro  = 'select codalo, titalo, nomaut, datati from viw_alocucoes ' +
- 'where (current_timestamp - datcad) <= %d';
-sSQLAlocucoesDataLeitura = 'select codalo, titalo, nomaut, datati from viw_alocucoes ' +
- 'where (current_date - datati) <= %d';
-sSQLAlocucoesIneditas = 'select codalo, titalo, nomaut, datati from viw_alocucoes ' +
- 'where datati is null';
-sSQLAlocucoesAssunto = 'select codalo, titalo, nomaut, datati from viw_alocucoes ' +
- 'where codalo in (select codalo from keywords keys where lower(keys.keywor) in (%s))';
-sSQLAlocucoesAutor = 'select codalo, titalo, nomaut, datati from viw_alocucoes ' +
- 'where nomaut like %s';
-sSQLAlocucoesCamposTrabalho = 'select codalo, titalo, nomaut, datati from viw_alocucoes ' +
- 'where indlec = %s and indtmo = %s and indtmb = %s and indtpu = %s';
+
 
 
 //Selects relacionados a sincronização
@@ -374,9 +304,7 @@ sSQLMyMessages = 'select codmen, titmen, remmen, desmen, datmen, hormen, stamen 
  'from mensagens where desmen containing %s';
 
 //INSERTs
-sSQLInsertConferencia = 'INSERT INTO CONFERENCIAS (NOMCON, CODFOC, CAMCON, VALTAX, LIMINS, ' +
- 'DATINI, HORINI, DATTER, HORTER, DATLIM, INDESP, STACON, INDMOD, TIPLEV, MESREF, USURES, DATCAD) VALUES ' +
- '(%s, %d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %d, %s, %s)';
+
 sSQLInsGrupo = 'insert into grupos (nomgru) values (%s)';
 
 
@@ -385,10 +313,6 @@ sSQLCloneDirigente = 'execute procedure clone_dirigente(%d,%d)';
 sSQLInsGestao = 'insert into gestoes (codges, codorg, datini, datter) values (%d, %d, %s, %s)';
 sSQLInsDirigente = 'insert into DIRECOES (codges, codcad, codfoc, coddis, codcar, indcon, datini, datter) ' +
  'values (%d, %d, %d, %d, %d, %s, %s, %s )';
-sSQLInsTurmaTP = 'insert into TURMAS_TP (codtur, codfoc) values (%d, %d);';
-sSQLInsMembrosTurmasTP = 'insert into MEMBROS_TURMAS_TP (codtur, codcad) values (%d, %d);';
-
-
 
 //Updates
 
@@ -398,23 +322,13 @@ sSQLTerminateMandate = 'update direcoes set datter = %s where coddir = %d';
 sSQLTerminateMandates = 'update direcoes set datter = %s where codges = %d';
 sSQLTerminateGestao = 'update gestoes set datter = %s where codges = %d';
 
-//Atividades de conferências
-sUpdAtividadesConferencia = 'update atividades set codcon = %d where codati = %d';
-sUpdAtividadesConferenciaDel = 'update atividades set codcon = null where codati = %d';
-
 //Deletes
-
 sSQLDelGestao = 'delete from gestoes where codges = %d';
 sSQLDelDirigente = 'delete from direcoes where coddir = %d';
-
-sSQLDelTurmaTP = 'delete from turmas_tp where codtur = %d';
 sSQLDelFlagInscricoes = 'delete from FLAGS_INSCRICAO where codfla = %d';
 
 //Execute procedures
 sExecGerarFrequencia = 'execute procedure gerar_frequencia(%d, %s)';
-sExecGerarFrequenciaConf = 'execute procedure gerar_frequencia_conferencia(%d, %s)';
-sExecAtualizaGruposTM = 'execute procedure atualiza_TM(%d, %s)';
-sExecDesligaGJA = 'execute procedure desligar_GJA(%d, %s)';
 
 type
 
@@ -569,6 +483,26 @@ type
       PROC_CLONAR_ALOJAMENTO_INSCRITO = 'CLONAR_ALOJAMENTO_INSCRITO';
  end;
 
+  //Alocuções
+ TAlocucoesCommands = class
+    const
+     Alocucoes = 'select alo.codalo, alo.titalo, alo.fraalo, alo.nomaut ' +
+       'from alocucoes alo where upper(%s) like upper(%s) and indlec = %s and indtmo = %s and ' +
+       'indtmb = %s and indtpu = %s';
+     AlocucoesDataCadastro  = 'select codalo, titalo, nomaut, datati from viw_alocucoes ' +
+       'where (current_timestamp - datcad) <= %d';
+     AlocucoesDataLeitura = 'select codalo, titalo, nomaut, datati from viw_alocucoes ' +
+       'where (current_date - datati) <= %d';
+     AlocucoesIneditas = 'select codalo, titalo, nomaut, datati from viw_alocucoes ' +
+       'where datati is null';
+     AlocucoesAssunto = 'select codalo, titalo, nomaut, datati from viw_alocucoes ' +
+       'where codalo in (select codalo from keywords keys where lower(keys.keywor) in (%s))';
+     AlocucoesAutor = 'select codalo, titalo, nomaut, datati from viw_alocucoes ' +
+       'where nomaut like %s';
+     AlocucoesCamposTrabalho = 'select codalo, titalo, nomaut, datati from viw_alocucoes ' +
+       'where indlec = %s and indtmo = %s and indtmb = %s and indtpu = %s';
+ end;
+
 
 ///<summary>Comandos relacionados à segurança do sistema.</summary>
  TSecurityCommand =  class
@@ -607,30 +541,45 @@ type
  end;
 
 ///<summary>Comandos gerais usados por mais de um módulo.</summary>
- TDQLCommand =  class
+ TDQLCommands =  class
     const
+      AreasAptidoes = 'select codare, desare from areas_aptidoes order by desare';
       BufferSchemma = 'select * from %s';
-      TableVersion  = 'select versao from tabelas_buferizadas where sigtab = %s';
-      GeneralSelect = 'select * from %s';
-      Generators = 'select gen_id(%s,%d) from rdb$database';
       ///<summary>Checa se um cadastrado está falecido.</summary>
       CadastradoFalecido           = 'select datobi from cadastrados where codcad = %d';
       ///<summary>Recupera alguns dados básicos do cadastrado, incluindo foto.</summary>
       DadosCadastrado              = 'select codcad, nomcad, apecad, matcad, sigdis, sigfoc, ' +
          'fotcad from viw_cadastrados where codcad = %d';
+      CadastradoMatricula = 'select codcad, nomcad, matcad, sigdis, sigfoc from ' +
+         'VIW_ALUNOS_DISCIPULADOS where matcad = %s';
       CadastradosMatriculaFoco = 'select codcad, matcad, nomcad, apecad, coddis, sigdis, codfoc, sigfoc, matcadint from viw_cadastrados where codfoc = %d ' +
          'and camdis = %s and upper(matcad collate PT_BR) like upper(%s)';
+      CadastradoNome = 'select codcad, nomcad, matcad, sigdis, sigfoc from ' +
+         'VIW_ALUNOS_DISCIPULADOS where nomcad like %s';
       CadastradosNomeFoco = 'select codcad, matcad, nomcad, apecad, coddis, sigdis, codfoc, sigfoc, matcadint from viw_cadastrados where codfoc = %d ' +
          'and camdis = %s and upper(nomcad collate PT_BR) like upper(%s)';
       CadastradosApelidoFoco = 'select codcad, matcad, nomcad, apecad, coddis, sigdis, codfoc, sigfoc, matcadint from viw_cadastrados where codfoc = %d ' +
          'and camdis = %s and upper(apecad collate PT_BR) like upper(%s)';
+      Cargos = 'select * from cargos order by descar';
+      CodigoDiscipulado = 'select coddis from discipulados where camdis = %s and sigdis = %s';
       CountFrequencias = 'select count(codati) from frequencias where codati = %d';
+      Discipulados = 'select coddis, nomdis, sigdis from discipulados where indescint = %s ' +
+         'and camdis = %s and indati = %s order by seqdis' ;
+      DiscipuladosCampos = 'select coddis, nomdis, sigdis from discipulados where camdis = %s and indati = %s order by seqdis' ;
+      DiscipuladosCamposSequencia = 'select coddis, nomdis, sigdis from discipulados where camdis = %s order by seqdis' ;
+      Enfermidades = 'select codenf, nomenf from enfermidades order by nomenf';
+      Funcoes = 'select codfun, desfun from funcoes order by desfun';
+      GeneralSelect = 'select * from %s';
+      Generators = 'select gen_id(%s,%d) from rdb$database';
       ListaSimpatizantes = 'select codcad, nomcad, datnas, codfoc, sigfoc, orisim, indati from VIW_SIMPATIZANTES where ' +
          '((nomcad collate PT_BR starting with %s) or (nomcad collate PT_BR starting with %s)) ' +
          'and codfoc = %d and indati = %s order by nomcad';
       ListaTurmasTP = 'select codtur, numtur, datcre, datenc from turmas_tp where codfoc = %d and indenc = %s order by numtur';
-      CodigoDiscipulado = 'select coddis from discipulados where camdis = %s and sigdis = %s';
-      DiscipuladosCampos = 'select coddis, nomdis, sigdis from discipulados where camdis = %s and indati = %s order by seqdis' ;
+      Profissoes = 'select codpro, despro from profissoes order by despro';
+      TableVersion  = 'select versao from tabelas_buferizadas where sigtab = %s';
+      TiposAtuacao = 'select codtipatu, destipatu from tipos_atuacao order by destipatu';
+      TiposContatos = 'select codtipcon, destipcon from tipos_contatos order by destipcon';
+      TiposEventos = 'select codtipeve, destipeve from tipos_eventos where camtra = %s';
  end;
 
 ///<summary>Comandos específicos de relatórios dos sistemas.</summary>
@@ -721,7 +670,10 @@ type
      NovaMatricula = 'select * from nova_matricula(%d,%s, %d)';
      DadosBasicosCadastrado  = 'select codcad, matcad, nomcad, coddis, codfoc, indati from cadastrados where codcad = %d';
      DadosDiscipulado = 'select coddis, nomdis, sigdis, seqdis, indati from discipulados where coddis = %d';
+     DiscipuladoCadastrado = 'select cad.codcad, dis.coddis, dis.nomdis from cadastrados cad ' +
+        'inner join discipulados dis on (cad.coddis = dis.coddis) and cad.codcad = %d';
      DiscipuladosPosteriores  = 'select * from discipulados_posteriores(%d, %s) order by seqdis';
+
  end;
 
  TSecAtividadesCommands = class
@@ -739,15 +691,31 @@ type
 ///<summary>Comandos do Cosmos Gestor de Secretarias realcionados à Escola Interna.</summary>
  TSecretariasEICommands = class
    const
-     LessonsCount = 'select count(codati) from atividades where codlic = %d';
      CirculosLicaoCount =  'select count(codgru) from grupos_ei where codlic = %d';
      BooksEICount = 'select count(codlic) from licoes_ei where codliv = %d';
+     DeleteCirculoEI = 'delete from GRUPOS_EI where codgru = %d';
      DeleteLessonEI = 'delete from licoes_ei where codlic = %d';
      DeleteLivroEI = 'delete from livros_ei where codliv = %d';
      InsertGruposEI = 'insert into GRUPOS_EI (codgru, codfoc, nomgru, coddis, codlic, sencon, codsac, codsaz) values (%d, %d, %s, %d, %d, %s, %s, %s);';
      InsertMembrosCirculoEI = 'insert into MEMBROS_GRUPOS_EI (codgru, codcad, indcon, datcad, usures) values (%d, %d, %s, %s, %s);';
-     DeleteCirculoEI = 'delete from GRUPOS_EI where codgru = %d';
+     LessonsCount = 'select count(codati) from atividades where codlic = %d';
+     LicoesEI = 'select codlic, nomlic from licoes_ei order by ordlic';
+     LicoesLivroEI = 'select codlic as "cod", nomlic as "desc" from licoes_ei ' +
+        'where codliv = %d order by ordlic';
+     LivrosEI = 'select codliv as "cod", nomliv as "desc" from livros_ei where ' +
+        'coddis = %d order by ordliv';
      MembroCirculoEI = 'select codcad from MEMBROS_GRUPOS_EI where codcad = %d';
+ end;
+
+ TSecretariasTPCommands = class
+   const
+     CartasTP = 'select codtipeve, destipeve, tipeve, camtra from tipos_eventos ' +
+       'where camtra = %s and tipeve = %s and indescint = %s order by destipeve';
+     CountAtividadesTurmaTP = 'select count(codati) from atividades where codtur = %d';
+     DelTurmaTP = 'delete from turmas_tp where codtur = %d';
+     InsMembrosTurmasTP = 'insert into MEMBROS_TURMAS_TP (codtur, codcad) values (%d, %d);';
+     InsTurmaTP = 'insert into TURMAS_TP (codtur, codfoc) values (%d, %d);';
+     MaxTurmas_TP = 'select max(codtur) from turmas_tp where codfoc = %d';
  end;
 
 ///<summary>Comandos do Cosmos Gestor de Secretarias realcionados ao histórico discipular.</summary>
@@ -755,6 +723,9 @@ type
    const
      TurmaInstalada = 'select indins from turmas_instalacoes where codturins = %d';
      AlunosInstalados = 'select codcad from membros_turmas_instalacoes where codturins = %d and indins = %s';
+     AtualizaGruposTM = 'execute procedure atualiza_TM(%d, %s)';
+     DesligaGJA = 'execute procedure desligar_GJA(%d, %s)';
+     DiscipuladoTM = 'select * from DISCIPULADO_TM(%s)';
      TurmaInstalacao = 'select tur.*, dis.indescint from turmas_instalacoes tur inner join discipulados dis on (dis.coddis = tur.coddis) and tur.codturins = %d';
      ProtocoloIncompleto = 'select his.codhis from historicos his inner join detalhe_historico det on (det.codhis = his.codhis) and his.codturins = %d and det.indcum = %s';
      EncerrarTurmaTP = 'update turmas_tp set datenc = %s, indenc = %s where codtur = %d';
@@ -773,6 +744,7 @@ type
      MembrosTurmaInstalacao = 'select mem.codmem, mem.codturins, mem.codcad, cad.nomcad, cad.matcad, cad.codfoc, cad.coddis, dis.nomdis ' +
         'from membros_turmas_instalacoes mem inner join cadastrados cad on (cad.codcad = mem.codcad) inner join discipulados dis on (dis.coddis = cad.coddis) ' +
         'where mem.codturins = %d order by cad.nomcad';
+
  end;
 
 ///<summary>Comandos gerais usados pelo Cosmos Gestor de Focos.</summary>
@@ -790,7 +762,16 @@ type
      AlteraStatusFoco = 'update focos set indati = %s where codfoc = %d';
      MoveOrgao = 'update orgaos_gestores set codpai = %d where codorg = %d';
      FindFoco = 'select codfoc from focos where codfo = %d';
+     FocoAtivos = 'select codfoc, nomfoc, sigfoc, tipfoc, indati from focos where indati = %s order by nomfoc';
+     FocosDependentes = 'select codfoc, nomfoc, tipfoc, sigfoc, indati from focos ' +
+        'where focpai = %d order by nomfoc';
      FocusExistsName = 'select 1 as "cod" from focos where upper(nomfoc) = Upper(%s)';
+     FocosRa2 = 'select codfoc, nomfoc, tipfoc, sigfoc, indati from focos where ' +
+        'codreg = %d order by indcab desc, nomfoc';
+     FocosTipos = 'select codfoc, nomfoc, sigfoc from focos where indati = %s ' +
+        'and %s = %s order by nomfoc';
+     FocosTitulares = 'select codfoc, nomfoc, tipfoc, sigfoc, indati from focos ' +
+        'where indcab = %s and indati = %s order by nomfoc';
      InsertFoco = 'INSERT INTO FOCOS (CODFOC, SIGFOC, NOMFOC, NOMTEM, CODREG, ' +
           'FOCPAI, TIPFOC, INDLEC, INDTPU, INDTMO, INDSIM, INDIND, ' +
           'INDATI, INDNAC, INDCAB) VALUES (%d, %s, %s, %s, %d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)';
@@ -805,6 +786,8 @@ type
      OrgaosByName = 'select codorg, nomorg, nomorging, sigorg, nivorg, orgsup, ' +
           'nomfoc from viw_orgaos_gestores order by nomorg';
      DelOrgaoGestor = 'delete from orgaos_gestores where codorg = %d';
+     Regioes = 'select * from regioes where codpai is null order by nomreg';
+     RegioesPai = 'select * from regioes where codpai = %d order by nomreg';
 
 
  end;
@@ -812,6 +795,9 @@ type
 ///<summary>Comandos gerais usados pelo Cosmos Gestor de Conferências.</summary>
  TGConfCommands =  class
     const
+     ConferenciasFocoAno = 'select conf.codcon, conf.nomcon, conf.camcon, conf.stacon ' +
+        'from conferencias conf where conf.codfoc = %d and extract(year from conf.datini) = %d ' +
+        'order by conf.datini';
      ChangeTarefaAreaStaff = 'update TAREFAS_STAFF set codare = %d where codtar = %d';
      //Inscrições em conferências.
      DesalojaInscrito = 'update inscricoes set codlei = null where codins = %d';
@@ -819,13 +805,21 @@ type
          'and codcad = %d';
      CountInfoInscricao = 'select count(det.coddet) from detalhe_inscricao det inner join itens_inscricao ite on(det.codite = ite.codite) and ite.codfla = %d';
      DeleteItensInscricao = 'delete from ITENS_INSCRICAO where codite = %d';
+     FocosConferencia = 'select distinct(foc.codfoc), foc.nomfoc, foc.tipfoc from focos foc inner ' +
+        'join conferencias con on(con.codfoc = foc.codfoc) and extract(year from con.datini) = %d order by foc.nomfoc';
+     GerarFrequenciaConf = 'execute procedure gerar_frequencia_conferencia(%d, %s)';
      InscricaoInfo = 'select codcad, codcon from inscricoes where codins = %d';
      InscritoFrequenciaCount = 'select count(codfre) from frequencias where codcon = %d and codcad = %d';
      InscricaoDelete = 'delete from INSCRICOES where codins = %d';
      ConferenciaAtividade         = 'select codcon from atividades where codati = %d';
      //Áreas de staff
      InsertAreaStaff = 'insert into AREAS (nomare, codpai, codfoc) values (%s, %s, %d)';
+     InsertConferencia = 'INSERT INTO CONFERENCIAS (NOMCON, CODFOC, CAMCON, VALTAX, LIMINS, ' +
+       'DATINI, HORINI, DATTER, HORTER, DATLIM, INDESP, STACON, INDMOD, TIPLEV, MESREF, USURES, DATCAD) VALUES ' +
+       '(%s, %d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %d, %s, %s)';
      UpdateAreaStaff = 'update AREAS set nomare = %s, codpai = %s, codfoc = %d where codare = %d';
+     UpdAtividadesConferencia = 'update atividades set codcon = %d where codati = %d';
+     UpdAtividadesConferenciaDel = 'update atividades set codcon = null where codati = %d';
      DeleteAreaStaff = 'delete from AREAS where codare = %d';
      AttributesCount = 'select cad.codatr from ATRIBUTOS_CADASTRADOS cad where cad.codatr = %d union select lei.codatr from ATRIBUTOS_LEITOS lei where lei.codatr = %d';
      AttributeDelete = 'delete from ATRIBUTOS where codatr = %d';
@@ -950,7 +944,18 @@ type
      TiposRecebimento = 'select * from tipos_recebimentos order by destiprec';
  end;
 
-
+ TLogradourosCommands = class
+    const
+     Bairros = 'select codbai, nombai, nomcid, nomest, sigest, nompai from viw_bairros ' +
+       'where nombai collate PT_BR starting with %s order by nombai';
+     Cidades = 'select cid.codcid, cid.nomcid, est.sigest, pai.nompai from cidades cid ' +
+       ' inner join estados est on (cid.codest = est.codest)  inner join paises pai on (pai.codpai = est.codpai) ' +
+       ' and upper(cid.nomcid) collate PT_BR starting with %s order by cid.nomcid';
+     Estados = 'select est.codest, est.nomest, est.sigest, pai.nompai from estados est ' +
+       ' inner join paises pai on (pai.codpai = est.codpai) where nomest ' +
+       'collate PT_BR starting with %s order by pai.nompai, est.nomest';
+     Paises = 'select * from paises where nompai collate PT_BR starting with %s order by nompai';
+end;
 
 
 

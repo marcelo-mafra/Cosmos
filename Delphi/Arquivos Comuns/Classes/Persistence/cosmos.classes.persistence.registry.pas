@@ -4,7 +4,7 @@ interface
 
 uses
  Winapi.Windows, System.Classes, cosmos.classes.persistence, System.Win.Registry,
- cosmos.system.files, cosmos.classes.cripter, cosmos.system.messages, WinAPI.ShellAPI;
+ cosmos.system.files, cosmos.classes.cosmoscript, cosmos.system.messages, WinAPI.ShellAPI;
 
 type
 
@@ -162,19 +162,11 @@ end;
 function TRegistryPersistence.ReadCyphereValue(const Key: string): string;
 var
  sValue: string;
- aCripter: TCripter;
 begin
 //Descriptografa uma string que é retornada pela função. A rotina de
 //descriptografia está no módulo cripter.dll
- aCripter := TCripter.Create;
-
- try
   sValue := FRegistry.ReadString(Key);
-  Result := aCripter.Decrypt(cmBlowfish128, PChar(TCosmosCriptography.EKey), PChar(sValue));
-
- finally
-  aCripter.Free;
- end;
+  Result := TCripterFactory.Descriptografar(sValue);
 end;
 
 function TRegistryPersistence.ReadInteger(const Key: string): integer;
@@ -208,19 +200,11 @@ end;
 procedure TRegistryPersistence.WriteCyphereValue(const Key: string;
   Value: string);
 var
- aCripter: TCripter;
  CiphereValue: string;
 begin
   inherited;
-  aCripter := TCripter.Create;
-
-  try
-   CiphereValue := aCripter.Encrypt(cmBlowfish128, PChar(TCosmosCriptography.EKey), PChar(Value));
-   FRegistry.WriteString(Key, CiphereValue);
-
-  finally
-   aCripter.Free;
-  end;
+  CiphereValue := TCripterFactory.Criptografar(Value);
+  FRegistry.WriteString(Key, CiphereValue);
 end;
 
 procedure TRegistryPersistence.WriteDate(const Key: string; Value: TDate);
@@ -245,17 +229,9 @@ end;
 procedure TRegistryPersistence.WriteHash(const Key: string; Value: string);
 var
 sValue: string;
-aCripter: TCripter;
 begin
- aCripter := TCripter.Create;
-
- try
-   sValue := aCripter.HashValue(hmSHA512, Value);
-   FRegistry.WriteString(Key, sValue);
-
- finally
-   aCripter.Free;
- end;
+ sValue := TCripterFactory.HashValue(Value);
+ FRegistry.WriteString(Key, sValue);
 end;
 
 procedure TRegistryPersistence.WriteInteger(const Key: string; Value: integer);

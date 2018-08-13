@@ -305,9 +305,9 @@ begin
 
  try
   if Matricula <> null then
-   sCommand := Format(sSQLCadastradoMatricula, [QuotedStr(Matricula + '%')])
+   sCommand := Format(TDQLCommand.CadastradoMatricula, [QuotedStr(Matricula + '%')])
   else
-   sCommand := Format(sSQLCadastradoNome, [QuotedStr(Nome+ '%')]);
+   sCommand := Format(TDQLCommand.CadastradoNome, [QuotedStr(Nome+ '%')]);
 
   ADataset.CommandText := sCommand;
   ADataset.Open;
@@ -374,7 +374,7 @@ nascimento, passada em parâmetro de entrada.}
 
  try
   ADataset.SQLConnection := DMServerDataAcess.ConnectionPool.GetConnection;
-  ADataset.CommandText := Format(sSQLDiscipuladoTM , [QuotedStr(FormatDateTime('yyyy/mm/dd', Nascimento))]);
+  ADataset.CommandText := Format(TSecHistoricoCmd.DiscipuladoTM , [QuotedStr(FormatDateTime('yyyy/mm/dd', Nascimento))]);
   ADataset.Open;
 
   Result := ADataset;
@@ -399,7 +399,7 @@ begin
   CurrentUserName := DMCosmosServerServices.ConnectedUser.ToUpper;
   CurrentUserName := CurrentUserName.QuotedString;
 
-  DMServerDataAcess.DoExecuteCommand(Format(sExecDesligaGJA, [codfoc, CurrentUserName]));
+  DMServerDataAcess.DoExecuteCommand(Format(TSecHistoricoCmd.DesligaGJA, [codfoc, CurrentUserName]));
 
  except
   on E: Exception do

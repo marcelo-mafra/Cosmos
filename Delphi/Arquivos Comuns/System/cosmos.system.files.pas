@@ -131,12 +131,7 @@ uses Winapi.Windows;
      XML = 'xml';
   end;
 
- //Chaves de criptografia.
-  TCosmosCriptography = class
-    const
-      EKey = '8517536429'; //do not localize!
-      CipherKey = '8954605'; //do not localize!
-  end;
+
 
 
 implementation

@@ -8,7 +8,7 @@ uses
   Cosmos.Framework.Interfaces.Root, Cosmos.Framework.Interfaces.DataAcess,
   Cosmos.Framework.Interfaces.Dialogs, DB, DBClient, ActnList, ImgList,
   cosmos.classes.application, cosmos.business.focos, System.Actions,
-  cosmos.classes.ServerInterface;
+  cosmos.classes.ServerInterface, cosmos.system.dataconverter, System.ImageList;
 
 type
   TFrmSearchTiposAti = class(TForm, ISearchTiposAtividades)

@@ -9,7 +9,8 @@ uses
   ActnMan, cosmos.classes.application, cosmos.system.messages, cosmos.classes.security,
   PlatformDefaultStyleActnCtrls, cosmos.framework.datanavigators.datasets,
   cosmos.Framework.forms.wizards, System.Actions, Datasnap.DSConnect,
-  Cosmos.Framework.Interfaces.DataAcess, cosmos.system.formsconst;
+  Cosmos.Framework.Interfaces.DataAcess, cosmos.system.formsconst,
+  System.ImageList;
 
 
 type

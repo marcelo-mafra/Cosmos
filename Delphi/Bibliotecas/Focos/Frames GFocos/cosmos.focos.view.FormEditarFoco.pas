@@ -7,7 +7,8 @@ uses
   Dialogs, ExtCtrls, StdCtrls, GroupHeader, cosmos.frames.fkSearch, Mask, DBCtrls,
   ValueComboBox, DB, DBClient, DBValueComboBox, Buttons, cosmos.system.messages,
   cosmos.framework.interfaces.root, FrameDBInsertVertical, cosmos.classes.application,
-  cosmos.business.focos, cosmos.classes.ServerInterface, Cosmos.Framework.Interfaces.DataAcess ;
+  cosmos.business.focos, cosmos.classes.ServerInterface, cosmos.system.dataconverter,
+  Cosmos.Framework.Interfaces.DataAcess ;
 
 type
   TFrmEditarFoco = class(TForm)

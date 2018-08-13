@@ -11,7 +11,8 @@ uses
   ActnPopup, cosmos.system.messages, XPStyleActnCtrls, DockTabSet, cosmos.data.dataobjects,
   PlatformDefaultStyleActnCtrls, cosmos.classes.application, cosmos.system.formsconst,
   cosmos.classes.ServerInterface, cosmos.framework.datanavigators.datasets,
-  System.Actions, Cosmos.Framework.Interfaces.DataAcess, System.ImageList;
+  System.Actions, Cosmos.Framework.Interfaces.DataAcess, System.ImageList,
+  cosmos.system.dataconverter;
 
 type
   TTipoListagem = (tlAlfabetica, tlDiscipulado);

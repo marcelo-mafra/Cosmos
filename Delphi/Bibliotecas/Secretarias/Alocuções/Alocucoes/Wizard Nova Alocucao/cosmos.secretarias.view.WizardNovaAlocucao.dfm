@@ -1,11 +1,15 @@
 inherited FrmWzNovaAlocucao: TFrmWzNovaAlocucao
   HelpContext = 270
   Caption = 'FrmWzNovaAlocucao'
-  ExplicitWidth = 627
-  ExplicitHeight = 532
   PixelsPerInch = 96
   TextHeight = 13
   inherited PcWizard: TPageControl
+    inherited TabSheet1: TTabSheet
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
+    end
     object TabSheet2: TTabSheet
       Caption = 'TabSheet2'
       ImageIndex = 1
@@ -383,7 +387,7 @@ inherited FrmWzNovaAlocucao: TFrmWzNovaAlocucao
   end
   inherited ImageList1: TImageList
     Bitmap = {
-      494C010106000900180012001200FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101060009001C0012001200FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000480000002400000001002000000000008028
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

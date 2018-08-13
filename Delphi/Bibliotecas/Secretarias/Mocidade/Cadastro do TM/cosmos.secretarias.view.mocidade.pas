@@ -10,7 +10,8 @@ uses
   XPStyleActnCtrls, cosmos.classes.application, cosmos.classes.security, Cosmos.Framework.Interfaces.Root,
   Cosmos.Framework.Interfaces.Dialogs, cosmos.classes.ServerInterface, ToolWin,
   ActnCtrls, PlatformDefaultStyleActnCtrls, cosmos.framework.datanavigators.datasets,
-  System.Actions, Cosmos.Framework.Interfaces.Applications, System.ImageList;
+  System.Actions, Cosmos.Framework.Interfaces.Applications, System.ImageList,
+  cosmos.system.dataconverter;
 
 type
   TTipoListagem = (tlAlfabetica, tlDiscipulado);

@@ -30,7 +30,7 @@ type
     { Public declarations }
     procedure DoClick;
     property ButtonEnabled: boolean read GetButtonEnabled write SetButtonEnabled;
-    property Value: double read GetValue;    
+    property Value: double read GetValue write SetValue;
   end;
 
 implementation
@@ -77,14 +77,14 @@ end;
 
 procedure TFmeCalculator.SetValue(const Value: double);
 begin
- EdtValue.Text := FloatToStr(Value);
+ EdtValue.Text := Value.ToString;
 end;
 
 procedure TFmeCalculator.SpeedButton1Click(Sender: TObject);
-var
+{var
 H: THandle;
 Value: double;
-CreateCalculator: TCreateCalculator;
+CreateCalculator: TCreateCalculator; }
 begin
 {Carrega a calaculadora que está dentro da dll calc.dll. O variável "Value"
 está aqui só para indicar que ela pode ser atribuída ao valor de retorno da

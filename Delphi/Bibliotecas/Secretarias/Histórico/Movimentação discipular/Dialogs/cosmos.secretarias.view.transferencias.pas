@@ -97,8 +97,8 @@ begin
 
   if AReader.Next then
    begin
-    EdtNome.Text := AReader.Value['nomcad'].GetAnsiString;
-    EdtDiscipulado.Text :=  AReader.Value['sigdis'].GetAnsiString;
+    EdtNome.Text := AReader.Value['nomcad'].ToString;
+    EdtDiscipulado.Text :=  AReader.Value['sigdis'].ToString;
     EdtFocoAtual.Text := ICosmosApp.ActiveFocus.FocusName;
    end;
 

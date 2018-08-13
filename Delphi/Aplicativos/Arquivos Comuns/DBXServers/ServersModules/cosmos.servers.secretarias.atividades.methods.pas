@@ -1070,7 +1070,7 @@ conferências como um todo.}
    begin
     CurrentConnectedUser := DMCosmosServerServices.ConnectedUser.ToUpper;
     CurrentConnectedUser := CurrentConnectedUser.QuotedString;
-    if DMServerDataAcess.DoExecuteCommand(Format(sExecGerarFrequenciaConf, [codcon, CurrentConnectedUser])) > 0 then
+    if DMServerDataAcess.DoExecuteCommand(Format(TGConfCommands.GerarFrequenciaConf, [codcon, CurrentConnectedUser])) > 0 then
      Result := 0;
    end
    else

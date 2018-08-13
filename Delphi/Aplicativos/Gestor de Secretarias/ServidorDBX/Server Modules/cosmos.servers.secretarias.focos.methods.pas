@@ -8,7 +8,8 @@ uses
   cosmos.servers.sqlcommands, System.Variants, cosmos.classes.dataobjects,
   cosmos.classes.ServerInterface, Data.DB, Data.DBXCommon, DBClient, Data.FMTBcd,
   Data.SqlExpr, Datasnap.Provider, DataSnap.DsSession, DataSnap.DSProviderDataModuleAdapter,
-  cosmos.business.focos, cosmos.classes.logs, Data.DBXDBReaders;
+  cosmos.business.focos, cosmos.classes.logs, Data.DBXDBReaders,
+  cosmos.system.dataconverter;
 
 type
   {$METHODINFO OFF}
@@ -677,7 +678,7 @@ begin
   //Agora desativa o foco.
   aDataset.Close;
   aDataset.CommandText := Format(TFocosCommands.DesactiveFoco ,[TargetFocus, TransferFocus,
-   TDataTransformation.AsSQLBoolean(Desactivate).QuotedString]) ;
+   TDataConverter.ToBoleanString(Desactivate, True)]) ;
   aDataset.Open;
 
   while not aDataset.Eof do

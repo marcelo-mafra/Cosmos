@@ -8,7 +8,8 @@ uses
   ComCtrls, StdCtrls, Buttons, DB, DBClient, DBCtrls, cosmos.frames.fkSearch,
   ValueComboBox, Mask, GraphicHeader, cosmos.frames.gridsearch, cosmos.classes.ServerInterface,
   cosmos.framework.interfaces.Dialogs, cosmos.classes.application, cosmos.system.messages,
-  cosmos.framework.interfaces.Applications, System.Actions, Vcl.Imaging.pngimage;
+  cosmos.framework.interfaces.Applications, System.Actions, Vcl.Imaging.pngimage,
+  cosmos.system.dataconverter, System.ImageList;
 
 type
   TFrmWizardNewFocus = class(TFrmCosmosWizard)

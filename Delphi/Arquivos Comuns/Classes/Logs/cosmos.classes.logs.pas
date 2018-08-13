@@ -25,6 +25,7 @@ uses
       DATETIME = 'DateTime=%s'; //do not localize!
       LOGTYPE = 'LogType=%s'; //do not localize!
       MESSAGEINFO = 'Message=%s'; //do not localize!
+
    end;
 
    ICosmosLogs = interface

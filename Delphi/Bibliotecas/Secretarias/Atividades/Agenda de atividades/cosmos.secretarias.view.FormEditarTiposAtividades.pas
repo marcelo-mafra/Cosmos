@@ -9,7 +9,8 @@ uses
   ImgList, Cosmos.Framework.Interfaces.Root, Cosmos.Framework.Interfaces.DataAcess,
   ValueComboBox, DBValueComboBox, cosmos.classes.application, cosmos.business.focos,
   cosmos.classes.ServerInterface, cosmos.classes.security, Data.SqlExpr,
-  System.Actions, Data.DBXCommon, cosmos.system.exceptions, Datasnap.DSConnect;
+  System.Actions, Data.DBXCommon, cosmos.system.exceptions, Datasnap.DSConnect,
+  cosmos.system.dataconverter, System.ImageList;
 
 type
   TFrmEditarTiposAtividades = class(TForm)

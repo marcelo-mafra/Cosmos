@@ -7,7 +7,7 @@ uses
   System.Json, Datasnap.DSServer, DataSnap.DSProviderDataModuleAdapter,
   Datasnap.DSAuth, DBClient, DB, SqlExpr, FMTBcd, SQLScript,
   cosmos.classes.application, Variants, Provider, cosmos.classes.logs,
-  cosmos.classes.ServerInterface, cosmos.classes.arrayutils,
+  cosmos.classes.ServerInterface, cosmos.classes.arrayutils, cosmos.servers.sqlcommands,
   cosmos.framework.interfaces.utils, cosmos.classes.security, WideStrings,
   DBXFirebird, dbxCommon, cosmos.classes.dataobjects, cosmos.core.classes.FieldsInfo,
   cosmos.system.exceptions, cosmos.system.messages, Datasnap.DSSession;
@@ -175,7 +175,7 @@ type
 
 implementation
 
-uses cosmos.servers.sqlcommands, cosmos.system.winshell,
+uses {cosmos.servers.sqlcommands,} cosmos.system.winshell,
   cosmos.servers.common.dataacess,  cosmos.servers.common.services;
 
 {$R *.DFM}
@@ -256,7 +256,7 @@ begin
 //Retorna o próximo número da turma de cursistas de um foco.
  Result := 0; //default, tratado como erro.
 
- ACommand := Format(sSQLMaxTurmas_TP, [codfoc]);
+ ACommand := Format(TSecretariasTPCommands.MaxTurmas_TP, [codfoc]);
 
  try
   ADataset := DMServerDataAcess.DoExecuteDQL(ACommand);
@@ -296,12 +296,12 @@ begin
 
   if TurmaID > 0 then
    begin
-    ACommand := Format(sSQLInsTurmaTP, [TurmaID, Foco]);
+    ACommand := Format(TSecretariasTPCommands.InsTurmaTP, [TurmaID, Foco]);
     AScript.Append(ACommand);
 
     while not ADataset.Eof do
      begin
-      ACommand := Format(sSQLInsMembrosTurmasTP, [TurmaID, ADataset.Fields.FieldByName('codcad').AsInteger]);
+      ACommand := Format(TSecretariasTPCommands.InsMembrosTurmasTP, [TurmaID, ADataset.Fields.FieldByName('codcad').AsInteger]);
       AScript.Append(ACommand);
       ADataset.Next;
      end;
@@ -366,14 +366,14 @@ var
  ACommand: string;
 begin
 //Tenta excluir uma turma de cursistas do TP.
- ACommand := Format(sSQLCountAtividadesTurmaTP, [codtur]);
+ ACommand := Format(TSecretariasTPCommands.CountAtividadesTurmaTP, [codtur]);
 
  try
   ADataset := DMServerDataAcess.DoExecuteDQL(ACommand);
 
   if ADataset.Fields.Fields[0].AsInteger = 0 then
    begin
-    ACommand := Format(sSQLDelTurmaTP, [codtur]);
+    ACommand := Format(TSecretariasTPCommands.DelTurmaTP, [codtur]);
     DMServerDataAcess.DoExecuteCommand(ACommand);
    end
   else

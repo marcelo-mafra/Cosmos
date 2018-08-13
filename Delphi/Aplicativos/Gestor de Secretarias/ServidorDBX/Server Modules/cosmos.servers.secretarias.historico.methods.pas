@@ -724,7 +724,7 @@ begin
  ADataset := DMServerDataAcess.CreateDataset;
 
  try
-  ADataset.CommandText := Format(sSQLDiscipuladoCadastrado, [codcad]);
+  ADataset.CommandText := Format(TSecretariasCommands.DiscipuladoCadastrado, [codcad]);
   ADataset.Open;
   Result := ADataset;
 
@@ -745,7 +745,7 @@ begin
  try
    CurrentUserName := DMCosmosServerServices.ConnectedUser.ToUpper;
    CurrentUserName := CurrentUserName.QuotedString;
-   DMServerDataAcess.DoExecuteCommand(Format(sExecAtualizaGruposTM, [codfoc, CurrentUserName]));
+   DMServerDataAcess.DoExecuteCommand(Format(TSecHistoricoCmd.AtualizaGruposTM, [codfoc, CurrentUserName]));
 
  except
   on E: Exception do

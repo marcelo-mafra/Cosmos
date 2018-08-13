@@ -8,7 +8,7 @@ uses
   ComCtrls, StdCtrls, Buttons, ValueComboBox, GroupHeader, Spin, cosmos.frames.searchdata,
   Cosmos.Framework.Interfaces.Root, Cosmos.Framework.Interfaces.DataAcess,
   cosmos.classes.ServerInterface, cosmos.classes.application, Vcl.Imaging.pngimage,
-  System.Actions;
+  System.Actions, cosmos.system.dataconverter, System.ImageList;
 
 type
   TFrmNovaConferencia = class(TFrmCosmosWizard)

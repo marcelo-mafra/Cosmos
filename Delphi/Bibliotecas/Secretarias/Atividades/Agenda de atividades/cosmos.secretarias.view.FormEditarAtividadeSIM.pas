@@ -9,7 +9,7 @@ uses
   FrameDBInsertVertical, DB, DBClient, cosmos.classes.ServerInterface,
   Cosmos.Framework.Interfaces.Root, Cosmos.Framework.Interfaces.DataAcess,
   Cosmos.Framework.Interfaces.Dialogs, cosmos.system.messages, cosmos.classes.security,
-  cosmos.classes.application, Datasnap.DSConnect;
+  cosmos.classes.application, Datasnap.DSConnect, cosmos.system.dataconverter;
 
 type
   TFrmEditarAtividadesSIM = class(TForm)

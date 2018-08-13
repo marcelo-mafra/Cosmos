@@ -7,7 +7,7 @@ uses
   Dialogs, StdCtrls, Mask, DBCtrls, ComCtrls, DBDateTimePicker, Buttons,
   cosmos.frames.fkSearch, ExtCtrls, GroupHeader, cosmos.frames.usuariocad,
   FrameDBInsertVertical, DB, DBClient, cosmos.classes.ServerInterface,
-  cosmos.system.messages, ValueComboBox, DBValueComboBox,
+  cosmos.system.messages, ValueComboBox, DBValueComboBox, cosmos.system.dataconverter,
   Cosmos.Framework.Interfaces.Root, Cosmos.Framework.Interfaces.DataAcess,
   cosmos.classes.application, cosmos.classes.security, Datasnap.DSConnect;
 

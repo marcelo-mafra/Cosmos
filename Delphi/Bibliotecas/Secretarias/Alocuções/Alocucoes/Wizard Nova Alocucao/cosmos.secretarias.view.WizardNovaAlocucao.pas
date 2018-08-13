@@ -6,7 +6,8 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, cosmos.framework.view.FrmDefWizard, Wizard, ImgList, ActnList, jpeg, ExtCtrls,
   ComCtrls, StdCtrls, Buttons, DBCtrls, Mask, Grids, DBGrids, DB, DBClient,
-  DBActns, cosmos.classes.application, Vcl.Imaging.pngimage, System.Actions;
+  DBActns, cosmos.classes.application, Vcl.Imaging.pngimage, System.Actions,
+  System.ImageList;
 
 type
   TFrmWzNovaAlocucao = class(TFrmCosmosWizard)
@@ -97,8 +98,8 @@ begin
 end;
 
 function TFrmWzNovaAlocucao.Execute: boolean;
-var
-AReturn: TServerReturn;
+{var
+AReturn: TServerReturn;}
 begin
 { WzCosmos.StartWizard;
  CdsAlocucoes.Insert;

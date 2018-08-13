@@ -7,11 +7,8 @@ uses
  Data.DBXDBReaders, Data.DB, Datasnap.DBClient, cosmos.servers.sqlcommands,
  cosmos.classes.ServerInterface, cosmos.classes.arrayutils, cosmos.system.exceptions,
  cosmos.classes.application, System.Variants, Datasnap.Provider, cosmos.system.files,
- cosmos.system.messages, cosmos.classes.serversutils, cosmos.classes.cripter,
+ cosmos.system.messages, cosmos.classes.serversutils, cosmos.classes.cosmoscript,
  cosmos.core.classes.searchsinfo, System.Generics.Collections;
-
- const
-  sPassCript: string = 'galaademnos';
 
 type
 
@@ -84,7 +81,7 @@ type
 
  end;
 
-
+ //Classe utilitária para obter comandos SQL etc.
  TSQLCommandsFactory = class
   class function GetSQLCommand(Search: TCosmosSearch): string;
   class function GetDMLCommand(Command: TCosmosCommand): string;
@@ -94,23 +91,14 @@ type
 
  end;
 
-
+ //Classe utilitária para obter nomes de objetos do banco e comandos.
  TCosmosDataObjects = class
   class function GetSequenceName(Sequence: TSequences): string;
   class function GetRegisteredCommand(const CommandId: integer): string;
  end;
 
 
- TDataTransformation = class
-  class function AsSQLBoolean(const value: boolean): string; overload;
-  class function AsSQLBoolean(const value: boolean; Quotes: boolean): string; overload;
-  class function AsSQLTimeStamp(const Value: TDateTime; IncludeTime: boolean = False): string;
-  class function VarToInt(const value: variant): integer;
-  class function StringToWideString(const s: AnsiString; codePage: Word): WideString;
-  class function Criptografar(const Text: string): string;
-  class function Descriptografar(Text: string): string;
 
- end;
 
 implementation
 
@@ -368,9 +356,6 @@ alguma falha, toda operação será desfeita.}
  end;
 end;
 
-
-
-
 { TSQLCommandsFactory }
 
 class procedure TSQLCommandsFactory.CreateCommandText(var ACommand: string;
@@ -434,9 +419,9 @@ begin
   ccDeleteUsuario: Result := TSecurityCommand.DeleteUser;
   ccDeleteFocoUsuario: Result := TSecurityCommand.DeleteFocusUser;
   ccInstalarAluno: Result := TSecHistoricoCmd.InstalarAluno;
-  ccNovaConferencia: Result := sSQLInsertConferencia;
-  ccAtividadeConferencia: Result := sUpdAtividadesConferencia;
-  ccDelAtividadeConferencia: Result := sUpdAtividadesConferenciaDel;
+  ccNovaConferencia: Result := TGConfCommands.InsertConferencia;
+  ccAtividadeConferencia: Result := TGConfCommands.UpdAtividadesConferencia;
+  ccDelAtividadeConferencia: Result := TGConfCommands.UpdAtividadesConferenciaDel;
   else
   Result := '';
  end
@@ -446,68 +431,70 @@ class function TSQLCommandsFactory.GetSQLCommand(Search: TCosmosSearch): string;
 begin
 //Retorna o comando SQL de uma pesquisa passada em parâmetro
   case Search of
-   csGeneralSelect: Result := TDQLCommand.GeneralSelect;
-   csAreasAptidoes: Result := sSQLfkAreasAptidoes;
-   csCargos: Result := sSQLCargos;
-   csCartasTP: Result := Format(sSQLCartasTP, [QuotedStr('TPU'), QuotedStr('DOC'), QuotedStr('N')]);
-   csDiscipuladosEE: Result := Format(sDiscipulados, [QuotedStr('N'), QuotedStr('LEC'), QuotedStr('S')]);
-   csDiscipuladosEI: Result := Format(sDiscipulados, [QuotedStr('S'), QuotedStr('LEC'), QuotedStr('S')]);
-   csDiscipuladosLectorium: Result := Format(sDiscipuladosCampos, [QuotedStr('LEC')]);
-   csDiscipuladosTM: Result := Format(sDiscipulados, [QuotedStr('N'), QuotedStr('TMO'), QuotedStr('S')]);
-   csDiscipuladosTMB: Result := Format(sDiscipulados, [QuotedStr('N'), QuotedStr('TMB'), QuotedStr('S')]);
-   csDiscipuladosTP: Result := Format(sDiscipulados, [QuotedStr('N'), QuotedStr('TPU'), QuotedStr('S')]);
-   csDiscipuladosSIM: Result := Format(sDiscipulados, [QuotedStr('N'), QuotedStr('SIM'), QuotedStr('S')]);
-   csDiscipuladosCampo: Result := TDQLCommand.DiscipuladosCampos;
-   csEnfermidades: Result := sSQLfkEnfermidades;
+   csGeneralSelect: Result := TDQLCommands.GeneralSelect;
+   csAreasAptidoes: Result := TDQLCommands.AreasAptidoes;
+   csCargos: Result := TDQLCommands.Cargos;
+   csCartasTP: Result := Format(TSecretariasTPCommands.CartasTP, [QuotedStr('TPU'), QuotedStr('DOC'), QuotedStr('N')]);
+   csDiscipuladosEE: Result := Format(TDQLCommands.Discipulados, [QuotedStr('N'), QuotedStr('LEC'), QuotedStr('S')]);
+   csDiscipuladosEI: Result := Format(TDQLCommands.Discipulados, [QuotedStr('S'), QuotedStr('LEC'), QuotedStr('S')]);
+   csDiscipuladosLectorium: Result := Format(TDQLCommands.DiscipuladosCamposSequencia, [QuotedStr('LEC')]);
+   csDiscipuladosTM: Result := Format(TDQLCommands.Discipulados, [QuotedStr('N'), QuotedStr('TMO'), QuotedStr('S')]);
+   csDiscipuladosTMB: Result := Format(TDQLCommands.Discipulados, [QuotedStr('N'), QuotedStr('TMB'), QuotedStr('S')]);
+   csDiscipuladosTP: Result := Format(TDQLCommands.Discipulados, [QuotedStr('N'), QuotedStr('TPU'), QuotedStr('S')]);
+   csDiscipuladosSIM: Result := Format(TDQLCommands.Discipulados, [QuotedStr('N'), QuotedStr('SIM'), QuotedStr('S')]);
+   csDiscipuladosCampo: Result := TDQLCommands.DiscipuladosCampos;
+   csEnfermidades: Result := TDQLCommands.Enfermidades;
 
    //Usuários e permissões
    csCosmosUsers: Result := TGUsersCommands.Cosmosusers;
 
    //Focos e Regiões Admnistrativas.
-   csRegioes: Result := sRegioes;
-   csSubRegioes: Result := sRegioesPai;
-   csFocosRa: Result := sSQLFocosRa2;
-   csFocos: Result := Format(sSQLFocoAtivos, [QuotedStr('S')]);
-   csFocosTitulares: Result := sSQLFocosTitulares;
-   csFocosDependentes: Result := sSQLFocosDependentes;
-   csFocosPesquisadores: Result := Format(sSQLFocosTipos, [QuotedStr('S'), 'indtpu', QuotedStr('S')]);
-   csFocosAlunos: Result := Format(sSQLFocosTipos, [QuotedStr('S'), 'indlec',  QuotedStr('S')]);
-   csFocosConferencias: Result := sSQLFocosConferencia;
-   csConferenciasFocoAno: Result := sSQLConferenciasFocoAno;
+   csRegioes: Result := TFocosCommands.Regioes;
+   csSubRegioes: Result := TFocosCommands.RegioesPai;
+   csFocosRa: Result := TFocosCommands.FocosRa2;
+   csFocos: Result := Format(TFocosCommands.FocoAtivos, [QuotedStr('S')]);
+   csFocosTitulares: Result := TFocosCommands.FocosTitulares;
+   csFocosDependentes: Result := TFocosCommands.FocosDependentes;
+   csFocosPesquisadores: Result := Format(TFocosCommands.FocosTipos, [QuotedStr('S'), 'indtpu', QuotedStr('S')]);
+   csFocosAlunos: Result := Format(TFocosCommands.FocosTipos, [QuotedStr('S'), 'indlec',  QuotedStr('S')]);
+   csFocosConferencias: Result := TGConfCommands.FocosConferencia;
+   csConferenciasFocoAno: Result := TGConfCommands.ConferenciasFocoAno;
 
    //Escola Interna
-   csLicoesEI: Result := sSQLfkLicoesEI;
-   csLicoesLivroEI: Result := sLicoesLivroEI;
-   csLivrosDiscipuladoEI: Result := sSelLivrosEI;
+   csLicoesEI: Result := TSecretariasEICommands.LicoesEI;
+   csLicoesLivroEI: Result := TSecretariasEICommands.LicoesLivroEI;
+   csLivrosDiscipuladoEI: Result := TSecretariasEICommands.LivrosEI;
    csDirigentesEI: Result := '' ;
    csMentoresEI, csMentorasEI: Result := sSQLCadastradoFocoCampoSexo + ' and indmen = ' + QuotedStr('S');
    csMentoresEIFoco, csMentorasEIFoco: Result := '';
    csCirculosEIFocoDiscipulado: Result := sSQLSearchCirculosEIFocoDiscipulado;
 
    //Tabelas Acessórias.
-   csMeiosContatos: Result := sSQLfkTiposContatos;
-   csProfissoes: Result := sSQLfkProfissoes;
-   csFuncoes: Result := sSQLFuncoes;
-   csTipoAtuacao: Result := sSQLfkTiposAtuacao;
-   csTiposEventosTP: Result := Format(sSQLfkTiposEventos, [QuotedStr('TPU')]);
+   csMeiosContatos: Result := TDQLCommands.TiposContatos;
+   csProfissoes: Result := TDQLCommands.Profissoes;
+   csFuncoes: Result := TDQLCommands.Funcoes;
+   csTipoAtuacao: Result := TDQLCommands.TiposAtuacao;
+   csTiposEventosTP: Result := Format(TDQLCommands.TiposEventos, [QuotedStr('TPU')]);
+
+
    csCarteirinhaCadastrado: Result := sSQLCarteirinhasCadastrados;
    csCountAtividadeTipo: Result := TSecAtividadesCommands.TiposAtividadesCount;
    csExternalReportsCategories: Result := TReportsCommand.ExternalReports;
 
    //Logradouros.
-   csBairros: Result := sSQLBairros;
-   csCidades: Result := sSQLCidades;
-   csEstados: Result := sSQLEstados;
-   csPaises: Result := sSQLPaises;
+   csBairros: Result := TLogradourosCommands.Bairros;
+   csCidades: Result := TLogradourosCommands.Cidades;
+   csEstados: Result := TLogradourosCommands.Estados;
+   csPaises: Result := TLogradourosCommands.Paises;
 
    //Alocuções
-   csAlocucoes: Result := SSQLAlocucoes;
-   csAlocucoesDataCadastro: Result := sSQLAlocucoesDataCadastro;
-   csAlocucoesDataLeitura: Result := sSQLAlocucoesDataLeitura;
-   csAlocucoesIneditas: Result := sSQLAlocucoesIneditas;
-   csAlocucoesAssunto: Result := sSQLAlocucoesAssunto;
-   csAlocucoesAutor: Result := sSQLAlocucoesAutor;
-   csAlocucoesCamposTrabalho: Result := sSQLAlocucoesCamposTrabalho;
+   csAlocucoes: Result := TAlocucoesCommands.Alocucoes;
+   csAlocucoesDataCadastro: Result := TAlocucoesCommands.AlocucoesDataCadastro;
+   csAlocucoesDataLeitura: Result := TAlocucoesCommands.AlocucoesDataLeitura;
+   csAlocucoesIneditas: Result := TAlocucoesCommands.AlocucoesIneditas;
+   csAlocucoesAssunto: Result := TAlocucoesCommands.AlocucoesAssunto;
+   csAlocucoesAutor: Result := TAlocucoesCommands.AlocucoesAutor;
+   csAlocucoesCamposTrabalho: Result := TAlocucoesCommands.AlocucoesCamposTrabalho;
 
    //Cadastrado
    csCadastrado: Result := sSQLCadastrado;
@@ -522,14 +509,14 @@ begin
    csCadastradosFocoCampo: Result := sSQLCadastradosFocoCampo;
    csFuncoesCadastrado: Result := sSQLListaListaFuncoesCadastrado;
    csFichaUsuario: Result := sSQLFichaUsuario;
-   csDadosCadastrado: Result := TDQLCommand.DadosCadastrado;
+   csDadosCadastrado: Result := TDQLCommands.DadosCadastrado;
    csCadastradoIndex: Result := sSQLCadastradoIndex;
    csCadastradoMatricula: Result := sSQLCadastradosMatricula;
-   csCadastradoMatriculaFoco: Result := TDQLCommand.CadastradosMatriculaFoco;
+   csCadastradoMatriculaFoco: Result := TDQLCommands.CadastradosMatriculaFoco;
    csCadastradoNome: Result := sSQLCadastradosNome;
-   csCadastradoNomeFoco: Result := TDQLCommand.CadastradosNomeFoco;
+   csCadastradoNomeFoco: Result := TDQLCommands.CadastradosNomeFoco;
    csCadastradoApelido: Result := sSQLCadastradosApelido;
-   csCadastradoApelidoFoco: Result := TDQLCommand.CadastradosApelidoFoco;
+   csCadastradoApelidoFoco: Result := TDQLCommands.CadastradosApelidoFoco;
    csJovensAlunos: Result := Format(sSQLJovensAlunos, [QuotedStr('LEC'), QuotedStr('S')]);
    csJovensAlunosFoco: Result := sSQLJovensAlunosFoco;
    csDiscEventoHistorico: Result := sSQLDiscEventoHistorico;
@@ -674,8 +661,8 @@ begin
    csQuartosUsadosAlojamento: Result := TGConfAlojamentos.QuartosUsadosAlojamento;
    csTurmasInstalacao: Result := sSQLTurmasInstalacao;
    csMembrosTurmaInstalacao: Result := sSQLMembrosTurmaInstalacao;
-   csListaSimpatizantes: Result := TDQLCommand.ListaSimpatizantes;
-   csTurmasTP: Result := TDQLCommand.ListaTurmasTP;
+   csListaSimpatizantes: Result := TDQLCommands.ListaSimpatizantes;
+   csTurmasTP: Result := TDQLCommands.ListaTurmasTP;
    csTurmaInstalacaoInfo: Result := TSecHistoricoCmd.TurmaInstalacaoInfo;
    //Financeiro
    csCaixasMesAno: Result := TFinCommands.CaixasMesAno;
@@ -703,19 +690,19 @@ begin
 {Retorna um comando para consulta de toda uma tabela mapeada por essa classe. Este
  método é usado para obter o completo subset de dados de uma tabela.}
  case Table of
-   ctAptidoes: Result := Result.Format(TDQLCommand.GeneralSelect, [TTablesNames.TAB_APTIDOES]);
-   ctCargos: Result := Result.Format(TDQLCommand.GeneralSelect, [TTablesNames.TAB_CARGOS]);
-   ctEnfermidades: Result := Result.Format(TDQLCommand.GeneralSelect, [TTablesNames.TAB_ENFERMIDADES]);
-   ctFuncoes: Result := Result.Format(TDQLCommand.GeneralSelect, [TTablesNames.TAB_FUNCOES]);
-   ctMeiosContatos: Result := Result.Format(TDQLCommand.GeneralSelect, [TTablesNames.TAB_MEIOSCONTATOS]);
-   ctProfissoes: Result := Result.Format(TDQLCommand.GeneralSelect, [TTablesNames.TAB_PROFISSOES]);
-   ctTiposRecebimentos: Result := Result.Format(TDQLCommand.GeneralSelect, [TTablesNames.TAB_TIPOS_RECEBIMENTOS]);
-   ctFlagsInscricao: Result := Result.Format(TDQLCommand.GeneralSelect, [TTablesNames.TAB_FLAGS_INSCRICOES]);
-   ctFocos: Result := Result.Format(TDQLCommand.GeneralSelect, [TTablesNames.TAB_FOCOS]);
-   ctPerfis: Result := Result.Format(TDQLCommand.GeneralSelect, [TTablesNames.TAB_PERFIS]);
-   ctDiscipulados: Result := Result.Format(TDQLCommand.GeneralSelect, [TTablesNames.TAB_DISCIPULADOS]);
-   ctTiposEventos: Result := Result.Format(TDQLCommand.GeneralSelect, [TTablesNames.TAB_TIPOS_EVENTOS]);
-   ctRelatoriosExternos: Result := Result.Format(TDQLCommand.GeneralSelect, [TTablesNames.TAB_RELATORIOS_EXTERNOS]);
+   ctAptidoes: Result := Result.Format(TDQLCommands.GeneralSelect, [TTablesNames.TAB_APTIDOES]);
+   ctCargos: Result := Result.Format(TDQLCommands.GeneralSelect, [TTablesNames.TAB_CARGOS]);
+   ctEnfermidades: Result := Result.Format(TDQLCommands.GeneralSelect, [TTablesNames.TAB_ENFERMIDADES]);
+   ctFuncoes: Result := Result.Format(TDQLCommands.GeneralSelect, [TTablesNames.TAB_FUNCOES]);
+   ctMeiosContatos: Result := Result.Format(TDQLCommands.GeneralSelect, [TTablesNames.TAB_MEIOSCONTATOS]);
+   ctProfissoes: Result := Result.Format(TDQLCommands.GeneralSelect, [TTablesNames.TAB_PROFISSOES]);
+   ctTiposRecebimentos: Result := Result.Format(TDQLCommands.GeneralSelect, [TTablesNames.TAB_TIPOS_RECEBIMENTOS]);
+   ctFlagsInscricao: Result := Result.Format(TDQLCommands.GeneralSelect, [TTablesNames.TAB_FLAGS_INSCRICOES]);
+   ctFocos: Result := Result.Format(TDQLCommands.GeneralSelect, [TTablesNames.TAB_FOCOS]);
+   ctPerfis: Result := Result.Format(TDQLCommands.GeneralSelect, [TTablesNames.TAB_PERFIS]);
+   ctDiscipulados: Result := Result.Format(TDQLCommands.GeneralSelect, [TTablesNames.TAB_DISCIPULADOS]);
+   ctTiposEventos: Result := Result.Format(TDQLCommands.GeneralSelect, [TTablesNames.TAB_TIPOS_EVENTOS]);
+   ctRelatoriosExternos: Result := Result.Format(TDQLCommands.GeneralSelect, [TTablesNames.TAB_RELATORIOS_EXTERNOS]);
  end;
 end;
 
@@ -803,85 +790,6 @@ begin
  end;
 end;
 
-{ TDataTransformation }
-
-class function TDataTransformation.AsSQLBoolean(const value: boolean): string;
-begin
-//Converte um boolean para uma string que representa o tipo boolean no sgbd
- if Value = true then
-  Result := 'S'
- else
-  Result := 'N';
-end;
-
-class function TDataTransformation.AsSQLBoolean(const value: boolean;
-  Quotes: boolean): string;
-begin
-//Converte um boolean para uma string que representa o tipo boolean no sgbd
- if Value = true then
-  Result := 'S'
- else
-  Result := 'N';
- if Quotes then
-  Result := QuotedStr(Result);
-end;
-
-class function TDataTransformation.AsSQLTimeStamp(const Value: TDateTime;
-  IncludeTime: boolean): string;
-begin
-//Formata um TDateTime para uma string que possa ser usada em uma sentença sql
- if not IncludeTime then
-  Result := FormatDateTime('yyyy/mm/dd', Value)
- else
-  Result := FormatDateTime('yyyy/mm/dd hh:mm:ss', Value)
-end;
-
-
-
-class function TDataTransformation.Criptografar(const Text: string): string;
-var
- aCripter: TCripter;
-begin
-//Criptografa uma string que é retornada pela função. A rotina de criptografia
-//está no módulo cripter.dll
- aCripter := TCripter.Create;
-
- try
-  Result := aCripter.Encrypt(cmBlowfish128, TCosmosCriptography.CipherKey, Text);
-
- finally
-  aCripter.Free;
- end;
-end;
-
-class function TDataTransformation.Descriptografar(Text: string): string;
-var
- aCripter: TCripter;
-begin
-//Descriptografa uma string que é retornada pela função. A rotina de
-//descriptografia está no módulo cripter.dll
- aCripter := TCripter.Create;
-
- try
-  Result := aCripter.Decrypt(cmBlowfish128, TCosmosCriptography.CipherKey, Text);
-
- finally
-  aCripter.Free;
- end;
-end;
-
-class function TDataTransformation.StringToWideString(const s: AnsiString;
-  codePage: Word): WideString;
-begin
-
-end;
-
-class function TDataTransformation.VarToInt(const value: variant): integer;
-begin
-//Converte um variant para um inteiro
- Result := VarAsType(value,varInteger);
-end;
-
 { TSQLServerObject }
 
 constructor TSQLServerObject.Create;
@@ -967,15 +875,12 @@ var
  AIndex: Int64;
  dbconn : TSQLConnection;
  sValue: string;
- aCripter: TCripter;
  aParams: TStringList;
 begin
  {Cria objetos TSQLConnection no pool para uso das aplicações. O número de objetos
   TSQLConnection que serão criados é definido pelo parâmetro ObjCount.}
  I := ObjCount;
  Randomize;
- // ShowMessage('Criando TCripter...');
- aCripter := TCripter.Create;
  aParams := TStringList.Create;
 
  aParams.LoadFromFile(FConnectionParamsFile);
@@ -1002,32 +907,32 @@ begin
 
     //Path do banco de dados.
     sValue := aParams.Values['Database'];
-    sValue := aCripter.Decrypt(cmBlowfish128, sPassCript, sValue);
+    sValue := TCripterFactory.Descriptografar(sValue);
     dbconn.Params.Values['Database'] := sValue;
 
     //Usuário interno da conexão com o banco de dados.
     sValue := aParams.Values['user_name'];
-    sValue := aCripter.Decrypt(cmBlowfish128, sPassCript, sValue);
+    sValue := TCripterFactory.Descriptografar(sValue);
     dbconn.Params.Values['user_name'] := sValue;
 
     //Senha do usuário interno da conexão com o banco de dados.
     sValue := aParams.Values['Password'];
-    sValue := aCripter.Decrypt(cmBlowfish128, sPassCript, sValue);
+    sValue := TCripterFactory.Descriptografar(sValue);
     dbconn.Params.Values['Password'] := sValue;
 
     //Role do usuário interno da conexão com o banco de dados.
     sValue := aParams.Values['rolename'];
-    sValue := aCripter.Decrypt(cmBlowfish128, sPassCript, sValue);
+    sValue := TCripterFactory.Descriptografar(sValue);
     dbconn.Params.Values['rolename'] := sValue;
 
     //Role do usuário interno da conexão com o banco de dados.
     sValue := aParams.Values['role'];
-    sValue := aCripter.Decrypt(cmBlowfish128, sPassCript, sValue);
+    sValue := TCripterFactory.Descriptografar(sValue);
     dbconn.Params.Values['role'] := sValue;
 
     //Host do servidor do banco de dados.
     sValue := aParams.Values['HostName'];
-    sValue := aCripter.Decrypt(cmBlowfish128, sPassCript, sValue);
+    sValue := TCripterFactory.Descriptografar(sValue);
     dbconn.Params.Values['HostName'] := sValue;
 
     //Server charset
@@ -1050,13 +955,11 @@ begin
     Dec(I);
   end;
 
- aCripter.Free;
- aParams.Free;
+  aParams.Free;
 
  except
   on E: Exception do
    begin
-    if Assigned(ACripter) then FreeAndNil(aCripter);
     raise;
    end;
  end;

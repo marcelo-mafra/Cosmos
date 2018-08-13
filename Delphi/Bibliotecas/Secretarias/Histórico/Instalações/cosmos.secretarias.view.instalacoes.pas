@@ -8,11 +8,11 @@ uses
   ComCtrls, Menus, ActnPopup, XPStyleActnCtrls, ActnMan, ToolWin, ActnCtrls,
   ExtCtrls, cosmos.frames.gridsearch, StdCtrls, DB, DBClient, CommCtrl, cosmos.classes.application,
   Cosmos.Framework.Interfaces.Root, cosmos.classes.security, PlatformDefaultStyleActnCtrls,
-  cosmos.framework.datanavigators.treeview, cosmos.business.focos,
+  cosmos.framework.datanavigators.treeview, cosmos.business.focos, cosmos.system.dataconverter,
   cosmos.Framework.forms.wizards, Cosmos.Framework.Interfaces.Dialogs,
   cosmos.Framework.forms.datadialogs, System.Actions, Data.DBXCommon,
   cosmos.classes.ServerInterface, Datasnap.DSConnect, cosmos.system.formsconst,
-  cosmos.framework.interfaces.dataacess;
+  cosmos.framework.interfaces.dataacess, System.ImageList;
 
 type
   TStatusTurma = (stInstalada, stProtocolada, stDesconhecida);
@@ -1063,10 +1063,10 @@ begin
 
   if AReader.Next then
    begin
-     LblNome.Caption := AReader.Value['nomcad'].GetAnsiString;
-     LblDiscipulado.Caption :=  AReader.Value['nomdis'].GetAnsiString;
+     LblNome.Caption := AReader.Value['nomcad'].ToString;
+     LblDiscipulado.Caption :=  AReader.Value['nomdis'].ToString;
      LblFoco.Caption := ICosmosApp.ActiveFocus.FocusName;
-     LblMatricula.Caption := AReader.Value['matcad'].GetAnsiString;
+     LblMatricula.Caption := AReader.Value['matcad'].ToString;
    end;
 
    AParams.Free;
@@ -1112,12 +1112,12 @@ begin
 
   if AReader.Next then
    begin
-     LblNomeTurma.Caption := AReader.Value['numtur'].GetAnsiString;
-     LblDiscipuladoTurma.Caption :=  AReader.Value['nomdis'].GetAnsiString;
+     LblNomeTurma.Caption := AReader.Value['numtur'].ToString;
+     LblDiscipuladoTurma.Caption :=  AReader.Value['nomdis'].ToString;
      LblFocoTurma.Caption := ICosmosApp.ActiveFocus.FocusName;
-     LblInstalada.Caption := TDataConverter.ToBoleanSimNao(AReader.Value['indins'].GetAnsiString);
-     LblResponsavel.Caption := AReader.Value['usures'].GetAnsiString;
-     LblDataCadastro.Caption := TDataConverter.ToFormatedDateTime(AReader.Value['datcad'].GetTimeStamp);
+     LblInstalada.Caption := TDataConverter.ToBoleanSimNao(AReader.Value['indins'].ToString);
+     LblResponsavel.Caption := AReader.Value['usures'].ToString;
+     LblDataCadastro.Caption := TDataConverter.ToFormatedDateTime(AReader.Value['datcad'].AsDateTime);
    end;
 
    AParams.Free;

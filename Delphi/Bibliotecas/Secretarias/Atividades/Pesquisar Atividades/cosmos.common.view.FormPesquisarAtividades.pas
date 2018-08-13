@@ -9,7 +9,7 @@ uses
   Cosmos.Framework.Interfaces.Root, Cosmos.Framework.Interfaces.DataAcess,
   Cosmos.Framework.Interfaces.Dialogs, cosmos.classes.application, cosmos.classes.ServerInterface,
   cosmos.business.focos, cosmos.system.winshell, cosmos.system.messages,
-  System.Actions;
+  System.Actions, cosmos.system.dataconverter, System.ImageList;
 
 type
   TFrmPesquisarAtividades = class(TForm, ISearchAtividades)

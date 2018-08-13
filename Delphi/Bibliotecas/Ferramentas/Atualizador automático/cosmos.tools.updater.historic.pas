@@ -4,15 +4,15 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
-  Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cosmos.framework.view.FrmDocked, Vcl.ActnList,
+  Vcl.Graphics,  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cosmos.system.dataconverter,
+  cosmos.framework.view.FrmDocked, Vcl.ActnList, cosmos.system.winshell,
   Vcl.ImgList, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.StdCtrls, Xml.xmldom,
   Xml.XMLIntf, Xml.Win.msxmldom, Xml.XMLDoc, cosmos.system.messages,
-  cosmos.classes.persistence.ini, cosmos.system.winshell, cosmos.system.formsconst,
+  cosmos.classes.persistence.ini, cosmos.system.formsconst,
   cosmos.classes.application, cosmos.framework.datanavigators.listview,
   IdBaseComponent, IdComponent, IdTCPConnection, IdTCPClient, IdHTTP, IdWinsock2, IdGlobal,
   Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnMan, System.Actions, Vcl.ToolWin,
-  Vcl.ActnCtrls, cosmos.tools.updater.classes;
+  Vcl.ActnCtrls, cosmos.tools.updater.classes, System.ImageList;
 
 type
   PUpdateInfo = ^TUpdateInfo;

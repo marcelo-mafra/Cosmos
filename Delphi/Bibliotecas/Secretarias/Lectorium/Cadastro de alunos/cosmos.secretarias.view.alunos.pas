@@ -13,7 +13,7 @@ uses
   cosmos.classes.application, cosmos.classes.ServerInterface, cosmos.business.focos,
   cosmos.framework.datanavigators.datasets, cosmos.framework.interfaces.dataacess,
   System.Actions, Datasnap.DSConnect, cosmos.framework.interfaces.applications,
-  System.ImageList;
+  System.ImageList, cosmos.system.dataconverter;
 
 
 type

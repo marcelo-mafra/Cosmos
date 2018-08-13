@@ -10,7 +10,8 @@ uses
   cosmos.classes.application, cosmos.classes.ServerInterface, System.Actions,
   cosmos.classes.security, Vcl.Menus, Vcl.PlatformDefaultStyleActnCtrls,
   Vcl.ActnPopup, cosmos.framework.interfaces.dialogs, Datasnap.DSConnect,
-  cosmos.framework.interfaces.dataacess, cosmos.system.formsconst;
+  cosmos.framework.interfaces.dataacess, cosmos.system.formsconst,
+  cosmos.system.dataconverter, System.ImageList;
 
 type
   TFrmSimpatizantes = class(TFrmCosmosDocked)

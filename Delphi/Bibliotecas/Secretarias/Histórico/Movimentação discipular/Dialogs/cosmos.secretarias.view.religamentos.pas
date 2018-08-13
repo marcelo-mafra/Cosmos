@@ -8,7 +8,8 @@ uses
   Vcl.Buttons, Vcl.ComCtrls, ValueComboBox, GroupHeader, cosmos.classes.application,
   Cosmos.Framework.Interfaces.Root, Cosmos.Framework.Interfaces.DataAcess,
   cosmos.system.messages, Data.DBXCommon, Cosmos.classes.ServerInterface,
-  Cosmos.Framework.Interfaces.Applications, Datasnap.DBClient;
+  Cosmos.Framework.Interfaces.Applications, Datasnap.DBClient,
+  cosmos.system.dataconverter;
 
 type
   TFrmReligar = class(TForm)
@@ -81,8 +82,8 @@ begin
 
   if AReader.Next then
    begin
-    EdtNome.Text := AReader.Value['nomcad'].GetAnsiString;
-    EdtDiscipulado.Text :=  AReader.Value['sigdis'].GetAnsiString;
+    EdtNome.Text := AReader.Value['nomcad'].ToString;
+    EdtDiscipulado.Text :=  AReader.Value['sigdis'].ToString;
     EdtFoco.Text := ICosmosApp.ActiveFocus.FocusName;
    end;
 

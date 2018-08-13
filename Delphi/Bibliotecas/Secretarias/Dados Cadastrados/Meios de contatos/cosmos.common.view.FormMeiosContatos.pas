@@ -9,7 +9,7 @@ uses
   cosmos.classes.application, cosmos.classes.ServerInterface, cosmos.classes.security,
   Cosmos.Framework.Interfaces.DataAcess, Cosmos.Framework.Interfaces.Dialogs,
   Buttons, cosmos.system.winshell, cosmos.system.messages, cosmos.system.types,
-  cosmos.Framework.Interfaces.Root, Datasnap.DSConnect;
+  cosmos.Framework.Interfaces.Root, Datasnap.DSConnect, cosmos.system.dataconverter;
 
 type
   TFrmMeiosContatos = class(TForm, ICosmosMeiosContatos)
