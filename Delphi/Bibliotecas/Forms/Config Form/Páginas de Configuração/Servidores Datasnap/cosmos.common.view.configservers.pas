@@ -10,7 +10,7 @@ uses
   Cosmos.Framework.Interfaces.Root, Cosmos.Framework.Interfaces.Dialogs,
   cosmos.core.client.connection, Xml.xmldom, Xml.XMLIntf, Xml.Win.msxmldom,
   Xml.XMLDoc, System.Actions, cosmos.classes.security, cosmos.system.winshell,
-  cosmos.system.formsconst;
+  cosmos.system.formsconst, cosmos.system.nettypes, System.ImageList;
 
 type
   PConnection = ^TConnectionRec;

@@ -7,9 +7,9 @@ uses
   Dialogs, DB, DBClient, cosmos.framework.interfaces.root, cosmos.framework.interfaces.DataAcess,
   FrameDBInsertVertical, StdCtrls, Mask, DBCtrls, ComCtrls, cosmos.classes.application,
   ExtCtrls, GroupHeader, cosmos.frames.fkSearch, cosmos.classes.ServerInterface,
-  ValueComboBox, DBValueComboBox, cosmos.frames.usuariocad,
+  ValueComboBox, DBValueComboBox, cosmos.frames.usuariocad, cosmos.system.dataconverter,
   DBCGrids, ActnList, ImgList, Buttons, cosmos.system.messages,
-  DBEditDateTimePicker, System.Actions, Datasnap.DSConnect;
+  DBEditDateTimePicker, System.Actions, Datasnap.DSConnect, System.ImageList;
 
 type
   TFrmEditarInscricao = class(TForm)

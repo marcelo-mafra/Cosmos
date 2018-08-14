@@ -8,7 +8,8 @@ uses
   Data.FMTBcd, cosmos.system.types, cosmos.system.messages, cosmos.servers.sqlcommands,
   cosmos.classes.application, System.Variants, Datasnap.Provider, System.WideStrings,
   Datasnap.DSSession, cosmos.system.winshell, cosmos.classes.ServerInterface,
-  cosmos.classes.logs, Data.DBXCommon, cosmos.system.exceptions;
+  cosmos.classes.logs, Data.DBXCommon, cosmos.system.exceptions,
+  cosmos.classes.cosmoscript, cosmos.system.dataconverter;
 
 
 type
@@ -130,7 +131,7 @@ begin
    Dataset.Edit;
 
    try
-    Dataset.Fields.FieldByName('sencon').AsString := DMCosmosServerServices.Descriptografar(Dataset.Fields.FieldByName('sencon').AsString);
+    Dataset.Fields.FieldByName('sencon').AsString := TCripterFactory.Descriptografar(Dataset.Fields.FieldByName('sencon').AsString);
 
    finally
     DMServerDataAcess.CloseDataset(DMServerDataAcess.SQLSearch);

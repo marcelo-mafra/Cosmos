@@ -8,7 +8,8 @@ uses
   ActnPopup, ActnList, ImgList, XPMan, Tabs, DockTabSet, ComCtrls, ExtCtrls,
   ToolWin, ActnMan, ActnCtrls, ActnMenus, XPStyleActnCtrls, cosmos.classes.application,
   cosmos.framework.interfaces.DataAcess, cosmos.system.messages, XMLDoc, XMLIntf,
-  MidasLib, Vcl.AppEvnts, System.Actions, Vcl.Touch.GestureMgr, cosmos.system.types;
+  MidasLib, Vcl.AppEvnts, System.Actions, Vcl.Touch.GestureMgr, cosmos.system.types,
+  System.ImageList;
 
 type
   TFrmMainUsuarios = class(TFrmMainClientGUI)

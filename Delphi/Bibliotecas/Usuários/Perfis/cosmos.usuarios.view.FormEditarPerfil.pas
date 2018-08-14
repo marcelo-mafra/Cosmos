@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, ExtCtrls, DBCtrls, GroupHeader, Mask, DB, DBClient,
   FrameDBInsertVertical, Cosmos.Framework.Interfaces.Root, cosmos.classes.application,
-  Cosmos.Framework.Interfaces.DataAcess, Datasnap.DSConnect;
+  Cosmos.Framework.Interfaces.DataAcess, Datasnap.DSConnect, cosmos.system.dataconverter;
 
 type
   TFrmEditarPerfil = class(TForm)

@@ -30,7 +30,7 @@ type
    class function ToTime(const value: string): TTime; inline;
    class function ToString(const value: variant): string; reintroduce; inline;
    class function ToWideString(const value: AnsiString): WideString; inline;
-   class function ToAniString(const value: PWideChar): AnsiString;
+   class function ToAnsiString(const value: PWideChar): AnsiString;
    class function ToStringStream(const AStream: TStream): TStringStream;
    class function ToOleVariant(Strm: TMemoryStream): Olevariant;
    class function ToMemoryStream(value: OleVariant): TMemoryStream;
@@ -57,6 +57,7 @@ class function TDataConverter.ToOleVariant(
 var
 Data: PByteArray;
 begin
+//Converte um stream em memória para um Olevariant.
  Result := VarArrayCreate ([0, Strm.Size - 1], varByte);
  Data := VarArrayLock(Result);
  try
@@ -73,6 +74,7 @@ var
 Data: PByteArray;
 Size: integer;
 begin
+//Converte um Olevariant para um stream em memória.
  Result := TMemoryStream.Create;
  try
   Size := VarArrayHighBound (value, 1) - VarArrayLowBound(value, 1) + 1;
@@ -92,7 +94,7 @@ begin
 end;
 
 
-class function TDataConverter.ToAniString(const value: PWideChar): AnsiString;
+class function TDataConverter.ToAnsiString(const value: PWideChar): AnsiString;
 begin
  OleStrToStrVar(Value, Result);
 end;
@@ -106,18 +108,21 @@ end;
 class function TDataConverter.ToBoleanSimNao(const value: string): string;
 begin
  if Value = 'S' then
-  Result := 'Sim' //do not localize!
+  Result := TNoYes.Yes
  else
-  Result := 'Não';//do not localize!
+  Result := TNoYes.No;
 end;
 
 class function TDataConverter.ToBoleanString(const value: boolean;
     Quoted: boolean = False): string;
 begin
+{Retorna as iniciais de "sim" e "não". Por convenção, esses valores são
+ armazenados assim no banco de dados devido à ausência de um tipo boolean
+ real no Firebird.}
  if Value = True then
-  Result := 'S'
+  Result := TNoYesShort.Yes
  else
-  Result := 'N';
+  Result := TNoYesShort.No;
 
  if Quoted then
   Result := Result.QuotedString;
@@ -197,7 +202,7 @@ end;
 class function TDataConverter.ToInteger(const value: string): integer;
 begin
  try
-  Result := StrToInt(value);
+  Result := value.ToInteger;
 
  except
   on E: Exception do

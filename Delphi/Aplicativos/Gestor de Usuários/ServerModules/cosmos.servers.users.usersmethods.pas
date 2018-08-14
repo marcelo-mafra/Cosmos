@@ -7,8 +7,8 @@ uses
   DBClient, FMTBcd, Data.DB, Data.SqlExpr, Provider,  Variants,  cosmos.classes.application,
   Cosmos.classes.ServerInterface, cosmos.system.types, cosmos.system.exceptions,
   cosmos.system.winshell,  DBXCommon, DBXFirebird, DataSnap.DSProviderDataModuleAdapter,
-  cosmos.framework.interfaces.utils, cosmos.classes.dataobjects,
-  cosmos.classes.logs, cosmos.system.messages, cosmos.servers.sqlcommands;
+  cosmos.classes.dataobjects, cosmos.system.dataconverter, cosmos.classes.logs,
+  cosmos.system.messages, cosmos.servers.sqlcommands, cosmos.classes.cosmoscript;
 
 type
   TDMUserMethods = class(TDSServerModule)
@@ -211,7 +211,7 @@ begin
  AKey := Random(aRange);//faixa numérica da senha
 
  //Faz um hash da senha gerada.
- AValue := DMCosmosServerServices.HashValue(AKey.ToString);
+ AValue := TCripterFactory.HashValue(AKey.ToString);
  ACommand := Format(TGUsersCommands.ResetPassword, [AValue.QuotedString, QuotedStr('S'), UserId]);
 
  try
@@ -307,7 +307,7 @@ begin
    begin
     XMLData := UserData;
     logusu := Fields.FieldByName('logusu').AsString;
-    password := TDataTransformation.Criptografar(Fields.FieldByName('passwrd').AsString);
+    password := TCripterFactory.Criptografar(Fields.FieldByName('passwrd').AsString);
     rolename := Fields.FieldByName('rolename').AsString;
     codcad := Fields.FieldByName('codcad').AsInteger;
     indati := Fields.FieldByName('indati').AsString;
@@ -345,7 +345,7 @@ begin
    //Agora, insere na tabela de usuários do Cosmos as informações sobre o novo
    //usuário e os focos que pode acessar.
    DMServerDataAcess.CloseDataset(ASQLDataset);
-   ASQLDataset.CommandText := Format(TDQLCommand.Generators, [TSequencesNames.GEN_USUARIOS, 1]);
+   ASQLDataset.CommandText := Format(TDQLCommands.Generators, [TSequencesNames.GEN_USUARIOS, 1]);
    ASQLDataset.Open;
 
    NewUserID := ASQLDataset.Fields.Fields[0].AsInteger + ActiveRange;

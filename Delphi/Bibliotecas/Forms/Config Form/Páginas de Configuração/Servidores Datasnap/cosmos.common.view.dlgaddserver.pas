@@ -8,7 +8,7 @@ uses
   Vcl.Buttons, Winapi.ActiveX, Cosmos.classes.application, GroupHeader,
   cosmos.system.types, Cosmos.Framework.Interfaces.Root, cosmos.system.messages,
   cosmos.core.client.connection, Vcl.ComCtrls, System.TypInfo, System.UITypes,
-  cosmos.system.winshell;
+  cosmos.system.winshell, cosmos.system.nettypes;
 
 type
   TFrmAddServer = class(TForm)

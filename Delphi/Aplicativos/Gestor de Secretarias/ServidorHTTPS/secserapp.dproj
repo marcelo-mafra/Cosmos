@@ -69,7 +69,7 @@
         <DCC_S>false</DCC_S>
         <DCC_F>false</DCC_F>
         <DCC_K>false</DCC_K>
-        <DCC_UnitSearchPath>$(COSMOSAPPSOURCECOMMON)\Classes;$(COSMOSAPPSOURCECOMMON)\System;$(COSMOSAPPSOURCECOMMON)\Classes\Persistence;$(COSMOSAPPSOURCECOMMON)\Classes\Core;$(COSMOSAPPSOURCECOMMON)\Classes\Logs;$(COSMOSAPPSOURCECOMMON)\Servers;$(COSMOSAPPSOURCECOMMON)\Classes\ServersObj;$(COSMOSAPPSOURCECOMMON)\Classes\Business;$(COSMOSAPPSOURCECOMMON)\Classes\Security;$(COSMOSAPPCOMPS)\SQLScript;$(COSMOSAPPSOURCECOMMON)\Classes\Framework\Interfaces;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>$(COSMOSAPPSOURCECOMMON)\Classes;$(COSMOSAPPSOURCECOMMON)\Classes\Business;$(COSMOSAPPSOURCECOMMON)\Classes\Core;$(COSMOSAPPSOURCECOMMON)\Classes\Logs;$(COSMOSAPPSOURCECOMMON)\Classes\Persistence;$(COSMOSAPPSOURCECOMMON)\Classes\Security;$(COSMOSAPPSOURCECOMMON)\Classes\ServersObj;$(COSMOSAPPSOURCECOMMON)\System;$(COSMOSAPPSOURCECOMMON)\Servers;$(COSMOSAPPSOURCECOMMON)\Data;$(COSMOSAPPLIBRARIES)\Segurança;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <DCC_Namespace>System.Win;Data.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>

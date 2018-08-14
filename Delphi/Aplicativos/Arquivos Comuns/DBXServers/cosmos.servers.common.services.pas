@@ -80,7 +80,7 @@ end;
 
 function TDMCosmosServerServices.GetCosmosModuleIdentifier: string;
 begin
- //Retorna o nome "de identificação" servidor em execução do Cosmos.
+ //Retorna o nome "de identificação" do servidor em execução do Cosmos.
  case CosmosModule of
    cmFocosServer: Result := TCosmosAppName.CosmosFocosId;
    cmSecretariasServer: Result :=  TCosmosAppName.CosmosSecretariasId;

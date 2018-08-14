@@ -80,7 +80,7 @@
         <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
         <DCC_ImageBase>00400000</DCC_ImageBase>
         <DCC_Platform>x86</DCC_Platform>
-        <DCC_UnitSearchPath>$(COSMOSAPPSOURCE)\DCP\$(Platform)\$(Config);$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>$(COSMOSAPPLIBRARIES)\Server Libraries\dbxObjects;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Android)'!=''">
         <VerInfo_IncludeVerInfo>false</VerInfo_IncludeVerInfo>
@@ -141,10 +141,13 @@
         <DCCReference Include="DBXFirebirdDriver.dcp"/>
         <DCCReference Include="cmpersist.dcp"/>
         <DCCReference Include="secmod.dcp"/>
+        <DCCReference Include="dbxObjects.dcp"/>
         <DCCReference Include="..\..\..\Arquivos Comuns\Classes\ServersObj\cosmos.classes.serversobj.pas"/>
         <DCCReference Include="..\..\..\Arquivos Comuns\Classes\ServersObj\cosmos.classes.dataobjects.pas"/>
         <DCCReference Include="..\..\..\Arquivos Comuns\Classes\Security\cosmos.classes.servers.security.pas"/>
         <DCCReference Include="..\..\..\Arquivos Comuns\Classes\ServersObj\cosmos.classes.serversutils.pas"/>
+        <DCCReference Include="..\..\..\Arquivos Comuns\Classes\ServersObj\cosmos.classes.cmdFactories.pas"/>
+        <DCCReference Include="..\..\..\Arquivos Comuns\Classes\ServersObj\cosmos.classes.datobj.interfaces.pas"/>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -215,6 +218,12 @@
             </Platforms>
             <ModelSupport>False</ModelSupport>
             <Deployment Version="3">
+                <DeployFile LocalName="..\..\..\..\Bin\Win64\Release\serverdataobj.bpl" Configuration="Release" Class="ProjectOutput">
+                    <Platform Name="Win64">
+                        <RemoteName>serverdataobj.bpl</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="$(BDS)\Redist\osx32\libcgunwind.1.0.dylib" Class="DependencyModule">
                     <Platform Name="OSX32">
                         <Overwrite>true</Overwrite>

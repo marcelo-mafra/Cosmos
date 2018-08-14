@@ -45,6 +45,12 @@
         <Cfg_2>true</Cfg_2>
         <Base>true</Base>
     </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win64)'!=''">
+        <Cfg_2_Win64>true</Cfg_2_Win64>
+        <CfgParent>Cfg_2</CfgParent>
+        <Cfg_2>true</Cfg_2>
+        <Base>true</Base>
+    </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <GenDll>true</GenDll>
@@ -58,7 +64,7 @@
         <DCC_S>false</DCC_S>
         <DCC_F>false</DCC_F>
         <DCC_K>false</DCC_K>
-        <DCC_UnitSearchPath>$(COSMOSAPPSOURCECOMMON)\Classes;$(COSMOSAPPSOURCECOMMON)\System;$(COSMOSAPPSOURCECOMMON)\Classes\Persistence;$(COSMOSAPPSOURCECOMMON)\Classes\Core;$(COSMOSAPPSOURCECOMMON)\Classes\Logs;$(COSMOSAPPSOURCECOMMON)\Servers;$(COSMOSAPPSOURCECOMMON)\Classes\ServersObj;$(COSMOSAPPSOURCECOMMON)\Classes\Business;$(COSMOSAPPSOURCECOMMON)\Classes\Security;$(COSMOSAPPCOMPS)\SQLScript;$(COSMOSAPPSOURCECOMMON)\Classes\Framework\Interfaces;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>$(COSMOSAPPSOURCECOMMON)\Classes;$(COSMOSAPPSOURCECOMMON)\Classes\Business;$(COSMOSAPPSOURCECOMMON)\Classes\Core;$(COSMOSAPPSOURCECOMMON)\Classes\Logs;$(COSMOSAPPSOURCECOMMON)\Classes\Persistence;$(COSMOSAPPSOURCECOMMON)\Classes\Security;$(COSMOSAPPSOURCECOMMON)\Classes\ServersObj;$(COSMOSAPPSOURCECOMMON)\System;$(COSMOSAPPSOURCECOMMON)\Servers;$(COSMOSAPPSOURCECOMMON)\Data;$(COSMOSAPPLIBRARIES)\Segurança;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
@@ -101,6 +107,11 @@
         <Manifest_File>None</Manifest_File>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <Manifest_File>(None)</Manifest_File>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">

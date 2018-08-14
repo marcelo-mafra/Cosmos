@@ -38,6 +38,7 @@ end;
 procedure TFinancialPrinter.PrintReceipt;
 var
  aPrinter: TPrinter;
+ Coluna, Linha: integer;
 begin
   aPrinter := TPrinter.Create;
 
@@ -49,6 +50,8 @@ begin
    aPrinter.Canvas.Pen.Width := 5;
    aPrinter.Canvas.Font.Name := 'Times New Roman';
    aPrinter.Canvas.Font.Size := 10;
+   Coluna := 20;
+   Linha := 20;
 
    //Impressão do título
    aPrinter.Canvas.Font.Style := aPrinter.Canvas.Font.Style + [fsBold];

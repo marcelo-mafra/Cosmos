@@ -305,9 +305,9 @@ begin
 
  try
   if Matricula <> null then
-   sCommand := Format(TDQLCommand.CadastradoMatricula, [QuotedStr(Matricula + '%')])
+   sCommand := Format(TDQLCommands.CadastradoMatricula, [QuotedStr(Matricula + '%')])
   else
-   sCommand := Format(TDQLCommand.CadastradoNome, [QuotedStr(Nome+ '%')]);
+   sCommand := Format(TDQLCommands.CadastradoNome, [QuotedStr(Nome+ '%')]);
 
   ADataset.CommandText := sCommand;
   ADataset.Open;

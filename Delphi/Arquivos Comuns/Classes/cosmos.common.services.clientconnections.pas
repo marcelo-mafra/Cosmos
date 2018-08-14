@@ -19,7 +19,7 @@ uses
   Cosmos.Framework.Interfaces.ConnectionNotifiers, IdException, IdExceptionCore,
   cosmos.framework.clients.common.appinfo, DbxCompressionFilter, cosmos.system.files,
   cosmos.classes.dsconnectionspool, Data.DbxHTTPLayer,  cosmos.common.services.connectionstest,
-  cosmos.system.dataconverter;
+  cosmos.system.dataconverter, cosmos.system.nettypes;
 
 type
   //Informações existentes em um certificado digital.
@@ -1237,7 +1237,7 @@ begin
 
     if AData <> null then
       begin
-       AMemoryStream := TDataConverter.OleVariantToMemoryStream(AData);
+       AMemoryStream := TDataConverter.ToMemoryStream(AData);
        Result := TGraphicUtilities.LoadPictureFromStream(AMemoryStream);
       end
     else

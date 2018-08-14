@@ -9,7 +9,8 @@ uses
   cosmos.servers.sqlcommands, System.Variants, cosmos.classes.dataobjects,
   cosmos.classes.ServerInterface, Data.DB, Data.DBXCommon, DBClient, Data.FMTBcd,
   Data.SqlExpr, Datasnap.Provider, DataSnap.DsSession, cosmos.business.focos,
-  cosmos.classes.logs, cosmos.system.types, Data.DBXPlatform;
+  cosmos.classes.logs, cosmos.system.types, Data.DBXPlatform, cosmos.classes.cmdFactories,
+  cosmos.classes.cosmoscript, cosmos.system.dataconverter;
 
 type
   {$METHODINFO OFF}
@@ -206,7 +207,7 @@ begin
   ADataset := DMServerDataAcess.CreateDataset;
 
   try
-   ADataset.CommandText := TDQLCommand.CadastradoFalecido;
+   ADataset.CommandText := TDQLCommands.CadastradoFalecido;
    ADataset.CommandText := ADataset.CommandText.Format(ADataset.CommandText, [codcad]);
    ADataset.Open;
 
@@ -254,7 +255,7 @@ var
 begin
 {Confirma a identidade do usuário a partir de novo fornecimento de senha.}
  try
-  aPassword := DMCosmosServerServices.Criptografar(NewPassword);
+  aPassword := TCripterFactory.Criptografar(NewPassword);
   Result := TCosmosSecurity.AuthenticateUser(UserName, aPassword);
 
  except
@@ -754,14 +755,14 @@ begin
   ADataset := DMServerDataAcess.CreateDataset;
 
   try
-   ADataset.CommandText := Format(TDQLCommand.DadosCadastrado, [IdCadastrado]);
+   ADataset.CommandText := Format(TDQLCommands.DadosCadastrado, [IdCadastrado]);
    ADataset.Open;
    if TBlobField(ADataset.Fields.FieldByName('fotcad')).BlobSize > 0 then
     begin
      TBlobField(ADataset.Fields.FieldByName('fotcad')).SaveToStream(AStream);
      AStream.Position := 0;
 
-     Result := TDataConverter.MemoryStreamToOleVariant(AStream);
+     Result := TDataConverter.ToOleVariant(AStream);
     end
    else
     Result := null;
@@ -880,7 +881,7 @@ begin
  é necessária para que o cliente compare a sua versão local com a recebida por
  esse método para decisir se é necessário uma nova buferização de dados.}
  aDataset := DMServerDataAcess.CreateDataset;
- aCommand := TDQLCommand.TableVersion;
+ aCommand := TDQLCommands.TableVersion;
 
  sTableId := TCosmosTablesInfo.GetCosmosTablesId(TCosmosTables(TableId));
  aCommand := aCommand.Format(aCommand, [QuotedStr(sTableId)]);
@@ -1037,9 +1038,9 @@ begin
 
  try
   case SearchType of
-   0: ACommand := ACommand.Format(TDQLCommand.CadastradosMatriculaFoco, [Foco, QuotedStr(Campo), QuotedStr(Argument)]);
-   1: ACommand := ACommand.Format(TDQLCommand.CadastradosNomeFoco, [Foco, QuotedStr(Campo), QuotedStr(Argument + '%')]);
-   2: ACommand := ACommand.Format(TDQLCommand.CadastradosApelidoFoco, [Foco, QuotedStr(Campo), QuotedStr(Argument + '%')]);
+   0: ACommand := ACommand.Format(TDQLCommands.CadastradosMatriculaFoco, [Foco, QuotedStr(Campo), QuotedStr(Argument)]);
+   1: ACommand := ACommand.Format(TDQLCommands.CadastradosNomeFoco, [Foco, QuotedStr(Campo), QuotedStr(Argument + '%')]);
+   2: ACommand := ACommand.Format(TDQLCommands.CadastradosApelidoFoco, [Foco, QuotedStr(Campo), QuotedStr(Argument + '%')]);
   end;
 
   ADataset.Open;

@@ -3,7 +3,7 @@ unit cosmos.classes.serversutils;
 interface
 
 uses
- Winapi.Windows, System.SysUtils, System.IniFiles;
+ Winapi.Windows, System.SysUtils, System.IniFiles, cosmos.system.files;
 
  type
 
@@ -29,7 +29,7 @@ class function TCosmosInfoFiles.GetConfigurationFile: string;
 begin
 {Recupera o caminho do arquivo de configurações central das aplicações servidoras.}
   Result := ReadCosmosRootFolder;
-  Result := Result + 'CosmosRoot.ini';
+  Result := Result + TCosmosFiles.CosmosRoot;
 end;
 
 class function TCosmosInfoFiles.GetDatabaseConfigurationFile: string;

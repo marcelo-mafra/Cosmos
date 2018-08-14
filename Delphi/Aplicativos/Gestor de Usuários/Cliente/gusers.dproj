@@ -4,10 +4,10 @@
         <MainSource>gusers.dpr</MainSource>
         <Config Condition="'$(Config)'==''">Release</Config>
         <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
-        <ProjectVersion>16.0</ProjectVersion>
+        <ProjectVersion>18.4</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
-        <Platform Condition="'$(Platform)'==''">Win32</Platform>
+        <Platform Condition="'$(Platform)'==''">Win64</Platform>
         <TargetedPlatforms>3</TargetedPlatforms>
         <AppType>Application</AppType>
     </PropertyGroup>
@@ -31,6 +31,12 @@
     </PropertyGroup>
     <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_1)'=='true') or '$(Cfg_1_Win32)'!=''">
         <Cfg_1_Win32>true</Cfg_1_Win32>
+        <CfgParent>Cfg_1</CfgParent>
+        <Cfg_1>true</Cfg_1>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Cfg_1)'=='true') or '$(Cfg_1_Win64)'!=''">
+        <Cfg_1_Win64>true</Cfg_1_Win64>
         <CfgParent>Cfg_1</CfgParent>
         <Cfg_1>true</Cfg_1>
         <Base>true</Base>
@@ -71,6 +77,7 @@
         <DCC_SymbolReferenceInfo>1</DCC_SymbolReferenceInfo>
         <DCC_E>false</DCC_E>
         <DCC_F>false</DCC_F>
+        <DCC_UsePackage>vcl;vclx;dbrtl;rtl;vcldb;dbxcds;xmlrtl;vclactnband;VclSmp;dsnap;cosmos;seccon;cmlib;dockedform;frames;interfaces;cmdialogs;shellib;logwrt;cmpersist;dlgMessage;wmanager;cmgui;corelib;secmod;$(DCC_UsePackage)</DCC_UsePackage>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <VerInfo_MajorVer>3</VerInfo_MajorVer>
@@ -79,8 +86,11 @@
         <VerInfo_MinorVer>5</VerInfo_MinorVer>
         <VerInfo_Build>1510</VerInfo_Build>
         <VerInfo_Release>1</VerInfo_Release>
-        <VerInfo_Keys>CompanyName=Escola Internacional da Rosacruz Áurea;FileDescription=Cosmos Gestor de Usuários;FileVersion=3.5.1.1510;InternalName=gusers;LegalCopyright=Escola Internacional da Rosacruz Áurea;LegalTrademarks=Escola Internacional da Rosacruz Áurea;OriginalFilename=gusers.exe;ProductName=Cosmos;ProductVersion=3.5;Comments=O Cosmos Gestor de Usuários é uma ferramenta destinada à gestão de permissões de usuários dos aplicativos Cosmos. Seu uso é restrito aos administradores do sistema.;SuiteName=Cosmos</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Escola Internacional da Rosacruz Áurea;FileDescription=Cosmos Gestor de Usuários;FileVersion=3.5.1.1510;InternalName=gusers;LegalCopyright=Escola Internacional da Rosacruz Áurea;LegalTrademarks=Escola Internacional da Rosacruz Áurea;OriginalFilename=gusers.exe;ProductName=Cosmos;ProductVersion=3.5;Comments=O Cosmos Gestor de Usuários é uma ferramenta destinada à gestão de permissões de usuários dos aplicativos Cosmos. Seu uso é restrito aos administradores do sistema.;SuiteName=Cosmos;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
+        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
+        <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
+        <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <VerInfo_MajorVer>3</VerInfo_MajorVer>
@@ -89,8 +99,11 @@
         <VerInfo_MinorVer>5</VerInfo_MinorVer>
         <VerInfo_Build>1510</VerInfo_Build>
         <VerInfo_Release>1</VerInfo_Release>
-        <VerInfo_Keys>CompanyName=Escola Internacional da Rosacruz Áurea;FileDescription=Cosmos Gestor de Usuários;FileVersion=3.5.1.1510;InternalName=gusers;LegalCopyright=Escola Internacional da Rosacruz Áurea;LegalTrademarks=Escola Internacional da Rosacruz Áurea;OriginalFilename=gusers.exe;ProductName=Cosmos;ProductVersion=3.5;Comments=O Cosmos Gestor de Usuários é uma ferramenta destinada à gestão de permissões de usuários dos aplicativos Cosmos. Seu uso é restrito aos administradores do sistema.;SuiteName=Cosmos</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Escola Internacional da Rosacruz Áurea;FileDescription=Cosmos Gestor de Usuários;FileVersion=3.5.1.1510;InternalName=gusers;LegalCopyright=Escola Internacional da Rosacruz Áurea;LegalTrademarks=Escola Internacional da Rosacruz Áurea;OriginalFilename=gusers.exe;ProductName=Cosmos;ProductVersion=3.5;Comments=O Cosmos Gestor de Usuários é uma ferramenta destinada à gestão de permissões de usuários dos aplicativos Cosmos. Seu uso é restrito aos administradores do sistema.;SuiteName=Cosmos;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
+        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
+        <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
+        <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -103,8 +116,20 @@
         <VerInfo_MajorVer>3</VerInfo_MajorVer>
         <VerInfo_Build>1510</VerInfo_Build>
         <VerInfo_Release>1</VerInfo_Release>
-        <VerInfo_Keys>CompanyName=Escola Internacional da Rosacruz Áurea;FileDescription=Cosmos Gestor de Usuários;FileVersion=3.5.1.1510;InternalName=gusers;LegalCopyright=Escola Internacional da Rosacruz Áurea;LegalTrademarks=Escola Internacional da Rosacruz Áurea;OriginalFilename=gusers.exe;ProductName=Cosmos;ProductVersion=1.0.0.0;Comments=O Cosmos Gestor de Usuários é uma ferramenta destinada à gestão de permissões de usuários dos aplicativos Cosmos. Seu uso é restrito aos administradores do sistema.;SuiteName=Cosmos</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Escola Internacional da Rosacruz Áurea;FileDescription=Cosmos Gestor de Usuários;FileVersion=3.5.1.1510;InternalName=gusers;LegalCopyright=Escola Internacional da Rosacruz Áurea;LegalTrademarks=Escola Internacional da Rosacruz Áurea;OriginalFilename=gusers.exe;ProductName=Cosmos;ProductVersion=1.0.0.0;Comments=O Cosmos Gestor de Usuários é uma ferramenta destinada à gestão de permissões de usuários dos aplicativos Cosmos. Seu uso é restrito aos administradores do sistema.;SuiteName=Cosmos;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
+        <BT_BuildType>Debug</BT_BuildType>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
+        <BT_BuildType>Debug</BT_BuildType>
+        <UsePackages>true</UsePackages>
+        <VerInfo_MajorVer>3</VerInfo_MajorVer>
+        <VerInfo_MinorVer>5</VerInfo_MinorVer>
+        <VerInfo_Release>1</VerInfo_Release>
+        <VerInfo_Build>1510</VerInfo_Build>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <VerInfo_Keys>CompanyName=Escola Internacional da Rosacruz Áurea;FileDescription=Cosmos Gestor de Usuários;FileVersion=3.5.1.1510;InternalName=gusers;LegalCopyright=Escola Internacional da Rosacruz Áurea;LegalTrademarks=Escola Internacional da Rosacruz Áurea;OriginalFilename=gusers.exe;ProductName=Cosmos;ProductVersion=3.5;Comments=O Cosmos Gestor de Usuários é uma ferramenta destinada à gestão de permissões de usuários dos aplicativos Cosmos. Seu uso é restrito aos administradores do sistema.;SuiteName=Cosmos;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
+        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
@@ -115,7 +140,7 @@
         <VerInfo_MinorVer>5</VerInfo_MinorVer>
         <VerInfo_MajorVer>3</VerInfo_MajorVer>
         <VerInfo_Build>1510</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=Escola Internacional da Rosacruz Áurea;FileDescription=Cosmos Gestor de Usuários;FileVersion=3.5.1.1510;InternalName=gusers;LegalCopyright=Escola Internacional da Rosacruz Áurea;LegalTrademarks=Escola Internacional da Rosacruz Áurea;OriginalFilename=gusers.exe;ProductName=Cosmos;ProductVersion=3.5;Comments=O Cosmos Gestor de Usuários é uma ferramenta destinada à gestão de permissões de usuários dos aplicativos Cosmos. Seu uso é restrito aos administradores do sistema.;SuiteName=Cosmos</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Escola Internacional da Rosacruz Áurea;FileDescription=Cosmos Gestor de Usuários;FileVersion=3.5.1.1510;InternalName=gusers;LegalCopyright=Escola Internacional da Rosacruz Áurea;LegalTrademarks=Escola Internacional da Rosacruz Áurea;OriginalFilename=gusers.exe;ProductName=Cosmos;ProductVersion=3.5;Comments=O Cosmos Gestor de Usuários é uma ferramenta destinada à gestão de permissões de usuários dos aplicativos Cosmos. Seu uso é restrito aos administradores do sistema.;SuiteName=Cosmos;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
@@ -126,7 +151,7 @@
         <VerInfo_MinorVer>5</VerInfo_MinorVer>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_Build>1510</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=Escola Internacional da Rosacruz Áurea;FileDescription=Cosmos Gestor de Usuários;FileVersion=3.5.1.1510;InternalName=gusers.exe;LegalCopyright=Escola Internacional da Rosacruz Áurea;LegalTrademarks=Escola Internacional da Rosacruz Áurea;OriginalFilename=gusers.exe;ProductName=Cosmos;ProductVersion=3.5;Comments=Cosmos Gestor de Usuários.</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Escola Internacional da Rosacruz Áurea;FileDescription=Cosmos Gestor de Usuários;FileVersion=3.5.1.1510;InternalName=gusers.exe;LegalCopyright=Escola Internacional da Rosacruz Áurea;LegalTrademarks=Escola Internacional da Rosacruz Áurea;OriginalFilename=gusers.exe;ProductName=Cosmos;ProductVersion=3.5;Comments=Cosmos Gestor de Usuários.;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
@@ -196,9 +221,10 @@
                     <VersionInfoKeys Name="Contact">Contato é...</VersionInfoKeys>
                 </VersionInfoKeys>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\bcboffice2k210.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k210.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp210.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcboffice2k250.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcbofficexp250.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k250.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp250.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Platforms>

@@ -4,7 +4,7 @@
         <MainSource>gfin.dpr</MainSource>
         <Config Condition="'$(Config)'==''">Release</Config>
         <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
-        <ProjectVersion>16.0</ProjectVersion>
+        <ProjectVersion>18.4</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
@@ -31,6 +31,12 @@
     </PropertyGroup>
     <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_1)'=='true') or '$(Cfg_1_Win32)'!=''">
         <Cfg_1_Win32>true</Cfg_1_Win32>
+        <CfgParent>Cfg_1</CfgParent>
+        <Cfg_1>true</Cfg_1>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Cfg_1)'=='true') or '$(Cfg_1_Win64)'!=''">
+        <Cfg_1_Win64>true</Cfg_1_Win64>
         <CfgParent>Cfg_1</CfgParent>
         <Cfg_1>true</Cfg_1>
         <Base>true</Base>
@@ -84,12 +90,15 @@
         <DCC_Namespace>System.Win;Data.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
-        <VerInfo_Keys>CompanyName=Escola Internacional da Rosacruz Áurea;FileDescription=Cosmos Gestor Financeiro;FileVersion=3.5.1.1510;InternalName=gfin;LegalCopyright=Escola Internacional da Rosacruz Áurea;LegalTrademarks=Escola Internacional da Rosacruz Áurea;OriginalFilename=gfin.exe;ProductName=Cosmos Gestor Financeiro;ProductVersion=3.5;Comments=O Cosmos Gestor Financeiro é utilizado nas tesourarias dos núcleos e centros de conferências da Escola Internacional da Rosacruz Áurea;SuiteName=Cosmos</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Escola Internacional da Rosacruz Áurea;FileDescription=Cosmos Gestor Financeiro;FileVersion=3.5.1.1510;InternalName=gfin;LegalCopyright=Escola Internacional da Rosacruz Áurea;LegalTrademarks=Escola Internacional da Rosacruz Áurea;OriginalFilename=gfin.exe;ProductName=Cosmos Gestor Financeiro;ProductVersion=3.5;Comments=O Cosmos Gestor Financeiro é utilizado nas tesourarias dos núcleos e centros de conferências da Escola Internacional da Rosacruz Áurea;SuiteName=Cosmos;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
+        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
+        <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
+        <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
     </PropertyGroup>
-    <Import Project="C:\Users\Marcelo\Desktop\gfin.optset" Condition="'$(Base_Win64)'!='' And Exists('C:\Users\Marcelo\Desktop\gfin.optset')"/>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <DCC_Namespace>System.Win;Data.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
-        <CfgDependentOn>C:\Users\Marcelo\Desktop\gfin.optset</CfgDependentOn>
+        <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
+        <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -100,8 +109,12 @@
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <VerInfo_Build>0</VerInfo_Build>
         <VerInfo_MinorVer>0</VerInfo_MinorVer>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
+        <BT_BuildType>Debug</BT_BuildType>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
+        <BT_BuildType>Debug</BT_BuildType>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
@@ -113,7 +126,7 @@
         <Icon_MainIcon>gfin_Icon1.ico</Icon_MainIcon>
         <VerInfo_MinorVer>5</VerInfo_MinorVer>
         <VerInfo_MajorVer>3</VerInfo_MajorVer>
-        <VerInfo_Keys>CompanyName=Escola Internacional da Rosacruz Áurea;FileDescription=Cosmos Gestor Financeiro;FileVersion=3.5.1.1510;InternalName=gfin;LegalCopyright=Escola Internacional da Rosacruz Áurea;LegalTrademarks=Escola Internacional da Rosacruz Áurea;OriginalFilename=gfin.exe;ProductName=Cosmos Gestor Financeiro;ProductVersion=3.5;Comments=O Cosmos Gestor Financeiro é utilizado nas tesourarias dos núcleos e centros de conferências da Escola Internacional da Rosacruz Áurea;SuiteName=Cosmos</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Escola Internacional da Rosacruz Áurea;FileDescription=Cosmos Gestor Financeiro;FileVersion=3.5.1.1510;InternalName=gfin;LegalCopyright=Escola Internacional da Rosacruz Áurea;LegalTrademarks=Escola Internacional da Rosacruz Áurea;OriginalFilename=gfin.exe;ProductName=Cosmos Gestor Financeiro;ProductVersion=3.5;Comments=O Cosmos Gestor Financeiro é utilizado nas tesourarias dos núcleos e centros de conferências da Escola Internacional da Rosacruz Áurea;SuiteName=Cosmos;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
@@ -123,9 +136,10 @@
         <VerInfo_MinorVer>5</VerInfo_MinorVer>
         <VerInfo_MajorVer>3</VerInfo_MajorVer>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=Escola Internancional da Rosacruz Áurea;FileDescription=Cosmos Gestor Financeiro;FileVersion=3.5.1.1510;InternalName=Escola Internancional da Rosacruz Áurea;LegalCopyright=Escola Internancional da Rosacruz Áurea;LegalTrademarks=Escola Internancional da Rosacruz Áurea;OriginalFilename=gfin.exe;ProductName=Cosmos Gestor Financeiro;ProductVersion=3.5;Comments=O Cosmos Gestor Financeiro é utilizado nas tesourarias dos núcleos e centros de conferências da Escola Internacional da Rosacruz Áurea;SuiteName=Cosmos</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Escola Internancional da Rosacruz Áurea;FileDescription=Cosmos Gestor Financeiro;FileVersion=3.5.1.1510;InternalName=Escola Internancional da Rosacruz Áurea;LegalCopyright=Escola Internancional da Rosacruz Áurea;LegalTrademarks=Escola Internancional da Rosacruz Áurea;OriginalFilename=gfin.exe;ProductName=Cosmos Gestor Financeiro;ProductVersion=3.5;Comments=O Cosmos Gestor Financeiro é utilizado nas tesourarias dos núcleos e centros de conferências da Escola Internacional da Rosacruz Áurea;SuiteName=Cosmos;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
         <Icon_MainIcon>gfin_Icon2.ico</Icon_MainIcon>
     </PropertyGroup>
+    <Import Project="C:\Users\Marcelo\Desktop\gfin.optset" Condition="'$(Base_Win64)'!='' And Exists('C:\Users\Marcelo\Desktop\gfin.optset')"/>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>

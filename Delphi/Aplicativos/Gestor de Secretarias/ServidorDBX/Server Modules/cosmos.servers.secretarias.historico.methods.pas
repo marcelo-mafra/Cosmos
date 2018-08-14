@@ -9,7 +9,7 @@ uses
   Provider, cosmos.servers.sqlcommands, cosmos.system.messages,  System.WideStrings,
   Data.dbxCommon, DataSnap.DsSession, cosmos.classes.logs, cosmos.system.exceptions,
   Data.DBXFirebird, cosmos.business.focos, cosmos.business.secretariats,
-  cosmos.classes.persistence.ini;
+  cosmos.classes.persistence.ini, cosmos.system.dataconverter;
 
 type
   TCosmosSecHistoricoServerMethods = class(TDSServerModule)

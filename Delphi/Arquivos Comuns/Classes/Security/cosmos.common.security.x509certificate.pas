@@ -2,7 +2,7 @@ unit cosmos.common.security.x509certificate;
 
 interface
 
-uses System.SysUtils, Data.DBXCommon, OpenSSLUtils;
+uses System.SysUtils, Data.DBXCommon, OpenSSLUtils, cosmos.system.messages;
 
 {Implementa os recursos necessários ao uso de SSL em HTTPS. Esse objeto faz
 uso das classes da biblioteca OpenSSL. }
@@ -53,26 +53,26 @@ end;
 procedure TDSX509Certificate.CheckValidity(ADate: TDateTime);
 begin
  if ADate < FOpenSSLCertificate.NotBefore then
-  raise ECertificateNotYetValidException.Create('Certificate cannot be used for the moment!');
+  raise ECertificateNotYetValidException.Create(TCertificateConst.CertificateNotYetValid);
 end;
 
 procedure TDSX509Certificate.CheckValidity;
 begin
  if Now < FOpenSSLCertificate.NotBefore then
-  raise ECertificateNotYetValidException.Create('Certificate cannot be used for the moment!');
+  raise ECertificateNotYetValidException.Create(TCertificateConst.CertificateNotYetValid);
 
  if FOpenSSLCertificate.IsExpired then
-  raise ECertificateExpiredException.Create('Certificate is expired!'); 
+  raise ECertificateExpiredException.Create(TCertificateConst.CertificateExpired);
 end;
 
 function TDSX509Certificate.GetBasicConstraints: Integer;
 begin
-
+//To do.
 end;
 
 function TDSX509Certificate.GetIssuerX500Principal: TX500Principal;
 begin
-
+//To do.
 end;
 
 function TDSX509Certificate.GetNotAfter: TDateTime;
@@ -87,27 +87,27 @@ end;
 
 function TDSX509Certificate.GetSerialNumber: string;
 begin
-
+//To do.
 end;
 
 function TDSX509Certificate.GetSigAlgName: string;
 begin
-
+//To do.
 end;
 
 function TDSX509Certificate.GetSignature: string;
 begin
-
+//To do.
 end;
 
 function TDSX509Certificate.GetSubjectX500Principal: TX500Principal;
 begin
-
+//To do.
 end;
 
 function TDSX509Certificate.GetVersion: LongInt;
 begin
-
+//To do.
 end;
 
 end.

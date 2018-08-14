@@ -3,8 +3,7 @@ unit cosmos.business.focos;
 interface
 
 uses
-
- System.Classes;
+ System.Classes, cosmos.business.messages;
 
 type
 
@@ -23,7 +22,6 @@ type
 
   //Representa um conjunto de tipos de focos.
   TTipoFocoSet = set of TTipoFoco;
-
 
   TCustomFocus = class
   private
@@ -128,12 +126,12 @@ end;
 class function TFocusTypesInfo.CampoTrabalhoToString(
   const Campo: TCampoTrabalho): string;
 begin
- case Campo of  //do not localize!
-  ctLectorium, ctEI: Result := 'LEC';
-  ctTM: Result := 'TMO';
-  ctTMB: Result := 'TMB';
-  ctTP: Result := 'TPU';
-  ctSimpatizantes: Result := 'SIM';
+ case Campo of
+  ctLectorium, ctEI: Result := TCampoTrabalhoShort.Lectorium;
+  ctTM: Result := TCampoTrabalhoShort.TM;
+  ctTMB: Result := TCampoTrabalhoShort.TMB;
+  ctTP: Result := TCampoTrabalhoShort.TP;
+  ctSimpatizantes: Result := TCampoTrabalhoShort.Simpatizantes;
   ctNone, ctAll: Result := '';
  end;
 end;
@@ -141,16 +139,16 @@ end;
 class function TFocusTypesInfo.FocusTypeToString(
   const FocusType: TTipoFoco): string;
 begin
- case FocusType of  //do not localize!
-  tfRa: Result := 'Região Administrativa';
-  tfCentro: Result := 'Centro de Conferências';
-  tfNucleoCentro: Result := 'Núcleo e Centro de Conferências';
-  tfNucleo: Result := 'Núcleo';
-  tfSala: Result := 'Sala do Trabalho Público';
-  tfLocal: Result := 'Local do Trabalho Público';
-  tfUnknown: Result := 'Desconhecido';
-  tfSedeNacional: Result := 'Sede Nacional';
-  tfSedeInternacional: Result := 'Sede Internacional';
+ case FocusType of
+  tfRa: Result := TFocusTypesShort.Ra;
+  tfCentro: Result := TFocusTypesShort.Centro;
+  tfNucleoCentro: Result := TFocusTypesShort.NucleoCentro;
+  tfNucleo: Result := TFocusTypesShort.Nucleo;
+  tfSala: Result := TFocusTypesShort.Sala;
+  tfLocal: Result := TFocusTypesShort.Local;
+  tfUnknown: Result := TFocusTypesShort.Unknown;
+  tfSedeNacional: Result := TFocusTypesShort.SedeNacional;
+  tfSedeInternacional: Result := TFocusTypesShort.SedeInternacional;
  end;
 end;
 

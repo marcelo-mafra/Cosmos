@@ -6,7 +6,8 @@ uses Winapi.Windows, System.SysUtils, System.Classes, Vcl.SvcMgr, Datasnap.DSSer
   Datasnap.DSCommonServer, Datasnap.DSAuth, Datasnap.DSTCPServerTransport, IPPeerServer,
   System.Generics.Collections, Datasnap.DSSession, cosmos.system.types,
   cosmos.system.messages, cosmos.system.exceptions, cosmos.classes.application,
-  Data.DBXCommon, cosmos.classes.logs, cosmos.classes.persistence.ini, Data.DBCommonTypes;
+  Data.DBXCommon, cosmos.classes.logs, cosmos.classes.persistence.ini, Data.DBCommonTypes,
+  cosmos.system.files;
 
 type
   TOnPrepareCommandEvent = procedure(Session: TDSSession) of object;

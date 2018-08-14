@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, 
-  Dialogs, StdCtrls, Buttons, DBActns, ActnList, DB, ImgList, System.Actions;
+  Dialogs, StdCtrls, Buttons, DBActns, ActnList, DB, ImgList, System.Actions,
+  System.ImageList;
 
 type
   TFmeDBEditVertical = class(TFrame)

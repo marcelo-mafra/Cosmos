@@ -241,8 +241,12 @@ implementation
 class function TCosmosErrorCodes.IndyCodeToCosmosCode(
   const IndyCode: integer): integer;
 begin
+{Mapeia os códigos de erros do Indy para os nossos. Aqui não temos todos os
+ códigos, que são inserido na medida da necessidade.}
  case IndyCode of
   10001: Result := TCosmosErrorCodes.IndyHostNotFound; //Host not found.
+  else
+     Result := 0;//Código de erro descohecido.
  end;
 end;
 

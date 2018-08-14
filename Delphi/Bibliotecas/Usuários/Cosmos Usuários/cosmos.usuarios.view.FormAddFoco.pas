@@ -8,7 +8,7 @@ uses
   cosmos.classes.ServerInterface, Data.DB, cosmos.framework.interfaces.root,
   Datasnap.DBClient, Vcl.DBCtrls, cosmos.frames.fkSearch, FrameDBInsertVertical,
   cosmos.system.messages, Datasnap.DSConnect, cosmos.Framework.Interfaces.DataAcess,
-  cosmos.classes.application;
+  cosmos.classes.application, cosmos.system.dataconverter;
 
 type
   TFrmAddFoco = class(TForm)

@@ -5,7 +5,7 @@ interface
 uses
 
  System.Classes, Data.DB, Datasnap.DSConnect, Datasnap.DBClient, cosmos.system.types,
- cosmos.classes.application, cosmos.classes.ServerInterface,
+ cosmos.system.nettypes, cosmos.classes.application, cosmos.classes.ServerInterface,
  cosmos.Framework.datanavigators.common, cosmos.classes.security, Data.DBXCommon,
  cosmos.core.client.connection, Data.SQLExpr, Vcl.Graphics, Data.DBXDBReaders,
  Cosmos.Framework.Interfaces.ConnectionNotifiers;

@@ -13,9 +13,8 @@ uses
   cosmos.classes.application, cosmos.business.focos, cosmos.classes.security,
   cosmos.framework.datanavigators.treeview, cosmos.Framework.forms.wizards,
   cosmos.Framework.forms.datadialogs, System.Actions, Data.SqlExpr,
-  Vcl.RibbonObsidianStyleActnCtrls, Vcl.RibbonSilverStyleActnCtrls,
   cosmos.framework.interfaces.dataacess, cosmos.system.formsconst,
-  Cosmos.Framework.Interfaces.Root;
+  Cosmos.Framework.Interfaces.Root, System.ImageList;
 
 type
   TNodeType = (ntFoco, ntConferencia, ntNone);

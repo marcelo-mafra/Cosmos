@@ -41,7 +41,7 @@ object FrmEditarInscricao: TFrmEditarInscricao
     end
     inherited ImageList1: TImageList
       Bitmap = {
-        494C010105000900740012001200FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+        494C010105000900780012001200FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
         0000000000003600000028000000480000002400000001002000000000008028
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000000
@@ -396,6 +396,10 @@ object FrmEditarInscricao: TFrmEditarInscricao
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Inscrito'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         496
         567)
@@ -848,6 +852,10 @@ object FrmEditarInscricao: TFrmEditarInscricao
     object TabAcessorias: TTabSheet
       Caption = 'Acess'#243'rias'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         496
         567)
@@ -1018,7 +1026,7 @@ object FrmEditarInscricao: TFrmEditarInscricao
     Left = 448
     Top = 432
     Bitmap = {
-      494C0101020008006C0012001200FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010102000800700012001200FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000480000001200000001002000000000004014
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

@@ -3,7 +3,7 @@ unit cosmos.classes.security;
 interface
 
 uses System.SysUtils, cosmos.classes.application, cosmos.business.focos,
-  cosmos.system.types;
+  cosmos.system.types, cosmos.system.nettypes;
 
 type
 
@@ -233,7 +233,6 @@ begin
   FCurrentSection.ConnectionTime := Data.FindValue('CONNECTION_TIME');
   FCurrentSection.ConnectionID := Data.FindValue('CONNECTION_ID');
   FCurrentSection.FConnectionStatus := TConnectionStatus(Data.FindValue('CONNECTION_STATUS'));
-
 
   //Agora, trata do permissionamento...
   self.Reset;

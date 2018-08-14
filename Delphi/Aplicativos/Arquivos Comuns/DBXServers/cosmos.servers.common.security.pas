@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Classes,  Datasnap.Provider, Data.DB, Datasnap.DBClient,
   Data.DBXFirebird, Data.SqlExpr, Data.DBXCommon, System.Variants,
   cosmos.system.types, cosmos.system.messages,cosmos.servers.sqlcommands,
-  cosmos.classes.application, cosmos.classes.logs;
+  cosmos.classes.application, cosmos.classes.logs, cosmos.classes.cosmoscript;
 
 
  type
@@ -244,7 +244,7 @@ begin
 {Reseta a senha de um usuário e a marca como provisória.}
  try
   NewPassword := CreatePassword;
-  APassword := DMCosmosServerServices.HashValue(NewPassword);
+  APassword := TCripterFactory.HashValue(NewPassword);
   ADML := ADML.Format(TSecurityCommand.ChangePassword, [APassword.QuotedString, QuotedStr('S'), QuotedStr(UserName)]);
   DMServerDataAcess.DoExecuteCommand(ADML);
 

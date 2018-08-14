@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, FormCosmosHelpDialog, ExtCtrls, StdCtrls, DB, DBClient,
-  cosmos.frames.fkSearch, Mask, DBCtrls, FrameDBInsertVertical,
+  cosmos.frames.fkSearch, Mask, DBCtrls, FrameDBInsertVertical, cosmos.system.dataconverter,
   cosmos.classes.ServerInterface, cosmos.classes.application, Datasnap.DSConnect,
   cosmos.Framework.Interfaces.dataacess;
 

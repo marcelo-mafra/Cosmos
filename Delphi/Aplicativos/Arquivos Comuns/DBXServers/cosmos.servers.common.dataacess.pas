@@ -10,7 +10,7 @@ uses
   cosmos.core.classes.FieldsInfo, Data.FMTBcd, cosmos.servers.sqlcommands,
   cosmos.system.types, cosmos.classes.ServerInterface, Data.DBXPool, cosmos.system.files,
   cosmos.system.winshell, cosmos.system.exceptions, cosmos.classes.logs,
-  Data.DBXDBReaders;
+  Data.DBXDBReaders, cosmos.classes.cmdFactories;
 
 type
   TDMServerDataAcess = class(TDataModule)
@@ -109,7 +109,7 @@ begin
 //Bufferiza um pacote de dados no formato olevariant que é envidao para o cliente.
  try
   TD := self.BeginTransaction(SQLCon);
-  SQLSearch.CommandText := Format(TDQLCommand.BufferSchemma, [SchemmaName]);
+  SQLSearch.CommandText := Format(TDQLCommands.BufferSchemma, [SchemmaName]);
   DataPackage := DspSearch.Data;
 
  finally
@@ -319,7 +319,7 @@ begin
  ADataset := self.CreateDataset;
 
  try
-  ADataset.CommandText := Format(TDQLCommand.Generators, [SequenceName, 1]);
+  ADataset.CommandText := Format(TDQLCommands.Generators, [SequenceName, 1]);
   ADataset.Open;
   Result := ADataset.Fields.Fields[0].Value + ActiveRange;
 

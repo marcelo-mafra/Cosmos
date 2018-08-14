@@ -4,28 +4,20 @@ interface
 
 uses Winapi.Windows;
 
-const
-
-
-
-//aSucessfullLogin = 'A autenticação foi feita com sucesso!';
-//sSearchServers = 'Buscando os servidores remotos...';
-
-//Conferências
-sRepNameCrachasInscricao = 'Crachás de Inscrição';
-sRepNameCrachaInscrito = 'Crachá de Inscrito';
-sRepNameListaInscritos = 'Lista de Inscritos';
-
-//Constantes usadas nos assistentes
-sUsuario = 'Usuário: %s';
-sLogin = 'Login (deve ser único): %s';
-sRole = 'Grupo: %s';
-
-//Itens de opções usadas nas TaskDialogs
-//sCancelarInscricao = 'Cancelar a inscrição selecionada!';
-//sCancelarOperacao = 'Cancelar a operação corrente!';
-
  type
+
+  TNoYes = class
+    const
+     No  = 'Não';
+     Yes = 'Sim';
+  end;
+
+  TNoYesShort = class
+    const
+     No  = 'N';
+     Yes = 'S';
+  end;
+
   //Constantes relacionadas a caixas de mensagens.
   TMessagesConst = class
     const
@@ -51,8 +43,6 @@ sRole = 'Grupo: %s';
      BtHelp = '&Ajuda';
   end;
 
-
-  //Conexão
   //Segurança
   TSecurityConst = class
     const
@@ -60,12 +50,15 @@ sRole = 'Grupo: %s';
      ReadRight = 'Leitura';
      AdministratorUser = 'Administrador do sistema';
      NormalUser = 'Usuário regular';
+     UserName = 'Nome do usuário';
+     Login = 'Login';
+     RoleName = 'Papel';
   end;
 
   //Certificados
   TCertificateConst = class
     const
-     certType = 'Tipo';
+     CertType = 'Tipo';
      Owner = 'Requerente';
      Website = 'Website';
      Email = 'Email';
@@ -78,27 +71,35 @@ sRole = 'Grupo: %s';
      NotBefore = 'Válido a partir de';
      NotAfter = 'Válido até';
      SerialNumber = 'Número de série';
+     //Mensagens de erro
+     CertificateExpired = 'Certificate is expired!';
+     CertificateNotYetValid = 'Certificate cannot be used for the moment!';
   end;
 
   //Nomes dos aplicativos Cosmos
   TCosmosAppName = class
     const
       CosmosCommonId = 'cmAll';
-      CosmosSecretariasId = 'cmSecretarias';
-      CosmosFocosId = 'cmFocos';
-      CosmosUsuariosId = 'cmUsuarios';
-      CosmosFinanceiroId = 'cmFinanceiro';
       CosmosConferenciasId = 'cmConferencias';
-      CosmosSecretarias = 'Cosmos Gestor de Secretarias';
-      CosmosFocos = 'Cosmos Gestor de Focos';
-      CosmosUsuarios = 'Cosmos Gestor de Usuários';
-      CosmosFinanceiro = 'Cosmos Gestor Financeiro';
       CosmosConferencias = 'Cosmos Gestor de Conferências';
-      CosmosSecretariasShort = 'gsec';
-      CosmosFocosShort = 'gfoc';
-      CosmosUsuariosShort = 'gusu';
-      CosmosFinanceiroShort = 'gfin';
+      CosmosConferenciasServer = 'Cosmos Gestor de Conferências Server';
       CosmosConferenciasShort = 'gcon';
+      CosmosFinanceiroId = 'cmFinanceiro';
+      CosmosFinanceiro = 'Cosmos Gestor Financeiro';
+      CosmosFinanceiroServer = 'Cosmos Gestor Financeiro Server';
+      CosmosFinanceiroShort = 'gfin';
+      CosmosFocosId = 'cmFocos';
+      CosmosFocos = 'Cosmos Gestor de Focos';
+      CosmosFocosServer = 'Cosmos Gestor de Focos Server';
+      CosmosFocosShort = 'gfoc';
+      CosmosSecretariasId = 'cmSecretarias';
+      CosmosSecretarias = 'Cosmos Gestor de Secretarias';
+      CosmosSecretariasServer = 'Cosmos Gestor de Secretarias Server';
+      CosmosSecretariasShort = 'gsec';
+      CosmosUsuariosId = 'cmUsuarios';
+      CosmosUsuarios = 'Cosmos Gestor de Usuários';
+      CosmosUsuariosServer = 'Cosmos Gestor de Usuários Server';
+      CosmosUsuariosShort = 'gusu';
   end;
 
   //Ajuda
@@ -107,7 +108,13 @@ sRole = 'Grupo: %s';
       CosmosSuportUrl = 'http://www.lectoriumrosicrucianum.org.br';
   end;
 
-  //Registro dos aplicativos
+  //Constatnes usadas pelas classes que implementam persistência.
+  TPersistenceConst = class
+    const
+     MainXMLNodeUnknown = 'O nome do nó principal e do atributo não pode ser omitido.';
+  end;
+
+  //Registro dos aplicativos Cosmos.
   TCosmosRegister = class
     const
       InvalidCosmosLicence = 'O arquivo de registro de licença não pode ser usado ' +
@@ -119,12 +126,6 @@ sRole = 'Grupo: %s';
         'não pode ser efetuado! Use outro arquivo de registro.';
       NotRegistered = 'A aplicação não pode ser registrada. Entre em contato com ' +
         'o fornecedor do aplicativo para obter suporte!';
-      //Guids usadas para o registro
-      GUID_GFocos = '{3504F0B1-C475-4CCB-96D7-E8EC58861C0D}'; //do not localize!
-      GUID_Secretarias = '{F22DB419-DD5B-4076-A59C-71DA28CC2C40}'; //do not localize!
-      GUID_Financeiro = '{D490AD04-7E5F-43CC-9CAA-E9F5BECE2FE2}';//do not localize!
-      GUID_Conferencias = '{F2BFD094-035F-4251-AD15-6BD95B172C23}';//do not localize!
-      GUID_Usuarios = '{7B295BA9-DA5C-4EB9-B286-3C4F81FBA86C}';//do not localize!
       RegisteredCopy = 'Aplicativo registrado!';
       UnregisteredCopy = '[cópia não registrada]';
       InfoRegisterFocusName = 'Você deve informar o nome do foco!';
@@ -133,12 +134,18 @@ sRole = 'Grupo: %s';
       InfoRegisterIncorrectEmail = 'O correio eletrônico fornecido parece não estar correto!';
       InfoCloseUnregisteredApp = 'Esta aplicação não se encontra licenciada. ' +
         'Apenas aplicações licenciadas da suíte Cosmos podem ser executadas. A aplicação será encerrada.';
+      //Guids usadas para o registro
+      GUID_GFocos = '{3504F0B1-C475-4CCB-96D7-E8EC58861C0D}'; //do not localize!
+      GUID_Secretarias = '{F22DB419-DD5B-4076-A59C-71DA28CC2C40}'; //do not localize!
+      GUID_Financeiro = '{D490AD04-7E5F-43CC-9CAA-E9F5BECE2FE2}';//do not localize!
+      GUID_Conferencias = '{F2BFD094-035F-4251-AD15-6BD95B172C23}';//do not localize!
+      GUID_Usuarios = '{7B295BA9-DA5C-4EB9-B286-3C4F81FBA86C}';//do not localize!
   end;
 
   TEmailConst = class
    const
-      NewEmailSubject = 'Nova mensagem';
       NewEmailBody = 'Escreva aqui a sua mensagem';
+      NewEmailSubject = 'Nova mensagem';
   end;
 
     ///<summary>
@@ -357,7 +364,7 @@ sRole = 'Grupo: %s';
       OtherLblCaption                = 'Outros';
    end;
 
-   //Constantes dos assistentes do Cosmos
+   //Constantes dos assistentes do Cosmos.
    TWizardsConst = class
      const
       NextPage = '&Próximo';
@@ -495,7 +502,6 @@ sRole = 'Grupo: %s';
       RenameRA            = 'Renomear RA';
 
  end;
-
 
    ///<summary>
    ///  Classe que ordena as mensagens de informação de caixas de diálogo.
@@ -1144,7 +1150,6 @@ sRole = 'Grupo: %s';
       SetUserProfile = 'Ocorreu uma falha durante a operação de definição de um perfil para o usuário. Verifique os logs para obter mais informações sobre o problema.';
       UserDataNotFound = 'Não foram encontradas informações sobre este usuário!';
    end;
-
 
 
    //Mensagens de erro específicas do módulo "secretarias".

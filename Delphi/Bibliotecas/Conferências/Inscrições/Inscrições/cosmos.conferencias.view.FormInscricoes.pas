@@ -5,12 +5,13 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, cosmos.framework.view.FrmDocked, ActnList, ImgList, cosmos.system.messages, DB,
-  DBClient, ExtCtrls, ToolWin, ActnMan, ActnCtrls, Tabs, DockTabSet,
+  DBClient, ExtCtrls, ToolWin, ActnMan, ActnCtrls, Tabs, DockTabSet, cosmos.system.files,
   cosmos.frames.gridsearch, StdCtrls, DBCtrls, Menus, PlatformDefaultStyleActnCtrls,
   ActnPopup, XPStyleActnCtrls, cosmos.classes.application, cosmos.classes.ServerInterface,
   cosmos.framework.interfaces.root, cosmos.framework.interfaces.dialogs,
   cosmos.framework.datanavigators.datasets, cosmos.business.focos, cosmos.classes.security,
-  cosmos.business.conferencias, System.Actions, Data.DBXCommon, cosmos.system.formsconst;
+  cosmos.business.conferencias, System.Actions, Data.DBXCommon, cosmos.system.formsconst,
+  System.ImageList;
 
 type
   TTipoListagem = (tlAlfabetica, tlDiscipulado, tlFocos);

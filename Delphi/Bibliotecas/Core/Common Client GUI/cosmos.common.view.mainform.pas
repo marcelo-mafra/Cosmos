@@ -21,7 +21,7 @@ uses
   {Vcl.RibbonLunaStyleActnCtrls,} Vcl.StdStyleActnCtrls, //Vcl.RibbonObsidianStyleActnCtrls,
   {Vcl.RibbonSilverStyleActnCtrls,}  cosmos.framework.view.FrmDocked, Vcl.AppEvnts,
   Vcl.DbGrids, System.Actions, cosmos.system.winshell, cosmos.core.client.connection,
-  Vcl.Touch.GestureMgr, Data.DBXCommon, cosmos.classes.cosmoscript,
+  Vcl.Touch.GestureMgr, Data.DBXCommon, cosmos.classes.cosmoscript, cosmos.system.nettypes,
   Cosmos.Framework.Interfaces.ConnectionNotifiers, Cosmos.Framework.Interfaces.ChangeFocusNotifiers,
   IdStack, System.ImageList;
 

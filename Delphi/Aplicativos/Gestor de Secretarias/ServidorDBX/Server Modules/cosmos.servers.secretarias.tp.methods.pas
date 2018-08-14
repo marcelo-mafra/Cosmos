@@ -5,12 +5,11 @@ interface
 uses
   Windows, Messages, System.SysUtils, System.StrUtils, System.Classes,
   System.Json, Datasnap.DSServer, DataSnap.DSProviderDataModuleAdapter,
-  Datasnap.DSAuth, DBClient, DB, SqlExpr, FMTBcd, SQLScript,
+  Datasnap.DSAuth, DBClient, DB, SqlExpr, FMTBcd, cosmos.system.dataconverter,
   cosmos.classes.application, Variants, Provider, cosmos.classes.logs,
   cosmos.classes.ServerInterface, cosmos.classes.arrayutils, cosmos.servers.sqlcommands,
-  cosmos.framework.interfaces.utils, cosmos.classes.security, WideStrings,
-  DBXFirebird, dbxCommon, cosmos.classes.dataobjects, cosmos.core.classes.FieldsInfo,
-  cosmos.system.exceptions, cosmos.system.messages, Datasnap.DSSession;
+  cosmos.classes.security, WideStrings, cosmos.system.exceptions, cosmos.system.messages,
+  DBXFirebird, dbxCommon, cosmos.core.classes.FieldsInfo, Datasnap.DSSession;
 
 type
 
@@ -237,7 +236,7 @@ var
  ADataset: TSQLDataset;
 begin
  ADataset := DMServerDataAcess.CreateDataset;
- ADataset.CommandText := Format(TDQLCommand.CodigoDiscipulado, [QuotedStr('SIM'), QuotedStr('SIM')]);
+ ADataset.CommandText := Format(TDQLCommands.CodigoDiscipulado, [QuotedStr('SIM'), QuotedStr('SIM')]);
 
  try
   ADataset.Open;

@@ -4,7 +4,8 @@ interface
 
 uses
   System.SysUtils, System.Classes, Winapi.Windows, XML.XmlIntf, XML.XMLDoc,
-  cosmos.classes.persistence;
+  cosmos.classes.persistence, cosmos.classes.persistence.exceptions,
+  cosmos.system.messages;
 
 type
   TXMLPersistence = class(TFilePersistence)
@@ -211,7 +212,7 @@ begin
     Result := ANode.Attributes[Attribute];
   end
  else
-  raise exception.Create('O nome do nó principal e do atributo não pode ser omitido.');
+  raise EMainXMLNodeUnknown.Create(TPersistenceConst.MainXMLNodeUnknown);
 end;
 
 procedure TXMLPersistence.Save;
@@ -220,7 +221,7 @@ begin
   //  Exit;
 
   if FCreateBackup then
-   CopyFile(PChar(FFileName), PChar(FFileName + '.bak'), False);
+   CopyFile(PChar(FFileName), PChar(FFileName + '.bak'), False); //do not localize!
 
  FXML.SaveToFile(FFileName);
  FModified := False;

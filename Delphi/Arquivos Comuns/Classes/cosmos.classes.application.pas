@@ -6,8 +6,7 @@ uses
   winapi.windows, system.SysUtils, system.classes, system.Variants, Data.Db,
   cosmos.system.types, cosmos.system.messages, cosmos.system.files,
   cosmos.core.classes.xmldata, WideStrUtils, cosmos.core.classes.FieldsInfo,
-  Xml.XMLDoc, System.DateUtils, Data.SqlTimSt,
-  cosmos.system.winshell;
+  Xml.XMLDoc, System.DateUtils, Data.SqlTimSt, cosmos.system.winshell;
 
 type
   EInvalidNumParams = Exception;
@@ -154,9 +153,7 @@ type
    property XMLData: string read GetXMLData;
  end;
 
-
-
-  //Representa uma estrutura de parâmetros de uma consulta SQL.
+   //Representa uma estrutura de parâmetros de uma consulta SQL.
   TSQLParams = class
    private
     FParams: Olevariant;
@@ -219,47 +216,47 @@ end;
 
 procedure TMessageData.LoadMessageInfoData;
 begin
-  FAdditionalInfo.Append('SourceName=');
-  FAdditionalInfo.Append('InstallationID=');
-  FAdditionalInfo.Append('MethodName=');
-  FAdditionalInfo.Append('MethodParameters=');
-  FAdditionalInfo.Append('InnerMessage=');
-  FAdditionalInfo.Append('UserName=');
-  FAdditionalInfo.Append('RoleName=');
-  FAdditionalInfo.Append('Command=');
-  FAdditionalInfo.Append('CustomInfo=');
+  FAdditionalInfo.Append('SourceName='); //do not localize!
+  FAdditionalInfo.Append('InstallationID=');//do not localize!
+  FAdditionalInfo.Append('MethodName='); //do not localize!
+  FAdditionalInfo.Append('MethodParameters='); //do not localize!
+  FAdditionalInfo.Append('InnerMessage='); //do not localize!
+  FAdditionalInfo.Append('UserName='); //do not localize!
+  FAdditionalInfo.Append('RoleName='); //do not localize!
+  FAdditionalInfo.Append('Command='); //do not localize!
+  FAdditionalInfo.Append('CustomInfo='); //do not localize!
 end;
 
 procedure TMessageData.SetMessageInfo(const MessageInfo: TMessageInfo;
   value: variant);
 begin
  case MessageInfo of
-   miInnerMessage: FAdditionalInfo.Values['SourceName'] := Value;
-   miInstallationID: FAdditionalInfo.Values['InstallationID'] := Value;
-   miMethodName: FAdditionalInfo.Values['MethodName'] := Value;
-   miMethodParameters: FAdditionalInfo.Values['MethodParameters'] := Value;
-   miRoleName: FAdditionalInfo.Values['InnerMessage'] := Value;
-   miSourceName: FAdditionalInfo.Values['UserName'] := Value;
-   miUserName: FAdditionalInfo.Values['RoleName'] := Value;
-   miCommand: FAdditionalInfo.Values['Command'] := Value;
-   miExceptionClassName: FAdditionalInfo.Values['ExceptionClass'] := Value;
-   miCustomInfo: FAdditionalInfo.Values['CustomInfo'] := Value;
+   miInnerMessage: FAdditionalInfo.Values['SourceName'] := Value; //do not localize!
+   miInstallationID: FAdditionalInfo.Values['InstallationID'] := Value;//do not localize!
+   miMethodName: FAdditionalInfo.Values['MethodName'] := Value;//do not localize!
+   miMethodParameters: FAdditionalInfo.Values['MethodParameters'] := Value; //do not localize!
+   miRoleName: FAdditionalInfo.Values['InnerMessage'] := Value;//do not localize!
+   miSourceName: FAdditionalInfo.Values['UserName'] := Value; //do not localize!
+   miUserName: FAdditionalInfo.Values['RoleName'] := Value;//do not localize!
+   miCommand: FAdditionalInfo.Values['Command'] := Value;//do not localize!
+   miExceptionClassName: FAdditionalInfo.Values['ExceptionClass'] := Value; //do not localize!
+   miCustomInfo: FAdditionalInfo.Values['CustomInfo'] := Value; //do not localize!
  end;
 end;
 
 function TMessageData.GetMessageInfo(const MessageInfo: TMessageInfo): variant;
 begin
  case MessageInfo of
-   miInnerMessage: Result := FAdditionalInfo.Values['SourceName'];
-   miInstallationID: Result := FAdditionalInfo.Values['InstallationID'];
-   miMethodName: Result := FAdditionalInfo.Values['MethodName'];
-   miMethodParameters: Result := FAdditionalInfo.Values['MethodParameters'];
-   miRoleName: Result := FAdditionalInfo.Values['InnerMessage'];
-   miSourceName: Result := FAdditionalInfo.Values['UserName'];
-   miUserName: Result := FAdditionalInfo.Values['RoleName'];
-   miCommand: Result := FAdditionalInfo.Values['Command'];
-   miExceptionClassName: Result := FAdditionalInfo.Values['ExceptionClass'];
-   miCustomInfo: Result := FAdditionalInfo.Values['CustomInfo'];
+   miInnerMessage: Result := FAdditionalInfo.Values['SourceName'];//do not localize!
+   miInstallationID: Result := FAdditionalInfo.Values['InstallationID']; //do not localize!
+   miMethodName: Result := FAdditionalInfo.Values['MethodName']; //do not localize!
+   miMethodParameters: Result := FAdditionalInfo.Values['MethodParameters'];//do not localize!
+   miRoleName: Result := FAdditionalInfo.Values['InnerMessage'];//do not localize!
+   miSourceName: Result := FAdditionalInfo.Values['UserName'];//do not localize!
+   miUserName: Result := FAdditionalInfo.Values['RoleName']; //do not localize!
+   miCommand: Result := FAdditionalInfo.Values['Command'];//do not localize!
+   miExceptionClassName: Result := FAdditionalInfo.Values['ExceptionClass']; //do not localize!
+   miCustomInfo: Result := FAdditionalInfo.Values['CustomInfo']; //do not localize!
  end;
 end;
 
@@ -440,13 +437,10 @@ begin
   end;
 end;
 
-
-
 procedure TServerReturn.SetServerData(const Value: Olevariant);
 begin
   FServerData := Value;
 end;
-
 
 { TSQLParamsList }
 
@@ -1062,7 +1056,7 @@ begin
  end;
 
  if Result <> '' then
-  Result := Result + '_';
+  Result := Result + '_'; //do not localize!
 end;
 
 function TCosmosApplication.GetModuleName: string;
@@ -1113,16 +1107,16 @@ begin
  Info.Append('TypesSupported=2'); //do not localize!
 
  case Module of
-   cmFocos: Info.Append('Source=Cosmos Gestor de Focos'); //do not localize!
-   cmFocosServer: Info.Append('Source=Cosmos Gestor de Focos Server'); //do not localize!
-   cmSecretarias: Info.Append('Source=Cosmos Gestor de Secretarias'); //do not localize!
-   cmSecretariasServer: Info.Append('Source=Cosmos Gestor de Secretarias Server'); //do not localize!
-   cmFinanceiro: Info.Append('Source=Cosmos Gestor Financeiro'); //do not localize!
-   cmFinanceiroServer: Info.Append('Source=Cosmos Gestor Financeiro Server'); //do not localize!
-   cmConferencias: Info.Append('Source=Cosmos Gestor de Conferências'); //do not localize!
-   cmConferenciasServer: Info.Append('Source=Cosmos Gestor de Conferências Server'); //do not localize!
-   cmUsuarios: Info.Append('Source=Cosmos Gestor de Usuários'); //do not localize!
-   cmUsuariosServer: Info.Append('Source=Cosmos Gestor de Usuários Server'); //do not localize!
+   cmFocos: Info.Append('Source=' + TCosmosAppName.CosmosFocos); //do not localize!
+   cmFocosServer: Info.Append('Source=' + TCosmosAppName.CosmosFocosServer); //do not localize!
+   cmSecretarias: Info.Append('Source=' + TCosmosAppName.CosmosSecretarias); //do not localize!
+   cmSecretariasServer: Info.Append('Source=' + TCosmosAppName.CosmosSecretariasServer); //do not localize!
+   cmFinanceiro: Info.Append('Source=' + TCosmosAppName.CosmosFinanceiro); //do not localize!
+   cmFinanceiroServer: Info.Append('Source=' + TCosmosAppName.CosmosFinanceiroServer); //do not localize!
+   cmConferencias: Info.Append('Source=' + TCosmosAppName.CosmosConferencias); //do not localize!
+   cmConferenciasServer: Info.Append('Source=' + TCosmosAppName.CosmosConferenciasServer); //do not localize!
+   cmUsuarios: Info.Append('Source=' + TCosmosAppName.CosmosUsuarios); //do not localize!
+   cmUsuariosServer: Info.Append('Source=' + TCosmosAppName.CosmosUsuariosServer); //do not localize!
  end;
 end;
 

@@ -4,7 +4,7 @@ interface
 
 uses Winapi.Windows, System.SysUtils, System.Classes, Vcl.SvcMgr, Datasnap.DSServer,
   Datasnap.DSCommonServer, Datasnap.DSAuth, Datasnap.DSTCPServerTransport, IPPeerServer,
-  System.Generics.Collections, Datasnap.DSSession,
+  System.Generics.Collections, Datasnap.DSSession, cosmos.system.files,
   cosmos.system.types, cosmos.system.messages, cosmos.system.exceptions,
   cosmos.classes.application, Data.DBXCommon, cosmos.classes.logs,
   cosmos.classes.persistence.ini, Data.DBCommonTypes;

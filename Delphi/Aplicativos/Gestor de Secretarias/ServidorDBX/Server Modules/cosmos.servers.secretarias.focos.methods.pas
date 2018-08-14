@@ -5,9 +5,9 @@ interface
 uses
   Winapi.Windows, System.SysUtils, System.Classes, Datasnap.DSServer, Datasnap.DSAuth,
   cosmos.classes.application, cosmos.system.messages, cosmos.system.exceptions,
-  cosmos.servers.sqlcommands, System.Variants, cosmos.classes.dataobjects,
-  cosmos.classes.ServerInterface, Data.DB, Data.DBXCommon, DBClient, Data.FMTBcd,
-  Data.SqlExpr, Datasnap.Provider, DataSnap.DsSession, DataSnap.DSProviderDataModuleAdapter,
+  cosmos.servers.sqlcommands, System.Variants, cosmos.classes.ServerInterface,
+  Data.DB, Data.DBXCommon, DBClient, Data.FMTBcd, DataSnap.DSProviderDataModuleAdapter,
+  Data.SqlExpr, Datasnap.Provider, DataSnap.DsSession,
   cosmos.business.focos, cosmos.classes.logs, Data.DBXDBReaders,
   cosmos.system.dataconverter;
 

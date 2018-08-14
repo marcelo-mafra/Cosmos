@@ -38,7 +38,8 @@ contains
   cosmos.classes.persistence in '..\..\..\Arquivos Comuns\Classes\Persistence\cosmos.classes.persistence.pas',
   cosmos.classes.persistence.registry in '..\..\..\Arquivos Comuns\Classes\Persistence\cosmos.classes.persistence.registry.pas',
   cosmos.classes.persistence.xml in '..\..\..\Arquivos Comuns\Classes\Persistence\cosmos.classes.persistence.xml.pas',
-  cosmos.classes.persistence.ini in '..\..\..\Arquivos Comuns\Classes\Persistence\cosmos.classes.persistence.ini.pas';
+  cosmos.classes.persistence.ini in '..\..\..\Arquivos Comuns\Classes\Persistence\cosmos.classes.persistence.ini.pas',
+  cosmos.classes.persistence.exceptions in '..\..\..\Arquivos Comuns\Classes\Persistence\cosmos.classes.persistence.exceptions.pas';
 
 end.
 

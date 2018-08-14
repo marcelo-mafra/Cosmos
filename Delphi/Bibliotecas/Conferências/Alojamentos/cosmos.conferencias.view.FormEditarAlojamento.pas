@@ -7,7 +7,7 @@ uses
   Dialogs, FormCosmosHelpDialog, ExtCtrls, StdCtrls, DB, DBClient, GroupHeader,
   Mask, DBCtrls, cosmos.frames.fkSearch, cosmos.classes.ServerInterface, ComCtrls,
   FrameDBInsertVertical, Datasnap.DSConnect, cosmos.Framework.Interfaces.dataacess,
-  cosmos.classes.Application;
+  cosmos.classes.Application, cosmos.system.dataconverter;
 
 type
   TFrmEditarAlojamento = class(TFrmCosmosHelpDialog)

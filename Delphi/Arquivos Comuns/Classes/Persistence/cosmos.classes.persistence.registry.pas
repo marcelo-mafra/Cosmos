@@ -4,7 +4,8 @@ interface
 
 uses
  Winapi.Windows, System.Classes, cosmos.classes.persistence, System.Win.Registry,
- cosmos.system.files, cosmos.classes.cosmoscript, cosmos.system.messages, WinAPI.ShellAPI;
+ cosmos.system.files, cosmos.classes.cosmoscript, cosmos.system.messages,
+ WinAPI.ShellAPI;
 
 type
 
@@ -74,7 +75,7 @@ begin
 {Cria a chave completa do Cosmos na Registry. A criação é feita na chave HKCU do
  usuário corrente. Este método deve ser chamado apenas quando a chave do Cosmos
  não existir para o usuário corrente.}
- ShellExecute(0,nil,'REGEDIT.EXE',PChar('/SC /C '+ '"' + FileName + '"'),nil,sw_hide);
+ ShellExecute(0,nil,'REGEDIT.EXE',PChar('/SC /C '+ '"' + FileName + '"'),nil,sw_hide); //do not localize!
 end;
 
 function TRegistryPersistence.CreateKey(const Key: string): boolean;
@@ -160,13 +161,10 @@ begin
 end;
 
 function TRegistryPersistence.ReadCyphereValue(const Key: string): string;
-var
- sValue: string;
 begin
 //Descriptografa uma string que é retornada pela função. A rotina de
 //descriptografia está no módulo cripter.dll
-  sValue := FRegistry.ReadString(Key);
-  Result := TCripterFactory.Descriptografar(sValue);
+  Result := TCripterFactory.Descriptografar(FRegistry.ReadString(Key));
 end;
 
 function TRegistryPersistence.ReadInteger(const Key: string): integer;

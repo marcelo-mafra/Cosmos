@@ -12,7 +12,8 @@ uses
   cosmos.framework.interfaces.dialogs, cosmos.business.focos, cosmos.frames.gridsearch,
   Vcl.Buttons, Vcl.Menus, Vcl.ActnPopup, cosmos.frames.areasstaff, Vcl.Mask, GroupHeader,
   System.Actions, Datasnap.DSConnect, cosmos.framework.interfaces.dataacess,
-  cosmos.framework.interfaces.root, cosmos.system.formsconst;
+  cosmos.framework.interfaces.root, cosmos.system.formsconst, cosmos.system.dataconverter,
+  System.ImageList;
 
 type
 

@@ -5,10 +5,11 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, cosmos.framework.view.FrmDefWizard, Wizard, ImgList, ActnList, jpeg, ExtCtrls,
-  ComCtrls, StdCtrls, Buttons, GroupHeader, cosmos.frames.fkSearch,
+  ComCtrls, StdCtrls, Buttons, GroupHeader, cosmos.frames.fkSearch, cosmos.system.dataconverter,
   Cosmos.classes.ServerInterface, Mask, DBCtrls, cosmos.frames.gridsearch, DB, DBClient,
   cosmos.system.messages, cosmos.classes.application, Vcl.Imaging.pngimage,
-  System.Actions, Data.DBXCommon, cosmos.usuarios.clientconnections;
+  System.Actions, Data.DBXCommon, cosmos.usuarios.clientconnections,
+  System.ImageList;
 
 type
   TFrmWizardNovoUsuario = class(TFrmCosmosWizard)
@@ -182,9 +183,9 @@ begin
  with MmoResumo.Lines do
   begin
     Clear;
-    Append(Format(sUsuario, [CdsUsuario.Fields.FieldByName('nomcad').AsString]));
-    Append(Format(sLogin, [CdsUsuario.Fields.FieldByName('logusu').AsString]));
-    Append(Format(sRole, [CdsUsuario.Fields.FieldByName('rolename').AsString]));         
+    Append(TSecurityConst.UserName + ': ' + CdsUsuario.Fields.FieldByName('nomcad').AsString);
+    Append(TSecurityConst.Login + ': ' + CdsUsuario.Fields.FieldByName('logusu').AsString);
+    Append(TSecurityConst.RoleName + ': ' + CdsUsuario.Fields.FieldByName('rolename').AsString);
   end;
 end;
 

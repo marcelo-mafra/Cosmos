@@ -6,7 +6,8 @@ uses
  Winapi.Windows, System.Classes;
 
 type
-
+ //Classes-base usadas por todos os descendentes que implementam alguma forma de
+ //persistência de dados.
  TCustomPersistence = class abstract
   private
 

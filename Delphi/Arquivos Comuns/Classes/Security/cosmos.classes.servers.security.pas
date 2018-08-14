@@ -13,22 +13,6 @@ uses
   cosmos.classes.cosmoscript, System.WideStrings, Data.DBXCommon, Data.DBXFirebird;
 
 type
-  TCosmosUser = class
-   private
-    FUserData: TCosmosData;
-    function GetUserName: string;
-    function GetUserRole: string;
-
-   public
-    constructor Create;
-    destructor Destroy; override;
-    procedure LoadInfo(AUserData: TCosmosData);
-
-    property UserName: string read GetUserName;
-    property UserRole: string read GetUserRole;
-  end;
-
-
   TCosmosUsersManager = class(TSQLServerObject)
 
   private
@@ -65,7 +49,7 @@ type
 
 implementation
 
-{ TDMUsersManager }
+{ TCosmosUsersManager }
 
 constructor TCosmosUsersManager.Create;
 begin
@@ -631,7 +615,7 @@ end;
 
 procedure TCosmosUsersManager.ListServerUsers(List: TStringList);
 begin
-
+//To do.
 end;
 
 function TCosmosUsersManager.LockCosmosUser(const codusu: integer): boolean;
@@ -807,35 +791,6 @@ begin
     FreeAndNil(AConnection);
    end;
  end;
-end;
-
-{ TCosmosUser }
-
-constructor TCosmosUser.Create;
-begin
- inherited Create;
- FUserData := TCosmosData.Create(20);
-end;
-
-destructor TCosmosUser.Destroy;
-begin
-  FUserData.Free;
-  inherited;
-end;
-
-function TCosmosUser.GetUserName: string;
-begin
- Result := FUserData.FindValue('USER_NAME');
-end;
-
-function TCosmosUser.GetUserRole: string;
-begin
- Result := FUserData.FindValue('ROLE_NAME');
-end;
-
-procedure TCosmosUser.LoadInfo(AUserData: TCosmosData);
-begin
- FUserData.CopyData(AUserData);
 end;
 
 

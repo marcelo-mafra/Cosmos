@@ -63,9 +63,9 @@ begin
        Args[ABound].VType := vtPWideChar;
 
        if AVariant = True then
-        sValue := QuotedStr('S')
+        sValue := QuotedStr(TNoYesShort.Yes)
        else
-        sValue := QuotedStr('N');
+        sValue := QuotedStr(TNoYesShort.No);
 
        Args[ABound].VPWideChar := PWideChar(sValue);
       end;
@@ -142,9 +142,9 @@ begin
      varBoolean: //booleans são tratados como strings...
       begin
        if AVariant = True then
-        AValue := QuotedStr('S')
+        AValue := QuotedStr(TNoYesShort.Yes)
        else
-        AValue := QuotedStr('N');
+        AValue := QuotedStr(TNoYesShort.No);
 
         self.ReplaceStr(AString, '%s', AValue);
       end;

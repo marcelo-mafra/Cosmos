@@ -6,7 +6,7 @@ uses
   Winapi.Messages, System.SysUtils, System.Variants, System.IniFiles,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   Vcl.AppEvnts, Vcl.StdCtrls, Cosmos.System.Messages, Cosmos.Classes.Application,
-  cosmos.servers.common.httpsengine;
+  cosmos.servers.common.httpsengine, cosmos.system.files;
   {IdSSLOpenSSL, IdHTTPWebBrokerBridge, Web.HTTPApp, IdSchedulerOfThreadPool;}
 
 type

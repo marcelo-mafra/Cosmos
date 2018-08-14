@@ -3,7 +3,7 @@ unit cosmos.core.client.connection;
 interface
 
 uses
-  winapi.Windows, system.SysUtils, cosmos.system.types;
+  winapi.Windows, system.SysUtils, cosmos.system.types, cosmos.system.nettypes;
 
 type
  TClientConnectionInfo = class
@@ -72,12 +72,7 @@ end;
 
 procedure TClientConnectionInfo.SetProtocolo(value: TConnectionProtocol);
 begin
- if FProtocolo <> value then
-  begin
-
-   FProtocolo := value;
-  end;
-
+ FProtocolo := value;
 end;
 
 end.

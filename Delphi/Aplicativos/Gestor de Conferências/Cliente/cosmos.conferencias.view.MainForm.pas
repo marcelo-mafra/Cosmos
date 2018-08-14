@@ -11,7 +11,7 @@ uses
   cosmos.business.conferencias, cosmos.framework.interfaces.DataAcess, cosmos.framework.interfaces.Dialogs,
   XPStyleActnCtrls, Cosmos.Framework.Interfaces.Root, cosmos.framework.forms.conferencias,
   Vcl.AppEvnts, Vcl.Touch.GestureMgr, System.Actions, cosmos.classes.security,
-  Cosmos.Framework.Interfaces.ChangeFocusNotifiers;
+  Cosmos.Framework.Interfaces.ChangeFocusNotifiers, System.ImageList;
 
 type
   TFrmMainConferencias = class(TFrmMainClientGUI, ICosmosConference)

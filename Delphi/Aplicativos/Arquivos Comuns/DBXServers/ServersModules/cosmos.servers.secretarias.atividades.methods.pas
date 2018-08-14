@@ -8,8 +8,7 @@ uses
   Datasnap.DSAuth, DBClient, DB, SqlExpr, FMTBcd, cosmos.classes.application,
   System.Variants, Datasnap.Provider, cosmos.system.exceptions, Data.dbxCommon,
   cosmos.system.messages, cosmos.servers.sqlcommands, cosmos.classes.ServerInterface,
-  cosmos.classes.dataobjects, System.WideStrings, DataSnap.DsSession,
-  cosmos.classes.logs;
+  System.WideStrings, DataSnap.DsSession, cosmos.classes.logs, cosmos.classes.cosmoscript;
 
 type
   TDMSecAtividadesServerMethods = class(TDSServerModule)
@@ -680,7 +679,7 @@ begin
    Dataset.Edit;
 
    try
-    Dataset.Fields.FieldByName('sencon').AsString := DMCosmosServerServices.Descriptografar(Dataset.Fields.FieldByName('sencon').AsString);
+    Dataset.Fields.FieldByName('sencon').AsString := TCripterFactory.Descriptografar(Dataset.Fields.FieldByName('sencon').AsString);
 
    finally
     DMServerDataAcess.CloseDataset(DMServerDataAcess.SQLSearch);
@@ -968,7 +967,7 @@ begin
  ADataset := DMServerDataAcess.CreateDataset;
 
  try
-  ADataset.CommandText := Format(TDQLCommand.CountFrequencias, [codati]);
+  ADataset.CommandText := Format(TDQLCommands.CountFrequencias, [codati]);
   ADataset.Open;
 
   if ADataset.Fields.Fields[0].AsInteger = 0 then
@@ -1005,7 +1004,7 @@ atividades como um todo.}
 
  try
   //Primeiro, verifica se a freqüência para esta atividade já foi gerada.
-  ADataset.CommandText := Format(TDQLCommand.CountFrequencias, [Atividade]);
+  ADataset.CommandText := Format(TDQLCommands.CountFrequencias, [Atividade]);
   ADataset.Open;
 
   if ADataset.Fields.Fields[0].AsInteger = 0 then

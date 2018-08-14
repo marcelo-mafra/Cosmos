@@ -8,7 +8,7 @@ uses
   Cosmos.Framework.Interfaces.Dialogs, Cosmos.Framework.Interfaces.DataAcess,
   Cosmos.system.messages,cosmos.classes.application, cosmos.classes.security,
   cosmos.system.types, cosmos.system.files, cosmos.core.client.connection,
-  cosmos.system.winshell;
+  cosmos.system.winshell, cosmos.system.nettypes;
 
 type
   TFrmInfoConnection = class(TForm, ICosmosConnectionInfo)

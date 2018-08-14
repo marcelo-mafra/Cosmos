@@ -9,8 +9,8 @@ o sistema começará a disparar Access Violations ao tentar acessar as interfaces.
 interface
 
 uses
-
- System.Classes, System.Generics.Collections, cosmos.system.types;
+ System.Classes, System.Generics.Collections, cosmos.system.types,
+ cosmos.system.nettypes;
 
 type
  TNotifyChangeConnectionStatusEvent = procedure(Status: TConnectionStatus) of object;

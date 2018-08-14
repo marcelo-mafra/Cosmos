@@ -143,6 +143,7 @@
         <DCCReference Include="..\..\..\Arquivos Comuns\Classes\Persistence\cosmos.classes.persistence.registry.pas"/>
         <DCCReference Include="..\..\..\Arquivos Comuns\Classes\Persistence\cosmos.classes.persistence.xml.pas"/>
         <DCCReference Include="..\..\..\Arquivos Comuns\Classes\Persistence\cosmos.classes.persistence.ini.pas"/>
+        <DCCReference Include="..\..\..\Arquivos Comuns\Classes\Persistence\cosmos.classes.persistence.exceptions.pas"/>
         <None Include="ModelSupport_cmpersist\default.txaPackage"/>
         <None Include="ModelSupport_cmpersist\cosmos\default.txaPackage"/>
         <None Include="ModelSupport_cmpersist\default.txvpck"/>
@@ -246,6 +247,12 @@
                 </DeployFile>
                 <DeployFile LocalName="$(BDS)\Redist\osx32\libcgsqlite3.dylib" Class="DependencyModule">
                     <Platform Name="OSX32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\..\..\..\Bin\Win64\Release\cmpersist.bpl" Configuration="Release" Class="ProjectOutput">
+                    <Platform Name="Win64">
+                        <RemoteName>cmpersist.bpl</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

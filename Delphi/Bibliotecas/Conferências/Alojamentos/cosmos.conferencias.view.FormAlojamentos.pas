@@ -12,7 +12,8 @@ uses
   cosmos.framework.datanavigators.treeview, cosmos.framework.forms.datadialogs,
   Cosmos.Framework.Interfaces.Root, cosmos.framework.forms.conferencias,
   System.Actions, Datasnap.DSConnect, cosmos.Framework.Interfaces.dataacess,
-  cosmos.classes.security, cosmos.system.formsconst;
+  cosmos.classes.security, cosmos.system.formsconst, cosmos.system.dataconverter,
+  System.ImageList;
 
 type
   TTipoItemAlojamento = (iaFoco, iaAlojamento, iaQuarto, iaLeito, iaConferencia);

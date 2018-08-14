@@ -3,9 +3,6 @@
         <ProjectGuid>{993AF2CC-3FB1-49CC-8297-C5876C479DCE}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="..\Ferramentas\Starter\cmstarter.dproj">
-            <Dependencies/>
-        </Projects>
         <Projects Include="ServidorHTTPS\confserapp.dproj">
             <Dependencies/>
         </Projects>
@@ -206,15 +203,6 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="cmstarter">
-        <MSBuild Projects="..\Ferramentas\Starter\cmstarter.dproj"/>
-    </Target>
-    <Target Name="cmstarter:Clean">
-        <MSBuild Projects="..\Ferramentas\Starter\cmstarter.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="cmstarter:Make">
-        <MSBuild Projects="..\Ferramentas\Starter\cmstarter.dproj" Targets="Make"/>
-    </Target>
     <Target Name="confserapp">
         <MSBuild Projects="ServidorHTTPS\confserapp.dproj"/>
     </Target>
@@ -792,162 +780,18 @@
         <MSBuild Projects="..\Ferramentas\Log Reader\logrdr.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="cmstarter;confserapp;confsvc;sqlcmd;serverdataobj;shellib;cmlib;logwrt;corelib;secmod;interfaces;dlgmessage;cmpersist;wmanager;cmdialogs;svcutils;cmcon;confcon;cmgui;gconf;defwiz;dockedform;frames;helplib;events;cmmodules;tabace;confwin;cmpages;pgservers;pglogs;pgemail;pgui;pgupdater;pgmenu;splash;coninfo;opfocus;searcher;locdata;ficha;dlgexporter;exporter;repcen;cenpes;updater;conferencias;novaconf;pescon;agenda;dlgagenda;pesati;alojamentos;classificadores;pesalo;wzaloj;pescad;inscricoes;detinscricoes;impinsc;pesinsc;fmeareas;staff;areastaff;logrdr"/>
+        <CallTarget Targets="confserapp;confsvc;sqlcmd;serverdataobj;shellib;cmlib;logwrt;corelib;secmod;interfaces;dlgmessage;cmpersist;wmanager;cmdialogs;svcutils;cmcon;confcon;cmgui;gconf;defwiz;dockedform;frames;helplib;events;cmmodules;tabace;confwin;cmpages;pgservers;pglogs;pgemail;pgui;pgupdater;pgmenu;splash;coninfo;opfocus;searcher;locdata;ficha;dlgexporter;exporter;repcen;cenpes;updater;conferencias;novaconf;pescon;agenda;dlgagenda;pesati;alojamentos;classificadores;pesalo;wzaloj;pescad;inscricoes;detinscricoes;impinsc;pesinsc;fmeareas;staff;areastaff;logrdr"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="cmstarter:Clean;confserapp:Clean;confsvc:Clean;sqlcmd:Clean;serverdataobj:Clean;shellib:Clean;cmlib:Clean;logwrt:Clean;corelib:Clean;secmod:Clean;interfaces:Clean;dlgmessage:Clean;cmpersist:Clean;wmanager:Clean;cmdialogs:Clean;svcutils:Clean;cmcon:Clean;confcon:Clean;cmgui:Clean;gconf:Clean;defwiz:Clean;dockedform:Clean;frames:Clean;helplib:Clean;events:Clean;cmmodules:Clean;tabace:Clean;confwin:Clean;cmpages:Clean;pgservers:Clean;pglogs:Clean;pgemail:Clean;pgui:Clean;pgupdater:Clean;pgmenu:Clean;splash:Clean;coninfo:Clean;opfocus:Clean;searcher:Clean;locdata:Clean;ficha:Clean;dlgexporter:Clean;exporter:Clean;repcen:Clean;cenpes:Clean;updater:Clean;conferencias:Clean;novaconf:Clean;pescon:Clean;agenda:Clean;dlgagenda:Clean;pesati:Clean;alojamentos:Clean;classificadores:Clean;pesalo:Clean;wzaloj:Clean;pescad:Clean;inscricoes:Clean;detinscricoes:Clean;impinsc:Clean;pesinsc:Clean;fmeareas:Clean;staff:Clean;areastaff:Clean;logrdr:Clean"/>
+        <CallTarget Targets="confserapp:Clean;confsvc:Clean;sqlcmd:Clean;serverdataobj:Clean;shellib:Clean;cmlib:Clean;logwrt:Clean;corelib:Clean;secmod:Clean;interfaces:Clean;dlgmessage:Clean;cmpersist:Clean;wmanager:Clean;cmdialogs:Clean;svcutils:Clean;cmcon:Clean;confcon:Clean;cmgui:Clean;gconf:Clean;defwiz:Clean;dockedform:Clean;frames:Clean;helplib:Clean;events:Clean;cmmodules:Clean;tabace:Clean;confwin:Clean;cmpages:Clean;pgservers:Clean;pglogs:Clean;pgemail:Clean;pgui:Clean;pgupdater:Clean;pgmenu:Clean;splash:Clean;coninfo:Clean;opfocus:Clean;searcher:Clean;locdata:Clean;ficha:Clean;dlgexporter:Clean;exporter:Clean;repcen:Clean;cenpes:Clean;updater:Clean;conferencias:Clean;novaconf:Clean;pescon:Clean;agenda:Clean;dlgagenda:Clean;pesati:Clean;alojamentos:Clean;classificadores:Clean;pesalo:Clean;wzaloj:Clean;pescad:Clean;inscricoes:Clean;detinscricoes:Clean;impinsc:Clean;pesinsc:Clean;fmeareas:Clean;staff:Clean;areastaff:Clean;logrdr:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="cmstarter:Make;confserapp:Make;confsvc:Make;sqlcmd:Make;serverdataobj:Make;shellib:Make;cmlib:Make;logwrt:Make;corelib:Make;secmod:Make;interfaces:Make;dlgmessage:Make;cmpersist:Make;wmanager:Make;cmdialogs:Make;svcutils:Make;cmcon:Make;confcon:Make;cmgui:Make;gconf:Make;defwiz:Make;dockedform:Make;frames:Make;helplib:Make;events:Make;cmmodules:Make;tabace:Make;confwin:Make;cmpages:Make;pgservers:Make;pglogs:Make;pgemail:Make;pgui:Make;pgupdater:Make;pgmenu:Make;splash:Make;coninfo:Make;opfocus:Make;searcher:Make;locdata:Make;ficha:Make;dlgexporter:Make;exporter:Make;repcen:Make;cenpes:Make;updater:Make;conferencias:Make;novaconf:Make;pescon:Make;agenda:Make;dlgagenda:Make;pesati:Make;alojamentos:Make;classificadores:Make;pesalo:Make;wzaloj:Make;pescad:Make;inscricoes:Make;detinscricoes:Make;impinsc:Make;pesinsc:Make;fmeareas:Make;staff:Make;areastaff:Make;logrdr:Make"/>
+        <CallTarget Targets="confserapp:Make;confsvc:Make;sqlcmd:Make;serverdataobj:Make;shellib:Make;cmlib:Make;logwrt:Make;corelib:Make;secmod:Make;interfaces:Make;dlgmessage:Make;cmpersist:Make;wmanager:Make;cmdialogs:Make;svcutils:Make;cmcon:Make;confcon:Make;cmgui:Make;gconf:Make;defwiz:Make;dockedform:Make;frames:Make;helplib:Make;events:Make;cmmodules:Make;tabace:Make;confwin:Make;cmpages:Make;pgservers:Make;pglogs:Make;pgemail:Make;pgui:Make;pgupdater:Make;pgmenu:Make;splash:Make;coninfo:Make;opfocus:Make;searcher:Make;locdata:Make;ficha:Make;dlgexporter:Make;exporter:Make;repcen:Make;cenpes:Make;updater:Make;conferencias:Make;novaconf:Make;pescon:Make;agenda:Make;dlgagenda:Make;pesati:Make;alojamentos:Make;classificadores:Make;pesalo:Make;wzaloj:Make;pescad:Make;inscricoes:Make;detinscricoes:Make;impinsc:Make;pesinsc:Make;fmeareas:Make;staff:Make;areastaff:Make;logrdr:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
     <ItemGroup Condition="'$(BuildGroup)'=='Win32'">
-        <BuildGroupProject Include="..\..\Bibliotecas\Tabelas Acessorias\tabace.dproj">
-            <ProjectGuid>{2F84C9D7-D64B-4CC4-B2C0-E70B06976AC2}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>True</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Página do Updater\pgupdater.dproj">
-            <ProjectGuid>{CFB80F58-40FC-4DA7-813E-6FBC91CDD486}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Segurança\secmod.dproj">
-            <ProjectGuid>{91E1BE7F-97B3-45B5-B996-A5927A6BFC37}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>True</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\DockedForm\dockedform.dproj">
-            <ProjectGuid>{C298BC81-E5CD-4B35-BF14-B22EA7E42724}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Staff\staff.dproj">
-            <ProjectGuid>{5C3FB016-17E6-4B31-9ABB-35255D32070F}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Interface do Usuário\pgui.dproj">
-            <ProjectGuid>{A897C57F-EB7A-46E8-95E0-02C6F455C9B3}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Conferências\Nova Conferência\novaconf.dproj">
-            <ProjectGuid>{F733A639-0A5D-40E0-804B-B9008E457819}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\Shell\shellib.dproj">
-            <ProjectGuid>{05CBE2EC-3678-4FE7-AECF-9B4C4B683813}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Menu lateral\pgmenu.dproj">
-            <ProjectGuid>{2A523CCE-EF7B-434E-8634-8E50E754C15B}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Splash Form\splash.dproj">
-            <ProjectGuid>{C932A03F-BA12-4AF2-ADA9-56F0B769925D}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Exporter Default Dialog\dlgexporter.dproj">
-            <ProjectGuid>{A0415D85-2B5C-4BE7-A746-B0BCC818EFA7}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Core\Commom connection\cmcon.dproj">
-            <ProjectGuid>{D8A924A0-07F8-41CE-92A3-C8813CB1E259}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Core\Persistência de dados\cmpersist.dproj">
-            <ProjectGuid>{96D01F7A-8EA8-4343-A8C2-BBB9B8EBD655}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Core\Frames\frames.dproj">
-            <ProjectGuid>{E35B802D-98DE-4BCC-92B9-A95FED148A06}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Conferências\Pesquisar conferências\pescon.dproj">
-            <ProjectGuid>{520863F2-7FBA-409C-99D5-9BD06684E7EC}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
         <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Staff\Frame áreas staff\fmeareas.dproj">
             <ProjectGuid>{9A098882-3480-4945-8878-74250742D12F}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Inscrições\Pesquisar inscrições\pesinsc.dproj">
-            <ProjectGuid>{8F3B7694-44F3-463C-9A60-E49321D0CBC3}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Core\Dialog de Mensagens\dlgmessage.dproj">
-            <ProjectGuid>{93CE368B-B43E-4C14-9497-DA8EACD884A6}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\InfoConnection\coninfo.dproj">
-            <ProjectGuid>{5A59305E-1FC4-429C-A97E-F193BEBBFF4C}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Data\Data Locate\locdata.dproj">
-            <ProjectGuid>{2C6183A1-942E-4346-B2DC-52603013B9B7}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\Help\helplib.dproj">
-            <ProjectGuid>{8C8793FE-6608-4E07-87CA-830518534DCD}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="ServidorHTTPS\confserapp.dproj">
-            <ProjectGuid>{AE47016B-47D2-4227-8A4C-603A760E150E}</ProjectGuid>
-            <Configurations/>
-            <Platforms/>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\EventLog\events.dproj">
-            <ProjectGuid>{84C65035-5EED-4563-B1DF-14B18BD3ABAE}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="Cliente\Connection\confcon.dproj">
-            <ProjectGuid>{E2601375-7480-42FF-B07A-792D81A3EBD0}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>True</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Ficha Cadastrado\ficha.dproj">
-            <ProjectGuid>{1547B11F-6F98-4940-8EC6-3A5551543F91}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
@@ -958,20 +802,8 @@
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Alojamentos\alojamentos.dproj">
-            <ProjectGuid>{CC63FE09-89A3-458B-90B3-1FB07210E95E}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Windows Manager\wmanager.dproj">
-            <ProjectGuid>{0F9CFE71-A52A-487A-8CC1-2B1F75DAA359}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Core\Commom\cmlib.dproj">
-            <ProjectGuid>{02E7228C-3F03-4AAF-A210-4FE35BF7152C}</ProjectGuid>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Conferências\conferencias.dproj">
+            <ProjectGuid>{E2CDA8D6-682B-409A-ABDB-A05281605FFB}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
@@ -982,50 +814,26 @@
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Inscrições\Inscrições - detalhamento\detinscricoes.dproj">
-            <ProjectGuid>{C25DD789-8B6C-4A29-B85A-96A117A6436E}</ProjectGuid>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Frames\frames.dproj">
+            <ProjectGuid>{E35B802D-98DE-4BCC-92B9-A95FED148A06}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Conferências\conferencias.dproj">
-            <ProjectGuid>{E2CDA8D6-682B-409A-ABDB-A05281605FFB}</ProjectGuid>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\InfoConnection\coninfo.dproj">
+            <ProjectGuid>{5A59305E-1FC4-429C-A97E-F193BEBBFF4C}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="Windows Service\confsvc.dproj">
-            <ProjectGuid>{9E19A5DB-52EC-40E8-A781-F8B09221B69E}</ProjectGuid>
+        <BuildGroupProject Include="Cliente\Connection\confcon.dproj">
+            <ProjectGuid>{E2601375-7480-42FF-B07A-792D81A3EBD0}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
+            <Enabled>True</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Inscrições\Assistente de importação de inscrições\impinsc.dproj">
-            <ProjectGuid>{466455E8-B63C-44B0-B3D1-999A12470C00}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Staff\Áreas de staff\areastaff.dproj">
-            <ProjectGuid>{3B939480-B4D7-4F3D-AB08-76D13DE36E09}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\Ferramentas\Log Reader\logrdr.dproj">
-            <ProjectGuid>{3689AB47-8C28-46E2-AA3F-5BA76BD674EA}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Ferramenta de Email\pgemail.dproj">
-            <ProjectGuid>{F9CA017B-C540-4813-AED7-888B7BC3C1EB}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Modulos\cmmodules.dproj">
-            <ProjectGuid>{809128F1-6569-4AC0-A7CA-B1C695366B56}</ProjectGuid>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Conferências\Pesquisar conferências\pescon.dproj">
+            <ProjectGuid>{520863F2-7FBA-409C-99D5-9BD06684E7EC}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
@@ -1036,86 +844,8 @@
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Central de relatórios\repcen.dproj">
-            <ProjectGuid>{AEA2EC1D-0F0C-4941-BE5F-4C3C9493EB9A}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Atualizador automático\updater.dproj">
-            <ProjectGuid>{BA92392E-2B74-4368-A3AE-600772798487}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="Cliente\gconf.dproj">
-            <ProjectGuid>{D2D6942B-C909-4C25-B2F3-05288D752FEE}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>True</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Servidores Datasnap\pgservers.dproj">
-            <ProjectGuid>{03B18A0F-AE90-4A60-830F-9DD2CE954915}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Core\Commom Dialogs\cmdialogs.dproj">
-            <ProjectGuid>{BF57D30A-AC5E-40C8-89C6-7B6364F67636}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Alojamentos\Classificadores de alojamento\classificadores.dproj">
-            <ProjectGuid>{37CBEC17-1CCE-4750-85DC-4DB93AA4F36F}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Secretarias\Atividades\Agenda de atividades\dlgagenda.dproj">
-            <ProjectGuid>{1EBF92D3-1BD2-482E-8978-6702C9B6427C}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Alojamentos\Pesquisar alojamentos\pesalo.dproj">
-            <ProjectGuid>{F94D07F3-F424-418C-9223-0CE6FA56A5FF}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Core\Utils\svcutils.dproj">
-            <ProjectGuid>{543EF321-6216-476A-B8AF-D44CED1E65EB}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\Ferramentas\Starter\cmstarter.dproj">
-            <ProjectGuid>{5D116DB5-5B39-468D-94B4-129B01D75A30}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Configuração de logs\pglogs.dproj">
-            <ProjectGuid>{0E085399-990B-4BF3-8A49-3D792B350339}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Core\Interfaces\interfaces.dproj">
-            <ProjectGuid>{78B2F8C3-2895-4C6A-9628-FC95EA8ABDAC}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Server Libraries\SQLCommands\sqlcmd.dproj">
-            <ProjectGuid>{17291A5A-756B-4CFE-AC63-893735A96858}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Data\Exporter\exporter.dproj">
-            <ProjectGuid>{E1D9D6CE-A73E-4BC4-9565-FE9DBF7FB46D}</ProjectGuid>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Staff\Áreas de staff\areastaff.dproj">
+            <ProjectGuid>{3B939480-B4D7-4F3D-AB08-76D13DE36E09}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
@@ -1126,14 +856,38 @@
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Conferências\Nova Conferência\novaconf.dproj">
+            <ProjectGuid>{F733A639-0A5D-40E0-804B-B9008E457819}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\DockedForm\dockedform.dproj">
+            <ProjectGuid>{C298BC81-E5CD-4B35-BF14-B22EA7E42724}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Interface do Usuário\pgui.dproj">
+            <ProjectGuid>{A897C57F-EB7A-46E8-95E0-02C6F455C9B3}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
         <BuildGroupProject Include="..\..\Bibliotecas\Core\Common Client GUI\cmgui.dproj">
             <ProjectGuid>{5C943FEE-D127-4A70-9FF7-5AFF12582E42}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Secretarias\Atividades\Agenda de atividades\agenda.dproj">
-            <ProjectGuid>{64396B1A-1861-4E21-9F79-DEAC4430527E}</ProjectGuid>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Menu lateral\pgmenu.dproj">
+            <ProjectGuid>{2A523CCE-EF7B-434E-8634-8E50E754C15B}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Secretarias\Atividades\Agenda de atividades\dlgagenda.dproj">
+            <ProjectGuid>{1EBF92D3-1BD2-482E-8978-6702C9B6427C}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
@@ -1144,8 +898,38 @@
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Abertura\opfocus.dproj">
-            <ProjectGuid>{A6549493-687F-401D-8309-1EEF677F5EB1}</ProjectGuid>
+        <BuildGroupProject Include="Windows Service\confsvc.dproj">
+            <ProjectGuid>{9E19A5DB-52EC-40E8-A781-F8B09221B69E}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Exporter Default Dialog\dlgexporter.dproj">
+            <ProjectGuid>{A0415D85-2B5C-4BE7-A746-B0BCC818EFA7}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Persistência de dados\cmpersist.dproj">
+            <ProjectGuid>{96D01F7A-8EA8-4343-A8C2-BBB9B8EBD655}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Modulos\cmmodules.dproj">
+            <ProjectGuid>{809128F1-6569-4AC0-A7CA-B1C695366B56}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\Shell\shellib.dproj">
+            <ProjectGuid>{05CBE2EC-3678-4FE7-AECF-9B4C4B683813}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Inscrições\Assistente de importação de inscrições\impinsc.dproj">
+            <ProjectGuid>{466455E8-B63C-44B0-B3D1-999A12470C00}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
@@ -1156,8 +940,38 @@
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Alojamentos\Assistente de alojamento\wzaloj.dproj">
-            <ProjectGuid>{3C5FCA58-CC78-4F14-87A3-38B06B6C2F09}</ProjectGuid>
+        <BuildGroupProject Include="..\Ferramentas\Log Reader\logrdr.dproj">
+            <ProjectGuid>{3689AB47-8C28-46E2-AA3F-5BA76BD674EA}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Alojamentos\alojamentos.dproj">
+            <ProjectGuid>{CC63FE09-89A3-458B-90B3-1FB07210E95E}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Alojamentos\Pesquisar alojamentos\pesalo.dproj">
+            <ProjectGuid>{F94D07F3-F424-418C-9223-0CE6FA56A5FF}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Segurança\secmod.dproj">
+            <ProjectGuid>{91E1BE7F-97B3-45B5-B996-A5927A6BFC37}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>True</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Utils\svcutils.dproj">
+            <ProjectGuid>{543EF321-6216-476A-B8AF-D44CED1E65EB}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Configuração de logs\pglogs.dproj">
+            <ProjectGuid>{0E085399-990B-4BF3-8A49-3D792B350339}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
@@ -1168,8 +982,26 @@
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Inscrições\Inscrições\inscricoes.dproj">
-            <ProjectGuid>{BA0FA869-7977-4E6F-BF0C-1403B7473431}</ProjectGuid>
+        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Atualizador automático\updater.dproj">
+            <ProjectGuid>{BA92392E-2B74-4368-A3AE-600772798487}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Tabelas Acessorias\tabace.dproj">
+            <ProjectGuid>{2F84C9D7-D64B-4CC4-B2C0-E70B06976AC2}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>True</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Central de relatórios\repcen.dproj">
+            <ProjectGuid>{AEA2EC1D-0F0C-4941-BE5F-4C3C9493EB9A}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Commom Dialogs\cmdialogs.dproj">
+            <ProjectGuid>{BF57D30A-AC5E-40C8-89C6-7B6364F67636}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
@@ -1180,166 +1012,172 @@
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Biblioteca cliente\corelib.dproj">
+            <ProjectGuid>{9BD8E49E-8A60-4798-9EDC-E58DBB20CF45}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Data\Exporter\exporter.dproj">
+            <ProjectGuid>{E1D9D6CE-A73E-4BC4-9565-FE9DBF7FB46D}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Alojamentos\Assistente de alojamento\wzaloj.dproj">
+            <ProjectGuid>{3C5FCA58-CC78-4F14-87A3-38B06B6C2F09}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Inscrições\Pesquisar inscrições\pesinsc.dproj">
+            <ProjectGuid>{8F3B7694-44F3-463C-9A60-E49321D0CBC3}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Commom connection\cmcon.dproj">
+            <ProjectGuid>{D8A924A0-07F8-41CE-92A3-C8813CB1E259}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Servidores Datasnap\pgservers.dproj">
+            <ProjectGuid>{03B18A0F-AE90-4A60-830F-9DD2CE954915}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Data\Data Locate\locdata.dproj">
+            <ProjectGuid>{2C6183A1-942E-4346-B2DC-52603013B9B7}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Inscrições\Inscrições - detalhamento\detinscricoes.dproj">
+            <ProjectGuid>{C25DD789-8B6C-4A29-B85A-96A117A6436E}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Dialog de Mensagens\dlgmessage.dproj">
+            <ProjectGuid>{93CE368B-B43E-4C14-9497-DA8EACD884A6}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Interfaces\interfaces.dproj">
+            <ProjectGuid>{78B2F8C3-2895-4C6A-9628-FC95EA8ABDAC}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Inscrições\Inscrições\inscricoes.dproj">
+            <ProjectGuid>{BA0FA869-7977-4E6F-BF0C-1403B7473431}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Página do Updater\pgupdater.dproj">
+            <ProjectGuid>{CFB80F58-40FC-4DA7-813E-6FBC91CDD486}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="ServidorHTTPS\confserapp.dproj">
+            <ProjectGuid>{AE47016B-47D2-4227-8A4C-603A760E150E}</ProjectGuid>
+            <Configurations/>
+            <Platforms/>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="Cliente\gconf.dproj">
+            <ProjectGuid>{D2D6942B-C909-4C25-B2F3-05288D752FEE}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>True</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Abertura\opfocus.dproj">
+            <ProjectGuid>{A6549493-687F-401D-8309-1EEF677F5EB1}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Staff\staff.dproj">
+            <ProjectGuid>{5C3FB016-17E6-4B31-9ABB-35255D32070F}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
         <BuildGroupProject Include="..\..\Bibliotecas\Forms\Cosmos Default Wizard\defwiz.dproj">
             <ProjectGuid>{21FA52DC-D185-4065-ACF1-9ADA19C89B3B}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Core\Biblioteca cliente\corelib.dproj">
-            <ProjectGuid>{9BD8E49E-8A60-4798-9EDC-E58DBB20CF45}</ProjectGuid>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Ficha Cadastrado\ficha.dproj">
+            <ProjectGuid>{1547B11F-6F98-4940-8EC6-3A5551543F91}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Secretarias\Atividades\Agenda de atividades\agenda.dproj">
+            <ProjectGuid>{64396B1A-1861-4E21-9F79-DEAC4430527E}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Server Libraries\SQLCommands\sqlcmd.dproj">
+            <ProjectGuid>{17291A5A-756B-4CFE-AC63-893735A96858}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Ferramenta de Email\pgemail.dproj">
+            <ProjectGuid>{F9CA017B-C540-4813-AED7-888B7BC3C1EB}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Alojamentos\Classificadores de alojamento\classificadores.dproj">
+            <ProjectGuid>{37CBEC17-1CCE-4750-85DC-4DB93AA4F36F}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Commom\cmlib.dproj">
+            <ProjectGuid>{02E7228C-3F03-4AAF-A210-4FE35BF7152C}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\EventLog\events.dproj">
+            <ProjectGuid>{84C65035-5EED-4563-B1DF-14B18BD3ABAE}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Windows Manager\wmanager.dproj">
+            <ProjectGuid>{0F9CFE71-A52A-487A-8CC1-2B1F75DAA359}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\Help\helplib.dproj">
+            <ProjectGuid>{8C8793FE-6608-4E07-87CA-830518534DCD}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Splash Form\splash.dproj">
+            <ProjectGuid>{C932A03F-BA12-4AF2-ADA9-56F0B769925D}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
     </ItemGroup>
     <ItemGroup Condition="'$(BuildGroup)'=='Win64'">
-        <BuildGroupProject Include="..\..\Bibliotecas\Tabelas Acessorias\tabace.dproj">
-            <ProjectGuid>{2F84C9D7-D64B-4CC4-B2C0-E70B06976AC2}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win64</Platforms>
-            <Enabled>True</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Página do Updater\pgupdater.dproj">
-            <ProjectGuid>{CFB80F58-40FC-4DA7-813E-6FBC91CDD486}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Segurança\secmod.dproj">
-            <ProjectGuid>{91E1BE7F-97B3-45B5-B996-A5927A6BFC37}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win64</Platforms>
-            <Enabled>True</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\DockedForm\dockedform.dproj">
-            <ProjectGuid>{C298BC81-E5CD-4B35-BF14-B22EA7E42724}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Staff\staff.dproj">
-            <ProjectGuid>{5C3FB016-17E6-4B31-9ABB-35255D32070F}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Interface do Usuário\pgui.dproj">
-            <ProjectGuid>{A897C57F-EB7A-46E8-95E0-02C6F455C9B3}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Conferências\Nova Conferência\novaconf.dproj">
-            <ProjectGuid>{F733A639-0A5D-40E0-804B-B9008E457819}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\Shell\shellib.dproj">
-            <ProjectGuid>{05CBE2EC-3678-4FE7-AECF-9B4C4B683813}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Menu lateral\pgmenu.dproj">
-            <ProjectGuid>{2A523CCE-EF7B-434E-8634-8E50E754C15B}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Splash Form\splash.dproj">
-            <ProjectGuid>{C932A03F-BA12-4AF2-ADA9-56F0B769925D}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Exporter Default Dialog\dlgexporter.dproj">
-            <ProjectGuid>{A0415D85-2B5C-4BE7-A746-B0BCC818EFA7}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Core\Commom connection\cmcon.dproj">
-            <ProjectGuid>{D8A924A0-07F8-41CE-92A3-C8813CB1E259}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Core\Persistência de dados\cmpersist.dproj">
-            <ProjectGuid>{96D01F7A-8EA8-4343-A8C2-BBB9B8EBD655}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Core\Frames\frames.dproj">
-            <ProjectGuid>{E35B802D-98DE-4BCC-92B9-A95FED148A06}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Conferências\Pesquisar conferências\pescon.dproj">
-            <ProjectGuid>{520863F2-7FBA-409C-99D5-9BD06684E7EC}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
         <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Staff\Frame áreas staff\fmeareas.dproj">
             <ProjectGuid>{9A098882-3480-4945-8878-74250742D12F}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Inscrições\Pesquisar inscrições\pesinsc.dproj">
-            <ProjectGuid>{8F3B7694-44F3-463C-9A60-E49321D0CBC3}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Core\Dialog de Mensagens\dlgmessage.dproj">
-            <ProjectGuid>{93CE368B-B43E-4C14-9497-DA8EACD884A6}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\InfoConnection\coninfo.dproj">
-            <ProjectGuid>{5A59305E-1FC4-429C-A97E-F193BEBBFF4C}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Data\Data Locate\locdata.dproj">
-            <ProjectGuid>{2C6183A1-942E-4346-B2DC-52603013B9B7}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\Help\helplib.dproj">
-            <ProjectGuid>{8C8793FE-6608-4E07-87CA-830518534DCD}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="ServidorHTTPS\confserapp.dproj">
-            <ProjectGuid>{AE47016B-47D2-4227-8A4C-603A760E150E}</ProjectGuid>
-            <Configurations/>
-            <Platforms/>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\EventLog\events.dproj">
-            <ProjectGuid>{84C65035-5EED-4563-B1DF-14B18BD3ABAE}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="Cliente\Connection\confcon.dproj">
-            <ProjectGuid>{E2601375-7480-42FF-B07A-792D81A3EBD0}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win64</Platforms>
-            <Enabled>True</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Ficha Cadastrado\ficha.dproj">
-            <ProjectGuid>{1547B11F-6F98-4940-8EC6-3A5551543F91}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
@@ -1350,20 +1188,8 @@
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Alojamentos\alojamentos.dproj">
-            <ProjectGuid>{CC63FE09-89A3-458B-90B3-1FB07210E95E}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Windows Manager\wmanager.dproj">
-            <ProjectGuid>{0F9CFE71-A52A-487A-8CC1-2B1F75DAA359}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Core\Commom\cmlib.dproj">
-            <ProjectGuid>{02E7228C-3F03-4AAF-A210-4FE35BF7152C}</ProjectGuid>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Conferências\conferencias.dproj">
+            <ProjectGuid>{E2CDA8D6-682B-409A-ABDB-A05281605FFB}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
@@ -1374,50 +1200,26 @@
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Inscrições\Inscrições - detalhamento\detinscricoes.dproj">
-            <ProjectGuid>{C25DD789-8B6C-4A29-B85A-96A117A6436E}</ProjectGuid>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Frames\frames.dproj">
+            <ProjectGuid>{E35B802D-98DE-4BCC-92B9-A95FED148A06}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Conferências\conferencias.dproj">
-            <ProjectGuid>{E2CDA8D6-682B-409A-ABDB-A05281605FFB}</ProjectGuid>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\InfoConnection\coninfo.dproj">
+            <ProjectGuid>{5A59305E-1FC4-429C-A97E-F193BEBBFF4C}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="Windows Service\confsvc.dproj">
-            <ProjectGuid>{9E19A5DB-52EC-40E8-A781-F8B09221B69E}</ProjectGuid>
+        <BuildGroupProject Include="Cliente\Connection\confcon.dproj">
+            <ProjectGuid>{E2601375-7480-42FF-B07A-792D81A3EBD0}</ProjectGuid>
             <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
+            <Platforms>Win64</Platforms>
+            <Enabled>True</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Inscrições\Assistente de importação de inscrições\impinsc.dproj">
-            <ProjectGuid>{466455E8-B63C-44B0-B3D1-999A12470C00}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Staff\Áreas de staff\areastaff.dproj">
-            <ProjectGuid>{3B939480-B4D7-4F3D-AB08-76D13DE36E09}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\Ferramentas\Log Reader\logrdr.dproj">
-            <ProjectGuid>{3689AB47-8C28-46E2-AA3F-5BA76BD674EA}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Ferramenta de Email\pgemail.dproj">
-            <ProjectGuid>{F9CA017B-C540-4813-AED7-888B7BC3C1EB}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Modulos\cmmodules.dproj">
-            <ProjectGuid>{809128F1-6569-4AC0-A7CA-B1C695366B56}</ProjectGuid>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Conferências\Pesquisar conferências\pescon.dproj">
+            <ProjectGuid>{520863F2-7FBA-409C-99D5-9BD06684E7EC}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
@@ -1428,86 +1230,8 @@
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Central de relatórios\repcen.dproj">
-            <ProjectGuid>{AEA2EC1D-0F0C-4941-BE5F-4C3C9493EB9A}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Atualizador automático\updater.dproj">
-            <ProjectGuid>{BA92392E-2B74-4368-A3AE-600772798487}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="Cliente\gconf.dproj">
-            <ProjectGuid>{D2D6942B-C909-4C25-B2F3-05288D752FEE}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win64</Platforms>
-            <Enabled>True</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Servidores Datasnap\pgservers.dproj">
-            <ProjectGuid>{03B18A0F-AE90-4A60-830F-9DD2CE954915}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Core\Commom Dialogs\cmdialogs.dproj">
-            <ProjectGuid>{BF57D30A-AC5E-40C8-89C6-7B6364F67636}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Alojamentos\Classificadores de alojamento\classificadores.dproj">
-            <ProjectGuid>{37CBEC17-1CCE-4750-85DC-4DB93AA4F36F}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Secretarias\Atividades\Agenda de atividades\dlgagenda.dproj">
-            <ProjectGuid>{1EBF92D3-1BD2-482E-8978-6702C9B6427C}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Alojamentos\Pesquisar alojamentos\pesalo.dproj">
-            <ProjectGuid>{F94D07F3-F424-418C-9223-0CE6FA56A5FF}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Core\Utils\svcutils.dproj">
-            <ProjectGuid>{543EF321-6216-476A-B8AF-D44CED1E65EB}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\Ferramentas\Starter\cmstarter.dproj">
-            <ProjectGuid>{5D116DB5-5B39-468D-94B4-129B01D75A30}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Configuração de logs\pglogs.dproj">
-            <ProjectGuid>{0E085399-990B-4BF3-8A49-3D792B350339}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Core\Interfaces\interfaces.dproj">
-            <ProjectGuid>{78B2F8C3-2895-4C6A-9628-FC95EA8ABDAC}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Server Libraries\SQLCommands\sqlcmd.dproj">
-            <ProjectGuid>{17291A5A-756B-4CFE-AC63-893735A96858}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Data\Exporter\exporter.dproj">
-            <ProjectGuid>{E1D9D6CE-A73E-4BC4-9565-FE9DBF7FB46D}</ProjectGuid>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Staff\Áreas de staff\areastaff.dproj">
+            <ProjectGuid>{3B939480-B4D7-4F3D-AB08-76D13DE36E09}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
@@ -1518,14 +1242,38 @@
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Conferências\Nova Conferência\novaconf.dproj">
+            <ProjectGuid>{F733A639-0A5D-40E0-804B-B9008E457819}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\DockedForm\dockedform.dproj">
+            <ProjectGuid>{C298BC81-E5CD-4B35-BF14-B22EA7E42724}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Interface do Usuário\pgui.dproj">
+            <ProjectGuid>{A897C57F-EB7A-46E8-95E0-02C6F455C9B3}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
         <BuildGroupProject Include="..\..\Bibliotecas\Core\Common Client GUI\cmgui.dproj">
             <ProjectGuid>{5C943FEE-D127-4A70-9FF7-5AFF12582E42}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Secretarias\Atividades\Agenda de atividades\agenda.dproj">
-            <ProjectGuid>{64396B1A-1861-4E21-9F79-DEAC4430527E}</ProjectGuid>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Menu lateral\pgmenu.dproj">
+            <ProjectGuid>{2A523CCE-EF7B-434E-8634-8E50E754C15B}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Secretarias\Atividades\Agenda de atividades\dlgagenda.dproj">
+            <ProjectGuid>{1EBF92D3-1BD2-482E-8978-6702C9B6427C}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
@@ -1536,8 +1284,38 @@
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Abertura\opfocus.dproj">
-            <ProjectGuid>{A6549493-687F-401D-8309-1EEF677F5EB1}</ProjectGuid>
+        <BuildGroupProject Include="Windows Service\confsvc.dproj">
+            <ProjectGuid>{9E19A5DB-52EC-40E8-A781-F8B09221B69E}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Exporter Default Dialog\dlgexporter.dproj">
+            <ProjectGuid>{A0415D85-2B5C-4BE7-A746-B0BCC818EFA7}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Persistência de dados\cmpersist.dproj">
+            <ProjectGuid>{96D01F7A-8EA8-4343-A8C2-BBB9B8EBD655}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Modulos\cmmodules.dproj">
+            <ProjectGuid>{809128F1-6569-4AC0-A7CA-B1C695366B56}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\Shell\shellib.dproj">
+            <ProjectGuid>{05CBE2EC-3678-4FE7-AECF-9B4C4B683813}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Inscrições\Assistente de importação de inscrições\impinsc.dproj">
+            <ProjectGuid>{466455E8-B63C-44B0-B3D1-999A12470C00}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
@@ -1548,8 +1326,38 @@
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Alojamentos\Assistente de alojamento\wzaloj.dproj">
-            <ProjectGuid>{3C5FCA58-CC78-4F14-87A3-38B06B6C2F09}</ProjectGuid>
+        <BuildGroupProject Include="..\Ferramentas\Log Reader\logrdr.dproj">
+            <ProjectGuid>{3689AB47-8C28-46E2-AA3F-5BA76BD674EA}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Alojamentos\alojamentos.dproj">
+            <ProjectGuid>{CC63FE09-89A3-458B-90B3-1FB07210E95E}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Alojamentos\Pesquisar alojamentos\pesalo.dproj">
+            <ProjectGuid>{F94D07F3-F424-418C-9223-0CE6FA56A5FF}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Segurança\secmod.dproj">
+            <ProjectGuid>{91E1BE7F-97B3-45B5-B996-A5927A6BFC37}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win64</Platforms>
+            <Enabled>True</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Utils\svcutils.dproj">
+            <ProjectGuid>{543EF321-6216-476A-B8AF-D44CED1E65EB}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Configuração de logs\pglogs.dproj">
+            <ProjectGuid>{0E085399-990B-4BF3-8A49-3D792B350339}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
@@ -1560,8 +1368,26 @@
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Inscrições\Inscrições\inscricoes.dproj">
-            <ProjectGuid>{BA0FA869-7977-4E6F-BF0C-1403B7473431}</ProjectGuid>
+        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Atualizador automático\updater.dproj">
+            <ProjectGuid>{BA92392E-2B74-4368-A3AE-600772798487}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Tabelas Acessorias\tabace.dproj">
+            <ProjectGuid>{2F84C9D7-D64B-4CC4-B2C0-E70B06976AC2}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win64</Platforms>
+            <Enabled>True</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Central de relatórios\repcen.dproj">
+            <ProjectGuid>{AEA2EC1D-0F0C-4941-BE5F-4C3C9493EB9A}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Commom Dialogs\cmdialogs.dproj">
+            <ProjectGuid>{BF57D30A-AC5E-40C8-89C6-7B6364F67636}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
@@ -1572,166 +1398,172 @@
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Biblioteca cliente\corelib.dproj">
+            <ProjectGuid>{9BD8E49E-8A60-4798-9EDC-E58DBB20CF45}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Data\Exporter\exporter.dproj">
+            <ProjectGuid>{E1D9D6CE-A73E-4BC4-9565-FE9DBF7FB46D}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Alojamentos\Assistente de alojamento\wzaloj.dproj">
+            <ProjectGuid>{3C5FCA58-CC78-4F14-87A3-38B06B6C2F09}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Inscrições\Pesquisar inscrições\pesinsc.dproj">
+            <ProjectGuid>{8F3B7694-44F3-463C-9A60-E49321D0CBC3}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Commom connection\cmcon.dproj">
+            <ProjectGuid>{D8A924A0-07F8-41CE-92A3-C8813CB1E259}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Servidores Datasnap\pgservers.dproj">
+            <ProjectGuid>{03B18A0F-AE90-4A60-830F-9DD2CE954915}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Data\Data Locate\locdata.dproj">
+            <ProjectGuid>{2C6183A1-942E-4346-B2DC-52603013B9B7}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Inscrições\Inscrições - detalhamento\detinscricoes.dproj">
+            <ProjectGuid>{C25DD789-8B6C-4A29-B85A-96A117A6436E}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Dialog de Mensagens\dlgmessage.dproj">
+            <ProjectGuid>{93CE368B-B43E-4C14-9497-DA8EACD884A6}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Interfaces\interfaces.dproj">
+            <ProjectGuid>{78B2F8C3-2895-4C6A-9628-FC95EA8ABDAC}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Inscrições\Inscrições\inscricoes.dproj">
+            <ProjectGuid>{BA0FA869-7977-4E6F-BF0C-1403B7473431}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Página do Updater\pgupdater.dproj">
+            <ProjectGuid>{CFB80F58-40FC-4DA7-813E-6FBC91CDD486}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="ServidorHTTPS\confserapp.dproj">
+            <ProjectGuid>{AE47016B-47D2-4227-8A4C-603A760E150E}</ProjectGuid>
+            <Configurations/>
+            <Platforms/>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="Cliente\gconf.dproj">
+            <ProjectGuid>{D2D6942B-C909-4C25-B2F3-05288D752FEE}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win64</Platforms>
+            <Enabled>True</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Abertura\opfocus.dproj">
+            <ProjectGuid>{A6549493-687F-401D-8309-1EEF677F5EB1}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Staff\staff.dproj">
+            <ProjectGuid>{5C3FB016-17E6-4B31-9ABB-35255D32070F}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
         <BuildGroupProject Include="..\..\Bibliotecas\Forms\Cosmos Default Wizard\defwiz.dproj">
             <ProjectGuid>{21FA52DC-D185-4065-ACF1-9ADA19C89B3B}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Core\Biblioteca cliente\corelib.dproj">
-            <ProjectGuid>{9BD8E49E-8A60-4798-9EDC-E58DBB20CF45}</ProjectGuid>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Ficha Cadastrado\ficha.dproj">
+            <ProjectGuid>{1547B11F-6F98-4940-8EC6-3A5551543F91}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Secretarias\Atividades\Agenda de atividades\agenda.dproj">
+            <ProjectGuid>{64396B1A-1861-4E21-9F79-DEAC4430527E}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Server Libraries\SQLCommands\sqlcmd.dproj">
+            <ProjectGuid>{17291A5A-756B-4CFE-AC63-893735A96858}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Ferramenta de Email\pgemail.dproj">
+            <ProjectGuid>{F9CA017B-C540-4813-AED7-888B7BC3C1EB}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Alojamentos\Classificadores de alojamento\classificadores.dproj">
+            <ProjectGuid>{37CBEC17-1CCE-4750-85DC-4DB93AA4F36F}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Commom\cmlib.dproj">
+            <ProjectGuid>{02E7228C-3F03-4AAF-A210-4FE35BF7152C}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\EventLog\events.dproj">
+            <ProjectGuid>{84C65035-5EED-4563-B1DF-14B18BD3ABAE}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Windows Manager\wmanager.dproj">
+            <ProjectGuid>{0F9CFE71-A52A-487A-8CC1-2B1F75DAA359}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\Help\helplib.dproj">
+            <ProjectGuid>{8C8793FE-6608-4E07-87CA-830518534DCD}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Splash Form\splash.dproj">
+            <ProjectGuid>{C932A03F-BA12-4AF2-ADA9-56F0B769925D}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
     </ItemGroup>
     <ItemGroup Condition="'$(BuildGroup)'=='CosmosCore'">
-        <BuildGroupProject Include="..\..\Bibliotecas\Tabelas Acessorias\tabace.dproj">
-            <ProjectGuid>{2F84C9D7-D64B-4CC4-B2C0-E70B06976AC2}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Página do Updater\pgupdater.dproj">
-            <ProjectGuid>{CFB80F58-40FC-4DA7-813E-6FBC91CDD486}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Segurança\secmod.dproj">
-            <ProjectGuid>{91E1BE7F-97B3-45B5-B996-A5927A6BFC37}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32;Win64</Platforms>
-            <Enabled>True</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\DockedForm\dockedform.dproj">
-            <ProjectGuid>{C298BC81-E5CD-4B35-BF14-B22EA7E42724}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Staff\staff.dproj">
-            <ProjectGuid>{5C3FB016-17E6-4B31-9ABB-35255D32070F}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Interface do Usuário\pgui.dproj">
-            <ProjectGuid>{A897C57F-EB7A-46E8-95E0-02C6F455C9B3}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Conferências\Nova Conferência\novaconf.dproj">
-            <ProjectGuid>{F733A639-0A5D-40E0-804B-B9008E457819}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\Shell\shellib.dproj">
-            <ProjectGuid>{05CBE2EC-3678-4FE7-AECF-9B4C4B683813}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Menu lateral\pgmenu.dproj">
-            <ProjectGuid>{2A523CCE-EF7B-434E-8634-8E50E754C15B}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Splash Form\splash.dproj">
-            <ProjectGuid>{C932A03F-BA12-4AF2-ADA9-56F0B769925D}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Exporter Default Dialog\dlgexporter.dproj">
-            <ProjectGuid>{A0415D85-2B5C-4BE7-A746-B0BCC818EFA7}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Core\Commom connection\cmcon.dproj">
-            <ProjectGuid>{D8A924A0-07F8-41CE-92A3-C8813CB1E259}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Core\Persistência de dados\cmpersist.dproj">
-            <ProjectGuid>{96D01F7A-8EA8-4343-A8C2-BBB9B8EBD655}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Core\Frames\frames.dproj">
-            <ProjectGuid>{E35B802D-98DE-4BCC-92B9-A95FED148A06}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Conferências\Pesquisar conferências\pescon.dproj">
-            <ProjectGuid>{520863F2-7FBA-409C-99D5-9BD06684E7EC}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
         <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Staff\Frame áreas staff\fmeareas.dproj">
             <ProjectGuid>{9A098882-3480-4945-8878-74250742D12F}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Inscrições\Pesquisar inscrições\pesinsc.dproj">
-            <ProjectGuid>{8F3B7694-44F3-463C-9A60-E49321D0CBC3}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Core\Dialog de Mensagens\dlgmessage.dproj">
-            <ProjectGuid>{93CE368B-B43E-4C14-9497-DA8EACD884A6}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\InfoConnection\coninfo.dproj">
-            <ProjectGuid>{5A59305E-1FC4-429C-A97E-F193BEBBFF4C}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Data\Data Locate\locdata.dproj">
-            <ProjectGuid>{2C6183A1-942E-4346-B2DC-52603013B9B7}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\Help\helplib.dproj">
-            <ProjectGuid>{8C8793FE-6608-4E07-87CA-830518534DCD}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="ServidorHTTPS\confserapp.dproj">
-            <ProjectGuid>{AE47016B-47D2-4227-8A4C-603A760E150E}</ProjectGuid>
-            <Configurations/>
-            <Platforms/>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\EventLog\events.dproj">
-            <ProjectGuid>{84C65035-5EED-4563-B1DF-14B18BD3ABAE}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="Cliente\Connection\confcon.dproj">
-            <ProjectGuid>{E2601375-7480-42FF-B07A-792D81A3EBD0}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Ficha Cadastrado\ficha.dproj">
-            <ProjectGuid>{1547B11F-6F98-4940-8EC6-3A5551543F91}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
@@ -1742,20 +1574,8 @@
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Alojamentos\alojamentos.dproj">
-            <ProjectGuid>{CC63FE09-89A3-458B-90B3-1FB07210E95E}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Windows Manager\wmanager.dproj">
-            <ProjectGuid>{0F9CFE71-A52A-487A-8CC1-2B1F75DAA359}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Core\Commom\cmlib.dproj">
-            <ProjectGuid>{02E7228C-3F03-4AAF-A210-4FE35BF7152C}</ProjectGuid>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Conferências\conferencias.dproj">
+            <ProjectGuid>{E2CDA8D6-682B-409A-ABDB-A05281605FFB}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
@@ -1766,50 +1586,26 @@
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Inscrições\Inscrições - detalhamento\detinscricoes.dproj">
-            <ProjectGuid>{C25DD789-8B6C-4A29-B85A-96A117A6436E}</ProjectGuid>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Frames\frames.dproj">
+            <ProjectGuid>{E35B802D-98DE-4BCC-92B9-A95FED148A06}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Conferências\conferencias.dproj">
-            <ProjectGuid>{E2CDA8D6-682B-409A-ABDB-A05281605FFB}</ProjectGuid>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\InfoConnection\coninfo.dproj">
+            <ProjectGuid>{5A59305E-1FC4-429C-A97E-F193BEBBFF4C}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="Windows Service\confsvc.dproj">
-            <ProjectGuid>{9E19A5DB-52EC-40E8-A781-F8B09221B69E}</ProjectGuid>
+        <BuildGroupProject Include="Cliente\Connection\confcon.dproj">
+            <ProjectGuid>{E2601375-7480-42FF-B07A-792D81A3EBD0}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Inscrições\Assistente de importação de inscrições\impinsc.dproj">
-            <ProjectGuid>{466455E8-B63C-44B0-B3D1-999A12470C00}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Staff\Áreas de staff\areastaff.dproj">
-            <ProjectGuid>{3B939480-B4D7-4F3D-AB08-76D13DE36E09}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\Ferramentas\Log Reader\logrdr.dproj">
-            <ProjectGuid>{3689AB47-8C28-46E2-AA3F-5BA76BD674EA}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Ferramenta de Email\pgemail.dproj">
-            <ProjectGuid>{F9CA017B-C540-4813-AED7-888B7BC3C1EB}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Modulos\cmmodules.dproj">
-            <ProjectGuid>{809128F1-6569-4AC0-A7CA-B1C695366B56}</ProjectGuid>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Conferências\Pesquisar conferências\pescon.dproj">
+            <ProjectGuid>{520863F2-7FBA-409C-99D5-9BD06684E7EC}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
@@ -1820,86 +1616,8 @@
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Central de relatórios\repcen.dproj">
-            <ProjectGuid>{AEA2EC1D-0F0C-4941-BE5F-4C3C9493EB9A}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Atualizador automático\updater.dproj">
-            <ProjectGuid>{BA92392E-2B74-4368-A3AE-600772798487}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="Cliente\gconf.dproj">
-            <ProjectGuid>{D2D6942B-C909-4C25-B2F3-05288D752FEE}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32;Win64</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Servidores Datasnap\pgservers.dproj">
-            <ProjectGuid>{03B18A0F-AE90-4A60-830F-9DD2CE954915}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Core\Commom Dialogs\cmdialogs.dproj">
-            <ProjectGuid>{BF57D30A-AC5E-40C8-89C6-7B6364F67636}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Alojamentos\Classificadores de alojamento\classificadores.dproj">
-            <ProjectGuid>{37CBEC17-1CCE-4750-85DC-4DB93AA4F36F}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Secretarias\Atividades\Agenda de atividades\dlgagenda.dproj">
-            <ProjectGuid>{1EBF92D3-1BD2-482E-8978-6702C9B6427C}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Alojamentos\Pesquisar alojamentos\pesalo.dproj">
-            <ProjectGuid>{F94D07F3-F424-418C-9223-0CE6FA56A5FF}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Core\Utils\svcutils.dproj">
-            <ProjectGuid>{543EF321-6216-476A-B8AF-D44CED1E65EB}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\Ferramentas\Starter\cmstarter.dproj">
-            <ProjectGuid>{5D116DB5-5B39-468D-94B4-129B01D75A30}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Configuração de logs\pglogs.dproj">
-            <ProjectGuid>{0E085399-990B-4BF3-8A49-3D792B350339}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Core\Interfaces\interfaces.dproj">
-            <ProjectGuid>{78B2F8C3-2895-4C6A-9628-FC95EA8ABDAC}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Server Libraries\SQLCommands\sqlcmd.dproj">
-            <ProjectGuid>{17291A5A-756B-4CFE-AC63-893735A96858}</ProjectGuid>
-            <Configurations>Debug</Configurations>
-            <Platforms>Win32</Platforms>
-            <Enabled>False</Enabled>
-        </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Data\Exporter\exporter.dproj">
-            <ProjectGuid>{E1D9D6CE-A73E-4BC4-9565-FE9DBF7FB46D}</ProjectGuid>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Staff\Áreas de staff\areastaff.dproj">
+            <ProjectGuid>{3B939480-B4D7-4F3D-AB08-76D13DE36E09}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
@@ -1910,14 +1628,38 @@
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Conferências\Nova Conferência\novaconf.dproj">
+            <ProjectGuid>{F733A639-0A5D-40E0-804B-B9008E457819}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\DockedForm\dockedform.dproj">
+            <ProjectGuid>{C298BC81-E5CD-4B35-BF14-B22EA7E42724}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Interface do Usuário\pgui.dproj">
+            <ProjectGuid>{A897C57F-EB7A-46E8-95E0-02C6F455C9B3}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
         <BuildGroupProject Include="..\..\Bibliotecas\Core\Common Client GUI\cmgui.dproj">
             <ProjectGuid>{5C943FEE-D127-4A70-9FF7-5AFF12582E42}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Secretarias\Atividades\Agenda de atividades\agenda.dproj">
-            <ProjectGuid>{64396B1A-1861-4E21-9F79-DEAC4430527E}</ProjectGuid>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Menu lateral\pgmenu.dproj">
+            <ProjectGuid>{2A523CCE-EF7B-434E-8634-8E50E754C15B}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Secretarias\Atividades\Agenda de atividades\dlgagenda.dproj">
+            <ProjectGuid>{1EBF92D3-1BD2-482E-8978-6702C9B6427C}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
@@ -1928,8 +1670,38 @@
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Abertura\opfocus.dproj">
-            <ProjectGuid>{A6549493-687F-401D-8309-1EEF677F5EB1}</ProjectGuid>
+        <BuildGroupProject Include="Windows Service\confsvc.dproj">
+            <ProjectGuid>{9E19A5DB-52EC-40E8-A781-F8B09221B69E}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Exporter Default Dialog\dlgexporter.dproj">
+            <ProjectGuid>{A0415D85-2B5C-4BE7-A746-B0BCC818EFA7}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Persistência de dados\cmpersist.dproj">
+            <ProjectGuid>{96D01F7A-8EA8-4343-A8C2-BBB9B8EBD655}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Modulos\cmmodules.dproj">
+            <ProjectGuid>{809128F1-6569-4AC0-A7CA-B1C695366B56}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\Shell\shellib.dproj">
+            <ProjectGuid>{05CBE2EC-3678-4FE7-AECF-9B4C4B683813}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Inscrições\Assistente de importação de inscrições\impinsc.dproj">
+            <ProjectGuid>{466455E8-B63C-44B0-B3D1-999A12470C00}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
@@ -1940,8 +1712,38 @@
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Alojamentos\Assistente de alojamento\wzaloj.dproj">
-            <ProjectGuid>{3C5FCA58-CC78-4F14-87A3-38B06B6C2F09}</ProjectGuid>
+        <BuildGroupProject Include="..\Ferramentas\Log Reader\logrdr.dproj">
+            <ProjectGuid>{3689AB47-8C28-46E2-AA3F-5BA76BD674EA}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Alojamentos\alojamentos.dproj">
+            <ProjectGuid>{CC63FE09-89A3-458B-90B3-1FB07210E95E}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Alojamentos\Pesquisar alojamentos\pesalo.dproj">
+            <ProjectGuid>{F94D07F3-F424-418C-9223-0CE6FA56A5FF}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Segurança\secmod.dproj">
+            <ProjectGuid>{91E1BE7F-97B3-45B5-B996-A5927A6BFC37}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32;Win64</Platforms>
+            <Enabled>True</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Utils\svcutils.dproj">
+            <ProjectGuid>{543EF321-6216-476A-B8AF-D44CED1E65EB}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Configuração de logs\pglogs.dproj">
+            <ProjectGuid>{0E085399-990B-4BF3-8A49-3D792B350339}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
@@ -1952,8 +1754,26 @@
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Inscrições\Inscrições\inscricoes.dproj">
-            <ProjectGuid>{BA0FA869-7977-4E6F-BF0C-1403B7473431}</ProjectGuid>
+        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Atualizador automático\updater.dproj">
+            <ProjectGuid>{BA92392E-2B74-4368-A3AE-600772798487}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Tabelas Acessorias\tabace.dproj">
+            <ProjectGuid>{2F84C9D7-D64B-4CC4-B2C0-E70B06976AC2}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Central de relatórios\repcen.dproj">
+            <ProjectGuid>{AEA2EC1D-0F0C-4941-BE5F-4C3C9493EB9A}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Commom Dialogs\cmdialogs.dproj">
+            <ProjectGuid>{BF57D30A-AC5E-40C8-89C6-7B6364F67636}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
@@ -1964,14 +1784,164 @@
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Biblioteca cliente\corelib.dproj">
+            <ProjectGuid>{9BD8E49E-8A60-4798-9EDC-E58DBB20CF45}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Data\Exporter\exporter.dproj">
+            <ProjectGuid>{E1D9D6CE-A73E-4BC4-9565-FE9DBF7FB46D}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Alojamentos\Assistente de alojamento\wzaloj.dproj">
+            <ProjectGuid>{3C5FCA58-CC78-4F14-87A3-38B06B6C2F09}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Inscrições\Pesquisar inscrições\pesinsc.dproj">
+            <ProjectGuid>{8F3B7694-44F3-463C-9A60-E49321D0CBC3}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Commom connection\cmcon.dproj">
+            <ProjectGuid>{D8A924A0-07F8-41CE-92A3-C8813CB1E259}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Servidores Datasnap\pgservers.dproj">
+            <ProjectGuid>{03B18A0F-AE90-4A60-830F-9DD2CE954915}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Data\Data Locate\locdata.dproj">
+            <ProjectGuid>{2C6183A1-942E-4346-B2DC-52603013B9B7}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Inscrições\Inscrições - detalhamento\detinscricoes.dproj">
+            <ProjectGuid>{C25DD789-8B6C-4A29-B85A-96A117A6436E}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Dialog de Mensagens\dlgmessage.dproj">
+            <ProjectGuid>{93CE368B-B43E-4C14-9497-DA8EACD884A6}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Interfaces\interfaces.dproj">
+            <ProjectGuid>{78B2F8C3-2895-4C6A-9628-FC95EA8ABDAC}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Inscrições\Inscrições\inscricoes.dproj">
+            <ProjectGuid>{BA0FA869-7977-4E6F-BF0C-1403B7473431}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Página do Updater\pgupdater.dproj">
+            <ProjectGuid>{CFB80F58-40FC-4DA7-813E-6FBC91CDD486}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="ServidorHTTPS\confserapp.dproj">
+            <ProjectGuid>{AE47016B-47D2-4227-8A4C-603A760E150E}</ProjectGuid>
+            <Configurations/>
+            <Platforms/>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="Cliente\gconf.dproj">
+            <ProjectGuid>{D2D6942B-C909-4C25-B2F3-05288D752FEE}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32;Win64</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Abertura\opfocus.dproj">
+            <ProjectGuid>{A6549493-687F-401D-8309-1EEF677F5EB1}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Staff\staff.dproj">
+            <ProjectGuid>{5C3FB016-17E6-4B31-9ABB-35255D32070F}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
         <BuildGroupProject Include="..\..\Bibliotecas\Forms\Cosmos Default Wizard\defwiz.dproj">
             <ProjectGuid>{21FA52DC-D185-4065-ACF1-9ADA19C89B3B}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>
         </BuildGroupProject>
-        <BuildGroupProject Include="..\..\Bibliotecas\Core\Biblioteca cliente\corelib.dproj">
-            <ProjectGuid>{9BD8E49E-8A60-4798-9EDC-E58DBB20CF45}</ProjectGuid>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Ficha Cadastrado\ficha.dproj">
+            <ProjectGuid>{1547B11F-6F98-4940-8EC6-3A5551543F91}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Secretarias\Atividades\Agenda de atividades\agenda.dproj">
+            <ProjectGuid>{64396B1A-1861-4E21-9F79-DEAC4430527E}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Server Libraries\SQLCommands\sqlcmd.dproj">
+            <ProjectGuid>{17291A5A-756B-4CFE-AC63-893735A96858}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Config Form\Páginas de Configuração\Ferramenta de Email\pgemail.dproj">
+            <ProjectGuid>{F9CA017B-C540-4813-AED7-888B7BC3C1EB}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Conferências\Alojamentos\Classificadores de alojamento\classificadores.dproj">
+            <ProjectGuid>{37CBEC17-1CCE-4750-85DC-4DB93AA4F36F}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Core\Commom\cmlib.dproj">
+            <ProjectGuid>{02E7228C-3F03-4AAF-A210-4FE35BF7152C}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\EventLog\events.dproj">
+            <ProjectGuid>{84C65035-5EED-4563-B1DF-14B18BD3ABAE}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Ferramentas\Windows Manager\wmanager.dproj">
+            <ProjectGuid>{0F9CFE71-A52A-487A-8CC1-2B1F75DAA359}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Sistema\Help\helplib.dproj">
+            <ProjectGuid>{8C8793FE-6608-4E07-87CA-830518534DCD}</ProjectGuid>
+            <Configurations>Debug</Configurations>
+            <Platforms>Win32</Platforms>
+            <Enabled>False</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="..\..\Bibliotecas\Forms\Splash Form\splash.dproj">
+            <ProjectGuid>{C932A03F-BA12-4AF2-ADA9-56F0B769925D}</ProjectGuid>
             <Configurations>Debug</Configurations>
             <Platforms>Win32</Platforms>
             <Enabled>False</Enabled>

@@ -1,45 +1,37 @@
 unit cosmos.system.types;
 
+{Contém alguns tipos primitivos usados ao logo das aplicações Cosmos.}
 interface
 
-uses
-  winapi.windows, system.SysUtils;
-
 type
- //Representa um protocolo de comunicação com o servidor.
- TConnectionProtocol = (cpTCP, cpHTTP, cpHTTPS);
 
  TNotifyMode = (nmNotify, nmNoNotify, nmRegisterLog);
 
- TProtocols = set of TConnectionProtocol;
-
- {Representa a situação de uma conexão como uma sequência de fases e status finais.}
- TConnectionStatus = (csOnConnectingHost, csHostConnected, csVerifyingIdentity,
-   csGettingAuthorizations, csCheckingCertificate, csAuthorizedUser, csAuthenticationInvalid, csLoadingData,
-   csApplyPermissions, csOnDisconnectingHost, csHostDisconnected,
-   csUserLocked, csServerLocked, csAborted, csRefusedConnection, csHostNotFound,
-   csTimeoutExpired, csConnectError, csCreatingConnectionsPool, csBufferingData);
-
- //Formato de exportação de dados.
- TExportFormat = (efMSWord, efMSExcel, efXML, efHTML, efText, efOpenOffice, efCSV);
- TExportFormatSet = set of TExportFormat;
-
- {Status do usuário:
-  usCosmosUser = Usuário regular do Cosmos.
-  usBlockedUser = Usuário do Cosmos que está bloqueado na tabela de usuários.
-  usUnknown = Não foi possíve identificar o usuário na tabela de usuários.
-  usSysdba = O usuário é o usuário interno do sistema.}
-
- TUserStatus = (usCosmosUser, usBlockedUser, usUnknown, usSysdba);
-
+ //Módulos do Cosmos.
  TCosmosModules = (cmFocos, cmFocosServer, cmSecretarias, cmSecretariasServer, cmFinanceiro,
   cmFinanceiroServer, cmConferencias, cmConferenciasServer, cmUsuarios,
   cmUsuariosServer, cmSincMestre, cmSincEscravo);
 
+ TUserStatus = (usCosmosUser, usBlockedUser, usUnknown, usSysdba);
+ {Status do usuário:
+  "usCosmosUser" representa o usuário regular do Cosmos.
+  "usBlockedUser" representa o usuário do Cosmos que está bloqueado na tabela
+                  de usuários.
+  "usUnknown" indica que não foi possíve identificar o usuário na tabela de usuários.
+  "usSysdba" indica que o usuário utilizado em uma conexão foi o usuário
+             interno do sistema.}
+
+ //Tipos de mensagens aos usuários.
  TMessageType = (mtpSucess, mtpError, mtpWarning, mtpConfirmation, mtpInformation);
 
+ //Informações existentes nas mensagens aos usuários.
  TMessageInfo = (miInnerMessage, miInstallationID, miMethodName, miMethodParameters,
    miRoleName, miSourceName, miUserName, miCommand, miExceptionClassName, miCustomInfo);
+
+ //Formato de exportação de dados.
+ TExportFormat = (efMSWord, efMSExcel, efXML, efHTML, efText, efOpenOffice, efCSV);
+
+ TExportFormatSet = set of TExportFormat;
 
 implementation
 

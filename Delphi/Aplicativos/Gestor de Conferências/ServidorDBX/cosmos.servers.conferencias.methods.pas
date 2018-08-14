@@ -8,7 +8,7 @@ uses
   cosmos.servers.sqlcommands, System.Variants, cosmos.classes.dataobjects,
   cosmos.classes.ServerInterface, Data.DB, Data.DBXCommon, DBClient, Data.FMTBcd,
   Data.SqlExpr, Datasnap.Provider, DataSnap.DsSession, DataSnap.DSProviderDataModuleAdapter,
-  cosmos.business.focos, cosmos.classes.logs, Data.DBXDBReaders;
+  cosmos.business.focos, cosmos.classes.logs, Data.DBXDBReaders, cosmos.classes.cmdFactories;
 
 type
   {$METHODINFO OFF}

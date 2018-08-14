@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, FormCosmosHelpDialog, ExtCtrls, StdCtrls, DBCtrls,
+  Dialogs, FormCosmosHelpDialog, ExtCtrls, StdCtrls, DBCtrls, cosmos.system.dataconverter,
   cosmos.frames.fkSearch, Mask, GroupHeader, DB, DBClient, cosmos.classes.application,
   cosmos.classes.ServerInterface, cosmos.frames.gridsearch, FrameDBInsertVertical,
   Datasnap.DSConnect, cosmos.Framework.Interfaces.dataacess;

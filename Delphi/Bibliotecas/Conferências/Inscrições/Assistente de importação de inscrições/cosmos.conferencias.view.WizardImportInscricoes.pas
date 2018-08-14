@@ -8,9 +8,9 @@ uses
   ComCtrls, StdCtrls, Buttons, cosmos.system.messages, cosmos.classes.application,
   DB, DBClient, Grids, DBGrids, cosmos.frames.gridsearch, cosmos.business.focos,
   cosmos.classes.ServerInterface, cosmos.frames.searchdata, Vcl.Menus,
-  Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnPopup, GroupHeader,
+  Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnPopup, GroupHeader, cosmos.system.dataconverter,
   cosmos.conferencias.inscricoes.importacoes, Vcl.Imaging.pngimage,
-  System.Actions, Cosmos.Framework.Interfaces.Root;
+  System.Actions, Cosmos.Framework.Interfaces.Root, System.ImageList;
 
 type
   TImportModel = (imInternet, imFile, imReferencedConference);
