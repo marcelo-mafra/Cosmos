@@ -33,11 +33,8 @@ requires
   rtl,
   dbrtl,
   dsnap,
-  DbxCommonDriver,
-  dbexpress,
   cmlib,
   sqlcmd,
-  DBXFirebirdDriver,
   cmpersist,
   secmod,
   dbxObjects;

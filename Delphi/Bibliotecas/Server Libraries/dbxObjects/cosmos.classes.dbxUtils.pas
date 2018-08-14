@@ -3,7 +3,8 @@ unit cosmos.classes.dbxUtils;
 interface
 
 uses
- Winapi.Windows, System.SysUtils, System.IniFiles, cosmos.system.files;
+ Winapi.Windows, System.SysUtils, cosmos.classes.persistence.ini,
+ cosmos.system.files;
 
  type
 
@@ -32,11 +33,11 @@ end;
 
 class function TCosmosInfoFiles.GetDBInfoFile: string;
 var
- AFile: TMemIniFile;
+ AFile: TIniFilePersistence;
 begin
 {Recupera o caminho do arquivo de configurações de conexão com o banco de dados
  do Cosmos.}
-  AFile := TMemIniFile.Create(CosmosRootFile);
+  AFile := TIniFilePersistence.Create(CosmosRootFile, True);
 
   try
     Result := AFile.ReadString('ServerInfo', 'ConfFilePath', ''); //do not localize!

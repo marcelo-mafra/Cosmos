@@ -6,11 +6,9 @@ uses
  System.Classes, System.SysUtils, Data.DBXCommon, Data.SQLExpr, Datasnap.Provider,
  Data.DBXDBReaders, Data.DB, Datasnap.DBClient, System.Generics.Collections,
  cosmos.system.files, cosmos.classes.cosmoscript, cosmos.classes.dbxUtils;
- {, cosmos.servers.sqlcommands,
- cosmos.classes.ServerInterface, cosmos.system.exceptions,
- cosmos.classes.application, Datasnap.Provider,
- cosmos.system.messages, , ,
- ;}
+
+const
+ sENoConnectionsPool = 'Não há um pool criado!'; //Transferir daqui.
 
 type
 //Implementa um simples pool de conexões com o banco de dados.
@@ -19,40 +17,26 @@ type
    FConnectionParamsFile: string;
    FConnectionsPool:  TDictionary<Int64, TSQLConnection>;
    FOnErrorEvent: TDBXErrorEvent;
+   function GetConnection: TSQLConnection; overload;
    function GetConnectionsCount: integer;
+   procedure StartSQLServer;
 
   public
    constructor Create(const ConnectionParamsFile: string);
    destructor Destroy;
-   procedure ClearAll;
 
-   function GetConnection: TSQLConnection; overload;
+   procedure ClearAll;
    procedure FillPool(const ObjCount: integer);
    procedure RemoveConnection(const SessionId: Int64);
 
+   property Connection: TSQLConnection read GetConnection;
    property ConnectionsCount: integer read GetConnectionsCount;
    property OnErrorEvent: TDBXErrorEvent read FOnErrorEvent write FOnErrorEvent;
  end;
 
- //Classe base que implementa recursos básicos, como criação de conexões e datasets.
- TdbxObject = class (TInterfacedPersistent)
-
-  private
-   sSystemUser: string;
-   procedure LoadConnectionParams(SQLCon: TSQLConnection);
-   function CreateDataset(Connection: TSQLConnection): TSQLDataset;
-
-  public
-   constructor Create;
-   destructor Destroy; override;
-
-   function CreateConnection: TSQLConnection;
- end;
-
  //Abstrai um objeto controlador do transações no servidor SQL.
- TdbxTransactionsManager = class(TdbxObject)
+ TdbxTransactionsManager = class
   private
-   procedure StartSQLServer;
 
   public
    constructor Create;
@@ -66,10 +50,27 @@ type
 
  end;
 
+ //Classe base que implementa recursos básicos, como criação de conexões e datasets.
+ TdbxObject = class (TInterfacedPersistent)
+
+  private
+   FConnectionsPool: TConnectionsPool;
+   procedure SetConnectionsPool(ConnectionsPool: TConnectionsPool);
+   function CreateDataset(Connection: TSQLConnection): TSQLDataset; overload;
+   function CreateDataset: TSQLDataset; overload;
+
+  public
+   constructor Create;
+   destructor Destroy; override;
+
+   property ConnectionsPool: TConnectionsPool read FConnectionsPool write SetConnectionsPool;
+ end;
+
  //Abstrai operações de execução de comandos no servidor SQL.
  TdbxCommand = class(TdbxObject)
  private
    procedure CloseDataset(Dataset: TDataset); inline;
+   procedure ExecuteDQL(const DQL: WideString; Dataset: TSQLDataset); overload;
 
   public
    constructor Create;
@@ -78,7 +79,6 @@ type
    function ExecuteCommand(const Command: WideString): integer;
    function ExecuteScript(Connection: TSQLConnection; Script: TStringList): boolean; overload;
    function ExecuteScript(Script: TStringList): boolean; overload;
-   procedure ExecuteDQL(const DQL: WideString; Dataset: TSQLDataset); overload;
    procedure ExecuteDQL(const DQL: WideString; Dataset: TClientDataset); overload;
 
  end;
@@ -139,11 +139,6 @@ begin
    Connection.RollbackFreeAndNil(Transaction);
 end;
 
-procedure TdbxTransactionsManager.StartSQLServer;
-begin
-//To do.
-end;
-
 { TdbxCommand }
 
 constructor TdbxCommand.Create;
@@ -159,25 +154,25 @@ end;
 function TdbxCommand.ExecuteCommand(const Command: WideString): integer;
 var
  AConnection: TSQLConnection;
- AServer: TdbxTransactionsManager;
+ ATrans: TdbxTransactionsManager;
  TD: TDBXTransaction;
 begin
 //Executa um comando no banco de dados.
- AConnection := self.CreateConnection;
- AServer := TdbxTransactionsManager.Create;
+ AConnection := self.ConnectionsPool.Connection;
+ ATrans := TdbxTransactionsManager.Create;
 
  try
-  TD := AServer.BeginTransaction(AConnection);
+  TD := ATrans.BeginTransaction(AConnection);
   Result := AConnection.ExecuteDirect(Command);
 
   if AConnection.InTransaction then
-   AServer.CommitTransaction(AConnection, TD);
+   ATrans.CommitTransaction(AConnection, TD);
 
-  if Assigned(AConnection) then
-   FreeAndNil(AConnection);
+  if Assigned(ATrans) then
+   FreeAndNil(ATrans);
 
-  if Assigned(AServer) then
-   FreeAndNil(AServer);
+  //Não destrói a conexão, pois ela é apenas um ponteiro para um objeto do pool.
+  AConnection := nil;
 
   {Isto é necessário porque o retorno do método ExecuteDirect, chamado acima,
    sempre está retornado 0. É uma falha do DBExpress.}
@@ -186,13 +181,12 @@ begin
 
  except
   if AConnection.InTransaction then
-   AServer.RollbackTransaction(AConnection, TD);
+   ATrans.RollbackTransaction(AConnection, TD);
 
-  if Assigned(AConnection) then
-   FreeAndNil(AConnection);
+  if Assigned(ATrans) then
+   FreeAndNil(ATrans);
 
-  if Assigned(AServer) then
-   FreeAndNil(AServer);
+  AConnection := nil;
 
   raise;
  end;
@@ -201,7 +195,6 @@ end;
 procedure TdbxCommand.ExecuteDQL(const DQL: WideString;
   Dataset: TClientDataset);
 var
-AConnection: TSQLConnection;
 ADataset: TSQLDataset;
 AProvider: TDatasetProvider;
 begin
@@ -209,18 +202,15 @@ begin
 no RAD Studio 2010, o método CopyReaderToClientDataSet trunca as strings. Então,
 usamos um DatasetProvider.}
 
- AConnection := self.CreateConnection;
- ADataset := TSQLDataset.Create(nil);
+ ADataset := self.CreateDataset;
  AProvider := TDatasetProvider.Create(nil);
+ AProvider.DataSet := ADataset;
 
  try
-  ADataset.SQLConnection := AConnection;
-  ADataset.CommandText := DQL;
-  AProvider.DataSet := ADataset;
+  self.ExecuteDQL(DQL, ADataset);
   Dataset.Data := AProvider.Data;
 
  finally
-  if Assigned(AConnection) then FreeAndNil(AConnection);
   if Assigned(ADataset) then FreeAndNil(ADataset);
   if Assigned(AProvider) then FreeAndNil(AProvider);
  end;
@@ -229,19 +219,19 @@ end;
 function TdbxCommand.ExecuteScript(Script: TStringList): boolean;
 var
 TD: TDBXTransaction;  //Objeto que implementa transações no DBExpress
-AServer: TdbxTransactionsManager;
+ATrans: TdbxTransactionsManager;
 AConnection: TSQLConnection;
 ACommand: string;
 I: integer;
 begin
 {Executa um script com diversos comandos sql de forma atômica. Caso ocorra
 alguma falha, toda operação será desfeita.}
- AServer := TdbxTransactionsManager.Create;
- AConnection := self.CreateConnection;
+ ATrans := TdbxTransactionsManager.Create;
+ AConnection := self.ConnectionsPool.Connection;
 
  try
  //Inicia uma nova transação
-  TD := AServer.BeginTransaction(AConnection);
+  TD := ATrans.BeginTransaction(AConnection);
 
   for I := 0 to Pred(Script.Count) do
     begin
@@ -250,15 +240,14 @@ alguma falha, toda operação será desfeita.}
     end;
 
   if AConnection.InTransaction then
-   AServer.CommitTransaction(AConnection, TD);
+   ATrans.CommitTransaction(AConnection, TD);
 
   Result := True;
 
-  if Assigned(AServer) then
-   FreeAndNil(AServer);
+  if Assigned(ATrans) then
+   FreeAndNil(ATrans);
 
-  if Assigned(AConnection) then
-   FreeAndNil(AConnection);
+  AConnection := nil;
 
  except
   on E: Exception do //Deu pau...
@@ -268,11 +257,11 @@ alguma falha, toda operação será desfeita.}
     if Assigned(AConnection) then
      begin
       if AConnection.InTransaction then
-       AServer.RollbackTransaction(AConnection, TD);
+       ATrans.RollbackTransaction(AConnection, TD);
      end;
 
-    if Assigned(AServer) then FreeAndNil(AServer);
-    if Assigned(AConnection) then FreeAndNil(AConnection);
+    if Assigned(ATrans) then FreeAndNil(ATrans);
+    AConnection := nil;
 
     raise;
    end;
@@ -290,6 +279,7 @@ begin
 //Executa um comando DQL no banco de dados e retorna um cursosr unidirecional.
  try
   CloseDataset(Dataset);
+  Dataset.SQLConnection := self.ConnectionsPool.Connection;
   Dataset.CommandText := DQL;
   Dataset.Open;
 
@@ -302,17 +292,17 @@ function TdbxCommand.ExecuteScript(Connection: TSQLConnection;
   Script: TStringList): boolean;
 var
 TD: TDBXTransaction;  //Objeto que implementa transações no DBExpress
-AServer: TdbxTransactionsManager;
+ATrans: TdbxTransactionsManager;
 ACommand: string;
 I: integer;
 begin
 {Executa um script com diversos comandos sql de forma atômica. Caso ocorra
 alguma falha, toda operação será desfeita.}
- AServer := TdbxTransactionsManager.Create;
+ ATrans := TdbxTransactionsManager.Create;
 
  try
  //Inicia uma nova transação
-  TD := AServer.BeginTransaction(Connection);
+  TD := ATrans.BeginTransaction(Connection);
 
   for I := 0 to Pred(Script.Count) do
     begin
@@ -320,11 +310,11 @@ alguma falha, toda operação será desfeita.}
      Connection.ExecuteDirect(ACommand);
     end;
 
-  AServer.CommitTransaction(Connection, TD);
+  ATrans.CommitTransaction(Connection, TD);
   Result := True;
 
-  if Assigned(AServer) then
-   FreeAndNil(AServer);
+  if Assigned(ATrans) then
+   FreeAndNil(ATrans);
 
 
  except
@@ -332,52 +322,52 @@ alguma falha, toda operação será desfeita.}
    begin
    {A checagem abaixo evita que outros erros não tenham permitido o início da
     transação. p. exe: queda ou travamento do servidor sql}
-    AServer.RollbackTransaction(Connection, TD);
+    ATrans.RollbackTransaction(Connection, TD);
 
-    if Assigned(AServer) then
-     FreeAndNil(AServer);
+    if Assigned(ATrans) then
+     FreeAndNil(ATrans);
 
     raise;
    end;
  end;
 end;
 
-{ TSQLServerObject }
+{ TdbxObject }
 
 constructor TdbxObject.Create;
 begin
  inherited Create;
 end;
 
-function TdbxObject.CreateConnection: TSQLConnection;
+function TdbxObject.CreateDataset: TSQLDataset;
 begin
- Result := TSQLConnection.Create(nil);
- self.LoadConnectionParams(Result);
+//Cria um dataset e o liga a uma conexão do pool.
+ if Assigned(FConnectionsPool) then
+  begin
+   Result := TSQLDataset.Create(nil);
+   Result.SQLConnection := FConnectionsPool.Connection;
+  end
+ else
+  raise Exception.Create(sENoConnectionsPool);
 end;
 
 function TdbxObject.CreateDataset(Connection: TSQLConnection): TSQLDataset;
 begin
+{Este método não utiiza o pool de conexões, mas o objeto passado em parâmetro.
+Se o objeto passado em parâmetro pertencer a um pool, então o mesmo será usado.}
  Result := TSQLDataset.Create(nil);
  Result.SQLConnection := Connection;
 end;
 
 destructor TdbxObject.Destroy;
 begin
+  FConnectionsPool := nil;
   inherited;
 end;
 
-procedure TdbxObject.LoadConnectionParams(SQLCon: TSQLConnection);
+procedure TdbxObject.SetConnectionsPool(ConnectionsPool: TConnectionsPool);
 begin
-  //Carrega os dados de conexão na memória para um objeto de conexão.
-   SQLCon.ConnectionName := 'COSMOS'; //do not localize!
-   SQLCon.LoadParamsFromIniFile(TCosmosInfoFiles.DBInfoFile);
-   SQLCon.LoginPrompt := False;
-
-   SQLCon.DriverName := 'FIREBIRD'; //do not localize!
-   SQLCon.GetDriverFunc :=  'getSQLDriverINTERBASE'; //do not localize!
-   SQLCon.LibraryName := 'dbxfb.dll'; //do not localize!
-   SQLCon.VendorLib := 'fbclient.dll'; //do not localize!
-   sSystemUser := SQLCon.Params.Values['user_name'];
+ FConnectionsPool := ConnectionsPool;
 end;
 
 { TConnectionsPool }
@@ -430,7 +420,6 @@ begin
  I := ObjCount;
  Randomize;
  aParams := TStringList.Create;
-
  aParams.LoadFromFile(FConnectionParamsFile);
 
  try
@@ -545,6 +534,12 @@ begin
    DbCon.Free;
    FConnectionsPool.Remove(SessionId);
   end;
+end;
+
+procedure TConnectionsPool.StartSQLServer;
+begin
+//Inicia o servidor SQL caso o serviço do mesmo esteja parado.
+//To do.
 end;
 
 end.

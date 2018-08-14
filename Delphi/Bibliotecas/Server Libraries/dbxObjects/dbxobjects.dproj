@@ -140,6 +140,12 @@
         <DCCReference Include="rtl.dcp"/>
         <DCCReference Include="cmlib.dcp"/>
         <DCCReference Include="secmod.dcp"/>
+        <DCCReference Include="cmpersist.dcp"/>
+        <DCCReference Include="dbExpress.dcp"/>
+        <DCCReference Include="dbxCommonDriver.dcp"/>
+        <DCCReference Include="dbxFirebirdDriver.dcp"/>
+        <DCCReference Include="dsnap.dcp"/>
+        <DCCReference Include="dbrtl.dcp"/>
         <DCCReference Include="cosmos.classes.dbxObjects.pas"/>
         <DCCReference Include="cosmos.classes.dbxUtils.pas"/>
         <BuildConfiguration Include="Release">

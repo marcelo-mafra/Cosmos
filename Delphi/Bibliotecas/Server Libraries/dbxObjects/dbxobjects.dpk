@@ -31,7 +31,13 @@ package dbxobjects;
 requires
   rtl,
   cmlib,
-  secmod;
+  secmod,
+  cmpersist,
+  dbExpress,
+  dbxCommonDriver,
+  dbxFirebirdDriver,
+  dsnap,
+  dbrtl;
 
 contains
   cosmos.classes.dbxObjects in 'cosmos.classes.dbxObjects.pas',

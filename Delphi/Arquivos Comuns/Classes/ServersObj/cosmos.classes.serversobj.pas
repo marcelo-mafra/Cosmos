@@ -3,9 +3,9 @@ unit cosmos.classes.serversobj;
 interface
 
 uses
- Classes, Windows, SysUtils, Data.SQLExpr, cosmos.system.types, cosmos.system.files,
+ Classes, Windows, SysUtils, DataSnap.DBClient, cosmos.system.types, cosmos.system.files,
  cosmos.system.messages, cosmos.classes.application, cosmos.servers.sqlcommands,
- cosmos.classes.persistence.ini, cosmos.classes.dataobjects;
+ cosmos.classes.persistence.ini, cosmos.classes.dataobjects, cosmos.classes.serversutils;
 
 type
 
@@ -22,23 +22,23 @@ type
 
 implementation
 
-{ TCosmosFields }
-
 { TCosmosMethods }
 
 class function TCosmosMethods.CanAccessModule(const UserId: integer;
   CosmosModule: TCosmosModules): boolean;
 var
-ACommand: TSQLServerCommand;
-AConnection: TSQLConnection;
-ADataset: TSQLDataset;
-sCommand, sParam: string;
+ APool: TCosmosConnectionsPool;
+ ACommand: TCosmosCommand;
+ ADataset: TClientDataset;
+ sCommand, sParam: string;
 begin
 {Verifica se um usuário pode acessar determinado módulo do Cosmos.}
- ACommand := TSQLServerCommand.Create;
- AConnection :=  ACommand.CreateConnection;
- ADataset := TSQLDataset.Create(nil);
- ADataset.SQLConnection := AConnection;
+ APool := TCosmosConnectionsPool.Create(TCosmosInfoFiles.GetDatabaseConfigurationFile);
+ APool.FillPool(1);
+
+ ACommand := TCosmosCommand.Create;
+ ACommand.ConnectionsPool := APool;
+ ADataset := TClientDataset.Create(nil);
 
  try
   case CosmosModule of
@@ -56,12 +56,24 @@ begin
 
   Result := not ADataset.IsEmpty;
 
+  if Assigned(ACommand) then FreeAndNil(ACommand);
+  if Assigned(ADataset) then FreeAndNil(ADataset);
+  if Assigned(APool) then
+     begin
+       APool.ClearAll;
+       FreeAndNil(APool);
+     end;
+
  except
   on E: Exception do
    begin
     if Assigned(ACommand) then FreeAndNil(ACommand);
     if Assigned(ADataset) then FreeAndNil(ADataset);
-    if Assigned(AConnection) then FreeAndNil(AConnection);
+    if Assigned(APool) then
+     begin
+       APool.ClearAll;
+       FreeAndNil(APool);
+     end;
     raise;
    end;
  end;
@@ -100,26 +112,39 @@ end;
 class function TCosmosMethods.IsAdministrator(
   const UserName: WideString): Boolean;
 var
-ACommand: TSQLServerCommand;
-ADataset: TSQLDataset;
+APool : TCosmosConnectionsPool;
+ACommand: TCosmosCommand;
+ADataset: TClientDataset;
 sCommand: string;
 begin
 //Checa se um usuário é um administrador do sistema.
- ACommand := TSQLServerCommand.Create;
+ APool := TCosmosConnectionsPool.Create(TCosmosInfoFiles.GetDatabaseConfigurationFile);
+ APool.FillPool(1);
+
+ ACommand := TCosmosCommand.Create;
+ ACommand.ConnectionsPool := APool;
+ ADataset := TClientDataset.Create(nil);
 
  try
   sCommand := Format(TSecurityCommand.AdmUSer,[QuotedStr(UserName)]);
   ACommand.ExecuteDQL(sCommand, ADataset);
   Result := ADataset.Fields.Fields[0].AsString = 'S';
 
+  APool.ClearAll;
   if Assigned(ACommand) then FreeAndNil(ACommand);
   if Assigned(ADataset) then FreeAndNil(ADataset);
+  if Assigned(APool) then FreeAndNil(APool);
 
  except
   on E: Exception do
    begin
     if Assigned(ACommand) then FreeAndNil(ACommand);
     if Assigned(ADataset) then FreeAndNil(ADataset);
+    if Assigned(APool) then
+     begin
+       APool.ClearAll;
+       FreeAndNil(APool);
+     end;
     raise;
    end;
  end;

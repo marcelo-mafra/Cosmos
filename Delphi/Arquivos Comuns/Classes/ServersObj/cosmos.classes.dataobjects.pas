@@ -3,44 +3,64 @@ unit cosmos.classes.dataobjects;
 interface
 
 uses
- System.Classes, System.SysUtils, Data.DBXCommon, Data.SQLExpr,
- Data.DBXDBReaders, Data.DB, Datasnap.DBClient, cosmos.servers.sqlcommands,
- cosmos.classes.ServerInterface, cosmos.system.exceptions, cosmos.classes.dbxObjects,
- cosmos.classes.application, Datasnap.Provider, cosmos.system.files,
- cosmos.system.messages, cosmos.classes.serversutils, cosmos.classes.cosmoscript,
- System.Generics.Collections;
+ System.Classes, System.SysUtils, DataSnap.DBClient, cosmos.classes.dbxObjects,
+ cosmos.classes.datobj.interfaces;
 
 type
 
- //Classe base que implementa recursos básicos, como criação de conexões e datasets.
- TSQLServerObject = class (TInterfacedPersistent)
-
-  private
-   sSystemUser: string;
-   procedure LoadConnectionParams(SQLCon: TSQLConnection);
+//Encapsula um simples pool de conexões com o banco de dados.
+ TCosmosConnectionsPool = class
+   private
+   FConnectionsPool: TConnectionsPool;
+   function GetConnection: TConnectionsPool;
+   function GetConnectionsCount: integer;
 
   public
-   constructor Create;
+   constructor Create(const ConnectionParamsFile: string);
    destructor Destroy; override;
 
-   function CreateConnection: TSQLConnection;
-   function CreateDataset(Connection: TSQLConnection): TSQLDataset;
+   procedure ClearAll;
+   procedure FillPool(const ObjCount: integer);
+   procedure RemoveConnection(const SessionId: Int64);
+
+   property Connection: TConnectionsPool read GetConnection;
+   property ConnectionsCount: integer read GetConnectionsCount;
  end;
 
- //Abstrai operações de execução de comandos no servidor SQL.
- TSQLServerCommand = class(TSQLServerObject)
+ TCosmosDBObject = class(TInterfacedObject)
+   private
+    FCosmosConnectionsPool: TCosmosConnectionsPool;
+
+   public
+    constructor Create;
+    destructor Destroy; override;
+
+    property ConnectionsPool: TCosmosConnectionsPool read FCosmosConnectionsPool write FCosmosConnectionsPool;
+ end;
+
+TCosmosCommand = class(TCosmosDBObject, ICosmosCommand)
+   private
+
+   public
+    constructor Create;
+    destructor Destroy; override;
+
+    function ExecuteCommand(const Command: WideString): integer;
+    procedure ExecuteDQL(const DQL: WideString; Dataset: TClientDataset);
+  end;
+
+ TCosmosScript = class(TCosmosDBObject, ICosmosScript)
   private
-   procedure CloseDataset(Dataset: TDataset); inline;
+   FScript: TStringList;
 
   public
    constructor Create;
    destructor Destroy; override;
 
-   function ExecuteCommand(const Command: WideString): integer;
-   function ExecuteScript(Connection: TSQLConnection; Script: TStringList): boolean; overload;
+   procedure AddCommand(Command: string);
+   procedure ClearCommands;
+   function ExecuteScript: boolean; overload;
    function ExecuteScript(Script: TStringList): boolean; overload;
-   procedure ExecuteDQL(const DQL: WideString; Dataset: TSQLDataset); overload;
-   procedure ExecuteDQL(const DQL: WideString; Dataset: TClientDataset); overload;
 
  end;
 
@@ -48,247 +68,149 @@ type
 
 implementation
 
-{ TSQLServerCommand }
+{ TCosmosCommand }
 
-constructor TSQLServerCommand.Create;
+constructor TCosmosCommand.Create;
 begin
  inherited Create;
 end;
 
-destructor TSQLServerCommand.Destroy;
+destructor TCosmosCommand.Destroy;
 begin
-  inherited Destroy;
-end;
 
-function TSQLServerCommand.ExecuteCommand(const Command: WideString): integer;
-var
- AConnection: TSQLConnection;
- ATransaction: TdbxTransactionsManager;
- TD: TDBXTransaction;
-begin
-//Executa um comando no banco de dados.
- AConnection := self.CreateConnection;
- ATransaction := TdbxTransactionsManager.Create;
-
- try
-  TD := ATransaction.BeginTransaction(AConnection);
-  Result := AConnection.ExecuteDirect(Command);
-
-  if AConnection.InTransaction then
-   ATransaction.CommitTransaction(AConnection, TD);
-
-  if Assigned(AConnection) then
-   FreeAndNil(AConnection);
-
-  if Assigned(ATransaction) then
-   FreeAndNil(ATransaction);
-
-  {Isto é necessário porque o retorno do método ExecuteDirect, chamado acima,
-   sempre está retornado 0. É uma falha do DBExpress.}
-  if Result = 0 then
-   Result := 1;
-
- except
-  if AConnection.InTransaction then
-   ATransaction.RollbackTransaction(AConnection, TD);
-
-  if Assigned(AConnection) then
-   FreeAndNil(AConnection);
-
-  if Assigned(ATransaction) then
-   FreeAndNil(ATransaction);
-
-  raise;
- end;
-end;
-
-procedure TSQLServerCommand.ExecuteDQL(const DQL: WideString;
-  Dataset: TClientDataset);
-var
-AConnection: TSQLConnection;
-ADataset: TSQLDataset;
-AProvider: TDatasetProvider;
-begin
-{Este método não pode ser executado usando-se a classe TDBXDatasetReader porque,
-no RAD Studio 2010, o método CopyReaderToClientDataSet trunca as strings. Então,
-usamos um DatasetProvider.}
-
- AConnection := self.CreateConnection;
- ADataset := TSQLDataset.Create(nil);
- AProvider := TDatasetProvider.Create(nil);
-
- try
-  ADataset.SQLConnection := AConnection;
-  ADataset.CommandText := DQL;
-  AProvider.DataSet := ADataset;
-  Dataset.Data := AProvider.Data;
-
- finally
-  if Assigned(AConnection) then FreeAndNil(AConnection);
-  if Assigned(ADataset) then FreeAndNil(ADataset);
-  if Assigned(AProvider) then FreeAndNil(AProvider);
- end;
-end;
-
-function TSQLServerCommand.ExecuteScript(Script: TStringList): boolean;
-var
-TD: TDBXTransaction;  //Objeto que implementa transações no DBExpress
-AServer: TdbxTransactionsManager;
-AConnection: TSQLConnection;
-ACommand: string;
-I: integer;
-begin
-{Executa um script com diversos comandos sql de forma atômica. Caso ocorra
-alguma falha, toda operação será desfeita.}
- AServer := TdbxTransactionsManager.Create;
- AConnection := self.CreateConnection;
-
- try
- //Inicia uma nova transação
-  TD := AServer.BeginTransaction(AConnection);
-
-  for I := 0 to Pred(Script.Count) do
-    begin
-     ACommand := Script.Strings[I];
-     AConnection.ExecuteDirect(ACommand);
-    end;
-
-  if AConnection.InTransaction then
-   AServer.CommitTransaction(AConnection, TD);
-
-  Result := True;
-
-  if Assigned(AServer) then
-   FreeAndNil(AServer);
-
-  if Assigned(AConnection) then
-   FreeAndNil(AConnection);
-
- except
-  on E: Exception do //Deu pau...
-   begin
-   {A checagem abaixo evita que outros erros não tenham permitido o início da
-    transação. p. exe: queda ou travamento do servidor sql}
-    if Assigned(AConnection) then
-     begin
-      if AConnection.InTransaction then
-       AServer.RollbackTransaction(AConnection, TD);
-     end;
-
-    if Assigned(AServer) then FreeAndNil(AServer);
-    if Assigned(AConnection) then FreeAndNil(AConnection);
-
-    raise;
-   end;
- end;
-end;
-
-procedure TSQLServerCommand.CloseDataset(Dataset: TDataset);
-begin
- if Dataset.Active then
-  Dataset.Close;
-end;
-
-procedure TSQLServerCommand.ExecuteDQL(const DQL: WideString; Dataset: TSQLDataset);
-begin
-//Executa um comando DQL no banco de dados e retorna um cursosr unidirecional.
- try
-  CloseDataset(Dataset);
-  Dataset.CommandText := DQL;
-  Dataset.Open;
-
- except
-  raise;
- end;
-end;
-
-function TSQLServerCommand.ExecuteScript(Connection: TSQLConnection;
-  Script: TStringList): boolean;
-var
-TD: TDBXTransaction;  //Objeto que implementa transações no DBExpress
-AServer: TdbxTransactionsManager;
-ACommand: string;
-I: integer;
-begin
-{Executa um script com diversos comandos sql de forma atômica. Caso ocorra
-alguma falha, toda operação será desfeita.}
- AServer := TdbxTransactionsManager.Create;
-
- try
- //Inicia uma nova transação
-  TD := AServer.BeginTransaction(Connection);
-
-  for I := 0 to Pred(Script.Count) do
-    begin
-     ACommand := Script.Strings[I];
-     Connection.ExecuteDirect(ACommand);
-    end;
-
-  AServer.CommitTransaction(Connection, TD);
-  Result := True;
-
-  if Assigned(AServer) then
-   FreeAndNil(AServer);
-
-
- except
-  on E: Exception do //Deu pau...
-   begin
-   {A checagem abaixo evita que outros erros não tenham permitido o início da
-    transação. p. exe: queda ou travamento do servidor sql}
-    AServer.RollbackTransaction(Connection, TD);
-
-    if Assigned(AServer) then
-     FreeAndNil(AServer);
-
-    raise;
-   end;
- end;
-end;
-
-{ TSQLServerObject }
-
-constructor TSQLServerObject.Create;
-begin
- inherited Create;
-end;
-
-function TSQLServerObject.CreateConnection: TSQLConnection;
-begin
- Result := TSQLConnection.Create(nil);
- self.LoadConnectionParams(Result);
-end;
-
-function TSQLServerObject.CreateDataset(
-  Connection: TSQLConnection): TSQLDataset;
-begin
- Result := TSQLDataset.Create(nil);
- Result.SQLConnection := Connection;
-end;
-
-destructor TSQLServerObject.Destroy;
-begin
   inherited;
 end;
 
-procedure TSQLServerObject.LoadConnectionParams(SQLCon: TSQLConnection);
+function TCosmosCommand.ExecuteCommand(const Command: WideString): integer;
 var
- AFileName: string;
+ aCommand: TdbxCommand;
 begin
-  //Carrega os dados de conexão na memória para um objeto de conexão.
-   AFileName := TCosmosInfoFiles.GetDatabaseConfigurationFile;
-   SQLCon.ConnectionName := 'COSMOS'; //do not localize!
-   SQLCon.LoadParamsFromIniFile(AFileName);
-   SQLCon.LoginPrompt := False;
+  aCommand := TdbxCommand.Create;
+  aCommand.ConnectionsPool := self.ConnectionsPool.Connection;
 
-   SQLCon.DriverName := 'FIREBIRD'; //do not localize!
-   SQLCon.GetDriverFunc :=  'getSQLDriverINTERBASE'; //do not localize!
-   SQLCon.LibraryName := 'dbxfb.dll'; //do not localize!
-   SQLCon.VendorLib := 'fbclient.dll'; //do not localize!
-   sSystemUser := SQLCon.Params.Values['user_name'];
+  try
+    Result := aCommand.ExecuteCommand(Command);
+
+  finally
+    aCommand.Free;
+  end;
 end;
 
+procedure TCosmosCommand.ExecuteDQL(const DQL: WideString;
+  Dataset: TClientDataset);
+var
+ aCommand: TdbxCommand;
+begin
+  aCommand := TdbxCommand.Create;
+  aCommand.ConnectionsPool := self.ConnectionsPool.Connection;
 
+  try
+    aCommand.ExecuteDQL(DQL, Dataset);
+
+  finally
+    aCommand.Free;
+  end;
+end;
+
+{ TCosmosScript }
+
+procedure TCosmosScript.AddCommand(Command: string);
+begin
+ FScript.Append(Command);
+end;
+
+procedure TCosmosScript.ClearCommands;
+begin
+ FScript.Clear;
+end;
+
+constructor TCosmosScript.Create;
+begin
+ FScript := TStringList.Create;
+end;
+
+destructor TCosmosScript.Destroy;
+begin
+  FScript.Free;
+  inherited;
+end;
+
+function TCosmosScript.ExecuteScript(Script: TStringList): boolean;
+begin
+ FScript.Assign(Script);
+ Result := self.ExecuteScript;
+end;
+
+function TCosmosScript.ExecuteScript: boolean;
+var
+ aCommand: TdbxCommand;
+begin
+  aCommand := TdbxCommand.Create;
+  aCommand.ConnectionsPool := self.ConnectionsPool.Connection;
+
+  try
+    Result := aCommand.ExecuteScript(FScript);
+
+  finally
+    aCommand.Free;
+  end;
+end;
+
+{ TCosmosConnectionsPool }
+
+procedure TCosmosConnectionsPool.ClearAll;
+begin
+ FConnectionsPool.ClearAll;
+end;
+
+constructor TCosmosConnectionsPool.Create(const ConnectionParamsFile: string);
+begin
+ FConnectionsPool := TConnectionsPool.Create(ConnectionParamsFile);
+ inherited Create;
+end;
+
+destructor TCosmosConnectionsPool.Destroy;
+begin
+  if Assigned(FConnectionsPool) then
+   begin
+     FConnectionsPool.ClearAll;
+     FConnectionsPool.Free;
+   end;
+
+  inherited;
+end;
+
+procedure TCosmosConnectionsPool.FillPool(const ObjCount: integer);
+begin
+ FConnectionsPool.FillPool(ObjCount);
+end;
+
+function TCosmosConnectionsPool.GetConnection: TConnectionsPool;
+begin
+ Result := FConnectionsPool;
+end;
+
+function TCosmosConnectionsPool.GetConnectionsCount: integer;
+begin
+ Result := FConnectionsPool.ConnectionsCount;
+end;
+
+procedure TCosmosConnectionsPool.RemoveConnection(const SessionId: Int64);
+begin
+  FConnectionsPool.RemoveConnection(SessionId);
+end;
+
+{ TCosmosDBObject }
+
+constructor TCosmosDBObject.Create;
+begin
+ inherited Create;
+end;
+
+destructor TCosmosDBObject.Destroy;
+begin
+  inherited;
+end;
 
 end.
 

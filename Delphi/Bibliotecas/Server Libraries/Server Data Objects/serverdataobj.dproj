@@ -134,11 +134,8 @@
         <DCCReference Include="rtl.dcp"/>
         <DCCReference Include="dbrtl.dcp"/>
         <DCCReference Include="dsnap.dcp"/>
-        <DCCReference Include="DbxCommonDriver.dcp"/>
-        <DCCReference Include="dbexpress.dcp"/>
         <DCCReference Include="cmlib.dcp"/>
         <DCCReference Include="sqlcmd.dcp"/>
-        <DCCReference Include="DBXFirebirdDriver.dcp"/>
         <DCCReference Include="cmpersist.dcp"/>
         <DCCReference Include="secmod.dcp"/>
         <DCCReference Include="dbxObjects.dcp"/>

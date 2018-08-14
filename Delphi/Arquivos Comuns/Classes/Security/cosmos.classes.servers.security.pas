@@ -8,23 +8,20 @@ interface
 
 uses
   Winapi.Windows, System.SysUtils, System.Classes, cosmos.servers.sqlcommands,
-  Data.DB, Datasnap.DBClient, Data.SqlExpr, cosmos.system.types, cosmos.system.messages,
+  Data.DB, Datasnap.DBClient, cosmos.system.types, cosmos.system.messages,
   cosmos.classes.application, cosmos.system.exceptions, cosmos.classes.dataobjects,
-  cosmos.classes.cosmoscript, System.WideStrings, Data.DBXCommon, Data.DBXFirebird;
+  cosmos.classes.cosmoscript, System.WideStrings, cosmos.classes.serversutils;
 
 type
-  TCosmosUsersManager = class(TSQLServerObject)
-
+  TCosmosUsersManager = class
   private
   { Private declarations }
    sSystemUser: string;
-
-   function CreateDataset(Connection: TSQLConnection): TSQLDataset; inline;
-
-   procedure CloseDataset(Dataset: TDataset);
+   FdbParamsFile: string;
+   FConnectionsPool: TCosmosConnectionsPool;
+   procedure CreateConnectionsPool;
    function HasCosmosUser(const UserName: string): boolean; inline;
    function UserIsBlocked(const UserName: string): boolean; inline;
-
 
   public
     { Public declarations }
@@ -54,13 +51,15 @@ implementation
 constructor TCosmosUsersManager.Create;
 begin
  inherited Create;
+ FdbParamsFile := TCosmosInfoFiles.GetDatabaseConfigurationFile;
+ CreateConnectionsPool;
  end;
 
-function TCosmosUsersManager.CreateDataset(
-  Connection: TSQLConnection): TSQLDataset;
+procedure TCosmosUsersManager.CreateConnectionsPool;
 begin
- Result := TSQLDataset.Create(nil);
- Result.SQLConnection := Connection;
+//Cria o pool de conexões que será usado durante toda a instância desse objeto.
+ FConnectionsPool := TCosmosConnectionsPool.Create(FdbParamsFile);
+ FConnectionsPool.FillPool(3); //Não é preciso deixar configurável isso.
 end;
 
 function TCosmosUsersManager.CreateUser(UserData,
@@ -68,28 +67,26 @@ function TCosmosUsersManager.CreateUser(UserData,
 var
 NewUserID, RoleID, codfoc, codcad: integer;
 AScript: TStringList;
-AConnection: TSQLConnection;
-ACommand: TSQLServerCommand;
-ASQLDataset: TSQLDataset;
+ACommand: TCosmosCommand;
+AScriptObj: TCosmosScript;
 ADataset: TClientDataset;
 logusu, password, rolename, indati, indadm, tipper, indsec, indfin: string;
 indblo, indpro, indcon, indfoc, indusu: string;
 begin
 //Cria um novo usuário do sistema cosmos e atribui os focos que possuirá acesso.
- ACommand := TSQLServerCommand.Create;
- AConnection := ACommand.CreateConnection;
-
- ASQLDataset := TSQLDataset.Create(nil);
- ASQLDataset.SQLConnection := AConnection;
+ ACommand := TCosmosCommand.Create;
+ ACommand.ConnectionsPool := FConnectionsPool;
 
  ADataset := TClientDataset.Create(nil);
+ AScriptObj := TCosmosScript.Create;
+ AScriptObj.ConnectionsPool := FConnectionsPool;
+
  AScript := TStringList.Create;
 
  try
-
   with ADataset do
    begin
-    Data := UserData;
+    Data := UserData; //Dados passados em parâmetro. Não é preciso abrir o dataset.
     logusu := Fields.FieldByName('logusu').AsString;
     password := TCripterFactory.Criptografar(Fields.FieldByName('passwrd').AsString);
     rolename := Fields.FieldByName('rolename').AsString;
@@ -104,30 +101,25 @@ begin
    if HasCosmosUser(logusu) then
     raise EDuplicatedCosmosUser.Create(TCosmosErrorSecurityMsg.UsuarioExists);
 
-
    {Checa se um cadastrado já possui um login.}
-   CloseDataset(ASQLDataset);
-   ACommand.ExecuteDQL(Format(TGUsersCommands.UsuarioByCadastrado, [codcad]), ASQLDataset);
+   ACommand.ExecuteDQL(Format(TGUsersCommands.UsuarioByCadastrado, [codcad]), ADataset);
 
-   if not ASQLDataset.IsEmpty then
+   if not ADataset.IsEmpty then
     raise EDuplicatedCosmosUser.Create(TCosmosErrorMsg.LoginAlreadyExists);
 
    {Obtém o código da Role do usuário.}
-   CloseDataset(ASQLDataset);
-   ACommand.ExecuteDQL(Format(TGUsersCommands.CodigoPerfil, [QuotedStr(RoleName)]), ASQLDataset);
+   ACommand.ExecuteDQL(Format(TGUsersCommands.CodigoPerfil, [QuotedStr(RoleName)]), ADataset);
 
-   if not ASQLDataset.IsEmpty then
-    RoleID := ASQLDataset.Fields.Fields[0].Value
+   if not ADataset.IsEmpty then
+    RoleID := ADataset.Fields.Fields[0].Value
    else
     raise EUnknownRole.Create(TCosmosErrorSecurityMsg.UnknownProfile);
 
-
    //Agora, insere na tabela de usuários do Cosmos as informações sobre o novo
    //usuário e os focos que pode acessar.
-   CloseDataset(ASQLDataset);
-   ACommand.ExecuteDQL(Format(TDQLCommands.Generators, [TSequencesNames.GEN_USUARIOS, 1]), ASQLDataset);
-   NewUserID := ASQLDataset.Fields.Fields[0].AsInteger + ActiveRange;
-   CloseDataset(ASQLDataset);
+   ACommand.ExecuteDQL(Format(TDQLCommands.Generators, [TSequencesNames.GEN_USUARIOS, 1]), ADataset);
+
+   NewUserID := ADataset.Fields.Fields[0].AsInteger + ActiveRange;
 
    //Monta o comando de criação do usuário.
    AScript.Append(Format(TSecurityCommand.InsertCosmosUser, [NewUserID, QuotedStr(logusu), QuotedStr(Password), codcad,
@@ -153,21 +145,20 @@ begin
       ADataset.Next;
      end;
 
-   Result := ACommand.ExecuteScript(AConnection, AScript);
+   Result := aScriptObj.ExecuteScript(AScript);
 
    //Usuário criado com sucesso.
-
    if Assigned(ADataset) then FreeAndNil(ADataset);
    if Assigned(AScript) then FreeAndNil(AScript);
    if Assigned(ACommand) then FreeAndNil(ACommand);
-   if Assigned(AConnection) then FreeAndNil(AConnection);
+   if Assigned(aScriptObj) then FreeAndNil(aScriptObj);
 
  except
   begin
    if Assigned(ADataset) then FreeAndNil(ADataset);
    if Assigned(AScript) then FreeAndNil(AScript);
    if Assigned(ACommand) then FreeAndNil(ACommand);
-   if Assigned(AConnection) then FreeAndNil(AConnection);
+   if Assigned(aScriptObj) then FreeAndNil(aScriptObj);
 
    raise;
   end;
@@ -176,49 +167,38 @@ end;
 
 destructor TCosmosUsersManager.Destroy;
 begin
+ if Assigned(FConnectionsPool) then
+   begin
+    FConnectionsPool.ClearAll;
+    FreeAndNil(FConnectionsPool);
+   end;
+
   inherited;
 end;
 
 function TCosmosUsersManager.ChangePassword(const UserName,
   NewPassword: string): integer;
 var
-ADML: string;
-ADataset: TSQLDataset;
-AConnection: TSQLConnection;
-ACommand: TSQLServerCommand;
+ ACommand: TCosmosCommand;
+ ADataset: TClientDataset;
 begin
 //Altera a senha de um usuário.
- ACommand := TSQLServerCommand.Create;
- AConnection := ACommand.CreateConnection;
- ADataset := TSQLDataset.Create(nil);
- ADataset.SQLConnection := AConnection;
+ ACommand := TCosmosCommand.Create;
+ ACommand.ConnectionsPool := FConnectionsPool;
+ ADataset := TClientDataset.Create(nil);
 
  try
-  ADML := Format(TSecurityCommand.UsuarioByLogin, [QuotedStr(UpperCase(UserName))]);
-  ACommand.ExecuteDQL(ADML, ADataset);
+  ACommand.ExecuteDQL(Format(TSecurityCommand.UsuarioByLogin, [QuotedStr(UpperCase(UserName))]), ADataset);
 
   if ADataset.IsEmpty then
-   begin
-    CloseDataset(ADataset);
-    Result := 2;
-   end
+    Result := 2
   else
    begin
-    CloseDataset(ADataset);
-    ADML := Format(TSecurityCommand.ChangePassword, [TCripterFactory.Criptografar(NewPassword).QuotedString, QuotedStr(UserName.ToLower)]);
-
-    Result := ACommand.ExecuteCommand(ADML);
+    Result := ACommand.ExecuteCommand(Format(TSecurityCommand.ChangePassword, [TCripterFactory.Criptografar(NewPassword).QuotedString, QuotedStr(UserName.ToLower)]));
     if Result = 0 then //O comando não alterou nenhum registro!
      raise ECreateCosmosUser.Create(Format(TCosmosErrorMsg.PasswordUpdate, [UserName]));
 
     if Assigned(ADataset) then FreeAndNil(ADataset);
-
-    if Assigned(AConnection) then
-     begin
-      AConnection.Close;
-      FreeAndNil(AConnection);
-     end;
-
     if Assigned(ACommand) then FreeAndNil(ACommand);
    end;
 
@@ -226,18 +206,7 @@ begin
   on E: Exception do
    begin
     Result := 2;
-    if Assigned(ADataset) then
-     begin
-      ADataset.Close;
-      FreeAndNil(ADataset);
-     end;
-
-    if Assigned(AConnection) then
-     begin
-      AConnection.Close;
-      FreeAndNil(AConnection);
-     end;
-
+    if Assigned(ADataset) then  FreeAndNil(ADataset);
     if Assigned(ACommand) then FreeAndNil(ACommand);
 
     raise; //Redispara a exceção para ser capturada pelo método evocador...
@@ -245,40 +214,22 @@ begin
  end;
 end;
 
-procedure TCosmosUsersManager.CloseDataset(Dataset: TDataset);
-begin
- if (Dataset <> nil) and (Dataset.Active) then
-  Dataset.Close;
-end;
-
 function TCosmosUsersManager.DeleteUser(const codusu: integer): boolean;
 var
-ADML: string;
-AConnection: TSQLConnection;
+ ACommand: TCosmosCommand;
 begin
 //Exclui um usuário.
- AConnection := self.CreateConnection;
+ ACommand := TCosmosCommand.Create;
+ ACommand.ConnectionsPool := FConnectionsPool;
 
  try
-  AConnection.Open;
-  ADML := Format(TGUsersCommands.DeleteUser, [codusu]);
-  Result := AConnection.ExecuteDirect(ADML) > 0;
-
-  if Assigned(AConnection) then
-   begin
-    AConnection.Close;
-    FreeAndNil(AConnection);
-   end;
+  Result := ACommand.ExecuteCommand(Format(TGUsersCommands.DeleteUser, [codusu])) > 0;
+  if Assigned(ACommand) then FreeAndNil(ACommand);
 
  except
   on E: Exception do
    begin
-    if Assigned(AConnection) then
-     begin
-      AConnection.Close;
-      FreeAndNil(AConnection);
-     end;
-
+    if Assigned(ACommand) then FreeAndNil(ACommand);
     raise; //Redispara a exceção para ser capturada pelo método evocador...
    end;
  end;
@@ -287,15 +238,14 @@ end;
 procedure TCosmosUsersManager.GetUserInfo(const UserName, Password,
   RoleName: WideString; var UserData: TCosmosData);
 var
- ACommand: TSQLServerCommand;
+ ACommand: TCosmosCommand;
  AList: TStringList;
- AConnection: TSQLConnection;
- ADataset: TSQLDataset;
+ ADataset: TClientDataset;
 begin
  AList := TStringList.Create;
- ACommand := TSQLServerCommand.Create;
- AConnection := CreateConnection;
- ADataset := self.CreateDataset(AConnection);
+ ACommand := TCosmosCommand.Create;
+ ACommand.ConnectionsPool := FConnectionsPool;
+ ADataset := TClientDataset.Create(nil);
 
  try
   ACommand.ExecuteDQL(Format(TSecurityCommand.UsuarioInfo, [QuotedStr(UserName)]), ADataset);
@@ -354,37 +304,31 @@ begin
      end;
    end;
 
+ if Assigned(AList) then FreeAndNil(AList);
  if Assigned(ACommand) then FreeAndNil(ACommand);
  if Assigned(ADataset) then FreeAndNil(ADataset);
- if Assigned(AConnection) then FreeAndNil(AConnection);
- if Assigned(AList) then FreeAndNil(AList);
 
  except
+  if Assigned(AList) then FreeAndNil(AList);
   if Assigned(ACommand) then FreeAndNil(ACommand);
   if Assigned(ADataset) then FreeAndNil(ADataset);
-  if Assigned(AConnection) then FreeAndNil(AConnection);
-  if Assigned(AList) then FreeAndNil(AList);
   raise;
  end;
-
 end;
 
 procedure TCosmosUsersManager.GetUserRoles(const UserName: string;
   List: TStringList);
 var
-sDQL: string;
-AConnection: TSQLConnection;
-ADataset: TSQLDataset;
+ ACommand: TCosmosCommand;
+ ADataset: TClientDataset;
 begin
 //Lista as roles atribuídas a um usuário.
- AConnection := CreateConnection;
- ADataset := CreateDataset(AConnection);
+ ACommand := TCosmosCommand.Create;
+ ACommand.ConnectionsPool := FConnectionsPool;
+ ADataset := TClientDataset.Create(nil);
 
  try
-  AConnection.Open;
-  sDQL := Format(TGUsersCommands.UserRoles, [QuotedStr(UserName)]);
-  ADataset.CommandText := sDQL;
-  ADataset.Open;
+  ACommand.ExecuteDQL(Format(TGUsersCommands.UserRoles, [QuotedStr(UserName)]), ADataset);
 
   while not ADataset.Eof do
    begin
@@ -392,32 +336,14 @@ begin
     ADataset.Next;
    end;
 
-  if Assigned(ADataset) then
-   begin
-    self.CloseDataset(ADataset);
-    FreeAndNil(ADataset);
-   end;
-
-  if Assigned(AConnection) then
-   begin
-    AConnection.Close;
-    FreeAndNil(AConnection);
-   end;
+  if Assigned(ACommand) then FreeAndNil(ACommand);
+  if Assigned(ADataset) then FreeAndNil(ADataset);
 
  except
   on E: Exception do
    begin
-    if Assigned(ADataset) then
-     begin
-      self.CloseDataset(ADataset);
-      FreeAndNil(ADataset);
-     end;
-
-    if Assigned(AConnection) then
-     begin
-      AConnection.Close;
-      FreeAndNil(AConnection);
-     end;
+    if Assigned(ACommand) then FreeAndNil(ACommand);
+    if Assigned(ADataset) then FreeAndNil(ADataset);
 
     raise; //Redispara a exceção para ser capturada pelo método evocador...
    end;
@@ -467,72 +393,44 @@ end;
 
 function TCosmosUsersManager.GrantRole(const UserName, RoleName: string): boolean;
 var
-ADML: string;
-AConnection: TSQLConnection;
-ACommand: TSQLServerCommand;
-ADataset: TSQLDataset;
-codusu, codper: integer;
+ ACommand: TCosmosCommand;
+ ADataset: TClientDataset;
+ codusu, codper: integer;
 begin
 //Atribui uma role a um usuário.
- ACommand := TSQLServerCommand.Create;
- AConnection := ACommand.CreateConnection;
- ADataset := TSQLDataset.Create(nil);
+ ACommand := TCosmosCommand.Create;
+ ACommand.ConnectionsPool := FConnectionsPool;
+ ADataset := TClientDataset.Create(nil);
 
  try
-  ADataset.SQLConnection := AConnection;
-  AConnection.Open;
-
   //Primeiro, obtém o código do usuário passado em parâmentro.
-  ADML := Format(TSecurityCommand.UserInfo, [QuotedStr(UpperCase(UserName))]);
-  ADataset.CommandText := ADML;
-  ADataset.Open;
+  ACommand.ExecuteDQL(Format(TSecurityCommand.UserInfo, [QuotedStr(UpperCase(UserName))]), ADataset);
 
   if not ADataset.IsEmpty then
    codusu := ADataset.Fields.FieldByName('CODUSU').AsInteger
   else
    raise ESetProfileUser.Create(TCosmosErrorSecurityMsg.SetUserProfile);
 
-  self.CloseDataset(ADataset);
-
   //Agora, obtém o código do perfil passado em parâmentro.
-  ADML := Format(TGUsersCommands.CodigoPerfil, [QuotedStr(UpperCase(RoleName))]);
-  ADataset.CommandText := ADML;
-  ADataset.Open;
+  ACommand.ExecuteDQL(Format(TGUsersCommands.CodigoPerfil, [QuotedStr(UpperCase(RoleName))]), ADataset);
 
   if not ADataset.IsEmpty then
    codper := ADataset.Fields.FieldByName('CODPER').AsInteger
   else
    raise ESetProfileUser.Create(TCosmosErrorSecurityMsg.SetUserProfile);
 
-  self.CloseDataset(ADataset);
-
   //Executa o comando para inserir atribuir o perfil ao usuário.
   Result :=  ACommand.ExecuteCommand(Format(TSecurityCommand.InsertPerfilUsuario, [codusu, codper])) > 0;
 
-  if Assigned(ADataset) then FreeAndNil(ADataset);
-
-  if Assigned(AConnection) then
-   begin
-    AConnection.Close;
-    FreeAndNil(AConnection);
-   end;
-
   if Assigned(ACommand) then FreeAndNil(ACommand);
+  if Assigned(ADataset) then FreeAndNil(ADataset);
 
  except
   on E: Exception do
    begin
     Result := False;
-
-    if Assigned(ADataset) then FreeAndNil(ADataset);
-
-    if Assigned(AConnection) then
-     begin
-      AConnection.Close;
-      FreeAndNil(AConnection);
-     end;
-
     if Assigned(ACommand) then FreeAndNil(ACommand);
+    if Assigned(ADataset) then FreeAndNil(ADataset);
 
     raise; //Redispara a exceção para ser capturada pelo método evocador...
    end;
@@ -542,51 +440,28 @@ end;
 
 function TCosmosUsersManager.HasCosmosUser(const UserName: string): boolean;
 var
-sDQL: string;
-AConnection: TSQLConnection;
-ADataset: TSQLDataset;
+ ACommand: TCosmosCommand;
+ ADataset: TClientDataset;
 begin
 //Verifica se um usuário está cadastrado na tabela de usuários do Cosmos.
- AConnection := CreateConnection;
- ADataset := CreateDataset(AConnection);
+ ACommand := TCosmosCommand.Create;
+ ACommand.ConnectionsPool := FConnectionsPool;
+ ADataset := TClientDataset.Create(nil);
 
  try
-  AConnection.Open;
-  sDQL := Format(TSecurityCommand.UserInfo, [QuotedStr(UserName)]);
-  ADataset.CommandText := sDQL;
-  ADataset.Open;
-
+  ACommand.ExecuteDQL(Format(TSecurityCommand.UserInfo, [QuotedStr(UserName)]), ADataset);
   Result := not ADataset.IsEmpty;
 
-  if Assigned(ADataset) then
-   begin
-    self.CloseDataset(ADataset);
-    FreeAndNil(ADataset);
-   end;
-
-  if Assigned(AConnection) then
-   begin
-    AConnection.Close;
-    FreeAndNil(AConnection);
-   end;
+  if Assigned(ACommand) then FreeAndNil(ACommand);
+  if Assigned(ADataset) then FreeAndNil(ADataset);
 
  except
   on E: Exception do
    begin
     Result := False;
 
-    if Assigned(ADataset) then
-     begin
-      self.CloseDataset(ADataset);
-      FreeAndNil(ADataset);
-     end;
-
-    if Assigned(AConnection) then
-     begin
-      AConnection.Close;
-      FreeAndNil(AConnection);
-     end;
-
+    if Assigned(ACommand) then FreeAndNil(ACommand);
+    if Assigned(ADataset) then FreeAndNil(ADataset);
     raise; //Redispara a exceção para ser capturada pelo método evocador...
    end;
  end;
@@ -595,21 +470,21 @@ end;
 function TCosmosUsersManager.IsAdministrator(
   const UserName: WideString): boolean;
 var
-AConnection: TSQLConnection;
-ADataset: TSQLDataset;
+ ACommand: TCosmosCommand;
+ ADataset: TClientDataset;
 begin
 //Checa se um usuário é um administrador do sistema.
- AConnection := CreateConnection;
- ADataset := CreateDataset(AConnection);
+ ACommand := TCosmosCommand.Create;
+ ACommand.ConnectionsPool := FConnectionsPool;
+ ADataset := TClientDataset.Create(nil);
 
  try
-  ADataset.CommandText := Format(TSecurityCommand.AdmUser,[QuotedStr(UserName)]);
-  ADataset.Open;
+  ACommand.ExecuteDQL(Format(TSecurityCommand.AdmUser,[QuotedStr(UserName)]), ADataset);
   Result := ADataset.Fields.Fields[0].AsString = 'S';
 
  finally
+  if Assigned(ACommand) then FreeAndNil(ACommand);
   if Assigned(ADataset) then FreeAndNil(ADataset);
-  if Assigned(AConnection) then FreeAndNil(AConnection);
  end;
 end;
 
@@ -620,10 +495,11 @@ end;
 
 function TCosmosUsersManager.LockCosmosUser(const codusu: integer): boolean;
 var
-ACommand: TSQLServerCommand;
+ ACommand: TCosmosCommand;
 begin
 //Bloqueia um usuário do Cosmos.
- ACommand := TSQLServerCommand.Create;
+ ACommand := TCosmosCommand.Create;
+ ACommand.ConnectionsPool := FConnectionsPool;
 
  try
   //Executa o comando para bloquear o usuário.
@@ -634,8 +510,7 @@ begin
  except
   on E: Exception do
    begin
-    if Assigned(ACommand) then  FreeAndNil(ACommand);
-
+    if Assigned(ACommand) then FreeAndNil(ACommand);
     raise; //Redispara a exceção para ser capturada pelo método evocador...
    end;
  end;
@@ -644,68 +519,43 @@ end;
 function TCosmosUsersManager.RevokeRole(const UserName,
   RoleName: string): boolean;
 var
-ADML: string;
-AConnection: TSQLConnection;
-ACommand: TSQLServerCommand;
-ADataset: TSQLDataset;
-codusu, codper: integer;
+ ACommand: TCosmosCommand;
+ ADataset: TClientDataset;
+ codusu, codper: integer;
 begin
 //Retira uma role de um usuário.
- ACommand := TSQLServerCommand.Create;
- AConnection := ACommand.CreateConnection;
- ADataset := TSQLDataset.Create(nil);
+ ACommand := TCosmosCommand.Create;
+ ACommand.ConnectionsPool := FConnectionsPool;
+ ADataset := TClientDataset.Create(nil);
 
  try
-  ADataset.SQLConnection := AConnection;
-  AConnection.Open;
-
   //Primeiro, obtém o código do usuário passado em parâmentro.
-  ADML := Format(TSecurityCommand.UserInfo, [QuotedStr(UpperCase(UserName))]);
-  ACommand.ExecuteDQL(ADML, ADataset);
+  ACommand.ExecuteDQL(Format(TSecurityCommand.UserInfo, [QuotedStr(UpperCase(UserName))]), ADataset);
 
   if not ADataset.IsEmpty then
    codusu := ADataset.Fields.FieldByName('CODUSU').AsInteger
   else
    raise ESetProfileUser.Create(TCosmosErrorSecurityMsg.SetUserProfile);
 
-  self.CloseDataset(ADataset);
-
   //Agora, obtém o código do perfil passado em parâmentro.
-  ADML := Format(TGUsersCommands.CodigoPerfil, [QuotedStr(UpperCase(RoleName))]);
-  ACommand.ExecuteDQL(ADML, ADataset);
+  ACommand.ExecuteDQL(Format(TGUsersCommands.CodigoPerfil, [QuotedStr(UpperCase(RoleName))]), ADataset);
 
   if not ADataset.IsEmpty then
    codper := ADataset.Fields.FieldByName('CODPER').AsInteger
   else
    raise ESetProfileUser.Create(TCosmosErrorSecurityMsg.SetUserProfile);
 
-  self.CloseDataset(ADataset);
-
   //Executa o comando para inserir atribuir o perfil ao usuário.
   Result := ACommand.ExecuteCommand(Format(TSecurityCommand.DelPerfilUsuario, [codusu, codper])) > 0;
 
-  if Assigned(ADataset) then FreeAndNil(ADataset);
-
-  if Assigned(AConnection) then
-   begin
-    AConnection.Close;
-    FreeAndNil(AConnection);
-   end;
-
   if Assigned(ACommand) then FreeAndNil(ACommand);
+  if Assigned(ADataset) then FreeAndNil(ADataset);
 
  except
   on E: Exception do
    begin
-    if Assigned(ADataset) then FreeAndNil(ADataset);
-
-    if Assigned(AConnection) then
-     begin
-      AConnection.Close;
-      FreeAndNil(AConnection);
-     end;
-
     if Assigned(ACommand) then FreeAndNil(ACommand);
+    if Assigned(ADataset) then FreeAndNil(ADataset);
 
     raise; //Redispara a exceção para ser capturada pelo método evocador...
    end;
@@ -715,10 +565,11 @@ end;
 procedure TCosmosUsersManager.SetAdministrator(const Value: string;
   UserId: integer);
 var
-ACommand: TSQLServerCommand;
+ ACommand: TCosmosCommand;
 begin
 {Atribui ou retira os direitos de administrador do sistema para um usuário.}
- ACommand := TSQLServerCommand.Create;
+ ACommand := TCosmosCommand.Create;
+ ACommand.ConnectionsPool := FConnectionsPool;
 
  try
   //Executa o comando...
@@ -737,10 +588,11 @@ end;
 
 function TCosmosUsersManager.UnlockCosmosUser(const codusu: integer): boolean;
 var
-ACommand: TSQLServerCommand;
+ ACommand: TCosmosCommand;
 begin
 //Desbloqueia um usuário do Cosmos.
- ACommand := TSQLServerCommand.Create;
+ ACommand := TCosmosCommand.Create;
+ ACommand.ConnectionsPool := FConnectionsPool;
 
  try
   //Executa o comando para desbloquear o usuário.
@@ -752,7 +604,6 @@ begin
   on E: Exception do
    begin
     if Assigned(ACommand) then FreeAndNil(ACommand);
-
     raise; //Redispara a exceção para ser capturada pelo método evocador...
    end;
  end;
@@ -760,36 +611,21 @@ end;
 
 function TCosmosUsersManager.UserIsBlocked(const UserName: string): boolean;
 var
-sDQL: string;
-AConnection: TSQLConnection;
-ADataset: TSQLDataset;
+ ACommand: TCosmosCommand;
+ ADataset: TClientDataset;
 begin
 //Verifica se um usuário está bloqueado.
- AConnection := self.CreateConnection;
- ADataset := TSQLDataset.Create(nil);
- ADataset.SQLConnection := AConnection;
+ ACommand := TCosmosCommand.Create;
+ ACommand.ConnectionsPool := FConnectionsPool;
+ ADataset := TClientDataset.Create(nil);
 
  try
-  AConnection.Open;
-  sDQL := Format(TSecurityCommand.UsuarioInfo, [QuotedStr(UserName)]);
-  ADataset.CommandText := sDQL;
-  ADataset.Open;
-
+  ACommand.ExecuteDQL(Format(TSecurityCommand.UsuarioInfo, [QuotedStr(UserName)]), ADataset);
   Result := (ADataset.RecordCount > 0) and (ADataset.Fields.FieldByName('indblo').Value = 'S');
 
-
  finally
-  if Assigned(ADataset) then
-   begin
-    self.CloseDataset(ADataset);
-    FreeAndNil(ADataset);
-   end;
-
-  if Assigned(AConnection) then
-   begin
-    AConnection.Close;
-    FreeAndNil(AConnection);
-   end;
+  if Assigned(ACommand) then FreeAndNil(ACommand);
+  if Assigned(ADataset) then FreeAndNil(ADataset);
  end;
 end;
 
