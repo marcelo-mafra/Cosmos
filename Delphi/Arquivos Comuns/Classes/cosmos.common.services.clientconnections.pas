@@ -2416,6 +2416,7 @@ begin
  if not LoginDialog(UserName, Password) then
   Abort;
 
+ //Usuário e senha fornecidos. Iniciará a autenticação do usuário.
  if DoConnectServer(UserName, Password) then
    begin
     try
@@ -2673,7 +2674,7 @@ begin
      Clear;
      Values['DriverName'] := 'DataSnap'; //do not localize!
      Values['DriverUnit'] := 'Data.DBXDataSnap'; //do not localize!
-     Values['BufferKBSize'] := ConnectionInfo.FindValue('BufferKBSize');
+     Values['BufferKBSize'] := ConnectionInfo.FindValue('BufferKBSize'); //do not localize!
 
      //usuário e senha
      Values['DSAuthenticationUser'] := UserName;  //do not localize!
@@ -2729,14 +2730,14 @@ begin
     //Cria o objeto de pool de conexões com o servidor remoto.
     if (PooledConnection) then
      begin
-       //Tamanho do pool de conexões.
        ConnectionStatus := csCreatingConnectionsPool;
 
        if Assigned(FConnectionsPool) then
         FreeAndNil(FConnectionsPool);
 
+       //Tamanho do pool de conexões.
        vPoolSize := ConnectionInfo.FindValue('PoolSize');  //do not localize!
-       if vPoolSize = '' then VPoolSize := 5; //default
+       if vPoolSize = '' then VPoolSize := 5; //default na marreta.
 
        //Período de espera (em minutos) para o início de um processo de limpeza do pool.
        vCleanupDelay := ConnectionInfo.FindValue('CleanupMinutes');  //do not localize!

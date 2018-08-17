@@ -1,10 +1,10 @@
-unit cosmos.classes.cripter;
+unit cosmos.classes.utils.cripter;
 
 interface
 {Implementa um classe "interna" que disponibiliza inúmeros métodos de criptografia
  e hash. Essa classe não deve ser usada diretamente por nenhum módulo.}
 
-uses cosmos.classes.cripterint;
+uses cosmos.classes.utils.cripterint;
 
  type
   //Padrões de criptografias.
@@ -239,7 +239,7 @@ end;
 
 function TCripter.DoHashMD5(const InString: PChar): PChar;
 begin
- Result := cosmos.classes.cripterint.HashMD5(InString);
+ Result := cosmos.classes.utils.cripterint.HashMD5(InString);
 end;
 
 function TCripter.DoHashSHA1(const InString: PChar): PChar;

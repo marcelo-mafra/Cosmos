@@ -40,7 +40,7 @@ requires
   dbrtl;
 
 contains
-  cosmos.classes.dbxObjects in 'cosmos.classes.dbxObjects.pas',
-  cosmos.classes.dbxUtils in 'cosmos.classes.dbxUtils.pas';
+  cosmos.classes.servers.dbxObjects in 'cosmos.classes.servers.dbxObjects.pas',
+  cosmos.classes.servers.dbxUtils in 'cosmos.classes.servers.dbxUtils.pas';
 
 end.

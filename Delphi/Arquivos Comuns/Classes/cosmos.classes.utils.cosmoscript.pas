@@ -1,9 +1,9 @@
-unit cosmos.classes.cosmoscript;
+unit cosmos.classes.utils.cosmoscript;
 
 interface
 
 uses
- cosmos.classes.cripter;
+ cosmos.classes.utils.cripter;
 
 type
 

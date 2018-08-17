@@ -40,11 +40,10 @@ requires
   dbxObjects;
 
 contains
-  cosmos.classes.serversobj in '..\..\..\Arquivos Comuns\Classes\ServersObj\cosmos.classes.serversobj.pas',
-  cosmos.classes.dataobjects in '..\..\..\Arquivos Comuns\Classes\ServersObj\cosmos.classes.dataobjects.pas',
-  cosmos.classes.servers.security in '..\..\..\Arquivos Comuns\Classes\Security\cosmos.classes.servers.security.pas',
-  cosmos.classes.serversutils in '..\..\..\Arquivos Comuns\Classes\ServersObj\cosmos.classes.serversutils.pas',
-  cosmos.classes.cmdFactories in '..\..\..\Arquivos Comuns\Classes\ServersObj\cosmos.classes.cmdFactories.pas',
-  cosmos.classes.datobj.interfaces in '..\..\..\Arquivos Comuns\Classes\ServersObj\cosmos.classes.datobj.interfaces.pas';
+  cosmos.classes.servers.dataobj in '..\..\..\Arquivos Comuns\Classes\ServersObj\cosmos.classes.servers.dataobj.pas',
+  cosmos.classes.servers.securityobj in '..\..\..\Arquivos Comuns\Classes\Security\cosmos.classes.servers.securityobj.pas',
+  cosmos.classes.servers.utils in '..\..\..\Arquivos Comuns\Classes\ServersObj\cosmos.classes.servers.utils.pas',
+  cosmos.classes.servers.cmdFactories in '..\..\..\Arquivos Comuns\Classes\ServersObj\cosmos.classes.servers.cmdFactories.pas',
+  cosmos.classes.servers.datobjint in '..\..\..\Arquivos Comuns\Classes\ServersObj\cosmos.classes.servers.datobjint.pas';
 
 end.

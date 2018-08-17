@@ -35,13 +35,13 @@ requires
   DbxCommonDriver;
 
 contains
-  cosmos.classes.cripter in 'cosmos.classes.cripter.pas',
+  cosmos.classes.utils.cripter in 'cosmos.classes.utils.cripter.pas',
   cosmos.classes.security in '..\..\Arquivos Comuns\Classes\Security\cosmos.classes.security.pas',
   libeay32 in 'OpenSSL\libeay32.pas',
   OpenSSLUtils in 'OpenSSL\OpenSSLUtils.pas',
-  cosmos.common.security.x509certificate in '..\..\Arquivos Comuns\Classes\Security\cosmos.common.security.x509certificate.pas',
-  cosmos.classes.cripterint in 'cosmos.classes.cripterint.pas',
-  cosmos.classes.cosmoscript in '..\..\Arquivos Comuns\Classes\cosmos.classes.cosmoscript.pas';
+  cosmos.classes.security.x509certificate in '..\..\Arquivos Comuns\Classes\Security\cosmos.classes.security.x509certificate.pas',
+  cosmos.classes.utils.cripterint in 'cosmos.classes.utils.cripterint.pas',
+  cosmos.classes.utils.cosmoscript in '..\..\Arquivos Comuns\Classes\cosmos.classes.utils.cosmoscript.pas';
 
 end.
 

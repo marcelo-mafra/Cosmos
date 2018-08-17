@@ -158,7 +158,6 @@
         <DCCReference Include="..\..\..\Arquivos Comuns\Classes\Framework\Navigators\cosmos.framework.datanavigators.datasets.pas"/>
         <DCCReference Include="..\..\..\Arquivos Comuns\Classes\Framework\Navigators\cosmos.framework.datanavigators.listview.pas"/>
         <DCCReference Include="..\..\..\Arquivos Comuns\Classes\Framework\Navigators\cosmos.framework.datanavigators.treeview.pas"/>
-        <DCCReference Include="..\..\..\Arquivos Comuns\Classes\Framework\Interfaces\Cosmos.Framework.Interfaces.Security.pas"/>
         <DCCReference Include="..\..\..\Arquivos Comuns\Classes\Framework\cosmos.framework.clients.common.appinfo.pas"/>
         <DCCReference Include="..\..\..\Arquivos Comuns\Classes\Framework\Interfaces\Cosmos.Framework.Interfaces.Applications.pas"/>
         <DCCReference Include="..\..\..\Arquivos Comuns\Classes\Framework\Interfaces\Cosmos.Framework.Interfaces.ConnectionNotifiers.pas"/>
@@ -230,6 +229,12 @@
             </Platforms>
             <Deployment Version="3">
                 <DeployFile LocalName="..\..\..\..\Bin\Win32\interfaces.bpl" Configuration="Debug" Class="ProjectOutput"/>
+                <DeployFile LocalName="..\..\..\..\Bin\Win64\Release\interfaces.bpl" Configuration="Release" Class="ProjectOutput">
+                    <Platform Name="Win64">
+                        <RemoteName>interfaces.bpl</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployClass Name="AdditionalDebugSymbols">
                     <Platform Name="OSX32">
                         <Operation>1</Operation>

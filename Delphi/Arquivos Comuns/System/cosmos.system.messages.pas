@@ -53,6 +53,8 @@ uses Winapi.Windows;
      UserName = 'Nome do usuário';
      Login = 'Login';
      RoleName = 'Papel';
+     AutenticacaoSucesso = 'Autenticação feita com sucesso! Usuário: %s';
+     UnknownCosmosUser = 'O usuário do Cosmos não pode ser identificado! Usuário: %s';
   end;
 
   //Certificados
@@ -807,13 +809,19 @@ uses Winapi.Windows;
       StringIntegerConvert = '%s não é um número inteiro válido!';
    end;
 
+   TCosmosConnectionErrors = class
+     const
+      ReadingPoolInfo = 'Lendo opções de configuração do pool de conexões...';
+      PoolSize = 'DatabasePoolSize';
+   end;
+
    ///<summary>
    ///  Classe que ordena as mensagens de erro disparadas quando ocorrer uma falha
   ///   crítica que deve ser manipulada no evento OnReconcile dos datasets.
    ///</summary>
    TCosmosErrorReconcile = class
      const
-      UnknownError = 'Ocorreu uma falaha crítica desconhecida ao tentar salvar os dados. ' +
+      UnknownError = 'Ocorreu uma falha crítica desconhecida ao tentar salvar os dados. ' +
         'Consulte os logs do servidor do Cosmos para obter mais informações. A operação será cancelada.';
       ForeignKey = 'Ocorreu uma falha crítica ao tentar salvar os dados. O sistema detectou que ' +
         'existem dados inválidos ou incompletos referentes a campos de ligação entre duas tabelas. ' +

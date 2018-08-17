@@ -6,11 +6,12 @@ uses
   Winapi.Windows, System.SysUtils, System.Classes, System.Json, Datasnap.DSServer,
   DataSnap.DSProviderDataModuleAdapter, Datasnap.DSAuth, cosmos.system.files,
   cosmos.classes.application, cosmos.system.messages, cosmos.system.exceptions,
-  cosmos.servers.sqlcommands, System.Variants, cosmos.classes.dataobjects,
+  cosmos.servers.sqlcommands, System.Variants, cosmos.classes.servers.dataobj,
   cosmos.classes.ServerInterface, Data.DB, Data.DBXCommon, DBClient, Data.FMTBcd,
   Data.SqlExpr, Datasnap.Provider, DataSnap.DsSession, cosmos.business.focos,
-  cosmos.classes.logs, cosmos.system.types, Data.DBXPlatform, cosmos.classes.cmdFactories,
-  cosmos.classes.cosmoscript, cosmos.system.dataconverter;
+  cosmos.classes.logs, cosmos.system.types, Data.DBXPlatform,
+  cosmos.classes.servers.cmdFactories, cosmos.classes.utils.cosmoscript,
+  cosmos.system.dataconverter;
 
 type
   {$METHODINFO OFF}
@@ -169,8 +170,7 @@ implementation
 {$R *.dfm}
 
 uses cosmos.servers.common.dataacess, cosmos.servers.common.security,
- cosmos.servers.common.security.authorizations, cosmos.servers.common.services;//,
-//  cosmos.servers.secretarias.pageproducer;
+ cosmos.servers.common.security.authorizations, cosmos.servers.common.services;
 
 { TDMCosmosApplicationServer }
 
@@ -233,8 +233,9 @@ var
  AMessage: string;
 begin
 {Muda a senha de um usuário.}
+
  try
-   Result := TCosmosSecurity.ChangePassword(UserName, NewPassword);
+   Result := DMServerDataAcess.UserManager.ChangePassword(UserName, NewPassword) = 1;
 
  except
   on E: Exception do
@@ -256,7 +257,7 @@ begin
 {Confirma a identidade do usuário a partir de novo fornecimento de senha.}
  try
   aPassword := TCripterFactory.Criptografar(NewPassword);
-  Result := TCosmosSecurity.AuthenticateUser(UserName, aPassword);
+  Result := DMServerDataAcess.UserManager.AuthenticateUser(UserName, aPassword);
 
  except
   on E: Exception do
@@ -948,7 +949,7 @@ function TDMCosmosApplicationServer.LockCosmosUser(
 begin
  {Bloqueia um usuário do Cosmos.}
  try
-   Result := TCosmosSecurity.LockCosmosUser(codusu);
+   Result := DMServerDataAcess.UserManager.LockCosmosUser(codusu);
 
  except
   on E: Exception do
@@ -964,7 +965,7 @@ function TDMCosmosApplicationServer.PasswordIsTemporary(const UserName:
 begin
 {Checa se a senha de um usuário está expirada.}
  try
-  Result := TCosmosSecurity.PasswordIsTemporary(UserName);
+  Result := DMServerDataAcess.UserManager.PasswordIsTemporary(UserName);
 
  except
   on E: Exception do
@@ -990,7 +991,7 @@ begin
  AList := TStringList.Create;
 
  try
-  TCosmosSecurity.GetUserRoles(UserName, AList);
+  DMServerDataAcess.UserManager.GetUserRoles(UserName, AList);
   Result := AList.CommaText;
 
   if Assigned(AList) then FreeAndNil(AList);
@@ -1013,7 +1014,7 @@ var
 begin
  {Reseta a senha de um usuário e torna-a provisória}
  try
-   TCosmosSecurity.ResetPasword(UserName, NewPassword);
+   DMServerDataAcess.UserManager.ResetPasword(UserName, NewPassword);
 
  except
   on E: Exception do
@@ -1058,7 +1059,7 @@ end;
 procedure TDMCosmosApplicationServer.SQLDiscipuladosBeforeOpen(
   DataSet: TDataSet);
 begin
- TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.ConnectionPool.GetConnection;
+ TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.ConnectionPool.ConnectionsPool.SQLConnection;
 end;
 
 function TDMCosmosApplicationServer.VerifyCosmosServer(

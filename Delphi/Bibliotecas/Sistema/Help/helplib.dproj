@@ -113,8 +113,8 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="helplib_TLB.pas"/>
-        <DCCReference Include="uhelplib.pas">
+        <DCCReference Include="cosmos.system.helplib_TLB.pas"/>
+        <DCCReference Include="cosmos.system.helplib.pas">
             <CoClasses>CosmosHelp</CoClasses>
         </DCCReference>
         <RidlCompile Include="helplib.ridl"/>

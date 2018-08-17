@@ -318,7 +318,6 @@ begin
    begin
     Result := nil;
     DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
-   // E.Message := sErrorSelectData;
    end;
  end;
 end;
@@ -326,7 +325,7 @@ end;
 
 procedure TDMSecLectoriumServerMethods.SQLAlunosBeforeOpen(DataSet: TDataSet);
 begin
- TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.ConnectionPool.GetConnection;
+ TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.ConnectionPool.ConnectionsPool.SQLConnection;
 end;
 
 function TDMSecLectoriumServerMethods.NovaMatricula(codfoc: Integer): string;
@@ -370,15 +369,13 @@ var
 begin
 {Retorna o código e a sigla de um discipulado do TM a partir de uma data de
 nascimento, passada em parâmetro de entrada.}
- ADataset := TSQLDataset.Create(nil);
+ ADataset := DMServerDataAcess.CreateDataset;
 
  try
-  ADataset.SQLConnection := DMServerDataAcess.ConnectionPool.GetConnection;
   ADataset.CommandText := Format(TSecHistoricoCmd.DiscipuladoTM , [QuotedStr(FormatDateTime('yyyy/mm/dd', Nascimento))]);
   ADataset.Open;
 
   Result := ADataset;
-
 
  except
   on E: Exception do

@@ -432,29 +432,31 @@ procedure TDMSecretariasAppContainer.DSAuthenticationManagerUserAuthenticate(
   var valid: Boolean; UserRoles: TStrings);
 var
  AInfo: string;
- AContextInfo, AUserInfo: TStringList;
+ AContextInfo: TStringList;
+ UserData: TCosmosData;
 begin
  {Autentica o usuário. Após a autenticação, o sistema armazena alguns dados
   do usuário e da conexão no gerenciador de sessões.}
  AContextInfo := DMCosmosServerServices.CreateContextInfoObject;
- AUserInfo := TStringList.Create;
+ UserData := TCosmosData.Create(15);
 
  try
   //Autentica o usuário.
-  Valid := TCosmosSecurity.AuthenticateUser(User, Password);
+  Valid := DMServerDataAcess.UserManager.AuthenticateUser(User, Password);
 
   if Valid then
     begin
      try
-       TCosmosSecurity.GetCosmosUserInfo(User, AUserInfo);
+       //Pega os dados do usuário autenticado.
+       DMServerDataAcess.UserManager.GetUserInfo(User, UserData);
        //Checa se o usuário está ativo.
-       Valid := AUserInfo.Values['INDATI'] = 'S'; //do not localize!
+       Valid := UserData.FindValue('ATIVO'); //do not localize!
        if not Valid then
          raise EInactivedUser.Create('');
 
        if Valid then //Checa se o usuário está bloqueado.
         begin
-         Valid := AUserInfo.Values['INDBLO'] = 'N';  //do not localize!
+         Valid := DMServerDataAcess.UserManager.UserIsBlocked(User);
          if not Valid then
           raise EBlockedUser.Create('');
         end;
@@ -464,7 +466,7 @@ begin
      end;
 
      //Verifica se o usuário pode acessar o módulo corrente do Cosmos.
-     Valid := TCosmosSecurity.CanAcessModule(User, DMCosmosServerServices.CosmosModule);
+     Valid := DMServerDataAcess.UserManager.CanAcessModule(User, DMCosmosServerServices.CosmosModule);
      if not Valid then
        raise ECantAcessCosmosModule.Create('');
 
@@ -472,11 +474,12 @@ begin
      if Valid then
       begin
        //Pega as roles do usuário autenticado e coloca os seus dados em sessão.
-       TCosmosSecurity.GetUserRoles(User, UserRoles);
+       DMServerDataAcess.UserManager.GetUserRoles(User, UserRoles);
+
        TDSSessionManager.GetThreadSession.PutData('UserName', User);
        TDSSessionManager.GetThreadSession.PutData('UserRoles', UserRoles.CommaText);
-       TDSSessionManager.GetThreadSession.PutData('ConnectedUser', AUserInfo.Values['NOMCAD']);
-       TDSSessionManager.GetThreadSession.PutData('UserInfo', AUserInfo.CommaText);
+       TDSSessionManager.GetThreadSession.PutData('ConnectedUser', UserData.FindValue('USER_NAME'));
+       //TDSSessionManager.GetThreadSession.PutData('UserInfo', AUserInfo.CommaText);
        TDSSessionManager.GetThreadSession.PutData('ConnectTime', DateTimeToStr(Now));
 
        //Agora registra logs sobre a autenticação.
@@ -490,7 +493,7 @@ begin
     raise EValidateUser.Create(Format(TCosmosLogs.InvalidAuthentication, [User]));
 
  AContextInfo.Free;
- AUserInfo.Free;
+ UserData.Free;
 
  except
   on E: EValidateUser do//login ou senha inválidos
@@ -501,7 +504,7 @@ begin
     DMCosmosServerServices.RegisterLog(AInfo, AContextInfo.CommaText, leOnAuthenticateFail);
 
     if Assigned(AContextInfo) then FreeAndNil(AContextInfo);
-    if Assigned(AUserInfo) then FreeAndNil(AUserInfo);
+    if Assigned(UserData) then FreeAndNil(UserData);
    end;
   //O usuário está inativo.
   on E: EInactivedUser do
@@ -512,7 +515,7 @@ begin
     DMCosmosServerServices.RegisterLog(AInfo, AContextInfo.CommaText, leOnAuthenticateFail);
 
     if Assigned(AContextInfo) then FreeAndNil(AContextInfo);
-    if Assigned(AUserInfo) then FreeAndNil(AUserInfo);
+    if Assigned(UserData) then FreeAndNil(UserData);
    end;
   //O usuário não pode acessar o módulo corrente do Cosmos.
   on E: ECantAcessCosmosModule do
@@ -523,7 +526,7 @@ begin
     DMCosmosServerServices.RegisterLog(AInfo, AContextInfo.CommaText, leOnAuthenticateFail);
 
     if Assigned(AContextInfo) then FreeAndNil(AContextInfo);
-    if Assigned(AUserInfo) then FreeAndNil(AUserInfo);
+    if Assigned(UserData) then FreeAndNil(UserData);
    end;
   //O usuário está bloqueado.
   on E: EBlockedUser do
@@ -534,7 +537,7 @@ begin
      DMCosmosServerServices.RegisterLog(AInfo, AContextInfo.CommaText, leOnAuthenticateFail);
 
     if Assigned(AContextInfo) then FreeAndNil(AContextInfo);
-    if Assigned(AUserInfo) then FreeAndNil(AUserInfo);
+    if Assigned(UserData) then FreeAndNil(UserData);
    end;
   //outros erros
   on E: Exception do
@@ -542,7 +545,7 @@ begin
     Valid := False;
     DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
     if Assigned(AContextInfo) then FreeAndNil(AContextInfo);
-    if Assigned(AUserInfo) then FreeAndNil(AUserInfo);
+    if Assigned(UserData) then FreeAndNil(UserData);
    end;
  end;
 end;

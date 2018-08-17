@@ -31,7 +31,6 @@ type
  EDeleteError = class (Exception);
  EFocusInexists = class (Exception);
  EDuplicatedCosmosUser = Exception;
- ECreateCosmosUser = Exception;
  EUnknownRole = Exception;
  ESetProfileUser = Exception;
  ELogSystem = Exception;

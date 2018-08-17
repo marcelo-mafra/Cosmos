@@ -8,8 +8,8 @@ uses
   Data.FMTBcd, cosmos.system.types, cosmos.system.messages, cosmos.servers.sqlcommands,
   cosmos.classes.application, System.Variants, Datasnap.Provider, System.WideStrings,
   Datasnap.DSSession, cosmos.system.winshell, cosmos.classes.ServerInterface,
-  cosmos.classes.logs, Data.DBXCommon, cosmos.system.exceptions,
-  cosmos.classes.cosmoscript, cosmos.system.dataconverter;
+  cosmos.classes.logs, Data.DBXCommon, cosmos.system.exceptions,cosmos.classes.servers.dataobj,
+  cosmos.classes.utils.cosmoscript, cosmos.system.dataconverter;
 
 
 type
@@ -134,10 +134,8 @@ begin
     Dataset.Fields.FieldByName('sencon').AsString := TCripterFactory.Descriptografar(Dataset.Fields.FieldByName('sencon').AsString);
 
    finally
-    DMServerDataAcess.CloseDataset(DMServerDataAcess.SQLSearch);
+    Dataset.Post;
    end;
-
-   Dataset.Post;
   end;
 end;
 
@@ -202,17 +200,24 @@ begin
 end;
 
 function TCosmosSecEIServerMethods.ReorderBook(codbook, codtarget: Integer): boolean;
+var
+ aCommand: cosmos.classes.servers.dataobj.TStoredProcCommand;
 begin
 //Reordena um livro da Escola Interna.
+ aCommand := cosmos.classes.servers.dataobj.TStoredProcCommand.Create;
+
  try
-  with SQLStProcedure do
+  with aCommand do
    begin
-    StoredProcName := TProceduresNames.PROC_REORDENAR_LIVRO_LICAO;
-    ParamByName('codliv').AsInteger := codbook;
-    ParamByName('codlic').Clear;
-    ParamByName('codtarget').AsInteger := codtarget;
-    Result := ExecProc > 0;
+    ProcName := TProceduresNames.PROC_REORDENAR_LIVRO_LICAO;
+    aCommand.AddParam('codliv', codbook);
+    aCommand.AddParam('codlic');
+    aCommand.AddParam('codtarget', codtarget);
+    aCommand.Params.ParamByName('codlic').Clear;
    end;
+
+  Result := aCommand.ExecuteStoredProc > 0;
+
 
  except
   on E: Exception do
@@ -247,12 +252,12 @@ end;
 
 procedure TCosmosSecEIServerMethods.SQLLivrosEIBeforeOpen(DataSet: TDataSet);
 begin
-  TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.ConnectionPool.GetConnection;
+  TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.ConnectionPool.ConnectionsPool.SQLConnection;
 end;
 
 procedure TCosmosSecEIServerMethods.SQLStProcedureBeforeOpen(DataSet: TDataSet);
 begin
-  TSQLStoredProc(Dataset).SQLConnection := DMServerDataAcess.ConnectionPool.GetConnection;
+  TSQLStoredProc(Dataset).SQLConnection := DMServerDataAcess.ConnectionPool.ConnectionsPool.SQLConnection;
 end;
 
 function TCosmosSecEIServerMethods.NovoCirculo(Circulo, Membros: OleVariant;

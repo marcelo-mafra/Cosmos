@@ -1,18 +1,21 @@
-unit cosmos.classes.dataobjects;
+unit cosmos.classes.servers.dataobj;
 
 interface
 
 uses
- System.Classes, System.SysUtils, DataSnap.DBClient, cosmos.classes.dbxObjects,
- cosmos.classes.datobj.interfaces;
+ System.Classes, System.SysUtils, Data.DB, DataSnap.DBClient, cosmos.classes.servers.dbxObjects,
+ cosmos.classes.servers.datobjint;
 
 type
+ {Encapsula o evento de erros definido em TErrorEvent.}
+ TCosmosOnDBErrorEvent = procedure(const ErrorId: integer; ErrorMsg: string) of object;
 
 //Encapsula um simples pool de conexões com o banco de dados.
  TCosmosConnectionsPool = class
    private
+   FOnErrorEvent: TCosmosOnDBErrorEvent;
    FConnectionsPool: TConnectionsPool;
-   function GetConnection: TConnectionsPool;
+   function GetConnectionsPool: TConnectionsPool;
    function GetConnectionsCount: integer;
 
   public
@@ -23,8 +26,9 @@ type
    procedure FillPool(const ObjCount: integer);
    procedure RemoveConnection(const SessionId: Int64);
 
-   property Connection: TConnectionsPool read GetConnection;
+   property ConnectionsPool: TConnectionsPool read GetConnectionsPool;
    property ConnectionsCount: integer read GetConnectionsCount;
+   property OnErrorEvent: TCosmosOnDBErrorEvent read FOnErrorEvent write FOnErrorEvent;
  end;
 
  TCosmosDBObject = class(TInterfacedObject)
@@ -38,7 +42,7 @@ type
     property ConnectionsPool: TCosmosConnectionsPool read FCosmosConnectionsPool write FCosmosConnectionsPool;
  end;
 
-TCosmosCommand = class(TCosmosDBObject, ICosmosCommand)
+ TCosmosCommand = class(TCosmosDBObject, ICosmosCommand)
    private
 
    public
@@ -47,7 +51,26 @@ TCosmosCommand = class(TCosmosDBObject, ICosmosCommand)
 
     function ExecuteCommand(const Command: WideString): integer;
     procedure ExecuteDQL(const DQL: WideString; Dataset: TClientDataset);
+
   end;
+
+  TStoredProcCommand = class(TCosmosDBObject)
+   private
+    FParams: TParams;
+    FProcName: string;
+
+   public
+    constructor Create;
+    destructor Destroy; override;
+
+    function ExecuteStoredProc: integer;
+    procedure AddParam(const ParamName: string; value: variant); overload;
+    procedure AddParam(const ParamName: string); overload;
+
+    property Params: TParams read FParams write FParams;
+    property ProcName: string read FProcName write FProcName;
+  end;
+
 
  TCosmosScript = class(TCosmosDBObject, ICosmosScript)
   private
@@ -86,7 +109,7 @@ var
  aCommand: TdbxCommand;
 begin
   aCommand := TdbxCommand.Create;
-  aCommand.ConnectionsPool := self.ConnectionsPool.Connection;
+  aCommand.ConnectionsPool := self.ConnectionsPool.ConnectionsPool;
 
   try
     Result := aCommand.ExecuteCommand(Command);
@@ -102,7 +125,7 @@ var
  aCommand: TdbxCommand;
 begin
   aCommand := TdbxCommand.Create;
-  aCommand.ConnectionsPool := self.ConnectionsPool.Connection;
+  aCommand.ConnectionsPool := self.ConnectionsPool.ConnectionsPool;
 
   try
     aCommand.ExecuteDQL(DQL, Dataset);
@@ -146,7 +169,7 @@ var
  aCommand: TdbxCommand;
 begin
   aCommand := TdbxCommand.Create;
-  aCommand.ConnectionsPool := self.ConnectionsPool.Connection;
+  aCommand.ConnectionsPool := self.ConnectionsPool.ConnectionsPool;
 
   try
     Result := aCommand.ExecuteScript(FScript);
@@ -166,6 +189,7 @@ end;
 constructor TCosmosConnectionsPool.Create(const ConnectionParamsFile: string);
 begin
  FConnectionsPool := TConnectionsPool.Create(ConnectionParamsFile);
+ FConnectionsPool.OnErrorEvent := OnErrorEvent;
  inherited Create;
 end;
 
@@ -173,6 +197,7 @@ destructor TCosmosConnectionsPool.Destroy;
 begin
   if Assigned(FConnectionsPool) then
    begin
+     FConnectionsPool.OnErrorEvent := nil;
      FConnectionsPool.ClearAll;
      FConnectionsPool.Free;
    end;
@@ -185,7 +210,7 @@ begin
  FConnectionsPool.FillPool(ObjCount);
 end;
 
-function TCosmosConnectionsPool.GetConnection: TConnectionsPool;
+function TCosmosConnectionsPool.GetConnectionsPool: TConnectionsPool;
 begin
  Result := FConnectionsPool;
 end;
@@ -211,6 +236,57 @@ destructor TCosmosDBObject.Destroy;
 begin
   inherited;
 end;
+
+{ TStoredProcCommand }
+
+procedure TStoredProcCommand.AddParam(const ParamName: string; value: variant);
+var
+ aParam: TParam;
+begin
+ aParam := FParams.AddParameter;
+ aParam.Name := ParamName;
+ aParam.Value := value;
+end;
+
+procedure TStoredProcCommand.AddParam(const ParamName: string);
+var
+ aParam: TParam;
+begin
+ aParam := FParams.AddParameter;
+ aParam.Name := ParamName;
+end;
+
+constructor TStoredProcCommand.Create;
+begin
+ inherited Create;
+ FParams := TParams.Create;
+end;
+
+destructor TStoredProcCommand.Destroy;
+begin
+  FParams.Free;
+  inherited;
+end;
+
+function TStoredProcCommand.ExecuteStoredProc: integer;
+var
+ aStoredProc: TdbxStoredProc;
+begin
+  aStoredProc := TdbxStoredProc.Create;
+  aStoredProc.ConnectionsPool := self.ConnectionsPool.ConnectionsPool;
+
+  try
+    aStoredProc.ProcName := ProcName;
+    aStoredProc.Params.Assign(Params);
+    Result := aStoredProc.Execute;
+
+  finally
+    aStoredProc.Free;
+  end;
+
+end;
+
+
 
 end.
 

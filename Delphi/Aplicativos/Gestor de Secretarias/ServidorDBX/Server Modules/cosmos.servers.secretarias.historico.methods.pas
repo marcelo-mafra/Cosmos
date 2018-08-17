@@ -194,13 +194,13 @@ end;
 procedure TCosmosSecHistoricoServerMethods.SQLHistoricoBeforeOpen(
   DataSet: TDataSet);
 begin
- TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.ConnectionPool.GetConnection;
+ TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.ConnectionPool.ConnectionsPool.SQLConnection;
 end;
 
 procedure TCosmosSecHistoricoServerMethods.SQLInstalarMembroBeforeOpen(
   DataSet: TDataSet);
 begin
-  TSQLStoredProc(Dataset).SQLConnection := DMServerDataAcess.ConnectionPool.GetConnection;
+  TSQLStoredProc(Dataset).SQLConnection := DMServerDataAcess.ConnectionPool.ConnectionsPool.SQLConnection;
 end;
 
 procedure TCosmosSecHistoricoServerMethods.DesligarCadastrado(Data: OleVariant;

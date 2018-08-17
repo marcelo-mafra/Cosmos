@@ -1,11 +1,11 @@
-unit uhelplib;
+unit cosmos.system.helplib;
 
 {$WARN SYMBOL_PLATFORM OFF}
 
 interface
 
 uses
-  Windows, ActiveX, Classes, ComObj, helplib_TLB, StdVcl;
+  Windows, ActiveX, Classes, ComObj, cosmos.system.helplib_TLB, StdVcl;
 
 type
   TCosmosHelp = class(TTypedComObject, ICosmosHelp)

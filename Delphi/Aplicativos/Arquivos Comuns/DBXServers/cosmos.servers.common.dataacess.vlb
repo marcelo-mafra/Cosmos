@@ -1,12 +1,3 @@
-﻿[SQLSearch]
-Coordinates=10,10,69,51
-
-[SQLCommand]
-Coordinates=89,10,85,51
-
-[DspSearch]
-Coordinates=85,70,68,33
-
-[SQLCon]
+﻿[]
 Coordinates=26,70,55,33
 

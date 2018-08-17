@@ -2,8 +2,8 @@ library helplib;
 
 uses
   ComServ,
-  helplib_TLB in 'helplib_TLB.pas',
-  uhelplib in 'uhelplib.pas' {CosmosHelp: CoClass};
+  cosmos.system.helplib_TLB in 'cosmos.system.helplib_TLB.pas',
+  cosmos.system.helplib in 'cosmos.system.helplib.pas' {CosmosHelp: CoClass};
 
 exports
   DllGetClassObject,

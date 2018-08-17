@@ -146,7 +146,7 @@
         <DCCReference Include="..\..\..\Arquivos Comuns\Tools\Tasks\cosmos.tools.tasks.parser.pas"/>
         <DCCReference Include="..\..\..\Arquivos Comuns\Tools\Tasks\cosmos.tools.tasks.stream.pas"/>
         <DCCReference Include="..\..\..\Arquivos Comuns\Classes\Business\cosmos.business.financeiro.pas"/>
-        <DCCReference Include="..\..\..\Arquivos Comuns\Tools\cosmos.tools.printer.pas"/>
+        <DCCReference Include="..\..\..\Arquivos Comuns\Tools\cosmos.classes.tools.printer.pas"/>
         <DCCReference Include="..\..\..\Arquivos Comuns\Classes\Business\cosmos.business.secretariats.pas"/>
         <DCCReference Include="..\..\..\Arquivos Comuns\Classes\Business\cosmos.business.messages.pas"/>
         <BuildConfiguration Include="Debug">

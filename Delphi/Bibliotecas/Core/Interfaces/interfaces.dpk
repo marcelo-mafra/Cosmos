@@ -53,7 +53,6 @@ contains
   cosmos.framework.datanavigators.datasets in '..\..\..\Arquivos Comuns\Classes\Framework\Navigators\cosmos.framework.datanavigators.datasets.pas',
   cosmos.framework.datanavigators.listview in '..\..\..\Arquivos Comuns\Classes\Framework\Navigators\cosmos.framework.datanavigators.listview.pas',
   cosmos.framework.datanavigators.treeview in '..\..\..\Arquivos Comuns\Classes\Framework\Navigators\cosmos.framework.datanavigators.treeview.pas',
-  Cosmos.Framework.Interfaces.Security in '..\..\..\Arquivos Comuns\Classes\Framework\Interfaces\Cosmos.Framework.Interfaces.Security.pas',
   cosmos.framework.clients.common.appinfo in '..\..\..\Arquivos Comuns\Classes\Framework\cosmos.framework.clients.common.appinfo.pas',
   Cosmos.Framework.Interfaces.Applications in '..\..\..\Arquivos Comuns\Classes\Framework\Interfaces\Cosmos.Framework.Interfaces.Applications.pas',
   Cosmos.Framework.Interfaces.ConnectionNotifiers in '..\..\..\Arquivos Comuns\Classes\Framework\Interfaces\Cosmos.Framework.Interfaces.ConnectionNotifiers.pas',

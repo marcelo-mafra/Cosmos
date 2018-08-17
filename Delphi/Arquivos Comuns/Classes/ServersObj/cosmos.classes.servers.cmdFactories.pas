@@ -1,11 +1,11 @@
-unit cosmos.classes.cmdFactories;
+unit cosmos.classes.servers.cmdFactories;
 
 interface
 
 uses
  cosmos.classes.ServerInterface, cosmos.servers.sqlcommands, cosmos.system.messages,
  cosmos.system.exceptions, cosmos.core.classes.searchsinfo, System.SysUtils,
- cosmos.classes.serversutils, System.Variants, cosmos.classes.arrayutils;
+ cosmos.classes.servers.utils, System.Variants, cosmos.classes.arrayutils;
 
 type
  //Classe utilitária para obter nomes de objetos do banco e comandos.

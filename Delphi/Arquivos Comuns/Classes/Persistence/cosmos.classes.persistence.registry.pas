@@ -4,7 +4,7 @@ interface
 
 uses
  Winapi.Windows, System.Classes, cosmos.classes.persistence, System.Win.Registry,
- cosmos.system.files, cosmos.classes.cosmoscript, cosmos.system.messages,
+ cosmos.system.files, cosmos.classes.utils.cosmoscript, cosmos.system.messages,
  WinAPI.ShellAPI;
 
 type

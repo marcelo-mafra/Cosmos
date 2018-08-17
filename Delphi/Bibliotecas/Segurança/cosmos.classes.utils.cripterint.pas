@@ -1,4 +1,4 @@
-unit cosmos.classes.cripterint;
+unit cosmos.classes.utils.cripterint;
 
 {Unidade de interface para uso da biblioteca CRIPTER.DLL. Essa biblioteca é responsável por prover diversos mecanismos
 de criptografia e hash.}

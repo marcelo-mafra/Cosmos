@@ -8,7 +8,8 @@ uses
   Datasnap.DSAuth, DBClient, DB, SqlExpr, FMTBcd, cosmos.classes.application,
   System.Variants, Datasnap.Provider, cosmos.system.exceptions, Data.dbxCommon,
   cosmos.system.messages, cosmos.servers.sqlcommands, cosmos.classes.ServerInterface,
-  System.WideStrings, DataSnap.DsSession, cosmos.classes.logs, cosmos.classes.cosmoscript;
+  System.WideStrings, DataSnap.DsSession, cosmos.classes.logs,
+  cosmos.classes.utils.cosmoscript;
 
 type
   TDMSecAtividadesServerMethods = class(TDSServerModule)
@@ -682,10 +683,8 @@ begin
     Dataset.Fields.FieldByName('sencon').AsString := TCripterFactory.Descriptografar(Dataset.Fields.FieldByName('sencon').AsString);
 
    finally
-    DMServerDataAcess.CloseDataset(DMServerDataAcess.SQLSearch);
+    Dataset.Post;
    end;
-
-   Dataset.Post;
   end;
 end;
 
@@ -954,7 +953,7 @@ end;
 
 procedure TDMSecAtividadesServerMethods.SQLAgendaBeforeOpen(DataSet: TDataSet);
 begin
- TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.ConnectionPool.GetConnection;
+ TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.ConnectionPool.ConnectionsPool.SQLConnection;
 end;
 
 procedure TDMSecAtividadesServerMethods.DeleteActivity(codati: Integer);

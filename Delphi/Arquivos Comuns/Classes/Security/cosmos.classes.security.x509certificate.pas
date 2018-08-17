@@ -1,4 +1,4 @@
-unit cosmos.common.security.x509certificate;
+unit cosmos.classes.security.x509certificate;
 
 interface
 

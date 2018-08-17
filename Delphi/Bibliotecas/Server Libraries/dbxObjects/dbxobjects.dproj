@@ -146,8 +146,8 @@
         <DCCReference Include="dbxFirebirdDriver.dcp"/>
         <DCCReference Include="dsnap.dcp"/>
         <DCCReference Include="dbrtl.dcp"/>
-        <DCCReference Include="cosmos.classes.dbxObjects.pas"/>
-        <DCCReference Include="cosmos.classes.dbxUtils.pas"/>
+        <DCCReference Include="cosmos.classes.servers.dbxObjects.pas"/>
+        <DCCReference Include="cosmos.classes.servers.dbxUtils.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

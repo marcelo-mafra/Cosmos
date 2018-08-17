@@ -3,7 +3,7 @@ unit cosmos.classes.logs.controller;
 interface
 
 uses
- Winapi.Windows, System.Classes, System.SysUtils, cosmos.classes.logs,
+ Winapi.Windows, System.Classes, System.UITypes, System.SysUtils, cosmos.classes.logs,
  cosmos.classes.logs.textfile, cosmos.system.messages, System.Threading,
  Vcl.Dialogs;
 

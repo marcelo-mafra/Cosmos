@@ -8,7 +8,7 @@ uses
   Datasnap.DSAuth, DBClient, DB, SqlExpr, FMTBcd, cosmos.system.dataconverter,
   cosmos.classes.application, Variants, Provider, cosmos.classes.logs,
   cosmos.classes.ServerInterface, cosmos.classes.arrayutils, cosmos.servers.sqlcommands,
-  cosmos.classes.security, WideStrings, cosmos.system.exceptions, cosmos.system.messages,
+  WideStrings, cosmos.system.exceptions, cosmos.system.messages,
   DBXFirebird, dbxCommon, cosmos.core.classes.FieldsInfo, Datasnap.DSSession;
 
 type
@@ -228,7 +228,7 @@ end;
 
 procedure TCosmosSecTPServerMethods.SQLTurmasTPBeforeOpen(DataSet: TDataSet);
 begin
- TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.ConnectionPool.GetConnection;
+ TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.ConnectionPool.ConnectionsPool.SQLConnection;
 end;
 
 function TCosmosSecTPServerMethods.GetDiscipuladoSimpatizante: integer;

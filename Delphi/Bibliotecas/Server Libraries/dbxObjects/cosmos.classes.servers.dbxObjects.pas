@@ -1,25 +1,34 @@
-unit cosmos.classes.dbxObjects;
+unit cosmos.classes.servers.dbxObjects;
 
 interface
 
 uses
  System.Classes, System.SysUtils, Data.DBXCommon, Data.SQLExpr, Datasnap.Provider,
  Data.DBXDBReaders, Data.DB, Datasnap.DBClient, System.Generics.Collections,
- cosmos.system.files, cosmos.classes.cosmoscript, cosmos.classes.dbxUtils;
+ cosmos.system.files, cosmos.classes.utils.cosmoscript, cosmos.classes.servers.dbxUtils,
+ cosmos.system.exceptions, cosmos.system.messages;
 
 const
  sENoConnectionsPool = 'Não há um pool criado!'; //Transferir daqui.
+ sNoProcedureName = 'Não foi definido o nome da função a ser executada!';
 
 type
+ EdbxObjError = Exception;
+ {Encapsula o evento de erros (TDBXErrorEvent) do dbExpress, modificando sua
+ assinatura para apenas os dados essenciais.}
+ TErrorEvent = procedure(const ErrorId: integer; ErrorMsg: string) of object;
+
 //Implementa um simples pool de conexões com o banco de dados.
  TConnectionsPool = class
    private
    FConnectionParamsFile: string;
    FConnectionsPool:  TDictionary<Int64, TSQLConnection>;
-   FOnErrorEvent: TDBXErrorEvent;
-   function GetConnection: TSQLConnection; overload;
+   FOnErrorEvent: TErrorEvent;
+   procedure RegisterOnDBXError(DBXError: TDBXError);
+
+   function GetSQLConnection: TSQLConnection; overload;
    function GetConnectionsCount: integer;
-   procedure StartSQLServer;
+
 
   public
    constructor Create(const ConnectionParamsFile: string);
@@ -29,9 +38,9 @@ type
    procedure FillPool(const ObjCount: integer);
    procedure RemoveConnection(const SessionId: Int64);
 
-   property Connection: TSQLConnection read GetConnection;
+   property SQLConnection: TSQLConnection read GetSQLConnection;
    property ConnectionsCount: integer read GetConnectionsCount;
-   property OnErrorEvent: TDBXErrorEvent read FOnErrorEvent write FOnErrorEvent;
+   property OnErrorEvent: TErrorEvent read FOnErrorEvent write FOnErrorEvent;
  end;
 
  //Abstrai um objeto controlador do transações no servidor SQL.
@@ -56,7 +65,6 @@ type
   private
    FConnectionsPool: TConnectionsPool;
    procedure SetConnectionsPool(ConnectionsPool: TConnectionsPool);
-   function CreateDataset(Connection: TSQLConnection): TSQLDataset; overload;
    function CreateDataset: TSQLDataset; overload;
 
   public
@@ -64,11 +72,12 @@ type
    destructor Destroy; override;
 
    property ConnectionsPool: TConnectionsPool read FConnectionsPool write SetConnectionsPool;
+   function CreateCommand(const Command: string): TDBXReader;
  end;
 
  //Abstrai operações de execução de comandos no servidor SQL.
  TdbxCommand = class(TdbxObject)
- private
+  private
    procedure CloseDataset(Dataset: TDataset); inline;
    procedure ExecuteDQL(const DQL: WideString; Dataset: TSQLDataset); overload;
 
@@ -81,6 +90,20 @@ type
    function ExecuteScript(Script: TStringList): boolean; overload;
    procedure ExecuteDQL(const DQL: WideString; Dataset: TClientDataset); overload;
 
+ end;
+
+ TdbxStoredProc = class(TdbxObject)
+  private
+   FProcName: string;
+   FParams: TParams;
+
+  public
+   constructor Create;
+   destructor Destroy; override;
+
+   function Execute: integer;
+   property ProcName: string read FProcName write FProcName;
+   property Params: TParams read FParams write FParams;
  end;
 
 
@@ -158,7 +181,7 @@ var
  TD: TDBXTransaction;
 begin
 //Executa um comando no banco de dados.
- AConnection := self.ConnectionsPool.Connection;
+ AConnection := self.ConnectionsPool.SQLConnection;
  ATrans := TdbxTransactionsManager.Create;
 
  try
@@ -227,7 +250,7 @@ begin
 {Executa um script com diversos comandos sql de forma atômica. Caso ocorra
 alguma falha, toda operação será desfeita.}
  ATrans := TdbxTransactionsManager.Create;
- AConnection := self.ConnectionsPool.Connection;
+ AConnection := self.ConnectionsPool.SQLConnection;
 
  try
  //Inicia uma nova transação
@@ -254,6 +277,7 @@ alguma falha, toda operação será desfeita.}
    begin
    {A checagem abaixo evita que outros erros não tenham permitido o início da
     transação. p. exe: queda ou travamento do servidor sql}
+    Result := False;
     if Assigned(AConnection) then
      begin
       if AConnection.InTransaction then
@@ -279,7 +303,7 @@ begin
 //Executa um comando DQL no banco de dados e retorna um cursosr unidirecional.
  try
   CloseDataset(Dataset);
-  Dataset.SQLConnection := self.ConnectionsPool.Connection;
+  Dataset.SQLConnection := self.ConnectionsPool.SQLConnection;
   Dataset.CommandText := DQL;
   Dataset.Open;
 
@@ -339,24 +363,40 @@ begin
  inherited Create;
 end;
 
+function TdbxObject.CreateCommand(const Command: string): TDBXReader;
+var
+ aCommand: Data.DBXCommon.TDBXCommand;
+begin
+ //Cria um objeto TDBXReader que será usado em processos de leitura de dados.
+ aCommand := FConnectionsPool.SQLConnection.DBXConnection.CreateCommand;
+
+ try
+  ACommand.CommandType := TDBXCommandTypes.DbxSQL;
+  ACommand.Text := Command;
+  Result := ACommand.ExecuteQuery;
+
+  if Assigned(ACommand) then  FreeAndNil(ACommand);
+
+ except
+  on E: TDBXError do
+   begin
+     if Assigned(ACommand) then  FreeAndNil(ACommand);
+     raise TDBXError.Create(TCosmosErrorCodes.SelectData, TCosmosErrorMsg.SelectData);
+   end;
+ end;
+
+end;
+
 function TdbxObject.CreateDataset: TSQLDataset;
 begin
 //Cria um dataset e o liga a uma conexão do pool.
  if Assigned(FConnectionsPool) then
   begin
    Result := TSQLDataset.Create(nil);
-   Result.SQLConnection := FConnectionsPool.Connection;
+   Result.SQLConnection := FConnectionsPool.SQLConnection;
   end
  else
   raise Exception.Create(sENoConnectionsPool);
-end;
-
-function TdbxObject.CreateDataset(Connection: TSQLConnection): TSQLDataset;
-begin
-{Este método não utiiza o pool de conexões, mas o objeto passado em parâmetro.
-Se o objeto passado em parâmetro pertencer a um pool, então o mesmo será usado.}
- Result := TSQLDataset.Create(nil);
- Result.SQLConnection := Connection;
 end;
 
 destructor TdbxObject.Destroy;
@@ -485,7 +525,7 @@ begin
 
     //Agora, abre a conexão e a adiciona ao pool.
     dbconn.Open;
-    dbconn.DBXConnection.OnErrorEvent := self.OnErrorEvent;
+    dbconn.DBXConnection.OnErrorEvent := self.RegisterOnDBXError;
     FConnectionsPool.Add(AIndex, dbconn);
     Dec(I);
   end;
@@ -500,7 +540,7 @@ begin
  end;
 end;
 
-function TConnectionsPool.GetConnection: TSQLConnection;
+function TConnectionsPool.GetSQLConnection: TSQLConnection;
 var
  AKey: Int64;
 begin
@@ -523,6 +563,12 @@ begin
  Result := FConnectionsPool.Count;
 end;
 
+procedure TConnectionsPool.RegisterOnDBXError(DBXError: TDBXError);
+begin
+ if Assigned(FOnErrorEvent) then
+  FOnErrorEvent(DBXError.ErrorCode, DBXError.Message);
+end;
+
 procedure TConnectionsPool.RemoveConnection(const SessionId: Int64);
 var
  DbCon: TSQLConnection;
@@ -536,10 +582,62 @@ begin
   end;
 end;
 
-procedure TConnectionsPool.StartSQLServer;
+{ TdbxStoredProc }
+
+constructor TdbxStoredProc.Create;
 begin
-//Inicia o servidor SQL caso o serviço do mesmo esteja parado.
-//To do.
+ inherited Create;
+ FParams := TParams.Create;
+end;
+
+destructor TdbxStoredProc.Destroy;
+begin
+  FParams.Free;
+  inherited;
+end;
+
+function TdbxStoredProc.Execute: integer;
+var
+ StoredProc: TSQLStoredProc;
+ AConnection: TSQLConnection;
+ ATrans: TdbxTransactionsManager;
+ TD: TDBXTransaction;
+begin
+ //Executa uma stored procedure no banco dedados.
+ AConnection := self.ConnectionsPool.SQLConnection;
+ ATrans := TdbxTransactionsManager.Create;
+ StoredProc := TSQLStoredProc.Create(nil);
+
+ try
+  StoredProc.SQLConnection := AConnection;
+  StoredProc.StoredProcName := self.ProcName;
+  StoredProc.Params.Assign(self.Params);
+
+  if self.ProcName.IsEmpty then
+   raise EdbxObjError.Create(sNoProcedureName);
+
+  TD := ATrans.BeginTransaction(AConnection);
+  Result := StoredProc.ExecProc;
+
+  if AConnection.InTransaction then
+   ATrans.CommitTransaction(AConnection, TD);
+
+  if Assigned(ATrans) then FreeAndNil(ATrans);
+  if Assigned(StoredProc) then FreeAndNil(StoredProc);
+  //Não destrói a conexão, pois ela é apenas um ponteiro para um objeto do pool.
+  AConnection := nil;
+
+ except
+  if AConnection.InTransaction then
+   ATrans.RollbackTransaction(AConnection, TD);
+
+  if Assigned(ATrans) then FreeAndNil(ATrans);
+  if Assigned(StoredProc) then FreeAndNil(StoredProc);
+
+  AConnection := nil;
+
+  raise;
+ end;
 end;
 
 end.

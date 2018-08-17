@@ -3,27 +3,54 @@ unit cosmos.servers.common.security;
 interface
 
 uses
-  System.SysUtils, System.Classes,  Datasnap.Provider, Data.DB, Datasnap.DBClient,
-  Data.DBXFirebird, Data.SqlExpr, Data.DBXCommon, System.Variants,
-  cosmos.system.types, cosmos.system.messages,cosmos.servers.sqlcommands,
-  cosmos.classes.application, cosmos.classes.logs, cosmos.classes.cosmoscript;
+  System.SysUtils, System.Classes, Data.DB, Datasnap.DBClient,
+  System.Variants, cosmos.system.exceptions, cosmos.system.types,
+  cosmos.system.messages,cosmos.servers.sqlcommands,
+  cosmos.classes.application, cosmos.classes.logs, cosmos.classes.utils.cosmoscript,
+  cosmos.classes.servers.securityobj, cosmos.classes.servers.datobjint;
 
 
  type
-  TCosmosSecurity = class
+  TCosmosSecurity = class(TInterfacedObject, ICosmosUsersManager)
+
+   private
+     function CreatePassword: string;
 
    public
-    class function LockCosmosUser(const codusu: integer): boolean;
-    class function CanAcessModule(const UserName: string; Module: TCosmosModules): boolean;
-    class function CreatePassword: string;
-    class function AuthenticateUser(const UserName, Password: string): boolean;
-    class procedure GetUserRoles(const UserName: string; Roles: TStrings);
-    class function ChangePassword(const UserName, NewPassword: string): boolean;
-    class function PasswordIsTemporary(const UserName: string): boolean;
-    class function UserIsBlocked(const UserName: string): boolean;
-    class procedure ResetPasword(const UserName: string; out NewPassword: string);
-    class procedure GetCosmosUserInfo(const UserName: string; AData: TStringList);
+     constructor Create;
+     destructor Destroy; override;
+
+   protected
+     //Autenticação
+     function AuthenticateUser(const UserName, Password: string): boolean;
+
+     //Senhas
+     function ChangePassword(const UserName, NewPassword: string): integer;
+     function PasswordIsTemporary(const UserName: string): boolean;
+     procedure ResetPasword(const UserName: string; out NewPassword: string);
+
+     //Usuários
+     function CreateUser(UserData, FocusData: Olevariant; ActiveRange: integer): boolean;
+     function DeleteUser(const codusu: integer): boolean;
+     procedure GetUserInfo(const UserName: WideString; var UserData: TCosmosData);
+     function GetUserStatus(const UserName: string): TUserStatus;
+
+     //Bloqueios e desbloqueios
+     function LockCosmosUser(const codusu: integer): boolean;
+     function UnlockCosmosUser(const codusu: integer): boolean;
+     function UserIsBlocked(const UserName: string): boolean;
+
+     //Roles
+     procedure GetUserRoles(const UserName: string; Roles: TStrings);
+     function GrantRole(const UserName, RoleName: string): boolean;
+     function RevokeRole(const UserName, RoleName: string): boolean;
+
+     //Privilégios
+     function CanAcessModule(const UserName: string; Module: TCosmosModules): boolean;
+     function IsAdministrator(const UserName: WideString): boolean;
+     procedure SetAdministrator(const Value: string; UserId: integer);
   end;
+
 
 implementation
 
@@ -31,93 +58,85 @@ uses cosmos.servers.common.dataacess, cosmos.servers.common.services;
 
 { TComosSecurity }
 
-class function TCosmosSecurity.AuthenticateUser(const UserName,
+function TCosmosSecurity.AuthenticateUser(const UserName,
   Password: string): boolean;
 var
- ADataset: TSQLDataset;
+ UserManager: TCosmosUsersManager;
+
 begin
  {Autentica o usuário com a senha passada em parâmetro. A autenticação basicamente
   verifica se existe um usuário com login e senha passados. Este método não verifica
   se o usuário está ativo ou bloqueado.}
- ADataset := DMServerDataAcess.CreateDataset;
+ UserManager := TCosmosUsersManager.Create;
 
  try
-  ADataset.CommandText := Format(TSecurityCommand.LoginUser, [UserName.QuotedString, Password.QuotedString]);
+  Result := UserManager.AuthenticateUser(UserName, Password);
 
-  ADataset.Open;
-  Result := ADataset.RecordCount > 0;
+  //Registra um log da operação feita com sucesso.
+  DMCosmosServerServices.RegisterLog(Format(TSecurityConst.AutenticacaoSucesso, [UserName]), '', leOnInformation);
 
-  DMCosmosServerServices.RegisterLog(Format(TCosmosLogs.SQLCommand, [ADataset.CommandText]), '', leOnInformation);
-
-  if Assigned(ADataset) then FreeAndNil(ADataset);
+  if Assigned(UserManager) then FreeAndNil(UserManager);
 
  except
   on E: Exception do
    begin
     Result := False;
-    if Assigned(ADataset) then FreeAndNil(ADataset);
+    if Assigned(UserManager) then FreeAndNil(UserManager);
     DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
    end;
  end;
+
 end;
 
-class function TCosmosSecurity.CanAcessModule(const UserName: string;
+function TCosmosSecurity.CanAcessModule(const UserName: string;
   Module: TCosmosModules): boolean;
 var
- I: integer;
- ADQL, sModule: string;
- ADataset: TSQLDataset;
+ UserManager: TCosmosUsersManager;
 begin
- // Verifica se um usuário pode acessar um módulo do Cosmos.
- case Module of
-   cmFocos, cmFocosServer: sModule := sModule.Format('pri.INDFOC = %s', [QuotedStr('S')]);   //do not localize!
-   cmSecretarias, cmSecretariasServer: sModule := sModule.Format('pri.INDSEC = %s', [QuotedStr('S')]);  //do not localize!
-   cmFinanceiro, cmFinanceiroServer: sModule := sModule.Format('pri.INDFIN = %s', [QuotedStr('S')]);  //do not localize!
-   cmConferencias, cmConferenciasServer: sModule := sModule.Format('pri.INDCON = %s', [QuotedStr('S')]);   //do not localize!
-   cmUsuarios, cmUsuariosServer: sModule := sModule.Format('pri.INDUSU = %s', [QuotedStr('S')]);  //do not localize!
- end;
-
- ADataset := DMServerDataAcess.CreateDataset;
- I := 0;
+ UserManager := TCosmosUsersManager.Create;
 
  try
-  ADQL := ADQL.Format(TSecurityCommand.UserModule, [UserName.QuotedString, sModule]);
-  ADataset.CommandText := ADQL;
-  ADataset.Open;
+  Result := UserManager.CanAcessModule(UserName, Module);
+  if Assigned(UserManager) then FreeAndNil(UserManager);
 
-  //Não é possível ler ADataset.RecordCount aqui, uma vez que a query é um join.
-  //Ver a ajuda do dbExpress para essa propriedade.
-  while not ADataset.Eof do
+ except
+  on E: Exception do
    begin
-    Inc(I);
-    ADataset.Next;
+     if Assigned(UserManager) then FreeAndNil(UserManager);
+     DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+     raise;
    end;
-
-  Result := I > 0;
-  ADataset.Free;
-
- except
-   if Assigned(ADataset) then FreeAndNil(ADataset);
-   raise;
  end;
-
 end;
 
-class function TCosmosSecurity.ChangePassword(const UserName, NewPassword: string): boolean;
+function TCosmosSecurity.ChangePassword(const UserName,
+  NewPassword: string): integer;
 var
- ADML: string;
+ UserManager: TCosmosUsersManager;
 begin
-//Muda a senha de um usuário.
+ UserManager := TCosmosUsersManager.Create;
+
  try
-  ADML := ADML.Format(TSecurityCommand.ChangePassword, [NewPassword.QuotedString, QuotedStr('N'), UserName.QuotedString]);
-  Result := DMServerDataAcess.DoExecuteCommand(ADML) > 0;
+  Result := UserManager.ChangePassword(UserName, NewPassword);
+  if Assigned(UserManager) then FreeAndNil(UserManager);
+
 
  except
-   raise;
+  on E: Exception do
+   begin
+    if Assigned(UserManager) then FreeAndNil(UserManager);
+    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    raise;
+   end;
  end;
 end;
 
-class function TCosmosSecurity.CreatePassword: string;
+constructor TCosmosSecurity.Create;
+begin
+ inherited Create;
+end;
+
+function TCosmosSecurity.CreatePassword: string;
 const
   conso: array [0..19] of Char = ('b', 'c', 'd', 'f', 'g', 'h', 'j',
     'k', 'l', 'm', 'n', 'p', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z');
@@ -125,152 +144,296 @@ const
 var
   i: Integer;
 begin
- //Cria uma senha randômica.
+ //Retorna uma senha randômica .
   Result := '';
   for i := 1 to 5 do
-  begin
-    Result := Result + conso[Random(19)];
-    Result := Result + vocal[Random(4)];
-  end;
+    begin
+      Result := Result + conso[Random(19)];
+      Result := Result + vocal[Random(4)];
+    end;
 end;
 
-class procedure TCosmosSecurity.GetCosmosUserInfo(const UserName: string;
-  AData: TStringList);
+function TCosmosSecurity.CreateUser(UserData, FocusData: Olevariant;
+  ActiveRange: integer): boolean;
 var
- ADataset: TSQLDataset;
+ UserManager: TCosmosUsersManager;
 begin
- {Busca os dados pessoais de um usuário. Estas informações são usadas em diversos
- locais das aplicações Cosmos}
- ADataset := DMServerDataAcess.CreateDataset;
+ UserManager := TCosmosUsersManager.Create;
 
  try
-  ADataset.CommandText := Format(TSecurityCommand.UserInfo, [UserName.QuotedString]);
-  ADataset.Open;
-
-  AData.Clear;
-
-  if not ADataset.IsEmpty then
-   begin
-    AData.Append('LOGUSU=' + ADataset.Fields.FieldByName('LOGUSU').AsString.TrimRight);
-    AData.Append('NOMCAD=' + ADataset.Fields.FieldByName('NOMCAD').AsString.TrimRight);
-    AData.Append('MATCAD=' + ADataset.Fields.FieldByName('MATCAD').AsString.TrimRight);
-    AData.Append('SIGFOC=' + ADataset.Fields.FieldByName('SIGFOC').AsString.TrimRight);
-    AData.Append('SIGDIS=' + ADataset.Fields.FieldByName('SIGDIS').AsString.TrimRight);
-    AData.Append('INDBLO=' + ADataset.Fields.FieldByName('INDBLO').AsString.TrimRight);
-    AData.Append('INDATI=' + ADataset.Fields.FieldByName('INDATI').AsString.TrimRight);
-   end;
-
-  if Assigned(ADataset) then FreeAndNil(ADataset);
+  Result := UserManager.CreateUser(UserData, FocusData,ActiveRange);
+  if Assigned(UserManager) then FreeAndNil(UserManager);
 
  except
   on E: Exception do
    begin
-    if Assigned(ADataset) then FreeAndNil(ADataset);
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+     if Assigned(UserManager) then FreeAndNil(UserManager);
+     DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+     raise;
    end;
  end;
-
 end;
 
-class procedure TCosmosSecurity.GetUserRoles(const UserName: string;
+function TCosmosSecurity.DeleteUser(const codusu: integer): boolean;
+var
+ UserManager: TCosmosUsersManager;
+begin
+ UserManager := TCosmosUsersManager.Create;
+
+ try
+  Result := UserManager.DeleteUser(codusu);
+  if Assigned(UserManager) then FreeAndNil(UserManager);
+
+ except
+  on E: Exception do
+   begin
+     if Assigned(UserManager) then FreeAndNil(UserManager);
+     DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+     raise;
+   end;
+ end;
+end;
+
+destructor TCosmosSecurity.Destroy;
+begin
+  inherited;
+end;
+
+procedure TCosmosSecurity.GetUserInfo(const UserName: WideString; var UserData: TCosmosData);
+var
+ UserManager: TCosmosUsersManager;
+begin
+ UserManager := TCosmosUsersManager.Create;
+
+ try
+  UserManager.GetUserInfo(UserName, UserData);
+  if Assigned(UserManager) then FreeAndNil(UserManager);
+
+ except
+  on E: Exception do
+   begin
+     if Assigned(UserManager) then FreeAndNil(UserManager);
+     DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+     raise;
+   end;
+ end;
+end;
+
+procedure TCosmosSecurity.GetUserRoles(const UserName: string;
   Roles: TStrings);
 var
- ADataset: TSQLDataset;
+ UserManager: TCosmosUsersManager;
 begin
-{Obtém os grupos de perfis aos quais um usuário está vinculado.}
- ADataset := DMServerDataAcess.CreateDataset;
+ UserManager := TCosmosUsersManager.Create;
 
  try
-  ADataset.CommandText := Format(TSecurityCommand.UsuarioRolesAtivas, [UserName.QuotedString, QuotedStr('S')]);
-  ADataset.Open;
-
-  while not ADataset.Eof do
-   begin
-    Roles.Append(ADataset.Fields.Fields[0].AsString);
-    ADataset.Next;
-   end;
-
- finally
-   if Assigned(ADataset) then
-    FreeAndNil(ADataset);
- end;
-end;
-
-class function TCosmosSecurity.LockCosmosUser(const codusu: integer): boolean;
-var
- ADML: string;
-begin
-//Bloqueia um usuário do Cosmos.
- try
-  //Executa o comando para bloquear o usuário.
-  ADML := ADML.Format(TGUsersCommands.LockUser, [QuotedStr('S'), codusu]);
-  Result := DMServerDataAcess.DoExecuteCommand(ADML) > 0;
+  UserManager.GetUserRoles(UserName, Roles);
+  if Assigned(UserManager) then FreeAndNil(UserManager);
 
  except
   on E: Exception do
    begin
-    raise; //Redispara a exceção para ser capturada pelo método evocador...
+     if Assigned(UserManager) then FreeAndNil(UserManager);
+     DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+     raise;
    end;
  end;
 end;
 
-class function TCosmosSecurity.PasswordIsTemporary(
-  const UserName: string): boolean;
+function TCosmosSecurity.GetUserStatus(const UserName: string): TUserStatus;
 var
- ADataset: TSQLDataset;
- ACommand: string;
+ UserManager: TCosmosUsersManager;
 begin
-//Verifica se a senha do usuário é temporária.
+ UserManager := TCosmosUsersManager.Create;
+
  try
-  ACommand := ACommand.Format(TSecurityCommand.PasswordIsTemporary, [UserName.QuotedString]);
-  ADataset := DMServerDataAcess.DoExecuteDQL(ACommand);
-
-  if Assigned(ADataset) then
-   Result := ADataset.Fields.FieldByName('indpro').AsString.Trim.ToUpper = 'S'
-  else
-   Result := True;
-
- finally
-   if Assigned(ADataset) then
-    FreeAndNil(ADataset);
- end;
-end;
-
-class procedure TCosmosSecurity.ResetPasword(const UserName: string;
-  out NewPassword: string);
-var
- ADML, APassword: string;
-begin
-{Reseta a senha de um usuário e a marca como provisória.}
- try
-  NewPassword := CreatePassword;
-  APassword := TCripterFactory.HashValue(NewPassword);
-  ADML := ADML.Format(TSecurityCommand.ChangePassword, [APassword.QuotedString, QuotedStr('S'), QuotedStr(UserName)]);
-  DMServerDataAcess.DoExecuteCommand(ADML);
+  Result := UserManager.GetUserStatus(UserName);
+  if Assigned(UserManager) then FreeAndNil(UserManager);
 
  except
-   raise;
+  on E: Exception do
+   begin
+     if Assigned(UserManager) then FreeAndNil(UserManager);
+     DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+     raise;
+   end;
  end;
 end;
 
-class function TCosmosSecurity.UserIsBlocked(const UserName: string): boolean;
+function TCosmosSecurity.GrantRole(const UserName,
+  RoleName: string): boolean;
 var
-sDQL: string;
-ADataset: TSQLDataset;
+ UserManager: TCosmosUsersManager;
 begin
-//Verifica se um usuário está bloqueado.
+ UserManager := TCosmosUsersManager.Create;
+
  try
-  sDQL := sDQL.Format(TSecurityCommand.UsuarioInfo, [UserName.QuotedString]);
-  ADataset := DMServerDataAcess.DoExecuteDQL(sDQL);
+  Result := UserManager.GrantRole(UserName, RoleName);
+  if Assigned(UserManager) then FreeAndNil(UserManager);
 
-  if ADataset <> nil then
-   Result := (ADataset.RecordCount > 0) and (ADataset.Fields.FieldByName('indblo').Value = 'S')
-  else
-   Result := False;
-
- finally
-  if Assigned(ADataset) then FreeAndNil(ADataset);
+ except
+  on E: Exception do
+   begin
+     if Assigned(UserManager) then FreeAndNil(UserManager);
+     DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+     raise;
+   end;
  end;
+end;
+
+function TCosmosSecurity.IsAdministrator(
+  const UserName: WideString): boolean;
+var
+ UserManager: TCosmosUsersManager;
+begin
+ UserManager := TCosmosUsersManager.Create;
+
+ try
+  Result := UserManager.IsAdministrator(UserName);
+  if Assigned(UserManager) then FreeAndNil(UserManager);
+
+ except
+  on E: Exception do
+   begin
+     if Assigned(UserManager) then FreeAndNil(UserManager);
+     DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+     raise;
+   end;
+ end;
+end;
+
+function TCosmosSecurity.LockCosmosUser(const codusu: integer): boolean;
+var
+ UserManager: TCosmosUsersManager;
+begin
+ UserManager := TCosmosUsersManager.Create;
+
+ try
+  Result := UserManager.LockCosmosUser(codusu);
+  if Assigned(UserManager) then FreeAndNil(UserManager);
+
+ except
+  on E: Exception do
+   begin
+     if Assigned(UserManager) then FreeAndNil(UserManager);
+     DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+     raise;
+   end;
+ end;
+end;
+
+function TCosmosSecurity.PasswordIsTemporary(
+  const UserName: string): boolean;
+var
+ UserManager: TCosmosUsersManager;
+begin
+ UserManager := TCosmosUsersManager.Create;
+
+ try
+  Result := UserManager.PasswordIsTemporary(UserName);
+  if Assigned(UserManager) then FreeAndNil(UserManager);
+
+
+ except
+  on E: Exception do
+   begin
+    if Assigned(UserManager) then FreeAndNil(UserManager);
+    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    raise;
+   end;
+ end;
+end;
+
+procedure TCosmosSecurity.ResetPasword(const UserName: string;
+  out NewPassword: string);
+var
+ UserManager: TCosmosUsersManager;
+begin
+{Reseta a senha de um usuário e a marca como provisória.}
+ UserManager := TCosmosUsersManager.Create;
+
+ try
+  NewPassword := CreatePassword;
+  UserManager.ResetPasword(UserName, NewPassword);
+  if Assigned(UserManager) then FreeAndNil(UserManager);
+
+ except
+  on E: Exception do
+   begin
+     if Assigned(UserManager) then FreeAndNil(UserManager);
+     DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+     raise;
+   end;
+ end;
+end;
+
+function TCosmosSecurity.RevokeRole(const UserName,
+  RoleName: string): boolean;
+var
+ UserManager: TCosmosUsersManager;
+begin
+ UserManager := TCosmosUsersManager.Create;
+
+ try
+  Result := UserManager.RevokeRole(UserName, RoleName);
+  if Assigned(UserManager) then FreeAndNil(UserManager);
+
+ except
+  on E: Exception do
+   begin
+     if Assigned(UserManager) then FreeAndNil(UserManager);
+     DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+     raise;
+   end;
+ end;
+
+end;
+
+procedure TCosmosSecurity.SetAdministrator(const Value: string;
+  UserId: integer);
+var
+ UserManager: TCosmosUsersManager;
+begin
+ UserManager := TCosmosUsersManager.Create;
+
+ try
+  UserManager.SetAdministrator(Value, UserId);
+  if Assigned(UserManager) then FreeAndNil(UserManager);
+
+ except
+  on E: Exception do
+   begin
+     if Assigned(UserManager) then FreeAndNil(UserManager);
+     DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+     raise;
+   end;
+ end;
+
+end;
+
+function TCosmosSecurity.UnlockCosmosUser(const codusu: integer): boolean;
+var
+ UserManager: TCosmosUsersManager;
+begin
+ UserManager := TCosmosUsersManager.Create;
+
+ try
+  Result := UserManager.UnlockCosmosUser(codusu);
+  if Assigned(UserManager) then FreeAndNil(UserManager);
+
+ except
+  on E: Exception do
+   begin
+     if Assigned(UserManager) then FreeAndNil(UserManager);
+     DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+     raise;
+   end;
+ end;
+end;
+
+function TCosmosSecurity.UserIsBlocked(const UserName: string): boolean;
+begin
+ Result := self.GetUserStatus(UserName) = usBlockedUser;
 end;
 
 end.

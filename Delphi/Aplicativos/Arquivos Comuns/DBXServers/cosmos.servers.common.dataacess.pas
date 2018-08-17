@@ -5,67 +5,50 @@ interface
 uses
   System.SysUtils, System.Classes,  Datasnap.Provider, Data.DB, Datasnap.DBClient,
   Data.DBXFirebird, Data.SqlExpr, Data.DBXCommon, System.Variants, DataSnap.DsSession,
-  cosmos.system.messages, cosmos.classes.application, cosmos.classes.dataobjects,
-  cosmos.classes.servers.security, cosmos.classes.persistence.ini, Winapi.Windows,
+  cosmos.system.messages, cosmos.classes.application, cosmos.classes.servers.dataobj,
+  cosmos.classes.persistence.ini, Winapi.Windows,
   cosmos.core.classes.FieldsInfo, Data.FMTBcd, cosmos.servers.sqlcommands,
   cosmos.system.types, cosmos.classes.ServerInterface, Data.DBXPool, cosmos.system.files,
   cosmos.system.winshell, cosmos.system.exceptions, cosmos.classes.logs,
-  Data.DBXDBReaders, cosmos.classes.cmdFactories;
+  Data.DBXDBReaders, cosmos.classes.servers.cmdFactories, cosmos.servers.common.security,
+  cosmos.classes.servers.datobjint;
 
 type
   TDMServerDataAcess = class(TDataModule)
-    SQLCon: TSQLConnection;
-    SQLCommand: TSQLDataSet;
-    SQLSearch: TSQLDataSet;
-    DspSearch: TDataSetProvider;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
-    procedure SQLCommandBeforeOpen(DataSet: TDataSet);
 
   private
     { Private declarations }
-    FCosmosFolder, FCosmosMonitorFolder, FCosmosRootFile, FConnectionRole, FConnectionPath: string;
+    FCosmosFolder, FCosmosMonitorFolder, FCosmosRootFile: string;
     FActiveRange: Int64; //Faixa de formação de chaves primárias.
     AFieldsInfoReader: TFieldsInfoReader;
-    FConnectionUser, FConnectionPass, FConnectionCharset: string;
-    FConnectionPool: TConnectionsPool;
+    FConnectionPool: TCosmosConnectionsPool;
 
-    procedure WriteParamsCommandInfo(Dataset: TCustomSQLDataset; List: TStringList);
+    function GetIUserManager: ICosmosUsersManager;
     procedure LoadDatabaseOptions;
-    procedure OnDatabaseError(DBXError: TDBXError);
-
+    procedure RegisterDBError(const ErrorId: integer; ErrorMsg: string);
+    procedure SetCosmosFolders;
+    procedure WriteParamsCommandInfo(Dataset: TCustomSQLDataset; List: TStringList);
 
   public
     { Public declarations }
-
     //Criação de objetos de dados.
     function CreateCommand: TDBXCommand;
     function CreateDataset: TSQLDataset;
     function CreateReader(Dataset: TDataset): TDBXDataSetReader;
     function CreateStoreProcedure: TSQLStoredProc;
-
-    procedure DoBufferData(const SchemmaName: WideString;
-      out DataPackage: OleVariant);
-
-    function IsAdministrator(const UserName: WideString): Boolean;
     procedure CloseDataset(const Dataset: TDataset); inline;
-    procedure SetConnectionParams; inline;//Carrega informações sobre a conexão com o banco de dados.
 
     //Operações de leitura e escrita.
     function DoExecuteDQL(SearchID: Integer; Params: OleVariant): TDataset; overload;
     function DoExecuteDQL(const DQL: WideString): TSQLDataset; overload;
     function DoExecuteCommand(const Command: WideString): integer;
     function DoExecuteScript(var AScript: TStringList): boolean;
-    procedure ConvertToClientDataset(Source: TCustomSQLDataset; Destination: TClientDataset);
 
     function DoGetSequenceValue(const SequenceName: WideString): integer;
 
     function GetDQLCommand(SearchID: Integer; const Params: OleVariant): WideString;
-
-    function NewSQLMonitorFile: string;
-    procedure SetCosmosFolders;
-    procedure SetUserInfo(UserName, Password, RoleName: WideString; var UserData: TCosmosData);
-    function GetUserStatus(const UserName: string): TUserStatus;
 
     //Logs
     function GetContextInfo(Dataset: TCustomSQLDataset): string;
@@ -80,14 +63,10 @@ type
 
 
      property ActiveRange: Int64 read FActiveRange;
-     property ConnectionPool: TConnectionsPool read FConnectionPool;
-     property ConnectionUser: string read FConnectionUser; //usuário interno que se usará para conectar com o banco de dados.
-     property ConnectionPass: string read FConnectionPass; //Senha do usuário interno.
-     property ConnectionRole: string read FConnectionRole; //Role do usuário interno.
-     property ConnectionCharset: string read FConnectionCharset; //Charset da conexão interna;
-
+     property ConnectionPool: TCosmosConnectionsPool read FConnectionPool;
      property CosmosFolder: string read FCosmosFolder;
      property CosmosRootFile: string read FCosmosRootFile;
+     property UserManager: ICosmosUsersManager read GetIUserManager;
   end;
 
 var
@@ -100,22 +79,6 @@ implementation
 uses cosmos.servers.common.services;
 
 {$R *.dfm}
-
-procedure TDMServerDataAcess.DoBufferData(const SchemmaName: WideString;
-  out DataPackage: OleVariant);
-var
-TD: TDBXTransaction;
-begin
-//Bufferiza um pacote de dados no formato olevariant que é envidao para o cliente.
- try
-  TD := self.BeginTransaction(SQLCon);
-  SQLSearch.CommandText := Format(TDQLCommands.BufferSchemma, [SchemmaName]);
-  DataPackage := DspSearch.Data;
-
- finally
-  self.CommitTransaction(SQLCon, TD);
- end;
-end;
 
 function TDMServerDataAcess.BeginTransaction(Connection: TSQLConnection;
   const Isolation: integer): TDBXTransaction;
@@ -151,37 +114,15 @@ begin
   Connection.CommitFreeAndNil(Transaction);
 end;
 
-procedure TDMServerDataAcess.ConvertToClientDataset(Source: TCustomSQLDataset;
-  Destination: TClientDataset);
-const
-Options : TGetRecordOptions = [grMetaData,grReset];
-var
- AProvider: TDatasetProvider;
-begin
- //"Converte" um objeto do tipo TCustoSQLDataset para um clientdataset.
- AProvider := TDatasetProvider.Create(nil);
- AProvider.Name := 'PrvConverter'; //do not localize!
-
- try
-  AProvider.DataSet := Source;
-  AProvider.Options := AProvider.Options + [poIncFieldProps];
-  Destination.SetProvider(AProvider);
-  Destination.Open;
-
- finally
-  if Assigned(AProvider) then FreeAndNil(AProvider);
- end;
-end;
-
 function TDMServerDataAcess.CreateCommand: TDBXCommand;
 begin
- Result :=  ConnectionPool.GetConnection.DBXConnection.CreateCommand;
+ Result :=  ConnectionPool.ConnectionsPool.SQLConnection.DBXConnection.CreateCommand;
 end;
 
 function TDMServerDataAcess.CreateDataset: TSQLDataset;
 begin
  Result := TSQLDataset.Create(nil);
- Result.SQLConnection := ConnectionPool.GetConnection;
+ Result.SQLConnection := ConnectionPool.ConnectionsPool.SQLConnection;
 end;
 
 function TDMServerDataAcess.CreateReader(Dataset: TDataset): TDBXDataSetReader;
@@ -192,7 +133,7 @@ end;
 function TDMServerDataAcess.CreateStoreProcedure: TSQLStoredProc;
 begin
   Result := TSQLStoredProc.Create(nil);
-  Result.SQLConnection := ConnectionPool.GetConnection;
+  Result.SQLConnection := ConnectionPool.ConnectionsPool.SQLConnection;
 end;
 
 procedure TDMServerDataAcess.DataModuleCreate(Sender: TObject);
@@ -220,18 +161,13 @@ end;
 function TDMServerDataAcess.DoExecuteCommand(
   const Command: WideString): integer;
 var
- AConnection: TSQLConnection;
- TD: TDBXTransaction;
+ aCommand: cosmos.classes.servers.dataobj.TCosmosCommand;
 begin
  //Executa um comando e retorna o número de linhas afetadas.
- AConnection := ConnectionPool.GetConnection;
+ aCommand := cosmos.classes.servers.dataobj.TCosmosCommand.Create;
 
  try
-  TD := AConnection.BeginTransaction();
-  Result := AConnection.ExecuteDirect(Command);
-
-  if AConnection.InTransaction then
-   AConnection.CommitFreeAndNil(TD);
+  Result := ACommand.ExecuteCommand(Command);
 
   DMCosmosServerServices.RegisterLog(Format(TCosmosLogs.SQLCommand, [Command]), '', leOnInformation);
 
@@ -239,7 +175,6 @@ begin
    on E: Exception do
     begin
      Result := -1;
-     if AConnection.InTransaction then AConnection.RollbackFreeAndNil(TD);
      DMCosmosServerServices.RegisterLog(E.Message + #13 + Format(TCosmosLogs.SQLCommand, [Command]), '', leOnError);
      raise;
     end;
@@ -269,68 +204,55 @@ end;
 function TDMServerDataAcess.DoExecuteScript(
   var AScript: TStringList): boolean;
 var
-I: integer;
-ACommand: string;
-AConnection: TSQLConnection;
-ATransaction: TDBXTransaction;
+ aScriptObj: TCosmosScript;
 begin
 {Executa um script com diversos comandos sql de forma atômica. Caso ocorra
 alguma falha, toda a operação será desfeita.}
- Result := False;
  if not Assigned(AScript) then
   Exit;
 
- AConnection := ConnectionPool.GetConnection;
- ATransaction := AConnection.BeginTransaction;
+ aScriptObj := TCosmosScript.Create;
 
- DMCosmosServerServices.RegisterLog(Format(TCosmosLogs.ExecuteScriptBegin, [AScript.Text]), '', leOnInformation);
+ try
+  DMCosmosServerServices.RegisterLog(Format(TCosmosLogs.ExecuteScriptBegin, [AScript.Text]), '', leOnInformation);
+  Result := aScriptObj.ExecuteScript(aScript);
 
-  for I := 0 to Pred(AScript.Count) do
+  DMCosmosServerServices.RegisterLog(Format(TCosmosLogs.ExecuteScriptEnd, [AScript.Text]), '', leOnInformation);
+
+ except
+  on E: Exception do
     begin
-     ACommand := AScript.Strings[I];
-
-     try
-      AConnection.ExecuteDirect(ACommand);
-
-     except
-      on E: Exception do
-       begin
-        {A checagem abaixo evita que outros erros não tenham permitido o início da
-        transação. p. exe: queda ou travamento do servidor sql}
-        AConnection.RollbackFreeAndNil(ATransaction);
-        DMCosmosServerServices.RegisterLog(E.Message, Format(TCosmosLogs.SQLCommand, [AScript.Text]), leOnError);
-        raise;
-      end;
-     end;
+     DMCosmosServerServices.RegisterLog(E.Message, Format(TCosmosLogs.SQLCommand, [AScript.Text]), leOnError);
+     raise;
     end;
 
-  AConnection.CommitFreeAndNil(ATransaction);
-  Result := True;
-  DMCosmosServerServices.RegisterLog(Format(TCosmosLogs.ExecuteScriptEnd, [AScript.Text]), '', leOnInformation);
+ end;
 end;
 
 function TDMServerDataAcess.DoGetSequenceValue(
   const SequenceName: WideString): integer;
 var
- ADataset: TSQLDataset;
+ aCommand: cosmos.classes.servers.dataobj.TCosmosCommand;
+ ADataset: TClientDataset;
 begin
  //Obtém o valor atual de uma sequence a partir do nome da sequence e da faixa
  //de chaves primárias.
- ADataset := self.CreateDataset;
+ aCommand := cosmos.classes.servers.dataobj.TCosmosCommand.Create;
+ aDataset := TClientDataset.Create(nil);
 
  try
-  ADataset.CommandText := Format(TDQLCommands.Generators, [SequenceName, 1]);
-  ADataset.Open;
+  aCommand.ExecuteDQL(Format(TDQLCommands.Generators, [SequenceName, 1]), aDataset);
   Result := ADataset.Fields.Fields[0].Value + ActiveRange;
 
-  if Assigned(ADataset) then
-   FreeAndNil(ADataset);
+  if Assigned(ADataset) then FreeAndNil(ADataset);
+  if Assigned(aCommand) then FreeAndNil(aCommand);
 
  except
   on E: Exception do
    begin
     DMCosmosServerServices.RegisterLog(E.Message, Format(TCosmosLogs.SequenceName, [SequenceName]), leOnError);
     if Assigned(ADataset) then FreeAndNil(ADataset);
+    if Assigned(aCommand) then FreeAndNil(aCommand);
     raise;
    end;
  end;
@@ -418,6 +340,11 @@ as propriedades dos TFields para o lado cliente.}
  end;
 end;
 
+function TDMServerDataAcess.GetIUserManager: ICosmosUsersManager;
+begin
+ Result := TCosmosSecurity.Create as ICosmosUsersManager;
+end;
+
 procedure TDMServerDataAcess.WriteParamsCommandInfo(
   Dataset: TCustomSQLDataset; List: TStringList);
 var
@@ -448,66 +375,8 @@ begin
   end
 end;
 
-function TDMServerDataAcess.GetUserStatus(
-  const UserName: string): TUserStatus;
+procedure TDMServerDataAcess.RegisterDBError(const ErrorId: integer; ErrorMsg: string);
 var
- UserManager: TCosmosUsersManager;
-begin
-//Verifica o status do usuário...
- UserManager := TCosmosUsersManager.Create;
-
- try
-  Result := UserManager.GetUserStatus(UserName);
-
-  if Assigned(UserManager) then
-   FreeAndNil(UserManager);
-
- except
-  on E: Exception do
-   begin
-    Result := usUnknown;
-    if Assigned(UserManager) then
-     FreeAndNil(UserManager);
-
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
-   end;
- end;
-end;
-
-function TDMServerDataAcess.IsAdministrator(
-  const UserName: WideString): Boolean;
-begin
-//Checa se um usuário é um administrador do sistema.
- try
-  CloseDataset(SQLSearch);
-  SQLSearch.CommandText := Format(TSecurityCommand.AdmUSer,[QuotedStr(UserName)]);
-  SQlSearch.Open;
-  Result := SQLSearch.Fields.Fields[0].AsString = 'S';
-
- finally
-  CloseDataset(SQLSearch);
- end;
-end;
-
-function TDMServerDataAcess.NewSQLMonitorFile: string;
-var
-GUID: TGUID;
-begin
-//Gera um novo arquivo para ser usado pelo sqlmonitor
- Result := '';
-
- if not DirectoryExists(self.FCosmosMonitorFolder) then
-  CreateDir(self.FCosmosMonitorFolder);
-
- CreateGUID(GUID);
-
- Result := Format('%s\%s_%s.%s', [FCosmosMonitorFolder,
-    DMCosmosServerServices.CosmosModuleShortName.ToLower, GUIDToString(GUID), 'txt']);
-end;
-
-procedure TDMServerDataAcess.OnDatabaseError(DBXError: TDBXError);
-var
- Info: string;
  AContextInfo: TStringList;
 begin
  {Registra informações de logs de erros de disparados pelo RDBMS. Os eventos
@@ -518,13 +387,12 @@ begin
    AContextInfo := DMCosmosServerServices.CreateContextInfoObject;
 
    try
-    Info := DBXError.Message;
-    AContextInfo.Append(Format(TCosmosLogs.ErrorCode, [DBXError.ErrorCode]));
+    AContextInfo.Append(Format(TCosmosLogs.ErrorCode, [ErrorId]));
     AContextInfo.Append(Format(TCosmosLogs.ContextInfoSession, [TDSSessionManager.GetThreadSession.Id]));
     AContextInfo.Append(Format(TCosmosLogs.ContextInfoUser, [TDSSessionManager.GetThreadSession.GetData('UserName')]));
     AContextInfo.Append(Format(TCosmosLogs.ContextInfoRoles, [TDSSessionManager.GetThreadSession.GetData('UserRoles')]));
 
-    DMCosmosServerServices.RegisterLog(Info, AContextInfo.DelimitedText, leOnError);
+    DMCosmosServerServices.RegisterLog(ErrorMsg, AContextInfo.DelimitedText, leOnError);
 
    finally
     FreeAndNil(AContextInfo);
@@ -540,7 +408,7 @@ begin
   partir dos eventos OnUpdateError dos objetos TDatasetProvider existentes no
   sistema.}
 
-  if E.Message.IndexOf('foreigne key') >= 0 then
+  if E.Message.IndexOf('foreign key') >= 0 then
    E.Message := TCosmosErrorReconcile.ForeignKey //violation of foreign key.
   else
   if E.Message.IndexOf('exception 58') >= 0 then
@@ -560,20 +428,18 @@ end;
 
 procedure TDMServerDataAcess.LoadDatabaseOptions;
 var
-  ADBXConFile: string;
   AFile: TIniFilePersistence;
   PoolSize: Integer;
 begin
  //Carrega as configurações de conexão com banco de dados e monta o pool de conexões.
-  DMCosmosServerServices.RegisterLog('Lendo opções de configuração do pool de conexões...', 'TDMServerDataAcess.LoadDatabaseOptions', leOnInformation);
+  DMCosmosServerServices.RegisterLog(TCosmosConnectionErrors.ReadingPoolInfo, 'TDMServerDataAcess.LoadDatabaseOptions', leOnInformation);
 
-  ADBXConFile := CosmosFolder + TCosmosFiles.dbxconnections; //do not localize!
   AFile := TIniFilePersistence.Create(CosmosRootFile, True);
 
   try
-    PoolSize := AFile.ReadInteger(DMCosmosServerServices.CosmosModuleShortName.ToUpper, 'DatabasePoolSize', 5);
-    FConnectionPool := TConnectionsPool.Create(ADBXConFile);
-    FConnectionPool.OnErrorEvent := OnDatabaseError;
+    PoolSize := AFile.ReadInteger(DMCosmosServerServices.CosmosModuleShortName.ToUpper, TCosmosConnectionErrors.PoolSize, 5);
+    FConnectionPool := TCosmosConnectionsPool.Create(CosmosFolder + TCosmosFiles.dbxconnections);
+    FConnectionPool.OnErrorEvent := RegisterDBError;
     FConnectionPool.FillPool(PoolSize);
 
     if Assigned(AFile) then FreeAndNil(AFile);
@@ -594,21 +460,6 @@ begin
 //Desfaz a transação passada em parâmetro.
  if (Connection <> nil) and (Connection.Connected) and (Connection.InTransaction) then
    Connection.RollbackFreeAndNil(Transaction);
-end;
-
-procedure TDMServerDataAcess.SetConnectionParams;
-begin
- //Obtém as informações de configuração em memória sobre conexão do banco de dados.
- try
-  if FConnectionPath = '' then
-   EDatabaseConnectError.Create(TCosmosErrorMsg.DatabaseNotFound);
-
-  SQLCon.ConnectionName := 'COSMOS';  //do not localize!
-  SQLCon.LoadParamsFromIniFile(self.FCosmosFolder + TCosmosFiles.dbxconnections);  //do not localize!
-
- except
-  raise;
- end;
 end;
 
 procedure TDMServerDataAcess.SetCosmosFolders;
@@ -639,95 +490,6 @@ begin
  finally
   if Assigned(aFile) then FreeAndNil(aFile);
  end;
-end;
-
-procedure TDMServerDataAcess.SetUserInfo(UserName, Password,
-  RoleName: WideString; var UserData: TCosmosData);
-var
- UserManager: TCosmosUsersManager;
- AList: TStringList;
- ADataset: TSQLDataset;
-begin
- AList := TStringList.Create;
- UserManager := TCosmosUsersManager.Create;
-
- try
-  ADataset := DoExecuteDQL(Format(TSecurityCommand.UsuarioInfo, [QuotedStr(UserName)]));
-
-  //Testa se o login do usuário existe...
-  if ADataset.IsEmpty then //Não encontrou um usuário com o login indicado...
-    raise EUnknownUser.Create(TCosmosErrorSecurityMsg.UnknownUser);
-
-  //Testa se a senha do usuário está correta. O teste é feito com a senha criptografada.
-  if Password <> SQLSearch.Fields.FieldByName('paswrd').AsString then //Senha do usuário é inválida...
-    raise EValidateUser.Create(TCosmosErrorMsg.PasswordNotConfirmed);
-
-  if Assigned(UserData) then
-   begin
-    with SQLSearch.Fields do
-     begin
-      UserData.WriteValue('LOGIN', FieldByName('logusu').AsString);
-      UserData.WriteValue('USER_NAME', FieldByName('nomcad').AsString, 1);
-      UserData.WriteValue('FOCO', FieldByName('sigfoc').AsString, 2);
-      UserData.WriteValue('MATRICULA', FieldByName('matcad').AsString, 3);
-      UserData.WriteValue('DISCIPULADO', FieldByName('sigdis').AsString, 4);
-
-      //Usuário está ativo?
-      if FieldByName('indati').Value = 'S' then
-       UserData.WriteValue('ATIVO', True, 5)
-      else
-       UserData.WriteValue('ATIVO', False, 5);
-
-      //Usuário é administrador?
-      if FieldByName('indadm').Value = 'S' then
-       UserData.WriteValue('ADM', True, 6)
-      else
-       UserData.WriteValue('ADM', False, 6);
-     end;
-
-    //Testa se a role do usuário está correta.
-    UserManager.GetUserRoles(UserName, AList);
-
-    if AList.IndexOf(RoleName) < 0 then
-     raise EIncorrectRoleAcess.Create(TCosmosErrorMsg.IncorrectRoleName);
-
-    if Assigned(UserManager) then
-     FreeAndNil(UserManager);
-
-    if Assigned(AList) then
-     FreeAndNil(AList);
-
-    //Agora, checa quais campos de trabalho poderão ser acessados pelo usuário.
-    CloseDataset(ADataset);
-    ADataset := DoExecuteDQL(Format(TSecurityCommand.PerfilUsuario, [QuotedStr(UpperCase(RoleName))]));
-    with ADataset.Fields do
-     begin
-      UserData.WriteValue('INDLEC', FieldByName('INDLEC').AsString, 7);
-      UserData.WriteValue('INDTMO', FieldByName('INDTMO').AsString, 8);
-      UserData.WriteValue('INDTMB', FieldByName('INDTMB').AsString, 9);
-      UserData.WriteValue('INDTPU', FieldByName('INDTPU').AsString, 10);
-      UserData.WriteValue('INDEIN', FieldByName('INDEIN').AsString, 11);
-      UserData.WriteValue('ABRANGENCIA', FieldByName('ABRPER').AsString, 12);
-     end;
-   end;
-
-  if Assigned(ADataset) then FreeAndNil(ADataset);
-  if Assigned(UserManager) then FreeAndNil(UserManager);
-  if Assigned(AList) then FreeAndNil(AList);
-
- except
-  CloseDataset(ADataset);
-  if Assigned(ADataset) then FreeAndNil(ADataset);
-  if Assigned(UserManager) then FreeAndNil(UserManager);
-  if Assigned(AList) then FreeAndNil(AList);
-
-  raise;
- end;
-end;
-
-procedure TDMServerDataAcess.SQLCommandBeforeOpen(DataSet: TDataSet);
-begin
- TSQLDataset(Dataset).SQLConnection := ConnectionPool.GetConnection;
 end;
 
 end.
