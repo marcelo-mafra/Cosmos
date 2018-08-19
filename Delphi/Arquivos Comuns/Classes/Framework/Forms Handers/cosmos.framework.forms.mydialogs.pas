@@ -6,21 +6,6 @@ uses
   Winapi.Windows, System.SysUtils, Vcl.Dialogs, System.Classes, Vcl.Forms,
   Vcl.StdCtrls, cosmos.system.messages;
 
-const
-sTitleInfo = 'Informação';
-sTitleConf = 'Confirmação';
-sTitleError = 'Erro';
-sTitleWarn = 'Aviso';
-
-
-sBtOK = '&OK';
-sBtCancel = '&Cancelar';
-sBtYes = '&Sim';
-sBtNo = '&Não';
-sBtIgnore = '&Ignorar';
-sBtRetry = '&Retentar';
-sBtHelp = '&Ajuda';
-
 
 function MyMessageDlg(const Msg: string; DlgType: TMsgDlgType;
   Buttons: TMsgDlgButtons; Title: string; Captions: array of string): Integer;
@@ -80,7 +65,8 @@ end;
 
 class function TMyDialogs.ConfirmMessage(const Msg: string): Integer;
 begin
- Result := MyMessageDlg(Msg,mtConfirmation,[mbYes,mbNo],sTitleConf,[sBtYes,sBtNo]);
+ Result := MyMessageDlg(Msg,mtConfirmation,[mbYes,mbNo], TMessagesConst.TitleConf,
+  [TMessagesConst.BtYes, TMessagesConst.BtNo]);
 end;
 
 class function TMyDialogs.CustomMessage(const Msg: string; DlgType: TMsgDlgType;
@@ -118,22 +104,23 @@ end;
 
 class function TMyDialogs.ErrorMessage(const Msg: string): Integer;
 begin
- Result := MyMessageDlg(Msg,mtError,[mbOk],sTitleError,[sBtOK]);
+ Result := MyMessageDlg(Msg,mtError,[mbOk], TMessagesConst.TitleError,[TMessagesConst.BtOK]);
 end;
 
 class function TMyDialogs.ErrorMessageWithHelp(const Msg: string): Integer;
 begin
- Result := MyMessageDlg(Msg,mtError,[mbOk, mbHelp],sTitleError,[sBtOK, sBtHelp]);
+ Result := MyMessageDlg(Msg,mtError,[mbOk, mbHelp], TMessagesConst.TitleError,
+  [TMessagesConst.BtOK, TMessagesConst.BtHelp]);
 end;
 
 class function TMyDialogs.InfoMessage(const Msg: string): Integer;
 begin
- Result := MyMessageDlg(Msg,mtInformation,[mbOk],sTitleInfo,[sBtOK]);
+ Result := MyMessageDlg(Msg,mtInformation,[mbOk], TMessagesConst.TitleInfo,[TMessagesConst.BtOK]);
 end;
 
 class function TMyDialogs.WarningMessage(const Msg: string): Integer;
 begin
- Result := MyMessageDlg(Msg,mtWarning,[mbOk],sTitleWarn,[sBtOK]);
+ Result := MyMessageDlg(Msg,mtWarning,[mbOk], TMessagesConst.TitleWarn,[TMessagesConst.BtOK]);
 end;
 
 end.

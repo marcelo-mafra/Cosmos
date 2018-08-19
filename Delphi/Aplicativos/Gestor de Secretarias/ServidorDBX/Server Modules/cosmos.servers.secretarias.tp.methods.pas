@@ -228,7 +228,7 @@ end;
 
 procedure TCosmosSecTPServerMethods.SQLTurmasTPBeforeOpen(DataSet: TDataSet);
 begin
- TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.ConnectionPool.ConnectionsPool.SQLConnection;
+ TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.SQLConnection;
 end;
 
 function TCosmosSecTPServerMethods.GetDiscipuladoSimpatizante: integer;

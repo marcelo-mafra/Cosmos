@@ -541,7 +541,8 @@ begin
  //Retorna se há conexão no momento.
   case ConnectionType of
     ctPooledOnDemand, ctPooledOnStart: Result := (FConnectionsPool <> nil) and (FConnectionsPool.Active);
-    ctStateless: Result := (CurrentConnectionInfo <> nil) and (CurrentConnectionInfo.CurrentSection <> nil) and (CurrentConnectionInfo.CurrentSection.ConnectionID.Trim <> '');
+    ctStateless: Result := (CurrentConnectionInfo <> nil) and (CurrentConnectionInfo.CurrentSection <> nil)
+                           and (CurrentConnectionInfo.CurrentSection.ConnectionID.Trim <> '');
     ctFixed: Result := Assigned(DBXConnection) and (DBXConnection.Connected);
   end;
 end;
@@ -569,7 +570,7 @@ function TDMBase.GetConnectedServer: string;
 var
  sProtocol, sHost, sPort: string;
 begin
- {Retorna o nome do servidor econfigurado para a conexão ou já conectado.}
+ {Retorna o nome do servidor configurado para a conexão ou já conectado.}
  sProtocol := ConnectionInfo.FindValue('CommunicationProtocol');  //do not localize!
  sHost := ConnectionInfo.FindValue('HostName');  //do not localize!
  sPort := ConnectionInfo.FindValue('Port'); //do not localize!
@@ -608,13 +609,13 @@ begin
  {Retorna um objeto de conexão. Com o uso do pool, retorna sempre um objeto
   de conexão do pool. Do contrário, retorna o objeto de conexão neste datamodule. }
  case ConnectionType of
-   ctPooledOnDemand, ctPooledOnStart:
+   ctPooledOnDemand, ctPooledOnStart: //Utilizando o pool de conexões com o servidor.
     begin
      if FConnectionsPool <> nil then
        Result := ConnectionsPool.GetConnection.Connection;
     end;
-   ctStateless: Result := DoCreateConnection;
-   ctFixed: Result := self.DBXConnection;
+   ctStateless: Result := DoCreateConnection; //Cria sempre um novo objeto de conexão.
+   ctFixed: Result := self.DBXConnection; //Usa sempre o objeto de conexão desse módulo de dados.
  end;
 end;
 
@@ -633,8 +634,7 @@ begin
         if Assigned(FConnectionsPool) then
           AParams.Assign(FConnectionsPool.Params);
        end;
-    ctStateless: AParams.Assign(DBXConnection.Params);
-    ctFixed: AParams.Assign(DBXConnection.Params);
+    ctStateless, ctFixed: AParams.Assign(DBXConnection.Params);
   end;
 
   Result := AParams.CommaText;
@@ -1144,6 +1144,8 @@ end;
 
 function TDMBase.DoCreateConnection: TSQLConnection;
 begin
+{Cria um novo objeto de conexão. Como esse método é chamado apenas quando "ConnectionType"
+ for "ctStateless", sempre criamos e utilizamos um pool de uma conexão apenas.}
   if not Assigned(FConnectionsPool) then
     begin
       //Cria e configura a conexão pool de conexões.
@@ -1163,28 +1165,6 @@ begin
 
  Result := ConnectionsPool.GetConnection.Connection;
 
-{ Result := TSQLConnection.Create(self);
- Result.DriverName := 'DataSnap';
- Result.Params.Clear;
- Result.Params.AddStrings(DBXConnection.Params);
- Result.LoginPrompt := False;
-
- Result.ValidatePeerCertificate := DBXConnection.ValidatePeerCertificate;
- Result.BeforeConnect := DBXConnection.BeforeConnect;
- Result.AfterConnect := DBXConnection.AfterConnect;
- Result.BeforeDisconnect:= DBXConnection.BeforeDisconnect;
- Result.AfterDisconnect := DBXConnection.AfterDisconnect;
-
- try
-  Result.Open;
-  Result.DBXConnection.OnErrorEvent :=  ProcessDBXError;
-
- except
-  on E: Exception do
-   begin
-     raise;
-   end;
- end;}
 end;
 
 function TDMBase.GetFotoCadastrado(ImageStream: TMemoryStream): TPicture;
@@ -1532,7 +1512,7 @@ var
  ACommand: TDBXCommand;
 begin
 {Executa uma pesquisa do Cosmos no banco de dados remoto. Neste método, os
- dados são retornados na forma de um objeto TDBXReader, não adqueado para
+ dados são retornados na forma de um objeto TDBXReader, não adequado para
  ser utilizado em controles "dataware". Contudo, muito adequado para listar
  informações em combobox, por exemplo.}
  Screen.Cursor := crHourglass;

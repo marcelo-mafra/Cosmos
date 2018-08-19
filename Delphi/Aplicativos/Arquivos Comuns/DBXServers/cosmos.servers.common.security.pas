@@ -3,10 +3,9 @@ unit cosmos.servers.common.security;
 interface
 
 uses
-  System.SysUtils, System.Classes, Data.DB, Datasnap.DBClient,
-  System.Variants, cosmos.system.exceptions, cosmos.system.types,
-  cosmos.system.messages,cosmos.servers.sqlcommands,
-  cosmos.classes.application, cosmos.classes.logs, cosmos.classes.utils.cosmoscript,
+  System.SysUtils, System.Classes, cosmos.system.exceptions, cosmos.system.types,
+  cosmos.classes.logs, cosmos.system.messages, cosmos.servers.sqlcommands,
+  cosmos.classes.application, cosmos.classes.utils.cosmoscript,
   cosmos.classes.servers.securityobj, cosmos.classes.servers.datobjint;
 
 
@@ -15,10 +14,6 @@ uses
 
    private
      function CreatePassword: string;
-
-   public
-     constructor Create;
-     destructor Destroy; override;
 
    protected
      //Autenticação
@@ -49,12 +44,16 @@ uses
      function CanAcessModule(const UserName: string; Module: TCosmosModules): boolean;
      function IsAdministrator(const UserName: WideString): boolean;
      procedure SetAdministrator(const Value: string; UserId: integer);
+
+   public
+     constructor Create;
+     destructor Destroy; override;
   end;
 
 
 implementation
 
-uses cosmos.servers.common.dataacess, cosmos.servers.common.services;
+uses  cosmos.servers.common.services;
 
 { TComosSecurity }
 

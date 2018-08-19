@@ -29,6 +29,7 @@ type
    property ConnectionsPool: TConnectionsPool read GetConnectionsPool;
    property ConnectionsCount: integer read GetConnectionsCount;
    property OnErrorEvent: TCosmosOnDBErrorEvent read FOnErrorEvent write FOnErrorEvent;
+
  end;
 
  TCosmosDBObject = class(TInterfacedObject)

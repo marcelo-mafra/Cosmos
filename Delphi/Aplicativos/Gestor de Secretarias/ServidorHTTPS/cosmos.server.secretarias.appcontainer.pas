@@ -89,11 +89,11 @@ function DSAuthenticationManager: TDSAuthenticationManager;
 implementation
 
 uses cosmos.servers.common.services, cosmos.servers.common.methods,
-  cosmos.servers.secretarias.lectorium.methods, cosmos.servers.common.security,
+  cosmos.servers.secretarias.lectorium.methods, cosmos.servers.common.dataacess,
   cosmos.servers.common.security.authorizations, cosmos.server.common.logradouros.methods,
   cosmos.servers.secretarias.atividades.methods, cosmos.servers.secretarias.historico.methods,
   cosmos.servers.secretarias.tp.methods, cosmos.servers.secretarias.ei.methods,
-  cosmos.servers.secretarias.focos.methods, cosmos.servers.common.dataacess;
+  cosmos.servers.secretarias.focos.methods ;
 
 {$R *.dfm}
 
@@ -311,7 +311,6 @@ procedure TDMSecretariasAppContainer.LoadMethodsAuthorizations;
 var
  IAuthorizations: IXMLAuthorizationsType;
  IMethodInfo: IXMLMethodInfoType;
- AFileName: string;
  I: integer;
  ARoleInfo: TDSRoleItem;
  CosmosApp: TCosmosApplication;
@@ -321,9 +320,7 @@ begin
  a funcionalidadades como a métodos remotos. Este método apenas carrega as autorizações
  relativas aos métodos remotos.}
  CosmosApp := TCosmosApplication.Create;
-
- AFileName := CosmosApp.GetModulePath + TCosmosFiles.RolesPermissions;
- IAuthorizations := LoadAuthorizations(AFileName);
+ IAuthorizations := LoadAuthorizations(CosmosApp.GetModulePath + TCosmosFiles.RolesPermissions);
  DSAuthenticationManager.Roles.Clear;
 
  try
@@ -351,14 +348,13 @@ end;
 procedure TDMSecretariasAppContainer.LoadServerConfigurations;
  var
   AFile: TIniFilePersistence;
-  AFileName, CurrentProtocol: string;
+  CurrentProtocol: string;
   CosmosApp: TCosmosApplication;
 begin
 {Carregas as configurações do servidor em execução. Estas configurações envolvem
  protocolos de conexão, certificados, dentre outros itens.}
  CosmosApp := TCosmosApplication.Create;
- AFileName := CosmosApp.GetModulePath + TCosmosFiles.CosmosRoot;
- AFile := TIniFilePersistence.Create(AFileName, True);
+ AFile := TIniFilePersistence.Create(CosmosApp.GetModulePath + TCosmosFiles.CosmosRoot, True);
 
  try
   //Configurações das classes expostas remotamente.

@@ -40,7 +40,7 @@ function TRemoteProvidersPool.AddRemoteProvider(
 var
  AIndex: integer;
 begin
- {Adiciona um objeto TDSProviderConnection de dá a ele um índice.}
+ {Adiciona um objeto TDSProviderConnection e dá a ele um índice.}
  Randomize;
  AIndex := Random(ARange);
 

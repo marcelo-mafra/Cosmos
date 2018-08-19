@@ -325,7 +325,7 @@ end;
 
 procedure TDMSecLectoriumServerMethods.SQLAlunosBeforeOpen(DataSet: TDataSet);
 begin
- TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.ConnectionPool.ConnectionsPool.SQLConnection;
+ TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.SQLConnection;
 end;
 
 function TDMSecLectoriumServerMethods.NovaMatricula(codfoc: Integer): string;

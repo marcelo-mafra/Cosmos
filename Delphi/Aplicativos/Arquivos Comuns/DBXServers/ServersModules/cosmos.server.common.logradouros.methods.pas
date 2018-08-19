@@ -215,7 +215,7 @@ end;
 procedure TDMCosmosServerLogradouros.SQLSearchLogradourosBeforeOpen(
   DataSet: TDataSet);
 begin
- TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.ConnectionPool.ConnectionsPool.SQLConnection;
+ TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.SQLConnection;
 end;
 
 end.

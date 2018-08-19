@@ -14,7 +14,7 @@ type
   TOnConnectServerEvent = procedure(DSConnectEventObject: TDSConnectEventObject) of object;
   TOnDisconnectServerEvent = procedure(DSConnectEventObject: TDSConnectEventObject) of object;
 
-
+  //Implementa um servidor Datasnap como um serviçodo Windows.
   TDMSecretariasAppContainer = class(TService)
     DSServerSecretarias: TDSServer;
     DSAuthenticationManager: TDSAuthenticationManager;
@@ -71,6 +71,7 @@ type
     procedure LoadServerConfigurations;
 
   protected
+    //Métodos para que o gerenciador de serviços do Windows controlem o serviço.
     function DoStop: Boolean; override;
     function DoPause: Boolean; override;
     function DoContinue: Boolean; override;
@@ -105,7 +106,6 @@ uses cosmos.servers.common.services, cosmos.servers.common.methods,
 {$R *.dfm}
 
 var
-  FModule: TComponent;
   FDSServer: TDSServer;
   FDSAuthenticationManager: TDSAuthenticationManager;
 
@@ -457,6 +457,7 @@ begin
  //Carrega as configurações do servidor
  LoadServerConfigurations;
 
+ //Objetos relacionados ao acesso a dados e gestão de usuários.
  DMServerDataAcess := TDMServerDataAcess.Create(nil);
 
  //Carrega as autorizações para cada método remoto.
@@ -493,6 +494,7 @@ begin
   if Valid then
     begin
      try
+       //Obtém informações sobre o usuário autenticado.
        DMServerDataAcess.UserManager.GetUserInfo(User, UserData);
        //Checa se o usuário está ativo.
        Valid := UserData.FindValue('ATIVO');; //do not localize!

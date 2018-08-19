@@ -449,7 +449,7 @@ end;
 
 procedure TDMCosmosFocosMethods.SQLFocoBeforeOpen(DataSet: TDataSet);
 begin
- TSQLDataSet(Dataset).SQLConnection := DMServerDataAcess.ConnectionPool.ConnectionsPool.SQLConnection;
+ TSQLDataSet(Dataset).SQLConnection := DMServerDataAcess.SQLConnection;
 end;
 
 function TDMCosmosFocosMethods.CloneDirigente(coddir, codges: Integer): boolean;

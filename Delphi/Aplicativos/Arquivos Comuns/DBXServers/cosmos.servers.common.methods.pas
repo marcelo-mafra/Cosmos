@@ -149,7 +149,6 @@ type
 
 
     //Métodos que retornam informações sobre o ambiente do servidor.
-    function GetActiveRange: Int64;
     function GetServerDateTime: TDateTime;
     function GetTableVersion(TableId: integer): integer;
 
@@ -489,11 +488,6 @@ begin
     DMCosmosServerServices.RegisterLog(E.Message, TCosmosErrorCodes.ToErrorCode(E.ErrorCode), leOnError);
    end;
  end;
-end;
-
-function TDMCosmosApplicationServer.GetActiveRange: Int64;
-begin
-  Result := DMServerDataAcess.ActiveRange;
 end;
 
 function TDMCosmosApplicationServer.GetAddressLabelsInfo: TStringStream;
@@ -1059,13 +1053,13 @@ end;
 procedure TDMCosmosApplicationServer.SQLDiscipuladosBeforeOpen(
   DataSet: TDataSet);
 begin
- TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.ConnectionPool.ConnectionsPool.SQLConnection;
+ TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.SQLConnection;
 end;
 
 function TDMCosmosApplicationServer.VerifyCosmosServer(
   CosmosModule: Integer): boolean;
 begin
-//Verifica se o client que está conectando com o servidor é o correto.
+//Verifica se o cliente que está conectando com o servidor é o correto.
  try
   case CosmosModule of
     0: {cmFocos} Result := DMCosmosServerServices.CosmosModule = cmFocosServer;

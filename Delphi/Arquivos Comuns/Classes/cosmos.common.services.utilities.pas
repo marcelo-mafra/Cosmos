@@ -47,7 +47,7 @@ begin
      (Ord(AStream.DataString[3]) = 198) then Result := 'WMF'
   else
  //O formato EMF não é testado realmente.
-  if Pos('X',temp) > 0 then Result:='EMF'
+  if Pos('X',temp) > 0 then Result := 'EMF'
   else
   if (Ord(AStream.DataString[1]) = 0) and (Ord(AStream.DataString[2]) = 0) then Result := 'ICO'
   else

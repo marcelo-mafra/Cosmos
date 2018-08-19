@@ -47,7 +47,7 @@ var
 implementation
 
 
-{%CLASSGROUP 'Vcl.Controls.TControl'}
+{%CLASSGROUP 'System.Classes.TPersistent'}
 
 {$R *.dfm}
 
@@ -117,13 +117,11 @@ end;
 procedure TDMCosmosServerServices.LoadLogsConfigurations;
 var
   AFile: TIniFilePersistence;
-  AFileName: string;
   CosmosApp: TCosmosApplication;
 begin
 {Carrega as configurações de registro de logs do servidor em execução.}
  CosmosApp := TCosmosApplication.Create;
- AFileName := CosmosApp.GetModulePath + TCosmosFiles.CosmosRoot;
- AFile := TIniFilePersistence.Create(AFileName, True);
+ AFile := TIniFilePersistence.Create(CosmosApp.GetModulePath + TCosmosFiles.CosmosRoot, True);
 
  FLogEvents := [];
 
@@ -213,6 +211,7 @@ para determinado tipo de evento estiver ativo.}
  ACosmosApp := TCosmosApplication.Create;
 
  try
+  //Cria o objeto que escreve os logs, caso o mesmo já não tenha sido criado.
   if (LogInfo = nil) and (DirectoryExists(FServerLogsPath)) then
    begin
     FLogInfo := TCosmosLogsController.Create(FServerLogsPath, 'log', TEncoding.UTF8, LogEvents); //do not localize!

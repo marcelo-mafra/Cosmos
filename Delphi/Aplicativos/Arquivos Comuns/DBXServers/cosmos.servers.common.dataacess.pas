@@ -3,14 +3,13 @@ unit cosmos.servers.common.dataacess;
 interface
 
 uses
-  System.SysUtils, System.Classes,  Datasnap.Provider, Data.DB, Datasnap.DBClient,
+  System.SysUtils, System.Classes, Datasnap.Provider,  Data.DB, Datasnap.DBClient,
   Data.DBXFirebird, Data.SqlExpr, Data.DBXCommon, System.Variants, DataSnap.DsSession,
   cosmos.system.messages, cosmos.classes.application, cosmos.classes.servers.dataobj,
-  cosmos.classes.persistence.ini, Winapi.Windows,
-  cosmos.core.classes.FieldsInfo, Data.FMTBcd, cosmos.servers.sqlcommands,
-  cosmos.system.types, cosmos.classes.ServerInterface, Data.DBXPool, cosmos.system.files,
-  cosmos.system.winshell, cosmos.system.exceptions, cosmos.classes.logs,
-  Data.DBXDBReaders, cosmos.classes.servers.cmdFactories, cosmos.servers.common.security,
+  cosmos.classes.persistence.ini, cosmos.core.classes.FieldsInfo, cosmos.system.files,
+  cosmos.servers.sqlcommands, cosmos.system.types, cosmos.classes.ServerInterface,
+  cosmos.system.exceptions, cosmos.classes.logs, Data.DBXDBReaders,
+  cosmos.classes.servers.cmdFactories, cosmos.servers.common.security,
   cosmos.classes.servers.datobjint;
 
 type
@@ -21,11 +20,12 @@ type
   private
     { Private declarations }
     FCosmosFolder, FCosmosMonitorFolder, FCosmosRootFile: string;
-    FActiveRange: Int64; //Faixa de formação de chaves primárias.
     AFieldsInfoReader: TFieldsInfoReader;
     FConnectionPool: TCosmosConnectionsPool;
 
+    function GetDQLCommand(SearchID: Integer; const Params: OleVariant): WideString;
     function GetIUserManager: ICosmosUsersManager;
+    function GetSQLConnection: TSQLConnection;
     procedure LoadDatabaseOptions;
     procedure RegisterDBError(const ErrorId: integer; ErrorMsg: string);
     procedure SetCosmosFolders;
@@ -45,10 +45,7 @@ type
     function DoExecuteDQL(const DQL: WideString): TSQLDataset; overload;
     function DoExecuteCommand(const Command: WideString): integer;
     function DoExecuteScript(var AScript: TStringList): boolean;
-
     function DoGetSequenceValue(const SequenceName: WideString): integer;
-
-    function GetDQLCommand(SearchID: Integer; const Params: OleVariant): WideString;
 
     //Logs
     function GetContextInfo(Dataset: TCustomSQLDataset): string;
@@ -62,11 +59,11 @@ type
     procedure PrepareTransaction(var TD: TTransactionDesc);
 
 
-     property ActiveRange: Int64 read FActiveRange;
-     property ConnectionPool: TCosmosConnectionsPool read FConnectionPool;
-     property CosmosFolder: string read FCosmosFolder;
-     property CosmosRootFile: string read FCosmosRootFile;
-     property UserManager: ICosmosUsersManager read GetIUserManager;
+    property ConnectionPool: TCosmosConnectionsPool read FConnectionPool;
+    property CosmosFolder: string read FCosmosFolder;
+    property CosmosRootFile: string read FCosmosRootFile;
+    property SQLConnection: TSQLConnection read GetSQLConnection;
+    property UserManager: ICosmosUsersManager read GetIUserManager;
   end;
 
 var
@@ -101,8 +98,7 @@ end;
 procedure TDMServerDataAcess.CloseDataset(const Dataset: TDataset);
 begin
 //Fecha um dataset ativo.
- if Assigned(Dataset) then
-  if Dataset.Active then
+ if Assigned(Dataset) and (Dataset.Active) then
    Dataset.Close;
 end;
 
@@ -116,13 +112,13 @@ end;
 
 function TDMServerDataAcess.CreateCommand: TDBXCommand;
 begin
- Result :=  ConnectionPool.ConnectionsPool.SQLConnection.DBXConnection.CreateCommand;
+ Result :=  SQLConnection.DBXConnection.CreateCommand;
 end;
 
 function TDMServerDataAcess.CreateDataset: TSQLDataset;
 begin
  Result := TSQLDataset.Create(nil);
- Result.SQLConnection := ConnectionPool.ConnectionsPool.SQLConnection;
+ Result.SQLConnection := self.SQLConnection;
 end;
 
 function TDMServerDataAcess.CreateReader(Dataset: TDataset): TDBXDataSetReader;
@@ -133,23 +129,18 @@ end;
 function TDMServerDataAcess.CreateStoreProcedure: TSQLStoredProc;
 begin
   Result := TSQLStoredProc.Create(nil);
-  Result.SQLConnection := ConnectionPool.ConnectionsPool.SQLConnection;
+  Result.SQLConnection := self.SQLConnection;
 end;
 
 procedure TDMServerDataAcess.DataModuleCreate(Sender: TObject);
-var
-  AXMLFile: string;
 begin
- FActiveRange := 0;
-
  //Obtém a pasta onde o servidor está instalado.
  SetCosmosFolders;
 
  LoadDatabaseOptions;
 
  //Pega a interface com o arquivo de configuração de dados dos campos de dados.
- AXMLFile := self.FCosmosFolder + TCosmosFiles.FieldsInfo;   //do not localize!
- AFieldsInfoReader := TFieldsInfoReader.Create(AXMLFile);
+ AFieldsInfoReader := TFieldsInfoReader.Create(self.FCosmosFolder + TCosmosFiles.FieldsInfo);
 end;
 
 procedure TDMServerDataAcess.DataModuleDestroy(Sender: TObject);
@@ -183,8 +174,7 @@ end;
 
 function TDMServerDataAcess.DoExecuteDQL(const DQL: WideString): TSQLDataset;
 begin
-{Executa um comando DQL no objeto SQLSearch. A responsabilidade de fechar este
- dataset é dos métodos chamadores.}
+{Executa um comando DQL em um objeto TSQLDataset.}
 
  Result := CreateDataset;
 
@@ -235,14 +225,13 @@ var
  aCommand: cosmos.classes.servers.dataobj.TCosmosCommand;
  ADataset: TClientDataset;
 begin
- //Obtém o valor atual de uma sequence a partir do nome da sequence e da faixa
- //de chaves primárias.
+ //Obtém o valor atual de uma sequence a partir do nome dela.
  aCommand := cosmos.classes.servers.dataobj.TCosmosCommand.Create;
  aDataset := TClientDataset.Create(nil);
 
  try
   aCommand.ExecuteDQL(Format(TDQLCommands.Generators, [SequenceName, 1]), aDataset);
-  Result := ADataset.Fields.Fields[0].Value + ActiveRange;
+  Result := ADataset.Fields.Fields[0].Value ;
 
   if Assigned(ADataset) then FreeAndNil(ADataset);
   if Assigned(aCommand) then FreeAndNil(aCommand);
@@ -343,6 +332,12 @@ end;
 function TDMServerDataAcess.GetIUserManager: ICosmosUsersManager;
 begin
  Result := TCosmosSecurity.Create as ICosmosUsersManager;
+end;
+
+function TDMServerDataAcess.GetSQLConnection: TSQLConnection;
+begin
+//Retorna uma conexão do pool de conexões.
+ Result := ConnectionPool.ConnectionsPool.SQLConnection;
 end;
 
 procedure TDMServerDataAcess.WriteParamsCommandInfo(

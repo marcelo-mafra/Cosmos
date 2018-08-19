@@ -196,7 +196,6 @@ end;
 
 destructor TWindowsManager.Destroy;
 begin
- // outputdebugstring(PWideChar('Alguém me matou'));
   FFormList.Free;
   FFormsInfoWriter.Free;
   inherited Destroy;

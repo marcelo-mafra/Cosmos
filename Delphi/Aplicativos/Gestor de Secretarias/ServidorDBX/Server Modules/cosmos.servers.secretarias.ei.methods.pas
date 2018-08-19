@@ -252,12 +252,12 @@ end;
 
 procedure TCosmosSecEIServerMethods.SQLLivrosEIBeforeOpen(DataSet: TDataSet);
 begin
-  TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.ConnectionPool.ConnectionsPool.SQLConnection;
+  TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.SQLConnection;
 end;
 
 procedure TCosmosSecEIServerMethods.SQLStProcedureBeforeOpen(DataSet: TDataSet);
 begin
-  TSQLStoredProc(Dataset).SQLConnection := DMServerDataAcess.ConnectionPool.ConnectionsPool.SQLConnection;
+  TSQLStoredProc(Dataset).SQLConnection := DMServerDataAcess.SQLConnection;
 end;
 
 function TCosmosSecEIServerMethods.NovoCirculo(Circulo, Membros: OleVariant;

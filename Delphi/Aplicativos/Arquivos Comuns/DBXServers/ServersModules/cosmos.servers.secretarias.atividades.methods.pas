@@ -953,7 +953,7 @@ end;
 
 procedure TDMSecAtividadesServerMethods.SQLAgendaBeforeOpen(DataSet: TDataSet);
 begin
- TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.ConnectionPool.ConnectionsPool.SQLConnection;
+ TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.SQLConnection;
 end;
 
 procedure TDMSecAtividadesServerMethods.DeleteActivity(codati: Integer);
