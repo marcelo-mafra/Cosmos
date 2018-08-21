@@ -6,13 +6,16 @@ uses
   System.SysUtils, System.Classes, cosmos.system.exceptions, cosmos.system.types,
   cosmos.classes.logs, cosmos.system.messages, cosmos.servers.sqlcommands,
   cosmos.classes.application, cosmos.classes.utils.cosmoscript,
-  cosmos.classes.servers.securityobj, cosmos.classes.servers.datobjint;
+  cosmos.classes.servers.securityobj, cosmos.classes.servers.datobjint,
+  cosmos.servers.common.servicesint;
 
 
  type
   TCosmosSecurity = class(TInterfacedObject, ICosmosUsersManager)
 
    private
+     FModule: TCosmosModules;
+     FCosmosServerServices: ICosmosService;
      function CreatePassword: string;
 
    protected
@@ -46,8 +49,10 @@ uses
      procedure SetAdministrator(const Value: string; UserId: integer);
 
    public
-     constructor Create;
+     constructor Create(Module: TCosmosModules);
      destructor Destroy; override;
+
+     property CosmosServerService: ICosmosService read FCosmosServerServices;
   end;
 
 
@@ -72,7 +77,7 @@ begin
   Result := UserManager.AuthenticateUser(UserName, Password);
 
   //Registra um log da operação feita com sucesso.
-  DMCosmosServerServices.RegisterLog(Format(TSecurityConst.AutenticacaoSucesso, [UserName]), '', leOnInformation);
+  CosmosServerService.RegisterLog(Format(TSecurityConst.AutenticacaoSucesso, [UserName]), '', leOnInformation);
 
   if Assigned(UserManager) then FreeAndNil(UserManager);
 
@@ -81,7 +86,7 @@ begin
    begin
     Result := False;
     if Assigned(UserManager) then FreeAndNil(UserManager);
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServerService.RegisterLog(E.Message, '', leOnError);
    end;
  end;
 
@@ -102,7 +107,7 @@ begin
   on E: Exception do
    begin
      if Assigned(UserManager) then FreeAndNil(UserManager);
-     DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+     CosmosServerService.RegisterLog(E.Message, '', leOnError);
      raise;
    end;
  end;
@@ -124,15 +129,17 @@ begin
   on E: Exception do
    begin
     if Assigned(UserManager) then FreeAndNil(UserManager);
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServerService.RegisterLog(E.Message, '', leOnError);
     raise;
    end;
  end;
 end;
 
-constructor TCosmosSecurity.Create;
+constructor TCosmosSecurity.Create(Module: TCosmosModules);
 begin
  inherited Create;
+ FModule := Module;
+ FCosmosServerServices := TCosmosServerServices.New(Module)
 end;
 
 function TCosmosSecurity.CreatePassword: string;
@@ -167,7 +174,7 @@ begin
   on E: Exception do
    begin
      if Assigned(UserManager) then FreeAndNil(UserManager);
-     DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+     CosmosServerService.RegisterLog(E.Message, '', leOnError);
      raise;
    end;
  end;
@@ -187,7 +194,7 @@ begin
   on E: Exception do
    begin
      if Assigned(UserManager) then FreeAndNil(UserManager);
-     DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+     CosmosServerService.RegisterLog(E.Message, '', leOnError);
      raise;
    end;
  end;
@@ -195,6 +202,7 @@ end;
 
 destructor TCosmosSecurity.Destroy;
 begin
+  FCosmosServerServices := nil;
   inherited;
 end;
 
@@ -212,7 +220,7 @@ begin
   on E: Exception do
    begin
      if Assigned(UserManager) then FreeAndNil(UserManager);
-     DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+     CosmosServerService.RegisterLog(E.Message, '', leOnError);
      raise;
    end;
  end;
@@ -233,7 +241,7 @@ begin
   on E: Exception do
    begin
      if Assigned(UserManager) then FreeAndNil(UserManager);
-     DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+     CosmosServerService.RegisterLog(E.Message, '', leOnError);
      raise;
    end;
  end;
@@ -253,7 +261,7 @@ begin
   on E: Exception do
    begin
      if Assigned(UserManager) then FreeAndNil(UserManager);
-     DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+     CosmosServerService.RegisterLog(E.Message, '', leOnError);
      raise;
    end;
  end;
@@ -274,7 +282,7 @@ begin
   on E: Exception do
    begin
      if Assigned(UserManager) then FreeAndNil(UserManager);
-     DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+     CosmosServerService.RegisterLog(E.Message, '', leOnError);
      raise;
    end;
  end;
@@ -295,7 +303,7 @@ begin
   on E: Exception do
    begin
      if Assigned(UserManager) then FreeAndNil(UserManager);
-     DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+     CosmosServerService.RegisterLog(E.Message, '', leOnError);
      raise;
    end;
  end;
@@ -315,7 +323,7 @@ begin
   on E: Exception do
    begin
      if Assigned(UserManager) then FreeAndNil(UserManager);
-     DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+     CosmosServerService.RegisterLog(E.Message, '', leOnError);
      raise;
    end;
  end;
@@ -337,7 +345,7 @@ begin
   on E: Exception do
    begin
     if Assigned(UserManager) then FreeAndNil(UserManager);
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServerService.RegisterLog(E.Message, '', leOnError);
     raise;
    end;
  end;
@@ -360,7 +368,7 @@ begin
   on E: Exception do
    begin
      if Assigned(UserManager) then FreeAndNil(UserManager);
-     DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+     CosmosServerService.RegisterLog(E.Message, '', leOnError);
      raise;
    end;
  end;
@@ -381,7 +389,7 @@ begin
   on E: Exception do
    begin
      if Assigned(UserManager) then FreeAndNil(UserManager);
-     DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+     CosmosServerService.RegisterLog(E.Message, '', leOnError);
      raise;
    end;
  end;
@@ -403,7 +411,7 @@ begin
   on E: Exception do
    begin
      if Assigned(UserManager) then FreeAndNil(UserManager);
-     DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+     CosmosServerService.RegisterLog(E.Message, '', leOnError);
      raise;
    end;
  end;
@@ -424,7 +432,7 @@ begin
   on E: Exception do
    begin
      if Assigned(UserManager) then FreeAndNil(UserManager);
-     DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+     CosmosServerService.RegisterLog(E.Message, '', leOnError);
      raise;
    end;
  end;

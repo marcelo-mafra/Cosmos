@@ -10,46 +10,54 @@ uses
   cosmos.servers.sqlcommands, cosmos.system.types, cosmos.classes.ServerInterface,
   cosmos.system.exceptions, cosmos.classes.logs, Data.DBXDBReaders,
   cosmos.classes.servers.cmdFactories, cosmos.servers.common.security,
-  cosmos.classes.servers.datobjint;
+  cosmos.classes.servers.datobjint, cosmos.servers.common.servicesint,
+  cosmos.servers.common.dao.interfaces;
 
 type
-  TDMServerDataAcess = class(TDataModule)
-    procedure DataModuleCreate(Sender: TObject);
-    procedure DataModuleDestroy(Sender: TObject);
+
+  TDMServerDataAcess = class(TInterfacedObject,  ICosmosDAOService)
 
   private
     { Private declarations }
     FCosmosFolder, FCosmosMonitorFolder, FCosmosRootFile: string;
     AFieldsInfoReader: TFieldsInfoReader;
+    FCosmosModule: TCosmosModules;
     FConnectionPool: TCosmosConnectionsPool;
+    FCosmosServerServices: ICosmosService;
 
     function GetDQLCommand(SearchID: Integer; const Params: OleVariant): WideString;
-    function GetIUserManager: ICosmosUsersManager;
-    function GetSQLConnection: TSQLConnection;
     procedure LoadDatabaseOptions;
     procedure RegisterDBError(const ErrorId: integer; ErrorMsg: string);
     procedure SetCosmosFolders;
     procedure WriteParamsCommandInfo(Dataset: TCustomSQLDataset; List: TStringList);
 
-  public
-    { Public declarations }
-    //Criação de objetos de dados.
-    function CreateCommand: TDBXCommand;
-    function CreateDataset: TSQLDataset;
-    function CreateReader(Dataset: TDataset): TDBXDataSetReader;
-    function CreateStoreProcedure: TSQLStoredProc;
-    procedure CloseDataset(const Dataset: TDataset); inline;
-
+  protected
     //Operações de leitura e escrita.
+    function CreateCommand: TDBXCommand;
+    function CreateStoreProcedure: TSQLStoredProc;
+    function DoExecuteCommand(const Command: WideString): integer;
     function DoExecuteDQL(SearchID: Integer; Params: OleVariant): TDataset; overload;
     function DoExecuteDQL(const DQL: WideString): TSQLDataset; overload;
-    function DoExecuteCommand(const Command: WideString): integer;
-    function DoExecuteScript(var AScript: TStringList): boolean;
     function DoGetSequenceValue(const SequenceName: WideString): integer;
-
+    function DoExecuteScript(var AScript: TStringList): boolean;
     //Logs
     function GetContextInfo(Dataset: TCustomSQLDataset): string;
+
     procedure OnUpdateError(E: EUpdateError; UpdateKind: TUpdateKind; var Response: TResolverResponse);
+
+    function GetSQLConnection: TSQLConnection;
+    function GetIUserManager: ICosmosUsersManager;
+
+  public
+    { Public declarations }
+    constructor Create(Module: TCosmosModules);
+    destructor Destroy; override;
+    class function New(Module: TCosmosModules): ICosmosDAOService;
+
+    //Criação de objetos de dados.
+    function CreateDataset: TSQLDataset;
+    function CreateReader(Dataset: TDataset): TDBXDataSetReader;
+    procedure CloseDataset(const Dataset: TDataset); inline;
 
     //Transações
     function BeginTransaction(Connection: TSQLConnection): TDBXTransaction; overload;
@@ -59,23 +67,22 @@ type
     procedure PrepareTransaction(var TD: TTransactionDesc);
 
 
-    property ConnectionPool: TCosmosConnectionsPool read FConnectionPool;
     property CosmosFolder: string read FCosmosFolder;
+    property CosmosModule: TCosmosModules read FCosmosModule;
     property CosmosRootFile: string read FCosmosRootFile;
+    property CosmosServerServices: ICosmosService read FCosmosServerServices;
+
+    //ICosmosDAOService
     property SQLConnection: TSQLConnection read GetSQLConnection;
     property UserManager: ICosmosUsersManager read GetIUserManager;
   end;
 
-var
-  DMServerDataAcess: TDMServerDataAcess;
 
 implementation
 
-{%CLASSGROUP 'System.Classes.TPersistent'}
+uses
+  cosmos.servers.common.services.factory;
 
-uses cosmos.servers.common.services;
-
-{$R *.dfm}
 
 function TDMServerDataAcess.BeginTransaction(Connection: TSQLConnection;
   const Isolation: integer): TDBXTransaction;
@@ -110,6 +117,19 @@ begin
   Connection.CommitFreeAndNil(Transaction);
 end;
 
+constructor TDMServerDataAcess.Create(Module: TCosmosModules);
+begin
+ FCosmosModule := Module;
+ //Obtém a pasta onde o servidor está instalado.
+ FCosmosServerServices := TCosmosServiceFactory.New(CosmosModule).CosmosService;
+ SetCosmosFolders;
+
+ LoadDatabaseOptions;
+
+ //Pega a interface com o arquivo de configuração de dados dos campos de dados.
+ AFieldsInfoReader := TFieldsInfoReader.Create(self.FCosmosFolder + TCosmosFiles.FieldsInfo);
+end;
+
 function TDMServerDataAcess.CreateCommand: TDBXCommand;
 begin
  Result :=  SQLConnection.DBXConnection.CreateCommand;
@@ -132,21 +152,11 @@ begin
   Result.SQLConnection := self.SQLConnection;
 end;
 
-procedure TDMServerDataAcess.DataModuleCreate(Sender: TObject);
+destructor TDMServerDataAcess.Destroy;
 begin
- //Obtém a pasta onde o servidor está instalado.
- SetCosmosFolders;
-
- LoadDatabaseOptions;
-
- //Pega a interface com o arquivo de configuração de dados dos campos de dados.
- AFieldsInfoReader := TFieldsInfoReader.Create(self.FCosmosFolder + TCosmosFiles.FieldsInfo);
-end;
-
-procedure TDMServerDataAcess.DataModuleDestroy(Sender: TObject);
-begin
+ FCosmosServerServices := nil;
  FConnectionPool.ClearAll;
-// FConnectionPool.Free;
+ inherited;
 end;
 
 function TDMServerDataAcess.DoExecuteCommand(
@@ -160,13 +170,13 @@ begin
  try
   Result := ACommand.ExecuteCommand(Command);
 
-  DMCosmosServerServices.RegisterLog(Format(TCosmosLogs.SQLCommand, [Command]), '', leOnInformation);
+  CosmosServerServices.RegisterLog(Format(TCosmosLogs.SQLCommand, [Command]), '', leOnInformation);
 
  except
    on E: Exception do
     begin
      Result := -1;
-     DMCosmosServerServices.RegisterLog(E.Message + #13 + Format(TCosmosLogs.SQLCommand, [Command]), '', leOnError);
+     CosmosServerServices.RegisterLog(E.Message + #13 + Format(TCosmosLogs.SQLCommand, [Command]), '', leOnError);
      raise;
     end;
  end;
@@ -185,7 +195,7 @@ begin
  except
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, Format(TCosmosLogs.SQLCommand, [DQL]), leOnError);
+    CosmosServerServices.RegisterLog(E.Message, Format(TCosmosLogs.SQLCommand, [DQL]), leOnError);
     raise;
    end;
  end;
@@ -204,15 +214,15 @@ alguma falha, toda a operação será desfeita.}
  aScriptObj := TCosmosScript.Create;
 
  try
-  DMCosmosServerServices.RegisterLog(Format(TCosmosLogs.ExecuteScriptBegin, [AScript.Text]), '', leOnInformation);
+  CosmosServerServices.RegisterLog(Format(TCosmosLogs.ExecuteScriptBegin, [AScript.Text]), '', leOnInformation);
   Result := aScriptObj.ExecuteScript(aScript);
 
-  DMCosmosServerServices.RegisterLog(Format(TCosmosLogs.ExecuteScriptEnd, [AScript.Text]), '', leOnInformation);
+  CosmosServerServices.RegisterLog(Format(TCosmosLogs.ExecuteScriptEnd, [AScript.Text]), '', leOnInformation);
 
  except
   on E: Exception do
     begin
-     DMCosmosServerServices.RegisterLog(E.Message, Format(TCosmosLogs.SQLCommand, [AScript.Text]), leOnError);
+     CosmosServerServices.RegisterLog(E.Message, Format(TCosmosLogs.SQLCommand, [AScript.Text]), leOnError);
      raise;
     end;
 
@@ -239,7 +249,7 @@ begin
  except
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, Format(TCosmosLogs.SequenceName, [SequenceName]), leOnError);
+    CosmosServerServices.RegisterLog(E.Message, Format(TCosmosLogs.SequenceName, [SequenceName]), leOnError);
     if Assigned(ADataset) then FreeAndNil(ADataset);
     if Assigned(aCommand) then FreeAndNil(aCommand);
     raise;
@@ -265,7 +275,7 @@ begin
   //Executa o comando DQL...
   ADataset.CommandText := ACommand;
   ADataset.Open;
-  DMCosmosServerServices.RegisterLog(Format(TCosmosLogs.SQLCommand, [ACommand]), GetContextInfo(ADataset), leOnInformation);
+  CosmosServerServices.RegisterLog(Format(TCosmosLogs.SQLCommand, [ACommand]), GetContextInfo(ADataset), leOnInformation);
 
   Result := ADataset;
 
@@ -273,7 +283,7 @@ begin
   on E: Exception do
    begin
     Result := nil;
-    DMCosmosServerServices.RegisterLog(E.Message, GetContextInfo(ADataset), leOnError);
+    CosmosServerServices.RegisterLog(E.Message, GetContextInfo(ADataset), leOnError);
     raise;
    end;
  end;
@@ -283,7 +293,7 @@ function TDMServerDataAcess.GetContextInfo(Dataset: TCustomSQLDataset): string;
 var
  AContextInfo: TStringList;
 begin
- AContextInfo := DMCosmosServerServices.CreateContextInfoObject;
+ AContextInfo := CosmosServerServices.CreateContextInfoObject;
 
  if (Dataset <> nil) and (Dataset is TSQLDataset) and (TSQLDataset(Dataset).CommandText.Trim <> '') then
   begin
@@ -324,20 +334,20 @@ as propriedades dos TFields para o lado cliente.}
   on E: Exception do
    begin
     E.Message := TCosmosErrorMsg.GetCommand;
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServerServices.RegisterLog(E.Message, '', leOnError);
    end;
  end;
 end;
 
 function TDMServerDataAcess.GetIUserManager: ICosmosUsersManager;
 begin
- Result := TCosmosSecurity.Create as ICosmosUsersManager;
+ Result := TCosmosSecurity.Create(CosmosModule) as ICosmosUsersManager;
 end;
 
 function TDMServerDataAcess.GetSQLConnection: TSQLConnection;
 begin
 //Retorna uma conexão do pool de conexões.
- Result := ConnectionPool.ConnectionsPool.SQLConnection;
+ Result := FConnectionPool.ConnectionsPool.SQLConnection;
 end;
 
 procedure TDMServerDataAcess.WriteParamsCommandInfo(
@@ -377,9 +387,9 @@ begin
  {Registra informações de logs de erros de disparados pelo RDBMS. Os eventos
   OnErrorEvent de todos os objetos TSQLConnection do pool de conexões apontam
   para este método, que só registra eventos do tipo leOnError.}
- if leOnError in DMCosmosServerServices.LogEvents then
+ if leOnError in CosmosServerServices.LogEvents then
   begin
-   AContextInfo := DMCosmosServerServices.CreateContextInfoObject;
+   AContextInfo := CosmosServerServices.CreateContextInfoObject;
 
    try
     AContextInfo.Append(Format(TCosmosLogs.ErrorCode, [ErrorId]));
@@ -387,7 +397,7 @@ begin
     AContextInfo.Append(Format(TCosmosLogs.ContextInfoUser, [TDSSessionManager.GetThreadSession.GetData('UserName')]));
     AContextInfo.Append(Format(TCosmosLogs.ContextInfoRoles, [TDSSessionManager.GetThreadSession.GetData('UserRoles')]));
 
-    DMCosmosServerServices.RegisterLog(ErrorMsg, AContextInfo.DelimitedText, leOnError);
+    CosmosServerServices.RegisterLog(ErrorMsg, AContextInfo.DelimitedText, leOnError);
 
    finally
     FreeAndNil(AContextInfo);
@@ -427,26 +437,32 @@ var
   PoolSize: Integer;
 begin
  //Carrega as configurações de conexão com banco de dados e monta o pool de conexões.
-  DMCosmosServerServices.RegisterLog(TCosmosConnectionErrors.ReadingPoolInfo, 'TDMServerDataAcess.LoadDatabaseOptions', leOnInformation);
+  CosmosServerServices.RegisterLog(TCosmosConnectionErrors.ReadingPoolInfo, 'TDMServerDataAcess.LoadDatabaseOptions', leOnInformation);
 
   AFile := TIniFilePersistence.Create(CosmosRootFile, True);
 
   try
-    PoolSize := AFile.ReadInteger(DMCosmosServerServices.CosmosModuleShortName.ToUpper, TCosmosConnectionErrors.PoolSize, 5);
+    PoolSize := AFile.ReadInteger(CosmosServerServices.CosmosModuleShortName.ToUpper, TCosmosConnectionErrors.PoolSize, 5);
     FConnectionPool := TCosmosConnectionsPool.Create(CosmosFolder + TCosmosFiles.dbxconnections);
     FConnectionPool.OnErrorEvent := RegisterDBError;
     FConnectionPool.FillPool(PoolSize);
 
     if Assigned(AFile) then FreeAndNil(AFile);
-    DMCosmosServerServices.RegisterLog(TCosmosLogs.DatabasePoolCreated, 'TDMServerDataAcess.LoadDatabaseOptions', leOnInformation);
+    CosmosServerServices.RegisterLog(TCosmosLogs.DatabasePoolCreated, 'TDMServerDataAcess.LoadDatabaseOptions', leOnInformation);
 
   except
     on E: Exception do
     begin
       if Assigned(AFile) then FreeAndNil(AFile);
-      DMCosmosServerServices.RegisterLog(E.Message, 'TDMServerDataAcess.LoadDatabaseOptions', leOnError);
+      CosmosServerServices.RegisterLog(E.Message, 'TDMServerDataAcess.LoadDatabaseOptions', leOnError);
     end;
   end;
+end;
+
+class function TDMServerDataAcess.New(
+  Module: TCosmosModules): ICosmosDAOService;
+begin
+ Result := self.Create(Module);
 end;
 
 procedure TDMServerDataAcess.RollbackTransaction(Connection: TSQLConnection;
@@ -480,7 +496,7 @@ begin
 
  try
   FCosmosMonitorFolder := aFile.ReadString('DatabaseMonitor','MonitorFolder', ''); //do not localize!
-  DMCosmosServerServices.RegisterLog(TCosmosLogs.SettingFolders, '', leOnInformation);
+  CosmosServerServices.RegisterLog(TCosmosLogs.SettingFolders, '', leOnInformation);
 
  finally
   if Assigned(aFile) then FreeAndNil(aFile);

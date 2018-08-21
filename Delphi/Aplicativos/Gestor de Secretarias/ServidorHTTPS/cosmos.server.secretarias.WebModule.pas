@@ -5,7 +5,8 @@ interface
 uses
   System.SysUtils, System.Classes, Web.HTTPApp, Datasnap.DSHTTPCommon,
   Datasnap.DSHTTPWebBroker, Datasnap.DSServer, Datasnap.DSAuth, IPPeerServer,
-  Datasnap.DSCommonServer, Datasnap.DSHTTP, Datasnap.DSSession;
+  Datasnap.DSCommonServer, Datasnap.DSHTTP, Datasnap.DSSession,
+  cosmos.system.types;
 
 const
  sContentsPos = '<ContentsPos>';
@@ -39,7 +40,7 @@ implementation
 {$R *.dfm}
 
 uses cosmos.server.secretarias.appcontainer, Web.WebReq, cosmos.classes.logs,
-  cosmos.servers.common.services;
+  cosmos.servers.common.servicesint, cosmos.servers.common.services.factory;
 
 function TSecWebModule.CreateDefaultPage: TStringBuilder;
 begin
@@ -133,13 +134,13 @@ end;
 procedure TSecWebModule.WebModuleException(Sender: TObject; E: Exception;
   var Handled: Boolean);
 var
- DMServ: TDMCosmosServerServices;
+ CosmosService: ICosmosService;
  AContextInfo: TStringList;
 begin
- DMServ := TDMCosmosServerServices.Create(nil);
+ CosmosService := TCosmosServiceFactory.New(cmSecretariasServer).CosmosService;
 
  try
-  AContextInfo := DMServ.CreateContextInfoObject;
+  AContextInfo := CosmosService.CreateContextInfoObject;
   AContextInfo.Append('Exception Class: ' + E.ClassName); //do not localize!
   AContextInfo.Append('Exception Message: ' + E.Message);  //do not localize!
   AContextInfo.Append(TDSSessionManager.GetThreadSession.GetData('UserName')); //do not localize!
@@ -149,11 +150,11 @@ begin
   AContextInfo.Append(TDSSessionManager.GetThreadSession.GetData('ConnectTime')); //do not localize!
   AContextInfo.Append('CurrentTime: ' + DateTimeToStr(Now)); //do not localize!
 
-  DMServ.RegisterLog(E.Message, AContextInfo.CommaText, leOnError);
+  CosmosService.RegisterLog(E.Message, AContextInfo.CommaText, leOnError);
   Handled := True;
 
  finally
-  DMServ.Free;
+  CosmosService := nil;
   if Assigned(AContextInfo) then FreeAndNil(AContextInfo);
  end;
 end;

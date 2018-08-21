@@ -1,5 +1,7 @@
 object DMSecLectoriumServerMethods: TDMSecLectoriumServerMethods
   OldCreateOrder = False
+  OnCreate = DSServerModuleCreate
+  OnDestroy = DSServerModuleDestroy
   Height = 540
   Width = 619
   object SQLPesquisadores: TSQLDataSet

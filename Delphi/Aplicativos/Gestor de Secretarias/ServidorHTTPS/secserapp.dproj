@@ -172,7 +172,7 @@
         <DCCReference Include="..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.security.authorizations.pas"/>
         <DCCReference Include="..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.security.pas"/>
         <DCCReference Include="..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.services.pas">
-            <Form>DMCosmosServerServices</Form>
+            <Form>CosmosServerServices</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
@@ -212,6 +212,11 @@
             <DesignClass>TDSServerModule</DesignClass>
         </DCCReference>
         <DCCReference Include="..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.httpsengine.pas"/>
+        <DCCReference Include="..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.dao.factory.pas"/>
+        <DCCReference Include="..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.dao.interfaces.pas"/>
+        <DCCReference Include="..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.services.factory.pas"/>
+        <DCCReference Include="..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.servicesint.pas"/>
+        <DCCReference Include="..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.dsservices.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -242,6 +247,12 @@
             <Deployment Version="3">
                 <DeployFile LocalName="..\..\..\..\Bin\Win32\secserapp.exe" Configuration="Debug" Class="ProjectOutput"/>
                 <DeployFile LocalName="Win32\Debug\secserapp.exe" Configuration="Debug" Class="ProjectOutput"/>
+                <DeployFile LocalName="..\..\..\..\Bin\Win64\Release\secserapp.exe" Configuration="Release" Class="ProjectOutput">
+                    <Platform Name="Win64">
+                        <RemoteName>secserapp.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployClass Name="AdditionalDebugSymbols">
                     <Platform Name="iOSSimulator">
                         <Operation>1</Operation>

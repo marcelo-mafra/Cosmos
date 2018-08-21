@@ -6,7 +6,9 @@ uses
   System.SysUtils, System.Classes, System.Json, Datasnap.DSServer,
   DataSnap.DSProviderDataModuleAdapter, Datasnap.DSAuth, Data.FMTBcd, Data.DB,
   Datasnap.DBClient, Data.SqlExpr, Datasnap.Provider, System.Variants,
-  cosmos.servers.sqlcommands, DataSnap.DsSession;
+  cosmos.servers.sqlcommands, DataSnap.DsSession, Vcl.Forms,
+  cosmos.servers.common.servicesint, cosmos.servers.common.dao.interfaces,
+  cosmos.system.types;
 
 type
   TDMCosmosServerLogradouros = class(TDSServerModule)
@@ -118,19 +120,47 @@ type
     procedure DspSearchLogradourosUpdateError(Sender: TObject;
       DataSet: TCustomClientDataSet; E: EUpdateError; UpdateKind: TUpdateKind;
       var Response: TResolverResponse);
+    procedure DSServerModuleCreate(Sender: TObject);
+    procedure DSServerModuleDestroy(Sender: TObject);
   private
     { Private declarations }
+    FCosmosModule: TCosmosModules;
+    FCosmosServiceFactory: ICosmosServiceFactory;
+    FCosmosDAOServiceFactory: ICosmosDAOServiceFactory;
+
+    function GetCosmosService: ICosmosService;
+    function GetDAOServices: ICosmosDAOService;
+
   public
     { Public declarations }
+    class procedure CreateObject(Module: TCosmosModules);
+
+    property CosmosModule: TCosmosModules read FCosmosModule;
+    property CosmosServices: ICosmosService read GetCosmosService;
+    property DAOServices: ICosmosDAOService read GetDAOServices;
   end;
+
+var
+  DMCosmosServerLogradouros: TDMCosmosServerLogradouros;
 
 implementation
 
+uses
+  cosmos.servers.common.services.factory, cosmos.servers.common.dao.factory;
+
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
-uses cosmos.servers.common.dataacess;
+
 
 {$R *.dfm}
+
+class procedure TDMCosmosServerLogradouros.CreateObject(Module: TCosmosModules);
+begin
+  Application.CreateForm(TDMCosmosServerLogradouros, DMCosmosServerLogradouros);
+  DMCosmosServerLogradouros.FCosmosModule := Module;
+  DMCosmosServerLogradouros.FCosmosServiceFactory := TCosmosServiceFactory.New(DMCosmosServerLogradouros.CosmosModule);
+  DMCosmosServerLogradouros.FCosmosDAOServiceFactory := TCosmosDAOServiceFactory.New(DMCosmosServerLogradouros.CosmosModule);
+end;
 
 procedure TDMCosmosServerLogradouros.DspBairrosGetDataSetProperties(
   Sender: TObject; DataSet: TDataSet; out Properties: OleVariant);
@@ -209,13 +239,35 @@ procedure TDMCosmosServerLogradouros.DspSearchLogradourosUpdateError(
   Sender: TObject; DataSet: TCustomClientDataSet; E: EUpdateError;
   UpdateKind: TUpdateKind; var Response: TResolverResponse);
 begin
- DMServerDataAcess.OnUpdateError(E, UpdateKind, Response);
+ DAOServices.OnUpdateError(E, UpdateKind, Response);
+end;
+
+procedure TDMCosmosServerLogradouros.DSServerModuleCreate(Sender: TObject);
+begin
+ FCosmosServiceFactory := TCosmosServiceFactory.New(self.CosmosModule);
+ FCosmosDAOServiceFactory := TCosmosDAOServiceFactory.New(self.CosmosModule);
+end;
+
+procedure TDMCosmosServerLogradouros.DSServerModuleDestroy(Sender: TObject);
+begin
+ FCosmosServiceFactory := nil;
+ FCosmosDAOServiceFactory := nil;
+end;
+
+function TDMCosmosServerLogradouros.GetCosmosService: ICosmosService;
+begin
+ Result := self.FCosmosServiceFactory.CosmosService;
+end;
+
+function TDMCosmosServerLogradouros.GetDAOServices: ICosmosDAOService;
+begin
+ Result := self.FCosmosDAOServiceFactory.DAOService;
 end;
 
 procedure TDMCosmosServerLogradouros.SQLSearchLogradourosBeforeOpen(
   DataSet: TDataSet);
 begin
- TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.SQLConnection;
+ TSQLDataset(Dataset).SQLConnection := DAOServices.SQLConnection;
 end;
 
 end.

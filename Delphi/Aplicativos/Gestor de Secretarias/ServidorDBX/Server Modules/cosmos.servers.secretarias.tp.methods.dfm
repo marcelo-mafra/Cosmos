@@ -1,5 +1,7 @@
 object CosmosSecTPServerMethods: TCosmosSecTPServerMethods
   OldCreateOrder = False
+  OnCreate = DSServerModuleCreate
+  OnDestroy = DSServerModuleDestroy
   Height = 454
   Width = 531
   object SQLTurmasTP: TSQLDataSet

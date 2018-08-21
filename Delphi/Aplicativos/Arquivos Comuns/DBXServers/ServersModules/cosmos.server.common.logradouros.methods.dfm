@@ -1,5 +1,7 @@
 object DMCosmosServerLogradouros: TDMCosmosServerLogradouros
   OldCreateOrder = False
+  OnCreate = DSServerModuleCreate
+  OnDestroy = DSServerModuleDestroy
   Height = 537
   Width = 580
   object DspSearchLogradouros: TDataSetProvider

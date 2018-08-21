@@ -5,55 +5,79 @@ interface
 uses
   System.SysUtils, System.Classes, cosmos.system.types, cosmos.system.messages,
   cosmos.classes.application, Datasnap.DSSession, cosmos.system.files,
-  cosmos.classes.persistence.ini, cosmos.classes.logs, cosmos.classes.logs.controller;
+  cosmos.classes.persistence.ini, cosmos.classes.logs, cosmos.classes.logs.controller,
+  cosmos.servers.common.servicesint, cosmos.servers.common.dsservices;
 
 type
 
-  TDMCosmosServerServices = class(TDataModule)
-    procedure DataModuleDestroy(Sender: TObject);
+  //Serviços dos servidores do Cosmos.
+  TCosmosServerServices = class(TInterfacedObject, ICosmosService)
   private
     { Private declarations }
     FCosmosModule: TCosmosModules;
+    FDSService: ICosmosDSService;
     FLogActive: boolean;
-    FLogInfo: TCosmosLogsController;
+    FLogObj: TCosmosLogsController;
     FLogEvents: TLogEvents;
     FMaxFileSize: Int64;
     FServerLogsPath: string;
-
-    function GetConnectedUser: string;
-    function GetCosmosModuleName: string;
-    function GetCosmosModuleShortName: string;
     procedure LoadLogsConfigurations;
     procedure SetCosmosModule(value: TCosmosModules);
-    function GetCosmosModuleIdentifier: string;
 
-  public
+  protected
     function CreateContextInfoObject: TStringList;
-    function FindSession(const SessionId: string): TDSSession;
+    function GetCosmosModuleName: string;
+    function GetCosmosModuleIdentifier: string;
+    function GetCosmosModuleShortName: string;
+    function GetDSService: ICosmosDSService;
+    function GetLogs: ICosmosLogs;
+    function GetLogEvents: TLogEvents;
     procedure RegisterLog(const Info, ContextInfo: string; Event: TLogEvent = leOnInformation);
 
-    property ConnectedUser: string read GetConnectedUser;
+  public
+    constructor Create(Module: TCosmosModules);
+    destructor Destroy; override;
+    class function New(Module: TCosmosModules): ICosmosService;
+
     property CosmosModule: TCosmosModules read FCosmosModule write SetCosmosModule;
     property CosmosModuleName: string read GetCosmosModuleName;
     property CosmosModuleShortName: string read  GetCosmosModuleShortName;
     property CosmosModuleIdentifier: string read  GetCosmosModuleIdentifier;
-    property LogInfo: TCosmosLogsController read FLogInfo;
-    property LogEvents: TLogEvents read FLogEvents;
+    property DSService: ICosmosDSService read GetDSService;
+    property Logs: ICosmosLogs read GetLogs;
+    property LogEvents: TLogEvents read GetLogEvents;
   end;
 
-var
-  DMCosmosServerServices: TDMCosmosServerServices;
 
 implementation
 
 
-{%CLASSGROUP 'System.Classes.TPersistent'}
+{ TCosmosServerServices }
 
-{$R *.dfm}
+constructor TCosmosServerServices.Create(Module: TCosmosModules);
+var
+ ACosmosApp: TCosmosApplication;
+begin
+ FCosmosModule := Module;
+ FDSService := TCosmosDSService.New;
+ ACosmosApp := TCosmosApplication.Create;
 
-{ TDMCosmosServerServices }
+ try
+  //Cria o objeto que escreve os logs, caso o mesmo já não tenha sido criado.
+  if (Logs = nil) and (DirectoryExists(FServerLogsPath)) then
+   begin
+    FLogObj := TCosmosLogsController.Create(FServerLogsPath, 'log', TEncoding.UTF8, LogEvents); //do not localize!
+    FLogObj.MaxFileSize := FMaxFileSize;
+    FLogObj.Prefix := ACosmosApp.GetLogPrefix(CosmosModule);
+    FLogObj.CosmosAppName := CosmosModuleName;
+   end;
 
-function TDMCosmosServerServices.CreateContextInfoObject: TStringList;
+ finally
+   ACosmosApp.Free;
+ end;
+end;
+
+function TCosmosServerServices.CreateContextInfoObject: TStringList;
 begin
  //Retorna um objeto TStringList para uso em registro de logs.
  Result := TStringList.Create;
@@ -61,24 +85,14 @@ begin
  Result.QuoteChar := '"';
 end;
 
-procedure TDMCosmosServerServices.DataModuleDestroy(Sender: TObject);
+destructor TCosmosServerServices.Destroy;
 begin
- if Assigned(LogInfo) then FreeAndNil(FLogInfo);
+  if Assigned(FLogObj) then FreeAndNil(FLogObj);
+  FDSService := nil;
+  inherited;
 end;
 
-function TDMCosmosServerServices.FindSession(
-  const SessionId: string): TDSSession;
-begin
- //Retorna um objeto TDSSession para trabalho.
- Result := TDSSessionManager.Instance.Session[SessionId];
-end;
-
-function TDMCosmosServerServices.GetConnectedUser: string;
-begin
- Result := TDSSessionManager.GetThreadSession.GetData('ConnectedUser'); //do not localize!
-end;
-
-function TDMCosmosServerServices.GetCosmosModuleIdentifier: string;
+function TCosmosServerServices.GetCosmosModuleIdentifier: string;
 begin
  //Retorna o nome "de identificação" do servidor em execução do Cosmos.
  case CosmosModule of
@@ -90,7 +104,7 @@ begin
  end;
 end;
 
-function TDMCosmosServerServices.GetCosmosModuleName: string;
+function TCosmosServerServices.GetCosmosModuleName: string;
 begin
  //Retorna o nome do servidor em execução do Cosmos.
  case CosmosModule of
@@ -102,7 +116,7 @@ begin
  end;
 end;
 
-function TDMCosmosServerServices.GetCosmosModuleShortName: string;
+function TCosmosServerServices.GetCosmosModuleShortName: string;
 begin
  //Retorna o nome abreviado do servidor em execução do Cosmos.
  case CosmosModule of
@@ -114,7 +128,22 @@ begin
  end;
 end;
 
-procedure TDMCosmosServerServices.LoadLogsConfigurations;
+function TCosmosServerServices.GetDSService: ICosmosDSService;
+begin
+ Result := FDSService;
+end;
+
+function TCosmosServerServices.GetLogEvents: TLogEvents;
+begin
+ Result := FLogEvents;
+end;
+
+function TCosmosServerServices.GetLogs: ICosmosLogs;
+begin
+ Result := self.FLogObj;
+end;
+
+procedure TCosmosServerServices.LoadLogsConfigurations;
 var
   AFile: TIniFilePersistence;
   CosmosApp: TCosmosApplication;
@@ -198,38 +227,25 @@ begin
  end;
 end;
 
-procedure TDMCosmosServerServices.RegisterLog(const Info, ContextInfo: string;
+class function TCosmosServerServices.New(
+  Module: TCosmosModules): ICosmosService;
+begin
+ Result := self.Create(Module);
+end;
+
+procedure TCosmosServerServices.RegisterLog(const Info, ContextInfo: string;
   Event: TLogEvent);
-var
- ACosmosApp: TCosmosApplication;
 begin
 {Registra logs de sistema. O registro somente é feito caso o registro de logs
 para determinado tipo de evento estiver ativo.}
  if not (Event in LogEvents) then
   Exit;
 
- ACosmosApp := TCosmosApplication.Create;
-
- try
-  //Cria o objeto que escreve os logs, caso o mesmo já não tenha sido criado.
-  if (LogInfo = nil) and (DirectoryExists(FServerLogsPath)) then
-   begin
-    FLogInfo := TCosmosLogsController.Create(FServerLogsPath, 'log', TEncoding.UTF8, LogEvents); //do not localize!
-    LogInfo.MaxFileSize := FMaxFileSize;
-    LogInfo.Prefix := ACosmosApp.GetLogPrefix(CosmosModule);
-    LogInfo.CosmosAppName := CosmosModuleName;
-   end;
-
-
- if Assigned(LogInfo) then
-  LogInfo.RegisterLog(Info, ContextInfo, Event);
-
- finally
-  if Assigned(ACosmosApp) then FreeAndNil(ACosmosApp);
- end;
+ if Assigned(Logs) then
+  LOgs.RegisterLog(Info, ContextInfo, Event);
 end;
 
-procedure TDMCosmosServerServices.SetCosmosModule(value: TCosmosModules);
+procedure TCosmosServerServices.SetCosmosModule(value: TCosmosModules);
 begin
  if (FCosmosModule <> Value) then
   begin

@@ -1,5 +1,7 @@
 object CosmosSecHistoricoServerMethods: TCosmosSecHistoricoServerMethods
   OldCreateOrder = False
+  OnCreate = DSServerModuleCreate
+  OnDestroy = DSServerModuleDestroy
   Height = 427
   Width = 639
   object SQLSPTransferir: TSQLStoredProc

@@ -1,5 +1,7 @@
 object DMSecAtividadesServerMethods: TDMSecAtividadesServerMethods
   OldCreateOrder = False
+  OnCreate = DSServerModuleCreate
+  OnDestroy = DSServerModuleDestroy
   Height = 656
   Width = 797
   object SQLAgenda: TSQLDataSet

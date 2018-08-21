@@ -13,8 +13,14 @@ uses
   cosmos.servers.common.methods in '..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.methods.pas' {DMCosmosApplicationServer: TDSServerModule},
   cosmos.servers.common.security.authorizations in '..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.security.authorizations.pas',
   cosmos.servers.common.security in '..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.security.pas',
-  cosmos.servers.common.services in '..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.services.pas' {DMCosmosServerServices: TDataModule},
-  cosmos.server.secretarias.appcontainer in 'cosmos.server.secretarias.appcontainer.pas' {DMSecretariasAppContainer: TDataModule};
+  cosmos.servers.common.services in '..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.services.pas' {CosmosServerServices: TDataModule},
+  cosmos.server.secretarias.appcontainer in 'cosmos.server.secretarias.appcontainer.pas' {DMSecretariasAppContainer: TDataModule},
+  cosmos.servers.common.servicesint in '..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.servicesint.pas',
+  cosmos.servers.common.dao.interfaces in '..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.dao.interfaces.pas',
+  cosmos.servers.common.services.factory in '..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.services.factory.pas',
+  cosmos.servers.common.dsservices in '..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.dsservices.pas',
+  cosmos.servers.common.dao.factory in '..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.dao.factory.pas',
+  cosmos.system.types;
 
 {$R *.RES}
 
@@ -36,6 +42,9 @@ begin
   if not Application.DelayInitialize or Application.Installing then
     Application.Initialize;
   Application.CreateForm(TDMSecretariasAppContainer, DMSecretariasAppContainer);
+  TDMCosmosApplicationServer.CreateObject(cmSecretariasServer);
+  TDMCosmosServerLogradouros.CreateObject(cmSecretariasServer);
+  TDMSecAtividadesServerMethods.CreateObject(cmSecretariasServer);
   Application.Run;
 end.
 

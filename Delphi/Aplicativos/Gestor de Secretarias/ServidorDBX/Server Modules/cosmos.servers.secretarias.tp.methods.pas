@@ -9,7 +9,8 @@ uses
   cosmos.classes.application, Variants, Provider, cosmos.classes.logs,
   cosmos.classes.ServerInterface, cosmos.classes.arrayutils, cosmos.servers.sqlcommands,
   WideStrings, cosmos.system.exceptions, cosmos.system.messages,
-  DBXFirebird, dbxCommon, cosmos.core.classes.FieldsInfo, Datasnap.DSSession;
+  DBXFirebird, dbxCommon, cosmos.core.classes.FieldsInfo, Datasnap.DSSession,
+  cosmos.servers.common.servicesint, cosmos.servers.common.dao.interfaces;
 
 type
 
@@ -156,8 +157,15 @@ type
     procedure DspPesquisadorUpdateError(Sender: TObject;
       DataSet: TCustomClientDataSet; E: EUpdateError; UpdateKind: TUpdateKind;
       var Response: TResolverResponse);
+    procedure DSServerModuleCreate(Sender: TObject);
+    procedure DSServerModuleDestroy(Sender: TObject);
   private
     { Private declarations }
+    FCosmosServiceFactory: ICosmosServiceFactory;
+    FCosmosDAOServiceFactory: ICosmosDAOServiceFactory;
+
+    function GetCosmosService: ICosmosService;
+    function GetDAOServices: ICosmosDAOService;
     function GetDiscipuladoSimpatizante: integer;
 
   public
@@ -168,14 +176,17 @@ type
     function EncerrarTurmaTP(codtur: Integer): boolean;
     function GetNextTurmaTPID(codfoc: Integer): Integer;
 
+    property CosmosServices: ICosmosService read GetCosmosService;
+    property DAOServices: ICosmosDAOService read GetDAOServices;
+
   end;
 
  
 
 implementation
 
-uses {cosmos.servers.sqlcommands,} cosmos.system.winshell,
-  cosmos.servers.common.dataacess,  cosmos.servers.common.services;
+uses cosmos.system.winshell, cosmos.servers.common.services.factory,
+  cosmos.servers.common.dao.factory, cosmos.system.types;
 
 {$R *.DFM}
 
@@ -212,7 +223,7 @@ procedure TCosmosSecTPServerMethods.DspPesquisadorUpdateError(Sender: TObject;
   DataSet: TCustomClientDataSet; E: EUpdateError; UpdateKind: TUpdateKind;
   var Response: TResolverResponse);
 begin
- DMServerDataAcess.OnUpdateError(E, UpdateKind, Response);
+ DAOServices.OnUpdateError(E, UpdateKind, Response);
 end;
 
 procedure TCosmosSecTPServerMethods.DspSimpatizanteUpdateData(Sender: TObject;
@@ -226,20 +237,39 @@ begin
   end;
 end;
 
+procedure TCosmosSecTPServerMethods.DSServerModuleCreate(Sender: TObject);
+begin
+ FCosmosServiceFactory := TCosmosServiceFactory.New(cmSecretariasServer);
+ FCosmosDAOServiceFactory := TCosmosDAOServiceFactory.New(cmSecretariasServer);
+end;
+
+procedure TCosmosSecTPServerMethods.DSServerModuleDestroy(Sender: TObject);
+begin
+ FCosmosServiceFactory := nil;
+ FCosmosDAOServiceFactory := nil;
+end;
+
 procedure TCosmosSecTPServerMethods.SQLTurmasTPBeforeOpen(DataSet: TDataSet);
 begin
- TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.SQLConnection;
+ TSQLDataset(Dataset).SQLConnection := DAOServices.SQLConnection;
+end;
+
+function TCosmosSecTPServerMethods.GetCosmosService: ICosmosService;
+begin
+ Result := self.FCosmosServiceFactory.CosmosService;
+end;
+
+function TCosmosSecTPServerMethods.GetDAOServices: ICosmosDAOService;
+begin
+ Result := self.FCosmosDAOServiceFactory.DAOService;
 end;
 
 function TCosmosSecTPServerMethods.GetDiscipuladoSimpatizante: integer;
 var
  ADataset: TSQLDataset;
 begin
- ADataset := DMServerDataAcess.CreateDataset;
- ADataset.CommandText := Format(TDQLCommands.CodigoDiscipulado, [QuotedStr('SIM'), QuotedStr('SIM')]);
-
  try
-  ADataset.Open;
+  ADataset := DAOServices.DoExecuteDQL(Format(TDQLCommands.CodigoDiscipulado, [QuotedStr('SIM'), QuotedStr('SIM')]));
   Result := ADataset.Fields.FieldByName('coddis').AsInteger;
 
  finally
@@ -258,7 +288,7 @@ begin
  ACommand := Format(TSecretariasTPCommands.MaxTurmas_TP, [codfoc]);
 
  try
-  ADataset := DMServerDataAcess.DoExecuteDQL(ACommand);
+  ADataset := DAOServices.DoExecuteDQL(ACommand);
   if not ADataset.Fields.Fields[0].IsNull then
    Result := ADataset.Fields.Fields[0].Value + 1
   else
@@ -269,7 +299,7 @@ begin
  except
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServices.RegisterLog(E.Message, aCommand, leOnError);
     if Assigned(ADataset) then FreeAndNil(ADataset);
 
     raise TDBXError.Create(TCosmosErrorCodes.NumeroNovaTurmaTP, TCosmosErrorMsg.NumeroNovaTurmaTP);
@@ -291,7 +321,7 @@ begin
 
  try
   ADataset.Data := Membros;
-  TurmaID := DMServerDataAcess.DoGetSequenceValue(TSequencesNames.GEN_TURMASTP);
+  TurmaID := DAOServices.DoGetSequenceValue(TSequencesNames.GEN_TURMASTP);
 
   if TurmaID > 0 then
    begin
@@ -305,7 +335,7 @@ begin
       ADataset.Next;
      end;
 
-    Result := DMServerDataAcess.DoExecuteScript(AScript);
+    Result := DAOServices.DoExecuteScript(AScript);
    end;
 
   if Assigned(ADataset) then ADataset.Free;
@@ -314,7 +344,7 @@ begin
  except
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServices.RegisterLog(E.Message, '', leOnError);
     raise TDBXError.Create(TCosmosErrorCodes.NovaTurmaTP, TCosmosErrorMsg.NovaTurmaTP);
    end;
  end;
@@ -329,12 +359,12 @@ begin
  ACommand := Format(TSecHistoricoCmd.EncerrarTurmaTP, [QuotedStr(datenc), QuotedStr('S'), codtur]);
 
  try
-  Result := DMServerDataAcess.DoExecuteCommand(ACommand) > 0;
+  Result := DAOServices.DoExecuteCommand(ACommand) > 0;
 
  except
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServices.RegisterLog(E.Message, aCommand, leOnError);
     raise TDBXError.Create(TCosmosErrorCodes.EncerrarTurmaTP, TCosmosErrorSecMsg.EncerrarTurmaTP);
    end;
  end;
@@ -348,12 +378,12 @@ begin
  ACommand := Format(TSecHistoricoCmd.ReativarTurmaTP, [QuotedStr('N'), codtur]);
 
  try
-  Result := DMServerDataAcess.DoExecuteCommand(ACommand) >= 0;
+  Result := DAOServices.DoExecuteCommand(ACommand) >= 0;
 
  except
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServices.RegisterLog(E.Message, aCommand, leOnError);
     raise TDBXError.Create(TCosmosErrorCodes.ReativarTurmaTP, TCosmosErrorSecMsg.ReativarTurmaTP);
    end;
  end;
@@ -368,12 +398,12 @@ begin
  ACommand := Format(TSecretariasTPCommands.CountAtividadesTurmaTP, [codtur]);
 
  try
-  ADataset := DMServerDataAcess.DoExecuteDQL(ACommand);
+  ADataset := DAOServices.DoExecuteDQL(ACommand);
 
   if ADataset.Fields.Fields[0].AsInteger = 0 then
    begin
     ACommand := Format(TSecretariasTPCommands.DelTurmaTP, [codtur]);
-    DMServerDataAcess.DoExecuteCommand(ACommand);
+    DAOServices.DoExecuteCommand(ACommand);
    end
   else
    raise EDataOperationError.Create(TCosmosErrorMsg.CantDeleteTurmaTP);
@@ -383,13 +413,13 @@ begin
  except
   on E: EDataOperationError do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServices.RegisterLog(E.Message, aCommand, leOnError);
     if Assigned(ADataset) then FreeAndNil(ADataset);
     raise TDBXError.Create(TCosmosErrorCodes.CantDeleteTurmaTP, TCosmosErrorMsg.CantDeleteTurmaTP);
    end;
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServices.RegisterLog(E.Message, aCommand, leOnError);
     if Assigned(ADataset) then FreeAndNil(ADataset);
     raise TDBXError.Create(TCosmosErrorCodes.DeleteTurmaTP, TCosmosErrorMsg.DeleteTurmaTP);
    end;

@@ -9,9 +9,10 @@ uses
   cosmos.servers.sqlcommands, System.Variants, cosmos.classes.servers.dataobj,
   cosmos.classes.ServerInterface, Data.DB, Data.DBXCommon, DBClient, Data.FMTBcd,
   Data.SqlExpr, Datasnap.Provider, DataSnap.DsSession, cosmos.business.focos,
-  cosmos.classes.logs, cosmos.system.types, Data.DBXPlatform,
+  cosmos.classes.logs, cosmos.system.types, Data.DBXPlatform, Vcl.Forms,
   cosmos.classes.servers.cmdFactories, cosmos.classes.utils.cosmoscript,
-  cosmos.system.dataconverter;
+  cosmos.system.dataconverter, cosmos.servers.common.servicesint,
+  cosmos.servers.common.dao.interfaces;
 
 type
   {$METHODINFO OFF}
@@ -115,9 +116,15 @@ type
       var Response: TResolverResponse);
   private
     { Private declarations }
+    FCosmosModule: TCosmosModules;
+    FCosmosServiceFactory: ICosmosServiceFactory;
+    FCosmosDAOServiceFactory: ICosmosDAOServiceFactory;
+    function GetCosmosService: ICosmosService;
+    function GetDAOServices: ICosmosDAOService;
 
   public
     { Public declarations }
+    class procedure CreateObject(Module: TCosmosModules);
     function BufferData(const Table: Integer): Olevariant;
 
     //Segurança
@@ -158,6 +165,9 @@ type
       Argument: WideString): TDataset;
 
     function PingServer: boolean;
+    property CosmosModule: TCosmosModules read FCosmosModule;
+    property CosmosServices: ICosmosService read GetCosmosService;
+    property DAOServices: ICosmosDAOService read GetDAOServices;
 
   end;
 
@@ -168,27 +178,23 @@ implementation
 
 {$R *.dfm}
 
-uses cosmos.servers.common.dataacess, cosmos.servers.common.security,
- cosmos.servers.common.security.authorizations, cosmos.servers.common.services;
+uses cosmos.servers.common.security, cosmos.servers.common.security.authorizations,
+  cosmos.servers.common.services.factory, cosmos.servers.common.dao.factory;
 
 { TDMCosmosApplicationServer }
 
 
 function TDMCosmosApplicationServer.BufferData(const Table: Integer): Olevariant;
 var
- ADQL: string;
  ADataset: TSQLDataset;
  AProvider: TDatasetProvider;
 begin
  {Retorna um pacote de dados no formato Olevariant para ser buferizado no cliente}
- ADQL := TSQLCommandsFactory.GetTableCommand(TCosmosTables(Table));
- ADataset := DMServerDataAcess.CreateDataset;
+ ADataset := DAOServices.DoExecuteDQL(TSQLCommandsFactory.GetTableCommand(TCosmosTables(Table)));
  AProvider := TDatasetProvider.Create(nil);
 
  try
-   ADataset.CommandText := ADQL;
    AProvider.DataSet := ADataset;
-   ADataset.Open;
    Result := AProvider.Data;
 
  finally
@@ -203,13 +209,9 @@ var
  ADataset: TSQLDataset;
 begin
   //Verifica, para fins diversos, se um cadastrado está falecido.
-  ADataset := DMServerDataAcess.CreateDataset;
+  ADataset := DAOServices.DoExecuteDQL(Format(TDQLCommands.CadastradoFalecido, [codcad])) ;
 
   try
-   ADataset.CommandText := TDQLCommands.CadastradoFalecido;
-   ADataset.CommandText := ADataset.CommandText.Format(ADataset.CommandText, [codcad]);
-   ADataset.Open;
-
    if ADataset.IsEmpty then
      raise TDBXError.Create(TCosmosErrorCodes.EmptyDataset, TCosmosErrorMsg.EmptyDataset);
 
@@ -219,7 +221,7 @@ begin
   except
     on E: TDBXError do
      begin
-       DMCosmosServerServices.RegisterLog(E.Message, TCosmosErrorCodes.ToErrorCode(E.ErrorCode), leOnError);
+       CosmosServices.RegisterLog(E.Message, TCosmosErrorCodes.ToErrorCode(E.ErrorCode), leOnError);
        if Assigned(ADataset) then FreeAndNil(ADataset);
        raise;
      end;
@@ -234,18 +236,26 @@ begin
 {Muda a senha de um usuário.}
 
  try
-   Result := DMServerDataAcess.UserManager.ChangePassword(UserName, NewPassword) = 1;
+   Result := DAOServices.UserManager.ChangePassword(UserName, NewPassword) = 1;
 
  except
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServices.RegisterLog(E.Message, '', leOnError);
     AMessage := TCosmosErrorMsg.PasswordUpdate;
     AMessage := AMessage.Format(AMessage, [UserName]);
 
     raise TDBXError.Create(TCosmosErrorCodes.PasswordUpdate, AMessage);
    end;
  end;
+end;
+
+class procedure TDMCosmosApplicationServer.CreateObject(Module: TCosmosModules);
+begin
+  Application.CreateForm(TDMCosmosApplicationServer, DMCosmosApplicationServer);
+  DMCosmosApplicationServer.FCosmosModule := Module;
+  DMCosmosApplicationServer.FCosmosServiceFactory := TCosmosServiceFactory.New(DMCosmosApplicationServer.CosmosModule);
+  DMCosmosApplicationServer.FCosmosDAOServiceFactory := TCosmosDAOServiceFactory.New(DMCosmosApplicationServer.CosmosModule);
 end;
 
 function TDMCosmosApplicationServer.DoIdentificacaoAtiva(const UserName,
@@ -256,12 +266,12 @@ begin
 {Confirma a identidade do usuário a partir de novo fornecimento de senha.}
  try
   aPassword := TCripterFactory.Criptografar(NewPassword);
-  Result := DMServerDataAcess.UserManager.AuthenticateUser(UserName, aPassword);
+  Result := DAOServices.UserManager.AuthenticateUser(UserName, aPassword);
 
  except
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServices.RegisterLog(E.Message, '', leOnError);
     raise TDBXError.Create(TCosmosErrorCodes.IdentificaoAtiva, TCosmosErrorMsg.IdentificaoAtiva);
    end;
  end;
@@ -285,7 +295,7 @@ procedure TDMCosmosApplicationServer.DspAptidoesUpdateError(Sender: TObject;
   DataSet: TCustomClientDataSet; E: EUpdateError; UpdateKind: TUpdateKind;
   var Response: TResolverResponse);
 begin
- DMServerDataAcess.OnUpdateError(E, UpdateKind, Response);
+ DAOServices.OnUpdateError(E, UpdateKind, Response);
 end;
 
 procedure TDMCosmosApplicationServer.DspCargosGetDataSetProperties(
@@ -358,17 +368,17 @@ begin
  TSQLCommandsFactory.CreateCommandText(ACommand, Params);
 
  try
-  Result := DMServerDataAcess.DoExecuteCommand(ACommand);
+  Result := DAOServices.DoExecuteCommand(ACommand);
 
  except
   on E: EUnknownCommandError do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, Format(TCosmosLogs.CommandId, [CommandId]), leOnError);
+    CosmosServices.RegisterLog(E.Message, Format(TCosmosLogs.CommandId, [CommandId]), leOnError);
     raise TDBXError.Create(TCosmosErrorCodes.UnknownCosmosSearch, TCosmosErrorMsg.UnknownCosmosSearch);
    end;
   on E: TDBXError do
    begin
-    DMCosmosServerServices.RegisterLog(TCosmosErrorMsg.ExecuteCommand, Format(TCosmosLogs.SQLCommand, [ACommand]), leOnError);
+    CosmosServices.RegisterLog(TCosmosErrorMsg.ExecuteCommand, Format(TCosmosLogs.SQLCommand, [ACommand]), leOnError);
     raise TDBXError.Create(TCosmosErrorCodes.ExecuteCommand, TCosmosErrorMsg.ExecuteCommand);
    end;
  end;
@@ -384,18 +394,16 @@ begin
 //Executa uma pesquisa padrão do Cosmos.
  ASearch :=  TSQLServerInterface.GetCosmosSearch(CosmosSearch);
  ACommand := TSQLCommandsFactory.GetSQLCommand(ASearch);
- ADataset := DMServerDataAcess.CreateDataset;
 
  try
-  ADataset.CommandText := ACommand;
-  ADataset.Open;
+  ADataset := DAOServices.DoExecuteDQL(aCommand);
   Result := ADataset;
 
  except
   on E: TDBXError do
    begin
     Result := nil;
-    DMCosmosServerServices.RegisterLog(E.Message, ACommand, leOnError);
+    CosmosServices.RegisterLog(E.Message, ACommand, leOnError);
    end;
  end;
 end;
@@ -404,12 +412,12 @@ function TDMCosmosApplicationServer.ExecuteDQL(SearchID: Integer;
   Params: OleVariant): TDataset;
 begin
  try
-  Result := DMServerDataAcess.DoExecuteDQL(SearchID, Params);
+  Result := DAOServices.DoExecuteDQL(SearchID, Params);
 
  except
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServices.RegisterLog(E.Message, '', leOnError);
     //Redispara a exceção como um TDBXError para captura adequada no cliente.
     raise TDBXError.Create(TCosmosErrorCodes.SelectData, TCosmosErrorMsg.SelectData);
    end;
@@ -424,32 +432,29 @@ ADataset: TSQLDataset;
 begin
 //Executa uma pesquisa existente na tabela da Central de Pesquisas.
  Result := nil; //default
- ADataset := DMServerDataAcess.CreateDataset;
-
- try
  ACommand := TCosmosDataObjects.GetRegisteredCommand(SearchID);
  TSQLCommandsFactory.CreateCommandText(ACommand, Params);
 
-  //Executa o comando DQL...
-  ADataset.CommandText := ACommand;
-  ADataset.Open;
+
+ try
+  ADataset := DAOServices.DoExecuteDQL(aCommand);
   Result := ADataset;
-  DMCosmosServerServices.RegisterLog(Format(TCosmosLogs.SQLCommand, [ACommand]), DMServerDataAcess.GetContextInfo(ADataset));
+  CosmosServices.RegisterLog(Format(TCosmosLogs.SQLCommand, [ACommand]), ACommand);
 
  except
   on E: TDBXError do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, ADataset.CommandText, leOnError);
+    CosmosServices.RegisterLog(E.Message, ADataset.CommandText, leOnError);
    end;
   on E: ECannotFindFile do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServices.RegisterLog(E.Message, '', leOnError);
     //Redispara a exceção como um TDBXError para captura adequada no cliente.
     raise TDBXError.Create(TCosmosErrorCodes.CannotOpenFileCentralPesquisa, E.Message);
    end;
   on E: ECannotFindCommand do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, Format(TCosmosLogs.CommandId, [SearchId]), leOnError);
+    CosmosServices.RegisterLog(E.Message, Format(TCosmosLogs.CommandId, [SearchId]), leOnError);
     //Redispara a exceção como um TDBXError para captura adequada no cliente.
     raise TDBXError.Create(TCosmosErrorCodes.CannotFindCentralPesquisaCmd, E.Message);
    end;
@@ -463,8 +468,6 @@ ADataset: TSQLDataset;
 sCommand: string;
 begin
 //Retorna os focos que o usuário passado em parâmetro pode acessar
- ADataset := DMServerDataAcess.CreateDataset;
-
  try
   case CosmosModule of
     0: {cmFocos} sCommand := Format(TSecurityCommand.UserFocos, [QuotedStr(UserName), 'OINDFOC', QuotedStr('S')]);
@@ -476,8 +479,7 @@ begin
      raise TDBXError.Create(TCosmosErrorCodes.OpenFocusUnknownModule, TCosmosErrorMsg.OpenFocusUnknownModule);
   end;
 
-  ADataset.CommandText := sCommand;
-  ADataset.Open;
+  ADataset := DAOServices.DoExecuteDQL(sCommand);
   Result := ADataset;
 
  except
@@ -485,7 +487,7 @@ begin
    begin
     Result := nil;
     if Assigned(ADataset) then FreeAndNil(ADataset);
-    DMCosmosServerServices.RegisterLog(E.Message, TCosmosErrorCodes.ToErrorCode(E.ErrorCode), leOnError);
+    CosmosServices.RegisterLog(E.Message, TCosmosErrorCodes.ToErrorCode(E.ErrorCode), leOnError);
    end;
  end;
 end;
@@ -527,7 +529,7 @@ begin
  {Povoa uma lista com o ID interno das funcionalidades que um usuário pode acessar,
  conforme as roles a que ele pertence.}
  sCommonModule := TCosmosAppName.CosmosCommonId;
- sModuleName := DMCosmosServerServices.CosmosModuleIdentifier;
+ sModuleName := CosmosServices.CosmosModuleIdentifier;
 
  AList := TStringList.Create;
  AModuleList := TStringList.Create;
@@ -626,7 +628,6 @@ begin
  ARoleList := TStringList.Create;
 
  ARoleList.CommaText := ReadUserRoles(UserName);
- ADataset := DMServerDataAcess.CreateDataset;
 
  try
   for I := 0 to Pred(ARoleList.Count) do
@@ -636,9 +637,7 @@ begin
 
     if (ARoleName.Trim <> '') then
      begin
-      DMServerDataAcess.CloseDataset(ADataset);
-      ADataset.CommandText := TSecurityCommand.PerfilUsuario.Format(TSecurityCommand.PerfilUsuario , [QuotedStr(ARoleName)]);
-      ADataset.Open;
+      ADataset := DAOServices.DoExecuteDQL(TSecurityCommand.PerfilUsuario.Format(TSecurityCommand.PerfilUsuario , [QuotedStr(ARoleName)]));
 
       while not ADataset.Eof do
        begin
@@ -686,6 +685,7 @@ begin
   Result := AList.CommaText;
   if Assigned(AList) then FreeAndNil(AList);
   if Assigned(ARoleList) then FreeAndNil(ARoleList);
+  if Assigned(ADataset) then FreeAndNil(ADataset);
  end;
 
 end;
@@ -697,20 +697,27 @@ var
 begin
  {Busca os dados pessoais de um usuário. Estas informações são usadas em diversos
  locais das aplicações Cosmos}
- ADataset := DMServerDataAcess.CreateDataset;
-
  try
-  ADataset.CommandText := Format(TSecurityCommand.UserInfo, [QuotedStr(UserName)]);
-  ADataset.Open;
+  ADataset := DAOServices.DoExecuteDQL(Format(TSecurityCommand.UserInfo, [QuotedStr(UserName)]));
   Result := ADataset;
 
  except
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServices.RegisterLog(E.Message, '', leOnError);
     raise TDBXError.Create(TCosmosErrorCodes.AuthenticateProcess, TCosmosErrorMsg.AuthenticateProcess);
    end;
  end;
+end;
+
+function TDMCosmosApplicationServer.GetCosmosService: ICosmosService;
+begin
+ Result := self.FCosmosServiceFactory.CosmosService;
+end;
+
+function TDMCosmosApplicationServer.GetDAOServices: ICosmosDAOService;
+begin
+ Result := self.FCosmosDAOServiceFactory.DAOService;
 end;
 
 function TDMCosmosApplicationServer.GetFieldsInfo: TStringStream;
@@ -741,17 +748,18 @@ function TDMCosmosApplicationServer.GetFotoCadastrado(
 var
  AStream: TMemoryStream;
  ADataset: TSQLDataset;
+ aCommand: string;
 begin
 {Envia a foto de um cadastrado em um formato Olevariant. ATENÇÃO: o formato
  olevariant está sendo usado nesse método devido a uma falha no Datasnap. A
  falha consiste que o stream contendo a imagem JPEG chega vazio sempre. Consultar
  https://forums.embarcadero.com/thread.jspa?messageID=433556.}
   AStream := TMemoryStream.Create;
-  ADataset := DMServerDataAcess.CreateDataset;
+  aCommand := Format(TDQLCommands.DadosCadastrado, [IdCadastrado]);
 
   try
-   ADataset.CommandText := Format(TDQLCommands.DadosCadastrado, [IdCadastrado]);
-   ADataset.Open;
+   ADataset := DAOServices.DoExecuteDQL(aCommand);
+
    if TBlobField(ADataset.Fields.FieldByName('fotcad')).BlobSize > 0 then
     begin
      TBlobField(ADataset.Fields.FieldByName('fotcad')).SaveToStream(AStream);
@@ -768,7 +776,7 @@ begin
    on E: Exception do
     begin
      if Assigned(ADataset) then FreeAndNil(ADataset);
-     DMCosmosServerServices.RegisterLog(E.Message, DMServerDataAcess.GetContextInfo(ADataset), leOnError);
+     CosmosServices.RegisterLog(E.Message, aCommand, leOnError);
      raise TDBXError.Create(TCosmosErrorCodes.DadosCadastrado, TCosmosErrorMsg.DadosCadastrado);
     end;
  end;
@@ -823,10 +831,10 @@ function TDMCosmosApplicationServer.GetSequenceValue(
 begin
  //Retorna o valor de uma sequence.
  try
-  Result := DMServerDataAcess.DoGetSequenceValue(SequenceName);
+  Result := DAOServices.DoGetSequenceValue(SequenceName);
 
  except
-  DMCosmosServerServices.RegisterLog(TCosmosErrorMsg.SelectSequenceData, Format(TCosmosLogs.SequenceName, [SequenceName]), leOnError);
+  CosmosServices.RegisterLog(TCosmosErrorMsg.SelectSequenceData, Format(TCosmosLogs.SequenceName, [SequenceName]), leOnError);
   raise TDBXError.Create(TCosmosErrorCodes.SelectSequenceData, TCosmosErrorMsg.SelectSequenceData);
  end;
 end;
@@ -862,7 +870,7 @@ begin
   on E: TDBXError do
    begin
     Result := '';
-    DMCosmosServerServices.RegisterLog(E.Message, TCosmosErrorCodes.ToErrorCode(E.ErrorCode), leOnError);
+    CosmosServices.RegisterLog(E.Message, TCosmosErrorCodes.ToErrorCode(E.ErrorCode), leOnError);
    end;
  end;
 end;
@@ -875,15 +883,13 @@ begin
  {Retorna a versão corrente de uma table buferizada no lado cliente. Essa informação
  é necessária para que o cliente compare a sua versão local com a recebida por
  esse método para decisir se é necessário uma nova buferização de dados.}
- aDataset := DMServerDataAcess.CreateDataset;
  aCommand := TDQLCommands.TableVersion;
 
  sTableId := TCosmosTablesInfo.GetCosmosTablesId(TCosmosTables(TableId));
  aCommand := aCommand.Format(aCommand, [QuotedStr(sTableId)]);
- aDataset.CommandText := aCommand;
 
  try
-   aDataset.Open;
+   aDataset := DAOServices.DoExecuteDQL(aCommand);
    Result := aDataset.FieldValues['versao'];
    aDataset.Free;
    //DMCosmosServerServices.RegisterLog(Format(TCosmosLogs.SQLCommand, [ACommand]), DMServerDataAcess.GetContextInfo(ADataset));
@@ -892,7 +898,7 @@ begin
   on E: Exception do
    begin
     aDataset.Free;
-    DMCosmosServerServices.RegisterLog(E.Message, DMServerDataAcess.GetContextInfo(ADataset), leOnError);
+    CosmosServices.RegisterLog(E.Message, aCommand, leOnError);
    end;
  end;
 end;
@@ -915,24 +921,24 @@ begin
  else
   raise TDBXError.Create(TCosmosErrorCodes.UnknownCosmosSearch, TCosmosErrorMsg.UnknownCosmosSearch);
 
- ADBXCommand := DMServerDataAcess.CreateCommand;
+ ADBXCommand := DAOServices.CreateCommand;
  ADBXCommand.CommandType := TDBXCommandTypes.DbxSQL;
  ADBXCommand.Text := ACommand;
 
  try
   //Executa o comando DQL...
   Result := ADBXCommand.ExecuteQuery;
-  DMCosmosServerServices.RegisterLog(Format(TCosmosLogs.SQLCommand, [ACommand]), '', leOnInformation);
+  CosmosServices.RegisterLog(Format(TCosmosLogs.SQLCommand, [ACommand]), '', leOnInformation);
 
  except
   on E: EUnknownCommandError do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, Format(TCosmosLogs.SQLCommand, [ACommand]), leOnError);
+    CosmosServices.RegisterLog(E.Message, Format(TCosmosLogs.SQLCommand, [ACommand]), leOnError);
     raise TDBXError.Create(TCosmosErrorCodes.UnknownCosmosSearch, TCosmosErrorMsg.UnknownCosmosSearch);
    end;
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, ACommand, leOnError);
+    CosmosServices.RegisterLog(E.Message, ACommand, leOnError);
    end;
  end;
 
@@ -943,12 +949,12 @@ function TDMCosmosApplicationServer.LockCosmosUser(
 begin
  {Bloqueia um usuário do Cosmos.}
  try
-   Result := DMServerDataAcess.UserManager.LockCosmosUser(codusu);
+   Result := DAOServices.UserManager.LockCosmosUser(codusu);
 
  except
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServices.RegisterLog(E.Message, '', leOnError);
     raise TDBXError.Create(TCosmosErrorCodes.LockUser, TCosmosErrorMsg.LockUser);
    end;
  end;
@@ -959,12 +965,12 @@ function TDMCosmosApplicationServer.PasswordIsTemporary(const UserName:
 begin
 {Checa se a senha de um usuário está expirada.}
  try
-  Result := DMServerDataAcess.UserManager.PasswordIsTemporary(UserName);
+  Result := DAOServices.UserManager.PasswordIsTemporary(UserName);
 
  except
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServices.RegisterLog(E.Message, '', leOnError);
     raise TDBXError.Create(TCosmosErrorCodes.AuthenticateProcess, TCosmosErrorMsg.AuthenticateProcess);
    end;
  end;
@@ -985,7 +991,7 @@ begin
  AList := TStringList.Create;
 
  try
-  DMServerDataAcess.UserManager.GetUserRoles(UserName, AList);
+  DAOServices.UserManager.GetUserRoles(UserName, AList);
   Result := AList.CommaText;
 
   if Assigned(AList) then FreeAndNil(AList);
@@ -995,7 +1001,7 @@ begin
    begin
     Result := '';
     if Assigned(AList) then FreeAndNil(AList);
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServices.RegisterLog(E.Message, '', leOnError);
     raise TDBXError.Create(TCosmosErrorCodes.AuthenticateProcess, TCosmosErrorMsg.AuthenticateProcess);
    end;
  end;
@@ -1008,12 +1014,12 @@ var
 begin
  {Reseta a senha de um usuário e torna-a provisória}
  try
-   DMServerDataAcess.UserManager.ResetPasword(UserName, NewPassword);
+   DAOServices.UserManager.ResetPasword(UserName, NewPassword);
 
  except
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServices.RegisterLog(E.Message, '', leOnError);
     AMessage := TCosmosErrorMsg.PasswordReset;
     AMessage := AMessage.Format(AMessage, [UserName]);
 
@@ -1029,22 +1035,20 @@ var
  ACommand: string;
 begin
 //Pesquisa cadastrados a partir de um conjunto de argumentos.
- ADataset := DMServerDataAcess.CreateDataset;
-
- try
-  case SearchType of
+ case SearchType of
    0: ACommand := ACommand.Format(TDQLCommands.CadastradosMatriculaFoco, [Foco, QuotedStr(Campo), QuotedStr(Argument)]);
    1: ACommand := ACommand.Format(TDQLCommands.CadastradosNomeFoco, [Foco, QuotedStr(Campo), QuotedStr(Argument + '%')]);
    2: ACommand := ACommand.Format(TDQLCommands.CadastradosApelidoFoco, [Foco, QuotedStr(Campo), QuotedStr(Argument + '%')]);
-  end;
+ end;
 
-  ADataset.Open;
+ try
+  ADataset := DAOServices.DoExecuteDQL(ACommand);
   Result := ADataset;
 
  except
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, Format(TCosmosLogs.SQLCommand, [ACommand]), leOnError);
+    CosmosServices.RegisterLog(E.Message, Format(TCosmosLogs.SQLCommand, [ACommand]), leOnError);
     raise TDBXError.Create(TCosmosErrorCodes.CadastradosSearch, TCosmosErrorMsg.CadastradosSearch);
    end;
  end;
@@ -1053,7 +1057,7 @@ end;
 procedure TDMCosmosApplicationServer.SQLDiscipuladosBeforeOpen(
   DataSet: TDataSet);
 begin
- TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.SQLConnection;
+ TSQLDataset(Dataset).SQLConnection := DAOServices.SQLConnection;
 end;
 
 function TDMCosmosApplicationServer.VerifyCosmosServer(
@@ -1061,12 +1065,12 @@ function TDMCosmosApplicationServer.VerifyCosmosServer(
 begin
 //Verifica se o cliente que está conectando com o servidor é o correto.
  try
-  case CosmosModule of
-    0: {cmFocos} Result := DMCosmosServerServices.CosmosModule = cmFocosServer;
-    2: {cmSecretarias} Result := DMCosmosServerServices.CosmosModule = cmSecretariasServer;
-    4: {cmFinanceiro} Result := DMCosmosServerServices.CosmosModule = cmFinanceiroServer;
-    6: {cmConferencias} Result := DMCosmosServerServices.CosmosModule = cmConferenciasServer;
-    8: {cmUsuarios} Result := DMCosmosServerServices.CosmosModule = cmUsuariosServer;
+  case TCosmosModules(CosmosModule) of
+    cmFocos: Result := self.CosmosModule = cmFocosServer;
+    cmSecretarias: Result := self.CosmosModule = cmSecretariasServer;
+    cmFinanceiro: {cmFinanceiro} Result := self.CosmosModule = cmFinanceiroServer;
+    cmConferencias: {cmConferencias} Result := self.CosmosModule = cmConferenciasServer;
+    cmUsuarios: {cmUsuarios} Result := self.CosmosModule = cmUsuariosServer;
     else
      raise TDBXError.Create(TCosmosErrorCodes.IncorrectServerModule, TCosmosErrorMsg.IncorrectServer);
   end;
@@ -1075,7 +1079,7 @@ begin
   on E: TDBXError do
    begin
     Result := False;
-    DMCosmosServerServices.RegisterLog(E.Message, TCosmosErrorCodes.ToErrorCode(E.ErrorCode), leOnError);
+    CosmosServices.RegisterLog(E.Message, TCosmosErrorCodes.ToErrorCode(E.ErrorCode), leOnError);
    end;
  end;
 

@@ -165,7 +165,7 @@
         <DCCReference Include="..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.security.authorizations.pas"/>
         <DCCReference Include="..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.security.pas"/>
         <DCCReference Include="..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.services.pas">
-            <Form>DMCosmosServerServices</Form>
+            <Form>CosmosServerServices</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>

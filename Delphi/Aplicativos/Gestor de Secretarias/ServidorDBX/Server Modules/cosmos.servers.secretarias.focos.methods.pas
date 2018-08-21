@@ -9,7 +9,8 @@ uses
   Data.DB, Data.DBXCommon, DBClient, Data.FMTBcd, DataSnap.DSProviderDataModuleAdapter,
   Data.SqlExpr, Datasnap.Provider, DataSnap.DsSession,
   cosmos.business.focos, cosmos.classes.logs, Data.DBXDBReaders,
-  cosmos.system.dataconverter;
+  cosmos.system.dataconverter, cosmos.servers.common.servicesint,
+  cosmos.servers.common.dao.interfaces;
 
 type
   {$METHODINFO OFF}
@@ -169,8 +170,14 @@ type
     procedure DspFocoUpdateError(Sender: TObject; DataSet: TCustomClientDataSet;
       E: EUpdateError; UpdateKind: TUpdateKind;
       var Response: TResolverResponse);
+    procedure DSServerModuleCreate(Sender: TObject);
+    procedure DSServerModuleDestroy(Sender: TObject);
   private
     { Private declarations }
+    FCosmosServiceFactory: ICosmosServiceFactory;
+    FCosmosDAOServiceFactory: ICosmosDAOServiceFactory;
+    function GetCosmosService: ICosmosService;
+    function GetDAOServices: ICosmosDAOService;
 
 
   public
@@ -202,6 +209,9 @@ type
     function NewRegion(RegionName: string; RaParent: OleVariant): integer;
     procedure MoveRegion(RegionID, NewRegion: Integer);
     procedure RenameRegion(codreg: Integer; const NewName: string);
+
+    property CosmosServices: ICosmosService read GetCosmosService;
+    property DAOServices: ICosmosDAOService read GetDAOServices;
   end;
 
 
@@ -210,9 +220,11 @@ var
 
 implementation
 
-{$R *.DFM}
+uses
+  cosmos.servers.common.services.factory, cosmos.servers.common.dao.factory,
+  cosmos.system.types;
 
-uses cosmos.servers.common.dataacess, cosmos.servers.common.services;
+{$R *.DFM}
 
 procedure TDMCosmosFocosMethods.AlterarSubordinacao(codorg, NewParent: Integer);
 begin
@@ -228,12 +240,12 @@ begin
  sDML := sDML.Format(TFocosCommands.MoveFocoTitular, [NewParentId, FocusID]);
 
  try
-  Result := DMServerDataAcess.DoExecuteCommand(sDML) >= 0;
+  Result := DAOServices.DoExecuteCommand(sDML) >= 0;
 
  except
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, 'TDMCosmosFocosMethods.ChangeFocusParent', leOnError);
+    CosmosServices.RegisterLog(E.Message, 'TDMCosmosFocosMethods.ChangeFocusParent', leOnError);
     raise TDBXError.Create(TCosmosErrorCodes.ChangeFocusParent, TCosmosErrorCodes.ToMessage(TCosmosErrorCodes.ChangeFocusParent));
    end;
  end;
@@ -251,12 +263,12 @@ begin
   sDML := sDML.Format(TFocosCommands.AlteraStatusFoco, [QuotedStr('N'), FocusID]);
 
  try
-  DMServerDataAcess.DoExecuteCommand(sDML)
+  DAOServices.DoExecuteCommand(sDML)
 
  except
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, 'TDMCosmosFocosMethods.ChangeFocusStatus', leOnError);
+    CosmosServices.RegisterLog(E.Message, 'TDMCosmosFocosMethods.ChangeFocusStatus', leOnError);
     raise TDBXError.Create(TCosmosErrorCodes.ChangeFocusStatus, TCosmosErrorCodes.ToMessage(TCosmosErrorCodes.ChangeFocusStatus));
    end;
  end;
@@ -272,12 +284,12 @@ begin
  sDML := sDML.Format(TFocosCommands.MoveRegionFoco, [NewRegion, FocusID]);
 
  try
-  DMServerDataAcess.DoExecuteCommand(sDML);
+  DAOServices.DoExecuteCommand(sDML);
 
  except
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, 'TDMCosmosFocosMethods.ChangeRegion', leOnError);
+    CosmosServices.RegisterLog(E.Message, 'TDMCosmosFocosMethods.ChangeRegion', leOnError);
     raise TDBXError.Create(TCosmosErrorCodes.MoveFocoRa, TCosmosErrorCodes.ToMessage(TCosmosErrorCodes.MoveFocoRa));
    end;
  end;
@@ -320,7 +332,7 @@ procedure TDMCosmosFocosMethods.DspFocoUpdateError(Sender: TObject;
   DataSet: TCustomClientDataSet; E: EUpdateError; UpdateKind: TUpdateKind;
   var Response: TResolverResponse);
 begin
- DMServerDataAcess.OnUpdateError(E, UpdateKind, Response);
+ DAOServices.OnUpdateError(E, UpdateKind, Response);
 end;
 
 procedure TDMCosmosFocosMethods.DspMeiosContatosFocoGetDataSetProperties(
@@ -362,10 +374,32 @@ begin
   Properties[0] := VarArrayOf(['SequenceName', TSequencesNames.GEN_NOTAS_INSCRITO, False]);
 end;
 
+procedure TDMCosmosFocosMethods.DSServerModuleCreate(Sender: TObject);
+begin
+ FCosmosServiceFactory := TCosmosServiceFactory.New(cmSecretariasServer);
+ FCosmosDAOServiceFactory := TCosmosDAOServiceFactory.New(cmSecretariasServer);
+end;
+
+procedure TDMCosmosFocosMethods.DSServerModuleDestroy(Sender: TObject);
+begin
+ FCosmosServiceFactory := nil;
+ FCosmosDAOServiceFactory := nil;
+end;
+
 function TDMCosmosFocosMethods.DuplicarGestao(codorg, codges: Integer; datini,
   datter: TDateTime; Dirigentes: OleVariant): boolean;
 begin
 
+end;
+
+function TDMCosmosFocosMethods.GetCosmosService: ICosmosService;
+begin
+ Result := self.FCosmosServiceFactory.CosmosService;
+end;
+
+function TDMCosmosFocosMethods.GetDAOServices: ICosmosDAOService;
+begin
+  Result := self.FCosmosDAOServiceFactory.DAOService;
 end;
 
 procedure TDMCosmosFocosMethods.MoveDirigente(coddir, codges: Integer);
@@ -385,12 +419,12 @@ begin
   sDML := sDML.Format(TFocosCommands.MoveRegionToRoot, [RegionID]);
 
  try
-  DMServerDataAcess.DoExecuteCommand(sDML);
+  DAOServices.DoExecuteCommand(sDML);
 
  except
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, 'TDMCosmosFocosMethods.MoveRegion', leOnError);
+    CosmosServices.RegisterLog(E.Message, 'TDMCosmosFocosMethods.MoveRegion', leOnError);
     raise TDBXError.Create(TCosmosErrorCodes.MoveRa, TCosmosErrorCodes.ToMessage(TCosmosErrorCodes.MoveRa));
    end;
  end;
@@ -405,7 +439,7 @@ begin
 //Insere uma nova RA ou subregião e retorna o código único dela.
  try
  //Reserva o valor do auto-incremento
-  NewId := DMServerDataAcess.DoGetSequenceValue(TSequencesNames.GEN_REGIOES);
+  NewId := DAOServices.DoGetSequenceValue(TSequencesNames.GEN_REGIOES);
 
   if RaParent = null then
    sDML := sDML.Format(TFocosCommands.InsertRegion, [NewId, RegionName.QuotedString, 'null']) //do not localize!
@@ -415,13 +449,13 @@ begin
     sDML := Format(TFocosCommands.InsertRegion, [NewId, RegionName.QuotedString, ParentId.ToString]);
    end;
 
-  DMServerDataAcess.DoExecuteCommand(sDML);
+  DAOServices.DoExecuteCommand(sDML);
   Result := NewId;
 
  except
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, 'TDMCosmosFocosMethods.NewRegion', leOnError);
+    CosmosServices.RegisterLog(E.Message, 'TDMCosmosFocosMethods.NewRegion', leOnError);
     raise TDBXError.Create(TCosmosErrorCodes.CreateRa, TCosmosErrorCodes.ToMessage(TCosmosErrorCodes.CreateRa));
    end;
  end;
@@ -436,12 +470,12 @@ begin
  sDML := sDML.Format(TFocosCommands.RenameRegion, [QuotedStr(NewName), codreg]);
 
  try
-  DMServerDataAcess.DoExecuteCommand(sDML);
+  DAOServices.DoExecuteCommand(sDML);
 
  except
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, 'TDMCosmosFocosMethods.RenameAr', leOnError);
+    CosmosServices.RegisterLog(E.Message, 'TDMCosmosFocosMethods.RenameAr', leOnError);
     raise TDBXError.Create(TCosmosErrorCodes.RenameRa, TCosmosErrorCodes.ToMessage(TCosmosErrorCodes.RenameRa));
    end;
  end;
@@ -449,7 +483,7 @@ end;
 
 procedure TDMCosmosFocosMethods.SQLFocoBeforeOpen(DataSet: TDataSet);
 begin
- TSQLDataSet(Dataset).SQLConnection := DMServerDataAcess.SQLConnection;
+ TSQLDataSet(Dataset).SQLConnection := DAOServices.SQLConnection;
 end;
 
 function TDMCosmosFocosMethods.CloneDirigente(coddir, codges: Integer): boolean;
@@ -480,12 +514,12 @@ begin
   nomfoc := aLocalDataset.Fields.FieldByName('nomfoc').AsString;
 
   //Primeiramente, checa se o foco já não está cadastrado.
-  aDataset := DMServerDataAcess.DoExecuteDQL(Format(TFocosCommands.FocusExistsName, [nomfoc.QuotedString]));
+  aDataset := DAOServices.DoExecuteDQL(Format(TFocosCommands.FocusExistsName, [nomfoc.QuotedString]));
   if not ADataset.IsEmpty then
     raise EFocusDuplicated.Create(TCosmosErrorFocMsg.CreateFocoDuplicado);
 
   //OK, o foco não está cadastrado. A operação seguirá.
-  NewID := DMServerDataAcess.DoGetSequenceValue(TSequencesNames.GEN_FOCOS);
+  NewID := DAOServices.DoGetSequenceValue(TSequencesNames.GEN_FOCOS);
   aLocalDataset.Data := DadosFoco;
 
   //Monta o comando sCommand para inserir os dados principais do foco.
@@ -562,14 +596,14 @@ begin
      end;
 
    //Finalmente, executa o script em uma única transação.
-   Result := DMServerDataAcess.DoExecuteScript(aScript);
+   Result := DAOServices.DoExecuteScript(aScript);
 
   except
    on E: TDBXError do
     begin
      if Assigned(aDataset) then FreeAndNil(aDataset);
      aLocalDataset.Free;
-     DMCosmosServerServices.RegisterLog(E.Message, aScript.CommaText, leOnError);
+     CosmosServices.RegisterLog(E.Message, aScript.CommaText, leOnError);
      aScript.Free;
      raise TDBXError.Create(TCosmosErrorCodes.CreateFoco, TCosmosErrorCodes.ToMessage(TCosmosErrorCodes.CreateFoco));
     end;
@@ -578,7 +612,7 @@ begin
      if Assigned(aDataset) then FreeAndNil(aDataset);
      aLocalDataset.Free;
      aScript.Free;
-     DMCosmosServerServices.RegisterLog(E.Message, 'TDMCosmosFocosMethods.CreateFoco', leOnError);
+     CosmosServices.RegisterLog(E.Message, 'TDMCosmosFocosMethods.CreateFoco', leOnError);
      raise TDBXError.Create(TCosmosErrorCodes.CreateFocoDuplicado, E.Message);
     end;
   end;
@@ -597,12 +631,12 @@ begin
  sDML := sDML.Format(TFocosCommands.DelFocus, [codfoc]);
 
  try
-  Result := DMServerDataAcess.DoExecuteCommand(sDML) <> -1;
+  Result := DAOServices.DoExecuteCommand(sDML) <> -1;
 
  except
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, 'TDMCosmosFocosMethods.DeleteFocus', leOnError);
+    CosmosServices.RegisterLog(E.Message, 'TDMCosmosFocosMethods.DeleteFocus', leOnError);
 
     if Pos('EX_FOCO_TEM_CADASTRADOS', E.Message) > 0 then //Existem cadastrados ligados ao foco.
      raise TDBXError.Create(TCosmosErrorCodes.CannotDeleteFocoCadastrados, TCosmosErrorCodes.ToMessage(TCosmosErrorCodes.CannotDeleteFocoCadastrados))
@@ -634,12 +668,12 @@ begin
  sDML := sDML.Format(TFocosCommands.DelRegiao, [RegionID]);
 
  try
-  DMServerDataAcess.DoExecuteCommand(sDML);
+  DAOServices.DoExecuteCommand(sDML);
 
  except
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, 'TDMCosmosFocosMethods.DeleteRegion', leOnError);
+    CosmosServices.RegisterLog(E.Message, 'TDMCosmosFocosMethods.DeleteRegion', leOnError);
 
     if Pos('EX_CANNOT_DEL_RA', E.Message) > 0 then //Existem subregiões ou focos vinculados.
      raise TDBXError.Create(TCosmosErrorCodes.CannotDeleteRa, TCosmosErrorCodes.ToMessage(TCosmosErrorCodes.CannotDeleteRa))
@@ -656,30 +690,24 @@ var
  aReturn: TStringList;
 begin
 //Transfere os cadastrados para outro foco e desativa um foco.
- aDataset := DMServerDataAcess.CreateDataset;
  aReturn := TStringList.Create;
 
  try
   //Verifica se o foco doador existe.
-  aDataset.CommandText := Format(TFocosCommands.FindFoco, [TargetFocus]);
-  aDataset.Open;
+  aDataset := DAOServices.DoExecuteDQL(Format(TFocosCommands.FindFoco, [TargetFocus]));
 
   if aDataset.IsEmpty then
    raise EFocusInexists.Create(TCosmosErrorFocMsg.FocoDoadorInexiste);
 
   //Verifica se o foco recebedor existe.
-  aDataset.Close;
-  aDataset.CommandText := Format(TFocosCommands.FindFoco, [TransferFocus]);
-  aDataset.Open;
+  aDataset := DAOServices.DoExecuteDQL(Format(TFocosCommands.FindFoco, [TransferFocus]));
 
   if aDataset.IsEmpty then
    raise EFocusInexists.Create(TCosmosErrorFocMsg.FocoRecebedorInexiste);
 
   //Agora desativa o foco.
-  aDataset.Close;
-  aDataset.CommandText := Format(TFocosCommands.DesactiveFoco ,[TargetFocus, TransferFocus,
-   TDataConverter.ToBoleanString(Desactivate, True)]) ;
-  aDataset.Open;
+  aDataset := DAOServices.DoExecuteDQL(Format(TFocosCommands.DesactiveFoco ,[TargetFocus, TransferFocus,
+   TDataConverter.ToBoleanString(Desactivate, True)]));
 
   while not aDataset.Eof do
    begin
@@ -697,14 +725,14 @@ begin
    begin
     aDataset.Free;
     aReturn.Free;
-    DMCosmosServerServices.RegisterLog(E.Message, 'TDMCosmosFocosMethods.DesactiveFocus', leOnError);
+    CosmosServices.RegisterLog(E.Message, 'TDMCosmosFocosMethods.DesactiveFocus', leOnError);
     raise TDBXError.Create(TCosmosErrorCodes.DesactiveFoco, E.Message);
    end;
   on E: Exception do
    begin
     aDataset.Free;
     aReturn.Free;
-    DMCosmosServerServices.RegisterLog(E.Message, 'TDMCosmosFocosMethods.DesactiveFocus', leOnError);
+    CosmosServices.RegisterLog(E.Message, 'TDMCosmosFocosMethods.DesactiveFocus', leOnError);
     raise TDBXError.Create(TCosmosErrorCodes.DesactiveFoco, TCosmosErrorCodes.ToMessage(TCosmosErrorCodes.DesactiveFoco));
    end;
  end;

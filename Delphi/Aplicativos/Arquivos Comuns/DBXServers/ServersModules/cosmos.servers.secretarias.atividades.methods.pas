@@ -8,8 +8,10 @@ uses
   Datasnap.DSAuth, DBClient, DB, SqlExpr, FMTBcd, cosmos.classes.application,
   System.Variants, Datasnap.Provider, cosmos.system.exceptions, Data.dbxCommon,
   cosmos.system.messages, cosmos.servers.sqlcommands, cosmos.classes.ServerInterface,
-  System.WideStrings, DataSnap.DsSession, cosmos.classes.logs,
-  cosmos.classes.utils.cosmoscript;
+  System.WideStrings, DataSnap.DsSession, cosmos.classes.logs, Vcl.Forms,
+  cosmos.classes.utils.cosmoscript, cosmos.servers.common.servicesint,
+  cosmos.servers.common.dao.interfaces, cosmos.servers.common.services.factory,
+  cosmos.servers.common.dao.factory, cosmos.system.types;
 
 type
   TDMSecAtividadesServerMethods = class(TDSServerModule)
@@ -554,20 +556,30 @@ type
     procedure DspAgendaUpdateError(Sender: TObject;
       DataSet: TCustomClientDataSet; E: EUpdateError; UpdateKind: TUpdateKind;
       var Response: TResolverResponse);
+    procedure DSServerModuleCreate(Sender: TObject);
+    procedure DSServerModuleDestroy(Sender: TObject);
   private
     { Private declarations }
-
+    FCosmosModule: TCosmosModules;
+    FCosmosServiceFactory: ICosmosServiceFactory;
+    FCosmosDAOServiceFactory: ICosmosDAOServiceFactory;
+    function GetCosmosService: ICosmosService;
+    function GetDAOServices: ICosmosDAOService;
 
   public
     { Public declarations }
+    class procedure CreateObject(Module: TCosmosModules);
 
     procedure DeleteActivity(codati: Integer);
     procedure DeleteTipoAtividade(IDTipoAtividade: Integer);
     function GerarFrequencia(Atividade: Integer): integer;
     function GerarFrequenciaConferencia(codcon: Integer): integer;
     procedure LimparFrequencias(codati: Integer);
-
     procedure NovaAlocucao(Alocucao, Assuntos: OleVariant);
+
+    property CosmosModule: TCosmosModules read FCosmosModule;
+    property CosmosServices: ICosmosService read GetCosmosService;
+    property DAOServices: ICosmosDAOService read GetDAOServices;
   end;
 
 var
@@ -576,8 +588,7 @@ var
 
 implementation
 
-uses cosmos.servers.common.dataacess, cosmos.servers.common.methods,
- cosmos.servers.common.services;
+uses cosmos.servers.common.methods;
 
 {$R *.DFM}
 
@@ -591,7 +602,7 @@ procedure TDMSecAtividadesServerMethods.DspAgendaUpdateError(Sender: TObject;
   DataSet: TCustomClientDataSet; E: EUpdateError; UpdateKind: TUpdateKind;
   var Response: TResolverResponse);
 begin
- DMServerDataAcess.OnUpdateError(E, UpdateKind, Response);
+ DAOServices.OnUpdateError(E, UpdateKind, Response);
 end;
 
 procedure TDMSecAtividadesServerMethods.DspAlocucoesGetDataSetProperties(Sender: TObject;
@@ -735,24 +746,20 @@ begin
  //Agora, checa se o escalado pode entrar na escala da atividade.
  if not Dataset.Fields.FieldByName('codati').IsNull then
   begin
-   ADataset := DMServerDataAcess.CreateDataset;
    codati := Dataset.Fields.FieldByName('codati').AsInteger;
+   sCommand := TGConfCommands.ConferenciaAtividade;
+   sCommand := sCommand.Format(sCommand, [codati]);
 
    try
-     sCommand := TGConfCommands.ConferenciaAtividade;
-     sCommand := sCommand.Format(sCommand, [codati]);
-     ADataset.CommandText := sCommand;
-     ADataset.Open;
+     ADataset := DAOServices.DoExecuteDQL(sCommand);
 
      if not ADataset.Fields.FieldByName('codcon').IsNull then
        begin
         codcon := ADataset.Fields.FieldByName('codcon').AsInteger;
 
-        ADataset.Close;
         sCommand := TGConfCommands.EstaInscritoConferencia;
         sCommand := sCommand.Format(sCommand, [codcon, codcad]);
-        ADataset.CommandText := sCommand;
-        ADataset.Open;
+        ADataset := DAOServices.DoExecuteDQL(sCommand);
 
         //Caso o escalado não esteja inscrito na conferência, dispara o erro.
         if ADataset.IsEmpty then
@@ -892,6 +899,18 @@ begin
  TableName := TTablesNames.TAB_TIPOS_ATIVIDADES;
 end;
 
+procedure TDMSecAtividadesServerMethods.DSServerModuleCreate(Sender: TObject);
+begin
+ FCosmosServiceFactory := TCosmosServiceFactory.New(cmSecretariasServer);
+ FCosmosDAOServiceFactory := TCosmosDAOServiceFactory.New(cmSecretariasServer);
+end;
+
+procedure TDMSecAtividadesServerMethods.DSServerModuleDestroy(Sender: TObject);
+begin
+ FCosmosServiceFactory := nil;
+ FCosmosDAOServiceFactory := nil;
+end;
+
 procedure TDMSecAtividadesServerMethods.NovaAlocucao(Alocucao, Assuntos: OleVariant);
 var
  ADataset: TClientDataset;
@@ -906,7 +925,7 @@ begin
  try
   ADataset.Data := Alocucao;
   sCommand := TSecAtividadesCommands.AlocucaoInsert + ';';
-  NewID := DMServerDataAcess.DoGetSequenceValue(TSequencesNames.GEN_ALOCUCOES);
+  NewID := DAOServices.DoGetSequenceValue(TSequencesNames.GEN_ALOCUCOES);
 
   if ADataset.Fields.FieldByName('nomaut').IsNull then
    sAutor := 'null'
@@ -936,7 +955,7 @@ begin
    end;
 
 
-  DMServerDataAcess.DoExecuteScript(AScript);
+  DAOServices.DoExecuteScript(AScript);
   ADataset.Free;
   AScript.Free;
 
@@ -944,7 +963,7 @@ begin
  except
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, AScript.Text, leOnError);
+    CosmosServices.RegisterLog(E.Message, AScript.Text, leOnError);
     if Assigned(ADataset) then FreeAndNil(ADataset);
     if Assigned(AScript) then FreeAndNil(AScript);
    end;
@@ -953,24 +972,33 @@ end;
 
 procedure TDMSecAtividadesServerMethods.SQLAgendaBeforeOpen(DataSet: TDataSet);
 begin
- TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.SQLConnection;
+ TSQLDataset(Dataset).SQLConnection := DAOServices.SQLConnection;
+end;
+
+class procedure TDMSecAtividadesServerMethods.CreateObject(
+  Module: TCosmosModules);
+begin
+  Application.CreateForm(TDMSecAtividadesServerMethods, DMSecAtividadesServerMethods);
+  DMSecAtividadesServerMethods.FCosmosModule := Module;
+  DMSecAtividadesServerMethods.FCosmosServiceFactory := TCosmosServiceFactory.New(DMSecAtividadesServerMethods.CosmosModule);
+  DMSecAtividadesServerMethods.FCosmosDAOServiceFactory := TCosmosDAOServiceFactory.New(DMSecAtividadesServerMethods.CosmosModule);
 end;
 
 procedure TDMSecAtividadesServerMethods.DeleteActivity(codati: Integer);
 var
  ADataset: TSQLDataset;
+ aCommand: string;
 begin
 {Exclui uma atividade, se possível. Uma atividade pode ser deletada se não
  existem dependências com outros dados, tais como levantamento de freqüências
  já processados.}
- ADataset := DMServerDataAcess.CreateDataset;
+ ACommand := Format(TDQLCommands.CountFrequencias, [codati]);
 
  try
-  ADataset.CommandText := Format(TDQLCommands.CountFrequencias, [codati]);
-  ADataset.Open;
+  ADataset := DAOServices.DoExecuteDQL(ACommand);
 
   if ADataset.Fields.Fields[0].AsInteger = 0 then
-   DMServerDataAcess.DoExecuteCommand(Format(TSecAtividadesCommands.AtividadeDelete, [codati]))
+   DAOServices.DoExecuteCommand(Format(TSecAtividadesCommands.AtividadeDelete, [codati]))
   else
    raise ECannotDeleteActivity.Create(TCosmosErrorSecMsg.DelAtividades);
 
@@ -980,37 +1008,35 @@ begin
   on E: ECannotDeleteActivity do
    begin
     if Assigned(ADataset) then FreeAndNil(ADataset);
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServices.RegisterLog(E.Message, ACommand, leOnError);
    end;
   on E: Exception do
    begin
     if Assigned(ADataset) then FreeAndNil(ADataset);
     E.Message := TCosmosErrorSecMsg.DelAtividades;
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServices.RegisterLog(E.Message, ACommand, leOnError);
    end;
  end;
 end;
 
 function TDMSecAtividadesServerMethods.GerarFrequencia(Atividade: Integer): integer;
 var
- CurrentConnectedUser: string;
+ CurrentConnectedUser, aCommand: string;
  ADataset: TSQLDataset;
 begin
 {Insere presença ou falta para os participantes de uma determinada atividade.
 A presença ou falta são atribuídos se o cadastrado é assíduo ou não às
 atividades como um todo.}
- ADataset := DMServerDataAcess.CreateDataset;
+ aCommand := Format(TDQLCommands.CountFrequencias, [Atividade]);
 
  try
   //Primeiro, verifica se a freqüência para esta atividade já foi gerada.
-  ADataset.CommandText := Format(TDQLCommands.CountFrequencias, [Atividade]);
-  ADataset.Open;
-
+  ADataset := DAOServices.DoExecuteDQL(ACommand);
   if ADataset.Fields.Fields[0].AsInteger = 0 then
    begin
-    CurrentConnectedUser := DMCosmosServerServices.ConnectedUser.ToUpper;
-    CurrentConnectedUser := CurrentConnectedUser.QuotedString;
-    if DMServerDataAcess.DoExecuteCommand(Format(sExecGerarFrequencia, [Atividade, CurrentConnectedUser])) > 0 then
+    CurrentConnectedUser := CosmosServices.DSService.ConnectedUser.ToUpper.QuotedString;
+    aCommand := Format(sExecGerarFrequencia, [Atividade, CurrentConnectedUser]);
+    if DAOServices.DoExecuteCommand(aCommand) > 0 then
      Result := 0;
    end
   else
@@ -1029,7 +1055,7 @@ atividades como um todo.}
    begin
     Result := -1;
     if Assigned(ADataset) then FreeAndNil(ADataset);
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServices.RegisterLog(E.Message, aCommand, leOnError);
    end;
  end;
 end;
@@ -1038,37 +1064,34 @@ procedure TDMSecAtividadesServerMethods.LimparFrequencias(codati: Integer);
 begin
 //Elimina todos os registro de freqüência de uma determinada atividade.
  try
-  DMServerDataAcess.DoExecuteCommand(Format(TSecAtividadesCommands.FrequenciasClear, [codati]));
+  DAOServices.DoExecuteCommand(Format(TSecAtividadesCommands.FrequenciasClear, [codati]));
 
  except
  on E: Exception do
   begin
    E.Message := TCosmosErrorSecMsg.LimparFrequencia;
-   DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+   CosmosServices.RegisterLog(E.Message, '', leOnError);
   end;
  end;
 end;
 
 function TDMSecAtividadesServerMethods.GerarFrequenciaConferencia(codcon: Integer): integer;
 var
- CurrentConnectedUser: string;
+ CurrentConnectedUser, aCommand: string;
  ADataset: TSQLDataset;
 begin
 {Insere presença ou falta para os participantes de uma determinada conferência.
 A presença ou falta são atribuídos se o cadastrado é assíduo ou não às
 conferências como um todo.}
-
- ADataset := DMServerDataAcess.CreateDataset;
+ aCommand.Format(TGConfCommands.FrequenciasConfCount, [codcon]);
 
  try
-  ADataset.CommandText := Format(TGConfCommands.FrequenciasConfCount, [codcon]);
-  ADataset.Open;
-
+  ADataset := DAOServices.DoExecuteDQL(aCommand);
   if ADataset.Fields.Fields[0].AsInteger = 0 then
    begin
-    CurrentConnectedUser := DMCosmosServerServices.ConnectedUser.ToUpper;
-    CurrentConnectedUser := CurrentConnectedUser.QuotedString;
-    if DMServerDataAcess.DoExecuteCommand(Format(TGConfCommands.GerarFrequenciaConf, [codcon, CurrentConnectedUser])) > 0 then
+    CurrentConnectedUser := CosmosServices.DSService.ConnectedUser.ToUpper.QuotedString;
+    aCommand :=  Format(TGConfCommands.GerarFrequenciaConf, [codcon, CurrentConnectedUser]);
+    if DAOServices.DoExecuteCommand(aCommand) > 0 then
      Result := 0;
    end
    else
@@ -1086,33 +1109,46 @@ conferências como um todo.}
   on E: TDBXError do
    begin
     Result := -1;
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServices.RegisterLog(E.Message, aCommand, leOnError);
     if Assigned(ADataset) then FreeAndNil(ADataset);
     raise TDBXError.Create(TCosmosErrorCodes.GerarFrequenciaConferencia, TCosmosErrorMsg.GerarFrequenciaConferencia);
    end;
   on E: Exception do
    begin
     Result := -1;
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServices.RegisterLog(E.Message, aCommand, leOnError);
     raise TDBXError.Create(TCosmosErrorCodes.GerarFrequenciaConferencia, TCosmosErrorMsg.GerarFrequenciaConferencia);
     if Assigned(ADataset) then FreeAndNil(ADataset);
    end;
   end;
 end;
 
+function TDMSecAtividadesServerMethods.GetCosmosService: ICosmosService;
+begin
+ Result := self.FCosmosServiceFactory.CosmosService;
+end;
+
+function TDMSecAtividadesServerMethods.GetDAOServices: ICosmosDAOService;
+begin
+ Result := self.FCosmosDAOServiceFactory.DAOService;
+end;
+
 procedure TDMSecAtividadesServerMethods.DeleteTipoAtividade(IDTipoAtividade: Integer);
 var
  ADataset: TSQLDataset;
+ aCommand: string;
 begin
  //Exclui um tipo de atividade e retorna o resultado ao cliente.
- ADataset := DMServerDataAcess.CreateDataset;
+ ACommand.Format(TSecAtividadesCommands.TiposAtividadesCount,[IDTipoAtividade]);
 
  try
-  ADataset.CommandText := Format(TSecAtividadesCommands.TiposAtividadesCount,[IDTipoAtividade]);
-  ADataset.Open;
+  ADataset := DAOServices.DoExecuteDQL(aCommand);
 
   if ADataset.Fields.Fields[0].AsInteger = 0 then
-    DMServerDataAcess.DoExecuteCommand(Format(TSecAtividadesCommands.TiposAtividadesDelete, [IDTipoAtividade]))
+   begin
+    aCommand := Format(TSecAtividadesCommands.TiposAtividadesDelete, [IDTipoAtividade]);
+    DAOServices.DoExecuteCommand(aCommand)
+   end
   else
    raise ECannotDeleteActivity.Create('');
 
@@ -1120,7 +1156,7 @@ begin
  except
   on E: TDBXError do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServices.RegisterLog(E.Message, aCommand, leOnError);
     E.RaiseOuterException(EDataOperationError.Create(TCosmosErrorSecMsg.DelTiposAtividades));
    end;
   on E: ECannotDeleteActivity do

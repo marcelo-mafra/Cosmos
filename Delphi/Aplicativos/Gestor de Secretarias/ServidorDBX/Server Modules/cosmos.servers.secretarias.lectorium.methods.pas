@@ -9,7 +9,8 @@ uses
   Data.FMTBcd, System.Variants, Datasnap.Provider, cosmos.classes.application,
   cosmos.servers.sqlcommands, cosmos.classes.ServerInterface, System.WideStrings,
   cosmos.system.messages, cosmos.system.exceptions, Data.dbxCommon, DataSnap.DsSession,
-  cosmos.classes.logs, cosmos.classes.persistence.ini, Data.DBXFirebird;
+  cosmos.classes.logs, cosmos.classes.persistence.ini, Data.DBXFirebird,
+  cosmos.servers.common.servicesint, cosmos.servers.common.dao.interfaces;
 
 type
   TDMSecLectoriumServerMethods = class(TDSServerModule)
@@ -221,10 +222,17 @@ type
     procedure DspAlunosUpdateError(Sender: TObject;
       DataSet: TCustomClientDataSet; E: EUpdateError; UpdateKind: TUpdateKind;
       var Response: TResolverResponse);
+    procedure DSServerModuleCreate(Sender: TObject);
+    procedure DSServerModuleDestroy(Sender: TObject);
 
 
   private
     { Private declarations }
+    FCosmosServiceFactory: ICosmosServiceFactory;
+    FCosmosDAOServiceFactory: ICosmosDAOServiceFactory;
+
+    function GetCosmosService: ICosmosService;
+    function GetDAOServices: ICosmosDAOService;
 
   public
     { Public declarations }
@@ -233,6 +241,9 @@ type
     function NovaMatricula(codfoc: Integer): string;
     procedure AtualizarJovensAlunos(codfoc: Integer);
 
+    property CosmosServices: ICosmosService read GetCosmosService;
+    property DAOServices: ICosmosDAOService read GetDAOServices;
+
   end;
 
 var
@@ -240,7 +251,10 @@ var
 
 implementation
 
-uses cosmos.servers.common.dataacess, cosmos.servers.common.services;
+uses
+  cosmos.servers.common.services.factory, cosmos.servers.common.dao.factory,
+  cosmos.system.types;
+
 
 {$R *.DFM}
 
@@ -261,7 +275,7 @@ procedure TDMSecLectoriumServerMethods.DspAlunosUpdateError(Sender: TObject;
   DataSet: TCustomClientDataSet; E: EUpdateError; UpdateKind: TUpdateKind;
   var Response: TResolverResponse);
 begin
- DMServerDataAcess.OnUpdateError(E, UpdateKind, Response);
+ DAOServices.OnUpdateError(E, UpdateKind, Response);
 end;
 
 procedure TDMSecLectoriumServerMethods.DspDispensasGetDataSetProperties(Sender: TObject;
@@ -296,28 +310,37 @@ begin
   Properties[0] := VarArrayOf(['SequenceName', TSequencesNames.GEN_CADASTRADOS, False]);
 end;
 
+procedure TDMSecLectoriumServerMethods.DSServerModuleCreate(Sender: TObject);
+begin
+ FCosmosServiceFactory := TCosmosServiceFactory.New(cmSecretariasServer);
+ FCosmosDAOServiceFactory := TCosmosDAOServiceFactory.New(cmSecretariasServer);
+end;
+
+procedure TDMSecLectoriumServerMethods.DSServerModuleDestroy(Sender: TObject);
+begin
+ FCosmosServiceFactory := nil;
+ FCosmosDAOServiceFactory := nil;
+end;
+
 function TDMSecLectoriumServerMethods.FindCadastrado(Matricula, Nome: OleVariant): TDataset;
 var
  sCommand: string;
  ADataset: TSQLDataset;
 begin
- ADataset := DMServerDataAcess.CreateDataset;
-
- try
   if Matricula <> null then
    sCommand := Format(TDQLCommands.CadastradoMatricula, [QuotedStr(Matricula + '%')])
   else
    sCommand := Format(TDQLCommands.CadastradoNome, [QuotedStr(Nome+ '%')]);
 
-  ADataset.CommandText := sCommand;
-  ADataset.Open;
+ try
+  ADataset := DAOServices.DoExecuteDQL(sCommand);
   Result := ADataset;
 
  except
   on E: Exception do
    begin
     Result := nil;
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServices.RegisterLog(E.Message, sCommand, leOnError);
    end;
  end;
 end;
@@ -325,7 +348,7 @@ end;
 
 procedure TDMSecLectoriumServerMethods.SQLAlunosBeforeOpen(DataSet: TDataSet);
 begin
- TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.SQLConnection;
+ TSQLDataset(Dataset).SQLConnection := DAOServices.SQLConnection;
 end;
 
 function TDMSecLectoriumServerMethods.NovaMatricula(codfoc: Integer): string;
@@ -340,12 +363,10 @@ begin
  CosmosApp := TCosmosApplication.Create;
  AFile := TIniFilePersistence.Create(CosmosApp.GetModulePath + TCosmosFiles.CosmosRoot, True);
  ANumber := AFile.ReadInteger('GSEC', 'IniciarMatriculaLEC', 150);
- ADataset := DMServerDataAcess.CreateDataset;
 
  try
   sCommand := Format(TSecretariasCommands.NovaMatricula,[codfoc, QuotedStr('LEC'), ANumber]);
-  ADataset.CommandText := sCommand;
-  ADataset.Open;
+  ADataset := DAOServices.DoExecuteDQL(sCommand);
   Result :=  ADataset.Fields.Fields[0].Value;
 
   if Assigned(AFile) then FreeAndNil(AFile);
@@ -357,32 +378,40 @@ begin
     if Assigned(AFile) then FreeAndNil(AFile);
     if Assigned(CosmosApp) then FreeAndNil(CosmosApp);
     Result := '';
-    DMCosmosServerServices.RegisterLog(E.Message, sCommand, leOnError);
+    CosmosServices.RegisterLog(E.Message, sCommand, leOnError);
     raise TDBXError.Create(TCosmosErrorCodes.NovaMatricula, TCosmosErrorSecMsg.NovaMatricula);
    end;
  end;
 end;
 
+function TDMSecLectoriumServerMethods.GetCosmosService: ICosmosService;
+begin
+ Result := self.FCosmosServiceFactory.CosmosService;
+end;
+
+function TDMSecLectoriumServerMethods.GetDAOServices: ICosmosDAOService;
+begin
+ Result := self.FCosmosDAOServiceFactory.DAOService;
+end;
+
 function TDMSecLectoriumServerMethods.GetDiscipuladoTM(Nascimento: TDateTime): TDataset;
 var
  ADataset: TSQLDataset;
+ aCommand: string;
 begin
 {Retorna o código e a sigla de um discipulado do TM a partir de uma data de
 nascimento, passada em parâmetro de entrada.}
- ADataset := DMServerDataAcess.CreateDataset;
+ aCommand := Format(TSecHistoricoCmd.DiscipuladoTM , [QuotedStr(FormatDateTime('yyyy/mm/dd', Nascimento))]);
 
  try
-  ADataset.CommandText := Format(TSecHistoricoCmd.DiscipuladoTM , [QuotedStr(FormatDateTime('yyyy/mm/dd', Nascimento))]);
-  ADataset.Open;
-
+  ADataset := DAOServices.DoExecuteDQL(aCommand);
   Result := ADataset;
 
  except
   on E: Exception do
    begin
     Result := nil;
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
-    //E.Message := sErrorSelectData;
+    CosmosServices.RegisterLog(E.Message, aCommand, leOnError);
    end;
  end;
 end;
@@ -393,16 +422,13 @@ var
 begin
 //Atualiza os membros do GJA de um foco..
  try
-  CurrentUserName := DMCosmosServerServices.ConnectedUser.ToUpper;
-  CurrentUserName := CurrentUserName.QuotedString;
-
-  DMServerDataAcess.DoExecuteCommand(Format(TSecHistoricoCmd.DesligaGJA, [codfoc, CurrentUserName]));
+  CurrentUserName := CosmosServices.DSService.ConnectedUser.ToUpper.QuotedString;
+  DAOServices.DoExecuteCommand(Format(TSecHistoricoCmd.DesligaGJA, [codfoc, CurrentUserName]));
 
  except
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
-    //E.Message := sErrorSelectData;
+    CosmosServices.RegisterLog(E.Message, '', leOnError);
    end;
  end;
 end;

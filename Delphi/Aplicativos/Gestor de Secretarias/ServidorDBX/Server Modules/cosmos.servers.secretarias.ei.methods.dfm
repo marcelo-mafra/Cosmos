@@ -1,5 +1,7 @@
 object CosmosSecEIServerMethods: TCosmosSecEIServerMethods
   OldCreateOrder = False
+  OnCreate = DSServerModuleCreate
+  OnDestroy = DSServerModuleDestroy
   Height = 389
   Width = 542
   object SQLLivrosEI: TSQLDataSet

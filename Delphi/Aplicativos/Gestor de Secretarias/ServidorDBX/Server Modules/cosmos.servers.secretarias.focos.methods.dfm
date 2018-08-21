@@ -1,5 +1,7 @@
 object DMCosmosFocosMethods: TDMCosmosFocosMethods
   OldCreateOrder = False
+  OnCreate = DSServerModuleCreate
+  OnDestroy = DSServerModuleDestroy
   Height = 487
   Width = 611
   object SQLFoco: TSQLDataSet

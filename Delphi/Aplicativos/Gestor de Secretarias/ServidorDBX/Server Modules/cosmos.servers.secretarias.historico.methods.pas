@@ -9,7 +9,8 @@ uses
   Provider, cosmos.servers.sqlcommands, cosmos.system.messages,  System.WideStrings,
   Data.dbxCommon, DataSnap.DsSession, cosmos.classes.logs, cosmos.system.exceptions,
   Data.DBXFirebird, cosmos.business.focos, cosmos.business.secretariats,
-  cosmos.classes.persistence.ini, cosmos.system.dataconverter;
+  cosmos.classes.persistence.ini, cosmos.system.dataconverter,
+  cosmos.servers.common.servicesint, cosmos.servers.common.dao.interfaces;
 
 type
   TCosmosSecHistoricoServerMethods = class(TDSServerModule)
@@ -102,8 +103,14 @@ type
     procedure DspDetalhesHistoricoUpdateError(Sender: TObject;
       DataSet: TCustomClientDataSet; E: EUpdateError; UpdateKind: TUpdateKind;
       var Response: TResolverResponse);
+    procedure DSServerModuleCreate(Sender: TObject);
+    procedure DSServerModuleDestroy(Sender: TObject);
   private
     { Private declarations }
+    FCosmosServiceFactory: ICosmosServiceFactory;
+    FCosmosDAOServiceFactory: ICosmosDAOServiceFactory;
+    function GetCosmosService: ICosmosService;
+    function GetDAOServices: ICosmosDAOService;
 
   public
     { Public declarations }
@@ -134,14 +141,17 @@ type
     function GetDiscipuladoCadastrado(codcad: Integer): TDataset;
     function GetDiscipuladosReligacao(codcad: Integer): TDataset;
 
+    property CosmosServices: ICosmosService read GetCosmosService;
+    property DAOServices: ICosmosDAOService read GetDAOServices;
+
   end;
 
 
 
 implementation
 
-uses cosmos.servers.common.dataacess, cosmos.servers.common.methods,
-  cosmos.servers.common.services;
+uses cosmos.servers.common.methods, cosmos.servers.common.services.factory,
+  cosmos.servers.common.dao.factory, cosmos.system.types;
 
 {$R *.DFM}
 
@@ -169,7 +179,7 @@ procedure TCosmosSecHistoricoServerMethods.DspDetalhesHistoricoUpdateError(
   Sender: TObject; DataSet: TCustomClientDataSet; E: EUpdateError;
   UpdateKind: TUpdateKind; var Response: TResolverResponse);
 begin
- DMServerDataAcess.OnUpdateError(E, UpdateKind, Response);
+ DAOServices.OnUpdateError(E, UpdateKind, Response);
 end;
 
 procedure TCosmosSecHistoricoServerMethods.DspEventoHistoricoGetDataSetProperties(Sender: TObject;
@@ -191,16 +201,30 @@ begin
 TableName := TTablesNames.TAB_DETALHE_HISTORICO;
 end;
 
+procedure TCosmosSecHistoricoServerMethods.DSServerModuleCreate(
+  Sender: TObject);
+begin
+ FCosmosServiceFactory := TCosmosServiceFactory.New(cmSecretariasServer);
+ FCosmosDAOServiceFactory := TCosmosDAOServiceFactory.New(cmSecretariasServer);
+end;
+
+procedure TCosmosSecHistoricoServerMethods.DSServerModuleDestroy(
+  Sender: TObject);
+begin
+ FCosmosServiceFactory := nil;
+ FCosmosDAOServiceFactory := nil;
+end;
+
 procedure TCosmosSecHistoricoServerMethods.SQLHistoricoBeforeOpen(
   DataSet: TDataSet);
 begin
- TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.SQLConnection;
+ TSQLDataset(Dataset).SQLConnection := DAOServices.SQLConnection;
 end;
 
 procedure TCosmosSecHistoricoServerMethods.SQLInstalarMembroBeforeOpen(
   DataSet: TDataSet);
 begin
-  TSQLStoredProc(Dataset).SQLConnection := DMServerDataAcess.SQLConnection;
+  TSQLStoredProc(Dataset).SQLConnection := DAOServices.SQLConnection;
 end;
 
 procedure TCosmosSecHistoricoServerMethods.DesligarCadastrado(Data: OleVariant;
@@ -213,7 +237,7 @@ AProc: TSQLStoredProc;
 begin
  //Desliga um cadastrado.
  AData := TCosmosData.Create(6);
- AProc := DMServerDataAcess.CreateStoreProcedure;
+ AProc := DAOServices.CreateStoreProcedure;
 
  try
   AData.LoadTaggedValues(Data);
@@ -238,13 +262,13 @@ begin
        ParamByName('iobshis').AsString := AData.FindValue('OBSERVACAO');
    end;
 
-  TD := DMServerDataAcess.BeginTransaction(AProc.SQLConnection, TDBXIsolations.ReadCommitted);
+  TD := AProc.SQLConnection.BeginTransaction;
   AProc.Prepared := True;
   AProc.ExecProc;
-  DMServerDataAcess.CommitTransaction(AProc.SQLConnection, TD);
+  AProc.SQLConnection.CommitFreeAndNil(TD);
 
   ReturnCode := 0; //Sucesso.
-  DMCosmosServerServices.RegisterLog(TCosmosInfoMsg.DesligamentoRegistrado, DMServerDataAcess.GetContextInfo(AProc));
+  CosmosServices.RegisterLog(TCosmosInfoMsg.DesligamentoRegistrado, DAOServices.GetContextInfo(AProc));
 
   AData.Free;
   AProc.Free;
@@ -252,7 +276,7 @@ begin
  except
   on E: Exception do
    begin
-     DMCosmosServerServices.RegisterLog(E.Message, DMServerDataAcess.GetContextInfo(AProc), leOnError);
+     CosmosServices.RegisterLog(E.Message, DAOServices.GetContextInfo(AProc), leOnError);
      ReturnCode := TCosmosErrorCodes.ExecuteOperation; //Falha genérica.
 
      if E.Message.Contains('EX_CADASTRADO_INEXISTE') then //Não foi encontrado o cadastrado.
@@ -262,8 +286,7 @@ begin
        ReturnCode := TCosmosErrorCodes.CadastradoDesligado;
 
      if Assigned(AData) then FreeAndNil(AData);
-     DMServerDataAcess.RollbackTransaction(AProc.SQLConnection, TD);
-    if Assigned(AData) then FreeAndNil(AData);
+     AProc.SQLConnection.RollbackFreeAndNil(TD);
 
     if Assigned(AProc) then FreeAndNil(AProc);
     raise TDBXError.Create(ReturnCode, TCosmosErrorCodes.ToMessage(ReturnCode));
@@ -281,7 +304,7 @@ AProc: TSQLStoredProc;
 begin
  //Transfere um cadastrado para outro foco.
  AData := TCosmosData.Create(6);
- AProc := DMServerDataAcess.CreateStoreProcedure;
+ AProc := DAOServices.CreateStoreProcedure;
 
  try
   AData.LoadTaggedValues(Data);
@@ -303,20 +326,20 @@ begin
    end;
 
  //Inicia uma nova transação
-   TD := DMServerDataAcess.BeginTransaction(AProc.SQLConnection, TDBXIsolations.ReadCommitted);
+   TD := AProc.SQLConnection.BeginTransaction;
    AProc.Prepared := True;
    AProc.ExecProc;
-   DMServerDataAcess.CommitTransaction(AProc.SQLConnection, TD);
+   AProc.SQLConnection.CommitFreeAndNil(TD);
 
    ReturnCode := 0; //Sucesso.
-   DMCosmosServerServices.RegisterLog(TCosmosInfoMsg.TransferenciaRegistrada, DMServerDataAcess.GetContextInfo(AProc));
+   CosmosServices.RegisterLog(TCosmosInfoMsg.TransferenciaRegistrada, DAOServices.GetContextInfo(AProc));
    AData.Free;
 
 
  except
   on E: Exception do
    begin
-     DMCosmosServerServices.RegisterLog(E.Message, DMServerDataAcess.GetContextInfo(AProc), leOnError);
+     CosmosServices.RegisterLog(E.Message, DAOServices.GetContextInfo(AProc), leOnError);
      ReturnCode := TCosmosErrorCodes.ExecuteOperation; //Falha genérica.
 
      if E.Message.Contains('EX_CADASTRADO_INEXISTE') then //Não foi encontrado o cadastrado.
@@ -343,7 +366,7 @@ begin
      if E.Message.Contains('EX_CADASTRADO_FALECIDO') then
        ReturnCode := TCosmosErrorCodes.CadastradoFalecido;
 
-     DMServerDataAcess.RollbackTransaction(AProc.SQLConnection, TD);
+     AProc.SQLConnection.RollbackFreeAndNil(TD);
 
      if Assigned(AData) then FreeAndNil(AData);
      if Assigned(AProc) then FreeAndNil(AProc);
@@ -364,7 +387,7 @@ begin
  //Reativa um cadastrado desligado.
 
  AData := TCosmosData.Create(6);
- AProc := DMServerDataAcess.CreateStoreProcedure;
+ AProc := DAOServices.CreateStoreProcedure;
 
  try
   AData.LoadTaggedValues(Data);
@@ -386,12 +409,12 @@ begin
    end;
 
  //Inicia uma nova transação
-  TD := DMServerDataAcess.BeginTransaction(AProc.SQLConnection, TDBXIsolations.ReadCommitted);
+  TD := AProc.SQLConnection.BeginTransaction;
   AProc.Prepared := True;
   AProc.ExecProc;
 
-  DMServerDataAcess.CommitTransaction(AProc.SQLConnection, TD);
-  DMCosmosServerServices.RegisterLog(TCosmosInfoMsg.ReligamentoRegistrado, DMServerDataAcess.GetContextInfo(AProc));
+  AProc.SQLConnection.CommitFreeAndNil(TD);
+  CosmosServices.RegisterLog(TCosmosInfoMsg.ReligamentoRegistrado, DAOServices.GetContextInfo(AProc));
   ReturnCode := 0;
 
   AProc.Free;
@@ -400,7 +423,7 @@ begin
  except
   on E: Exception do
    begin
-     DMCosmosServerServices.RegisterLog(E.Message, DMServerDataAcess.GetContextInfo(AProc), leOnError);
+     CosmosServices.RegisterLog(E.Message, DAOServices.GetContextInfo(AProc), leOnError);
      ReturnCode := TCosmosErrorCodes.ExecuteOperation; //Falha genérica.
 
     if E.Message.Contains('EX_CADASTRADO_INEXISTE') then
@@ -409,7 +432,7 @@ begin
     if E.Message.Contains('EX_CADASTRADO_FALECIDO') then
      ReturnCode := TCosmosErrorCodes.CadastradoFalecido;
 
-    DMServerDataAcess.RollbackTransaction(AProc.SQLConnection, TD);
+    AProc.SQLConnection.RollbackFreeAndNil(TD);
     if Assigned(AData) then FreeAndNil(AData);
     if Assigned(AProc) then FreeAndNil(AProc);
     raise TDBXError.Create(ReturnCode, TCosmosErrorCodes.ToMessage(ReturnCode));
@@ -430,7 +453,7 @@ begin
  sincatu := TDataConverter.ToBoleanString(incatu, True);
 
  sCommand := Format(TSecHistoricoCmd.DiscipuladosAnteriores, [coddis, sindtmo, sindtpu, sindsim, sincatu]);
- ACommand := DMServerDataAcess.CreateCommand;
+ ACommand := DAOServices.CreateCommand;
 
  try
   ACommand.CommandType := TDBXCommandTypes.DbxSQL;
@@ -440,7 +463,7 @@ begin
  except
   on E: TDBXError do
    begin
-     DMCosmosServerServices.RegisterLog(E.Message, sCommand, leOnError);
+     CosmosServices.RegisterLog(E.Message, sCommand, leOnError);
      if Assigned(ACommand) then  FreeAndNil(ACommand);
      raise TDBXError.Create(TCosmosErrorCodes.SelectData, TCosmosErrorMsg.SelectData);
    end;
@@ -458,7 +481,7 @@ AProc: TSQLStoredProc;
 begin
  //Retrograda um aluno para outro discipulado anterior ao atual.
  AData := TCosmosData.Create(7);
- AProc :=  DMServerDataAcess.CreateStoreProcedure;
+ AProc :=  DAOServices.CreateStoreProcedure;
 
  try
   AData.LoadTaggedValues(Data);
@@ -483,12 +506,12 @@ begin
    end;
 
  //Inicia uma nova transação
-   TD := DMServerDataAcess.BeginTransaction(AProc.SQLConnection, TDBXIsolations.ReadCommitted);
+   TD := AProc.SQLConnection.BeginTransaction;
    AProc.ExecProc;
-   DMServerDataAcess.CommitTransaction(AProc.SQLConnection, TD);
+   AProc.SQLConnection.CommitFreeAndNil(TD);
 
    ReturnCode := 0; //Sucesso.
-   DMCosmosServerServices.RegisterLog(TCosmosInfoMsg.RetrogradacaoRegistrada, DMServerDataAcess.GetContextInfo(AProc));
+   CosmosServices.RegisterLog(TCosmosInfoMsg.RetrogradacaoRegistrada, DAOServices.GetContextInfo(AProc));
 
    AProc.Free;
    AData.Free;
@@ -496,7 +519,7 @@ begin
  except
   on E: Exception do
    begin
-     DMCosmosServerServices.RegisterLog(E.Message, DMServerDataAcess.GetContextInfo(AProc), leOnError);
+     CosmosServices.RegisterLog(E.Message, DAOServices.GetContextInfo(AProc), leOnError);
      ReturnCode := TCosmosErrorCodes.ExecuteOperation; //Falha genérica.
 
     if E.Message.Contains('EX_CADASTRADO_INEXISTE') then
@@ -511,7 +534,7 @@ begin
     if E.Message.Contains('EX_RETROGRADACAO_ILEGAL') then
      ReturnCode := TCosmosErrorCodes.RetrogradacaoIlegal;
 
-    DMServerDataAcess.RollbackTransaction(AProc.SQLConnection, TD);
+    AProc.SQLConnection.RollbackFreeAndNil(TD);
     if Assigned(AData) then FreeAndNil(AData);
     if Assigned(AProc) then FreeAndNil(AProc);
 
@@ -530,7 +553,7 @@ AProc: TSQLStoredProc;
 begin
  //Registra o batismo de um cadastrado.
  AData := TCosmosData.Create(6);
- AProc := DMServerDataAcess.CreateStoreProcedure;
+ AProc := DAOServices.CreateStoreProcedure;
 
  try
   AData.LoadTaggedValues(Data);
@@ -553,13 +576,13 @@ begin
    end;
 
   //Inicia uma nova transação
-  TD := DMServerDataAcess.BeginTransaction(AProc.SQLConnection, TDBXIsolations.ReadCommitted);
+  TD := AProc.SQLConnection.BeginTransaction;
   AProc.Prepared := True;
   AProc.ExecProc;
-  DMServerDataAcess.CommitTransaction(AProc.SQLConnection, TD);
+  AProc.SQLConnection.CommitFreeAndNil(TD);
 
   ReturnCode := 0;
-  DMCosmosServerServices.RegisterLog(TCosmosInfoMsg.BatismoRegistrado, DMServerDataAcess.GetContextInfo(AProc));
+  CosmosServices.RegisterLog(TCosmosInfoMsg.BatismoRegistrado, DAOServices.GetContextInfo(AProc));
 
   AData.Free;
   AProc.Free;
@@ -568,7 +591,7 @@ begin
  on E: Exception do
   begin
     ReturnCode := TCosmosErrorCodes.ExecuteOperation; //Falha genérica.
-    DMCosmosServerServices.RegisterLog(E.Message, DMServerDataAcess.GetContextInfo(AProc), leOnError);
+    CosmosServices.RegisterLog(E.Message, DAOServices.GetContextInfo(AProc), leOnError);
 
    if Pos('EX_BATIZADO_DISCIPULADO', E.Message) > 0 then //Somente probatórios em diante podem ser batizados...
      ReturnCode := TCosmosErrorCodes.BatizadoDiscipulado;
@@ -580,7 +603,7 @@ begin
      ReturnCode := TCosmosErrorCodes.BatizadoCampo;
 
     if Assigned(AData) then FreeAndNil(AData);
-    DMServerDataAcess.RollbackTransaction(AProc.SQLConnection, TD);
+    AProc.SQLConnection.RollbackFreeAndNil(TD);
 
     if Assigned(AProc) then  FreeAndNil(AProc);
     raise TDBXError.Create(ReturnCode, TCosmosErrorCodes.ToMessage(ReturnCode));
@@ -598,7 +621,7 @@ AProc: TSQLStoredProc;
 begin
  //Registra o casamento de cadastrados.
  AData := TCosmosData.Create(8);
- AProc := DMServerDataAcess.CreateStoreProcedure;
+ AProc := DAOServices.CreateStoreProcedure;
 
  try
   AData.LoadTaggedValues(Data);
@@ -621,14 +644,14 @@ begin
       ParamByName('iobshis').Value := AData.FindValue('OBSERVACAO');
    end;
 
-  TD := DMServerDataAcess.BeginTransaction(AProc.SQLConnection, TDBXIsolations.ReadCommitted);
+  TD := AProc.SQLConnection.BeginTransaction;
   AProc.Prepared := True;
   AProc.ExecProc;
 
-  DMServerDataAcess.CommitTransaction(AProc.SQLConnection, TD);
+  AProc.SQLConnection.CommitFreeAndNil(TD);
 
   ReturnCode := 0; //sucesso.
-  DMCosmosServerServices.RegisterLog(TCosmosInfoMsg.CasamentoRegistrado, DMServerDataAcess.GetContextInfo(AProc));
+  CosmosServices.RegisterLog(TCosmosInfoMsg.CasamentoRegistrado, DAOServices.GetContextInfo(AProc));
   AData.Free;
   AProc.Free;
 
@@ -640,8 +663,8 @@ begin
     if E.Message.Contains('EX_CADASTRADO_CASADO') then
       ReturnCode := TCosmosErrorCodes.CasarCasado;
 
-    DMCosmosServerServices.RegisterLog(E.Message, DMServerDataAcess.GetContextInfo(AProc), leOnError);
-    DMServerDataAcess.RollbackTransaction(AProc.SQLConnection, TD);
+    CosmosServices.RegisterLog(E.Message, DAOServices.GetContextInfo(AProc), leOnError);
+    AProc.SQLConnection.RollbackFreeAndNil(TD);
 
     if Assigned(AData) then FreeAndNil(AData);
     if Assigned(AProc) then FreeAndNil(AProc);
@@ -660,7 +683,7 @@ AProc: TSQLStoredProc;
 begin
  //Registra o envio de cartas de freqüência para um aluno.
  AData := TCosmosData.Create(5);
- AProc := DMServerDataAcess.CreateStoreProcedure;
+ AProc := DAOServices.CreateStoreProcedure;
 
  try
   AData.LoadTaggedValues(Data);
@@ -680,12 +703,12 @@ begin
       ParamByName('iobshis').Value := AData.FindValue('OBSERVACAO');
    end;
 
-  TD := DMServerDataAcess.BeginTransaction(AProc.SQLConnection, TDBXIsolations.ReadCommitted);
+  TD := AProc.SQLConnection.BeginTransaction;
   AProc.Prepared := True;
   AProc.ExecProc;
 
-  DMServerDataAcess.CommitTransaction(AProc.SQLConnection, TD);
-  DMCosmosServerServices.RegisterLog(TCosmosInfoMsg.CartaFrequenciaRegistrada, DMServerDataAcess.GetContextInfo(AProc));
+  AProc.SQLConnection.CommitFreeAndNil(TD);
+  CosmosServices.RegisterLog(TCosmosInfoMsg.CartaFrequenciaRegistrada, DAOServices.GetContextInfo(AProc));
   ReturnCode := 0;
   AData.Free;
   AProc.Free;
@@ -693,7 +716,7 @@ begin
  except
   on E: Exception do
    begin
-     DMCosmosServerServices.RegisterLog(E.Message, DMServerDataAcess.GetContextInfo(AProc), leOnError);
+     CosmosServices.RegisterLog(E.Message, DAOServices.GetContextInfo(AProc), leOnError);
      ReturnCode := TCosmosErrorCodes.ExecuteOperation; //Falha genérica.
 
     if E.Message.Contains('EX_CARTA_FREQUENCIA') then //do not localize!
@@ -708,7 +731,7 @@ begin
     if E.Message.Contains('EX_CADASTRADO_FALECIDO') then //do not localize!
      ReturnCode := TCosmosErrorCodes.CadastradoFalecido;
 
-    DMServerDataAcess.RollbackTransaction(AProc.SQLConnection, TD);
+    AProc.SQLConnection.RollbackFreeAndNil(TD);
     if Assigned(AData) then FreeAndNil(AData);
     if Assigned(AProc) then FreeAndNil(AProc);
     raise TDBXError.Create(ReturnCode, TCosmosErrorCodes.ToMessage(ReturnCode));
@@ -716,23 +739,34 @@ begin
  end;
 end;
 
+function TCosmosSecHistoricoServerMethods.GetCosmosService: ICosmosService;
+begin
+ Result := self.FCosmosServiceFactory.CosmosService;
+end;
+
+function TCosmosSecHistoricoServerMethods.GetDAOServices: ICosmosDAOService;
+begin
+ Result := self.FCosmosDAOServiceFactory.DAOService;
+end;
+
 function TCosmosSecHistoricoServerMethods.GetDiscipuladoCadastrado(codcad: Integer): TDataset;
 var
 ADataset: TSQLDataset;
+aCommand: string;
 begin
  //Retorna o discipulado de um cadastrado.
- ADataset := DMServerDataAcess.CreateDataset;
+ aCommand := Format(TSecretariasCommands.DiscipuladoCadastrado, [codcad]);
 
  try
-  ADataset.CommandText := Format(TSecretariasCommands.DiscipuladoCadastrado, [codcad]);
-  ADataset.Open;
+
+  ADataset := DAOServices.DoExecuteDQL(aCommand);
   Result := ADataset;
 
  except
   on E: TDBXError do
    begin
     Result := nil;
-    DMCosmosServerServices.RegisterLog(E.Message, ADataset.CommandText, leOnError);
+    CosmosServices.RegisterLog(E.Message, aCommand, leOnError);
    end;
  end;
 end;
@@ -743,14 +777,14 @@ var
 begin
 //Atualiza os grupos de jovens do TM de acordo com a idade deles.
  try
-   CurrentUserName := DMCosmosServerServices.ConnectedUser.ToUpper;
+   CurrentUserName := CosmosServices.DSService.ConnectedUser.ToUpper;
    CurrentUserName := CurrentUserName.QuotedString;
-   DMServerDataAcess.DoExecuteCommand(Format(TSecHistoricoCmd.AtualizaGruposTM, [codfoc, CurrentUserName]));
+   DAOServices.DoExecuteCommand(Format(TSecHistoricoCmd.AtualizaGruposTM, [codfoc, CurrentUserName]));
 
  except
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServices.RegisterLog(E.Message, '', leOnError);
     raise TDBXError.Create(TCosmosErrorCodes.AtualizarGruposTM, TCosmosErrorMsg.AtualizarGruposTM);
    end;
  end;
@@ -763,7 +797,7 @@ TD: TDBXTransaction;
 AProc: TSQLStoredProc;
 begin
 //Anula um evento do histórico discipular de um cadastrado
- AProc := DMServerDataAcess.CreateStoreProcedure;
+ AProc := DAOServices.CreateStoreProcedure;
 
  try
   AProc.StoredProcName := TProceduresNames.PROC_ANULAR_EVENTO_DISCIPULAR;
@@ -775,16 +809,16 @@ begin
     Params.Items[2].Value := current_user;
    end;
 
-  TD := DMServerDataAcess.BeginTransaction(AProc.SQLConnection, TDBXIsolations.ReadCommitted);
+  TD := AProc.SQLConnection.BeginTransaction;
   AProc.Prepared := True;
   AProc.ExecProc;
-  DMServerDataAcess.CommitTransaction(AProc.SQLConnection, TD);
+  AProc.SQLConnection.CommitFreeAndNil(TD);
 
  except
  on E: Exception do
   begin
-   DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
-   DMServerDataAcess.RollbackTransaction(AProc.SQLConnection, TD);
+   CosmosServices.RegisterLog(E.Message, '', leOnError);
+   AProc.SQLConnection.RollbackFreeAndNil(TD);
    raise TDBXError.Create(TCosmosErrorCodes.AnularHistorico, TCosmosErrorSecMsg.AnularHistorico);
   end;
  end;
@@ -792,20 +826,20 @@ end;
 
 function TCosmosSecHistoricoServerMethods.GetDiscipuladosReligacao(codcad: Integer): TDataset;
 var
+ sCommand: string;
  ADataset: TSQLDataset;
 begin
  //Recupera os discipulados nos quais um cadastrado pode ser religado
- ADataset := DMServerDataAcess.CreateDataset;
+ sCommand := Format(TSecHistoricoCmd.DiscipuladosReligacao, [codcad]);
 
  try
-  ADataset.CommandText := Format(TSecHistoricoCmd.DiscipuladosReligacao, [codcad]);
-  ADataset.Open;
+  ADataset := DAOServices.DoExecuteDQL(sCommand);
   Result := ADataset;
 
  except
  on E: TDBXError do
   begin
-   DMCosmosServerServices.RegisterLog(E.Message, ADataset.CommandText, leOnError);
+   CosmosServices.RegisterLog(E.Message, ADataset.CommandText, leOnError);
    raise;
   end;
  end;
@@ -816,19 +850,15 @@ var
  ADataset: TSQLDataset;
 begin
 //Gera um novo número da turma de instalação.
- ADataset := DMServerDataAcess.CreateDataset;
-
  try
-  ADataset.CommandText := Format(TSecHistoricoCmd.NumeroTurmaInstalacao, [codfoc]);
-  ADataset.Open;
-
+  ADataset := DAOServices.DoExecuteDQL(Format(TSecHistoricoCmd.NumeroTurmaInstalacao, [codfoc]));
   Result :=  ADataset.Fields.Fields[0].Value;
 
  except
  on E: Exception do
   begin
    Result := '';
-   DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+   CosmosServices.RegisterLog(E.Message, '', leOnError);
    raise TDBXError.Create(TCosmosErrorCodes.NumeroTurmaInstalacao, TCosmosErrorSecMsg.NumeroTurmaInstalacao);
   end;
  end;
@@ -847,7 +877,7 @@ begin
  ADataset := TClientDataset.Create(self);
 
  try
-  codturins := DMServerDataAcess.DoGetSequenceValue(TSequencesNames.GEN_TURMAS_INSTALACOES);
+  codturins := DAOServices.DoGetSequenceValue(TSequencesNames.GEN_TURMAS_INSTALACOES);
   sCommandText := Format(TSecHistoricoCmd.InserirTurmasInstalacao, [codturins, QuotedStr(numtur),
     codfoc, coddis, QuotedStr('N'), QuotedStr(UserName)]);
   AScript.Append(sCommandText);
@@ -863,7 +893,7 @@ begin
     ADataset.Next;
    end;
 
-  DMServerDataAcess.DoExecuteScript(AScript);
+  DAOServices.DoExecuteScript(AScript);
 
   if Assigned(AScript) then AScript.Free;
   if Assigned(ADataset) then ADataset.Free;
@@ -871,7 +901,7 @@ begin
  except
  on E: Exception do
   begin
-   DMCosmosServerServices.RegisterLog(E.Message, AScript.Text, leOnError);
+   CosmosServices.RegisterLog(E.Message, AScript.Text, leOnError);
    E.Message := TCosmosErrorSecMsg.CreateTurmaInstalacao;
    if Assigned(AScript) then AScript.Free;
    if Assigned(ADataset) then ADataset.Free;
@@ -896,14 +926,14 @@ begin
      Append(Format(TSecHistoricoCmd.DelProtocoloInstalando, [codcad, codturins]));
     end;
 
-   DMServerDataAcess.DoExecuteScript(AScript);
+   DAOServices.DoExecuteScript(AScript);
 
    AScript.Free;
 
   except
    on E: Exception do
     begin
-     DMCosmosServerServices.RegisterLog(E.Message, AScript.Text, leOnError);
+     CosmosServices.RegisterLog(E.Message, AScript.Text, leOnError);
      if Assigned(AScript) then AScript.Free;
      raise TDBXError.Create(TCosmosErrorCodes.DelMembroTurmaInstalacao, TCosmosErrorSecMsg.DelMembroTurmaInstalacao);
   end;
@@ -920,29 +950,26 @@ Data, sCommand: string;
 begin
 {Instala os alunos de uma turma de instalação em seus discipulados.}
   AScript := TStringList.Create;
-  ADataset := DMServerDataAcess.CreateDataset;
 
   try
    //Primeiro, checa se a turma já está instalada.
-   ADataset.CommandText := Format(TSecHistoricoCmd.TurmaInstalada, [codturins]);
-   ADataset.Open;
+   sCommand := Format(TSecHistoricoCmd.TurmaInstalada, [codturins]);
+   ADataset := DAOServices.DoExecuteDQL(sCommand);
 
    if TDataConverter.ToBolean(ADataset.FieldValues['indins']) then
     raise TDBXError.Create(TCosmosErrorCodes.TurmaInstalada, TCosmosErrorSecMsg.TurmaInstalada);
 
-   DMServerDataAcess.CloseDataset(ADataset);
-   ADataset.CommandText := Format(TSecHistoricoCmd.TurmaInstalacao, [codturins]);
-   ADataset.Open;
+   sCommand := Format(TSecHistoricoCmd.TurmaInstalacao, [codturins]);
+   ADataset := DAOServices.DoExecuteDQL(sCommand);
 
    coddis := ADataset.Fields.FieldByName('coddis').AsInteger;
    codfoc := ADataset.Fields.FieldByName('codfoc').AsInteger;
 
    Data := FormatDateTime('yyyy/mm/dd', datins);
-   DMServerDataAcess.CloseDataset(aDataset);
 
   //Agora, recupera os membros da turma para montar o script que os instalará.
-   aDataset.CommandText := Format(TSecHistoricoCmd.MembrosTurmaInstalacao, [codturins]);
-   aDataset.Open;
+   sCommand := Format(TSecHistoricoCmd.MembrosTurmaInstalacao, [codturins]);
+   ADataset := DAOServices.DoExecuteDQL(sCommand);
 
    while not aDataset.Eof do
     begin
@@ -958,9 +985,7 @@ begin
    AScript.Append(sCommand);
 
    //Finalmente, executa o AScript
-   DMServerDataAcess.DoExecuteScript(AScript);
-
-   DMServerDataAcess.CloseDataset(aDataset);
+   DAOServices.DoExecuteScript(AScript);
 
   if Assigned(AScript) then AScript.Free;
   if Assigned(ADataset) then ADataset.Free;
@@ -968,18 +993,16 @@ begin
   except
    on E: TDBXError do
     begin
-     DMCosmosServerServices.RegisterLog(E.Message, AScript.Text, leOnError);
-     DMServerDataAcess.CloseDataset(ADataset);
-     DMServerDataAcess.CloseDataset(SQLMembrosTurmasIns);
+     CosmosServices.RegisterLog(E.Message, AScript.Text, leOnError);
      if Assigned(AScript) then AScript.Free;
+     if Assigned(ADataset) then ADataset.Free;
      raise;
     end;
    on E: Exception do
     begin
-     DMCosmosServerServices.RegisterLog(E.Message, AScript.Text, leOnError);
-     DMServerDataAcess.CloseDataset(ADataset);
-     DMServerDataAcess.CloseDataset(SQLMembrosTurmasIns);
+     CosmosServices.RegisterLog(E.Message, AScript.Text, leOnError);
      if Assigned(AScript) then AScript.Free;
+     if Assigned(ADataset) then ADataset.Free;
      raise TDBXError.Create(TCosmosErrorCodes.InstalarTurmaAluno, TCosmosErrorSecMsg.InstalarTurmaAluno);
     end;
  end;
@@ -995,8 +1018,6 @@ ANumber: integer;
 begin
 //Retorna um novo número de matrícula de um aluno de um determinado foco.
  CosmosApp := TCosmosApplication.Create;
- ADataset := DMServerDataAcess.CreateDataset;
-
  ANumber := 0; //default, sempre a partir da última matrícula.
 
  case TNewMatriculaMode(CreationMode) of
@@ -1007,8 +1028,8 @@ begin
  try
   sCampoTrabalho := TFocusTypesInfo.CampoTrabalhoToString(TCampoTrabalho(CampoTrabalho));
   sCommand := Format(TSecretariasCommands.NovaMatricula,[codfoc, QuotedStr(sCampoTrabalho), ANumber]);
-  ADataset.CommandText := sCommand;
-  ADataset.Open;
+
+  ADataset := DAOServices.DoExecuteDQL(sCommand);
   Result :=  ADataset.Fields.Fields[0].Value;
 
   if Assigned(CosmosApp) then FreeAndNil(CosmosApp);
@@ -1018,7 +1039,7 @@ begin
    begin
     if Assigned(CosmosApp) then FreeAndNil(CosmosApp);
     Result := '';
-    DMCosmosServerServices.RegisterLog(E.Message, sCommand, leOnError);
+    CosmosServices.RegisterLog(E.Message, sCommand, leOnError);
     raise TDBXError.Create(TCosmosErrorCodes.NovaMatricula, TCosmosErrorSecMsg.NovaMatricula);
    end;
  end;
@@ -1032,34 +1053,32 @@ var
  ADataset: TSQLDataset;
 begin
 //Adiciona um novo instalando a uma turma de instalação.
- ADataset := DMServerDataAcess.CreateDataset;
+ sCommand := Format(TSecretariasCommands.DadosBasicosCadastrado, [codcad]);
 
  try
   //Obtém informações do cadastrado a serem usadas em algumas validações.
-  ADataset.CommandText := Format(TSecretariasCommands.DadosBasicosCadastrado, [codcad]);
-  ADataset.Open;
+  ADataset := DAOServices.DoExecuteDQL(sCommand);
 
   //Se o cadastrado não está ativo, gera uma exceção.
   if not TDataConverter.ToBolean(ADataset.FieldValues['indati']) then
    raise EDataOperationError.Create('');
 
-  DMServerDataAcess.CloseDataset(ADataset);
   sCommand := sCommand.Format(TSecHistoricoCmd.InserirMembrosTurmasIns, [codturins, codcad]);
 
-  DMServerDataAcess.DoExecuteCommand(sCommand);
+  DAOServices.DoExecuteCommand(sCommand);
   if Assigned(ADataset) then FreeAndNil(ADataset);
 
 
  except
   on E: EDataOperationError do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, sCommand,  leOnError);
+    CosmosServices.RegisterLog(E.Message, sCommand,  leOnError);
     if Assigned(ADataset) then FreeAndNil(ADataset);
     raise TDBXError.Create(TCosmosErrorCodes.InstalacaoInvalida, TCosmosErrorSecMsg.InstalacaoInvalida);
    end;
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, sCommand,  leOnError);
+    CosmosServices.RegisterLog(E.Message, sCommand,  leOnError);
     if Assigned(ADataset) then FreeAndNil(ADataset);
     raise TDBXError.Create(TCosmosErrorCodes.NovoInstalando, TCosmosErrorSecMsg.NovoInstalando);
    end;

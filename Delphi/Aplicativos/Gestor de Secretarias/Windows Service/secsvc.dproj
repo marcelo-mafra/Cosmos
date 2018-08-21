@@ -186,7 +186,7 @@
         <DCCReference Include="..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.security.authorizations.pas"/>
         <DCCReference Include="..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.security.pas"/>
         <DCCReference Include="..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.services.pas">
-            <Form>DMCosmosServerServices</Form>
+            <Form>CosmosServerServices</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
@@ -195,6 +195,11 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.servicesint.pas"/>
+        <DCCReference Include="..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.dao.interfaces.pas"/>
+        <DCCReference Include="..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.services.factory.pas"/>
+        <DCCReference Include="..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.dsservices.pas"/>
+        <DCCReference Include="..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.dao.factory.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -224,6 +229,12 @@
             </Delphi.Personality>
             <Deployment Version="3">
                 <DeployFile LocalName="Win32\Debug\secsvc.exe" Configuration="Debug" Class="ProjectOutput"/>
+                <DeployFile LocalName="..\..\..\..\Bin\Win64\Release\secsvc.exe" Configuration="Release" Class="ProjectOutput">
+                    <Platform Name="Win64">
+                        <RemoteName>secsvc.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="..\..\..\..\Bin\Win32\Release\secsvc.exe" Configuration="Release" Class="ProjectOutput"/>
                 <DeployClass Name="AdditionalDebugSymbols">
                     <Platform Name="OSX32">

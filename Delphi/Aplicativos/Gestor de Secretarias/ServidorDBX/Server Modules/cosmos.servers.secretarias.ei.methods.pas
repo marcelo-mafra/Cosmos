@@ -9,7 +9,9 @@ uses
   cosmos.classes.application, System.Variants, Datasnap.Provider, System.WideStrings,
   Datasnap.DSSession, cosmos.system.winshell, cosmos.classes.ServerInterface,
   cosmos.classes.logs, Data.DBXCommon, cosmos.system.exceptions,cosmos.classes.servers.dataobj,
-  cosmos.classes.utils.cosmoscript, cosmos.system.dataconverter;
+  cosmos.classes.utils.cosmoscript, cosmos.system.dataconverter,
+  cosmos.servers.common.servicesint, cosmos.servers.common.services.factory,
+  cosmos.servers.common.dao.interfaces;
 
 
 type
@@ -98,9 +100,15 @@ type
     procedure DspLivrosEIUpdateError(Sender: TObject;
       DataSet: TCustomClientDataSet; E: EUpdateError; UpdateKind: TUpdateKind;
       var Response: TResolverResponse);
+    procedure DSServerModuleCreate(Sender: TObject);
+    procedure DSServerModuleDestroy(Sender: TObject);
   private
     { Private declarations }
+    FCosmosServiceFactory: ICosmosServiceFactory;
+    FCosmosDAOServiceFactory: ICosmosDAOServiceFactory;
     function CanDeleteLesson(const LessonId: integer): boolean;
+    function GetCosmosService: ICosmosService;
+    function GetDAOServices: ICosmosDAOService;
 
 
   public
@@ -112,6 +120,9 @@ type
 
     function NovoCirculo(Circulo, Membros: OleVariant; Usuario: string): boolean;
     function DesativarCirculo(codgru: Integer): boolean;
+
+    property CosmosServices: ICosmosService read GetCosmosService;
+    property DAOServices: ICosmosDAOService read GetDAOServices;
   end;
 
 var
@@ -119,7 +130,7 @@ var
 
 implementation
 
-uses cosmos.servers.common.dataacess, cosmos.servers.common.services;
+uses cosmos.servers.common.dao.factory, cosmos.servers.common.services;
 
 {$R *.DFM}
 
@@ -170,7 +181,7 @@ procedure TCosmosSecEIServerMethods.DspLivrosEIUpdateError(Sender: TObject;
   DataSet: TCustomClientDataSet; E: EUpdateError; UpdateKind: TUpdateKind;
   var Response: TResolverResponse);
 begin
- DMServerDataAcess.OnUpdateError(E, UpdateKind, Response);
+ DAOServices.OnUpdateError(E, UpdateKind, Response);
 end;
 
 procedure TCosmosSecEIServerMethods.DspMembrosCirculoGetDataSetProperties(Sender: TObject;
@@ -199,6 +210,28 @@ begin
  TableName := TTablesNames.TAB_ATIVIDADES_DISCIPULADOS;
 end;
 
+procedure TCosmosSecEIServerMethods.DSServerModuleCreate(Sender: TObject);
+begin
+ FCosmosServiceFactory := TCosmosServiceFactory.New(cmSecretariasServer);
+ FCosmosDAOServiceFactory := TCosmosDAOServiceFactory.New(cmSecretariasServer);
+end;
+
+procedure TCosmosSecEIServerMethods.DSServerModuleDestroy(Sender: TObject);
+begin
+ FCosmosServiceFactory := nil;
+ FCosmosDAOServiceFactory := nil;
+end;
+
+function TCosmosSecEIServerMethods.GetCosmosService: ICosmosService;
+begin
+ Result := self.FCosmosServiceFactory.CosmosService;
+end;
+
+function TCosmosSecEIServerMethods.GetDAOServices: ICosmosDAOService;
+begin
+ Result := self.FCosmosDAOServiceFactory.DAOService;
+end;
+
 function TCosmosSecEIServerMethods.ReorderBook(codbook, codtarget: Integer): boolean;
 var
  aCommand: cosmos.classes.servers.dataobj.TStoredProcCommand;
@@ -222,7 +255,7 @@ begin
  except
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServices.RegisterLog(E.Message, '', leOnError);
     raise TDBXError.Create(TCosmosErrorCodes.ReorderBookEI, TCosmosErrorSecMsg.ReorderBookEI);
    end;
  end;
@@ -244,7 +277,7 @@ begin
  except
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServices.RegisterLog(E.Message, '', leOnError);
     raise TDBXError.Create(TCosmosErrorCodes.ReorderLessonEI, TCosmosErrorSecMsg.ReorderLessonEI);
    end;
  end;
@@ -252,12 +285,12 @@ end;
 
 procedure TCosmosSecEIServerMethods.SQLLivrosEIBeforeOpen(DataSet: TDataSet);
 begin
-  TSQLDataset(Dataset).SQLConnection := DMServerDataAcess.SQLConnection;
+  TSQLDataset(Dataset).SQLConnection := DAOServices.SQLConnection;
 end;
 
 procedure TCosmosSecEIServerMethods.SQLStProcedureBeforeOpen(DataSet: TDataSet);
 begin
-  TSQLStoredProc(Dataset).SQLConnection := DMServerDataAcess.SQLConnection;
+  TSQLStoredProc(Dataset).SQLConnection := DAOServices.SQLConnection;
 end;
 
 function TCosmosSecEIServerMethods.NovoCirculo(Circulo, Membros: OleVariant;
@@ -275,7 +308,7 @@ begin
 
  try
   //Obtém o comando para inserir o círculo da E.I.
-  CirculoID := DMServerDataAcess.DoGetSequenceValue(TSequencesNames.GEN_GRUPOS_EI);
+  CirculoID := DAOServices.DoGetSequenceValue(TSequencesNames.GEN_GRUPOS_EI);
   ADataset.Data := Circulo;
 
   if ADataset.Fields.FieldByName('codsac').IsNull then
@@ -305,7 +338,7 @@ begin
   while not ADataset.Eof do
    begin
     sCommand := Format(TSecretariasEICommands.MembroCirculoEI, [ADataset.FieldValues['codcad']]);
-    ASQLDataset := DMServerDataAcess.DoExecuteDQL(sCommand);
+    ASQLDataset := DAOServices.DoExecuteDQL(sCommand);
 
     if not (ASQLDataset.IsEmpty) then
      raise EValidateOperation.Create(TCosmosErrorSecMsg.DuplicatedMembroCirculoEI);
@@ -320,7 +353,7 @@ begin
     ADataset.Next;
    end;
 
-  Result := DMServerDataAcess.DoExecuteScript(AScript);
+  Result := DAOServices.DoExecuteScript(AScript);
   ADataset.Free;
   if Assigned(ASQLDataset) then ASQLDataset.Free;
   AScript.Free;
@@ -328,7 +361,7 @@ begin
  except
   on E: EValidateOperation do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, AScript.Text, leOnError);
+    CosmosServices.RegisterLog(E.Message, AScript.Text, leOnError);
     if Assigned(ADataset) then ADataset.Free;
     if Assigned(ASQLDataset) then ASQLDataset.Free;
     if Assigned(AScript) then AScript.Free;
@@ -336,7 +369,7 @@ begin
    end;
   on E: Exception do
    begin
-    DMCosmosServerServices.RegisterLog(E.Message, AScript.Text, leOnError);
+    CosmosServices.RegisterLog(E.Message, AScript.Text, leOnError);
     if Assigned(ADataset) then ADataset.Free;
     if Assigned(ASQLDataset) then ASQLDataset.Free;
     if Assigned(AScript) then AScript.Free;
@@ -353,12 +386,12 @@ begin
   sCommand := Format(TSecretariasEICommands.DeleteCirculoEI, [codgru]);
 
   try
-   Result := DMServerDataAcess.DoExecuteCommand(sCommand) > 0;
+   Result := DAOServices.DoExecuteCommand(sCommand) > 0;
 
   except
    on E: Exception do
     begin
-     DMCosmosServerServices.RegisterLog(E.Message, sCommand, leOnError);
+     CosmosServices.RegisterLog(E.Message, sCommand, leOnError);
      raise TDBXError.Create(TCosmosErrorCodes.DesativarCirculoEI, TCosmosErrorSecMsg.DesativarCirculoEI);
     end;
   end;
@@ -373,13 +406,13 @@ begin
  Result := False; //default.
 
  try
-  ADataset := DMServerDataAcess.DoExecuteDQL(Format(TSecretariasEICommands.LessonsCount, [LessonId]));
+  ADataset := DAOServices.DoExecuteDQL(Format(TSecretariasEICommands.LessonsCount, [LessonId]));
   Result := ADataset.Fields.Fields[0].AsInteger = 0;
   ADataset.Free;
 
   if Result then
    begin
-    ADataset := DMServerDataAcess.DoExecuteDQL(Format(TSecretariasEICommands.CIrculosLicaoCount , [LessonId]));
+    ADataset := DAOServices.DoExecuteDQL(Format(TSecretariasEICommands.CIrculosLicaoCount , [LessonId]));
     Result := ADataset.Fields.Fields[0].AsInteger = 0;
     ADataset.Free;
    end;
@@ -388,7 +421,7 @@ begin
  on E: Exception do
   begin
    if Assigned(ADataset) then FreeAndNil(ADataset);
-   DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+   CosmosServices.RegisterLog(E.Message, '', leOnError);
    raise;
   end;
  end;
@@ -400,11 +433,11 @@ var
 begin
 //Exclui um livro da escola interna, se possível
  try
-  ADataset := DMServerDataAcess.DoExecuteDQL(Format(TSecretariasEICommands.BooksEICount, [codliv]));
+  ADataset := DAOServices.DoExecuteDQL(Format(TSecretariasEICommands.BooksEICount, [codliv]));
 
   if ADataset.Fields.Fields[0].AsInteger = 0 then
    begin
-    Result := DMServerDataAcess.DoExecuteCommand(Format(TSecretariasEICommands.DeleteLivroEI, [codliv])) > 0;
+    Result := DAOServices.DoExecuteCommand(Format(TSecretariasEICommands.DeleteLivroEI, [codliv])) > 0;
     ADataset.Free;
    end
   else
@@ -415,13 +448,13 @@ begin
  on E: TDBXError do
   begin
    if Assigned(ADataset) then FreeAndNil(ADataset);
-   DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+   CosmosServices.RegisterLog(E.Message, '', leOnError);
    raise;
   end;
  on E: Exception do
   begin
    if Assigned(ADataset) then FreeAndNil(ADataset);
-   DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+   CosmosServices.RegisterLog(E.Message, '', leOnError);
    raise TDBXError.Create(TCosmosErrorCodes.DeleteBookEI, TCosmosErrorSecMsg.DeleteBookEI);
   end;
  end;
@@ -439,19 +472,19 @@ begin
   if not Result then
    raise TDBXError.Create(TCosmosErrorCodes.CantDeleteLessonEI, TCosmosErrorSecMsg.CantDeleteLessonEI);
 
-  Result := DMServerDataAcess.DoExecuteCommand(Format(TSecretariasEICommands.DeleteLessonEI, [codlic])) > 0;
+  Result := DAOServices.DoExecuteCommand(Format(TSecretariasEICommands.DeleteLessonEI, [codlic])) > 0;
   ADataset.Free;
 
  except
  on E: TDBXError do
   begin
    if Assigned(ADataset) then FreeAndNil(ADataset);
-   DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+   CosmosServices.RegisterLog(E.Message, '', leOnError);
   end;
  on E: Exception do
   begin
    if Assigned(ADataset) then FreeAndNil(ADataset);
-   DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+   CosmosServices.RegisterLog(E.Message, '', leOnError);
    raise TDBXError.Create(TCosmosErrorCodes.DeleteLessonEI, TCosmosErrorSecMsg.DeleteLessonEI);
   end;
  end;
