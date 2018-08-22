@@ -13,6 +13,7 @@ object FrmLogsReaderMainForm: TFrmLogsReaderMainForm
   OldCreateOrder = False
   Position = poScreenCenter
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   PixelsPerInch = 96
   TextHeight = 13
   object Splitter1: TSplitter
@@ -165,6 +166,7 @@ object FrmLogsReaderMainForm: TFrmLogsReaderMainForm
           end
           item
             Action = ActUpdate
+            Caption = 'A&tualizar!'
             ImageIndex = 18
           end
           item
@@ -384,7 +386,7 @@ object FrmLogsReaderMainForm: TFrmLogsReaderMainForm
     Left = 96
     Top = 232
     Bitmap = {
-      494C010113006000E80012001200FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010113006000F40012001200FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000480000005A00000001002000000000004065
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

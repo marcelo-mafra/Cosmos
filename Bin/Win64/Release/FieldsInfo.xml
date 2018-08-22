@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- Convenção para tipos de campos:
+   0 - Texto (string)
+   1 - Inteiro
+   2 - Data
+   3 - Hora
+   4 - Boolean
+   5 - double
+   6 - money
+   
+   Convenção de alinhamento:
+   
+   0 - Alinhado à esquerda
+   1 - Alinhado à direita
+   2 - Alinhado ao centro.
+   
+-->
+
+<FieldsInfo>
+    <Info>
+        <!-- Sincronização -->
+        <Field FieldName="VERSION" DisplayLabel="VERSION" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="SYNC" DisplayLabel="SYNC" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>   
+        <!-- Usuários -->
+        <Field FieldName="DATCAD" DisplayLabel="Data" IsVisible="False" FieldMask='' DisplayWidth="20" Alignment="0" FieldType="0"/>
+        <Field FieldName="USURES" DisplayLabel="Usuário" IsVisible="False" FieldMask='' DisplayWidth="30" Alignment="0" FieldType="0"/>     
+        <!-- Cadastrados -->
+        <Field FieldName="CODCAD" DisplayLabel="CODCAD" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="NOMCAD" DisplayLabel="Nome" IsVisible="True" FieldMask='' DisplayWidth="40" Alignment="0" FieldType="0"/> 
+        <Field FieldName="MATCAD" DisplayLabel="Matrícula" IsVisible="True" FieldMask='' DisplayWidth="10" Alignment="0" FieldType="0"/>
+        <Field FieldName="MATCADINT" DisplayLabel="MATCADINT" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="APECAD" DisplayLabel="Apelido" IsVisible="True" FieldMask='' DisplayWidth="20" Alignment="0" FieldType="0"/>
+        <Field FieldName="ESTCIV" DisplayLabel="Est. Civil" IsVisible="True" FieldMask='' DisplayWidth="6" Alignment="0" FieldType="0"/>
+        <Field FieldName="DATNAS" DisplayLabel="Nacimento" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="2"/>
+        <Field FieldName="INDATI" DisplayLabel="Ativo" IsVisible="True" FieldMask='' DisplayWidth="5" Alignment="0" FieldType="0"/>
+        <Field FieldName="INDMEN" DisplayLabel="Mentor E.I." IsVisible="True" FieldMask='' DisplayWidth="5" Alignment="0" FieldType="0"/>
+        <Field FieldName="INDGRUJOV" DisplayLabel="Jovem Aluno" IsVisible="True" FieldMask='' DisplayWidth="10" Alignment="0" FieldType="0"/>
+        <Field FieldName="SEXCAD" DisplayLabel="Sexo" IsVisible="True" FieldMask='' DisplayWidth="5" Alignment="0" FieldType="0"/>
+        <Field FieldName="DATOBI" DisplayLabel="Óbito" IsVisible="True" FieldMask='' DisplayWidth="10" Alignment="0" FieldType="2"/>
+        <Field FieldName="NACCAD" DisplayLabel="Nacionalidade" IsVisible="True" FieldMask='' DisplayWidth="20" Alignment="0" FieldType="0"/> 
+        <Field FieldName="OBSCAD" DisplayLabel="OBSCAD" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="0"/>         
+        <!-- Discipulados -->
+        <Field FieldName="CODDIS" DisplayLabel="CODDIS" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="SIGDIS" DisplayLabel="Sigla" IsVisible="True" FieldMask='' DisplayWidth="5" Alignment="0" FieldType="0"/>
+        <Field FieldName="CAMDIS" DisplayLabel="Campo" IsVisible="True" FieldMask='' DisplayWidth="5" Alignment="0" FieldType="0"/>
+        <Field FieldName="NOMDIS" DisplayLabel="Discipulado" IsVisible="True" FieldMask='' DisplayWidth="30" Alignment="0" FieldType="0"/>
+        <Field FieldName="SEQDIS" DisplayLabel="SEQDIS" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="NOMDISING" DisplayLabel="Grades" IsVisible="True" FieldMask='' DisplayWidth="30" Alignment="0" FieldType="0"/>
+        <Field FieldName="INDPOS" DisplayLabel="INDPOS" IsVisible="False" FieldMask='' DisplayWidth="1" Alignment="0" FieldType="0"/>
+        <!-- Histórico discipular -->        
+        <Field FieldName="DATHIS" DisplayLabel="Data" IsVisible="True" FieldMask='' DisplayWidth="10" Alignment="0" FieldType="2"/>
+        <Field FieldName="DATPRE" DisplayLabel="Preparatório" IsVisible="True" FieldMask='' DisplayWidth="10" Alignment="0" FieldType="2"/>
+        <Field FieldName="DATPRO" DisplayLabel="Probatório" IsVisible="True" FieldMask='' DisplayWidth="10" Alignment="0" FieldType="2"/>
+        <Field FieldName="DATPFE" DisplayLabel="Professo" IsVisible="True" FieldMask='' DisplayWidth="10" Alignment="0" FieldType="2"/>
+        <Field FieldName="DATECS" DisplayLabel="3º Aspecto" IsVisible="True" FieldMask='' DisplayWidth="10" Alignment="0" FieldType="2"/>
+        <Field FieldName="DATEKK" DisplayLabel="4º Aspecto" IsVisible="True" FieldMask='' DisplayWidth="10" Alignment="0" FieldType="2"/>
+        <Field FieldName="DATGRA" DisplayLabel="Graal" IsVisible="True" FieldMask='' DisplayWidth="10" Alignment="0" FieldType="2"/>
+        <Field FieldName="DAT1AS" DisplayLabel="1º Aspecto" IsVisible="True" FieldMask='' DisplayWidth="10" Alignment="0" FieldType="2"/>
+        <Field FieldName="DAT2AS" DisplayLabel="2º Aspecto" IsVisible="True" FieldMask='' DisplayWidth="10" Alignment="0" FieldType="2"/>        
+        <Field FieldName="DAT5AS" DisplayLabel="5º Aspecto" IsVisible="True" FieldMask='' DisplayWidth="10" Alignment="0" FieldType="2"/>
+        <Field FieldName="DAT6AS" DisplayLabel="6º Aspecto" IsVisible="True" FieldMask='' DisplayWidth="10" Alignment="0" FieldType="2"/>
+        <Field FieldName="DAT7AS" DisplayLabel="7º Aspecto" IsVisible="False" FieldMask='' DisplayWidth="10" Alignment="0" FieldType="2"/> 
+        <Field FieldName="FOCINS" DisplayLabel="Instalado em" IsVisible="True" FieldMask='' DisplayWidth="5" Alignment="0" FieldType="0"/>
+        <Field FieldName="INDINS" DisplayLabel="Cumprido?" IsVisible="True" FieldMask='' DisplayWidth="5" Alignment="0" FieldType="0"/>
+        <Field FieldName="ANOS" DisplayLabel="Anos" IsVisible="True" FieldMask='' DisplayWidth="5" Alignment="0" FieldType="1"/>
+        <Field FieldName="MESES" DisplayLabel="Meses" IsVisible="True" FieldMask='' DisplayWidth="5" Alignment="0" FieldType="1"/>        
+        <!-- Focos -->
+        <Field FieldName="CODFOC" DisplayLabel="CODFOC" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="NOMFOC" DisplayLabel="Foco" IsVisible="True" FieldMask='' DisplayWidth="40" Alignment="0" FieldType="0"/>
+        <Field FieldName="SIGFOC" DisplayLabel="Sigla" IsVisible="True" FieldMask='' DisplayWidth="5" Alignment="0" FieldType="0"/>        
+        <Field FieldName="ANO" DisplayLabel="Ano" IsVisible="True" FieldMask='0000' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="CODREG" DisplayLabel="CODREG" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="TIPFOC" DisplayLabel="Tipo" IsVisible="True" FieldMask='' DisplayWidth="5" Alignment="0" FieldType="0"/>
+        <Field FieldName="NOMREG" DisplayLabel="Região Administrativa" IsVisible="True" FieldMask='' DisplayWidth="40" Alignment="0" FieldType="0"/>
+        <Field FieldName="INDCAB" DisplayLabel="Cabeça" IsVisible="True" FieldMask='' DisplayWidth="5" Alignment="0" FieldType="0"/>
+        <Field FieldName="INDNAC" DisplayLabel="Nacional" IsVisible="True" FieldMask='' DisplayWidth="5" Alignment="0" FieldType="0"/>
+        <!-- Cidades -->
+        <Field FieldName="CODCID" DisplayLabel="CODCID" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="NOMCID" DisplayLabel="Cidade" IsVisible="True" FieldMask='' DisplayWidth="40" Alignment="0" FieldType="0"/>
+        <!-- Países -->
+        <Field FieldName="CODPAI" DisplayLabel="CODPAI" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="NOMPAI" DisplayLabel="País" IsVisible="True" FieldMask='' DisplayWidth="40" Alignment="0" FieldType="0"/>
+        <!-- Estados -->
+        <Field FieldName="CODEST" DisplayLabel="CODEST" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="NOMEST" DisplayLabel="Estado" IsVisible="True" FieldMask='' DisplayWidth="40" Alignment="0" FieldType="0"/>
+        <Field FieldName="SIGEST" DisplayLabel="Sigla" IsVisible="True" FieldMask='' DisplayWidth="5" Alignment="0" FieldType="0"/>
+        <!-- Bairros -->
+        <Field FieldName="CODBAI" DisplayLabel="CODBAI" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="NOMBAI" DisplayLabel="Bairro" IsVisible="True" FieldMask='' DisplayWidth="40" Alignment="0" FieldType="0"/>
+        <!-- Familiares -->
+        <Field FieldName="NOMFAM" DisplayLabel="Familiar" IsVisible="True" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="0"/>
+        <Field FieldName="PARENTESCO" DisplayLabel="Parentesco" IsVisible="True" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="0"/>        
+        <Field FieldName="TELFAM" DisplayLabel="Telefone" IsVisible="True" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="0"/>
+        <Field FieldName="INDFAM" DisplayLabel="É Aluno?" IsVisible="True" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="0"/>
+        <Field FieldName="INDCAR" DisplayLabel="Carteirinha" IsVisible="True" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="0"/>
+        <!-- Endereços -->
+        <Field FieldName="CODEND" DisplayLabel="CODEND" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="NOMLOG" DisplayLabel="Logradouro" IsVisible="True" FieldMask='' DisplayWidth="50" Alignment="0" FieldType="0"/>
+        <Field FieldName="NUMEND" DisplayLabel="Número" IsVisible="True" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="COMEND" DisplayLabel="Complemento" IsVisible="True" FieldMask='' DisplayWidth="30" Alignment="0" FieldType="0"/>
+        <Field FieldName="CODLOG" DisplayLabel="CODLOG" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="CEPLOG" DisplayLabel="Cep" IsVisible="True" FieldMask='' DisplayWidth="20" Alignment="0" FieldType="0"/>
+        <Field FieldName="INDCOR" DisplayLabel="Correspondência" IsVisible="True" FieldMask='' DisplayWidth="30" Alignment="0" FieldType="0"/>
+        <Field FieldName="TIPEND" DisplayLabel="Tipo" IsVisible="True" FieldMask='' DisplayWidth="20" Alignment="0" FieldType="0"/>
+        <!-- Profissões -->
+        <Field FieldName="CODPRO" DisplayLabel="CODPRO" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="DESPRO" DisplayLabel="Profissão" IsVisible="True" FieldMask='' DisplayWidth="40" Alignment="0" FieldType="0"/>
+        <!-- Enfermidades -->
+        <Field FieldName="CODENF" DisplayLabel="CODENF" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="NOMENF" DisplayLabel="Enfermidade" IsVisible="True" FieldMask='' DisplayWidth="40" Alignment="0" FieldType="0"/>        
+        <!-- Funções -->
+        <Field FieldName="CODFUN" DisplayLabel="CODFUN" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="DESFUN" DisplayLabel="Funções" IsVisible="True" FieldMask='' DisplayWidth="40" Alignment="0" FieldType="0"/>
+        <Field FieldName="CODFUNCAD" DisplayLabel="CODFUNCAD" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <!-- Aptidões -->
+        <Field FieldName="CODARE" DisplayLabel="CODARE" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="DESARE" DisplayLabel="Aptidões" IsVisible="True" FieldMask='' DisplayWidth="40" Alignment="0" FieldType="0"/>
+        <!-- Meios de contatos -->
+        <Field FieldName="CODTIPCON" DisplayLabel="CODTIPCON" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="DESTIPCON" DisplayLabel="Tipo" IsVisible="True" FieldMask='' DisplayWidth="40" Alignment="0" FieldType="0"/>
+        <Field FieldName="DESCON" DisplayLabel="Meio de Contato" IsVisible="True" FieldMask='' DisplayWidth="40" Alignment="0" FieldType="0"/>               
+        <!-- Tipos de atividades -->
+        <Field FieldName="CODTIPEVE" DisplayLabel="CODTIPEVE" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="CODTIPATI" DisplayLabel="CODTIPATI" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="DESTIPATI" DisplayLabel="Tipo da Atividade" IsVisible="True" FieldMask='' DisplayWidth="40" Alignment="0" FieldType="0"/>
+        <!-- Atividades -->
+        <Field FieldName="CODATI" DisplayLabel="CODATI" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>        
+        <Field FieldName="DATATI" DisplayLabel="Data" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="2"/>
+        <Field FieldName="HORATI" DisplayLabel="Hora" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="3"/>
+        <Field FieldName="INDFRE" DisplayLabel="Freqüência" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="2" FieldType="4"/>
+        <Field FieldName="CAMPRO" DisplayLabel="Promotor" IsVisible="True" FieldMask='' DisplayWidth="25" Alignment="2" FieldType="1"/>
+        <Field FieldName="INDESCINT" DisplayLabel="E. Interna" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="2" FieldType="1"/>        
+        <Field FieldName="NUMATI" DisplayLabel="Quantidade" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>
+        <Field FieldName="INDEST" DisplayLabel="Rel. Estatístico" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="2" FieldType="4"/>
+        <Field FieldName="NUMTEM" DisplayLabel="Tema" IsVisible="True" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="INDLEV" DisplayLabel="Levantada?" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="2" FieldType="4"/>
+        <!-- Frequencia -->
+        <Field FieldName="PERPRE_SERV" DisplayLabel="Serviços (%)" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>        
+        <Field FieldName="PERPRE_CONF" DisplayLabel="Conferências (%)" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>       
+        <!-- Círculos -->
+        <Field FieldName="CODGRU" DisplayLabel="CODGRU" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>        
+        <Field FieldName="NOMGRU" DisplayLabel="Círculo" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="0"/>
+        <Field FieldName="NOMLIV" DisplayLabel="Livro" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="0"/>
+        <Field FieldName="NOMLIC" DisplayLabel="Lição" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="0"/>
+        <Field FieldName="CODTUR" DisplayLabel="CODTUR" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="INDCON" DisplayLabel="Contato" IsVisible="True" FieldMask='' DisplayWidth="10" Alignment="2" FieldType="4"/>
+        <!-- Conferências -->
+        <Field FieldName="CODCON" DisplayLabel="CODTUR" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>        
+        <Field FieldName="NOMCON" DisplayLabel="Conferência" IsVisible="True" FieldMask='' DisplayWidth="40" Alignment="0" FieldType="0"/>
+        <Field FieldName="TIPLEV" DisplayLabel="Levantamento" IsVisible="True" FieldMask='' DisplayWidth="20" Alignment="2" FieldType="0"/>             
+        <Field FieldName="CODMOD" DisplayLabel="CODCON" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>        
+        <Field FieldName="NOMMOD" DisplayLabel="Modelo" IsVisible="True" FieldMask='' DisplayWidth="40" Alignment="0" FieldType="0"/>
+        <Field FieldName="VALTAX" DisplayLabel="Taxa" IsVisible="True" FieldMask='' DisplayWidth="0" Alignment="2" FieldType="6"/>
+        <Field FieldName="DATCHE" DisplayLabel="Data Chegada" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="2"/>
+        <Field FieldName="HORCHE" DisplayLabel="Hora Chegada" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="3"/>       
+        <Field FieldName="DATSAI" DisplayLabel="Data Saída" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="2"/>  
+        <Field FieldName="HORSAI" DisplayLabel="Hora Saída" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="3"/>
+        <Field FieldName="INDPRE" DisplayLabel="Presente" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="2" FieldType="4"/> 
+        <Field FieldName="MODTRA" DisplayLabel="Transporte" IsVisible="True" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="INDMON" DisplayLabel="Monitor" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="2" FieldType="4"/> 
+        <Field FieldName="INDSUB" DisplayLabel="Monitor Sub." IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="2" FieldType="4"/>        
+        <Field FieldName="INDREC" DisplayLabel="Recado?" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="2" FieldType="4"/>
+        <Field FieldName="DATINS" DisplayLabel="Data Inscrição" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="2"/>        
+        <!-- Inscritos em conferências -->
+        <Field FieldName="CODINS" DisplayLabel="CODINS" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>              
+        <Field FieldName="NUMINS" DisplayLabel="Inscrição" IsVisible="True" FieldMask='' DisplayWidth="10" Alignment="0" FieldType="0"/>
+        <!-- Alojamentos -->
+        <Field FieldName="CODALO" DisplayLabel="CODALO" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>        
+        <Field FieldName="NOMALO" DisplayLabel="Alojamento" IsVisible="True" FieldMask='' DisplayWidth="40" Alignment="0" FieldType="0"/>        
+        <Field FieldName="NOMALO" DisplayLabel="Alojamento" IsVisible="True" FieldMask='' DisplayWidth="40" Alignment="0" FieldType="0"/>
+        <Field FieldName="INDEXT" DisplayLabel="Externo" IsVisible="True" FieldMask='' DisplayWidth="10" Alignment="0" FieldType="0"/>
+        <Field FieldName="ENDALO" DisplayLabel="Endereço" IsVisible="True" FieldMask='' DisplayWidth="40" Alignment="0" FieldType="0"/>
+        <Field FieldName="TELALO" DisplayLabel="Telefone" IsVisible="True" FieldMask='' DisplayWidth="20" Alignment="0" FieldType="0"/>
+        <!-- Quartos -->
+        <Field FieldName="CODQUA" DisplayLabel="CODQUA" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>        
+        <Field FieldName="ALAQUA" DisplayLabel="Ala" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="0"/>        
+        <Field FieldName="NUMQUA" DisplayLabel="Quarto" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="0"/>
+        <Field FieldName="INDTRA" DisplayLabel="Bloqueado" IsVisible="True" FieldMask='' DisplayWidth="10" Alignment="0" FieldType="0"/>
+        <!-- Leitos -->
+        <Field FieldName="CODLEI" DisplayLabel="CODLEI" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>        
+        <Field FieldName="NUMLEI" DisplayLabel="Leito" IsVisible="True" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>        
+        <Field FieldName="INDBLO" DisplayLabel="Bloqueado" IsVisible="True" FieldMask='' DisplayWidth="10" Alignment="0" FieldType="0"/>
+        <!-- Atributos de leitos -->
+        <Field FieldName="CODATR" DisplayLabel="CODATR" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>        
+        <Field FieldName="SIGATR" DisplayLabel="Sigla" IsVisible="True" FieldMask='' DisplayWidth="10" Alignment="2" FieldType="0"/>        
+        <Field FieldName="DESATRLEI" DisplayLabel="Classificador" IsVisible="True" FieldMask='' DisplayWidth="30" Alignment="0" FieldType="0"/>
+        <!-- Atributos dos cadastrados -->
+        <Field FieldName="CODATR" DisplayLabel="CODATR" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>        
+        <Field FieldName="SIGATR" DisplayLabel="Sigla" IsVisible="True" FieldMask='' DisplayWidth="10" Alignment="2" FieldType="0"/>        
+        <Field FieldName="DESATRCAD" DisplayLabel="Classificador" IsVisible="True" FieldMask='' DisplayWidth="30" Alignment="0" FieldType="0"/>
+        <Field FieldName="ORIPES" DisplayLabel="Origem" IsVisible="True" FieldMask='' DisplayWidth="30" Alignment="0" FieldType="0"/>
+        <!-- Flags para uso nas inscrições em conferências -->
+        <Field FieldName="CODITE" DisplayLabel="CODITE" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="CODFLA" DisplayLabel="CODFLA" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>        
+        <Field FieldName="DESFLA" DisplayLabel="Informação" IsVisible="True" FieldMask='' DisplayWidth="30" Alignment="0" FieldType="0"/> 
+        <Field FieldName="DESIMP" DisplayLabel="Informação (para impressos)" IsVisible="True" FieldMask='' DisplayWidth="30" Alignment="0" FieldType="0"/> 
+        <!-- Tipos de atuação em escalas de atividades -->
+        <Field FieldName="CODTIPATU" DisplayLabel="CODTIPATU" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>             
+        <Field FieldName="DESTIPATU" DisplayLabel="Atuação" IsVisible="True" FieldMask='' DisplayWidth="30" Alignment="0" FieldType="0"/> 
+        <!-- Tipos de eventos -->
+        <Field FieldName="CODTIPEVE" DisplayLabel="CODTIPEVE" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>             
+        <Field FieldName="DESTIPEVE" DisplayLabel="Evento" IsVisible="True" FieldMask='' DisplayWidth="30" Alignment="0" FieldType="0"/>        
+        <Field FieldName="CAMTRA" DisplayLabel="Campo" IsVisible="True" FieldMask='' DisplayWidth="10" Alignment="2" FieldType="0"/>        
+        <Field FieldName="TIPEVE" DisplayLabel="Tipo" IsVisible="True" FieldMask='' DisplayWidth="10" Alignment="2" FieldType="0"/>
+        <!-- Tarefas de conferência -->
+        <Field FieldName="CODSTA" DisplayLabel="CODSTA" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>             
+        <Field FieldName="DATSTA" DisplayLabel="Data" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="2"/>        
+        <Field FieldName="HORINI" DisplayLabel="Início" IsVisible="True" FieldMask='' DisplayWidth="10" Alignment="2" FieldType="3"/>        
+        <Field FieldName="HORTER" DisplayLabel="Término" IsVisible="True" FieldMask='' DisplayWidth="10" Alignment="2" FieldType="3"/>          
+        <Field FieldName="CODTAR" DisplayLabel="CODTAR" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/> 
+        <Field FieldName="DESTAR" DisplayLabel="Tarefa" IsVisible="True" FieldMask='' DisplayWidth="30" Alignment="2" FieldType="0"/> 
+        <Field FieldName="NOMARE" DisplayLabel="Local" IsVisible="True" FieldMask='' DisplayWidth="30" Alignment="2" FieldType="0"/> 
+        <!-- Pesquisas estatísticas -->
+        <Field FieldName="NUMMEM" DisplayLabel="Membros" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>             
+        <Field FieldName="TOTALPRE" DisplayLabel="Preparatórios" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>        
+        <Field FieldName="TOTALPRO" DisplayLabel="Probatórios" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>        
+        <Field FieldName="TOTALPFE" DisplayLabel="Professos" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>          
+        <Field FieldName="TOTAL1AS" DisplayLabel="1º Aspecto" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/> 
+        <Field FieldName="TOTAL2AS" DisplayLabel="2º Aspecto" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/> 
+        <Field FieldName="TOTALECS" DisplayLabel="3º Aspecto" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/> 
+        <Field FieldName="TOTALEKK" DisplayLabel="4º Aspecto" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="0"/> 
+        <Field FieldName="TOTALGRA" DisplayLabel="Graal" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="0"/>         
+        <Field FieldName="TOTAL5AS" DisplayLabel="5º Aspecto" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>        
+        <Field FieldName="TOTAL6AS" DisplayLabel="6º Aspecto" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>          
+        <Field FieldName="TOTALGERAL_EE" DisplayLabel="Total E.E." IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/> 
+        <Field FieldName="TOTALGERAL_EI" DisplayLabel="Total E.I." IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="0"/> 
+        <Field FieldName="TOTALGERAL" DisplayLabel="Total" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="0"/> 
+        <Field FieldName="NUMPRE" DisplayLabel="Preparatórios" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>        
+        <Field FieldName="NUMPRO" DisplayLabel="Probatórios" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>        
+        <Field FieldName="NUMPFE" DisplayLabel="Professos" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>          
+        <Field FieldName="NUMECS" DisplayLabel="3º Aspecto" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/> 
+        <Field FieldName="NUMEKK" DisplayLabel="4º Aspecto" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="0"/> 
+        <Field FieldName="NUMGRA" DisplayLabel="Graal" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="0"/>         
+        <Field FieldName="NUM1AS" DisplayLabel="1º Aspecto" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="0"/>
+        <Field FieldName="NUM2AS" DisplayLabel="2º Aspecto" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="0"/>
+        <Field FieldName="NUM5AS" DisplayLabel="5º Aspecto" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>        
+        <Field FieldName="NUM6AS" DisplayLabel="6º Aspecto" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/> 
+        <Field FieldName="NUMJOV" DisplayLabel="Jovens" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/> 
+        <Field FieldName="NUMSIM" DisplayLabel="Simpatizantes" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/> 
+        <Field FieldName="NUMPRE_EN" DisplayLabel="Preparatórios (E.N.)" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>        
+        <Field FieldName="NUMPRO_EN" DisplayLabel="Probatórios (E.N.)" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>        
+        <Field FieldName="NUMPFE_EN" DisplayLabel="Professos (E.N.)" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>          
+        <Field FieldName="NUMECS_EN" DisplayLabel="3º Aspecto (E.N.)" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/> 
+        <Field FieldName="NUMEKK_EN" DisplayLabel="4º Aspecto (E.N.)" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="0"/> 
+        <Field FieldName="NUMGRA_EN" DisplayLabel="Graal (E.N.)" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="0"/>         
+        <Field FieldName="NUM1AS_EN" DisplayLabel="1º Aspecto (E.N.)" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>
+        <Field FieldName="NUM2AS_EN" DisplayLabel="2º Aspecto (E.N.)" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>
+        <Field FieldName="NUM5AS_EN" DisplayLabel="5º Aspecto (E.N.)" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>        
+        <Field FieldName="NUM6AS_EN" DisplayLabel="6º Aspecto (E.N.)" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>         
+        <Field FieldName="NUMJOV_EN" DisplayLabel="Jovens (E.N.)" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>         
+        <Field FieldName="NUMSIM_EN" DisplayLabel="Simpatizantes (E.N.)" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/> 
+        <Field FieldName="TOTAL_EE" DisplayLabel="Total E.E." IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/> 
+        <Field FieldName="TOTAL_EE_EN" DisplayLabel="Total E.E. (E.N.)" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/> 
+        <Field FieldName="TOTAL_EI" DisplayLabel="Total E.I." IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="0"/> 
+        <Field FieldName="TOTAL_EI_EN" DisplayLabel="Total E.I. (E.N.)" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="0"/> 
+        <Field FieldName="TOTAL_EN" DisplayLabel="Total (E.N.)" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="0"/>
+        <Field FieldName="TOTAL_EN" DisplayLabel="Total (E.N.)" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="0"/>
+        <Field FieldName="TOTALJOV" DisplayLabel="Total Jovens" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="0"/>
+        <Field FieldName="TOTALSIM" DisplayLabel="Total Simp." IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="0"/>
+        <Field FieldName="TOTALGERAL" DisplayLabel="Total" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="0"/>        
+        <!-- Pesquisas estatísticas: TM -->
+        <Field FieldName="TMNUMPRE" DisplayLabel="Pré A" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="0"/>         
+        <Field FieldName="TMNUMPRE_EN" DisplayLabel="Pré A (E.N.)" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/> 
+        <Field FieldName="TMTOTALPRE" DisplayLabel="Total Pré-A" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>        
+        <Field FieldName="TMNUMGRA" DisplayLabel="Grupo A" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>          
+        <Field FieldName="TMNUMGRA_EN" DisplayLabel="Grupo A (E.N.)" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>
+        <Field FieldName="TMTOTALGRA" DisplayLabel="Total Grupo A" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>        
+        <Field FieldName="TMNUMGRB" DisplayLabel="Grupo B" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="0"/> 
+        <Field FieldName="TMNUMGRB_EN" DisplayLabel="Grupo B (E.N.)" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="0"/>
+        <Field FieldName="TMTOTALGRB" DisplayLabel="Total Grupo B" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>        
+        <Field FieldName="TMNUMGRC" DisplayLabel="Grupo C" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="0"/>         
+        <Field FieldName="TMNUMGRC_EN" DisplayLabel="Grupo C (E.N.)" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>
+        <Field FieldName="TMTOTALGRC" DisplayLabel="Total Grupo C" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>        
+        <Field FieldName="TMNUMGRD" DisplayLabel="Grupo D" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>          
+        <Field FieldName="TMNUMGRD_EN" DisplayLabel="Grupo D (E.N)." IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/> 
+        <Field FieldName="TMTOTALGRD" DisplayLabel="Total Grupo D" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/> 
+        <Field FieldName="TMTOTAL" DisplayLabel="Total" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="0"/> 
+        <!-- Pesquisas estatísticas: TP -->
+        <Field FieldName="TOTFOC" DisplayLabel="Total" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/> 
+        <Field FieldName="PERFOC" DisplayLabel="Percentual" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/> 
+        <Field FieldName="CONESCALU" DisplayLabel="Por Alunos" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>         
+        <Field FieldName="CONESCPES" DisplayLabel="Por Pesquisadores" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/> 
+        <Field FieldName="CONESCCAR" DisplayLabel="Cartazes" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>        
+        <Field FieldName="CONESCMAL" DisplayLabel="Mala Direta" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>          
+        <Field FieldName="CONESCANU" DisplayLabel="Anúncios" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>
+        <Field FieldName="CONESCSIT" DisplayLabel="Site da Escola" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>        
+        <Field FieldName="CONESCFAC" DisplayLabel="Facebook" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/> 
+        <Field FieldName="CONESCTWI" DisplayLabel="Twitter" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>
+        <Field FieldName="CONESCSKY" DisplayLabel="Skype" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/>        
+        <Field FieldName="CONESCOUT" DisplayLabel="Outros" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="1"/> 
+        <!-- Direções -->
+        <Field FieldName="DESCAR" DisplayLabel="Cargo" IsVisible="True" FieldMask='' DisplayWidth="35" Alignment="0" FieldType="1"/> 
+        <Field FieldName="DATINI" DisplayLabel="Início" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="2"/> 
+        <Field FieldName="DATTER" DisplayLabel="Término" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="2"/>
+        <!-- Simpatizantes -->
+        <Field FieldName="CONESC" DisplayLabel="CONESC" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/> 
+        <Field FieldName="ORISIM" DisplayLabel="Origem" IsVisible="True" FieldMask='' DisplayWidth="30" Alignment="0" FieldType="0"/>        
+        <!-- Turmas do Trabaho Público -->
+        <Field FieldName="CODTUR" DisplayLabel="CODTUR" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="NUMTUR" DisplayLabel="Turma" IsVisible="True" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/> 
+        <Field FieldName="DATCRE" DisplayLabel="Criação" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="2"/>
+        <Field FieldName="DATENC" DisplayLabel="Término" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="2"/>
+        <Field FieldName="INDENC" DisplayLabel="Encerrada" IsVisible="True" FieldMask='' DisplayWidth="10" Alignment="0" FieldType="0"/>        
+        <!-- Financeiro -->
+        <Field FieldName="DESTIPREC" DisplayLabel="Contribuição" IsVisible="True" FieldMask='' DisplayWidth="30" Alignment="0" FieldType="0"/>        
+        <Field FieldName="MESREF" DisplayLabel="Mês" IsVisible="True" FieldMask='' DisplayWidth="" Alignment="0" FieldType="1"/>
+        <Field FieldName="ANOREF" DisplayLabel="Ano" IsVisible="True" FieldMask='' DisplayWidth="" Alignment="0" FieldType="1"/>
+        <Field FieldName="VALPRE" DisplayLabel="Previsto" IsVisible="True" FieldMask='' DisplayWidth="0" Alignment="2" FieldType="6"/>
+        <Field FieldName="VALREC" DisplayLabel="Recebido" IsVisible="True" FieldMask='' DisplayWidth="0" Alignment="2" FieldType="6"/>
+        <Field FieldName="NOMFAV" DisplayLabel="Favorecido" IsVisible="True" FieldMask='' DisplayWidth="50" Alignment="0" FieldType="0"/>
+        <Field FieldName="NOMLOC" DisplayLabel="Recebido em" IsVisible="True" FieldMask='' DisplayWidth="50" Alignment="0" FieldType="0"/>
+        <Field FieldName="DATREC" DisplayLabel="Data" IsVisible="True" FieldMask='' DisplayWidth="20" Alignment="0" FieldType="0"/>
+        <Field FieldName="NUMCAI" DisplayLabel="Caixa" IsVisible="True" FieldMask='' DisplayWidth="20" Alignment="0" FieldType="0"/>
+        <Field FieldName="INDPEN" DisplayLabel="Pendente" IsVisible="True" FieldMask='' DisplayWidth="10" Alignment="0" FieldType="0"/>
+        <Field FieldName="VALMEN" DisplayLabel="Mensalidade" IsVisible="True" FieldMask='' DisplayWidth="0" Alignment="2" FieldType="6"/>
+        <Field FieldName="CODCAI" DisplayLabel="" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="DATABE" DisplayLabel="Abertura" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="2"/>
+        <Field FieldName="DATFEC" DisplayLabel="Encerramento" IsVisible="True" FieldMask='' DisplayWidth="15" Alignment="0" FieldType="2"/>
+        <Field FieldName="USUABE" DisplayLabel="" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="NOMABE" DisplayLabel="Aberto por" IsVisible="True" FieldMask='' DisplayWidth="50" Alignment="0" FieldType="0"/>
+        <Field FieldName="USUFEC" DisplayLabel="" IsVisible="False" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="NOMFEC" DisplayLabel="Fechado por" IsVisible="True" FieldMask='' DisplayWidth="50" Alignment="0" FieldType="0"/>
+        <Field FieldName="NUMREC" DisplayLabel="Recebimentos" IsVisible="True" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="TOTREC" DisplayLabel="Total Recebido" IsVisible="True" FieldMask='' DisplayWidth="0" Alignment="2" FieldType="6"/>
+        <Field FieldName="NUMPAG" DisplayLabel="Pagamentos" IsVisible="True" FieldMask='' DisplayWidth="0" Alignment="0" FieldType="1"/>
+        <Field FieldName="TOTPAG" DisplayLabel="Total Pago" IsVisible="True" FieldMask='' DisplayWidth="0" Alignment="2" FieldType="6"/>        
+    </Info> 
+</FieldsInfo>

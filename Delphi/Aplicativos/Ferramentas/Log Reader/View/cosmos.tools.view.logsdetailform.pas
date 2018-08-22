@@ -5,8 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cosmos.tools.view.logs.interfaces,
-  Vcl.StdCtrls, cosmos.classes.application, System.Actions, Vcl.ActnList, Vcl.ImgList,
-  Vcl.Buttons;
+  Vcl.StdCtrls, System.Actions, Vcl.ActnList, Vcl.ImgList,
+  Vcl.Buttons, System.ImageList, cosmos.tools.controller.logsint;
 
 type
   TFrmLogsDetail = class(TForm)
@@ -33,12 +33,12 @@ type
   private
     { Private declarations }
     FCosmosLogs: ICosmosLogsInterface;
-
-    procedure LoadInfo(AData: TCosmosData); inline;
+    FLogInfo: IControllerLogInfo;
+    procedure LoadInfo; inline;
 
   public
     { Public declarations }
-    procedure ShowLog(AData: TCosmosData);
+    procedure ShowLog(Data: IControllerLogInfo);
   end;
 
 var
@@ -49,19 +49,15 @@ implementation
 {$R *.dfm}
 
 procedure TFrmLogsDetail.ActNextExecute(Sender: TObject);
-var
- AData: TCosmosData;
 begin
- AData := FCosmosLogs.NextLog;
- LoadInfo(AData);
+ FLogInfo := FCosmosLogs.NextLog;
+ LoadInfo;
 end;
 
 procedure TFrmLogsDetail.ActPriorExecute(Sender: TObject);
-var
- AData: TCosmosData;
 begin
- AData := FCosmosLogs.PriorLog;
- LoadInfo(AData);
+ FLogInfo := FCosmosLogs.PriorLog;
+ LoadInfo;
 end;
 
 procedure TFrmLogsDetail.FormCreate(Sender: TObject);
@@ -75,34 +71,32 @@ begin
   FCosmosLogs := nil;
 end;
 
-procedure TFrmLogsDetail.LoadInfo(AData: TCosmosData);
+procedure TFrmLogsDetail.LoadInfo;
 var
- AContextInfo: TStringList;
+AContextInfo: TStringList;
 begin
- if AData <> nil then
+ if FLogInfo <> nil then
   begin
     AContextInfo := TStringList.Create;
-    AContextInfo.Delimiter := ';';
-    AContextInfo.QuoteChar := '"';
 
     try
-      EdtDateTime.Text := AData.FindValue('LOGDATE');
-      EdtGenerator.Text := AData.FindValue('LOGGEN');
-      EdtType.Text := AData.FindValue('LOGTYPE');
-      MmoInfo.Text := AData.FindValue('LOGINFO');
-      AContextInfo.CommaText :=  AData.FindValue('LOGCONTEXT');
+      EdtDateTime.Text := DateTimeToStr(FLogInfo.Data);
+      EdtGenerator.Text := FLogInfo.Source;
+      //EdtType.Text := AData.FindValue('LOGTYPE');
+      MmoInfo.Text := FLogInfo.Info;
+      AContextInfo.CommaText :=  FLogInfo.Context;
       MmoDetails.Lines.Assign(AContextInfo);
 
     finally
-     AData.Free;
      AContextInfo.Free;
     end;
   end;
 end;
 
-procedure TFrmLogsDetail.ShowLog(AData: TCosmosData);
+procedure TFrmLogsDetail.ShowLog(Data: IControllerLogInfo);
 begin
- LoadInfo(AData);
+ FLogInfo := Data;
+ LoadInfo;
  ShowModal;
 end;
 

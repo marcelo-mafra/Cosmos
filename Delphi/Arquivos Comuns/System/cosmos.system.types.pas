@@ -4,6 +4,9 @@ unit cosmos.system.types;
 interface
 
 type
+ {"Tipos" (arquitetura de software) das aplicações servidores: 1. aplicativos
+   convencionais ou 2. serviços do Windows.}
+ TServerType = (stApplication, stWinService);
 
  TNotifyMode = (nmNotify, nmNoNotify, nmRegisterLog);
 

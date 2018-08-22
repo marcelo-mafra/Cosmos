@@ -4,9 +4,8 @@ interface
 
 uses Winapi.Windows, System.SysUtils, System.Classes, Vcl.SvcMgr, Datasnap.DSTCPServerTransport,
   Datasnap.DSServer, Datasnap.DSCommonServer, Datasnap.DSAuth, IPPeerServer,
-  System.Generics.Collections,Datasnap.DSSession, cosmos.system.files,
-  cosmos.system.types, cosmos.system.messages, cosmos.system.exceptions,
-  cosmos.classes.application, Data.DBXCommon, cosmos.classes.logs,
+  Datasnap.DSSession, cosmos.system.files, cosmos.system.types, cosmos.system.messages,
+  cosmos.system.exceptions, cosmos.classes.application, Data.DBXCommon, cosmos.classes.logs,
   cosmos.classes.persistence.ini, Data.DBCommonTypes, cosmos.servers.common.servicesint,
   cosmos.servers.common.dao.interfaces;
 
@@ -97,6 +96,7 @@ type
     property TestServerPage: string read FTestServerPage;
   end;
 
+//Métodos globais usados pelo Datasnap.
 function DSServer: TDSServer;
 function DSAuthenticationManager: TDSAuthenticationManager;
 
@@ -223,7 +223,7 @@ begin
     AContextInfo.Append(Format(TCosmosLogs.ContextInfoSession, [TDSSessionManager.GetThreadSession.Id]));
     AContextInfo.Append(Format(TCosmosLogs.ContextInfoRoles, [TDSSessionManager.GetThreadSession.GetData('UserRoles')]));
     AContextInfo.Append(Format(TCosmosLogs.ContextInfoProtocol, [ConnectProperties[TDBXPropertyNames.CommunicationProtocol]]));
-    AContextInfo.Append(FormatDateTime('dd/mm/yyyy hh:nn:ss:zzz', Now));
+    AContextInfo.Append(FormatDateTime('dd/mm/yyyy hh:nn:ss:zzz', Now)); //do not localize!
 
     CosmosServices.RegisterLog(AInfo, AContextInfo.DelimitedText, leOnConnect);
 
@@ -365,10 +365,9 @@ end;
 
 procedure TDMSecretariasAppContainer.LoadMethodsAuthorizations;
 var
+ I: integer;
  IAuthorizations: IXMLAuthorizationsType;
  IMethodInfo: IXMLMethodInfoType;
- AFileName: string;
- I: integer;
  ARoleInfo: TDSRoleItem;
  CosmosApp: TCosmosApplication;
 begin
@@ -377,9 +376,7 @@ begin
  a funcionalidadades como a métodos remotos. Este método apenas carrega as autorizações
  relativas aos métodos remotos.}
  CosmosApp := TCosmosApplication.Create;
-
- AFileName := CosmosApp.GetModulePath + TCosmosFiles.RolesPermissions;
- IAuthorizations := LoadAuthorizations(AFileName);
+ IAuthorizations := LoadAuthorizations(CosmosApp.GetModulePath + TCosmosFiles.RolesPermissions);
  DSAuthenticationManager.Roles.Clear;
 
  try
@@ -396,7 +393,7 @@ begin
      end;
    end;
 
-  CosmosServices.RegisterLog(TCosmosLogs.AuthorizationsMethods, '');
+  CosmosServices.Logs.RegisterInfo(TCosmosLogs.AuthorizationsMethods);
 
  finally
   if Assigned(IAuthorizations) then IAuthorizations := nil;
@@ -407,18 +404,17 @@ end;
 procedure TDMSecretariasAppContainer.LoadServerConfigurations;
  var
   AFile: TIniFilePersistence;
-  AFileName, CurrentProtocol: string;
+  CurrentProtocol: string;
   CosmosApp: TCosmosApplication;
 begin
 {Carregas as configurações do servidor em execução. Estas configurações envolvem
  protocolos de conexão, certificados, dentre outros itens.}
  CosmosApp := TCosmosApplication.Create;
- AFileName := CosmosApp.GetModulePath + TCosmosFiles.CosmosRoot;
- AFile := TIniFilePersistence.Create(AFileName, True);
+ AFile := TIniFilePersistence.Create(CosmosApp.GetModulePath + TCosmosFiles.CosmosRoot, True);
 
  try
   //Configurações das classes expostas remotamente.
-  DSServerApplicationClass.LifeCycle := AFile.ReadString('GSEC', 'DSServerApplicationClass.LifeCycle', 'Session');
+  DSServerApplicationClass.LifeCycle := AFile.ReadString('GSEC', 'DSServerApplicationClass.LifeCycle', 'Session'); //do not localize!
   DSServerLectoriumClass.LifeCycle := DSServerApplicationClass.LifeCycle;
   DSServerLogradourosClass.LifeCycle := DSServerApplicationClass.LifeCycle;
   DSServerAtividadesClass.LifeCycle := DSServerApplicationClass.LifeCycle;
@@ -436,7 +432,7 @@ begin
   on E: Exception do
    begin
      //Gerar logs de exceção...
-    CosmosServices.RegisterLog(E.Message, Format(TCosmosLogs.AppMethod, ['TDMSecretariasAppContainer.LoadServerConfigurations']), leOnError);
+    CosmosServices.RegisterLog(E.Message, Format(TCosmosLogs.AppMethod, ['TDMSecretariasAppContainer.LoadServerConfigurations']), leOnError); //do not localize!
    end;
  end;
 end;
@@ -456,9 +452,9 @@ end;
 
 destructor TDMSecretariasAppContainer.Destroy;
 begin
-  inherited;
   FDSServer := nil;
   FDSAuthenticationManager := nil;
+  inherited;
 end;
 
 procedure TDMSecretariasAppContainer.ServiceCreate(Sender: TObject);
@@ -514,12 +510,10 @@ begin
        if not Valid then
          raise EInactivedUser.Create('');
 
-       if Valid then //Checa se o usuário está bloqueado.
-        begin
-         Valid := DAOServices.UserManager.UserIsBlocked(User);
-         if not Valid then
-          raise EBlockedUser.Create('');
-        end;
+       //Checa se o usuário está bloqueado.
+       Valid := DAOServices.UserManager.UserIsBlocked(User);
+       if not Valid then
+         raise EBlockedUser.Create('');
 
      except
        Valid := False;
@@ -531,22 +525,19 @@ begin
        raise ECantAcessCosmosModule.Create('');
 
      //Se chegou aqui, o usuário está autenticado.
-     if Valid then
-      begin
-       //Pega as roles do usuário autenticado e coloca os seus dados em sessão.
-       DAOServices.UserManager.GetUserRoles(User, UserRoles);
-       TDSSessionManager.GetThreadSession.PutData('UserName', User);
-       TDSSessionManager.GetThreadSession.PutData('UserRoles', UserRoles.CommaText);
-       TDSSessionManager.GetThreadSession.PutData('ConnectedUser', UserData.FindValue('USER_NAME'));
-       //TDSSessionManager.GetThreadSession.PutData('UserInfo', AUserInfo.CommaText);
-       TDSSessionManager.GetThreadSession.PutData('ConnectTime', DateTimeToStr(Now));
+     //Pega as roles do usuário autenticado e coloca os seus dados em sessão.
+     DAOServices.UserManager.GetUserRoles(User, UserRoles);
+     TDSSessionManager.GetThreadSession.PutData('UserName', User); //do not localize!
+     TDSSessionManager.GetThreadSession.PutData('UserRoles', UserRoles.CommaText); //do not localize!
+     TDSSessionManager.GetThreadSession.PutData('ConnectedUser', UserData.FindValue('USER_NAME')); //do not localize!
+     //TDSSessionManager.GetThreadSession.PutData('UserInfo', AUserInfo.CommaText); //do not localize!
+     TDSSessionManager.GetThreadSession.PutData('ConnectTime', DateTimeToStr(Now)); //do not localize!
 
-       //Agora registra logs sobre a autenticação.
-       AInfo := Format(TCosmosLogs.AutenticatedUser, [User]);
-       AContextInfo.Append(Format(TCosmosLogs.ContextInfoProtocol, [protocol]));
-       AContextInfo.Append(Context);
-       CosmosServices.RegisterLog(AInfo, AContextInfo.CommaText, leOnAuthenticateSucess);
-      end;
+     //Agora registra logs sobre a autenticação.
+     AInfo := Format(TCosmosLogs.AutenticatedUser, [User]);
+     AContextInfo.Append(Format(TCosmosLogs.ContextInfoProtocol, [protocol]));
+     AContextInfo.Append(Context);
+     CosmosServices.RegisterLog(AInfo, AContextInfo.CommaText, leOnAuthenticateSucess);
     end
    else
     raise EValidateUser.Create(Format(TCosmosLogs.InvalidAuthentication, [User]));
@@ -565,8 +556,7 @@ begin
     if Assigned(AContextInfo) then FreeAndNil(AContextInfo);
     if Assigned(UserData) then FreeAndNil(UserData);
    end;
-  //O usuário está inativo.
-  on E: EInactivedUser do
+   on E: EInactivedUser do //O usuário está inativo.
    begin
     AInfo := Format(TCosmosLogs.InactivedUser, [User]);
     AContextInfo.Append(Format(TCosmosLogs.ContextInfoProtocol, [protocol]));
@@ -576,8 +566,7 @@ begin
     if Assigned(AContextInfo) then FreeAndNil(AContextInfo);
     if Assigned(UserData) then FreeAndNil(UserData);
    end;
-  //O usuário não pode acessar o módulo corrente do Cosmos.
-  on E: ECantAcessCosmosModule do
+  on E: ECantAcessCosmosModule do  //O usuário não pode acessar o módulo corrente do Cosmos.
    begin
     AInfo := TCosmosLogs.CantAcessCosmosModule;
     AContextInfo.Append(Format(TCosmosLogs.ContextInfoProtocol, [protocol]));
@@ -587,8 +576,7 @@ begin
     if Assigned(AContextInfo) then FreeAndNil(AContextInfo);
     if Assigned(UserData) then FreeAndNil(UserData);
    end;
-  //O usuário está bloqueado.
-  on E: EBlockedUser do
+  on E: EBlockedUser do  //O usuário está bloqueado.
    begin
      AInfo := Format(TCosmosLogs.BlockedUser, [User]);
      AContextInfo.Append(Format(TCosmosLogs.ContextInfoProtocol, [protocol]));
@@ -598,8 +586,7 @@ begin
     if Assigned(AContextInfo) then FreeAndNil(AContextInfo);
     if Assigned(UserData) then FreeAndNil(UserData);
    end;
-  //outros erros
-  on E: Exception do
+  on E: Exception do //outros erros
    begin
     Valid := False;
     CosmosServices.RegisterLog(E.Message, '', leOnError);

@@ -7,7 +7,7 @@ uses
   cosmos.classes.logs, cosmos.system.messages, cosmos.servers.sqlcommands,
   cosmos.classes.application, cosmos.classes.utils.cosmoscript,
   cosmos.classes.servers.securityobj, cosmos.classes.servers.datobjint,
-  cosmos.servers.common.servicesint;
+  cosmos.servers.common.servicesint, cosmos.servers.common.services.factory;
 
 
  type
@@ -15,8 +15,9 @@ uses
 
    private
      FModule: TCosmosModules;
-     FCosmosServerServices: ICosmosService;
+     FCosmosServiceFactory: ICosmosServiceFactory;
      function CreatePassword: string;
+     function GetCosmosService: ICosmosService;
 
    protected
      //Autenticação
@@ -52,13 +53,12 @@ uses
      constructor Create(Module: TCosmosModules);
      destructor Destroy; override;
 
-     property CosmosServerService: ICosmosService read FCosmosServerServices;
+     property CosmosServerService: ICosmosService read GetCosmosService;
   end;
 
 
 implementation
 
-uses  cosmos.servers.common.services;
 
 { TComosSecurity }
 
@@ -139,7 +139,7 @@ constructor TCosmosSecurity.Create(Module: TCosmosModules);
 begin
  inherited Create;
  FModule := Module;
- FCosmosServerServices := TCosmosServerServices.New(Module)
+ FCosmosServiceFactory := TCosmosServiceFactory.New(Module);
 end;
 
 function TCosmosSecurity.CreatePassword: string;
@@ -202,8 +202,13 @@ end;
 
 destructor TCosmosSecurity.Destroy;
 begin
-  FCosmosServerServices := nil;
+  FCosmosServiceFactory := nil;
   inherited;
+end;
+
+function TCosmosSecurity.GetCosmosService: ICosmosService;
+begin
+ Result := self.FCosmosServiceFactory.CosmosService;
 end;
 
 procedure TCosmosSecurity.GetUserInfo(const UserName: WideString; var UserData: TCosmosData);

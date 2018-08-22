@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Este arquivo contém as configurações individuais de usuários.
+
+***Convenções importantes com relação a nomes de chaves. ***
+
+- Em nomes de chaves que fazem referências a módulos do Cosmos, os caracteres "cm" iniciais (de "Cosmos Module") devem SEMPRE estar em minúsculos. Exemplos:
+
+  cmConferencias: correto.
+  CmConferencias: ERRADO.
+-->
+<CosmosConfigurations><!-- Configurações por usuário relacionadas a recursos visuais das aplicações Cosmos.-->
+	<CosmosVisual>
+		<cmConferencias>
+			<Visual Style="Ribbon - Silver" CustomHint="0" MainStatus="2" ShowTips="false" ShowWindowsManager="false" TabsStyle="4" FullScreen="false"/>
+			<Messages OpenMyMessageTool="False" NotifyOnNewMessages="False" NotifyOnStartUp="True"/>
+			<LateralMenu AllowReorder="False" BoldCaptions="True" VerticalCategories="False" DefaultPlusSignal="True" CategoryBorder="false" NoIcons="True"/>
+		</cmConferencias>
+		<cmFinanceiro>
+			<Visual Style="Ribbon - Silver" CustomHint="0" MainStatus="2" ShowTips="false" ShowWindowsManager="false" TabsStyle="2" FullScreen="false"/>
+			<Messages OpenMyMessageTool="False" NotifyOnNewMessages="False" NotifyOnStartUp="True"/>
+			<LateralMenu AllowReorder="False" BoldCaptions="True" VerticalCategories="False" DefaultPlusSignal="True" CategoryBorder="false" NoIcons="True"/>
+		</cmFinanceiro>
+		<cmFocos>
+			<Visual Style="New XP Style" CustomHint="0" MainStatus="2" ShowTips="false" ShowWindowsManager="False" TabsStyle="4" FullScreen="false"/>
+			<Messages OpenMyMessageTool="False" NotifyOnNewMessages="False" NotifyOnStartUp="True"/>
+			<LateralMenu AllowReorder="False" BoldCaptions="True" VerticalCategories="False" DefaultPlusSignal="True" CategoryBorder="false" NoIcons="True"/>
+		</cmFocos>
+		<cmSecretarias>
+			<Visual Style="Platform Default" CustomHint="2" MainStatus="2" ShowTips="false" ShowWindowsManager="false" TabsStyle="2" FullScreen="false"/>
+			<Messages OpenMyMessageTool="false" NotifyOnNewMessages="true" NotifyOnStartUp="true"/>
+			<LateralMenu AllowReorder="False" BoldCaptions="True" VerticalCategories="False" DefaultPlusSignal="True" CategoryBorder="false" NoIcons="True"/>
+		</cmSecretarias>
+		<cmUsuarios>
+			<Visual Style="Platform Default" CustomHint="0" MainStatus="2" ShowTips="false" ShowWindowsManager="false" TabsStyle="4" FullScreen="false"/>
+			<Messages OpenMyMessageTool="False" NotifyOnNewMessages="False" NotifyOnStartUp="True"/>
+			<LateralMenu AllowReorder="False" BoldCaptions="True" VerticalCategories="False" DefaultPlusSignal="True" CategoryBorder="false" NoIcons="True"/>
+		</cmUsuarios>
+	</CosmosVisual>
+	<!-- Configurações por usuário relacionadas à conexão com os servidores remotos.  Algumas convenções adotadas:
+            CommunicationProtocol: tipo da conexão. Valores aceitos: 0 (TCP); 1 (HTTP) ; 2 (HTTPS) 
+            CosmosApp: aplicação do Cosmos que usa a conexão.-->
+	<CosmosServers LoadBalanced="true" ShowLogin="true">
+		<ServersInfo>
+			<Server ConnectionID="{DBDF0D6B-99A8-4BDA-AB95-A2E7E1ED5413}" ConnectionName="172.16.10.99" CommunicationProtocol="0" NotifyMode="0" Host="172.16.10.99" Port="10001" CommunicationTimeout="9000" ConnectTimeout="12000" BufferKBSize="32" ProxyHost="" ProxyPort="" ProxyUsername="" ProxyPassword="" CosmosApp="cmFocos" Enabled="true"/>
+			<Server ConnectionID="{BDAA3CBC-844E-47BC-9A15-4BC10D3FD5C5}" ConnectionName="TESTES" CommunicationProtocol="0" NotifyMode="0" CommunicationTimeout="9000" ConnectTimeout="12000" Host="172.16.10.253" Port="1401" ProxyHost="" ProxyPort="" ProxyUsername="" ProxyPassword="" BufferKBSize="32" CosmosApp="cmUsuarios" Enabled="false"/>
+			<Server ConnectionID="{A7C48315-03A8-4AF2-AB4D-3E7A290D756D}" ConnectionName="PRODUÇÃO" CommunicationProtocol="0" NotifyMode="0" CommunicationTimeout="15000" ConnectTimeout="20000" Host="172.16.10.253" Port="1201" ProxyHost="" ProxyPort="" ProxyUsername="" ProxyPassword="" BufferKBSize="32" CosmosApp="cmUsuarios" Enabled="true"/>
+			<Server ConnectionID="{748B5DFF-C9D9-41A2-9E82-FAF59EEBD7F1}" ConnectionName="LOCAL" CommunicationProtocol="0" NotifyMode="0" CommunicationTimeout="8000" ConnectTimeout="10000" Host="127.0.0.1" Port="217" ProxyHost="" ProxyPort="" ProxyUsername="" ProxyPassword="" BufferKBSize="32" CosmosApp="cmUsuarios" Enabled="false"/>
+			<Server ConnectionID="{DBDF0D6B-99A8-4BDA-AB95-A2E7E1ED5413}" ConnectionName="TESTES" CommunicationProtocol="0" NotifyMode="0" CommunicationTimeout="9000" ConnectTimeout="12000" Host="172.16.10.253" Port="1403" ProxyHost="" ProxyPort="" ProxyUsername="" ProxyPassword="" BufferKBSize="32" CosmosApp="cmFinanceiro" Enabled="false"/>
+			<Server ConnectionID="{C7C1AC78-6A3E-4EE4-899F-4A9CF00E1EF6}" ConnectionName="PRODUÇÃO" CommunicationProtocol="0" NotifyMode="0" CommunicationTimeout="15000" ConnectTimeout="2000" Host="172.16.10.253" Port="1203" ProxyHost="" ProxyPort="" ProxyUsername="" ProxyPassword="" BufferKBSize="32" CosmosApp="cmFinanceiro" Enabled="true"/>
+			<Server ConnectionID="{408F52D2-B36A-4A88-AAF6-E1CAD3D28EF9}" ConnectionName="LOCAL" CommunicationProtocol="0" NotifyMode="0" CommunicationTimeout="9000" ConnectTimeout="12000" Host="localhost" Port="219" ProxyHost="" ProxyPort="" ProxyUsername="" ProxyPassword="" BufferKBSize="32" CosmosApp="cmFinanceiro" Enabled="false"/>
+			<Server ConnectionID="{16EEA055-46FD-4088-9D48-514820769277}" ConnectionName="PRODUCAO" CommunicationProtocol="0" NotifyMode="1" CommunicationTimeout="9000" ConnectTimeout="12000" Host="172.16.10.253" Port="1200" ProxyHost="" ProxyPort="" ProxyUsername="" ProxyPassword="" BufferKBSize="32" CosmosApp="cmConferencias" Enabled="false"/>
+			<Server ConnectionID="{FAA53380-9C2E-4E8D-BC8C-7CB33D61CE94}" ConnectionName="TESTES" CommunicationProtocol="0" NotifyMode="0" CommunicationTimeout="15000" ConnectTimeout="20000" Host="172.16.10.253" Port="1400" ProxyHost="" ProxyPort="" ProxyUsername="" ProxyPassword="" BufferKBSize="32" CosmosApp="cmConferencias" Enabled="false"/>
+			<Server ConnectionID="{952857DB-EFBC-4CD3-9AEA-C55F5438B459}" ConnectionName="LOCAL" CommunicationProtocol="0" NotifyMode="0" CommunicationTimeout="10000" ConnectTimeout="18000" Host="localhost" Port="250" ProxyHost="" ProxyPort="" ProxyUsername="" ProxyPassword="" BufferKBSize="32" CosmosApp="cmConferencias" Enabled="true"/>
+			<Server ConnectionID="{852595D9-666F-48D2-B455-06803850A11E}" ConnectionName="PRODUÇÃO" CommunicationProtocol="0" NotifyMode="1" CommunicationTimeout="18000" ConnectTimeout="25000" Host="172.16.10.253" Port="1202" ProxyHost="" ProxyPort="" ProxyUsername="" ProxyPassword="" BufferKBSize="32" CosmosApp="cmSecretarias" Enabled="true"/>
+		</ServersInfo>
+	</CosmosServers>
+	<ConnectionsPool>
+		<PoolInfo>
+			<PoolItem CosmosApp="cmSecretarias" PoolSize="5" CleanupMinutes="1" PoolTimeout="2000" ConnectionType="0"/>
+            <PoolItem CosmosApp="cmConferencias" PoolSize="5" CleanupMinutes="1" PoolTimeout="2000" ConnectionType="0"/>
+            <PoolItem CosmosApp="cmUsuarios" PoolSize="5" CleanupMinutes="1" PoolTimeout="2000" ConnectionType="0"/>
+            <PoolItem CosmosApp="cmFinanceiro" PoolSize="5" CleanupMinutes="1" PoolTimeout="2000" ConnectionType="0"/>
+		</PoolInfo>
+	</ConnectionsPool>    
+	<ModulesOptions>
+		<cmFinanceiro>
+			<CaixaOptions ShowSummary="true"/>
+		</cmFinanceiro>
+		<cmSecretarias>
+			<MatriculaOptions GenerationOption="0"/>
+		</cmSecretarias>        
+	</ModulesOptions>
+</CosmosConfigurations>

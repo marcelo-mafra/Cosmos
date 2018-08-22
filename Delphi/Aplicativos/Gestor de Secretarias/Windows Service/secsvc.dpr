@@ -41,10 +41,13 @@ begin
   //
   if not Application.DelayInitialize or Application.Installing then
     Application.Initialize;
+
   Application.CreateForm(TDMSecretariasAppContainer, DMSecretariasAppContainer);
-  TDMCosmosApplicationServer.CreateObject(cmSecretariasServer);
-  TDMCosmosServerLogradouros.CreateObject(cmSecretariasServer);
-  TDMSecAtividadesServerMethods.CreateObject(cmSecretariasServer);
+
+  TDMCosmosApplicationServer.CreateObject(cmSecretariasServer, stWinService);
+  TDMCosmosServerLogradouros.CreateObject(cmSecretariasServer, stWinService);
+  TDMSecAtividadesServerMethods.CreateObject(cmSecretariasServer, stWinService);
+
   Application.Run;
 end.
 

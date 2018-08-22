@@ -6,12 +6,12 @@ uses
   System.SysUtils, System.Classes, Datasnap.Provider,  Data.DB, Datasnap.DBClient,
   Data.DBXFirebird, Data.SqlExpr, Data.DBXCommon, System.Variants, DataSnap.DsSession,
   cosmos.system.messages, cosmos.classes.application, cosmos.classes.servers.dataobj,
-  cosmos.classes.persistence.ini, cosmos.core.classes.FieldsInfo, cosmos.system.files,
-  cosmos.servers.sqlcommands, cosmos.system.types, cosmos.classes.ServerInterface,
+  cosmos.classes.persistence.ini, cosmos.system.files, cosmos.system.types,
+  cosmos.servers.sqlcommands, cosmos.classes.ServerInterface,
   cosmos.system.exceptions, cosmos.classes.logs, Data.DBXDBReaders,
   cosmos.classes.servers.cmdFactories, cosmos.servers.common.security,
   cosmos.classes.servers.datobjint, cosmos.servers.common.servicesint,
-  cosmos.servers.common.dao.interfaces;
+  cosmos.servers.common.dao.interfaces, cosmos.servers.common.services.factory;
 
 type
 
@@ -79,9 +79,6 @@ type
 
 
 implementation
-
-uses
-  cosmos.servers.common.services.factory;
 
 
 function TDMServerDataAcess.BeginTransaction(Connection: TSQLConnection;
@@ -169,7 +166,6 @@ begin
 
  try
   Result := ACommand.ExecuteCommand(Command);
-
   CosmosServerServices.RegisterLog(Format(TCosmosLogs.SQLCommand, [Command]), '', leOnInformation);
 
  except
@@ -185,7 +181,6 @@ end;
 function TDMServerDataAcess.DoExecuteDQL(const DQL: WideString): TSQLDataset;
 begin
 {Executa um comando DQL em um objeto TSQLDataset.}
-
  Result := CreateDataset;
 
  try
@@ -413,10 +408,10 @@ begin
   partir dos eventos OnUpdateError dos objetos TDatasetProvider existentes no
   sistema.}
 
-  if E.Message.IndexOf('foreign key') >= 0 then
+  if E.Message.IndexOf('foreign key') >= 0 then  //do not localize!
    E.Message := TCosmosErrorReconcile.ForeignKey //violation of foreign key.
   else
-  if E.Message.IndexOf('exception 58') >= 0 then
+  if E.Message.IndexOf('exception 58') >= 0 then //do not localize!
    E.Message := TCosmosErrorMsg.ChangeConferenceControlModel
   else
    E.Message := TCosmosErrorReconcile.UnknownError;//Erro desconhecido.
@@ -437,7 +432,7 @@ var
   PoolSize: Integer;
 begin
  //Carrega as configurações de conexão com banco de dados e monta o pool de conexões.
-  CosmosServerServices.RegisterLog(TCosmosConnectionErrors.ReadingPoolInfo, 'TDMServerDataAcess.LoadDatabaseOptions', leOnInformation);
+  CosmosServerServices.RegisterLog(TCosmosConnectionErrors.ReadingPoolInfo, 'TDMServerDataAcess.LoadDatabaseOptions', leOnInformation); //do not localize!
 
   AFile := TIniFilePersistence.Create(CosmosRootFile, True);
 
@@ -448,13 +443,13 @@ begin
     FConnectionPool.FillPool(PoolSize);
 
     if Assigned(AFile) then FreeAndNil(AFile);
-    CosmosServerServices.RegisterLog(TCosmosLogs.DatabasePoolCreated, 'TDMServerDataAcess.LoadDatabaseOptions', leOnInformation);
+    CosmosServerServices.RegisterLog(TCosmosLogs.DatabasePoolCreated, 'TDMServerDataAcess.LoadDatabaseOptions', leOnInformation); //do not localize!
 
   except
     on E: Exception do
     begin
       if Assigned(AFile) then FreeAndNil(AFile);
-      CosmosServerServices.RegisterLog(E.Message, 'TDMServerDataAcess.LoadDatabaseOptions', leOnError);
+      CosmosServerServices.RegisterLog(E.Message, 'TDMServerDataAcess.LoadDatabaseOptions', leOnError); //do not localize!
     end;
   end;
 end;

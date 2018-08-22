@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Classes, System.Json, Datasnap.DSServer,
   DataSnap.DSProviderDataModuleAdapter, Datasnap.DSAuth, Data.FMTBcd, Data.DB,
   Datasnap.DBClient, Data.SqlExpr, Datasnap.Provider, System.Variants,
-  cosmos.servers.sqlcommands, DataSnap.DsSession, Vcl.Forms,
+  cosmos.servers.sqlcommands, DataSnap.DsSession, Vcl.Forms, Vcl.SvcMgr,
   cosmos.servers.common.servicesint, cosmos.servers.common.dao.interfaces,
   cosmos.system.types;
 
@@ -133,7 +133,7 @@ type
 
   public
     { Public declarations }
-    class procedure CreateObject(Module: TCosmosModules);
+    class procedure CreateObject(Module: TCosmosModules; ServerType: TServerType);
 
     property CosmosModule: TCosmosModules read FCosmosModule;
     property CosmosServices: ICosmosService read GetCosmosService;
@@ -154,12 +154,17 @@ uses
 
 {$R *.dfm}
 
-class procedure TDMCosmosServerLogradouros.CreateObject(Module: TCosmosModules);
+class procedure TDMCosmosServerLogradouros.CreateObject(Module: TCosmosModules;
+  ServerType: TServerType);
 begin
-  Application.CreateForm(TDMCosmosServerLogradouros, DMCosmosServerLogradouros);
-  DMCosmosServerLogradouros.FCosmosModule := Module;
-  DMCosmosServerLogradouros.FCosmosServiceFactory := TCosmosServiceFactory.New(DMCosmosServerLogradouros.CosmosModule);
-  DMCosmosServerLogradouros.FCosmosDAOServiceFactory := TCosmosDAOServiceFactory.New(DMCosmosServerLogradouros.CosmosModule);
+ case ServerType of
+   stApplication: Vcl.Forms.Application.CreateForm(TDMCosmosServerLogradouros, DMCosmosServerLogradouros);
+   stWinService: Vcl.SvcMgr.Application.CreateForm(TDMCosmosServerLogradouros, DMCosmosServerLogradouros);
+ end;
+
+ DMCosmosServerLogradouros.FCosmosModule := Module;
+ DMCosmosServerLogradouros.FCosmosServiceFactory := TCosmosServiceFactory.New(DMCosmosServerLogradouros.CosmosModule);
+ DMCosmosServerLogradouros.FCosmosDAOServiceFactory := TCosmosDAOServiceFactory.New(DMCosmosServerLogradouros.CosmosModule);
 end;
 
 procedure TDMCosmosServerLogradouros.DspBairrosGetDataSetProperties(

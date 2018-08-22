@@ -8,7 +8,7 @@ uses
   Datasnap.DSAuth, DBClient, DB, SqlExpr, FMTBcd, cosmos.classes.application,
   System.Variants, Datasnap.Provider, cosmos.system.exceptions, Data.dbxCommon,
   cosmos.system.messages, cosmos.servers.sqlcommands, cosmos.classes.ServerInterface,
-  System.WideStrings, DataSnap.DsSession, cosmos.classes.logs, Vcl.Forms,
+  System.WideStrings, DataSnap.DsSession, cosmos.classes.logs, Vcl.Forms, Vcl.SvcMgr,
   cosmos.classes.utils.cosmoscript, cosmos.servers.common.servicesint,
   cosmos.servers.common.dao.interfaces, cosmos.servers.common.services.factory,
   cosmos.servers.common.dao.factory, cosmos.system.types;
@@ -568,7 +568,7 @@ type
 
   public
     { Public declarations }
-    class procedure CreateObject(Module: TCosmosModules);
+    class procedure CreateObject(Module: TCosmosModules; ServerType: TServerType);
 
     procedure DeleteActivity(codati: Integer);
     procedure DeleteTipoAtividade(IDTipoAtividade: Integer);
@@ -976,12 +976,16 @@ begin
 end;
 
 class procedure TDMSecAtividadesServerMethods.CreateObject(
-  Module: TCosmosModules);
+  Module: TCosmosModules; ServerType: TServerType);
 begin
-  Application.CreateForm(TDMSecAtividadesServerMethods, DMSecAtividadesServerMethods);
-  DMSecAtividadesServerMethods.FCosmosModule := Module;
-  DMSecAtividadesServerMethods.FCosmosServiceFactory := TCosmosServiceFactory.New(DMSecAtividadesServerMethods.CosmosModule);
-  DMSecAtividadesServerMethods.FCosmosDAOServiceFactory := TCosmosDAOServiceFactory.New(DMSecAtividadesServerMethods.CosmosModule);
+ case ServerType of
+   stApplication: Vcl.Forms.Application.CreateForm(TDMSecAtividadesServerMethods, DMSecAtividadesServerMethods);
+   stWinService: Vcl.SvcMgr.Application.CreateForm(TDMSecAtividadesServerMethods, DMSecAtividadesServerMethods);
+ end;
+
+ DMSecAtividadesServerMethods.FCosmosModule := Module;
+ DMSecAtividadesServerMethods.FCosmosServiceFactory := TCosmosServiceFactory.New(DMSecAtividadesServerMethods.CosmosModule);
+ DMSecAtividadesServerMethods.FCosmosDAOServiceFactory := TCosmosDAOServiceFactory.New(DMSecAtividadesServerMethods.CosmosModule);
 end;
 
 procedure TDMSecAtividadesServerMethods.DeleteActivity(codati: Integer);

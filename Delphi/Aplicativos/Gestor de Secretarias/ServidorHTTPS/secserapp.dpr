@@ -35,9 +35,11 @@ begin
     WebRequestHandler.WebModuleClass := WebModuleClass;
   Application.Initialize;
   Application.CreateForm(TFrmServerMainForm, FrmServerMainForm);
-  TDMCosmosApplicationServer.CreateObject(cmSecretariasServer);
-  TDMCosmosServerLogradouros.CreateObject(cmSecretariasServer);
-  TDMSecAtividadesServerMethods.CreateObject(cmSecretariasServer);
+
+  TDMCosmosApplicationServer.CreateObject(cmSecretariasServer, stApplication);
+  TDMCosmosServerLogradouros.CreateObject(cmSecretariasServer, stApplication);
+  TDMSecAtividadesServerMethods.CreateObject(cmSecretariasServer, stApplication);
+
   Application.ShowMainForm := False;
   Application.Run;
 

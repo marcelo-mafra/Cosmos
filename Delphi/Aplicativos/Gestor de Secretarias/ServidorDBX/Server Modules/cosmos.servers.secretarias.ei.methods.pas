@@ -130,7 +130,7 @@ var
 
 implementation
 
-uses cosmos.servers.common.dao.factory, cosmos.servers.common.services;
+uses cosmos.servers.common.dao.factory;
 
 {$R *.DFM}
 

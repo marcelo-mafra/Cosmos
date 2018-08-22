@@ -9,7 +9,7 @@ uses
   cosmos.servers.sqlcommands, System.Variants, cosmos.classes.servers.dataobj,
   cosmos.classes.ServerInterface, Data.DB, Data.DBXCommon, DBClient, Data.FMTBcd,
   Data.SqlExpr, Datasnap.Provider, DataSnap.DsSession, cosmos.business.focos,
-  cosmos.classes.logs, cosmos.system.types, Data.DBXPlatform, Vcl.Forms,
+  cosmos.classes.logs, cosmos.system.types, Data.DBXPlatform, Vcl.Forms, Vcl.SvcMgr,
   cosmos.classes.servers.cmdFactories, cosmos.classes.utils.cosmoscript,
   cosmos.system.dataconverter, cosmos.servers.common.servicesint,
   cosmos.servers.common.dao.interfaces;
@@ -124,7 +124,7 @@ type
 
   public
     { Public declarations }
-    class procedure CreateObject(Module: TCosmosModules);
+    class procedure CreateObject(Module: TCosmosModules; ServerType: TServerType);
     function BufferData(const Table: Integer): Olevariant;
 
     //Segurança
@@ -250,12 +250,17 @@ begin
  end;
 end;
 
-class procedure TDMCosmosApplicationServer.CreateObject(Module: TCosmosModules);
+class procedure TDMCosmosApplicationServer.CreateObject(Module: TCosmosModules;
+  ServerType: TServerType);
 begin
-  Application.CreateForm(TDMCosmosApplicationServer, DMCosmosApplicationServer);
-  DMCosmosApplicationServer.FCosmosModule := Module;
-  DMCosmosApplicationServer.FCosmosServiceFactory := TCosmosServiceFactory.New(DMCosmosApplicationServer.CosmosModule);
-  DMCosmosApplicationServer.FCosmosDAOServiceFactory := TCosmosDAOServiceFactory.New(DMCosmosApplicationServer.CosmosModule);
+ case ServerType of
+   stApplication: Vcl.Forms.Application.CreateForm(TDMCosmosApplicationServer, DMCosmosApplicationServer);
+   stWinService: Vcl.SvcMgr.Application.CreateForm(TDMCosmosApplicationServer, DMCosmosApplicationServer);
+ end;
+
+ DMCosmosApplicationServer.FCosmosModule := Module;
+ DMCosmosApplicationServer.FCosmosServiceFactory := TCosmosServiceFactory.New(DMCosmosApplicationServer.CosmosModule);
+ DMCosmosApplicationServer.FCosmosDAOServiceFactory := TCosmosDAOServiceFactory.New(DMCosmosApplicationServer.CosmosModule);
 end;
 
 function TDMCosmosApplicationServer.DoIdentificacaoAtiva(const UserName,

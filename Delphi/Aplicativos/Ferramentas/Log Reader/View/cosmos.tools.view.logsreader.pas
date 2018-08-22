@@ -11,7 +11,8 @@ uses
   cosmos.classes.application, Vcl.Menus, Xml.xmldom, Xml.XMLIntf,
   Xml.Win.msxmldom, Xml.XMLDoc, cosmos.classes.logs, cosmos.system.messages,
   Cosmos.Framework.Interfaces.Root, cosmos.framework.forms.dlgmessages,
-  cosmos.system.types;
+  cosmos.system.types, System.ImageList, cosmos.tools.controller.logsint,
+  cosmos.tools.controller.logs;
 
 type
   TExecutionMode = (emClient, emServer);
@@ -85,6 +86,7 @@ type
     procedure ActListUnknownExecute(Sender: TObject);
     procedure CBXCosmosAppChange(Sender: TObject);
     procedure ActUpdateExecute(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
 
 
   private
@@ -95,10 +97,11 @@ type
     FInstallPath: string;
     FLogsFilesPath: string;
     FLogEvents: TLogEvents;
+    FCurrentPos: integer;
+    IController: IControllerCosmosLogs;
 
     procedure SetCurrentModule(Value: TCosmosModules);
     procedure SetCurrentFile(value: string);
-    function GetLogEvent(const sLogEvent: string): TLogEvent; inline;
     procedure LoadFiles;
     function LoadLogData: TCosmosData;
     procedure ReadLogFile(const FileName: string);
@@ -109,8 +112,10 @@ type
 
 
   protected
-    function PriorLog: TCosmosData;
-    function NextLog: TCosmosData;
+    //function PriorLog: TCosmosData;
+    function PriorLog: IControllerLogInfo;
+    //function NextLog: TCosmosData;
+    function NextLog: IControllerLogInfo;
 
 
   public
@@ -131,7 +136,7 @@ implementation
 
 uses cosmos.tools.view.logsdetailform;
 
-{ TForm3 }
+{ TFrmLogsReaderMainForm }
 
 procedure TFrmLogsReaderMainForm.ActCloseExecute(Sender: TObject);
 begin
@@ -184,7 +189,7 @@ begin
  FrmLogsDetail := TFrmLogsDetail.Create(self);
 
  try
-  FrmLogsDetail.ShowLog(LoadLogData);
+  FrmLogsDetail.ShowLog(IController.Current);
 
  finally
   FrmLogsDetail.Free
@@ -378,6 +383,11 @@ begin
  CurrentModule := cmSecretarias;
 end;
 
+procedure TFrmLogsReaderMainForm.FormDestroy(Sender: TObject);
+begin
+ IController := nil;
+end;
+
 function TFrmLogsReaderMainForm.GetFileNameStart: string;
 begin
  case CurrentModule of
@@ -387,47 +397,6 @@ begin
    cmConferencias, cmConferenciasServer: Result := TCosmosAppName.CosmosConferenciasShort;
    cmUsuarios, cmUsuariosServer: Result := TCosmosAppName.CosmosUsuariosShort;
  end;
-end;
-
-function TFrmLogsReaderMainForm.GetLogEvent(const sLogEvent: string): TLogEvent;
-begin
- if sLogEvent = TCosmosLogs.AuthLogType then
-   Result := leOnAuthenticateSucess
- else
- if sLogEvent = TCosmosLogs.AuthFailLogType then
-   Result := leOnAuthenticateFail
- else
- if sLogEvent = TCosmosLogs.PrepareLogType then
-   Result := leOnPrepare
- else
- if sLogEvent = TCosmosLogs.ErrorLogType then
-   Result := leOnError
- else
- if sLogEvent = TCosmosLogs.InfoLogType then
-   Result := leOnInformation
- else
- if sLogEvent = TCosmosLogs.TraceLogType then
-   Result := leOnTrace
- else
- if sLogEvent = TCosmosLogs.RemoteCallLogType then
-  Result := leOnMethodCall
- else
- if sLogEvent = TCosmosLogs.RemoteCallErrorLogType then
-  Result := leOnMethodCallError
- else
- if sLogEvent = TCosmosLogs.WarnLogType then
-  Result := leOnWarning
- else
- if sLogEvent = TCosmosLogs.ConLogType then
-  Result := leOnConnect
- else
- if sLogEvent = TCosmosLogs.ConErrorLogType then
-  Result := leOnConnectError
- else
- if sLogEvent = TCosmosLogs.ConCloseLogType then
-  Result := leOnConnectClose
- else
-  Result := leUnknown;
 end;
 
 procedure TFrmLogsReaderMainForm.ListLogsFiles(const Path: string);
@@ -577,65 +546,42 @@ end;
 procedure TFrmLogsReaderMainForm.LsvLogsDataSelectItem(Sender: TObject; Item: TListItem;
   Selected: Boolean);
 begin
+  FCurrentPos := Item.SubItems.Values['ID'].ToInteger;
   ResumeData;
 end;
 
-function TFrmLogsReaderMainForm.NextLog: TCosmosData;
+function TFrmLogsReaderMainForm.NextLog: IControllerLogInfo;
 begin
- ActNext.Execute;
- Result := LoadLogData;
-end;
-
-function TFrmLogsReaderMainForm.PriorLog: TCosmosData;
-begin
- ActPrior.Execute;
- Result := LoadLogData;
+ Result := IController.Next;
 end;
 
 procedure TFrmLogsReaderMainForm.ReadLogFile(const FileName: string);
  var
-  AFileReader, AValueList: TStringList;
-  ALine: string;
-  LineCount: integer;
   AItem: TListItem;
-  ALogData: string;
-  LogEvent: TLogEvent;
 begin
-  AFileReader := TStringList.Create;
+  IController := TControllerCosmosLogs.New(FileName);
 
   try
    screen.Cursor := crHourGlass;
-   AFileReader.LoadFromFile(FileName, TEncoding.UTF8);
-   AValueList := TStringList.Create;
-
    LsvLogsData.Items.BeginUpdate;
    LsvLogsData.Items.Clear;
 
 
-   for LineCount := 0 to Pred(AFileReader.Count) do
+   while not IController.EOF do
     begin
-      ALine := AFileReader.Strings[LineCount];
-      AValueList.Clear;
-      AValueList.CommaText := ALine;
-      ALogData := AValueList.Values['LogType'];
-      ALogData.TrimRight;
-
-      LogEVent := GetLogEvent(ALogData);
-
-      if not (LogEvent in LogEvents) then
-       Continue;
-
-      //Pega a data do log.
-      ALogData := AValueList.Values['DateTime'];
+      if not (IController.Current.LogType in self.LogEvents) then
+       begin
+         IController.Next;
+         Continue;
+       end;
 
       AItem := LsvLogsData.Items.Add;
-      AItem.Caption := ALogData;
+      AItem.Caption := DateTimeToStr(IController.Current.Data);
 
       //Pega a app Cosmos geradora do log.
-      ALogData := AValueList.Values['CosmosApp'];
-      AItem.SubItems.Append(ALogData);
+      AItem.SubItems.Append(IController.Current.Source);
 
-      case LogEvent of
+      case IController.Current.LogType of
         leOnInformation:
          begin
           AItem.ImageIndex := 0;
@@ -683,11 +629,12 @@ begin
          end;
       end;
       //Pega a mensagem do log.
-      ALogData := AValueList.Values['Message'];
-      AItem.SubItems.Append(ALogData);
+      AItem.SubItems.Append(IController.Current.Info);
       //Pega a mensagem de contexto de execução do log.
-      ALogData := AValueList.Values['ContextInfo'];
-      AItem.SubItems.Append(ALogData);
+      AItem.SubItems.Append(IController.Current.Context);
+      AItem.SubItems.Append(IController.Current.Index.ToString);
+
+      IController.Next;
     end;
 
   finally
@@ -695,9 +642,6 @@ begin
    LsvLogsData.Items.EndUpdate;
    StatusBar.Panels.Items[1].Text := CurrentFile;
    ResumeData;
-   AFileReader.Free;
-   if Assigned(AValueList) then FreeAndNil(AValueList);
-
   end;
 end;
 
@@ -731,6 +675,11 @@ begin
     FCurrentModule := Value;
     LoadFiles;
   end;
+end;
+
+function TFrmLogsReaderMainForm.PriorLog: IControllerLogInfo;
+begin
+ Result := IController.Prior;
 end;
 
 end.

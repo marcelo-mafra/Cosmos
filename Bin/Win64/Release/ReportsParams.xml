@@ -1,0 +1,757 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Este arquivo contém as infromações relevantes para a geração de todos os relatórios do sistema cosmos. Cada relatório possui um conjunto de parâmetros,
+ que por sua vez possui atributos. Seguem as convenções usadas neste arquivo e informações importantes para o entendimento dos atributos:
+
+    ParamName: Nome do parâmetro.
+    ParamType: Tipo do atributo, sendo:
+        0: número inteiro.
+        1: string.
+        2: data.
+        3: boolean.
+        4: lista de strings (com caracteres delimitadores);
+        5: lista de strings com valores correspondentes (código-valor).
+        6: hora.
+    IsVisible: indica se o parâmetro é exibido na grade ou não.
+    CanEdit: indica se o valor do parâmetro pode ser editado.
+    EditType: indica como será feita a manipulação do valor do parâmetro, sendo:
+        0: edição direta pelo usuário.
+        1: edição travada. A seleção deve ser feita por uma janela de pesquisa acionada por um click em botão exibido.
+        2: edição por meio de um combobox.
+    ParamMask: máscara de edição do valor do parâmetro.
+    Description: nome do campo, conforme aparece para o usuário.
+    MaxLength: comprimento máximo do campo. "0" siginifica que não há limite.
+    DefaultValue: valor padrão que é exibido para o parâmetro.
+    HelpHint: texto de ajuda sobre o parâmetro para exibição.
+    SendToServer: indica se o valor do parâmetro deve ser enviado para o servidor do Cosmos.
+    PickList: textos que serão exibidos no combobox para seleção do usuário. Os textos dever ser separados por ";".
+    ValueList: valores que serão recuperado a partir da seleção dos textos descritos em "PickList". Os valores dever ser separados por ";".
+    Quoted: indica se o valor do parâmetro deve ser colocado entre aspas simples.
+    CaseMode: indica como o valor do parâmetro será formatado, sendo:
+        0: valor entra como editado.
+        1: valor é transformado para minúsculo.
+        2: valor é transformado para maiúsculo.
+    ConvertTo:
+    Order: indica a ordem em que o parâmetro será listado.
+    
+    Notas importantes:
+    
+     O valor da propriedade ReportId tem de ser diferente de 0 (zero).
+-->
+
+<Reports>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="1" ReportName="Presenças da Escola Interna" Description="" CosmosModule="cmSecretarias" ReportFile="file3.fr3" ReportTool="FastReports" ReportRoot="Escola Interna" Version="1.0" Enabled="0"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODGRU" ParamType="0" IsVisible="0" CanEdit="1" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMGRU" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Círculo" MaxLength="0" DefaultValue="" HelpHint="Informe o círculo a que ser refere o documento." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/> 
+            <Param ParamName="SIGDIS" ParamType="1" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Discipulado" MaxLength="0" DefaultValue="" HelpHint="Selecione o discipulado." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>
+            <Param ParamName="ANO" ParamType="0" IsVisible="1" CanEdit="1" EditType="0" ParamMask='0000' Description="Ano" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="Informe o ano a que se refere o documento." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="2" ReportName="Endereços dos alunos" Description="Imprime informações referentes aos endereços comerciais e residenciais dos alunos cadastrados." CosmosModule="cmSecretarias" ReportFile="enderecos-alunos.fr3" ReportTool="FastReports" ReportRoot="Listagens" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Selecione o foco ao qual os alunos estão ligados." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="INDATI" ParamType="3" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="" HelpHint="Informa se o relatório emitirá os dados de endereços dos alunos ativos ou inativos." SendToServer="1" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>            
+            <Param ParamName="CAMTRA-LEC" ParamType="1" IsVisible="0" CanEdit="0" EditType="2" ParamMask='' Description="Campo" MaxLength="0" DefaultValue="LEC" HelpHint="Campo de trabalho: Lectorium Rosicrucianum." SendToServer="1" PickList="LEC" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>                       
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Selecione o tipo de ordenação de dados desejado." SendToServer="1" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="3"/>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="3" ReportName="Ficha do aluno" Description="Imprime o prontuário completo de um determinado aluno." CosmosModule="cmSecretarias" ReportFile="ficha-aluno.fr3" ReportTool="Fast Reports" ReportRoot="Documentos do aluno" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="MATCAD-LEC" ParamType="1" IsVisible="1" CanEdit="1" EditType="1" ParamMask='AAA-000000' Description="Aluno" MaxLength="10" DefaultValue="" HelpHint="Matrícula do aluno do qual se emitirá a ficha cadastral." SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+        </Params>
+    </Report> 
+    <Report>
+        <ReportInfo>
+            <Info ReportId="4" ReportName="Carteirinha do Aluno" Description="Imprime a carteirinha pessoal do aluno." CosmosModule="cmSecretarias" ReportFile="carteirinha.fr3" ReportTool="Fast Reports" ReportRoot="Documentos do aluno" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="MATRICULAS" ParamType="4" IsVisible="1" CanEdit="1" EditType="1" ParamMask='' Description="Alunos" MaxLength="0" DefaultValue="" HelpHint="Selecione uma ou mais matrículas dos alunos." SendToServer="1" PickList="" ValueList="" Quoted="1" CaseMode="2" ConvertTo="" Order="1"/>
+            <Param ParamName="Data" ParamType="2" IsVisible="1" CanEdit="1" EditType="1" ParamMask='00/00/0000' Description="Data" MaxLength="0" DefaultValue="CURRENT-DATE" HelpHint="Informe a data que aparecerá próxima à assinatura do aluno." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/> 
+            <Param ParamName="Local" ParamType="1" IsVisible="1" CanEdit="1" EditType="0" ParamMask='' Description="Local" MaxLength="0" DefaultValue="" HelpHint="Informe a cidade que deve constar próximo à assinatura." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="Validade" ParamType="0" IsVisible="1" CanEdit="1" EditType="0" ParamMask='0000' Description="Validade" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="Informe o ano de validade da carteirinha." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>
+            <Param ParamName="Dirigente1" ParamType="1" IsVisible="1" CanEdit="1" EditType="0" ParamMask='' Description="Dirigente 1" MaxLength="0" DefaultValue="" HelpHint="Informe o nome completo do dirigente principal." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>            
+            <Param ParamName="TelDir1" ParamType="1" IsVisible="1" CanEdit="1" EditType="0" ParamMask='(00)0000-0000' Description="Telefone dirigente 1" MaxLength="0" DefaultValue="" HelpHint="Informe o telefone do dirigente principal." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="4"/>           
+            <Param ParamName="Dirigente2" ParamType="1" IsVisible="1" CanEdit="1" EditType="0" ParamMask='' Description="Dirigente 2" MaxLength="0" DefaultValue="" HelpHint="Informe o nome completo do dirigente secundário." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="5"/>            
+            <Param ParamName="TelDir2" ParamType="1" IsVisible="1" CanEdit="1" EditType="0" ParamMask='(00)0000-0000' Description="Telefone dirigente 2" MaxLength="0" DefaultValue="" HelpHint="Informe o telefone do dirigente secundário." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="6"/>            
+            <Param ParamName="Dirigente3" ParamType="1" IsVisible="1" CanEdit="1" EditType="0" ParamMask='' Description="Dirigente 3" MaxLength="0" DefaultValue="" HelpHint="Informe o nome completo do dirigente acessório." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="7"/>            
+            <Param ParamName="TelDir3" ParamType="1" IsVisible="1" CanEdit="1" EditType="0" ParamMask='(00)0000-0000' Description="Telefone dirigente 3" MaxLength="0" DefaultValue="" HelpHint="Informe o telefone do dirigente acessório." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="8"/>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="5" ReportName="Relação geral de alunos" Description="Lista todos os alunos ativos, ordenando-se segundo ordem alfabética." CosmosModule="cmSecretarias" ReportFile="relacao-geral-alunos.fr3" ReportTool="FastReports" ReportRoot="Alunado" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODFOC-CURRENT" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask='' Description="Foco Atual" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="Foco correntemente ativo." SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>        
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="6" ReportName="Entrega de circulares" Description="Formulário de confirmação de entrega de circulares ao alunado." CosmosModule="cmSecretarias" ReportFile="file.fr3" ReportTool="Rave" ReportRoot="Formulários" Version="1.0" Enabled="0"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask='' Description="Foco Atual" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>        
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask='' Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Selecione um foco de onde a lista de alunos será obtida." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>        
+            <Param ParamName="INDATI" ParamType="3" IsVisible="0" CanEdit="0" EditType="0" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="Sim" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>            
+            <Param ParamName="CAMTRA-LEC" ParamType="1" IsVisible="0" CanEdit="0" EditType="0" ParamMask='' Description="Campo" MaxLength="0" DefaultValue="LEC" HelpHint="Campo de trabalho: Lectorium Rosicrucianum." SendToServer="1" PickList="" ValueList="" Quoted="1" CaseMode="0" ConvertTo="" Order="2"/>                       
+            <Param ParamName="CIRCULAR" ParamType="1" IsVisible="1" CanEdit="1" EditType="0" ParamMask='' Description="Circular" MaxLength="0" DefaultValue="Informe o nome da circular..." HelpHint="Informe o nome da circular que será distribuída." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>                       
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Selecione o tipo de ordenação de dados desejado." SendToServer="1" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="3"/>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="7" ReportName="Folha de presença" Description="Impresso emitido para que cada aluno indique a sua presença em um serviço ou conferência através de uma pequena rubrica ao lado do seu nome. Contém: matrícula e nome." CosmosModule="cmSecretarias" ReportFile="fpresenca-simples.fr3" ReportTool="FastReports" ReportRoot="Atividades" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODATI" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="DESTIPATI" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask='' Description="Atividade" MaxLength="0" DefaultValue="" HelpHint="Selecione a atividade para a qual será emitida a folha de presença." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/> 
+            <Param ParamName="DATATI" ParamType="2" IsVisible="1" CanEdit="0" EditType="0" ParamMask='00/00/0000' Description="Data" MaxLength="0" DefaultValue="" HelpHint="Data da atividade." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="HORATI" ParamType="6" IsVisible="1" CanEdit="0" EditType="0" ParamMask='00:00' Description="Hora" MaxLength="0" DefaultValue="" HelpHint="Hora da atividade." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>
+            <Param ParamName="CAMPRO" ParamType="1" IsVisible="1" CanEdit="0" EditType="0" ParamMask='' Description="Promotor" MaxLength="0" DefaultValue="" HelpHint="Campo promotor da atividade." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>
+            <Param ParamName="SIGFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="0" ParamMask='' Description="Foco" MaxLength="0" DefaultValue="" HelpHint="Foco promotor da atividade" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="4"/>
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ordem" MaxLength="0" DefaultValue="" HelpHint="Selecione o tipo de ordenação de dados desejado." SendToServer="1" PickList="Nome;Matrícula" ValueList="N;M" Quoted="0" CaseMode="0" ConvertTo="1" Order="1"/>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="8" ReportName="Cadastrados por discipulados" Description="Lista os cadastrados de um determinado discipulado." CosmosModule="cmSecretarias" ReportFile="cadastrados-discipulados.fr3" ReportTool="FastReports" ReportRoot="Alunado" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask='' Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Escolha o foco ao qual os alunos estão ligados." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="SIGDIS" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Discipulado" MaxLength="0" DefaultValue="" HelpHint="Escolha o discipulado dos alunos." SendToServer="1" PickList="1ºaspecto;2ºaspecto;3ºaspecto;4ºaspecto;Graal;5ºaspecto;6ºaspecto" ValueList="1AS;2AS;3AS;4AS;GRA;5AS;6AS" Quoted="1" CaseMode="0" ConvertTo="1" Order="1"/>
+            <Param ParamName="INDATI" ParamType="3" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="Sim" HelpHint="Informe se o relatório emitirá os dados dos alunos ativos ou inativos." SendToServer="1" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>            
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Escolha como ordenar os dados." SendToServer="1" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="3"/>
+        </Params>
+    </Report> 
+    <Report>
+        <ReportInfo>
+            <Info ReportId="9" ReportName="Totais de alunos" Description="Totaliza o número de alunos por discipulados." CosmosModule="cmSecretarias" ReportFile="totais-alunos.fr3" ReportTool="FastReports" ReportRoot="Alunado" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask='' Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Escolha o foco ao qual os alunos estão ligados." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="CAMTRA-LEC" ParamType="1" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Campo" MaxLength="0" DefaultValue="LEC" HelpHint="Informa o campo de trabalho." SendToServer="1" PickList="LEC" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>                       
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="10" ReportName="Histórico Discipular" Description="Lista todas as informações sobre os eventos que fazem parte do históricos discipulares dos cadastrados." CosmosModule="cmSecretarias" ReportFile="historico-discipular.fr3" ReportTool="FastReports" ReportRoot="Documentos do aluno" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODCAD" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="MATCAD-LEC" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask='' Description="Matrícula" MaxLength="10" DefaultValue="" HelpHint="Selecione o aluno do qual se quer emitir o histórico discipular." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMCAD" ParamType="1" IsVisible="1" CanEdit="0" EditType="0" ParamMask='' Description="Nome" MaxLength="0" DefaultValue="" HelpHint="Nome do aluno." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="11" ReportName="Boletim Informativo" Description="Gera a agenda das atividades promovidas pelos campos de trabalho ao longo de um determinado período." CosmosModule="cmSecretarias" ReportFile="file.fr3" ReportTool="Rave" ReportRoot="Atividades" Version="1.0" Enabled="0"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="MES" ParamType="1" IsVisible="1" CanEdit="1" EditType="2" ParamMask="" Description="Mês" MaxLength="0" DefaultValue="CURRENT-MONTH" HelpHint="Selecione o mês a que se refere o boletim informativo." SendToServer="1" PickList="Janeiro;Fevereiro;Março;Abril;Maio;Junho;Julho;Agosto;Setembro;Outubro;Novembro;Dezembro" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="ANO" ParamType="0" IsVisible="1" CanEdit="1" EditType="0" ParamMask='0000' Description="Ano" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="Informe o ano a que se refere o boletim informativo." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="12" ReportName="Escalas de Atividades" Description="Gera a agenda das atividades promovidas pelos campos de trabalho ao longo de um determinado período." CosmosModule="cmSecretarias" ReportFile="escalas-atividades.fr3" ReportTool="FastReports" ReportRoot="Atividades" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="DATINI" ParamType="2" IsVisible="1" CanEdit="1" EditType="1" ParamMask="00/00/0000" Description="Início" MaxLength="0" DefaultValue="FIRSTDAY-CURRENTMONTH" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="DATFIN" ParamType="2" IsVisible="1" CanEdit="1" EditType="1" ParamMask="00/00/0000" Description="Término" MaxLength="0" DefaultValue="LASTDAY-CURRENTMONTH" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="CAMTRA" ParamType="1" IsVisible="1" CanEdit="1" EditType="2" ParamMask="" Description="Campo" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="LEC;TM;TP;SIM" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="13" ReportName="Folha de Presença da Escola Interna" Description="Imprime o formulário de marcação de presença dos membros de um círculo da Escola Interna em suas atividades." CosmosModule="cmSecretarias" ReportFile="fpresenca-ei.fr3" ReportTool="FastReports" ReportRoot="Escola Interna" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODGRU" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMGRU" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Círculo" MaxLength="0" DefaultValue="" HelpHint="Selecione o círculo da Escola Interna." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="SIGDIS" ParamType="1" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Discipulado" MaxLength="0" DefaultValue="" HelpHint="Discipulado dos alunos." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Foco dos alunos do círculo." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>
+            <Param ParamName="ANO" ParamType="0" IsVisible="1" CanEdit="1" EditType="0" ParamMask="" Description="Ano" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="Informe o ano ao qual a folha de presença se refere." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>
+        </Params>
+    </Report>  
+    <Report>
+        <ReportInfo>
+            <Info ReportId="14" ReportName="Tempo de Discipulado" Description="Lista os alunos do discipulado indicado, informando a quanto tempo estão instalados nele e se já cumpriram o período de permanência no mesmo." CosmosModule="cmSecretarias" ReportFile="tempo-discipulado.fr3" ReportTool="FastReports" ReportRoot="Alunado" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Selecione o foco ao qual os alunos estão ligados." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="SIGDIS" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Discipulado" MaxLength="0" DefaultValue="" HelpHint="Selecione o discipulado dos alunos dos quais se quer obter o tempo de discipulado." SendToServer="1" PickList="1ºaspecto;2ºaspecto;3ºaspecto;4ºaspecto;Graal;5ºaspecto;6ºaspecto" ValueList="1AS;2AS;3AS;4AS;GRA;5AS;6AS" Quoted="1" CaseMode="1" ConvertTo="1" Order="1"/>            
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="15" ReportName="Profissões dos alunos" Description="Lista os alunos agrupados por suas respectivas profissões." CosmosModule="cmSecretarias" ReportFile="profissoes-alunos.fr3" ReportTool="FastReports" ReportRoot="Alunado" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Selecione o foco ao qual os alunos estão ligados." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="INDATI" ParamType="3" IsVisible="0" CanEdit="0" EditType="2" ParamMask='' Description="" MaxLength="0" DefaultValue="Sim" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>            
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="16" ReportName="Funções dos alunos" Description="Lista as diversas funções que são exercidas pelos alunos do foco ativo." CosmosModule="cmSecretarias" ReportFile="funcoes-alunos.fr3" ReportTool="FastReports" ReportRoot="Alunado" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Selecione o foco ao qual os alunos estão ligados." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="INDATI" ParamType="3" IsVisible="0" CanEdit="0" EditType="2" ParamMask='' Description="" MaxLength="0" DefaultValue="Sim" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>                    
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="17" ReportName="Ficha do jovem" Description="Imprime a ficha cadastral de uma criança ou jovem do Trabalho da Mocidade." CosmosModule="cmSecretarias" ReportFile="ficha-jovem.fr3" ReportTool="FastReports" ReportRoot="Trabalho da Mocidade" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="MATCAD-TM" ParamType="1" IsVisible="1" CanEdit="1" EditType="1" ParamMask="AAA-TM0000" Description="Matrícula TM" MaxLength="10" DefaultValue="" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="18" ReportName="Endereços dos jovens" Description="Imprime informações referentes aos endereços e meios de contato das crianças e jovens cadastrados." CosmosModule="cmSecretarias" ReportFile="enderecos-jovens.fr3" ReportTool="FastReports" ReportRoot="Trabalho da Mocidade" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Selecione o foco ao qual os jovens estão ligados." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="INDATI" ParamType="3" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="" HelpHint="Informe se o relatório emitirá os dados de endereços dos alunos ativos ou inativos." SendToServer="1" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>            
+            <Param ParamName="CAMTRA-TM" ParamType="1" IsVisible="0" CanEdit="0" EditType="2" ParamMask='' Description="Campo" MaxLength="0" DefaultValue="TMO" HelpHint="Campo de trabalho selecionado é o TM." SendToServer="1" PickList="TMO" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>                       
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Selecione o tipo de ordenação de dados desejado." SendToServer="1" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="3"/>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="19" ReportName="Lista de jovens" Description="Lista as crianças e jovens do TM agrupados por seus respectivos grupos." CosmosModule="cmSecretarias" ReportFile="lista-jovens.fr3" ReportTool="FastReports" ReportRoot="Trabalho da Mocidade" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Selecione o foco ao qual os jovens estão ligados." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="CAMTRA-TM" ParamType="1" IsVisible="0" CanEdit="0" EditType="2" ParamMask="" Description="Campo" MaxLength="0" DefaultValue="TMO" HelpHint="Campo de trabalho: Trabalho da Mocidade." SendToServer="1" PickList="TMO" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>           
+            <Param ParamName="INDATI" ParamType="3" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="" HelpHint="Informe se o relatório deve listar jovens ativos ou inativos." SendToServer="1" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/> 
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask="" Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Selecione como os dados serão ordenados." SendToServer="1" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="3"/>          
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="20" ReportName="Freqüência geral" Description="Demonstra a freqüência de todos os alunos nas atividades oferecidas ao longo de um ano." CosmosModule="cmSecretarias" ReportFile="frequencia-geral.fr3" ReportTool="FastReports" ReportRoot="Freqüência" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Selecione o foco ao qual os alunos estão ligados." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="ANO" ParamType="0" IsVisible="1" CanEdit="1" EditType="0" ParamMask='0000' Description="Ano" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="Selecione o ano ao qual os dados de freqüência se referem." SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Selecione o tipo de ordenação dos dados." SendToServer="0" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="1"/>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="21" ReportName="Freqüência por discipulado" Description="Demonstra a freqüência dos alunos de um determinado discipulado nas atividades oferecidas ao longo de um ano." CosmosModule="cmSecretarias" ReportFile="frequencia-discipulado.fr3" ReportTool="FastReports" ReportRoot="Freqüência" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Selecione o foco ao qual os alunos estão ligados." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>                        
+            <Param ParamName="ANO" ParamType="0" IsVisible="1" CanEdit="1" EditType="0" ParamMask='0000' Description="Ano" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="Selecione o ano ao qual os dados de freqüência se referem." SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="SIGDIS" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Discipulado" MaxLength="0" DefaultValue="" HelpHint="Selecione o discipulado dos alunos." SendToServer="1" PickList="1ºaspecto;2ºaspecto;3ºaspecto;4ºaspecto;Graal;5ºaspecto;6ºaspecto" ValueList="1AS;2AS;3AS;4AS;GRA;5AS;6AS" Quoted="1" CaseMode="0" ConvertTo="1" Order="2"/>
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Selecione o tipo de ordenação dos dados." SendToServer="0" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="1"/>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="22" ReportName="Membros dos Círculos" Description="Lista os círculos da Escola Interna do foco atual, com os seus membros e contatos dos círculos." CosmosModule="cmSecretarias" ReportFile="membros-circulos.fr3" ReportTool="FastReports" ReportRoot="Escola Interna" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Selecione o foco ao qual os círuclos estão ligados." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+        </Params>
+    </Report>    
+    <Report>
+        <ReportInfo>
+            <Info ReportId="23" ReportName="Aniversariantes" Description="Lista as crianças e jovens aniversariantes em um determinado mês." CosmosModule="cmSecretarias" ReportFile="file.fr3" ReportTool="Rave" ReportRoot="Trabalho da Mocidade" Version="1.0" Enabled="0"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>                        
+            <Param ParamName="CAMTRA-TM" ParamType="1" IsVisible="1" CanEdit="0" EditType="2" ParamMask="" Description="Campo" MaxLength="0" DefaultValue="TM" HelpHint="" SendToServer="1" PickList="TM" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>           
+            <Param ParamName="INDATI" ParamType="3" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>             
+            <Param ParamName="MES" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask="" Description="Mês" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="Janeiro;Fevereiro;Março;Abril;Maio;Junho;Julho;Agosto;Setembro;Outubro;Novembro;Dezembro" ValueList="1;2;3;4;5;6;7;8;9;10;11;12" Quoted="0" CaseMode="0" ConvertTo="0" Order="3"/>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="24" ReportName="Folha de Presença (mensal)" Description="Impresso emitido para que cada aluno indique a sua presença em um serviço ou conferência através de uma pequena rubrica ao lado do seu nome. Contém: matrícula e nome. Contém todas as atividades do mês." CosmosModule="cmSecretarias" ReportFile="fpresenca-mensal.fr3" ReportTool="Fast Report" ReportRoot="Atividades" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Indica o foco correntemente aberto." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>                        
+            <Param ParamName="INDATI" ParamType="1" IsVisible="0" CanEdit="0" EditType="0" ParamMask='' Description="Situação" MaxLength="0" DefaultValue="S" HelpHint="Indique se deseja listar alunos ativos ou inativos." SendToServer="1" PickList="" ValueList="" Quoted="1" CaseMode="0" ConvertTo="0" Order="1"/>             
+            <Param ParamName="CAMTRA" ParamType="1" IsVisible="1" CanEdit="1" EditType="2" ParamMask="" Description="Campo" MaxLength="0" DefaultValue="" HelpHint="Selecione o campo de trabalho." SendToServer="1" PickList="LEC;TM;TP" ValueList="" Quoted="1" CaseMode="0" ConvertTo="" Order="2"/>           
+            <Param ParamName="MES" ParamType="1" IsVisible="1" CanEdit="0" EditType="2" ParamMask="" Description="Mês" MaxLength="0" DefaultValue="" HelpHint="Selecione o mês desejado." SendToServer="0" PickList="Janeiro;Fevereiro;Março;Abril;Maio;Junho;Julho;Agosto;Setembro;Outubro;Novembro;Dezembro" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Selecione o tipo de ordenação dos dados." SendToServer="1" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="3"/>
+            <Param ParamName="DATATI1" ParamType="1" IsVisible="1" CanEdit="1" EditType="0" ParamMask='99/99/9999' Description="Atividade 1" MaxLength="0" DefaultValue="" HelpHint="Data do primeiro serviço." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>
+            <Param ParamName="DATATI2" ParamType="1" IsVisible="1" CanEdit="1" EditType="0" ParamMask='99/99/9999' Description="Atividade 2" MaxLength="0" DefaultValue="" HelpHint="Data do segundo serviço." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>
+            <Param ParamName="DATATI3" ParamType="1" IsVisible="1" CanEdit="1" EditType="0" ParamMask='99/99/9999' Description="Atividade 3" MaxLength="0" DefaultValue="" HelpHint="Data do terceiro serviço." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="4"/>
+            <Param ParamName="DATATI4" ParamType="1" IsVisible="1" CanEdit="1" EditType="0" ParamMask='99/99/9999' Description="Atividade 4" MaxLength="0" DefaultValue="" HelpHint="Data do quarto serviço." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="5"/>
+            <Param ParamName="DATATI5" ParamType="1" IsVisible="1" CanEdit="1" EditType="0" ParamMask='99/99/9999' Description="Atividade 5" MaxLength="0" DefaultValue="" HelpHint="Data do quinto serviço." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="6"/>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="25" ReportName="Endereços de pesquisadores" Description="Imprime informações referentes aos endereços e meios de contato dos pesquisadores e cursistas cadastrados." CosmosModule="cmSecretarias" ReportFile="enderecos-pesquisadores.fr3" ReportTool="FastReports" ReportRoot="Trabalho Público" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>          
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Selecione o foco ao qual os alunos estão ligados." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="INDATI" ParamType="3" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="" HelpHint="Informa se o relatório emitirá os dados de endereços dos alunos ativos ou inativos." SendToServer="1" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>            
+            <Param ParamName="CAMTRA-TP" ParamType="1" IsVisible="0" CanEdit="0" EditType="2" ParamMask="" Description="Campo" MaxLength="0" DefaultValue="TPU" HelpHint="" SendToServer="1" PickList="TPU" ValueList="" Quoted="1" CaseMode="0" ConvertTo="" Order="2"/>           
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Selecione o tipo de ordenação de dados desejado." SendToServer="1" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="3"/>            
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="26" ReportName="Lista de pesquisadores" Description="Lista os pesquisadores e cursistas do Trabalho Público no núcleo corrente. " CosmosModule="cmSecretarias" ReportFile="lista-pesquisadores.fr3" ReportTool="FastReports" ReportRoot="Trabalho Público" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="CAMTRA-TP" ParamType="1" IsVisible="0" CanEdit="0" EditType="2" ParamMask="" Description="Campo" MaxLength="0" DefaultValue="TPU" HelpHint="" SendToServer="1" PickList="TPU" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>           
+            <Param ParamName="INDATI" ParamType="3" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/> 
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask="" Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Selecione como os dados serão ordenados." SendToServer="1" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="3"/>                      
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="27" ReportName="Ficha do pesquisador" Description="Imprime a ficha cadastral de um pesquisador ou cursista do Trabalho Público." CosmosModule="cmSecretarias" ReportFile="file.fr3" ReportTool="Rave" ReportRoot="Trabalho Público" Version="1.0" Enabled="0"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="MATCAD-TP" ParamType="1" IsVisible="1" CanEdit="1" EditType="1" ParamMask="AAA-TP0000" Description="Matrícula TP" MaxLength="10" DefaultValue="" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="28" ReportName="Relatório de origem" Description="Relatório estatístico que lista os pesquisadores de acordo com a sua origem." CosmosModule="cmSecretarias" ReportFile="file.fr3" ReportTool="Rave" ReportRoot="Trabalho Público" Version="1.0" Enabled="0"/>
+        </ReportInfo>
+        <Params>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="29" ReportName="Sumário Estatístico" Description="Gera estatística sobre os totais de alunos, jovens e simpatizantes de todos os focos das subregiões cadastradas." CosmosModule="cmSecretarias" ReportFile="resumo-estatistico.fr3" ReportTool="FastReports" ReportRoot="Secretaria e Tesouraria Nacional" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="MES" ParamType="1" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Mês" MaxLength="0" DefaultValue="CURRENT-MONTHNAME" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="ANO" ParamType="0" IsVisible="1" CanEdit="0" EditType="0" ParamMask='0000' Description="Ano" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="30" ReportName="Mala direta Pimaco 6280" Description="Emite etiquetas de mala direta padrão Pimaco 6280 - tamanho Carta." CosmosModule="cmSecretarias" ReportFile="pimaco-6280-carta.fr3" ReportTool="FastReports" ReportRoot="Formulários" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="CAMTRA" ParamType="1" IsVisible="1" CanEdit="0" EditType="2" ParamMask="" Description="Campo" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="LEC;TM;TP;SIM" ValueList="" Quoted="1" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="INDATI" ParamType="3" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/> 
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="Nome;Matrícula" ValueList="LINE1;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="1"/>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="31" ReportName="Mala direta Pimaco 6281" Description="Emite etiquetas de mala direta padrão Pimaco 6281 - tamanho Carta." CosmosModule="cmSecretarias" ReportFile="pimaco-6281-carta.fr3" ReportTool="FastReports" ReportRoot="Formulários" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="CAMTRA" ParamType="1" IsVisible="1" CanEdit="0" EditType="2" ParamMask="" Description="Campo" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="LEC;TM;TP;SIM" ValueList="" Quoted="1" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="INDATI" ParamType="3" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/> 
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="Nome;Matrícula" ValueList="LINE1;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="1"/>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="32" ReportName="Ocorrências do mês" Description="Lista todas as ocorrências em um determinado mês e ano que foram registradas no Cosmos Gestor de Secretarias." CosmosModule="cmSecretarias" ReportFile="file.fr3" ReportTool="Rave" ReportRoot="Listagens" Version="1.0" Enabled="0"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="CAMTRA" ParamType="1" IsVisible="1" CanEdit="0" EditType="2" ParamMask="" Description="Campo" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="LEC;TM;TP;SIM" ValueList="" Quoted="1" CaseMode="0" ConvertTo="1" Order="3"/>
+            <Param ParamName="MES" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask="" Description="Mês" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="Janeiro;Fevereiro;Março;Abril;Maio;Junho;Julho;Agosto;Setembro;Outubro;Novembro;Dezembro" ValueList="1;2;3;4;5;6;7;8;9;10;11;12" Quoted="0" CaseMode="0" ConvertTo="0" Order="0"/>
+            <Param ParamName="ANO" ParamType="0" IsVisible="1" CanEdit="1" EditType="0" ParamMask='0000' Description="Ano" MaxLength="4" DefaultValue="" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="33" ReportName="Folha de presença (conferências)" Description="Imprime um documento para apontamento de freqüência nas atividades de uma determinada conferência." CosmosModule="cmSecretarias" ReportFile="file.fr3" ReportTool="Rave" ReportRoot="Atividades" Version="1.0" Enabled="0"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODCON" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask="" Description="CODCON" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMCON" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Conferência" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="TIPORD" ParamType="1" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="Nome;Matrícula" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="34" ReportName="Folha de Presença (2 colunas)" Description="Impresso emitido para que cada aluno indique a sua presença em um serviço ou conferência através de uma pequena rubrica ao lado do seu nome. Contém: matrícula e nome." CosmosModule="cmSecretarias" ReportFile="fpresenca-2 colunas.fr3" ReportTool="Fast Report" ReportRoot="Atividades" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODATI" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="DESTIPATI" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask='' Description="Atividade" MaxLength="0" DefaultValue="" HelpHint="Selecione a atividade para a qual será emitida a folha de presença." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/> 
+            <Param ParamName="DATATI" ParamType="2" IsVisible="1" CanEdit="0" EditType="0" ParamMask='00/00/0000' Description="Data" MaxLength="0" DefaultValue="" HelpHint="Data da atividade." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="HORATI" ParamType="6" IsVisible="1" CanEdit="0" EditType="0" ParamMask='00:00' Description="Hora" MaxLength="0" DefaultValue="" HelpHint="Hora da atividade." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>
+            <Param ParamName="CAMPRO" ParamType="1" IsVisible="1" CanEdit="0" EditType="0" ParamMask='' Description="Promotor" MaxLength="0" DefaultValue="" HelpHint="Campo promotor da atividade." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>
+            <Param ParamName="SIGFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="0" ParamMask='' Description="Foco" MaxLength="0" DefaultValue="" HelpHint="Foco promotor da atividade" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="4"/>
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ordem" MaxLength="0" DefaultValue="" HelpHint="Selecione o tipo de ordenação de dados desejado." SendToServer="1" PickList="Nome;Matrícula" ValueList="N;M" Quoted="0" CaseMode="0" ConvertTo="1" Order="1"/>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="35" ReportName="Envelope 220 x 115 mm" Description="Envelope padrão de 220 x 115 mm." CosmosModule="cmSecretarias" ReportFile="file.fr3" ReportTool="Rave" ReportRoot="Formulários" Version="1.0" Enabled="0"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="CAMTRA" ParamType="1" IsVisible="1" CanEdit="0" EditType="2" ParamMask="" Description="Campo" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="LEC;TM;TP;SIM" ValueList="" Quoted="1" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="INDATI" ParamType="3" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/> 
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="Nome;Matrícula" ValueList="LINE1;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="3"/>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="36" ReportName="Envelope 250 x 175 mm" Description="Envelope 250 x 175 mm." CosmosModule="cmSecretarias" ReportFile="file.fr3" ReportTool="Rave" ReportRoot="Formulários" Version="1.0" Enabled="0"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="CAMTRA" ParamType="1" IsVisible="1" CanEdit="0" EditType="2" ParamMask="" Description="Campo" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="LEC;TM;TP;SIM" ValueList="" Quoted="1" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="INDATI" ParamType="3" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/> 
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="Nome;Matrícula" ValueList="LINE1;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="3"/>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="37" ReportName="Freqüência por Período" Description="Demonstra a freqüência de todos os alunos nas atividades oferecidas ao longo de um período." CosmosModule="cmSecretarias" ReportFile="frequencia-geral-periodo.fr3" ReportTool="FastReports" ReportRoot="Freqüência" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="MES_INICIAL" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask="" Description="Mês Inicial" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="Janeiro;Fevereiro;Março;Abril;Maio;Junho;Julho;Agosto;Setembro;Outubro;Novembro;Dezembro" ValueList="1;2;3;4;5;6;7;8;9;10;11;12" Quoted="0" CaseMode="0" ConvertTo="0" Order="1"/>
+            <Param ParamName="MES_FINAL" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask="" Description="Mês Final" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="Janeiro;Fevereiro;Março;Abril;Maio;Junho;Julho;Agosto;Setembro;Outubro;Novembro;Dezembro" ValueList="1;2;3;4;5;6;7;8;9;10;11;12" Quoted="0" CaseMode="0" ConvertTo="0" Order="2"/>
+            <Param ParamName="ANO_INICIAL" ParamType="0" IsVisible="1" CanEdit="1" EditType="0" ParamMask='0000' Description="Ano Inicial" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>
+            <Param ParamName="ANO_FINAL" ParamType="0" IsVisible="1" CanEdit="1" EditType="0" ParamMask='0000' Description="Ano Final" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="4"/>            
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="5"/>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="38" ReportName="Endereços de membros de círculo" Description="Imprime informações referentes aos endereços e meios de contato dos membros de um círculo da Escola Interna." CosmosModule="cmSecretarias" ReportFile="enderecos-circulos.fr3" ReportTool="FastReports" ReportRoot="Escola Interna" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODGRU" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMGRU" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Círculo" MaxLength="0" DefaultValue="" HelpHint="Selecione o círculo da Escola Interna" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="SIGDIS" ParamType="1" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Discipulado" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="NOMDIS" ParamType="1" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Discipulado" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>
+        </Params>
+    </Report> 
+    <Report>
+        <ReportInfo>
+            <Info ReportId="39" ReportName="Lista de tarefas simples" Description="" CosmosModule="cmSecretarias" ReportFile="file.fr3" ReportTool="Rave" ReportRoot="Tarefas" Version="1.0" Enabled="0"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="INDABE" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Abertas" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="Sim;Não" ValueList="S;N" Quoted="0" CaseMode="0" ConvertTo="1" Order="0"/>
+            <Param ParamName="INDCON" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Concluídas" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="Sim;Não" ValueList="S;N" Quoted="0" CaseMode="0" ConvertTo="1" Order="1"/>
+            <Param ParamName="INDCAN" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Canceladas" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="Sim;Não" ValueList="S;N" Quoted="0" CaseMode="0" ConvertTo="1" Order="2"/>
+            <Param ParamName="INDSUS" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Suspensas" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="Sim;Não" ValueList="S;N" Quoted="0" CaseMode="0" ConvertTo="1" Order="3"/>
+        </Params>
+    </Report> 
+    <Report>
+        <ReportInfo>
+            <Info ReportId="40" ReportName="Lista de tarefas agrupada" Description="Lista todas as suas tarefas em um formato tabular simples." CosmosModule="cmSecretarias" ReportFile="file.fr3" ReportTool="Rave" ReportRoot="Tarefas" Version="1.0" Enabled="0"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="INDABE" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Abertas" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="Sim;Não" ValueList="S;N" Quoted="0" CaseMode="0" ConvertTo="1" Order="0"/>
+            <Param ParamName="INDCON" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Concluídas" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="Sim;Não" ValueList="S;N" Quoted="0" CaseMode="0" ConvertTo="1" Order="1"/>
+            <Param ParamName="INDCAN" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Canceladas" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="Sim;Não" ValueList="S;N" Quoted="0" CaseMode="0" ConvertTo="1" Order="2"/>
+            <Param ParamName="INDSUS" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Suspensas" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="Sim;Não" ValueList="S;N" Quoted="0" CaseMode="0" ConvertTo="1" Order="3"/>
+        </Params>
+    </Report> 
+    <Report>
+        <ReportInfo>
+            <Info ReportId="41" ReportName="Freqüência por Período (discipulados)" Description="Demonstra a freqüência de todos os alunos de um determinado discipulado nas atividades oferecidas ao longo de um período." CosmosModule="cmSecretarias" ReportFile="frequencia-discipulado-periodo.fr3" ReportTool="FastReports" ReportRoot="Freqüência" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="MES_INICIAL" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask="" Description="Mês Inicial" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="Janeiro;Fevereiro;Março;Abril;Maio;Junho;Julho;Agosto;Setembro;Outubro;Novembro;Dezembro" ValueList="1;2;3;4;5;6;7;8;9;10;11;12" Quoted="0" CaseMode="0" ConvertTo="0" Order="1"/>
+            <Param ParamName="MES_FINAL" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask="" Description="Mês Final" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="Janeiro;Fevereiro;Março;Abril;Maio;Junho;Julho;Agosto;Setembro;Outubro;Novembro;Dezembro" ValueList="1;2;3;4;5;6;7;8;9;10;11;12" Quoted="0" CaseMode="0" ConvertTo="0" Order="2"/>
+            <Param ParamName="ANO_INICIAL" ParamType="0" IsVisible="1" CanEdit="1" EditType="0" ParamMask='0000' Description="Ano Inicial" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>
+            <Param ParamName="ANO_FINAL" ParamType="0" IsVisible="1" CanEdit="1" EditType="0" ParamMask='0000' Description="Ano Final" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="4"/>            
+            <Param ParamName="SIGDIS" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Discipulado" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="1ºaspecto;2ºaspecto;3ºaspecto;4ºaspecto;Graal;5ºaspecto;6ºaspecto" ValueList="1AS;2AS;3AS;4AS;GRA;5AS;6AS" Quoted="1" CaseMode="0" ConvertTo="1" Order="5"/>
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="6"/>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="42" ReportName="Freqüência por Tipo de Atividade" Description="Contabiliza as freqüências de alunos, membros, jovens ou simpatizantes em atividades de um determinado tipo." CosmosModule="cmSecretarias" ReportFile="file.fr3" ReportTool="Rave" ReportRoot="Freqüência" Version="1.0" Enabled="0"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="CODTIPATI" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="DESTIPATI" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Tipo da Atividade" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="MES_INICIAL" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask="" Description="Mês Inicial" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="Janeiro;Fevereiro;Março;Abril;Maio;Junho;Julho;Agosto;Setembro;Outubro;Novembro;Dezembro" ValueList="1;2;3;4;5;6;7;8;9;10;11;12" Quoted="0" CaseMode="0" ConvertTo="0" Order="2"/>
+            <Param ParamName="MES_FINAL" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask="" Description="Mês Final" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="Janeiro;Fevereiro;Março;Abril;Maio;Junho;Julho;Agosto;Setembro;Outubro;Novembro;Dezembro" ValueList="1;2;3;4;5;6;7;8;9;10;11;12" Quoted="0" CaseMode="0" ConvertTo="0" Order="3"/>
+            <Param ParamName="ANO_INICIAL" ParamType="0" IsVisible="1" CanEdit="1" EditType="0" ParamMask='0000' Description="Ano Inicial" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="4"/>
+            <Param ParamName="ANO_FINAL" ParamType="0" IsVisible="1" CanEdit="1" EditType="0" ParamMask='0000' Description="Ano Final" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="5"/>                      
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="6"/>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="43" ReportName="Freqüência do Círculo" Description="Contabiliza as freqüências dos membros de um círculo da Escola Interna nas atividades promovidas para o círculo." CosmosModule="cmSecretarias" ReportFile="frequencia-circulo.fr3" ReportTool="FastReports" ReportRoot="Escola Interna" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODGRU" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMGRU" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Círculo" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="SIGDIS" ParamType="1" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Discipulado" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>
+            <Param ParamName="MES_INICIAL" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask="" Description="Mês Inicial" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="Janeiro;Fevereiro;Março;Abril;Maio;Junho;Julho;Agosto;Setembro;Outubro;Novembro;Dezembro" ValueList="1;2;3;4;5;6;7;8;9;10;11;12" Quoted="0" CaseMode="0" ConvertTo="0" Order="1"/>
+            <Param ParamName="MES_FINAL" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask="" Description="Mês Final" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="Janeiro;Fevereiro;Março;Abril;Maio;Junho;Julho;Agosto;Setembro;Outubro;Novembro;Dezembro" ValueList="1;2;3;4;5;6;7;8;9;10;11;12" Quoted="0" CaseMode="0" ConvertTo="0" Order="2"/>
+            <Param ParamName="ANO_INICIAL" ParamType="0" IsVisible="1" CanEdit="1" EditType="0" ParamMask='0000' Description="Ano Inicial" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>
+            <Param ParamName="ANO_FINAL" ParamType="0" IsVisible="1" CanEdit="1" EditType="0" ParamMask='0000' Description="Ano Final" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="4"/>            
+        </Params>
+    </Report>  
+    <Report>
+        <ReportInfo>
+            <Info ReportId="44" ReportName="Lista geral de alunos" Description="Lista os dados principais de todos os alunos ativos cadastrados no Cosmos." CosmosModule="cmSecretarias" ReportFile="lista-geral-alunos.fr3" ReportTool="FastReports" ReportRoot="Secretaria e Tesouraria Nacional" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Seleciona o foco ao qual os alunos estão ligados." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="CAMTRA-LEC" ParamType="1" IsVisible="0" CanEdit="0" EditType="0" ParamMask="" Description="Campo" MaxLength="0" DefaultValue="LEC" HelpHint="Campo de trabalho: Lectorium Rosicrucianum" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="INDATI" ParamType="3" IsVisible="1" CanEdit="0" EditType="2" ParamMask="" Description="Ativos" MaxLength="0" DefaultValue="Sim" HelpHint="Selecione se a pesquisa buscará alunos ativos ou desligados." SendToServer="1" PickList="Sim;Não" ValueList="" Quoted="1" CaseMode="0" ConvertTo="" Order="2"/>
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask="" Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="Selecione como os dados serão ordenados." SendToServer="1" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="3"/>        
+        </Params>
+    </Report> 
+    <Report>
+        <ReportInfo>
+            <Info ReportId="45" ReportName="Resumo estatístico (regiões administrativas)" Description="Gera estatística sobre os totais de alunos, jovens e simpatizantes de todas as subregiões administrativas." CosmosModule="cmSecretarias" ReportFile="resumo-estatistico-ras.fr3" ReportTool="FastReports" ReportRoot="Secretaria e Tesouraria Nacional" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="MES" ParamType="1" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Mês" MaxLength="0" DefaultValue="CURRENT-MONTHNAME" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="ANO" ParamType="0" IsVisible="1" CanEdit="0" EditType="0" ParamMask='0000' Description="Ano" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+        </Params>
+    </Report> 
+    <Report>
+        <ReportInfo>
+            <Info ReportId="46" ReportName="Totalizações de jovens do TM por região administrativa" Description="Totaliza a quantidade de jovens do Trabalho da Mocidade ativos para cada foco da região ou subregião administrativa indicada." CosmosModule="cmSecretarias" ReportFile="file.fr3" ReportTool="Rave" ReportRoot="Secretaria e Tesouraria Nacional" Version="1.0" Enabled="0"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODREG" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask="" Description="CODREG" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMREG" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Região" MaxLength="70" DefaultValue="" HelpHint="Selecione a região administrativa." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>        
+            <Param ParamName="CURRENT-USER" ParamType="1" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Usuário" MaxLength="70" DefaultValue="CURRENT-USER" HelpHint="Usuário emissor do relatório." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="47" ReportName="Resumo Estatístico por RA" Description="Gera estatística sobre os totais de alunos, jovens e simpatizantes de uma região ou subregião administrativa." CosmosModule="cmSecretarias" ReportFile="resumo-estatistico-filtered.fr3" ReportTool="FastReports" ReportRoot="Secretaria e Tesouraria Nacional" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="MES" ParamType="1" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Mês" MaxLength="0" DefaultValue="CURRENT-MONTHNAME" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="ANO" ParamType="0" IsVisible="1" CanEdit="0" EditType="0" ParamMask='0000' Description="Ano" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="CODREG" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask="" Description="CODREG" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMREG" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Subregião" MaxLength="70" DefaultValue="" HelpHint="Selecione a região administrativa." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>        
+            <Param ParamName="CODPAI" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask="" Description="CODPAI" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="NOMPAI" ParamType="1" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Região" MaxLength="70" DefaultValue="" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>        
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="48" ReportName="Fichas dos alunos" Description="Imprime o prontuário dos alunos com matrículas selecionadas." CosmosModule="cmSecretarias" ReportFile="fichas-alunos.fr3" ReportTool="Fast Reports" ReportRoot="Documentos do aluno" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="MATRICULAS" ParamType="4" IsVisible="1" CanEdit="1" EditType="1" ParamMask='' Description="Alunos" MaxLength="0" DefaultValue="" HelpHint="Selecione uma ou mais matrículas dos alunos." SendToServer="1" PickList="" ValueList="" Quoted="1" CaseMode="2" ConvertTo="" Order="0"/>
+        </Params>
+    </Report>    
+    <Report>
+        <ReportInfo>
+            <Info ReportId="101" ReportName="Crachás de Inscrição" Description="Emite os crachás dos inscritos em uma conferência." CosmosModule="cmConferencias" ReportFile="crachas.fr3" ReportTool="Fast Reports" ReportRoot="Inscrições" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODCON" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask="" Description="CODCON" MaxLength="0" DefaultValue="CODCON-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMCON" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Conferência" MaxLength="0" DefaultValue="NOMCON-CURRENT" HelpHint="Selecione a conferência." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="DATINI" ParamType="2" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Início" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>
+            <Param ParamName="DATTER" ParamType="2" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Término" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="4"/>                        
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="102" ReportName="Crachá de Inscrito" Description="" CosmosModule="cmConferencias" ReportFile="crachas.fr3" ReportTool="Fast Reports" ReportRoot="Inscrições" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODINS" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask="" Description="CODINS" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NUMINS" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Inscrição" MaxLength="0" DefaultValue="" HelpHint="Número da inscrição" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="MATCAD" ParamType="1" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Matrícula" MaxLength="10" DefaultValue="" HelpHint="Matrícula do inscrito." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="NOMCAD" ParamType="1" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Inscrito" MaxLength="0" DefaultValue="" HelpHint="Nome do inscrito." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>
+        </Params>
+    </Report>  
+    <Report>
+        <ReportInfo>
+            <Info ReportId="103" ReportName="Lista de Tarefas" Description="Lista todas as suas tarefas em um formato agrupado por status da tarefa." CosmosModule="cmConferencias" ReportFile="file.fr3" ReportTool="Rave" ReportRoot="Tarefas" Version="1.0" Enabled="0"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODCON" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask="" Description="CODCON" MaxLength="0" DefaultValue="CODCON-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMCON" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Conferência" MaxLength="0" DefaultValue="NOMCON-CURRENT" HelpHint="Selecione a conferência." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Promotor" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>                        
+            <Param ParamName="DATINI" ParamType="2" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Início" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>
+            <Param ParamName="DATTER" ParamType="2" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Término" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="4"/>            
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="104" ReportName="Lista de Inscritos" Description="Lista geral de inscritos em uma conferência." CosmosModule="cmConferencias" ReportFile="inscritos.fr3" ReportTool="Fast Reports" ReportRoot="Inscrições" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODCON" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask="" Description="CODCON" MaxLength="0" DefaultValue="CODCON-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMCON" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Conferência" MaxLength="0" DefaultValue="NOMCON-CURRENT" HelpHint="Seleciona a conferência." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="DATINI" ParamType="2" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Início" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>
+            <Param ParamName="DATTER" ParamType="2" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Término" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>            
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="105" ReportName="Inscritos Desalojados" Description="" CosmosModule="cmConferencias" ReportFile="file.fr3" ReportTool="Rave" ReportRoot="Inscrições" Version="1.0" Enabled="0"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODCON" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask="" Description="CODCON" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMCON" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Conferência" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Promotor" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>                        
+            <Param ParamName="DATINI" ParamType="2" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Início" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>
+            <Param ParamName="DATTER" ParamType="2" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Término" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="4"/>            
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="106" ReportName="Mapa dos Alojamentos" Description="" CosmosModule="cmConferencias" ReportFile="file.fr3" ReportTool="Rave" ReportRoot="Alojamentos" Version="1.0" Enabled="0"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask="" Description="CODCON" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>                        
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="107" ReportName="Informações do Inscrito" Description="" CosmosModule="cmConferencias" ReportFile="file.fr3" ReportTool="Rave" ReportRoot="Inscrições" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>          
+            <Param ParamName="CODCON" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask="" Description="CODCON" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMCON" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Conferência" MaxLength="10" DefaultValue="" HelpHint="Conferência a que se refere o relatório." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="DATINI" ParamType="2" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Início" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="DATTER" ParamType="2" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Término" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>            
+            <Param ParamName="CODITE" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask="" Description="CODINS" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="DESIMP" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Informação" MaxLength="0" DefaultValue="" HelpHint="Informação sobre os inscritos." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>
+        </Params>
+    </Report> 
+    <Report>
+        <ReportInfo>
+            <Info ReportId="108" ReportName="Lista de Staff's" Description="" CosmosModule="cmConferencias" ReportFile="file.fr3" ReportTool="Rave" ReportRoot="Escalas" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODCON" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask="" Description="CODCON" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMCON" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Conferência" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Promotor" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>                        
+            <Param ParamName="DATINI" ParamType="2" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Início" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>
+            <Param ParamName="DATTER" ParamType="2" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Término" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="4"/>            
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="109" ReportName="Folhas de quartos" Description="Emite as folhas de identificação colocadas nas portas dos quartos dos alojamentos." CosmosModule="cmConferencias" ReportFile="folha-quartos.fr3" ReportTool="Fast Reports" ReportRoot="Alojamentos" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODCON" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask="" Description="CODCON" MaxLength="0" DefaultValue="CODCON-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMCON" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Conferência" MaxLength="0" DefaultValue="NOMCON-CURRENT" HelpHint="Selecione a conferência cujos dados serão impressos." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="CODALO" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask="" Description="CODALO" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>                        
+            <Param ParamName="NOMALO" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Alojamento" MaxLength="0" DefaultValue="" HelpHint="Selecione o alojamento para selecionar os quartos envolvidos." SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>
+            <Param ParamName="DATINI" ParamType="2" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Início" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>
+            <Param ParamName="DATTER" ParamType="2" IsVisible="1" CanEdit="0" EditType="0" ParamMask="" Description="Término" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="4"/>                        
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="110" ReportName="Programação da conferência" Description="Lista a programação de atividades da conferência." CosmosModule="cmConferencias" ReportFile="programacao.fr3" ReportTool="Fast Reports" ReportRoot="Conferências" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODCON" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask="" Description="CODCON" MaxLength="0" DefaultValue="CODCON-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMCON" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Conferência" MaxLength="0" DefaultValue="NOMCON-CURRENT" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>                        
+        </Params>
+    </Report>     
+    <Report>
+        <ReportInfo>
+            <Info ReportId="201" ReportName="Lista de perfis" Description="" CosmosModule="cmUsuarios" ReportFile="file.fr3" ReportTool="Rave" ReportRoot="Alunado" Version="1.0" Enabled="0"/>
+        </ReportInfo>
+        <Params>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="202" ReportName="Lista de usuários" Description="" CosmosModule="cmUsuarios" ReportFile="file.fr3" ReportTool="Rave" ReportRoot="Usuários" Version="1.0" Enabled="0"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="0" CanEdit="0" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="1" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="1" CanEdit="0" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="" SendToServer="0" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="CAMTRA" ParamType="1" IsVisible="1" CanEdit="0" EditType="2" ParamMask="" Description="Campo" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="LEC;TM;TP;SIM" ValueList="" Quoted="1" CaseMode="0" ConvertTo="" Order="1"/>
+            <Param ParamName="INDATI" ParamType="3" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ativos" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/> 
+            <Param ParamName="TIPORD" ParamType="5" IsVisible="1" CanEdit="0" EditType="2" ParamMask='' Description="Ordenação" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="1" PickList="Nome;Matrícula" ValueList="NOMCAD;MATCADINT" Quoted="0" CaseMode="0" ConvertTo="1" Order="3"/>
+        </Params>
+    </Report>
+    <Report>
+        <ReportInfo>
+            <Info ReportId="250" ReportName="Sumário de caixas" Description="Sumariza os dados de recebimentos e pagamentos feitos por caixas abertos em determinado período." CosmosModule="cmFinanceiro" ReportFile="sumario-caixas.fr3" ReportTool="Fast Reports" ReportRoot="Caixas" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Foco" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Informe o foco desejado." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="OPERATOR1" ParamType="7" IsVisible="False" CanEdit="False" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="MAIOR-IGUAL" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>            
+            <Param ParamName="MES_INICIAL" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask="" Description="Mês Inicial" MaxLength="0" DefaultValue="CURRENT-MONTHNAME" HelpHint="Mês inicial da pesquisa." SendToServer="True" PickList="Janeiro;Fevereiro;Março;Abril;Maio;Junho;Julho;Agosto;Setembro;Outubro;Novembro;Dezembro" ValueList="1;2;3;4;5;6;7;8;9;10;11;12" Quoted="0" CaseMode="0" ConvertTo="0" Order="2"/>
+            <Param ParamName="OPERATOR2" ParamType="7" IsVisible="False" CanEdit="False" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="MAIOR-IGUAL" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>
+            <Param ParamName="ANO_INICIAL" ParamType="0" IsVisible="True" CanEdit="True" EditType="0" ParamMask='0000' Description="Ano Inicial" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="Ano inicial da pesquisa" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="4"/>
+            <Param ParamName="OPERATOR3" ParamType="7" IsVisible="False" CanEdit="False" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="MENOR-IGUAL" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="5"/>
+            <Param ParamName="MES_FINAL" ParamType="5" IsVisible="True" CanEdit="False" EditType="2" ParamMask="" Description="Mês Final" MaxLength="0" DefaultValue="CURRENT-MONTHNAME" HelpHint="Mês final da pesquisa" SendToServer="True" PickList="Janeiro;Fevereiro;Março;Abril;Maio;Junho;Julho;Agosto;Setembro;Outubro;Novembro;Dezembro" ValueList="1;2;3;4;5;6;7;8;9;10;11;12" Quoted="0" CaseMode="0" ConvertTo="0" Order="6"/>
+            <Param ParamName="OPERATOR4" ParamType="7" IsVisible="False" CanEdit="False" EditType="0" ParamMask="" Description="" MaxLength="0" DefaultValue="MENOR-IGUAL" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="7"/>
+            <Param ParamName="ANO_FINAL" ParamType="0" IsVisible="True" CanEdit="True" EditType="0" ParamMask='0000' Description="Ano Final" MaxLength="4" DefaultValue="CURRENT-YEAR" HelpHint="Ano final da pesquisa" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="8"/>                                
+        </Params>
+    </Report> 
+    <Report>
+        <ReportInfo>
+            <Info ReportId="251" ReportName="Situação do contribuinte" Description="Lista as contribuições feitas pelo contribuinte e suas eventuais pendências." CosmosModule="cmFinanceiro" ReportFile="situacao-contribuinte.fr3" ReportTool="Fast Reports" ReportRoot="Contribuições" Version="1.0" Enabled="1"/>
+        </ReportInfo>
+        <Params>
+            <Param ParamName="CODCAD" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>
+            <Param ParamName="NOMCAD" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask="" Description="Contribuinte" MaxLength="0" DefaultValue="" HelpHint="Informe um contribuinte." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="0"/>            
+            <Param ParamName="ANOREF" ParamType="0" IsVisible="True" CanEdit="True" EditType="0" ParamMask='' Description="Ano" MaxLength="0" DefaultValue="CURRENT-YEAR" HelpHint="Informa o ano de referência a ser considerado na pesquisa." SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>            
+            <Param ParamName="CODFOC" ParamType="0" IsVisible="False" CanEdit="False" EditType="0" ParamMask='' Description="" MaxLength="0" DefaultValue="CODFOC-CURRENT" HelpHint="" SendToServer="True" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="2"/>
+            <Param ParamName="NOMFOC" ParamType="1" IsVisible="True" CanEdit="False" EditType="1" ParamMask='' Description="Favorecido" MaxLength="0" DefaultValue="NOMFOC-CURRENT" HelpHint="Escolha o foco favorecido pelas contribuições." SendToServer="False" PickList="" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="1"/>            
+            <Param ParamName="INDMEN" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Mensalidades" MaxLength="0" DefaultValue="Sim" HelpHint="Considerar contribuições de mensalidades." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="3"/>                        
+            <Param ParamName="INDTAX" ParamType="3" IsVisible="True" CanEdit="False" EditType="2" ParamMask='' Description="Taxas Conf." MaxLength="0" DefaultValue="Sim" HelpHint="Considerar contribuições de taxas de conferências." SendToServer="True" PickList="Sim;Não" ValueList="" Quoted="0" CaseMode="0" ConvertTo="" Order="4"/>
+        </Params>
+    </Report>     
+  
+</Reports>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Este arquivo contém as configurações gerais válidas para todos os usuários.-->
+
+<!-- 
+
+***Explicação para a configuração de ativação/desativação de tipos de logs.***
+ActivateOnConnectSucessLogs: Informa se a geração de logs do servidor está ativa para eventos de conexões feitas com sucesso.
+ActivateOnConnectErrorLogs: Informa se a geração de logs do servidor está ativa para eventos de tentativas de conexões com falha.
+ActivateOnConnectCloseLogs: Informa se a geração de logs do servidor está ativa para eventos de encerramento de conexões.
+ActivateOnAuthenticateSucessLogs: Informa se a geração de logs do servidor está ativa para eventos de autenticação de usuários.
+ActivateOnAuthenticateFailLogs: Informa se a geração de logs do servidor está ativa para eventos de autenticação inválida de usuários.
+ActivateOnMethodsCallSucessLogs: Informa se a geração de logs do servidor está ativa para eventos de chamadas de métodos remotos.
+ActivateOnMethodsCallFailLogs: Informa se a geração de logs do servidor está ativa para eventos de falhas e chamadas de métodos remotos.
+ActivateOnApplicationFailLogs: Informa se a geração de logs do servidor está ativa para eventos de falhas gerais na aplicação cliente. 
+
+
+***Convenções importantes com relação a nomes de chaves. ***
+
+- Em nomes de chaves que fazem referências a módulos do Cosmos, os caracteres "cm" iniciais (de "Cosmos Module") devem SEMPRE estar em minúsculos. Exemplos:
+
+  cmConferencias: correto.
+  CmConferencias: ERRADO.
+
+-->
+
+<CosmosConfigurations>
+	<CurrentPaths> <!-- Pastas importantes para as aplicações Cosmos.-->
+		<InstallPaths InstallationPath="value001" HelpPath="value002" BufferedDataPath="value003"/>
+		<SystemPaths LocalAppDataPath="value004"/>
+		<ToolsPaths ReportsFilesPath="value005" TasksFilesPath="value006"/>        
+		<OthersPaths CosmosDefaultFilesPath="value007" ConfigPath="value008"/>        
+	</CurrentPaths>
+	<UpdatesInfo> <!-- Configurações gerais relacionadas a auto atualização das aplicações Cosmos.-->
+		<Info AutoUpdate="false" Protocol="1" UpdatesRootFolder="value010" UpdatesHistoricFile="value011" Updater="value012" UpdatesSourceFile="value013" OnNewUpdate="2"/>
+		<FTP Host="127.0.0.1" Port="80" ConnectTimeout="10000" ReadTimeout="10000" IPVersion="0" BoundIP="" BoundPort="-1" UserName="" Password="" ProxyHost="" ProxyPort="-1" ProxyUserName="" ProxyPassword="" TransferTimeout="5000" ExternalIp=""/>
+		<Network Host="127.0.0.1" Port="80" ConnectTimeout="10000" ReadTimeout="10000" IPVersion="0" BoundIP="" BoundPort="-1"/>
+		<HTTP Host="http://www.danieleteti.it/wp-content/uploads/2009/10/datasnapfilterscompendium.zip" ConnectTimeout="10000" ReadTimeout="10000" UserName="cosmos" Password="tuChZVqjpumw4KhlUqPH7w==" ProxyHost="" ProxyPort="-1" ProxyUserName="" ProxyPassword="" TransferTimeout="5000"/>
+	</UpdatesInfo>        
+	<EmailInfo> <!-- Configurações gerais relacionadas ao envio de emails.-->
+		<Info AuthenticationMode="0" SMTPHost="" SMTPPort="80" SMTPUser="" SMTPPass=""/>
+	</EmailInfo>
+	<LogsInfo> <!-- Configurações gerais relacionadas ao registro de logs das aplicações Cosmos.-->
+		<LogsFile>
+			<Info LogsFilesPath="value014" MaxFileSize="524288"/> <!--Local dos arquivos de log e tamanho máximo de cada arquivo, em bytes. -->       
+		</LogsFile>        
+		<cmConferencias>
+			<Info ActivateOnConnectSucessLogs="True" ActivateOnConnectErrorLogs="True" ActivateOnConnectCloseLogs="True" ActivateOnAuthenticateSucessLogs="True" ActivateOnAuthenticateFailLogs="True" ActivateOnMethodsCallSucessLogs="True" ActivateOnMethodsCallFailLogs="True" ActivateOnApplicationFailLogs="False" ActivateOnInformationLogs="True" ActivateOnWarningLogs="False"/>
+			<FileName CurrentFile=""/>
+		</cmConferencias>
+		<cmFinanceiro>
+			<Info ActivateOnConnectSucessLogs="True" ActivateOnConnectErrorLogs="True" ActivateOnConnectCloseLogs="True" ActivateOnAuthenticateSucessLogs="True" ActivateOnAuthenticateFailLogs="True" ActivateOnMethodsCallSucessLogs="True" ActivateOnMethodsCallFailLogs="True" ActivateOnApplicationFailLogs="False" ActivateOnInformationLogs="True" ActivateOnWarningLogs="False"/>
+			<FileName CurrentFile=""/>            
+		</cmFinanceiro>
+		<cmFocos>
+			<Info ActivateOnConnectSucessLogs="True" ActivateOnConnectErrorLogs="True" ActivateOnConnectCloseLogs="True" ActivateOnAuthenticateSucessLogs="True" ActivateOnAuthenticateFailLogs="True" ActivateOnMethodsCallSucessLogs="True" ActivateOnMethodsCallFailLogs="True" ActivateOnApplicationFailLogs="False" ActivateOnInformationLogs="True" ActivateOnWarningLogs="False"/>
+			<FileName CurrentFile=""/>
+		</cmFocos>
+		<cmSecretarias>
+			<Info ActivateOnConnectSucessLogs="True" ActivateOnConnectErrorLogs="True" ActivateOnConnectCloseLogs="True" ActivateOnAuthenticateSucessLogs="True" ActivateOnAuthenticateFailLogs="True" ActivateOnMethodsCallSucessLogs="True" ActivateOnMethodsCallFailLogs="True" ActivateOnApplicationFailLogs="False" ActivateOnInformationLogs="True" ActivateOnWarningLogs="False"/>
+			<FileName CurrentFile=""/>            
+		</cmSecretarias>
+		<cmUsuarios>
+			<Info ActivateOnConnectSucessLogs="True" ActivateOnConnectErrorLogs="True" ActivateOnConnectCloseLogs="True" ActivateOnAuthenticateSucessLogs="True" ActivateOnAuthenticateFailLogs="True" ActivateOnMethodsCallSucessLogs="True" ActivateOnMethodsCallFailLogs="True" ActivateOnApplicationFailLogs="False" ActivateOnInformationLogs="True" ActivateOnWarningLogs="False"/>
+			<FileName CurrentFile=""/>            
+		</cmUsuarios>
+	</LogsInfo>
+	<ReceiptsInfo> <!-- Configurações gerais relacionadas à impressão de recibos.-->
+		<Info Printer="" PaperHeight="0" PaperWidth="0" ReceiptsInfo="Cabeçalho=&#xA;Corpo (Linha 1)=&#xA;Corpo (Linha 2)=&#xA;Corpo (Linha 3)=&#xA;Rodapé=&#xA;"/>
+	</ReceiptsInfo>    
+</CosmosConfigurations>

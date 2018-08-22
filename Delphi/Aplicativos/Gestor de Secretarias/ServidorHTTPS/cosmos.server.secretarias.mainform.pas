@@ -6,8 +6,7 @@ uses
   Winapi.Messages, System.SysUtils, System.Variants, System.IniFiles,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   Vcl.AppEvnts, Vcl.StdCtrls,  Cosmos.System.Messages, Cosmos.Classes.Application,
-  cosmos.servers.common.httpsengine, cosmos.system.files; {IdHTTPWebBrokerBridge,
-  IdSSLOpenSSL, IdSchedulerOfThreadPool}
+  cosmos.servers.common.httpsengine, cosmos.system.files;
 
 type
   TFrmServerMainForm = class(TForm)
@@ -30,11 +29,6 @@ type
     sPrivateKey: string;
     APort: integer;
     FServer: TSampleHTTPSEngine;
-    //FServer: TIdHTTPWebBrokerBridge;
-    //FSchedulerOfThreadPool: TIdSchedulerOfThreadPool;
-
-    //procedure StartServer;
-    //procedure OnGetSSLPassword(var APassword: String);
 
   public
     { Public declarations }
@@ -71,14 +65,10 @@ procedure TFrmServerMainForm.ButtonStopClick(Sender: TObject);
 begin
   TerminateThreads;
   FServer.StopServer;
-  {FServer.Active := False;
-  FServer.ClearBindings;
-  FServer.Bindings.Clear;}
 end;
 
 procedure TFrmServerMainForm.FormCreate(Sender: TObject);
 var
-  //LIOHandleSSL: TIdServerIOHandlerSSLOpenSSL;
   aStarterFile: TIniFile;
   MaxConnections:Integer;
   AFileName, CertFile, RootCertFile, KeyFile: string;
@@ -109,26 +99,6 @@ begin
   CosmosApp.Free;
  end;
 
-  {//Cria o objeto que implementa o servidor https.
-  FServer := TIdHTTPWebBrokerBridge.Create(Self);
-  //Pool de threads. Veja: http://blog.marcocantu.com/blog/datasnap_deployment_performance.html
-  FSchedulerOfThreadPool := TIdSchedulerOfThreadPool.Create(FServer);
-  FSchedulerOfThreadPool.PoolSize := 50;
-  FServer.Scheduler := FSchedulerOfThreadPool;
-
-  //Configurações SSL.
-  LIOHandleSSL := TIdServerIOHandlerSSLOpenSSL.Create(FServer);
-  LIOHandleSSL.SSLOptions.CertFile := CertFile;
-  LIOHandleSSL.SSLOptions.RootCertFile := RootCertFile;
-  LIOHandleSSL.SSLOptions.KeyFile := KeyFile;
-  LIOHandleSSL.OnGetPassword := OnGetSSLPassword;
-  FServer.IOHandler := LIOHandleSSL;
-
-  //Atribui algumas configurações importantes ao servidor https.
-  FServer.MaxConnections := MaxConnections;
-  FServer.KeepAlive := True;
-  self.StartServer;}
-
   FServer := TSampleHTTPSEngine.Create(CertFile, RootCertFile, KeyFile, sPrivateKey, MaxConnections);
   FServer.DefaultPort := APort;
   FServer.StartServer;
@@ -154,20 +124,5 @@ begin
  TLabel(Sender).Font.Style := [fsUnderline];
 end;
 
-{procedure TFrmServerMainForm.OnGetSSLPassword(var APassword: String);
-begin
- APassword := sPrivateKey;
-end;
-
-procedure TFrmServerMainForm.StartServer;
-begin
-  if not FServer.Active then
-   begin
-    FServer.Bindings.Clear;
-    FServer.DefaultPort := APort;
-    FServer.Active := True;
-    LblPort.Caption := APort.ToString;
-   end;
-end; }
 
 end.
