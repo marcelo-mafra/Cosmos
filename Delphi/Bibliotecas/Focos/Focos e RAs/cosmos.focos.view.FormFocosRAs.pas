@@ -7,12 +7,12 @@ uses
   Dialogs, cosmos.framework.view.FrmDocked, ActnList, ImgList, cosmos.system.messages,
   cosmos.frames.FrameFocos, Menus, ExtCtrls, GroupHeader, ComCtrls, StdCtrls, GraphicHeader,
   cosmos.framework.datanavigators.treeview, PlatformDefaultStyleActnCtrls,
-  ActnMan, ToolWin, ActnCtrls, cosmos.framework.interfaces.Root,
+  ActnMan, ToolWin, ActnCtrls, cosmos.framework.interfaces.Root, cosmos.business.focos.helpers,
   cosmos.business.focos, System.Actions, System.Rtti, System.Bindings.Outputs,
   Vcl.Bind.Editors, Data.Bind.EngExt, Vcl.Bind.DBEngExt, Data.Bind.Components,
   Data.Bind.DBScope, Data.DB, Datasnap.DBClient, cosmos.system.formsconst,
   cosmos.framework.interfaces.DataAcess, cosmos.classes.ServerInterface,
-  Vcl.ActnPopup;
+  Vcl.ActnPopup, System.ImageList;
 
 type
   TFrmFocosRAs = class(TFrmCosmosDocked)
@@ -228,49 +228,49 @@ begin
    tfSedeNacional:
     begin
      self.LblFocusName.Caption := self.FmeFocos1.GetSelectedFocusData.nomfoc;
-     self.LblTipoFoco.Caption := TFocusTypesInfo.FocusTypeToString(tfSedeNacional);
+     self.LblTipoFoco.Caption := tfSedeNacional.AsString;
      self.LblSiglaFoco.Caption := self.FmeFocos1.GetSelectedFocusData.sigfoc;
      MainPage.ActivePageIndex := 2
     end;
    tfSedeInternacional:
     begin
      self.LblFocusName.Caption := self.FmeFocos1.GetSelectedFocusData.nomfoc;
-     self.LblTipoFoco.Caption := TFocusTypesInfo.FocusTypeToString(tfSedeInternacional);
+     self.LblTipoFoco.Caption := tfSedeInternacional.AsString;
      self.LblSiglaFoco.Caption := self.FmeFocos1.GetSelectedFocusData.sigfoc;
      MainPage.ActivePageIndex := 2
     end;
    tfCentro:
     begin
      self.LblFocusName.Caption := self.FmeFocos1.GetSelectedFocusData.nomfoc;
-     self.LblTipoFoco.Caption := TFocusTypesInfo.FocusTypeToString(tfCentro);
+     self.LblTipoFoco.Caption := tfCentro.AsString;
      self.LblSiglaFoco.Caption := self.FmeFocos1.GetSelectedFocusData.sigfoc;
      MainPage.ActivePageIndex := 2
     end;
    tfNucleo:
     begin
      self.LblFocusName.Caption := self.FmeFocos1.GetSelectedFocusData.nomfoc;
-     self.LblTipoFoco.Caption := TFocusTypesInfo.FocusTypeToString(tfNucleo);
+     self.LblTipoFoco.Caption := tfNucleo.AsString;
      self.LblSiglaFoco.Caption := self.FmeFocos1.GetSelectedFocusData.sigfoc;
      MainPage.ActivePageIndex := 2
     end;
    tfSala:
     begin
      self.LblFocusName.Caption := self.FmeFocos1.GetSelectedFocusData.nomfoc;
-     self.LblTipoFoco.Caption := TFocusTypesInfo.FocusTypeToString(tfSala);
+     self.LblTipoFoco.Caption := tfSala.AsString;
      self.LblSiglaFoco.Caption := self.FmeFocos1.GetSelectedFocusData.sigfoc;
      MainPage.ActivePageIndex := 2
     end;
    tfNucleoCentro:
     begin
      self.LblFocusName.Caption := self.FmeFocos1.GetSelectedFocusData.nomfoc;
-     self.LblTipoFoco.Caption := TFocusTypesInfo.FocusTypeToString(tfNucleoCentro);
+     self.LblTipoFoco.Caption := tfNucleoCentro.AsString;
      self.LblSiglaFoco.Caption := self.FmeFocos1.GetSelectedFocusData.sigfoc;
      MainPage.ActivePageIndex := 2
     end;
    tfLocal:
     begin
      self.LblFocusName.Caption := self.FmeFocos1.GetSelectedFocusData.nomfoc;
-     self.LblTipoFoco.Caption := TFocusTypesInfo.FocusTypeToString(tfLocal);
+     self.LblTipoFoco.Caption := tfLocal.AsString;
      self.LblSiglaFoco.Caption := self.FmeFocos1.GetSelectedFocusData.sigfoc;
      MainPage.ActivePageIndex := 2
     end;

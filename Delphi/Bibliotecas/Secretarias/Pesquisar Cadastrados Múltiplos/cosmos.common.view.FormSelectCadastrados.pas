@@ -8,7 +8,8 @@ uses
   Cosmos.Framework.Interfaces.DataAcess, Cosmos.Framework.Interfaces.Dialogs,
   StdCtrls, Buttons, ImgList, ActnList, cosmos.frames.gridsearch, cosmos.classes.application,
   cosmos.business.focos, cosmos.system.messages, cosmos.classes.ServerInterface,
-  cosmos.Framework.forms.datadialogs, System.Actions;
+  cosmos.Framework.forms.datadialogs, System.Actions, System.ImageList,
+  cosmos.business.focos.helpers;
 
 type
   TFrmSelectCadastrados = class(TForm, IPesquisaCadastradosMultiplos)
@@ -108,10 +109,10 @@ AFieldValue: string;
 AParams: TCosmosData;
 begin
  AParams := TCosmosData.Create(5);
- AFieldValue := TFocusTypesInfo.CampoTrabalhoToString(self.CampoTrabalho);
+ AFieldValue := self.CampoTrabalho.ShortName.QuotedString;
 
  AParams.WriteValue('CODFOC', ICosmosApp.ActiveFocus.FocusID);
- AParams.WriteValue('CAMDIS', QuotedStr(AFieldValue), 1);
+ AParams.WriteValue('CAMDIS', AFieldValue, 1);
  AParams.WriteValue('INDATI', QuotedStr('S'), 2);
 
 //Executa a pesquisa no servidor remoto passando todos os argumentos de busca.

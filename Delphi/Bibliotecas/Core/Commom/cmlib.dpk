@@ -54,6 +54,7 @@ contains
   cosmos.system.files in '..\..\..\Arquivos Comuns\System\cosmos.system.files.pas',
   cosmos.data.dataobjects in '..\..\..\Arquivos Comuns\Data\cosmos.data.dataobjects.pas',
   cosmos.system.dataconverter in '..\..\..\Arquivos Comuns\System\cosmos.system.dataconverter.pas',
-  cosmos.system.nettypes in '..\..\..\Arquivos Comuns\System\cosmos.system.nettypes.pas';
+  cosmos.system.nettypes in '..\..\..\Arquivos Comuns\System\cosmos.system.nettypes.pas',
+  cosmos.system.types.cmhelpers in '..\..\..\Arquivos Comuns\System\cosmos.system.types.cmhelpers.pas';
 
 end.

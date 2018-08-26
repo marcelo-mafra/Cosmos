@@ -65,7 +65,6 @@ type
   private
     { Private declarations }
     FChanged: boolean;
-    function GetProtocoloDesc(Protocolo: TConnectionProtocol): string; inline;
     procedure SaveConnectionInfo(var AConInfo: PConnection);
     procedure ListConnection(var Item: TListItem; Connection: TClientConnectionInfo);
     procedure PointerToObject(ACon: PConnection; var AConInfo: TClientConnectionInfo);
@@ -208,16 +207,6 @@ begin
  Result.HelpContext := self.HelpContext;
 end;
 
-function TFrmServidores.GetProtocoloDesc(
-  Protocolo: TConnectionProtocol): string;
-begin
- case Protocolo of
-   cpTCP: Result := 'TCP/VPN';
-   cpHTTP: Result := 'HTTP';
-   cpHTTPS: Result := 'HTTPS';
- end;
-end;
-
 function TFrmServidores.LoadBitmap: TBitmap;
 begin
  Result := TBitMap.Create;
@@ -290,7 +279,7 @@ begin
 
       Item := LsvServers.Items.Add;
       Item.Caption := PCon.ConnectionName;
-      Item.SubItems.Add(GetProtocoloDesc(PCon.Protocolo));
+      Item.SubItems.Add(PCon.Protocolo.AsString);
       Item.Data := PCon;
       if PCon.Enabled then
        Item.ImageIndex := 0
@@ -378,11 +367,11 @@ begin
   if Item = nil then //Novo item...
    begin
     Item := LsvServers.Items.Add;
-    Item.SubItems.Add(GetProtocoloDesc(Connection.Protocolo));
+    Item.SubItems.Add(Connection.Protocolo.AsString);
    end
   else   //Atualização de item existente...
    begin
-    Item.SubItems.Strings[0] := GetProtocoloDesc(Connection.Protocolo);
+    Item.SubItems.Strings[0] := Connection.Protocolo.AsString;
     FChanged := True;
    end;
 

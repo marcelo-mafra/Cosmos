@@ -9,7 +9,7 @@ uses
   Provider, cosmos.servers.sqlcommands, cosmos.system.messages,  System.WideStrings,
   Data.dbxCommon, DataSnap.DsSession, cosmos.classes.logs, cosmos.system.exceptions,
   Data.DBXFirebird, cosmos.business.focos, cosmos.business.secretariats,
-  cosmos.classes.persistence.ini, cosmos.system.dataconverter,
+  cosmos.classes.persistence.ini, cosmos.system.dataconverter, cosmos.business.focos.helpers,
   cosmos.servers.common.servicesint, cosmos.servers.common.dao.interfaces;
 
 type
@@ -1026,7 +1026,7 @@ begin
  end;
 
  try
-  sCampoTrabalho := TFocusTypesInfo.CampoTrabalhoToString(TCampoTrabalho(CampoTrabalho));
+  sCampoTrabalho := TCampoTrabalho(CampoTrabalho).ShortName;
   sCommand := Format(TSecretariasCommands.NovaMatricula,[codfoc, QuotedStr(sCampoTrabalho), ANumber]);
 
   ADataset := DAOServices.DoExecuteDQL(sCommand);

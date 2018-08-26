@@ -7,12 +7,12 @@ uses
   System.Classes, Vcl.Controls, Vcl.ComCtrls, Vcl.Forms, System.IniFiles,
   Vcl.StdCtrls, Vcl.ImgList, Vcl.PlatformDefaultStyleActnCtrls, System.Actions,
   Vcl.ActnList, Vcl.ActnMan, Vcl.ActnCtrls, Vcl.ToolWin, Vcl.ExtCtrls,
-  Vcl.Buttons, cosmos.system.winshell, cosmos.tools.view.logs.interfaces,
-  cosmos.classes.application, Vcl.Menus, Xml.xmldom, Xml.XMLIntf,
+  Vcl.Buttons, cosmos.tools.view.logs.interfaces, cosmos.classes.logs.helpers,
+  Vcl.Menus, Xml.xmldom, Xml.XMLIntf,
   Xml.Win.msxmldom, Xml.XMLDoc, cosmos.classes.logs, cosmos.system.messages,
   Cosmos.Framework.Interfaces.Root, cosmos.framework.forms.dlgmessages,
   cosmos.system.types, System.ImageList, cosmos.tools.controller.logsint,
-  cosmos.tools.controller.logs;
+  cosmos.tools.controller.logs, cosmos.tools.controller.lists;
 
 type
   TExecutionMode = (emClient, emServer);
@@ -92,37 +92,29 @@ type
   private
     { Private declarations }
     FCurrentFile: string;
-    FCurrentModule: TCosmosModules;
+    FCurrentPath: string;
     FExecutionMode: TExecutionMode;
     FInstallPath: string;
     FLogsFilesPath: string;
     FLogEvents: TLogEvents;
     FCurrentPos: integer;
     IController: IControllerCosmosLogs;
+    IFilesList: IControllerCosmosLogsList;
 
-    procedure SetCurrentModule(Value: TCosmosModules);
     procedure SetCurrentFile(value: string);
-    procedure LoadFiles;
-    function LoadLogData: TCosmosData;
-    procedure ReadLogFile(const FileName: string);
+    procedure LoadConfigurations;
+    procedure ReadLogs(const FileName: string);
     procedure ResumeData;
-
-    procedure ListLogsFiles(const Path: string);
-    function GetFileNameStart: string;
-
+    procedure ListLogsFiles;
 
   protected
-    //function PriorLog: TCosmosData;
     function PriorLog: IControllerLogInfo;
-    //function NextLog: TCosmosData;
     function NextLog: IControllerLogInfo;
-
 
   public
     { Public declarations }
     property CurrentFile: string read FCurrentFile write SetCurrentFile;
-    property CurrentModule: TCosmosModules read FCurrentModule write SetCurrentModule;
-    property InstallPath: string read FInstallPath;
+    property CurrentPath: string read FCurrentPath;
     property LogEvents: TLogEvents read FLogEvents write FLogEvents;
     property ExecutionMode: TExecutionMode read FExecutionMode write FExecutionMode;
   end;
@@ -174,7 +166,7 @@ begin
     end;
 
  finally
-   LoadFiles;
+   ListLogsFiles;
  end;
 
 end;
@@ -209,7 +201,7 @@ begin
   LogEvents := LogEvents - [leOnAuthenticateSucess, leOnAuthenticateFail];
 
  if CurrentFile <> '' then
-  ReadLogFile(CurrentFile);
+  ReadLogs(CurrentFile);
 end;
 
 procedure TFrmLogsReaderMainForm.ActListConnectionsExecute(Sender: TObject);
@@ -220,7 +212,7 @@ begin
   LogEvents := LogEvents - [leOnConnect, leOnConnectError, leOnConnectClose];
 
  if CurrentFile <> '' then
-  ReadLogFile(CurrentFile);
+  ReadLogs(CurrentFile);
 end;
 
 procedure TFrmLogsReaderMainForm.ActListErrorExecute(Sender: TObject);
@@ -231,7 +223,7 @@ begin
   LogEvents := LogEvents - [leOnError];
 
  if CurrentFile <> '' then
-  ReadLogFile(CurrentFile);
+  ReadLogs(CurrentFile);
 end;
 
 procedure TFrmLogsReaderMainForm.ActListInfoExecute(Sender: TObject);
@@ -242,7 +234,7 @@ begin
   LogEvents := LogEvents - [leOnInformation];
 
  if CurrentFile <> '' then
-  ReadLogFile(CurrentFile);
+  ReadLogs(CurrentFile);
 end;
 
 procedure TFrmLogsReaderMainForm.ActListPrepareExecute(Sender: TObject);
@@ -253,7 +245,7 @@ begin
   LogEvents := LogEvents - [leOnPrepare];
 
  if CurrentFile <> '' then
-  ReadLogFile(CurrentFile);
+  ReadLogs(CurrentFile);
 end;
 
 procedure TFrmLogsReaderMainForm.ActListRemoteCallsExecute(Sender: TObject);
@@ -264,7 +256,7 @@ begin
   LogEvents := LogEvents - [leOnMethodCall, leOnMethodCallError];
 
  if CurrentFile <> '' then
-  ReadLogFile(CurrentFile);
+  ReadLogs(CurrentFile);
 end;
 
 procedure TFrmLogsReaderMainForm.ActListTraceExecute(Sender: TObject);
@@ -275,7 +267,7 @@ begin
   LogEvents := LogEvents - [leOnTrace];
 
  if CurrentFile <> '' then
-  ReadLogFile(CurrentFile);
+  ReadLogs(CurrentFile);
 end;
 
 procedure TFrmLogsReaderMainForm.ActListUnknownExecute(Sender: TObject);
@@ -286,7 +278,7 @@ begin
   LogEvents := LogEvents - [leUnknown];
 
  if CurrentFile <> '' then
-  ReadLogFile(CurrentFile);
+  ReadLogs(CurrentFile);
 end;
 
 procedure TFrmLogsReaderMainForm.ActNextExecute(Sender: TObject);
@@ -307,7 +299,8 @@ end;
 
 procedure TFrmLogsReaderMainForm.ActOpenFileExecute(Sender: TObject);
 begin
- LoadFiles;
+ IFilesList.UpdateFileList;
+ ListLogsFiles;
 end;
 
 procedure TFrmLogsReaderMainForm.ActPriorExecute(Sender: TObject);
@@ -333,18 +326,20 @@ end;
 
 procedure TFrmLogsReaderMainForm.ActUpdateExecute(Sender: TObject);
 begin
- ReadLogFile(CurrentFile);
+ ReadLogs(CurrentFile);
 end;
 
 procedure TFrmLogsReaderMainForm.CBXCosmosAppChange(Sender: TObject);
 begin
  case CBXCosmosApp.ItemIndex of
-  0: CurrentModule := cmSecretarias;
-  1: CurrentModule := cmConferencias;
-  2: CurrentModule := cmFinanceiro;
-  3: CurrentModule := cmUsuarios;
-  4: CurrentModule := cmFocos;
+  0: IFilesList.CosmosModule := cmSecretarias;
+  1: IFilesList.CosmosModule := cmConferencias;
+  2: IFilesList.CosmosModule := cmFinanceiro;
+  3: IFilesList.CosmosModule := cmUsuarios;
+  4: IFilesList.CosmosModule := cmFocos;
  end;
+
+ ListLogsFiles;
 end;
 
 procedure TFrmLogsReaderMainForm.ActListWarningsExecute(Sender: TObject);
@@ -355,7 +350,7 @@ begin
   LogEvents := LogEvents - [leOnWarning];
 
  if CurrentFile <> '' then
-  ReadLogFile(CurrentFile);
+  ReadLogs(CurrentFile);
 end;
 
 procedure TFrmLogsReaderMainForm.FormCreate(Sender: TObject);
@@ -365,8 +360,6 @@ begin
  LogEvents := [leOnAuthenticateSucess, leOnAuthenticateFail, leOnError, leOnInformation,
     leOnPrepare, leOnMethodCall, leOnMethodCallError]; //padrão.
 
-{Carrega as configurações de registro de logs do servidor em execução.}
-
 //Recupera a pasta onde se encontra a aplicação ou módulo.
  GetModuleFileName(0, Buffer, SizeOf(Buffer));
  FInstallPath := Buffer;
@@ -375,68 +368,44 @@ begin
  {Define quais logs serão lidos. Caso o arquivo CosmosRoot.ini esteja presente,
   isso indica que está-se rodando em uma instalação do servidor. Do contrário,
   estamos em uma instalação cliente.}
- if FileExists(InstallPath + 'CosmosRoot.ini') then
+ if FileExists(FInstallPath + 'CosmosRoot.ini') then
   ExecutionMode := emServer
  else
   ExecutionMode := emClient;
 
- CurrentModule := cmSecretarias;
+ LoadConfigurations;
+
+ IFilesList := TControllerCosmosLogsList.New(CurrentPath);
+ IFilesList.CosmosModule := cmSecretarias; //default.
+ ListLogsFiles;
 end;
 
 procedure TFrmLogsReaderMainForm.FormDestroy(Sender: TObject);
 begin
+ IFilesList := nil;
  IController := nil;
 end;
 
-function TFrmLogsReaderMainForm.GetFileNameStart: string;
+procedure TFrmLogsReaderMainForm.ListLogsFiles;
 begin
- case CurrentModule of
-   cmFocos, cmFocosServer: Result := TCosmosAppName.CosmosFocosShort;
-   cmSecretarias, cmSecretariasServer: Result := TCosmosAppName.CosmosSecretariasShort;
-   cmFinanceiro, cmFinanceiroServer: Result := TCosmosAppName.CosmosFinanceiroShort;
-   cmConferencias, cmConferenciasServer: Result := TCosmosAppName.CosmosConferenciasShort;
-   cmUsuarios, cmUsuariosServer: Result := TCosmosAppName.CosmosUsuariosShort;
- end;
-end;
-
-procedure TFrmLogsReaderMainForm.ListLogsFiles(const Path: string);
-var
- AList, ACurrentModule: TStringList;
- sFileNameStart, sFileName: string;
- I: integer;
-begin
-{Carrega as configurações de registro de logs do servidor em execução.}
- AList := TStringList.Create;
- ACurrentModule := TStringList.Create;
-
+{Lista os arquivos de logs existentes na pasta "CurrentPath".}
  try
-  if Path <> '' then
+  if (IFilesList <> nil) and not (CurrentPath.Trim.IsEmpty) then
    begin
     LstFiles.Items.BeginUpdate;
     LstFiles.Items.Clear;
-    TShellFiles.FilesOfFolder(Path, 'log', AList);
+    LstFiles.Items.Assign(IFilesList.FilesList);
 
-    sFileNameStart := self.GetFileNameStart;
-
-    for I := 0 to Pred(AList.Count) do
-      begin
-        sFileName := AList.Strings[I];
-        if sFileName.Contains(sFileNameStart) then
-         ACurrentModule.Append(AList.Strings[I]);
-      end;
-
-    LstFiles.Items.Assign(ACurrentModule);
     LstFiles.Items.EndUpdate;
 
-    if LstFiles.Items.Count > 0 then
+    if IFilesList.Count > 0 then
      begin
-      LstFiles.Selected[0] := True;
+      LstFiles.Selected[0] := True; //Seleciona o primeiro arquivo listado.
       LstFiles.OnClick(LstFiles);
      end;
-   end;
-
-  AList.Free;
-  ACurrentModule.Free;
+   end
+  else
+   raise Exception.Create('Error Message');
 
  except
   on E: Exception do
@@ -447,7 +416,7 @@ begin
 
 end;
 
-procedure TFrmLogsReaderMainForm.LoadFiles;
+procedure TFrmLogsReaderMainForm.LoadConfigurations;
 var
   AFile: TIniFile;
   AXMLFile: TXMLDocument;
@@ -458,7 +427,7 @@ begin
  case ExecutionMode of
    emClient: //ler os logs do cliente.
      begin
-      AFileName := InstallPath + 'CosmosFolders.ini';
+      AFileName := FInstallPath + 'CosmosFolders.ini';
       AFile := TIniFile.Create(AFileName);
       AFileName := AFile.ReadString('CurrentPaths', 'CommonAppDataPath', '');
       AFileName := AFileName + 'ConfigurationsAll.xml';
@@ -488,12 +457,12 @@ begin
      end;
    emServer: //ler os logs do servidor.
      begin
-      AFileName := InstallPath + 'CosmosRoot.ini';
+      AFileName := FInstallPath + 'CosmosRoot.ini';
       AFile := TIniFile.Create(AFileName);
 
       try
        //Recupera no arquivo de configurações do servidor onde estão os arquivos de logs.
-       FLogsFilesPath := AFile.ReadString('LOGS', 'ServerLogsPath', '');
+       FCurrentPath := AFile.ReadString('LOGS', 'ServerLogsPath', '');
        if FLogsFilesPath = '' then
         raise Exception.Create('Error Message');
 
@@ -510,27 +479,9 @@ begin
 
  if Assigned(AFile) then FreeAndNil(AFile);
  if Assigned(AXMLFile) then FreeAndNil(AXMLFile);
- ListLogsFiles(FLogsFilesPath);
+
 end;
 
-
-function TFrmLogsReaderMainForm.LoadLogData: TCosmosData;
-var
- AItem: TListItem;
-begin
- if LsvLogsData.Selected <> nil then
-  begin
-   Result := TCosmosData.Create(20);
-   AItem := LsvLogsData.Selected;
-   Result.WriteValue('LOGDATE', AItem.Caption);
-   Result.WriteValue('LOGGEN', AItem.SubItems.Strings[0], 1);
-   Result.WriteValue('LOGTYPE', AItem.SubItems.Strings[1], 2);
-   Result.WriteValue('LOGINFO', AItem.SubItems.Strings[2], 3);
-   Result.WriteValue('LOGCONTEXT', AItem.SubItems.Strings[3], 4);
-  end
-  else
-   Result := nil;
-end;
 
 procedure TFrmLogsReaderMainForm.LstFilesClick(Sender: TObject);
 var
@@ -555,10 +506,11 @@ begin
  Result := IController.Next;
 end;
 
-procedure TFrmLogsReaderMainForm.ReadLogFile(const FileName: string);
+procedure TFrmLogsReaderMainForm.ReadLogs(const FileName: string);
  var
   AItem: TListItem;
 begin
+ {Lê e apresenta o conteúdo de um arquivo de log. }
   IController := TControllerCosmosLogs.New(FileName);
 
   try
@@ -580,59 +532,15 @@ begin
 
       //Pega a app Cosmos geradora do log.
       AItem.SubItems.Append(IController.Current.Source);
+      AItem.SubItems.Append(IController.Current.LogType.LogEventName);
 
-      case IController.Current.LogType of
-        leOnInformation:
-         begin
-          AItem.ImageIndex := 0;
-          AItem.SubItems.Append(TCosmosLogs.InfoLogType);
-         end;
-        leOnError:
-         begin
-          AItem.ImageIndex := 3;
-          AItem.SubItems.Append(TCosmosLogs.ErrorLogType);
-         end;
-        leOnPrepare:
-         begin
-          AItem.ImageIndex := 2;
-          AItem.SubItems.Append(TCosmosLogs.PrepareLogType);
-         end;
-        leOnTrace:
-         begin
-          AItem.ImageIndex := 4;
-          AItem.SubItems.Append(TCosmosLogs.TraceLogType);
-         end;
-        leOnAuthenticateSucess, leOnAuthenticateFail:
-         begin
-          AItem.ImageIndex := 1;
-          AItem.SubItems.Append(TCosmosLogs.AuthLogType);
-         end;
-        leOnAuthorize:
-         begin
-          AItem.ImageIndex := 1;
-          AItem.SubItems.Append(TCosmosLogs.AutLogType);
-         end;
-        leOnConnect, leOnConnectError, leOnConnectClose:
-         begin
-          AItem.ImageIndex := 5;
-          AItem.SubItems.Append(TCosmosLogs.ConLogType);
-         end;
-        leOnMethodCall, leOnMethodCallError:
-         begin
-          AItem.ImageIndex := 6;
-          AItem.SubItems.Append(TCosmosLogs.RemoteCallLogType);
-         end;
-        leUnknown:
-         begin
-          AItem.ImageIndex := 7;
-          AItem.SubItems.Append(TCosmosLogs.UnknownLogType);
-         end;
-      end;
       //Pega a mensagem do log.
       AItem.SubItems.Append(IController.Current.Info);
       //Pega a mensagem de contexto de execução do log.
       AItem.SubItems.Append(IController.Current.Context);
       AItem.SubItems.Append(IController.Current.Index.ToString);
+
+      AItem.ImageIndex := IController.Current.LogType.LogEventIndex;
 
       IController.Next;
     end;
@@ -665,16 +573,7 @@ end;
 procedure TFrmLogsReaderMainForm.SetCurrentFile(value: string);
 begin
  FCurrentFile := Value;
- ReadLogFile(FCurrentFile);
-end;
-
-procedure TFrmLogsReaderMainForm.SetCurrentModule(Value: TCosmosModules);
-begin
- if FCurrentModule <> Value then
-  begin
-    FCurrentModule := Value;
-    LoadFiles;
-  end;
+ ReadLogs(CurrentFile);
 end;
 
 function TFrmLogsReaderMainForm.PriorLog: IControllerLogInfo;

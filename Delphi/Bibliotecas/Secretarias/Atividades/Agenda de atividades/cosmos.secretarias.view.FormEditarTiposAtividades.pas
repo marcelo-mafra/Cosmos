@@ -10,7 +10,7 @@ uses
   ValueComboBox, DBValueComboBox, cosmos.classes.application, cosmos.business.focos,
   cosmos.classes.ServerInterface, cosmos.classes.security, Data.SqlExpr,
   System.Actions, Data.DBXCommon, cosmos.system.exceptions, Datasnap.DSConnect,
-  cosmos.system.dataconverter, System.ImageList;
+  cosmos.system.dataconverter, System.ImageList, cosmos.business.focos.helpers;
 
 type
   TFrmEditarTiposAtividades = class(TForm)
@@ -113,11 +113,12 @@ end;
 procedure TFrmEditarTiposAtividades.CdsTiposAtividadesAfterInsert(
   DataSet: TDataSet);
 begin
+
  with Dataset.Fields do
   begin
     FieldByName('indfre').Value := TDataConverter.ToBoleanString(True);
     FieldByName('indescint').Value := TDataConverter.ToBoleanString(False);
-    FieldByName('campro').Value := TFocusTypesInfo.CampoTrabalhoToString(ctLectorium);
+    FieldByName('campro').Value := ctLectorium.ShortName; //default
     FieldByName('indest').Value := TDataConverter.ToBoleanString(True);
     FieldByName('indati').Value := TDataConverter.ToBoleanString(True);
   end;

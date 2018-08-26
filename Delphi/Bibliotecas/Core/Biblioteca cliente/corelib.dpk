@@ -45,6 +45,7 @@ contains
   cosmos.business.financeiro in '..\..\..\Arquivos Comuns\Classes\Business\cosmos.business.financeiro.pas',
   cosmos.classes.tools.printer in '..\..\..\Arquivos Comuns\Tools\cosmos.classes.tools.printer.pas',
   cosmos.business.secretariats in '..\..\..\Arquivos Comuns\Classes\Business\cosmos.business.secretariats.pas',
-  cosmos.business.messages in '..\..\..\Arquivos Comuns\Classes\Business\cosmos.business.messages.pas';
+  cosmos.business.messages in '..\..\..\Arquivos Comuns\Classes\Business\cosmos.business.messages.pas',
+  cosmos.business.focos.helpers in '..\..\..\Arquivos Comuns\Classes\Business\cosmos.business.focos.helpers.pas';
 
 end.

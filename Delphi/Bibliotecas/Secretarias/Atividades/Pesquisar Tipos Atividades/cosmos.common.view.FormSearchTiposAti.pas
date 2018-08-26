@@ -7,7 +7,7 @@ uses
   Dialogs, ExtCtrls, GroupHeader, StdCtrls, cosmos.frames.gridsearch, Buttons,
   Cosmos.Framework.Interfaces.Root, Cosmos.Framework.Interfaces.DataAcess,
   Cosmos.Framework.Interfaces.Dialogs, DB, DBClient, ActnList, ImgList,
-  cosmos.classes.application, cosmos.business.focos, System.Actions,
+  cosmos.classes.application, cosmos.business.focos, System.Actions, cosmos.business.focos.helpers,
   cosmos.classes.ServerInterface, cosmos.system.dataconverter, System.ImageList;
 
 type
@@ -199,7 +199,7 @@ begin
     Abort;
 
    IndEI := Value = ctEI;
-   sCampro := TFocusTypesInfo.CampoTrabalhoToString(FCampoTrabalho);
+   sCampro := FCampoTrabalho.ShortName;
 
    CdsData.DisableControls;
    if CdsData.Active then CdsData.Close;

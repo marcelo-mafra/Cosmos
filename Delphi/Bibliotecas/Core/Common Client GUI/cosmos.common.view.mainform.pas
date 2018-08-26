@@ -2804,7 +2804,7 @@ begin
 {Acionado como um evento pelo objeto que está sendo "observado", no módulo
  de dados comum de todas as aplicações clientes. A cada troca de status da conexão
  com o servidor, o objeto "observado" notifica o fato para todos que o estão
- observado. No caso deste form ancestral das aplicações Cosmos, o observador é
+ observando. No caso deste form ancestral das aplicações Cosmos, o observador é
   o objeto FConnectionObserver.}
  case Status of
    csHostConnected:

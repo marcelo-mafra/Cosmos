@@ -40,6 +40,7 @@ contains
   cosmos.classes.logs in '..\..\..\Arquivos Comuns\Classes\Logs\cosmos.classes.logs.pas',
   cosmos.classes.logs.textfile in '..\..\..\Arquivos Comuns\Classes\Logs\cosmos.classes.logs.textfile.pas',
   cosmos.classes.logs.controller in '..\..\..\Arquivos Comuns\Classes\Logs\cosmos.classes.logs.controller.pas',
-  Vcl.FastStreams in '..\..\..\Arquivos Comuns\Classes\Logs\Vcl.FastStreams.pas';
+  Vcl.FastStreams in '..\..\..\Arquivos Comuns\Classes\Logs\Vcl.FastStreams.pas',
+  cosmos.classes.logs.helpers in '..\..\..\Arquivos Comuns\Classes\Logs\cosmos.classes.logs.helpers.pas';
 
 end.

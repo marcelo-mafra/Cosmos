@@ -3,10 +3,25 @@ unit cosmos.tools.controller.logsint;
 interface
 
  uses
-  cosmos.classes.logs;
+  cosmos.classes.logs, cosmos.system.types, System.Classes;
 
  type
+  //Representa uma lista de arquivos de logs
+  IControllerCosmosLogsList = interface
+    ['{D4529B58-230B-44FF-BFA8-12D2E8850033}']
 
+   function GetCount: integer;
+   function GetCosmosModule: TCosmosModules;
+   procedure SetCosmosModules(value: TCosmosModules);
+   function GetFilesList: TStrings;
+   procedure UpdateFileList;
+
+   property CosmosModule: TCosmosModules read GetCosmosModule write SetCosmosModules;
+   property Count: integer read GetCount;
+   property FilesList: TStrings read GetFilesList;
+  end;
+
+  //Representa a informação de cada log registrado.
   IControllerLogInfo = interface
     ['{91250F55-913A-45CE-9E33-D822B2C827EC}']
     function GetIndex: integer;
@@ -30,6 +45,7 @@ interface
     property LogType: TLogEvent read GetLogType write SetLogType;
   end;
 
+  //Representa uma coleção de registros de logs em um único arquivo.
   IControllerCosmosLogs = interface
    ['{9C07384E-A3D3-4EFE-9D92-08CFAB3E97FE}']
 

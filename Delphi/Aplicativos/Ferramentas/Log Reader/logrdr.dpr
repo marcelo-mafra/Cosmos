@@ -11,7 +11,8 @@ uses
   cosmos.tools.controller.logsint in 'Controller\cosmos.tools.controller.logsint.pas',
   cosmos.tools.dao.logsint in 'Dao\cosmos.tools.dao.logsint.pas',
   cosmos.tools.dao.logs in 'Dao\cosmos.tools.dao.logs.pas',
-  cosmos.tools.view.messages in 'View\cosmos.tools.view.messages.pas';
+  cosmos.tools.view.messages in 'View\cosmos.tools.view.messages.pas',
+  cosmos.tools.controller.lists in 'Controller\cosmos.tools.controller.lists.pas';
 
 {$R *.res}
 

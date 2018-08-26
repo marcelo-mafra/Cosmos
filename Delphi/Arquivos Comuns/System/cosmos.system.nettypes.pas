@@ -6,6 +6,14 @@ type
   //Representa um protocolo de comunicação com o servidor.
   TConnectionProtocol = (cpTCP, cpHTTP, cpHTTPS);
 
+  TConnectionProtocolHelper = record helper for TConnectionProtocol
+    private
+     function GetAsString: string;
+
+    public
+     property AsString: string read GetAsString;
+  end;
+
   TProtocols = set of TConnectionProtocol;
 
  {Representa a situação de uma conexão como uma sequência de fases e status finais.}
@@ -16,5 +24,16 @@ type
    csTimeoutExpired, csConnectError, csCreatingConnectionsPool, csBufferingData);
 
 implementation
+
+{ TConnectionProtocolHelper }
+
+function TConnectionProtocolHelper.GetAsString: string;
+begin
+ case self of
+   cpTCP: Result := 'TCP/VPN'; //do not localize!
+   cpHTTP: Result := 'HTTP'; //do not localize!
+   cpHTTPS: Result := 'HTTPS'; //do not localize!
+ end;
+end;
 
 end.

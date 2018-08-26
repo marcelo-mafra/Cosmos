@@ -76,8 +76,7 @@ type
 
   TFocusTypesInfo = class
     class function GetFocusType(const FocusType: string): TTipoFoco;
-    class function FocusTypeToString(const FocusType: TTipoFoco): string;
-    class function CampoTrabalhoToString(const Campo: TCampoTrabalho): string;
+
   end;
 
 implementation
@@ -122,35 +121,6 @@ begin
 end;
 
 { TFocusTypesInfo }
-
-class function TFocusTypesInfo.CampoTrabalhoToString(
-  const Campo: TCampoTrabalho): string;
-begin
- case Campo of
-  ctLectorium, ctEI: Result := TCampoTrabalhoShort.Lectorium;
-  ctTM: Result := TCampoTrabalhoShort.TM;
-  ctTMB: Result := TCampoTrabalhoShort.TMB;
-  ctTP: Result := TCampoTrabalhoShort.TP;
-  ctSimpatizantes: Result := TCampoTrabalhoShort.Simpatizantes;
-  ctNone, ctAll: Result := '';
- end;
-end;
-
-class function TFocusTypesInfo.FocusTypeToString(
-  const FocusType: TTipoFoco): string;
-begin
- case FocusType of
-  tfRa: Result := TFocusTypesShort.Ra;
-  tfCentro: Result := TFocusTypesShort.Centro;
-  tfNucleoCentro: Result := TFocusTypesShort.NucleoCentro;
-  tfNucleo: Result := TFocusTypesShort.Nucleo;
-  tfSala: Result := TFocusTypesShort.Sala;
-  tfLocal: Result := TFocusTypesShort.Local;
-  tfUnknown: Result := TFocusTypesShort.Unknown;
-  tfSedeNacional: Result := TFocusTypesShort.SedeNacional;
-  tfSedeInternacional: Result := TFocusTypesShort.SedeInternacional;
- end;
-end;
 
 class function TFocusTypesInfo.GetFocusType(const FocusType: string): TTipoFoco;
 begin

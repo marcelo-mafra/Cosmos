@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, FormDefaultSearchs, Vcl.ImgList,
-  System.Actions, Vcl.ActnList, Data.DB, Datasnap.DBClient, Vcl.StdCtrls,
+  System.Actions, Vcl.ActnList, Data.DB, Datasnap.DBClient, Vcl.StdCtrls, cosmos.business.focos.helpers,
   Vcl.Buttons, Vcl.ExtCtrls, cosmos.frames.gridsearch, ValueComboBox, cosmos.system.files,
   Cosmos.Framework.Interfaces.Dialogs, cosmos.business.focos, cosmos.system.messages,
   cosmos.classes.application, cosmos.classes.ServerInterface, System.ImageList;
@@ -460,8 +460,8 @@ begin
      AParams.WriteValue('AFIELDNAME', AFieldName, 1);
      AParams.WriteValue('AFIELDVALUE', AFieldValue, 2);
 
-     AFieldValue := TFocusTypesInfo.CampoTrabalhoToString(self.CampoTrabalho);
-     AParams.WriteValue('CAMPO', QuotedStr(AFieldValue), 3);
+     AFieldValue := self.CampoTrabalho.ShortName.QuotedString;
+     AParams.WriteValue('CAMPO', AFieldValue, 3);
 
      AParams.WriteValue('INDATI', AStatusCad, 4);
    end;
@@ -494,8 +494,8 @@ begin
      AParams.WriteValue('AFIELDNAME', AFieldName, 1);
      AParams.WriteValue('AFIELDVALUE', AFieldValue, 2);
 
-     AFieldValue := TFocusTypesInfo.CampoTrabalhoToString(self.CampoTrabalho);
-     AParams.WriteValue('CAMPO', QuotedStr(AFieldValue), 3);
+     AFieldValue := self.CampoTrabalho.ShortName.QuotedString;
+     AParams.WriteValue('CAMPO', AFieldValue, 3);
 
      case self.SexoCadastrado of
        scMasculino: AParams.WriteValue('SEXO', QuotedStr('M'), 4);
@@ -526,8 +526,8 @@ begin
      AParams.WriteValue('AFIELDNAME', AFieldName);
      AParams.WriteValue('AFIELDVALUE', AFieldValue, 1);
 
-     AFieldValue := TFocusTypesInfo.CampoTrabalhoToString(self.CampoTrabalho);
-     AParams.WriteValue('CAMPO', QuotedStr(AFieldValue), 2);
+     AFieldValue := self.CampoTrabalho.ShortName.QuotedString;
+     AParams.WriteValue('CAMPO', AFieldValue, 2);
 
      AParams.WriteValue('INDATI', AStatusCad, 3);
    end;
@@ -558,8 +558,8 @@ begin
      AParams.WriteValue('AFIELDNAME', AFieldName);
      AParams.WriteValue('AFIELDVALUE', AFieldValue, 1);
 
-     AFieldValue := TFocusTypesInfo.CampoTrabalhoToString(self.CampoTrabalho);
-     AParams.WriteValue('CAMPO', QuotedStr(AFieldValue), 2);
+     AFieldValue := self.CampoTrabalho.ShortName.QuotedString;
+     AParams.WriteValue('CAMPO', AFieldValue, 2);
 
      case self.SexoCadastrado of
        scMasculino: AParams.WriteValue('SEXO', QuotedStr('M'), 3);

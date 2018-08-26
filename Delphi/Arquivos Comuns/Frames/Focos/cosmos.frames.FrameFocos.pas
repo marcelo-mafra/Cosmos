@@ -10,7 +10,7 @@ uses
   PlatformDefaultStyleActnCtrls, cosmos.classes.ServerInterface, cosmos.business.focos,
   Vcl.ToolWin, System.Actions, cosmos.system.messages, cosmos.system.types,
   Cosmos.Framework.Interfaces.Applications, Data.DBXCommon, Cosmos.Classes.Security,
-  cosmos.system.dataconverter, System.ImageList;
+  cosmos.system.dataconverter, System.ImageList, cosmos.business.focos.helpers;
 
 
 type
@@ -887,7 +887,6 @@ procedure TFmeFocos.ListFocusByType(ADataset: TDataset);
 var
 PFoco: PFocos;
 TypeNode, Node: TTreeNode;
-s: string;
 TipoFoco: TTipoFoco;
 begin
   if not ADataset.Active then
@@ -900,14 +899,13 @@ begin
   while not ADataset.Eof do
    begin
     TipoFoco := TFocusTypesInfo.GetFocusType(ADataset.Fields.FieldByName('tipfoc').AsString);
-    s := TFocusTypesInfo.FocusTypeToString(TipoFoco);
-    TypeNode := FindNode(s);
+    TypeNode := FindNode(TipoFoco.AsString);
 
     if TypeNode = nil then
      begin
       New(PFoco);//Cria um novo ponteiro do record TFocos
       PFoco.codfoc := Ord(tfTypeIndicator);
-      PFoco.nomfoc := s;
+      PFoco.nomfoc := TipoFoco.AsString;
       PFoco.tipfoc := tfTypeIndicator;
       TypeNode := TreeFocos.Items.AddObject(nil, PFoco.nomfoc, PFoco);
 
