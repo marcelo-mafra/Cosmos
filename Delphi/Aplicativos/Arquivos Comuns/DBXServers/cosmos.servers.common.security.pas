@@ -52,6 +52,7 @@ uses
    public
      constructor Create(Module: TCosmosModules);
      destructor Destroy; override;
+     class function New(Module: TCosmosModules): ICosmosUsersManager;
 
      property CosmosServerService: ICosmosService read GetCosmosService;
   end;
@@ -146,7 +147,7 @@ function TCosmosSecurity.CreatePassword: string;
 const
   conso: array [0..19] of Char = ('b', 'c', 'd', 'f', 'g', 'h', 'j',
     'k', 'l', 'm', 'n', 'p', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z');
-  vocal: array [0..4] of Char = ('a', 'e', 'i', 'o', 'u');
+  vogais: array [0..4] of Char = ('a', 'e', 'i', 'o', 'u');
 var
   i: Integer;
 begin
@@ -155,7 +156,7 @@ begin
   for i := 1 to 5 do
     begin
       Result := Result + conso[Random(19)];
-      Result := Result + vocal[Random(4)];
+      Result := Result + vogais[Random(4)];
     end;
 end;
 
@@ -332,6 +333,11 @@ begin
      raise;
    end;
  end;
+end;
+
+class function TCosmosSecurity.New(Module: TCosmosModules): ICosmosUsersManager;
+begin
+ Result := self.Create(Module);
 end;
 
 function TCosmosSecurity.PasswordIsTemporary(

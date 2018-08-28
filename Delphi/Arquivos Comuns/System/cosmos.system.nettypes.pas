@@ -6,6 +6,8 @@ type
   //Representa um protocolo de comunicação com o servidor.
   TConnectionProtocol = (cpTCP, cpHTTP, cpHTTPS);
 
+  TProtocols = set of TConnectionProtocol;
+
   TConnectionProtocolHelper = record helper for TConnectionProtocol
     private
      function GetAsString: string;
@@ -13,8 +15,6 @@ type
     public
      property AsString: string read GetAsString;
   end;
-
-  TProtocols = set of TConnectionProtocol;
 
  {Representa a situação de uma conexão como uma sequência de fases e status finais.}
  TConnectionStatus = (csOnConnectingHost, csHostConnected, csVerifyingIdentity,

@@ -3,10 +3,10 @@
         <ProjectGuid>{993AF2CC-3FB1-49CC-8297-C5876C479DCE}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="ServidorHTTPS\confserapp.dproj">
+        <Projects Include="Windows Service\confsvc.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="Windows Service\confsvc.dproj">
+        <Projects Include="ServidorHTTPS\confserapp.dproj">
             <Dependencies/>
         </Projects>
         <Projects Include="..\..\Bibliotecas\Server Libraries\SQLCommands\sqlcmd.dproj">
@@ -203,15 +203,6 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="confserapp">
-        <MSBuild Projects="ServidorHTTPS\confserapp.dproj"/>
-    </Target>
-    <Target Name="confserapp:Clean">
-        <MSBuild Projects="ServidorHTTPS\confserapp.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="confserapp:Make">
-        <MSBuild Projects="ServidorHTTPS\confserapp.dproj" Targets="Make"/>
-    </Target>
     <Target Name="confsvc">
         <MSBuild Projects="Windows Service\confsvc.dproj"/>
     </Target>
@@ -220,6 +211,15 @@
     </Target>
     <Target Name="confsvc:Make">
         <MSBuild Projects="Windows Service\confsvc.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="confserapp">
+        <MSBuild Projects="ServidorHTTPS\confserapp.dproj"/>
+    </Target>
+    <Target Name="confserapp:Clean">
+        <MSBuild Projects="ServidorHTTPS\confserapp.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="confserapp:Make">
+        <MSBuild Projects="ServidorHTTPS\confserapp.dproj" Targets="Make"/>
     </Target>
     <Target Name="sqlcmd">
         <MSBuild Projects="..\..\Bibliotecas\Server Libraries\SQLCommands\sqlcmd.dproj"/>
@@ -780,13 +780,13 @@
         <MSBuild Projects="..\Ferramentas\Log Reader\logrdr.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="confserapp;confsvc;sqlcmd;serverdataobj;shellib;cmlib;logwrt;corelib;secmod;interfaces;dlgmessage;cmpersist;wmanager;cmdialogs;svcutils;cmcon;confcon;cmgui;gconf;defwiz;dockedform;frames;helplib;events;cmmodules;tabace;confwin;cmpages;pgservers;pglogs;pgemail;pgui;pgupdater;pgmenu;splash;coninfo;opfocus;searcher;locdata;ficha;dlgexporter;exporter;repcen;cenpes;updater;conferencias;novaconf;pescon;agenda;dlgagenda;pesati;alojamentos;classificadores;pesalo;wzaloj;pescad;inscricoes;detinscricoes;impinsc;pesinsc;fmeareas;staff;areastaff;logrdr"/>
+        <CallTarget Targets="confsvc;confserapp;sqlcmd;serverdataobj;shellib;cmlib;logwrt;corelib;secmod;interfaces;dlgmessage;cmpersist;wmanager;cmdialogs;svcutils;cmcon;confcon;cmgui;gconf;defwiz;dockedform;frames;helplib;events;cmmodules;tabace;confwin;cmpages;pgservers;pglogs;pgemail;pgui;pgupdater;pgmenu;splash;coninfo;opfocus;searcher;locdata;ficha;dlgexporter;exporter;repcen;cenpes;updater;conferencias;novaconf;pescon;agenda;dlgagenda;pesati;alojamentos;classificadores;pesalo;wzaloj;pescad;inscricoes;detinscricoes;impinsc;pesinsc;fmeareas;staff;areastaff;logrdr"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="confserapp:Clean;confsvc:Clean;sqlcmd:Clean;serverdataobj:Clean;shellib:Clean;cmlib:Clean;logwrt:Clean;corelib:Clean;secmod:Clean;interfaces:Clean;dlgmessage:Clean;cmpersist:Clean;wmanager:Clean;cmdialogs:Clean;svcutils:Clean;cmcon:Clean;confcon:Clean;cmgui:Clean;gconf:Clean;defwiz:Clean;dockedform:Clean;frames:Clean;helplib:Clean;events:Clean;cmmodules:Clean;tabace:Clean;confwin:Clean;cmpages:Clean;pgservers:Clean;pglogs:Clean;pgemail:Clean;pgui:Clean;pgupdater:Clean;pgmenu:Clean;splash:Clean;coninfo:Clean;opfocus:Clean;searcher:Clean;locdata:Clean;ficha:Clean;dlgexporter:Clean;exporter:Clean;repcen:Clean;cenpes:Clean;updater:Clean;conferencias:Clean;novaconf:Clean;pescon:Clean;agenda:Clean;dlgagenda:Clean;pesati:Clean;alojamentos:Clean;classificadores:Clean;pesalo:Clean;wzaloj:Clean;pescad:Clean;inscricoes:Clean;detinscricoes:Clean;impinsc:Clean;pesinsc:Clean;fmeareas:Clean;staff:Clean;areastaff:Clean;logrdr:Clean"/>
+        <CallTarget Targets="confsvc:Clean;confserapp:Clean;sqlcmd:Clean;serverdataobj:Clean;shellib:Clean;cmlib:Clean;logwrt:Clean;corelib:Clean;secmod:Clean;interfaces:Clean;dlgmessage:Clean;cmpersist:Clean;wmanager:Clean;cmdialogs:Clean;svcutils:Clean;cmcon:Clean;confcon:Clean;cmgui:Clean;gconf:Clean;defwiz:Clean;dockedform:Clean;frames:Clean;helplib:Clean;events:Clean;cmmodules:Clean;tabace:Clean;confwin:Clean;cmpages:Clean;pgservers:Clean;pglogs:Clean;pgemail:Clean;pgui:Clean;pgupdater:Clean;pgmenu:Clean;splash:Clean;coninfo:Clean;opfocus:Clean;searcher:Clean;locdata:Clean;ficha:Clean;dlgexporter:Clean;exporter:Clean;repcen:Clean;cenpes:Clean;updater:Clean;conferencias:Clean;novaconf:Clean;pescon:Clean;agenda:Clean;dlgagenda:Clean;pesati:Clean;alojamentos:Clean;classificadores:Clean;pesalo:Clean;wzaloj:Clean;pescad:Clean;inscricoes:Clean;detinscricoes:Clean;impinsc:Clean;pesinsc:Clean;fmeareas:Clean;staff:Clean;areastaff:Clean;logrdr:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="confserapp:Make;confsvc:Make;sqlcmd:Make;serverdataobj:Make;shellib:Make;cmlib:Make;logwrt:Make;corelib:Make;secmod:Make;interfaces:Make;dlgmessage:Make;cmpersist:Make;wmanager:Make;cmdialogs:Make;svcutils:Make;cmcon:Make;confcon:Make;cmgui:Make;gconf:Make;defwiz:Make;dockedform:Make;frames:Make;helplib:Make;events:Make;cmmodules:Make;tabace:Make;confwin:Make;cmpages:Make;pgservers:Make;pglogs:Make;pgemail:Make;pgui:Make;pgupdater:Make;pgmenu:Make;splash:Make;coninfo:Make;opfocus:Make;searcher:Make;locdata:Make;ficha:Make;dlgexporter:Make;exporter:Make;repcen:Make;cenpes:Make;updater:Make;conferencias:Make;novaconf:Make;pescon:Make;agenda:Make;dlgagenda:Make;pesati:Make;alojamentos:Make;classificadores:Make;pesalo:Make;wzaloj:Make;pescad:Make;inscricoes:Make;detinscricoes:Make;impinsc:Make;pesinsc:Make;fmeareas:Make;staff:Make;areastaff:Make;logrdr:Make"/>
+        <CallTarget Targets="confsvc:Make;confserapp:Make;sqlcmd:Make;serverdataobj:Make;shellib:Make;cmlib:Make;logwrt:Make;corelib:Make;secmod:Make;interfaces:Make;dlgmessage:Make;cmpersist:Make;wmanager:Make;cmdialogs:Make;svcutils:Make;cmcon:Make;confcon:Make;cmgui:Make;gconf:Make;defwiz:Make;dockedform:Make;frames:Make;helplib:Make;events:Make;cmmodules:Make;tabace:Make;confwin:Make;cmpages:Make;pgservers:Make;pglogs:Make;pgemail:Make;pgui:Make;pgupdater:Make;pgmenu:Make;splash:Make;coninfo:Make;opfocus:Make;searcher:Make;locdata:Make;ficha:Make;dlgexporter:Make;exporter:Make;repcen:Make;cenpes:Make;updater:Make;conferencias:Make;novaconf:Make;pescon:Make;agenda:Make;dlgagenda:Make;pesati:Make;alojamentos:Make;classificadores:Make;pesalo:Make;wzaloj:Make;pescad:Make;inscricoes:Make;detinscricoes:Make;impinsc:Make;pesinsc:Make;fmeareas:Make;staff:Make;areastaff:Make;logrdr:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
     <ItemGroup Condition="'$(BuildGroup)'=='Win32'">

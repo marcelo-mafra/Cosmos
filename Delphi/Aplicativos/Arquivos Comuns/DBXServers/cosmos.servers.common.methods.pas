@@ -11,8 +11,8 @@ uses
   Data.SqlExpr, Datasnap.Provider, DataSnap.DsSession, cosmos.business.focos,
   cosmos.classes.logs, cosmos.system.types, Data.DBXPlatform, Vcl.Forms, Vcl.SvcMgr,
   cosmos.classes.servers.cmdFactories, cosmos.classes.utils.cosmoscript,
-  cosmos.system.dataconverter, cosmos.servers.common.servicesint,
-  cosmos.servers.common.dao.interfaces;
+  cosmos.system.dataconverter, cosmos.servers.common.servicesint, cosmos.data.dbobjects.tables,
+  cosmos.servers.common.dao.interfaces, cosmos.system.servers, cosmos.data.dbobjects.sequences;
 
 type
   {$METHODINFO OFF}
@@ -870,7 +870,6 @@ begin
    end;
   end
 
-
  except
   on E: TDBXError do
    begin
@@ -889,15 +888,14 @@ begin
  é necessária para que o cliente compare a sua versão local com a recebida por
  esse método para decisir se é necessário uma nova buferização de dados.}
  aCommand := TDQLCommands.TableVersion;
-
- sTableId := TCosmosTablesInfo.GetCosmosTablesId(TCosmosTables(TableId));
+ sTableId := TCosmosTables(TableId).TableId;
  aCommand := aCommand.Format(aCommand, [QuotedStr(sTableId)]);
 
  try
    aDataset := DAOServices.DoExecuteDQL(aCommand);
    Result := aDataset.FieldValues['versao'];
    aDataset.Free;
-   //DMCosmosServerServices.RegisterLog(Format(TCosmosLogs.SQLCommand, [ACommand]), DMServerDataAcess.GetContextInfo(ADataset));
+   CosmosServices.RegisterLog(Format(TCosmosLogs.SQLCommand, [ACommand]), '');
 
  except
   on E: Exception do

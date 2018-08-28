@@ -7,7 +7,7 @@ uses
   Dialogs, ExtCtrls, StdCtrls, DBCtrls, DB, DBClient, cosmos.system.messages,
   cosmos.classes.application, cosmos.framework.interfaces.root, cosmos.business.focos,
   Cosmos.Framework.Interfaces.DataAcess, Data.DBXCommon, Datasnap.DSConnect,
-  cosmos.system.files, cosmos.data.dataobjects, cosmos.framework.interfaces.Applications;
+  cosmos.system.files, cosmos.data.dbobjects, cosmos.framework.interfaces.Applications;
 
 type
   TFrmAnularEvento = class(TForm)

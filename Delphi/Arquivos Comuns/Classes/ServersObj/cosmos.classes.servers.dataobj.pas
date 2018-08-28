@@ -3,8 +3,8 @@ unit cosmos.classes.servers.dataobj;
 interface
 
 uses
- System.Classes, System.SysUtils, Data.DB, DataSnap.DBClient, cosmos.classes.servers.dbxObjects,
- cosmos.classes.servers.datobjint;
+ System.Classes, System.SysUtils, Data.DB, DataSnap.DBClient,
+ cosmos.classes.servers.dbxObjects, cosmos.classes.servers.datobjint;
 
 type
  {Encapsula o evento de erros definido em TErrorEvent.}

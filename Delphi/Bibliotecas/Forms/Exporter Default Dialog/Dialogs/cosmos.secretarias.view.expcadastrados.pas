@@ -9,7 +9,7 @@ uses
   cosmos.framework.interfaces.Root, cosmos.system.messages, Datasnap.DBClient,
   cosmos.classes.application, cosmos.classes.ServerInterface, Vcl.Buttons,
   cosmos.framework.interfaces.DataAcess, cosmos.system.winshell, cosmos.system.types,
-  cosmos.system.files, cosmos.data.dataobjects, Data.DB;
+  cosmos.system.files, cosmos.data.dbobjects, Data.DB;
 
 type
   TFrmExportarCadastrados = class(TForm)

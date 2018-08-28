@@ -10,7 +10,8 @@ uses
   cosmos.classes.ServerInterface, cosmos.classes.arrayutils, cosmos.servers.sqlcommands,
   WideStrings, cosmos.system.exceptions, cosmos.system.messages,
   DBXFirebird, dbxCommon, cosmos.core.classes.FieldsInfo, Datasnap.DSSession,
-  cosmos.servers.common.servicesint, cosmos.servers.common.dao.interfaces;
+  cosmos.servers.common.servicesint, cosmos.servers.common.dao.interfaces,
+  cosmos.data.dbobjects.objnames, cosmos.data.dbobjects.sequences;
 
 type
 

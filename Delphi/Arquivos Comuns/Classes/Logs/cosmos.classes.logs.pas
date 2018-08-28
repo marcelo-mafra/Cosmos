@@ -17,6 +17,7 @@ uses
    //Conjunto de eventos de geração de logs.
    TLogEvents = set of TLogEvent;
 
+
    //Encapsula as informações salvas em um registro de log.
    TLogInfo = class
      const

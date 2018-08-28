@@ -61,8 +61,6 @@ type
     procedure ServiceStart(Sender: TService; var Started: Boolean);
   private
     { Private declarations }
-    FTestServerPage: string;
-
     FOnConnectServer: TOnConnectServerEvent;
     FOnDisconnectServer: TOnDisconnectServerEvent;
     FOnPrepareCommand: TOnPrepareCommandEvent;
@@ -93,7 +91,7 @@ type
     property OnConnectServer: TOnConnectServerEvent read FOnConnectServer write FOnConnectServer;
     property OnDisconnectServer: TOnDisconnectServerEvent read FOnDisconnectServer write FOnDisconnectServer;
     property OnPrepareCommand: TOnPrepareCommandEvent read FOnPrepareCommand write FOnPrepareCommand;
-    property TestServerPage: string read FTestServerPage;
+
   end;
 
 //Métodos globais usados pelo Datasnap.
@@ -511,7 +509,7 @@ begin
          raise EInactivedUser.Create('');
 
        //Checa se o usuário está bloqueado.
-       Valid := DAOServices.UserManager.UserIsBlocked(User);
+       Valid := not DAOServices.UserManager.UserIsBlocked(User);
        if not Valid then
          raise EBlockedUser.Create('');
 
@@ -636,12 +634,6 @@ procedure TDMSecretariasAppContainer.DSFocosClassGetClass(
 begin
   PersistentClass := TDMCosmosFocosMethods;
 end;
-{
-initialization
-  FModule := TDMSecretariasAppContainer.Create(nil);
-
-finalization
-  FModule.Free; }
 
 end.
 

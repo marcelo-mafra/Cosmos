@@ -10,7 +10,9 @@ uses
   cosmos.servers.common.security in '..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.security.pas',
   cosmos.servers.common.services in '..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.services.pas' {DMCosmosServerServices: TDataModule},
   cosmos.server.common.logradouros.methods in '..\..\Arquivos Comuns\DBXServers\ServersModules\cosmos.server.common.logradouros.methods.pas' {DMCosmosServerLogradouros: TDSServerModule},
-  cosmos.servers.secretarias.atividades.methods in '..\..\Arquivos Comuns\DBXServers\ServersModules\cosmos.servers.secretarias.atividades.methods.pas' {DMSecAtividadesServerMethods: TDSServerModule};
+  cosmos.servers.secretarias.atividades.methods in '..\..\Arquivos Comuns\DBXServers\ServersModules\cosmos.servers.secretarias.atividades.methods.pas' {DMSecAtividadesServerMethods: TDSServerModule},
+  cosmos.system.types,
+  cosmos.system.servers;
 
 {$R *.RES}
 
@@ -32,6 +34,11 @@ begin
   if not Application.DelayInitialize or Application.Installing then
     Application.Initialize;
   Application.CreateForm(TDMConferenciasAppContainer, DMConferenciasAppContainer);
+
+  TDMCosmosApplicationServer.CreateObject(cmConferenciasServer, stWinService);
+  TDMCosmosServerLogradouros.CreateObject(cmConferenciasServer, stWinService);
+  TDMSecAtividadesServerMethods.CreateObject(cmConferenciasServer, stWinService);
+
   Application.Run;
 end.
 

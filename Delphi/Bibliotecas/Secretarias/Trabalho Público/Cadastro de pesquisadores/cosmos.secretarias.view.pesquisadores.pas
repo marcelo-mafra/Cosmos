@@ -8,7 +8,7 @@ uses
   cosmos.frames.gridsearch, DB, Datasnap.DSConnect, cosmos.system.files,
   DBClient, StdCtrls, ToolWin, ActnMan, ActnCtrls, Tabs, cosmos.classes.security,
   Cosmos.Framework.Interfaces.Root, Cosmos.Framework.Interfaces.Dialogs, Menus,
-  ActnPopup, cosmos.system.messages, XPStyleActnCtrls, DockTabSet, cosmos.data.dataobjects,
+  ActnPopup, cosmos.system.messages, XPStyleActnCtrls, DockTabSet, cosmos.data.dbobjects,
   PlatformDefaultStyleActnCtrls, cosmos.classes.application, cosmos.system.formsconst,
   cosmos.classes.ServerInterface, cosmos.framework.datanavigators.datasets,
   System.Actions, Cosmos.Framework.Interfaces.DataAcess, System.ImageList,

@@ -20,7 +20,8 @@ uses
   cosmos.servers.common.services.factory in '..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.services.factory.pas',
   cosmos.servers.common.dsservices in '..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.dsservices.pas',
   cosmos.servers.common.dao.factory in '..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.dao.factory.pas',
-  cosmos.system.types;
+  cosmos.system.types,
+  cosmos.system.servers;
 
 {$R *.RES}
 

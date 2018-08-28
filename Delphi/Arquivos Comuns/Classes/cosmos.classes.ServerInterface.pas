@@ -3,27 +3,20 @@ unit cosmos.classes.ServerInterface;
 interface
 
 uses
-  Windows, cosmos.system.files, Cosmos.System.Messages;
+  Windows, cosmos.system.files, Cosmos.System.Messages, cosmos.data.dbobjects.sequences;
 
 type
   TTipoControle = (tcByCheckin, tcByConferencia, tcByAtividade);
 
   TDatabaseOperation = (doInsert, doUpdate, doDelete);
 
-  TCosmosTables = (ctAptidoes, ctCargos, ctEnfermidades, ctFuncoes, ctMeiosContatos,
-   ctProfissoes, ctTiposRecebimentos, ctFlagsInscricao, ctFocos, ctPerfis,
-   ctDiscipulados, ctTiposEventos, ctRelatoriosExternos);
+
 
 //Não altere a ordem destes tipos enumerados!
   TFKSearch = (fkRegioes, fkFocoDependente, fkFocos, fkCentros, fkNucleos,
    fkSalasTP, fkLocaisTP, fkMeiosContatos, fkEnderecosFocos, fkLogradouros,
    fkPaises, fkEstados, fkCidades, fkBairros, fkFocosAtivos, fkAlunos,
    fkCargos, fkOrgaosGestores, fkOrgaosSuperiores);
-
-//Não altere a ordem destes tipos enumerados!
-  TSequences = (sqCadastrados, sqFocos, sqRegioes, sqPaises, sqEstados,
-   sqCidades, sqBairros, sqLogradouros, sqCargos, sqTiposMeiosContatos,
-   sqMentorRA, sqOrgaosGestores, sqGestoes, sqDirecoes, sqAreasStaff);
 
 //Representa uma pesquisa disponível (comando DQL) para os aplicativos Cosmos.
   TCosmosSearch = (csRegioes, csSubRegioes, csFocosRa, csFocosTitulares, csFocosDependentes,
@@ -101,13 +94,6 @@ type
   TCosmosCommand = (ccDeleteUsuario, ccDeleteFocoUsuario, ccInstalarAluno,
    ccNovaConferencia, ccAtividadeConferencia, ccDelAtividadeConferencia);
 
-  //Informa detalhes a respeito de uma tabela buferizada do Cosmos.
-  TCosmosTablesInfo = class
-   class function GetCosmosTablesId(const Table: TCosmosTables): string;
-   class function GetCosmosTablesFiles(const Table: TCosmosTables): string;
-  end;
-
-
   TSQLServerInterface =
    class function GetFKSearchID(const FKSearch: TFKSearch): integer;
    class function GetSequenceID(const Sequence: TSequences): integer;
@@ -151,43 +137,10 @@ end;
 
 { TCosmosTablesInfo }
 
-class function TCosmosTablesInfo.GetCosmosTablesFiles(
-  const Table: TCosmosTables): string;
-begin
-{Retorna o nome do arquivo de uma tebela buferizada do Cosmos.}
- case Table of
-   ctAptidoes: Result := TCosmosFiles.BufAptidoes; //do not localize!
-   ctCargos: Result := TCosmosFiles.BufCargos; //do not localize!
-   ctEnfermidades: Result := TCosmosFiles.BufEnfermidades; //do not localize!
-   ctFuncoes: Result := TCosmosFiles.BufFuncoes; //do not localize!
-   ctProfissoes: Result := TCosmosFiles.BufProfissoes; //do not localize!
-   ctFocos: Result := TCosmosFiles.BufFocos; //do not localize!
-   ctPerfis: Result := TCosmosFiles.BufPerfis; //do not localize!
-   ctDiscipulados: Result := TCosmosFiles.BufDiscipulados; //do not localize!
-   ctTiposEventos: Result := TCosmosFiles.BufTiposEventos; //do not localize!
-   ctRelatoriosExternos: Result := TCosmosFiles.BufExternalReports; //do not localize!
- end;
-end;
 
 
 
-class function TCosmosTablesInfo.GetCosmosTablesId(
-  const Table: TCosmosTables): string;
-begin
-{Retorna o identificador de uma tebela buferizada do Cosmos.}
- case Table of
-   ctAptidoes: Result := 'APT'; //do not localize!
-   ctCargos: Result := 'CAR'; //do not localize!
-   ctEnfermidades: Result := 'ENF'; //do not localize!
-   ctFuncoes: Result := 'FUN'; //do not localize!
-   ctProfissoes: Result := 'PRO'; //do not localize!
-   ctFocos: Result := 'FOC'; //do not localize!
-   ctPerfis: Result := 'PER'; //do not localize!
-   ctDiscipulados: Result := 'DIS'; //do not localize!
-   ctTiposEventos: Result := 'EVE'; //do not localize!
-   ctRelatoriosExternos: Result := 'REL'; //do not localize!
- end;
-end;
+
 
 end.
 

@@ -4,7 +4,7 @@ interface
 
 uses
   winapi.windows, system.SysUtils, system.classes, system.Variants, Data.Db,
-  cosmos.system.types, cosmos.system.messages, cosmos.system.files,
+  cosmos.system.types, cosmos.system.messages, cosmos.system.files, cosmos.system.types.cmhelpers,
   cosmos.core.classes.xmldata, WideStrUtils, cosmos.core.classes.FieldsInfo,
   Xml.XMLDoc, System.DateUtils, Data.SqlTimSt, cosmos.system.winshell;
 
@@ -15,8 +15,8 @@ type
   aplicação ou módulo do Cosmos.}
  TCosmosApplication = class
   private
-   FDefaultConfigFile, FUserConfigFile: string;
-   procedure CreateCosmosUserFolder(const FolderPath: string);
+    FDefaultConfigFile, FUserConfigFile: string;
+    procedure CreateCosmosUserFolder(const FolderPath: string);
 
   public
     constructor Create;
@@ -24,7 +24,6 @@ type
 
     function GetDefaultConfigFile: string;
     function GetModuleName: string;
-    function GetFullModuleName(Module: TCosmosModules): string;
     function GetModulePath: string;
     function GetFullModulepath: string;
     function GetModuleVersion: string;
@@ -1024,17 +1023,6 @@ begin
  Result := GetModulepath + TCosmosFiles.ConfigUserDefault;
 end;
 
-function TCosmosApplication.GetFullModuleName(Module: TCosmosModules): string;
-begin
-//Retorna o nome completo de um módulo do Cosmos.
- case Module of
-   cmSecretarias, cmSecretariasServer: Result := TCosmosAppName.CosmosSecretarias;
-   cmFinanceiro, cmFinanceiroServer: Result := TCosmosAppName.CosmosFinanceiro;
-   cmConferencias, cmConferenciasServer: Result := TCosmosAppName.CosmosConferencias;
-   cmUsuarios, cmUsuariosServer: Result := TCosmosAppName.CosmosUsuarios;
- end;
-end;
-
 function TCosmosApplication.GetFullModulepath: string;
 var
 Buffer: array[0..260] of Char;
@@ -1047,16 +1035,7 @@ end;
 function TCosmosApplication.GetLogPrefix(Module: TCosmosModules): string;
 begin
 //Retorna o prefixo do nome do arquivo de logs de um módulo do Cosmos.
- case Module of
-   cmFocos, cmFocosServer: Result := TCosmosAppName.CosmosFocosShort;
-   cmSecretarias, cmSecretariasServer: Result := TCosmosAppName.CosmosSecretariasShort;
-   cmFinanceiro, cmFinanceiroServer: Result := TCosmosAppName.CosmosFinanceiroShort;
-   cmConferencias, cmConferenciasServer: Result := TCosmosAppName.CosmosConferenciasShort;
-   cmUsuarios, cmUsuariosServer: Result := TCosmosAppName.CosmosUsuariosShort;
- end;
-
- if Result <> '' then
-  Result := Result + '_'; //do not localize!
+ Result := Module.ModuleNameShort + '_'; //do not localize!
 end;
 
 function TCosmosApplication.GetModuleName: string;
@@ -1105,19 +1084,7 @@ begin
  Info.Append('CategoryCount=6'); //do not localize!
  Info.Append('DisplayNameID=150'); //do not localize!
  Info.Append('TypesSupported=2'); //do not localize!
-
- case Module of
-   cmFocos: Info.Append('Source=' + TCosmosAppName.CosmosFocos); //do not localize!
-   cmFocosServer: Info.Append('Source=' + TCosmosAppName.CosmosFocosServer); //do not localize!
-   cmSecretarias: Info.Append('Source=' + TCosmosAppName.CosmosSecretarias); //do not localize!
-   cmSecretariasServer: Info.Append('Source=' + TCosmosAppName.CosmosSecretariasServer); //do not localize!
-   cmFinanceiro: Info.Append('Source=' + TCosmosAppName.CosmosFinanceiro); //do not localize!
-   cmFinanceiroServer: Info.Append('Source=' + TCosmosAppName.CosmosFinanceiroServer); //do not localize!
-   cmConferencias: Info.Append('Source=' + TCosmosAppName.CosmosConferencias); //do not localize!
-   cmConferenciasServer: Info.Append('Source=' + TCosmosAppName.CosmosConferenciasServer); //do not localize!
-   cmUsuarios: Info.Append('Source=' + TCosmosAppName.CosmosUsuarios); //do not localize!
-   cmUsuariosServer: Info.Append('Source=' + TCosmosAppName.CosmosUsuariosServer); //do not localize!
- end;
+ Info.Append('Source=' + Module.ModuleName); //do not localize!
 end;
 
 

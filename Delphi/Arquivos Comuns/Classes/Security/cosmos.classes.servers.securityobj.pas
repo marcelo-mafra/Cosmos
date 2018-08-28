@@ -10,7 +10,8 @@ uses
   Winapi.Windows, System.SysUtils, System.Classes, cosmos.servers.sqlcommands,
   Data.DB, Datasnap.DBClient, cosmos.system.types, cosmos.system.messages,
   cosmos.classes.application, cosmos.system.exceptions, cosmos.classes.servers.dataobj,
-  cosmos.classes.utils.cosmoscript, System.WideStrings, cosmos.classes.servers.utils;
+  cosmos.classes.utils.cosmoscript, System.WideStrings, cosmos.classes.servers.utils,
+  cosmos.data.dbobjects.sequences;
 
 type
   ECreateCosmosUser = Exception;

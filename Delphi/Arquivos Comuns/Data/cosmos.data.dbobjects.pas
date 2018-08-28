@@ -1,4 +1,4 @@
-unit cosmos.data.dataobjects;
+unit cosmos.data.dbobjects;
 
 interface
 

@@ -52,9 +52,13 @@ contains
   cosmos.reports.types in '..\..\..\Arquivos Comuns\Reports\cosmos.reports.types.pas',
   cosmos.system.formsconst in '..\..\..\Arquivos Comuns\System\cosmos.system.formsconst.pas',
   cosmos.system.files in '..\..\..\Arquivos Comuns\System\cosmos.system.files.pas',
-  cosmos.data.dataobjects in '..\..\..\Arquivos Comuns\Data\cosmos.data.dataobjects.pas',
+  cosmos.data.dbobjects in '..\..\..\Arquivos Comuns\Data\cosmos.data.dbobjects.pas',
   cosmos.system.dataconverter in '..\..\..\Arquivos Comuns\System\cosmos.system.dataconverter.pas',
   cosmos.system.nettypes in '..\..\..\Arquivos Comuns\System\cosmos.system.nettypes.pas',
-  cosmos.system.types.cmhelpers in '..\..\..\Arquivos Comuns\System\cosmos.system.types.cmhelpers.pas';
+  cosmos.system.types.cmhelpers in '..\..\..\Arquivos Comuns\System\cosmos.system.types.cmhelpers.pas',
+  cosmos.system.servers in '..\..\..\Arquivos Comuns\System\cosmos.system.servers.pas',
+  cosmos.data.dbobjects.sequences in '..\..\..\Arquivos Comuns\Data\cosmos.data.dbobjects.sequences.pas',
+  cosmos.data.dbobjects.tables in '..\..\..\Arquivos Comuns\Data\cosmos.data.dbobjects.tables.pas',
+  cosmos.data.dbobjects.objnames in '..\..\..\Arquivos Comuns\Data\cosmos.data.dbobjects.objnames.pas';
 
 end.

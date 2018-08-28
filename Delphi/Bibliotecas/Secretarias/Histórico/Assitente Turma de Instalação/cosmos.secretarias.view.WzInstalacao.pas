@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, cosmos.framework.view.FrmDefWizard, Wizard, ImgList, ActnList, jpeg, ExtCtrls,
   ComCtrls, StdCtrls, Buttons, Cosmos.Framework.Interfaces.Dialogs, ValueComboBox,
-  cosmos.frames.gridsearch, DB, DBClient, cosmos.classes.application, cosmos.data.dataobjects,
+  cosmos.frames.gridsearch, DB, DBClient, cosmos.classes.application, cosmos.data.dbobjects,
   cosmos.business.focos, cosmos.Framework.forms.datadialogs, cosmos.system.messages,
   Vcl.Imaging.pngimage, System.Actions, Data.DBXCommon, Vcl.Grids, Vcl.DBGrids,
   cosmos.system.files, cosmos.classes.ServerInterface, System.ImageList;

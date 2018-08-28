@@ -9,7 +9,7 @@ uses
 type
  TCosmosDAOServiceFactory = class(TInterfacedObject, ICosmosDAOServiceFactory)
    private
-    FServerDataAcess: TDMServerDataAcess;
+    FICosmosDAOService: ICosmosDAOService;
 
    protected
     function GetDAOService: ICosmosDAOService;
@@ -28,18 +28,18 @@ implementation
 
 constructor TCosmosDAOServiceFactory.Create(Module: TCosmosModules);
 begin
- FServerDataAcess := TDMServerDataAcess.Create(Module);
+ FICosmosDAOService := TServerDataAcess.New(Module);
 end;
 
 destructor TCosmosDAOServiceFactory.Destroy;
 begin
-  FServerDataAcess.Free;
+  FICosmosDAOService := nil;
   inherited;
 end;
 
 function TCosmosDAOServiceFactory.GetDAOService: ICosmosDAOService;
 begin
- Result := FServerDataAcess;
+ Result := FICosmosDAOService;
 end;
 
 class function TCosmosDAOServiceFactory.New(Module: TCosmosModules): ICosmosDAOServiceFactory;

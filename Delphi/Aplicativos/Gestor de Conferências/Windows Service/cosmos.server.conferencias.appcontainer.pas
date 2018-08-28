@@ -2,12 +2,12 @@ unit cosmos.server.conferencias.appcontainer;
 
 interface
 
-uses Winapi.Windows, System.SysUtils, System.Classes, Vcl.SvcMgr, Datasnap.DSServer,
-  Datasnap.DSTCPServerTransport, Datasnap.DSCommonServer,Datasnap.DSAuth,
-  IPPeerServer, System.Generics.Collections, Datasnap.DSSession, cosmos.system.files,
-  cosmos.system.types, cosmos.system.messages, cosmos.system.exceptions,
-  cosmos.classes.application, Data.DBXCommon, cosmos.classes.logs,
-  cosmos.classes.persistence.ini, Data.DBCommonTypes;
+uses Winapi.Windows, System.SysUtils, System.Classes, Vcl.SvcMgr, Datasnap.DSTCPServerTransport,
+  Datasnap.DSServer, Datasnap.DSCommonServer, Datasnap.DSAuth, IPPeerServer,
+  Datasnap.DSSession, cosmos.system.files, cosmos.system.types, cosmos.system.messages,
+  cosmos.system.exceptions, cosmos.classes.application, Data.DBXCommon, cosmos.classes.logs,
+  cosmos.classes.persistence.ini, Data.DBCommonTypes, cosmos.servers.common.servicesint,
+  cosmos.servers.common.dao.interfaces;
 
 
 type
@@ -55,9 +55,14 @@ type
     FOnConnectServer: TOnConnectServerEvent;
     FOnDisconnectServer: TOnDisconnectServerEvent;
     FOnPrepareCommand: TOnPrepareCommandEvent;
+    FCosmosServiceFactory: ICosmosServiceFactory;
+    FCosmosDAOServiceFactory: ICosmosDAOServiceFactory;
 
     procedure LoadMethodsAuthorizations;
     procedure LoadServerConfigurations;
+
+    function GetCosmosService: ICosmosService;
+    function GetDAOServices: ICosmosDAOService;
 
   protected
     function DoStop: Boolean; override;
@@ -69,6 +74,9 @@ type
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     function GetServiceController: TServiceController; override;
+
+    property CosmosServices: ICosmosService read GetCosmosService;
+    property DAOServices: ICosmosDAOService read GetDAOServices;
 
     property OnConnectServer: TOnConnectServerEvent read FOnConnectServer write FOnConnectServer;
     property OnDisconnectServer: TOnDisconnectServerEvent read FOnDisconnectServer write FOnDisconnectServer;
@@ -129,6 +137,16 @@ begin
   PersistentClass := TDMCosmosServerLogradouros;
 end;
 
+function TDMConferenciasAppContainer.GetCosmosService: ICosmosService;
+begin
+ Result := self.FCosmosServiceFactory.CosmosService;
+end;
+
+function TDMConferenciasAppContainer.GetDAOServices: ICosmosDAOService;
+begin
+ Result := self.FCosmosDAOServiceFactory.DAOService;
+end;
+
 function TDMConferenciasAppContainer.GetServiceController: TServiceController;
 begin
   Result := ServiceController;
@@ -170,11 +188,8 @@ var
  AContextInfo: TStringList;
 begin
  {Registra informações de logs de operações de conexão.}
-
- //Registra qual o servidor Cosmos que está usando a classe TDMCosmosServices.
- DMCosmosServerServices.CosmosModule := cmConferenciasServer;
  //Prepara o objeto que receberá as informações de contexto da conexão.
- AContextInfo := DMCosmosServerServices.CreateContextInfoObject;
+ AContextInfo := CosmosServices.CreateContextInfoObject;
 
  try
   with DSConnectEventObject do
@@ -187,7 +202,7 @@ begin
     AContextInfo.Append(Format(TCosmosLogs.ContextInfoProtocol, [ConnectProperties[TDBXPropertyNames.CommunicationProtocol]]));
     AContextInfo.Append(FormatDateTime('dd/mm/yyyy hh:nn:ss:zzz', Now));
 
-    DMCosmosServerServices.RegisterLog(AInfo, AContextInfo.DelimitedText, leOnConnect);
+    CosmosServices.RegisterLog(AInfo, AContextInfo.DelimitedText, leOnConnect);
 
     //Registra na janela do servidor o usuário conectado.
     AContextInfo.Clear;
@@ -212,7 +227,7 @@ begin
  {Registra informações de logs de operações de desconexão.}
  //DMServerDataAcess.ConnectionPool.RemoveConnection(TDSSessionManager.GetThreadSession.Id);
 
- AContextInfo := DMCosmosServerServices.CreateContextInfoObject;
+ AContextInfo := CosmosServices.CreateContextInfoObject;
 
  try
   with DSConnectEventObject do
@@ -225,7 +240,7 @@ begin
     AContextInfo.Append(Format(TCosmosLogs.ContextInfoProtocol, [ConnectProperties[TDBXPropertyNames.CommunicationProtocol]]));
    end;
 
-  DMCosmosServerServices.RegisterLog(AInfo, AContextInfo.DelimitedText, leOnConnectClose);
+  CosmosServices.RegisterLog(AInfo, AContextInfo.DelimitedText, leOnConnectClose);
 
   if Assigned(OnDisconnectServer) then OnDisconnectServer(DSConnectEventObject);
 
@@ -241,9 +256,9 @@ var
  AContextInfo: TStringList;
 begin
  {Registra informações de logs de erros de execução de métodos remotos.}
- if leOnError in DMCosmosServerServices.LogEvents then
+ if leOnError in CosmosServices.LogEvents then
   begin
-   AContextInfo := DMCosmosServerServices.CreateContextInfoObject;
+   AContextInfo := CosmosServices.CreateContextInfoObject;
 
    try
     with DSErrorEventObject do
@@ -255,7 +270,7 @@ begin
       AContextInfo.Append(Format(TCosmosLogs.ContextInfoProtocol, [ServerConnectionHandler.Channel.ChannelInfo.ClientInfo.Protocol]));
      end;
 
-    DMCosmosServerServices.RegisterLog(Info, AContextInfo.DelimitedText, leOnError);
+    CosmosServices.RegisterLog(Info, AContextInfo.DelimitedText, leOnError);
 
    finally
     FreeAndNil(AContextInfo);
@@ -270,9 +285,9 @@ var
  AContextInfo: TStringList;
 begin
  {Registra informações de logs de preparação de execução de métodos remotos.}
- if leOnPrepare in DMCosmosServerServices.LogEvents then
+ if leOnPrepare in CosmosServices.LogEvents then
   begin
-   AContextInfo := DMCosmosServerServices.CreateContextInfoObject;
+   AContextInfo := CosmosServices.CreateContextInfoObject;
 
    try
     with DSPrepareEventObject do
@@ -284,7 +299,7 @@ begin
       AContextInfo.Append(Format(TCosmosLogs.ContextInfoProtocol, [ServerConnectionHandler.Channel.ChannelInfo.ClientInfo.Protocol]));
      end;
 
-    DMCosmosServerServices.RegisterLog(Info, AContextInfo.DelimitedText, leOnPrepare);
+    CosmosServices.RegisterLog(Info, AContextInfo.DelimitedText, leOnPrepare);
 
     //Dispara um evento de notificação que pode ser capturado.
     if Assigned(FOnPrepareCommand) then FOnPrepareCommand(TDSSessionManager.GetThreadSession);
@@ -303,9 +318,9 @@ var
 begin
  {Registra informações de logs de trace, caso a geração para este tipo de
  evento esteja ativa.}
- if leOnTrace in DMCosmosServerServices.LogEvents then
+ if leOnTrace in CosmosServices.LogEvents then
   begin
-   AContextInfo := DMCosmosServerServices.CreateContextInfoObject;
+   AContextInfo := CosmosServices.CreateContextInfoObject;
 
    try
     Info := TraceInfo.Message;
@@ -313,7 +328,7 @@ begin
     AContextInfo.Append(Format(TCosmosLogs.ContextInfoUser, [TDSSessionManager.GetThreadSession.GetData('UserName')]));
     AContextInfo.Append(Format(TCosmosLogs.ContextInfoRoles, [TDSSessionManager.GetThreadSession.GetData('UserRoles')]));
 
-    DMCosmosServerServices.RegisterLog(Info, AContextInfo.DelimitedText, leOnTrace);
+    CosmosServices.RegisterLog(Info, AContextInfo.DelimitedText, leOnTrace);
 
    finally
     FreeAndNil(AContextInfo);
@@ -354,7 +369,7 @@ begin
      end;
    end;
 
-  DMCosmosServerServices.RegisterLog(TCosmosLogs.AuthorizationsMethods, '');
+  CosmosServices.RegisterLog(TCosmosLogs.AuthorizationsMethods, '');
 
  finally
   if Assigned(IAuthorizations) then IAuthorizations := nil;
@@ -388,13 +403,13 @@ begin
   on E: EInvalidProtocol do
    begin
      //Gerar logs de exceção...
-    DMCosmosServerServices.RegisterLog(E.Message, Format(TCosmosLogs.ContextInfoProtocol, [CurrentProtocol]), leOnError);
+    CosmosServices.RegisterLog(E.Message, Format(TCosmosLogs.ContextInfoProtocol, [CurrentProtocol]), leOnError);
     DSServerConferencias.Stop;
    end;
   on E: Exception do
    begin
      //Gerar logs de exceção...
-    DMCosmosServerServices.RegisterLog(E.Message, Format(TCosmosLogs.AppMethod, ['TDMConferenciasAppContainer.LoadServerConfigurations']), leOnError);
+    CosmosServices.RegisterLog(E.Message, Format(TCosmosLogs.AppMethod, ['TDMConferenciasAppContainer.LoadServerConfigurations']), leOnError);
    end;
  end;
 end;
@@ -425,26 +440,24 @@ begin
  FDSAuthenticationManager := DSAuthenticationManager;
 
  //Cria os objetos que disponibilizam métodos de serviços e acesso a dados.
- DMCosmosServerServices := TDMCosmosServerServices.Create(nil);
- DMCosmosServerServices.CosmosModule := cmConferenciasServer;
+ FCosmosServiceFactory := TCosmosServiceFactory.New(cmConferenciasServer);
+ FCosmosDAOServiceFactory := TCosmosDAOServiceFactory.New(cmConferenciasServer);
 
  //Carrega as configurações do servidor
  LoadServerConfigurations;
 
- DMServerDataAcess := TDMServerDataAcess.Create(nil);
-
  //Carrega as autorizações para cada método remoto.
  LoadMethodsAuthorizations;
 
- DMCosmosServerServices.RegisterLog(TCosmosLogs.InitializedServer, '');
+ CosmosServices.RegisterLog(TCosmosLogs.InitializedServer, '');
 end;
 
 procedure TDMConferenciasAppContainer.DataModuleDestroy(Sender: TObject);
 begin
   FDSServer := nil;
   FDSAuthenticationManager := nil;
-  DMServerDataAcess.Free;
-  DMCosmosServerServices.Free;
+  FCosmosServiceFactory := nil;
+  FCosmosDAOServiceFactory := nil;
 end;
 
 procedure TDMConferenciasAppContainer.DSAuthenticationManagerUserAuthenticate(
@@ -452,65 +465,61 @@ procedure TDMConferenciasAppContainer.DSAuthenticationManagerUserAuthenticate(
   var valid: Boolean; UserRoles: TStrings);
 var
  AInfo: string;
- AContextInfo, AUserInfo: TStringList;
+ AContextInfo: TStringList;
+ UserData: TCosmosData;
 begin
  {Autentica o usuário. Após a autenticação, o sistema armazena alguns dados
   do usuário e da conexão no gerenciador de sessões.}
- AContextInfo := DMCosmosServerServices.CreateContextInfoObject;
- AUserInfo := TStringList.Create;
+ AContextInfo := CosmosServices.CreateContextInfoObject;
+ UserData := TCosmosData.Create(15);
 
  try
   //Autentica o usuário.
-  Valid := TCosmosSecurity.AuthenticateUser(User, Password);
+  Valid := DAOServices.UserManager.AuthenticateUser(User, Password);
 
   if Valid then
     begin
      try
-       TCosmosSecurity.GetCosmosUserInfo(User, AUserInfo);
+       DAOServices.UserManager.GetUserInfo(User, UserData);
        //Checa se o usuário está ativo.
-       Valid := AUserInfo.Values['INDATI'] = 'S'; //do not localize!
+       Valid := UserData.FindValue('ATIVO');; //do not localize!
        if not Valid then
          raise EInactivedUser.Create('');
 
-       if Valid then //Checa se o usuário está bloqueado.
-        begin
-         Valid := AUserInfo.Values['INDBLO'] = 'N';  //do not localize!
-         if not Valid then
-          raise EBlockedUser.Create('');
-        end;
+       //Checa se o usuário está bloqueado.
+       Valid := DAOServices.UserManager.UserIsBlocked(User);
+       if not Valid then
+         raise EBlockedUser.Create('');
 
      except
        Valid := False;
      end;
 
      //Verifica se o usuário pode acessar o módulo corrente do Cosmos.
-     Valid := TCosmosSecurity.CanAcessModule(User, DMCosmosServerServices.CosmosModule);
+     Valid := DAOServices.UserManager.CanAcessModule(User, cmSecretariasServer);
      if not Valid then
        raise ECantAcessCosmosModule.Create('');
 
      //Se chegou aqui, o usuário está autenticado.
-     if Valid then
-      begin
-       //Pega as roles do usuário autenticado e coloca os seus dados em sessão.
-       TCosmosSecurity.GetUserRoles(User, UserRoles);
-       TDSSessionManager.GetThreadSession.PutData('UserName', User);
-       TDSSessionManager.GetThreadSession.PutData('UserRoles', UserRoles.CommaText);
-       TDSSessionManager.GetThreadSession.PutData('ConnectedUser', AUserInfo.Values['NOMCAD']);
-       TDSSessionManager.GetThreadSession.PutData('UserInfo', AUserInfo.CommaText);
-       TDSSessionManager.GetThreadSession.PutData('ConnectTime', DateTimeToStr(Now));
+     //Pega as roles do usuário autenticado e coloca os seus dados em sessão.
+     DAOServices.UserManager.GetUserRoles(User, UserRoles);
+     TDSSessionManager.GetThreadSession.PutData('UserName', User); //do not localize!
+     TDSSessionManager.GetThreadSession.PutData('UserRoles', UserRoles.CommaText); //do not localize!
+     TDSSessionManager.GetThreadSession.PutData('ConnectedUser', UserData.FindValue('USER_NAME')); //do not localize!
+     //TDSSessionManager.GetThreadSession.PutData('UserInfo', AUserInfo.CommaText); //do not localize!
+     TDSSessionManager.GetThreadSession.PutData('ConnectTime', DateTimeToStr(Now)); //do not localize!
 
-       //Agora registra logs sobre a autenticação.
-       AInfo := Format(TCosmosLogs.AutenticatedUser, [User]);
-       AContextInfo.Append(Format(TCosmosLogs.ContextInfoProtocol, [protocol]));
-       AContextInfo.Append(Context);
-       DMCosmosServerServices.RegisterLog(AInfo, AContextInfo.CommaText, leOnAuthenticateSucess);
-      end;
+     //Agora registra logs sobre a autenticação.
+     AInfo := Format(TCosmosLogs.AutenticatedUser, [User]);
+     AContextInfo.Append(Format(TCosmosLogs.ContextInfoProtocol, [protocol]));
+     AContextInfo.Append(Context);
+     CosmosServices.RegisterLog(AInfo, AContextInfo.CommaText, leOnAuthenticateSucess);
     end
    else
     raise EValidateUser.Create(Format(TCosmosLogs.InvalidAuthentication, [User]));
 
  AContextInfo.Free;
- AUserInfo.Free;
+ UserData.Free;
 
  except
   on E: EValidateUser do//login ou senha inválidos
@@ -518,10 +527,10 @@ begin
     AInfo := AInfo.Format(TCosmosLogs.InvalidAuthentication, [User]);
     AContextInfo.Append(Format(TCosmosLogs.ContextInfoProtocol, [protocol]));
     AContextInfo.Append(Context);
-    DMCosmosServerServices.RegisterLog(AInfo, AContextInfo.CommaText, leOnAuthenticateFail);
+    CosmosServices.RegisterLog(AInfo, AContextInfo.CommaText, leOnAuthenticateFail);
 
     if Assigned(AContextInfo) then FreeAndNil(AContextInfo);
-    if Assigned(AUserInfo) then FreeAndNil(AUserInfo);
+    if Assigned(UserData) then FreeAndNil(UserData);
    end;
   //O usuário está inativo.
   on E: EInactivedUser do
@@ -529,10 +538,10 @@ begin
     AInfo := Format(TCosmosLogs.InactivedUser, [User]);
     AContextInfo.Append(Format(TCosmosLogs.ContextInfoProtocol, [protocol]));
     AContextInfo.Append(Context);
-    DMCosmosServerServices.RegisterLog(AInfo, AContextInfo.CommaText, leOnAuthenticateFail);
+    CosmosServices.RegisterLog(AInfo, AContextInfo.CommaText, leOnAuthenticateFail);
 
     if Assigned(AContextInfo) then FreeAndNil(AContextInfo);
-    if Assigned(AUserInfo) then FreeAndNil(AUserInfo);
+    if Assigned(UserData) then FreeAndNil(UserData);
    end;
   //O usuário não pode acessar o módulo corrente do Cosmos.
   on E: ECantAcessCosmosModule do
@@ -540,10 +549,10 @@ begin
     AInfo := TCosmosLogs.CantAcessCosmosModule;
     AContextInfo.Append(Format(TCosmosLogs.ContextInfoProtocol, [protocol]));
     AContextInfo.Append(Context);
-    DMCosmosServerServices.RegisterLog(AInfo, AContextInfo.CommaText, leOnAuthenticateFail);
+    CosmosServices.RegisterLog(AInfo, AContextInfo.CommaText, leOnAuthenticateFail);
 
     if Assigned(AContextInfo) then FreeAndNil(AContextInfo);
-    if Assigned(AUserInfo) then FreeAndNil(AUserInfo);
+    if Assigned(UserData) then FreeAndNil(UserData);
    end;
   //O usuário está bloqueado.
   on E: EBlockedUser do
@@ -551,18 +560,18 @@ begin
      AInfo := Format(TCosmosLogs.BlockedUser, [User]);
      AContextInfo.Append(Format(TCosmosLogs.ContextInfoProtocol, [protocol]));
      AContextInfo.Append(Context);
-     DMCosmosServerServices.RegisterLog(AInfo, AContextInfo.CommaText, leOnAuthenticateFail);
+     CosmosServices.RegisterLog(AInfo, AContextInfo.CommaText, leOnAuthenticateFail);
 
     if Assigned(AContextInfo) then FreeAndNil(AContextInfo);
-    if Assigned(AUserInfo) then FreeAndNil(AUserInfo);
+    if Assigned(UserData) then FreeAndNil(UserData);
    end;
   //outros erros
   on E: Exception do
    begin
     Valid := False;
-    DMCosmosServerServices.RegisterLog(E.Message, '', leOnError);
+    CosmosServices.RegisterLog(E.Message, '', leOnError);
     if Assigned(AContextInfo) then FreeAndNil(AContextInfo);
-    if Assigned(AUserInfo) then FreeAndNil(AUserInfo);
+    if Assigned(UserData) then FreeAndNil(UserData);
    end;
  end;
 end;
@@ -578,16 +587,16 @@ begin
  evento, será registrado um log.}
  if not Valid then
   begin
-    if leOnAuthorize in DMCosmosServerServices.LogEvents then
+    if leOnAuthorize in CosmosServices.LogEvents then
      begin
-      AContextInfo := DMCosmosServerServices.CreateContextInfoObject;
+      AContextInfo := CosmosServices.CreateContextInfoObject;
 
       try
         AInfo := Format(TCosmosLogs.DeniedAuthorization, [AuthorizeEventObject.UserName,
          AuthorizeEventObject.MethodAlias]);
         AContextInfo.Append(Format(TCosmosLogs.ContextInfoRoles, [AuthorizeEventObject.UserRoles.CommaText]));
         AContextInfo.Append(Format(TCosmosLogs.AuthorizedRoles, [AuthorizeEventObject.AuthorizedRoles.CommaText]));
-        DMCosmosServerServices.RegisterLog(AInfo, AContextInfo.CommaText, leOnAuthorize);
+        CosmosServices.RegisterLog(AInfo, AContextInfo.CommaText, leOnAuthorize);
 
       finally
         AContextInfo.Free;

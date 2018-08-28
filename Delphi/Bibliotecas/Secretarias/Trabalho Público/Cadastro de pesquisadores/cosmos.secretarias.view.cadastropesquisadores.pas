@@ -7,7 +7,7 @@ uses
   Dialogs, DB, DBClient, ComCtrls, StdCtrls, ValueComboBox, DBValueComboBox, Mask,
   DBCtrls, ExtCtrls, GroupHeader, FrameDBInsertVertical, cosmos.frames.usuariocad,
   cosmos.classes.application, cosmos.classes.ServerInterface, cosmos.classes.security,
-  Cosmos.Framework.Interfaces.Root, Cosmos.Framework.Interfaces.DataAcess, cosmos.data.dataobjects,
+  Cosmos.Framework.Interfaces.Root, Cosmos.Framework.Interfaces.DataAcess, cosmos.data.dbobjects,
   DBEditDateTimePicker, cosmos.system.messages, DBDateTimePicker, cosmos.system.files,
   Cosmos.Framework.Interfaces.Applications, cosmos.business.focos,
   Datasnap.DSConnect;

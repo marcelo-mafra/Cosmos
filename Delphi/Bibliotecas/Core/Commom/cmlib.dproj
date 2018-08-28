@@ -156,10 +156,14 @@
         <DCCReference Include="..\..\..\Arquivos Comuns\Reports\cosmos.reports.types.pas"/>
         <DCCReference Include="..\..\..\Arquivos Comuns\System\cosmos.system.formsconst.pas"/>
         <DCCReference Include="..\..\..\Arquivos Comuns\System\cosmos.system.files.pas"/>
-        <DCCReference Include="..\..\..\Arquivos Comuns\Data\cosmos.data.dataobjects.pas"/>
+        <DCCReference Include="..\..\..\Arquivos Comuns\Data\cosmos.data.dbobjects.pas"/>
         <DCCReference Include="..\..\..\Arquivos Comuns\System\cosmos.system.dataconverter.pas"/>
         <DCCReference Include="..\..\..\Arquivos Comuns\System\cosmos.system.nettypes.pas"/>
         <DCCReference Include="..\..\..\Arquivos Comuns\System\cosmos.system.types.cmhelpers.pas"/>
+        <DCCReference Include="..\..\..\Arquivos Comuns\System\cosmos.system.servers.pas"/>
+        <DCCReference Include="..\..\..\Arquivos Comuns\Data\cosmos.data.dbobjects.sequences.pas"/>
+        <DCCReference Include="..\..\..\Arquivos Comuns\Data\cosmos.data.dbobjects.tables.pas"/>
+        <DCCReference Include="..\..\..\Arquivos Comuns\Data\cosmos.data.dbobjects.objnames.pas"/>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

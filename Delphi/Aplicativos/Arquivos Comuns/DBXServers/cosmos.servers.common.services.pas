@@ -3,7 +3,7 @@ unit cosmos.servers.common.services;
 interface
 
 uses
-  System.SysUtils, System.Classes, cosmos.system.types, cosmos.system.messages,
+  System.SysUtils, System.Classes, cosmos.system.types, cosmos.system.types.cmhelpers,
   cosmos.classes.application, Datasnap.DSSession, cosmos.system.files,
   cosmos.classes.persistence.ini, cosmos.classes.logs, cosmos.classes.logs.controller,
   cosmos.servers.common.servicesint, cosmos.servers.common.dsservices;
@@ -95,37 +95,19 @@ end;
 function TCosmosServerServices.GetCosmosModuleIdentifier: string;
 begin
  //Retorna o nome "de identificação" do servidor em execução do Cosmos.
- case CosmosModule of
-   cmFocosServer: Result := TCosmosAppName.CosmosFocosId;
-   cmSecretariasServer: Result :=  TCosmosAppName.CosmosSecretariasId;
-   cmFinanceiroServer: Result :=  TCosmosAppName.CosmosFinanceiroId;
-   cmConferenciasServer: Result :=  TCosmosAppName.CosmosConferenciasId;
-   cmUsuariosServer: Result :=  TCosmosAppName.CosmosUsuariosId;
- end;
+ Result := CosmosModule.ModuleId;
 end;
 
 function TCosmosServerServices.GetCosmosModuleName: string;
 begin
  //Retorna o nome do servidor em execução do Cosmos.
- case CosmosModule of
-   cmFocosServer: Result := TCosmosAppName.CosmosFocos;
-   cmSecretariasServer: Result :=  TCosmosAppName.CosmosSecretarias;
-   cmFinanceiroServer: Result :=  TCosmosAppName.CosmosFinanceiro;
-   cmConferenciasServer: Result :=  TCosmosAppName.CosmosConferencias;
-   cmUsuariosServer: Result :=  TCosmosAppName.CosmosUsuarios;
- end;
+ Result := CosmosModule.ModuleName;
 end;
 
 function TCosmosServerServices.GetCosmosModuleShortName: string;
 begin
  //Retorna o nome abreviado do servidor em execução do Cosmos.
- case CosmosModule of
-   cmFocosServer: Result := TCosmosAppName.CosmosFocosShort.ToUpper;
-   cmSecretariasServer: Result :=  TCosmosAppName.CosmosSecretariasShort.ToUpper;
-   cmFinanceiroServer: Result :=  TCosmosAppName.CosmosFinanceiroShort.ToUpper;
-   cmConferenciasServer: Result :=  TCosmosAppName.CosmosConferenciasShort.ToUpper;
-   cmUsuariosServer: Result :=  TCosmosAppName.CosmosUsuariosShort.ToUpper;
- end;
+ Result := CosmosModule.ModuleNameShort.ToUpper;
 end;
 
 function TCosmosServerServices.GetDSService: ICosmosDSService;

@@ -7,7 +7,7 @@ uses
   Dialogs, ImgList, ActnList, DB, DBClient, StdCtrls, Buttons, cosmos.frames.gridsearch,
   ExtCtrls, GroupHeader, Cosmos.Framework.Interfaces.Root, Cosmos.Framework.Interfaces.DataAcess,
   Cosmos.Framework.Interfaces.Dialogs, System.Actions, cosmos.classes.ServerInterface,
-  cosmos.business.focos, cosmos.system.files, cosmos.system.messages, cosmos.data.dataobjects,
+  cosmos.business.focos, cosmos.system.files, cosmos.system.messages, cosmos.data.dbobjects,
   System.ImageList;
 
 type

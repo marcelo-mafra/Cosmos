@@ -12,7 +12,8 @@ uses
   Cosmos.Framework.Interfaces.Root, cosmos.classes.application, cosmos.classes.security,
   PlatformDefaultStyleActnCtrls, System.Actions, EDBImage, Vcl.Clipbrd,
   Cosmos.Framework.Interfaces.DataAcess, Cosmos.Framework.Interfaces.Applications,
-  cosmos.business.focos, Datasnap.DSConnect, cosmos.common.services.utilities;
+  cosmos.business.focos, Datasnap.DSConnect, cosmos.common.services.utilities,
+  System.ImageList;
 
 type
   TFrmCadastroJovensTM = class(TForm)

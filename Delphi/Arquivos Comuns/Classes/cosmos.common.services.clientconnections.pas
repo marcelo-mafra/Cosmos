@@ -18,8 +18,8 @@ uses
   cosmos.common.services.providerspool, Data.DBXDataSnap, IPPeerClient, Data.FMTBcd,
   Cosmos.Framework.Interfaces.ConnectionNotifiers, IdException, IdExceptionCore,
   cosmos.framework.clients.common.appinfo, DbxCompressionFilter, cosmos.system.files,
-  cosmos.classes.dsconnectionspool, Data.DbxHTTPLayer,  cosmos.common.services.connectionstest,
-  cosmos.system.dataconverter, cosmos.system.nettypes;
+  cosmos.classes.dsconnectionspool, Data.DbxHTTPLayer, cosmos.common.services.connectionstest,
+  cosmos.data.dbobjects.tables, cosmos.system.dataconverter, cosmos.system.nettypes;
 
 type
   //Informações existentes em um certificado digital.
@@ -1374,7 +1374,7 @@ var
  ACommand: TDBXCommand;
  vServerTableVersion: integer;
  aDataset: TClientDataset;
- sFileName, sFilter, sTableId: string;
+ sFileName, sFilter: string;
  FCosmosAppInfo: TCosmosAppInfo;
 begin
  {Verifica no servidor remoto se existe uma versão mais atualizada de uma tabela
@@ -1399,8 +1399,7 @@ begin
    aDataset.LoadFromFile(sFileName);
 
    //Monta o filtro a ser usado para encontrar a tabela recebida em parâmetro.
-   sTableId := TCosmosTablesInfo.GetCosmosTablesId(Table);
-   sFilter := 'SIGTAB = ' + sTableId.QuotedString; //do not localize!
+   sFilter := 'SIGTAB = ' + Table.TableId.QuotedString; //do not localize!
    aDataset.Filter := sFilter;
    aDataset.Filtered := True;
 
@@ -2196,7 +2195,7 @@ end;
 procedure TDMBase.UpdateBufferedTablesControlFile(const Table: TCosmosTables;
   NewVersion: integer);
 var
- sFile, sTableId: string;
+ sFile: string;
  aDataset: TClientDataset;
  CosmosAppInfo: TCosmosAppInfo;
 begin
@@ -2207,10 +2206,9 @@ begin
 
  try
   sFile := CosmosAppInfo.ReadCommonAppDataPath + TCosmosFiles.BufTab;
-  sTableId := TCosmosTablesInfo.GetCosmosTablesId(Table);
   aDataset.LoadFromFile(sFile);
 
-  if aDataset.Locate('SIGTAB', sTableId, []) then //do not localize!
+  if aDataset.Locate('SIGTAB', Table.TableId, []) then //do not localize!
    begin
     aDataset.Edit;
     aDataset.Fields.FieldByName('versao').Value := NewVersion; //do not localize!

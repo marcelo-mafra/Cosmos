@@ -9,9 +9,9 @@ uses
   cosmos.classes.application, System.Variants, Datasnap.Provider, System.WideStrings,
   Datasnap.DSSession, cosmos.system.winshell, cosmos.classes.ServerInterface,
   cosmos.classes.logs, Data.DBXCommon, cosmos.system.exceptions,cosmos.classes.servers.dataobj,
-  cosmos.classes.utils.cosmoscript, cosmos.system.dataconverter,
+  cosmos.classes.utils.cosmoscript, cosmos.system.dataconverter, cosmos.data.dbobjects.objnames,
   cosmos.servers.common.servicesint, cosmos.servers.common.services.factory,
-  cosmos.servers.common.dao.interfaces;
+  cosmos.servers.common.dao.interfaces, cosmos.data.dbobjects.sequences;
 
 
 type
@@ -309,6 +309,7 @@ begin
  try
   //Obtém o comando para inserir o círculo da E.I.
   CirculoID := DAOServices.DoGetSequenceValue(TSequencesNames.GEN_GRUPOS_EI);
+
   ADataset.Data := Circulo;
 
   if ADataset.Fields.FieldByName('codsac').IsNull then
@@ -355,7 +356,7 @@ begin
 
   Result := DAOServices.DoExecuteScript(AScript);
   ADataset.Free;
-  if Assigned(ASQLDataset) then ASQLDataset.Free;
+  if Assigned(ASQLDataset) then FreeAndNil(ASQLDataset);
   AScript.Free;
 
  except

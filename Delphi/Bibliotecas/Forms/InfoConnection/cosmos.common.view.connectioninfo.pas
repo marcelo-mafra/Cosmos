@@ -115,11 +115,11 @@ servidora do Cosmos.}
       //Nome da aplicação Cosmos.
       LblServerName.Caption := CosmosModuleName;
       //Protocolo de conexão.
+      LblProtocol.Caption := IRemoteCon.ConnectionProtocol.AsString;
+
       case IRemoteCon.ConnectionProtocol of
-       cpTCP: LblProtocol.Caption := TConnectionsConst.TCP;
        cpHTTP:
         begin
-         LblProtocol.Caption := TConnectionsConst.HTTP;
          LblServerHost.Cursor := crHandPoint;
          LblServerHost.Font.Style := [fsUnderline];
          LblServerHost.Font.Color := clHotLight;
@@ -127,7 +127,6 @@ servidora do Cosmos.}
         end;
        cpHTTPS:
         begin
-         LblProtocol.Caption := TConnectionsConst.HTTPS;
          LblServerHost.Cursor := crHandPoint;
          LblServerHost.Font.Style := [fsUnderline];
          LblServerHost.Font.Color := clHotLight;

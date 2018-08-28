@@ -26,7 +26,8 @@ uses
   cosmos.servers.common.dao.interfaces in '..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.dao.interfaces.pas',
   cosmos.servers.common.services.factory in '..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.services.factory.pas',
   cosmos.servers.common.servicesint in '..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.servicesint.pas',
-  cosmos.servers.common.dsservices in '..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.dsservices.pas';
+  cosmos.servers.common.dsservices in '..\..\Arquivos Comuns\DBXServers\cosmos.servers.common.dsservices.pas',
+  cosmos.system.servers;
 
 {$R *.res}
 

@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, 
-  Dialogs, ImgList, DBActns, ActnList, StdCtrls, Buttons, DB, System.Actions;
+  Dialogs, ImgList, DBActns, ActnList, StdCtrls, Buttons, DB, System.Actions,
+  System.ImageList;
 
 type
   TFmeEditButtons = class(TFrame)

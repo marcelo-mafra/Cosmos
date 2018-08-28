@@ -5,7 +5,8 @@ interface
 uses
  System.Classes, System.SysUtils, Vcl.Forms, Vcl.Dialogs, cosmos.system.types,
  cosmos.system.messages, cosmos.framework.interfaces.Root, cosmos.system.winshell,
- cosmos.framework.forms.sampledialog, System.variants, cosmos.classes.application;
+ cosmos.framework.forms.sampledialog, System.variants, cosmos.classes.application,
+ cosmos.system.types.cmhelpers;
 
 
 type
@@ -66,17 +67,9 @@ begin
     Result.MainIcon := IconType;
 
     if ICosmosApp <> nil then
-     begin
-      case ICosmosApp.CosmosModule of
-       cmFocos: Result.Caption := TCosmosAppName.CosmosFocos;
-       cmSecretarias, cmSecretariasServer: Result.Caption := TCosmosAppName.CosmosSecretarias;
-       cmFinanceiro: Result.Caption := TCosmosAppName.CosmosFinanceiro;
-       cmConferencias: Result.Caption := TCosmosAppName.CosmosConferencias;
-       cmUsuarios, cmUsuariosServer: Result.Caption := TCosmosAppName.CosmosUsuarios;
-      end;
-     end
-     else
-      Result.Caption := Application.Title;
+     Result.Caption := ICosmosApp.CosmosModule.ModuleName
+    else
+     Result.Caption := Application.Title;
    end
   else
    Result := nil;
@@ -419,14 +412,7 @@ begin
   begin
    with Result do
     begin
-     case AMessage.CosmosModule of
-      cmFocos: Caption := TCosmosAppName.CosmosFocos;
-      cmSecretarias, cmSecretariasServer: Caption := TCosmosAppName.CosmosSecretarias;
-      cmFinanceiro: Caption := TCosmosAppName.CosmosFinanceiro;
-      cmConferencias: Caption := TCosmosAppName.CosmosConferencias;
-      cmUsuarios: Caption := TCosmosAppName.CosmosUsuarios;
-     end;
-
+     Caption := AMessage.CosmosModule.ModuleName;
      ExpandedText := AMessage.XMLData;
 
      //Adiciona o botão de ajuda, se necessário.

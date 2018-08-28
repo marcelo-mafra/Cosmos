@@ -15,7 +15,7 @@ uses
 
 type
 
-  TDMServerDataAcess = class(TInterfacedObject,  ICosmosDAOService)
+  TServerDataAcess = class(TInterfacedObject,  ICosmosDAOService)
 
   private
     { Private declarations }
@@ -81,7 +81,7 @@ type
 implementation
 
 
-function TDMServerDataAcess.BeginTransaction(Connection: TSQLConnection;
+function TServerDataAcess.BeginTransaction(Connection: TSQLConnection;
   const Isolation: integer): TDBXTransaction;
 begin
  if (Connection <> nil) and (Connection.Connected) then
@@ -90,7 +90,7 @@ begin
   Result := nil;
 end;
 
-function TDMServerDataAcess.BeginTransaction(
+function TServerDataAcess.BeginTransaction(
   Connection: TSQLConnection): TDBXTransaction;
 begin
  if (Connection <> nil) and (Connection.Connected) then
@@ -99,14 +99,14 @@ begin
   Result := nil;
 end;
 
-procedure TDMServerDataAcess.CloseDataset(const Dataset: TDataset);
+procedure TServerDataAcess.CloseDataset(const Dataset: TDataset);
 begin
 //Fecha um dataset ativo.
  if Assigned(Dataset) and (Dataset.Active) then
    Dataset.Close;
 end;
 
-procedure TDMServerDataAcess.CommitTransaction(Connection: TSQLConnection;
+procedure TServerDataAcess.CommitTransaction(Connection: TSQLConnection;
   var Transaction: TDBXTransaction);
 begin
 //Confirma uma transação passada em parâmetro.
@@ -114,7 +114,7 @@ begin
   Connection.CommitFreeAndNil(Transaction);
 end;
 
-constructor TDMServerDataAcess.Create(Module: TCosmosModules);
+constructor TServerDataAcess.Create(Module: TCosmosModules);
 begin
  FCosmosModule := Module;
  //Obtém a pasta onde o servidor está instalado.
@@ -127,36 +127,36 @@ begin
  AFieldsInfoReader := TFieldsInfoReader.Create(self.FCosmosFolder + TCosmosFiles.FieldsInfo);
 end;
 
-function TDMServerDataAcess.CreateCommand: TDBXCommand;
+function TServerDataAcess.CreateCommand: TDBXCommand;
 begin
  Result :=  SQLConnection.DBXConnection.CreateCommand;
 end;
 
-function TDMServerDataAcess.CreateDataset: TSQLDataset;
+function TServerDataAcess.CreateDataset: TSQLDataset;
 begin
  Result := TSQLDataset.Create(nil);
  Result.SQLConnection := self.SQLConnection;
 end;
 
-function TDMServerDataAcess.CreateReader(Dataset: TDataset): TDBXDataSetReader;
+function TServerDataAcess.CreateReader(Dataset: TDataset): TDBXDataSetReader;
 begin
  Result := TDBXDataSetReader.Create(Dataset);
 end;
 
-function TDMServerDataAcess.CreateStoreProcedure: TSQLStoredProc;
+function TServerDataAcess.CreateStoreProcedure: TSQLStoredProc;
 begin
   Result := TSQLStoredProc.Create(nil);
   Result.SQLConnection := self.SQLConnection;
 end;
 
-destructor TDMServerDataAcess.Destroy;
+destructor TServerDataAcess.Destroy;
 begin
  FCosmosServerServices := nil;
  FConnectionPool.ClearAll;
  inherited;
 end;
 
-function TDMServerDataAcess.DoExecuteCommand(
+function TServerDataAcess.DoExecuteCommand(
   const Command: WideString): integer;
 var
  aCommand: cosmos.classes.servers.dataobj.TCosmosCommand;
@@ -178,7 +178,7 @@ begin
  end;
 end;
 
-function TDMServerDataAcess.DoExecuteDQL(const DQL: WideString): TSQLDataset;
+function TServerDataAcess.DoExecuteDQL(const DQL: WideString): TSQLDataset;
 begin
 {Executa um comando DQL em um objeto TSQLDataset.}
  Result := CreateDataset;
@@ -196,7 +196,7 @@ begin
  end;
 end;
 
-function TDMServerDataAcess.DoExecuteScript(
+function TServerDataAcess.DoExecuteScript(
   var AScript: TStringList): boolean;
 var
  aScriptObj: TCosmosScript;
@@ -224,7 +224,7 @@ alguma falha, toda a operação será desfeita.}
  end;
 end;
 
-function TDMServerDataAcess.DoGetSequenceValue(
+function TServerDataAcess.DoGetSequenceValue(
   const SequenceName: WideString): integer;
 var
  aCommand: cosmos.classes.servers.dataobj.TCosmosCommand;
@@ -252,7 +252,7 @@ begin
  end;
 end;
 
-function TDMServerDataAcess.DoExecuteDQL(SearchID: Integer;
+function TServerDataAcess.DoExecuteDQL(SearchID: Integer;
   Params: OleVariant): TDataset;
 var
 ACosmosSearch: TCosmosSearch;
@@ -284,7 +284,7 @@ begin
  end;
 end;
 
-function TDMServerDataAcess.GetContextInfo(Dataset: TCustomSQLDataset): string;
+function TServerDataAcess.GetContextInfo(Dataset: TCustomSQLDataset): string;
 var
  AContextInfo: TStringList;
 begin
@@ -311,7 +311,7 @@ begin
   Result := AContextInfo.DelimitedText;
 end;
 
-function TDMServerDataAcess.GetDQLCommand(SearchID: Integer;
+function TServerDataAcess.GetDQLCommand(SearchID: Integer;
   const Params: OleVariant): WideString;
 var
 ACommand: string;
@@ -334,18 +334,18 @@ as propriedades dos TFields para o lado cliente.}
  end;
 end;
 
-function TDMServerDataAcess.GetIUserManager: ICosmosUsersManager;
+function TServerDataAcess.GetIUserManager: ICosmosUsersManager;
 begin
- Result := TCosmosSecurity.Create(CosmosModule) as ICosmosUsersManager;
+ Result := TCosmosSecurity.New(CosmosModule);
 end;
 
-function TDMServerDataAcess.GetSQLConnection: TSQLConnection;
+function TServerDataAcess.GetSQLConnection: TSQLConnection;
 begin
 //Retorna uma conexão do pool de conexões.
  Result := FConnectionPool.ConnectionsPool.SQLConnection;
 end;
 
-procedure TDMServerDataAcess.WriteParamsCommandInfo(
+procedure TServerDataAcess.WriteParamsCommandInfo(
   Dataset: TCustomSQLDataset; List: TStringList);
 var
  I: integer;
@@ -375,7 +375,7 @@ begin
   end
 end;
 
-procedure TDMServerDataAcess.RegisterDBError(const ErrorId: integer; ErrorMsg: string);
+procedure TServerDataAcess.RegisterDBError(const ErrorId: integer; ErrorMsg: string);
 var
  AContextInfo: TStringList;
 begin
@@ -400,7 +400,7 @@ begin
   end;
 end;
 
-procedure TDMServerDataAcess.OnUpdateError(E: EUpdateError; UpdateKind: TUpdateKind;
+procedure TServerDataAcess.OnUpdateError(E: EUpdateError; UpdateKind: TUpdateKind;
   var Response: TResolverResponse);
 begin
  {Este método converte os textos de mensagens de erro disparadas pelo RDBMS para
@@ -418,7 +418,7 @@ begin
 
 end;
 
-procedure TDMServerDataAcess.PrepareTransaction(var TD: TTransactionDesc);
+procedure TServerDataAcess.PrepareTransaction(var TD: TTransactionDesc);
 begin
 //Prepara nova transação
  Randomize;
@@ -426,7 +426,7 @@ begin
  TD.IsolationLevel := xilREADCOMMITTED;
 end;
 
-procedure TDMServerDataAcess.LoadDatabaseOptions;
+procedure TServerDataAcess.LoadDatabaseOptions;
 var
   AFile: TIniFilePersistence;
   PoolSize: Integer;
@@ -454,13 +454,13 @@ begin
   end;
 end;
 
-class function TDMServerDataAcess.New(
+class function TServerDataAcess.New(
   Module: TCosmosModules): ICosmosDAOService;
 begin
  Result := self.Create(Module);
 end;
 
-procedure TDMServerDataAcess.RollbackTransaction(Connection: TSQLConnection;
+procedure TServerDataAcess.RollbackTransaction(Connection: TSQLConnection;
   var Transaction: TDBXTransaction);
 begin
 //Desfaz a transação passada em parâmetro.
@@ -468,7 +468,7 @@ begin
    Connection.RollbackFreeAndNil(Transaction);
 end;
 
-procedure TDMServerDataAcess.SetCosmosFolders;
+procedure TServerDataAcess.SetCosmosFolders;
 var
  CosmosApp: TCosmosApplication;
  aFile: TIniFilePersistence;

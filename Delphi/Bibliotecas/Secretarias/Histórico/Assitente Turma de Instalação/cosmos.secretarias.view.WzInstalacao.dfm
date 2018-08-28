@@ -38,8 +38,6 @@ inherited FrmAssistenteInstalacao: TFrmAssistenteInstalacao
     ExplicitWidth = 638
     ExplicitHeight = 396
     inherited TabSheet1: TTabSheet
-      ExplicitLeft = 0
-      ExplicitTop = 0
       ExplicitWidth = 630
       ExplicitHeight = 365
       inherited Image1: TImage
@@ -47,11 +45,11 @@ inherited FrmAssistenteInstalacao: TFrmAssistenteInstalacao
         ExplicitHeight = 365
       end
       inherited Label1: TLabel
-        Width = 459
+        Width = 476
         Caption = 
           'Bem-vindo ao assistente de cria'#231#227'o de novas turmas de isntala'#231#227'o' +
           ' em discipulados da Escola Externa e Escola Interna...'
-        ExplicitWidth = 459
+        ExplicitWidth = 476
       end
     end
     object TabSheet2: TTabSheet
@@ -278,7 +276,7 @@ inherited FrmAssistenteInstalacao: TFrmAssistenteInstalacao
   inherited ImageList1: TImageList
     Top = 412
     Bitmap = {
-      494C0101030004005C0012001200FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010103000400600012001200FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000480000001200000001002000000000004014
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -510,7 +508,7 @@ inherited FrmAssistenteInstalacao: TFrmAssistenteInstalacao
     Left = 344
     Top = 312
     Bitmap = {
-      494C010102008000640012001200FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010102008000680012001200FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000480000001200000001002000000000004014
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

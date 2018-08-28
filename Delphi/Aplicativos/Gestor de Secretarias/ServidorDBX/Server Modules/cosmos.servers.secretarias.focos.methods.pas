@@ -7,8 +7,8 @@ uses
   cosmos.classes.application, cosmos.system.messages, cosmos.system.exceptions,
   cosmos.servers.sqlcommands, System.Variants, cosmos.classes.ServerInterface,
   Data.DB, Data.DBXCommon, DBClient, Data.FMTBcd, DataSnap.DSProviderDataModuleAdapter,
-  Data.SqlExpr, Datasnap.Provider, DataSnap.DsSession,
-  cosmos.business.focos, cosmos.classes.logs, Data.DBXDBReaders,
+  Data.SqlExpr, Datasnap.Provider, DataSnap.DsSession, cosmos.data.dbobjects.sequences,
+  cosmos.business.focos, cosmos.classes.logs, Data.DBXDBReaders, cosmos.data.dbobjects.objnames,
   cosmos.system.dataconverter, cosmos.servers.common.servicesint,
   cosmos.servers.common.dao.interfaces;
 

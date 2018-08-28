@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, cosmos.framework.view.FrmDocked, ActnList, ImgList, cosmos.frames.gridsearch,
-  Tabs, Datasnap.DSConnect, cosmos.system.formsconst, cosmos.system.files, cosmos.data.dataobjects,
+  Tabs, Datasnap.DSConnect, cosmos.system.formsconst, cosmos.system.files, cosmos.data.dbobjects,
   DockTabSet, DB, DBClient, cosmos.system.messages, ActnMan, Menus, ActnPopup,
   XPStyleActnCtrls, cosmos.classes.application, cosmos.classes.security, Cosmos.Framework.Interfaces.Root,
   Cosmos.Framework.Interfaces.Dialogs, cosmos.classes.ServerInterface, ToolWin,

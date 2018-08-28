@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cosmos.framework.view.FrmDocked,
-  Vcl.ActnList, ImgList, Data.DB, Datasnap.DBClient, ExtCtrls, cosmos.data.dataobjects,
+  Vcl.ActnList, ImgList, Data.DB, Datasnap.DBClient, ExtCtrls, cosmos.data.dbobjects,
   cosmos.frames.gridsearch, Tabs, DockTabSet, ToolWin, Vcl.ActnMan, ActnCtrls, DBCtrls,
   Cosmos.Framework.Interfaces.Root, Cosmos.Framework.Interfaces.Dialogs,
   Menus, ActnPopup, cosmos.system.messages, StdCtrls, XPStyleActnCtrls, cosmos.system.files,

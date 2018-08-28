@@ -12,7 +12,7 @@ uses
   cosmos.Framework.forms.wizards, cosmos.classes.security, System.Actions,
   Datasnap.DSConnect, cosmos.system.files, Cosmos.Framework.Interfaces.DataAcess,
   Cosmos.Framework.Interfaces.Applications, cosmos.system.formsconst,
-  System.ImageList, cosmos.system.dataconverter, cosmos.data.dataobjects;
+  System.ImageList, cosmos.system.dataconverter, cosmos.data.dbobjects;
 
 type
   TFrmCirculosEI = class(TFrmCosmosDocked)

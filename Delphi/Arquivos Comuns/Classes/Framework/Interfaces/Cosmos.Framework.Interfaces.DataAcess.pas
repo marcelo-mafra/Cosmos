@@ -8,7 +8,7 @@ uses
  cosmos.system.nettypes, cosmos.classes.application, cosmos.classes.ServerInterface,
  cosmos.Framework.datanavigators.common, cosmos.classes.security, Data.DBXCommon,
  cosmos.core.client.connection, Data.SQLExpr, Vcl.Graphics, Data.DBXDBReaders,
- Cosmos.Framework.Interfaces.ConnectionNotifiers;
+ Cosmos.Framework.Interfaces.ConnectionNotifiers, cosmos.data.dbobjects.tables;
 
  type
 

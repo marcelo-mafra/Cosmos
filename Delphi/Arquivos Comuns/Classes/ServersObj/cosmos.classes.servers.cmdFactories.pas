@@ -5,12 +5,13 @@ interface
 uses
  cosmos.classes.ServerInterface, cosmos.servers.sqlcommands, cosmos.system.messages,
  cosmos.system.exceptions, cosmos.core.classes.searchsinfo, System.SysUtils,
- cosmos.classes.servers.utils, System.Variants, cosmos.classes.arrayutils;
+ cosmos.classes.servers.utils, System.Variants, cosmos.classes.arrayutils,
+ cosmos.data.dbobjects.tables;
 
 type
  //Classe utilitária para obter nomes de objetos do banco e comandos.
  TCosmosDataObjects = class
-  class function GetSequenceName(Sequence: TSequences): string;
+
   class function GetRegisteredCommand(const CommandId: integer): string;
  end;
 
@@ -84,28 +85,6 @@ begin
 
     raise;
    end;
- end;
-end;
-
-class function TCosmosDataObjects.GetSequenceName(Sequence: TSequences): string;
-begin
-{Retorna o nome da sequence que um objeto do tipo TSequences representa.}
- case Sequence of
-   sqCadastrados: ;
-   sqFocos: Result := TSequencesNames.GEN_FOCOS;
-   sqRegioes: Result := TSequencesNames.GEN_REGIOES;
-   sqPaises: ;
-   sqEstados: ;
-   sqCidades: ;
-   sqBairros: ;
-   sqLogradouros: ;
-   sqCargos: ;
-   sqTiposMeiosContatos: ;
-   sqMentorRA: ;
-   sqOrgaosGestores: ;
-   sqGestoes: Result :=  TSequencesNames.GEN_GESTOES;
-   sqDirecoes: ;
-   sqAreasStaff: ;
  end;
 end;
 
@@ -412,21 +391,7 @@ class function TSQLCommandsFactory.GetTableCommand(
 begin
 {Retorna um comando para consulta de toda uma tabela mapeada por essa classe. Este
  método é usado para obter o completo subset de dados de uma tabela.}
- case Table of
-   ctAptidoes: Result := Result.Format(TDQLCommands.GeneralSelect, [TTablesNames.TAB_APTIDOES]);
-   ctCargos: Result := Result.Format(TDQLCommands.GeneralSelect, [TTablesNames.TAB_CARGOS]);
-   ctEnfermidades: Result := Result.Format(TDQLCommands.GeneralSelect, [TTablesNames.TAB_ENFERMIDADES]);
-   ctFuncoes: Result := Result.Format(TDQLCommands.GeneralSelect, [TTablesNames.TAB_FUNCOES]);
-   ctMeiosContatos: Result := Result.Format(TDQLCommands.GeneralSelect, [TTablesNames.TAB_MEIOSCONTATOS]);
-   ctProfissoes: Result := Result.Format(TDQLCommands.GeneralSelect, [TTablesNames.TAB_PROFISSOES]);
-   ctTiposRecebimentos: Result := Result.Format(TDQLCommands.GeneralSelect, [TTablesNames.TAB_TIPOS_RECEBIMENTOS]);
-   ctFlagsInscricao: Result := Result.Format(TDQLCommands.GeneralSelect, [TTablesNames.TAB_FLAGS_INSCRICOES]);
-   ctFocos: Result := Result.Format(TDQLCommands.GeneralSelect, [TTablesNames.TAB_FOCOS]);
-   ctPerfis: Result := Result.Format(TDQLCommands.GeneralSelect, [TTablesNames.TAB_PERFIS]);
-   ctDiscipulados: Result := Result.Format(TDQLCommands.GeneralSelect, [TTablesNames.TAB_DISCIPULADOS]);
-   ctTiposEventos: Result := Result.Format(TDQLCommands.GeneralSelect, [TTablesNames.TAB_TIPOS_EVENTOS]);
-   ctRelatoriosExternos: Result := Result.Format(TDQLCommands.GeneralSelect, [TTablesNames.TAB_RELATORIOS_EXTERNOS]);
- end;
+ Result := Result.Format(TDQLCommands.GeneralSelect, [Table.TableName]);
 end;
 
 end.

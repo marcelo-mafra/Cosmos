@@ -12,7 +12,7 @@ uses
   cosmos.system.messages, cosmos.system.exceptions, cosmos.classes.application,
   Cosmos.Framework.Interfaces.Root, Cosmos.Framework.Interfaces.DataAcess,
   Cosmos.Framework.Interfaces.Utils, Cosmos.Framework.Interfaces.Dialogs,
-  System.Contnrs, Vcl.CustomizeDlg, //Cosmos.classes.logs.winservice,
+  System.Contnrs, Vcl.CustomizeDlg, {Cosmos.classes.logs.winservice} cosmos.data.dbobjects.tables,
   cosmos.classes.security, cosmos.classes.persistence.ini, cosmos.tools.winmanager,
   cosmos.framework.forms.dlgmessages, cosmos.framework.datanavigators.datasets,
   cosmos.framework.clients.common.appinfo, cosmos.classes.ServerInterface,

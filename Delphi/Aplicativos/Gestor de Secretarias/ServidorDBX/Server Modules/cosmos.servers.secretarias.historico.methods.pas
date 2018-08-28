@@ -8,9 +8,10 @@ uses
   Data.DB, Datasnap.DBClient, Data.SqlExpr, Data.FMTBcd, cosmos.classes.application, System.Variants,
   Provider, cosmos.servers.sqlcommands, cosmos.system.messages,  System.WideStrings,
   Data.dbxCommon, DataSnap.DsSession, cosmos.classes.logs, cosmos.system.exceptions,
-  Data.DBXFirebird, cosmos.business.focos, cosmos.business.secretariats,
+  Data.DBXFirebird, cosmos.business.focos, cosmos.business.secretariats, cosmos.data.dbobjects.sequences,
   cosmos.classes.persistence.ini, cosmos.system.dataconverter, cosmos.business.focos.helpers,
-  cosmos.servers.common.servicesint, cosmos.servers.common.dao.interfaces;
+  cosmos.servers.common.servicesint, cosmos.servers.common.dao.interfaces,
+  cosmos.data.dbobjects.objnames;
 
 type
   TCosmosSecHistoricoServerMethods = class(TDSServerModule)

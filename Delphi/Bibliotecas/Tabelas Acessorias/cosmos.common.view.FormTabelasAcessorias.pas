@@ -9,7 +9,8 @@ uses
   Vcl.ExtCtrls, FrameEditButtons, cosmos.classes.application, cosmos.system.messages,
   cosmos.frames.gridsearch, cosmos.classes.ServerInterface, System.Actions,
   cosmos.framework.datanavigators.datasets, Cosmos.Framework.Interfaces.DataAcess,
-  cosmos.system.types, Datasnap.DSConnect, cosmos.system.formsconst;
+  cosmos.data.dbobjects.tables, cosmos.system.types, Datasnap.DSConnect, cosmos.system.formsconst,
+  System.ImageList;
 
 type
   TFrmAcessorias = class(TFrmCosmosDocked)

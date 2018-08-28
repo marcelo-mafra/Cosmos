@@ -10,7 +10,8 @@ uses
   cosmos.servers.sqlcommands, cosmos.classes.ServerInterface, System.WideStrings,
   cosmos.system.messages, cosmos.system.exceptions, Data.dbxCommon, DataSnap.DsSession,
   cosmos.classes.logs, cosmos.classes.persistence.ini, Data.DBXFirebird,
-  cosmos.servers.common.servicesint, cosmos.servers.common.dao.interfaces;
+  cosmos.servers.common.servicesint, cosmos.servers.common.dao.interfaces,
+  cosmos.data.dbobjects.sequences, cosmos.data.dbobjects.objnames;
 
 type
   TDMSecLectoriumServerMethods = class(TDSServerModule)

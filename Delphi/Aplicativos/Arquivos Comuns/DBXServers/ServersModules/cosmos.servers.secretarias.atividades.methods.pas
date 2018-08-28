@@ -11,7 +11,8 @@ uses
   System.WideStrings, DataSnap.DsSession, cosmos.classes.logs, Vcl.Forms, Vcl.SvcMgr,
   cosmos.classes.utils.cosmoscript, cosmos.servers.common.servicesint,
   cosmos.servers.common.dao.interfaces, cosmos.servers.common.services.factory,
-  cosmos.servers.common.dao.factory, cosmos.system.types;
+  cosmos.servers.common.dao.factory, cosmos.system.types, cosmos.system.servers,
+  cosmos.data.dbobjects.objnames, cosmos.data.dbobjects.sequences;
 
 type
   TDMSecAtividadesServerMethods = class(TDSServerModule)

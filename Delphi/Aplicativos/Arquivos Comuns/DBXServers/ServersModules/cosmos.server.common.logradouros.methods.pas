@@ -8,7 +8,8 @@ uses
   Datasnap.DBClient, Data.SqlExpr, Datasnap.Provider, System.Variants,
   cosmos.servers.sqlcommands, DataSnap.DsSession, Vcl.Forms, Vcl.SvcMgr,
   cosmos.servers.common.servicesint, cosmos.servers.common.dao.interfaces,
-  cosmos.system.types;
+  cosmos.system.types, cosmos.system.servers, cosmos.data.dbobjects.objnames,
+  cosmos.data.dbobjects.sequences;
 
 type
   TDMCosmosServerLogradouros = class(TDSServerModule)
